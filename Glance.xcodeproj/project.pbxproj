@@ -134,7 +134,7 @@
 		5DEFF11424AEC2F8007A2FCD /* AppearanceManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppearanceManager.swift; sourceTree = "<group>"; };
 		5DEFF11524AEC2F8007A2FCD /* AuthManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthManager.swift; sourceTree = "<group>"; };
 		5DEFF11624AEC2F8007A2FCD /* LogManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogManager.swift; sourceTree = "<group>"; };
-		5DEFF12324AEC2F8007A2FCD /* BuyDo.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = BuyDo.entitlements; sourceTree = "<group>"; };
+		5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Glance.entitlements; sourceTree = "<group>"; };
 		5DEFF12524AEC2F8007A2FCD /* Gender.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Gender.swift; sourceTree = "<group>"; };
 		5DEFF12C24AEC2F8007A2FCD /* Version.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Version.swift; sourceTree = "<group>"; };
 		5DEFF12D24AEC2F8007A2FCD /* ISO8601DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ISO8601DateTransform.swift; sourceTree = "<group>"; };
@@ -253,7 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */,
-				5DEFF12324AEC2F8007A2FCD /* BuyDo.entitlements */,
+				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
 				5DEFF0F924AEC2F8007A2FCD /* Networking */,
 				5DEFF10024AEC2F8007A2FCD /* Resources */,
 				5DEFF10D24AEC2F8007A2FCD /* Managers */,
