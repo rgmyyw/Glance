@@ -2,8 +2,8 @@
 //  CollectionView.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
@@ -35,12 +35,31 @@ class CollectionView: UICollectionView {
         setNeedsDisplay()
     }
 
-    func itemWidth(forItemsPerRow itemsPerRow: Int, withInset inset: CGFloat = 0) -> CGFloat {
-        let collectionWidth = Int(frame.size.width)
+    
+    /// 快捷获取itemWidth
+    /// - Parameters:
+    ///   - itemsPerRow: 列
+    ///   - sectionInset: 内边距
+    ///   - itemInset: 元素间距
+    func itemWidth(forItemsPerRow itemsPerRow: Int ,sectionInset : UIEdgeInsets = .zero,  itemInset : CGFloat = 0) -> CGFloat {
+        
+        let collectionWidth : CGFloat = frame.size.width
         if collectionWidth == 0 {
             return 0
         }
-        return CGFloat(Int((collectionWidth - (itemsPerRow + 1) * Int(inset)) / itemsPerRow))
+
+        var sectionInset : CGFloat = 0
+        var itemInset : CGFloat  = 0
+        let layout = collectionViewLayout as? UICollectionViewFlowLayout
+        
+        if sectionInset == .zero , let layout = layout {
+            sectionInset = layout.sectionInset.left + layout.sectionInset.right
+        }
+        if itemInset == 0  ,let layout = layout {
+            itemInset = (itemsPerRow.cgFloat - 1.0) * layout.minimumInteritemSpacing
+        }
+        
+        return (collectionWidth - sectionInset - itemInset) / itemsPerRow.cgFloat
     }
 
     func setItemSize(_ size: CGSize) {

@@ -2,14 +2,16 @@
 //  TableViewController.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
 import RxSwift
 import RxCocoa
 import KafkaRefresh
+import Toast_Swift
+
 
 class TableViewController: ViewController, UIScrollViewDelegate {
 
@@ -18,17 +20,31 @@ class TableViewController: ViewController, UIScrollViewDelegate {
 
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
+    
+    let noMoreData = PublishSubject<Void>()
+    
+    private let style : UITableView.Style
 
     lazy var tableView: TableView = {
-        let view = TableView(frame: CGRect(), style: .plain)
+        let view = TableView(frame: .zero, style: style)
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
+        view.estimatedRowHeight = UITableView.automaticDimension
+        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
         return view
     }()
-
-    var clearsSelectionOnViewWillAppear = true
-
+    
+    init(viewModel: ViewModel?, navigator: Navigator, tableView style : UITableView.Style = .plain) {
+        self.style = style
+        super.init(viewModel: viewModel, navigator: navigator)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        self.style = .plain
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -36,10 +52,9 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        if clearsSelectionOnViewWillAppear == true {
-            deselectSelectedRow()
-        }
     }
+    
+    
 
     override func makeUI() {
         super.makeUI()
@@ -55,30 +70,52 @@ class TableViewController: ViewController, UIScrollViewDelegate {
             self?.footerRefreshTrigger.onNext(())
         })
 
-        isHeaderLoading.bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
-        isFooterLoading.bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "no data")
+        tableView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
+        headerRefreshTrigger.subscribe(onNext: { [weak self] in
+            if let footRefreshControl = self?.tableView.footRefreshControl {
+                footRefreshControl.resumeRefreshAvailable()
+            }
+        }).disposed(by: rx.disposeBag)
+        
+
+        noMoreData.subscribe(onNext: {[weak self] (_) in
+            self?.tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "no Data!")
+        }).disposed(by: rx.disposeBag)
+        
 
         tableView.footRefreshControl.autoRefreshOnFoot = true
 
-        error.subscribe(onNext: { [weak self] (error) in
-            self?.tableView.makeToast(error.description, title: error.title, image: R.image.icon_toast_warning())
+        
+        let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
+                                               emptyDataViewDataSource.enable.mapToVoid(),
+                                               emptyDataViewDataSource.title.filterNil().mapToVoid(),
+                                               emptyDataViewDataSource.subTitle.filterNil().mapToVoid(),
+                                               emptyDataViewDataSource.image.filterNil().mapToVoid(),
+                                               emptyDataViewDataSource.buttonTitle.filterNil().mapToVoid(),
+                                               languageChanged.asObservable()).merge()
+        updateEmptyDataSet.subscribe(onNext: { [weak self] _ in
+            self?.tableView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
+
+
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        if tableView.headRefreshControl != nil {
+            isHeaderLoading.bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        }
+        if tableView.footRefreshControl != nil {
+            isFooterLoading.bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        }
     }
 
     override func updateUI() {
         super.updateUI()
-    }
-
-    override func bindViewModel() {
-        super.bindViewModel()
-
-        viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
-        viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-
-        let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(), emptyDataSetImageTintColor.mapToVoid(), languageChanged.asObservable()).merge()
-        updateEmptyDataSet.subscribe(onNext: { [weak self] () in
-            self?.tableView.reloadEmptyDataSet()
-        }).disposed(by: rx.disposeBag)
+        
+        emptyDataViewDataSource.contentInsetTop.accept(tableView.contentInset.top)
     }
 }
 
@@ -93,14 +130,15 @@ extension TableViewController {
     }
 }
 
-extension TableViewController: UITableViewDelegate {
 
+extension TableViewController: UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if let view = view as? UITableViewHeaderFooterView {
-            view.textLabel?.font = UIFont.systemFont(ofSize: 15)
+            view.textLabel?.font = UIFont(name: ".SFUIText-Bold", size: 15.0)!
             themeService.rx
                 .bind({ $0.text }, to: view.textLabel!.rx.textColor)
-                .bind({ $0.primaryDark }, to: view.contentView.rx.backgroundColor)
+                .bind({ $0.background }, to: view.contentView.rx.backgroundColor)
                 .disposed(by: rx.disposeBag)
         }
     }

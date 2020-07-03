@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 1/28/19.
-//  Copyright © 2019 yanghai. All rights reserved.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
@@ -32,16 +32,12 @@ struct ErrorResponse: Mappable {
 struct ErrorModel: Mappable {
     var code: String?
     var message: String?
-    var field: String?
-    var resource: String?
 
     init?(map: Map) {}
     init() {}
 
     mutating func mapping(map: Map) {
         code <- map["code"]
-        message <- map["message"]
-        field <- map["field"]
-        resource <- map["resource"]
+        message <- map["msg"]
     }
 }

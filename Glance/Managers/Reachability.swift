@@ -2,15 +2,14 @@
 //  Reachability.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
 import RxSwift
 import Alamofire
 
-// An observable that completes when the app gets online (possibly completes immediately).
 func connectedToInternet() -> Observable<Bool> {
     return ReachabilityManager.shared.reach
 }

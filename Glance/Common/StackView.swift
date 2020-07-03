@@ -2,13 +2,24 @@
 //  StackView.swift
 //  
 //
-//  Created by yanghai on 6/26/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
 
 class StackView: UIStackView {
+    
+    override var backgroundColor: UIColor? {
+        set {
+            let background = CALayer()
+            background.backgroundColor = newValue?.cgColor
+            layer.insertSublayer(background, at: 0)
+        }
+        get{
+            return layer.sublayers?.first?.backgroundColor?.uiColor
+        }
+    }
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -17,7 +28,6 @@ class StackView: UIStackView {
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        makeUI()
     }
 
     func makeUI() {
@@ -28,6 +38,9 @@ class StackView: UIStackView {
         updateUI()
     }
 
+    
+    
+    
     func updateUI() {
         setNeedsDisplay()
     }

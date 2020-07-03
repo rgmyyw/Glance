@@ -2,8 +2,8 @@
 //  ImageView.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
@@ -33,7 +33,7 @@ class ImageView: UIImageView {
     func makeUI() {
         tintColor = .primary()
         layer.masksToBounds = true
-        contentMode = .center
+        contentMode = .scaleAspectFit
 
         hero.modifiers = [.arc]
 

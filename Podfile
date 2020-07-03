@@ -53,7 +53,14 @@ target 'Glance' do
     pod 'Toast-Swift', '~> 5.0'
     pod 'HMSegmentedControl', '~> 1.0'
     pod 'FloatingPanel', '~> 1.0'
-    
+    pod 'DNSPageView' , '~> 1.5.0'
+    pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
+    pod 'UICollectionView-ARDynamicHeightLayoutCell' , '~>  1.0.2'
+    pod 'FDFullscreenPopGesture' , '~> 1.1'
+    pod 'HBDNavigationBar', '~> 1.7.6'
+    pod 'FSPagerView' , '~> 0.8.3'
+    pod 'SDCAlertView' , '~> 11.1.2'
+    pod 'WZLBadge' , '~> 1.2.6'
     # Keyboard
     pod 'IQKeyboardManagerSwift', '~> 6.0'
 
@@ -64,10 +71,14 @@ target 'Glance' do
     pod 'FLEX', '~> 4.0', :configurations => ['Debug']
     pod 'SwifterSwift', '~> 5.0'
     pod 'BonMot', '~> 5.0'
+    pod 'Reusable' , '~> 4.1.0'
 
     # Logging
     pod 'CocoaLumberjack/Swift', '~> 3.0'
-
+    
+    pod 'CryptoSwift' , '~> 1.3.1'
+    
+    
 
 
 end

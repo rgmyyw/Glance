@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="Demo2ViewController" customModule="BuyDo" customModuleProvider="target">
+            <connections>
+                <outlet property="view" destination="Lw1-Je-RjG" id="9l8-Dr-puX"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="Lw1-Je-RjG">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oHa-VI-REv">
+                    <rect key="frame" x="0.0" y="493" width="414" height="403"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6PU-kb-FMh">
+                            <rect key="frame" x="360" y="15" width="39" height="30"/>
+                            <state key="normal" title="Close"/>
+                            <connections>
+                                <action selector="close" destination="-1" eventType="touchUpInside" id="Nlt-vO-1p2"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="6PU-kb-FMh" firstAttribute="top" secondItem="oHa-VI-REv" secondAttribute="top" constant="15" id="GEo-Yf-jnc"/>
+                        <constraint firstAttribute="trailing" secondItem="6PU-kb-FMh" secondAttribute="trailing" constant="15" id="sBi-6R-8ul"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="oHa-VI-REv" secondAttribute="trailing" id="Tpb-f8-c1W"/>
+                <constraint firstAttribute="bottom" secondItem="oHa-VI-REv" secondAttribute="bottom" id="aCR-Xe-6cg"/>
+                <constraint firstItem="oHa-VI-REv" firstAttribute="leading" secondItem="Lw1-Je-RjG" secondAttribute="leading" id="dGT-HX-WIM"/>
+                <constraint firstItem="oHa-VI-REv" firstAttribute="height" secondItem="Lw1-Je-RjG" secondAttribute="height" multiplier="0.45" id="nxW-pW-peZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="cYN-ge-KO1"/>
+            <point key="canvasLocation" x="132" y="153"/>
+        </view>
+    </objects>
+</document>

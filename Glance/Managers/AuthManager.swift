@@ -2,8 +2,8 @@
 //  AuthManager.swift
 //  
 //
-//  Created by yanghai on 9/1/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
@@ -15,8 +15,7 @@ import RxCocoa
 let loggedIn = BehaviorRelay<Bool>(value: false)
 
 class AuthManager {
-
-    /// The default singleton instance.
+    
     static let shared = AuthManager()
 
     // MARK: - Properties
@@ -32,7 +31,7 @@ class AuthManager {
     var token: Token? {
         get {
             guard let jsonString = keychain[tokenKey] else { return nil }
-            return Mapper<Token>().map(JSONString: jsonString)
+            return Token(JSONString: jsonString)
         }
         set {
             if let token = newValue, let jsonString = token.toJSONString() {

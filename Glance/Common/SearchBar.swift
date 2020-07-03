@@ -1,62 +1,96 @@
 //
 //  SearchBar.swift
-//  
+//  ibex
 //
-//  Created by yanghai on 6/30/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2020/4/10.
+//  Copyright © 2020 gxd. All rights reserved.
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class SearchBar: UISearchBar {
+@IBDesignable
+class SearchBar: View, UITextFieldDelegate {
+    
+    lazy var bgView : View = {
+        let view = View()
+        view.backgroundColor = UIColor(hex: 0xF1F1F1)
+        view.addSubview(textField)
+        view.addSubview(searchImageView)
+        return view
+    }()
+    
+    
+    private lazy var searchImageView: ImageView = {
+        let view = ImageView(frame: .zero)
+        view.image = R.image.icon_search()
+        view.contentMode = .scaleAspectFit
+        view.sizeToFit()
+        view.snp.makeConstraints({ (make) in
+            make.size.equalTo(view.image?.size ?? .zero)
+        })
+        return view
+    }()
 
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        makeUI()
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        makeUI()
-    }
-
-    func makeUI() {
-        placeholder = R.string.localizable.commonSearch.key.localized()
-        isTranslucent = false
-        searchBarStyle = .minimal
-
-        themeService.rx
-            .bind({ $0.secondary }, to: rx.tintColor)
-            .bind({ $0.primaryDark }, to: rx.barTintColor)
-            .disposed(by: rx.disposeBag)
-
-        if let textField = textField {
-            themeService.rx
-                .bind({ $0.text }, to: textField.rx.textColor)
-                .bind({ $0.keyboardAppearance }, to: textField.rx.keyboardAppearance)
-                .disposed(by: rx.disposeBag)
+    lazy var textField : UITextField = {
+        let view = UITextField()
+        view.text = ""
+        view.textColor = UIColor.text()
+        view.placeholder = "Search"
+        view.isUserInteractionEnabled = false
+        view.isSecureTextEntry = false
+        view.font = UIFont.titleBoldFont(14)
+        view.textAlignment = .left
+        view.keyboardType = .webSearch
+        view.autocapitalizationType = .none
+        view.delegate = self
+        return view
+    }()
+    
+    let textFieldReturn = PublishSubject<Void>()
+    
+    
+    
+    override func makeUI() {
+        super.makeUI()
+        addSubview(bgView)
+        backgroundColor = .clear
+        
+        
+        bgView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(snp.top)//.offset(4)
+            make.bottom.equalTo(snp.bottom)//.offset(-4)
         }
-
-        rx.textDidBeginEditing.asObservable().subscribe(onNext: { [weak self] () in
-            self?.setShowsCancelButton(true, animated: true)
-        }).disposed(by: rx.disposeBag)
-
-        rx.textDidEndEditing.asObservable().subscribe(onNext: { [weak self] () in
-            self?.setShowsCancelButton(false, animated: true)
-        }).disposed(by: rx.disposeBag)
-
-        rx.cancelButtonClicked.asObservable().subscribe(onNext: { [weak self] () in
-            self?.resignFirstResponder()
-        }).disposed(by: rx.disposeBag)
-
-        rx.searchButtonClicked.asObservable().subscribe(onNext: { [weak self] () in
-            self?.resignFirstResponder()
-        }).disposed(by: rx.disposeBag)
-
-        updateUI()
+        
+        searchImageView.snp.makeConstraints { (make) in
+            make.left.equalTo(inset)
+            make.centerY.equalTo(bgView.snp.centerY)
+        }
+        
+        textField.snp.makeConstraints { (make) in
+            make.left.equalTo(searchImageView.snp.right).offset(4)
+            make.right.equalTo(bgView.snp.right).offset(-inset)
+            make.centerY.equalTo(searchImageView).offset(2)
+        }
+        
     }
-
-    func updateUI() {
-        setNeedsDisplay()
+    
+    override var intrinsicContentSize: CGSize {
+        
+        return UIView.layoutFittingExpandedSize
+    }
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        bgView.cornerRadius = bgView.height * 0.5
+        
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textFieldReturn.onNext(())
+        return true
     }
 }
+

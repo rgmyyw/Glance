@@ -1,9 +1,9 @@
 //
 //  SplitViewController.swift
-//  CakeBuilderBakery
 //
-//  Created by yanghai on 3/13/17.
-//  Copyright © 2017 GAVR. All rights reserved.
+//
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit

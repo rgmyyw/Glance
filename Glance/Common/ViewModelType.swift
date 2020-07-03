@@ -2,8 +2,8 @@
 //  ViewModelType.swift
 //  
 //
-//  Created by yanghai on 6/30/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
@@ -18,7 +18,8 @@ protocol ViewModelType {
     func transform(input: Input) -> Output
 }
 
-class ViewModel: NSObject {
+
+class ViewModel: NSObject  {
 
     let provider: API
 
@@ -27,21 +28,29 @@ class ViewModel: NSObject {
     let loading = ActivityIndicator()
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()
+    let noMoreData = PublishSubject<Void>()
 
     let error = ErrorTracker()
-    let serverError = PublishSubject<Error>()
     let parsedError = PublishSubject<ApiError>()
-
+    let exceptionError = PublishSubject<ExceptionError?>()
+    let message = PublishSubject<Message>()
+    
+    let endEditing = PublishSubject<Void>()
+    
+//    let close = PublishSubject<Void>()
+    
     init(provider: API) {
         self.provider = provider
         super.init()
 
-        serverError.asObservable().map { (error) -> ApiError? in
+        error.asObservable().map { (error) -> ApiError? in
             do {
                 let errorResponse = error as? MoyaError
                 if let body = try errorResponse?.response?.mapJSON() as? [String: Any],
-                    let errorResponse = Mapper<ErrorResponse>().map(JSON: body) {
-                    return ApiError.serverError(response: errorResponse)
+                    let errorResponse = Mapper<ErrorModel>().map(JSON: body) {
+                    var errors = ErrorResponse(JSON: [:])!
+                    errors.errors = [errorResponse]
+                    return ApiError.serverError(response: errors)
                 }
             } catch {
                 print(error)
@@ -49,13 +58,17 @@ class ViewModel: NSObject {
             return nil
         }.filterNil().bind(to: parsedError).disposed(by: rx.disposeBag)
 
-        parsedError.subscribe(onNext: { (error) in
+        error.asDriver().drive(onNext: { (error) in
             logError("\(error)")
+        }).disposed(by: rx.disposeBag)
+        
+        exceptionError.filterNil().subscribe(onNext: { message in
+            logError(message.description)
         }).disposed(by: rx.disposeBag)
     }
 
     deinit {
         logDebug("\(type(of: self)): Deinited")
-        logResourcesCount()
+        //logResourcesCount()
     }
 }

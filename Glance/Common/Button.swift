@@ -2,16 +2,19 @@
 //  Button.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
 
-public class Button: UIButton {
-
+class Button: UIButton {
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
+        titleLabel?.font = UIFont.titleFont(16)
+        titleLabel?.textColor = UIColor.text()
         makeUI()
     }
 
@@ -19,25 +22,34 @@ public class Button: UIButton {
         super.init(coder: aDecoder)
         makeUI()
     }
+    
+    
 
     func makeUI() {
+        
+        contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         themeService.rx
-            .bind({ UIImage(color: $0.secondary, size: CGSize(width: 1, height: 1)) }, to: rx.backgroundImage(for: .normal))
-            .bind({ UIImage(color: $0.secondary.withAlphaComponent(0.9), size: CGSize(width: 1, height: 1)) }, to: rx.backgroundImage(for: .selected))
-            .bind({ UIImage(color: $0.secondary.withAlphaComponent(0.6), size: CGSize(width: 1, height: 1)) }, to: rx.backgroundImage(for: .disabled))
+            .bind({ UIImage(gradientColors: [UIColor(hex: 0xF56447)!,$0.primary])}, to: rx.backgroundImage(for: .normal))
+            .bind({ UIImage(color: $0.separator)}, to: rx.backgroundImage(for: .disabled))
             .disposed(by: rx.disposeBag)
-
         layer.masksToBounds = true
         titleLabel?.lineBreakMode = .byWordWrapping
-        cornerRadius = Configs.BaseDimensions.cornerRadius
-//        font = font?.withSize(14)
-
-        snp.makeConstraints { (make) in
-            make.height.equalTo(Configs.BaseDimensions.buttonHeight)
-        }
 
         updateUI()
     }
+
+//
+//    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
+//        let insetRect = bounds.inset(by: textInsets)
+//        let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
+//        let invertedInsets = UIEdgeInsets(top: -textInsets.top,
+//                                          left: -textInsets.left,
+//                                          bottom: -textInsets.bottom,
+//                                          right: -textInsets.right)
+//        return textRect.inset(by: invertedInsets)
+//    }
+
+
 
     func updateUI() {
         setNeedsDisplay()

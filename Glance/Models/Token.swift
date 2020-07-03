@@ -2,8 +2,8 @@
 //  Token.swift
 //  
 //
-//  Created by yanghai on 9/1/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
@@ -11,15 +11,10 @@ import ObjectMapper
 
 enum TokenType {
     case basic(token: String)
-    case personal(token: String)
-    case oAuth(token: String)
     case unauthorized
-
     var description: String {
         switch self {
         case .basic: return "basic"
-        case .personal: return "personal"
-        case .oAuth: return "OAuth"
         case .unauthorized: return "unauthorized"
         }
     }
@@ -27,19 +22,15 @@ enum TokenType {
 
 struct Token: Mappable {
 
-    var isValid = false
+    var isValid = true
+    
 
     // Basic
     var basicToken: String?
+    
+    var expired : Int = 0
 
-    // Personal Access Token
-    var personalToken: String?
-
-    // OAuth2
-    var accessToken: String?
-    var tokenType: String?
-    var scope: String?
-
+    
     init?(map: Map) {}
     init() {}
 
@@ -47,28 +38,15 @@ struct Token: Mappable {
         self.basicToken = basicToken
     }
 
-    init(personalToken: String) {
-        self.personalToken = personalToken
-    }
-
     mutating func mapping(map: Map) {
         isValid <- map["valid"]
-        basicToken <- map["basic_token"]
-        personalToken <- map["personal_token"]
-        accessToken <- map["access_token"]
-        tokenType <- map["token_type"]
-        scope <- map["scope"]
+        basicToken <- map["token"]
+        expired <- map["expired"]
     }
 
     func type() -> TokenType {
         if let token = basicToken {
             return .basic(token: token)
-        }
-        if let token = personalToken {
-            return .personal(token: token)
-        }
-        if let token = accessToken {
-            return .oAuth(token: token)
         }
         return .unauthorized
     }

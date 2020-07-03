@@ -2,8 +2,8 @@
 //  View.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
@@ -23,7 +23,8 @@ public class View: UIView {
             make.height.equalTo(height)
         }
     }
-
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeUI()
@@ -31,9 +32,14 @@ public class View: UIView {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        makeUI()
     }
 
+    
+    public override func awakeFromNib() {
+        super.awakeFromNib()
+        makeUI()
+    }
+    
     func makeUI() {
         self.layer.masksToBounds = true
         updateUI()

@@ -2,8 +2,8 @@
 //  Toolbar.swift
 //  
 //
-//  Created by yanghai on 2/9/19.
-//  Copyright © 2019 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
@@ -22,10 +22,9 @@ class Toolbar: UIToolbar {
 
     func makeUI() {
         isTranslucent = false
-
         themeService.rx
             .bind({ $0.barStyle }, to: rx.barStyle)
-            .bind({ $0.primaryDark }, to: rx.barTintColor)
+            .bind({ $0.global }, to: rx.barTintColor)
             .bind({ $0.secondary }, to: rx.tintColor)
             .disposed(by: rx.disposeBag)
 

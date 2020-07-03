@@ -2,14 +2,17 @@
 //  Networking.swift
 //  
 //
-//  Created by yanghai on 1/4/17.
-//  Copyright © 2017 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
 import Moya
 import RxSwift
 import Alamofire
+import Toast_Swift
+import ObjectMapper
+
 
 class OnlineProvider<Target> where Target: Moya.TargetType {
     fileprivate let online: Observable<Bool>
@@ -29,24 +32,31 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
     func request(_ token: Target) -> Observable<Moya.Response> {
         let actualRequest = provider.rx.request(token)
         return online
-            .ignore(value: false)  // Wait until we're online
-            .take(1)        // Take 1 to make sure we only invoke the API once.
-            .flatMap { _ in // Turn the online state into a network request
-                return actualRequest
-                    .filterSuccessfulStatusCodes()
-                    .do(onSuccess: { (response) in
+            .ignore(value: false)
+            .take(1)
+            .flatMap { (_) in
+                return actualRequest.filterSuccessfulStatusCodes()
+                    .asObservable()
+                    .do(onNext: { (response) in
+                        do {
+                            let object = try response.mapObject(MappableItem<Void>.self)
+                            if object.code == 200 {
+                                                                
+                            } else {
+                                throw MoyaError.jsonMapping(response)
+                            }
+                        }
+                        
                     }, onError: { (error) in
                         if let error = error as? MoyaError {
                             switch error {
                             case .statusCode(let response):
                                 if response.statusCode == 401 {
-                                    // Unauthorized
-                                    if AuthManager.shared.hasValidToken {
-                                        AuthManager.removeToken()
-                                        Application.shared.presentInitialScreen(in: Application.shared.window)
-                                    }
+                                    AuthManager.removeToken()
+                                    User.removeCurrentUser()
                                 }
-                            default: break
+                            default:
+                                UIApplication.shared.keyWindow?.topMostController()?.view.makeToast("server error")
                             }
                         }
                     })
@@ -57,26 +67,25 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
 protocol NetworkingType {
     associatedtype T: TargetType, ProductAPIType
     var provider: OnlineProvider<T> { get }
-
-    static func defaultNetworking() -> Self
-    static func stubbingNetworking() -> Self
 }
 
-struct Networking: NetworkingType {
+struct IbexNetworking: NetworkingType {
     typealias T = GlanceAPI
-    let provider: OnlineProvider<T>
+    let provider: OnlineProvider<GlanceAPI>
+}
 
-    static func defaultNetworking() -> Self {
-        return Networking(provider: newProvider(plugins))
-    }
-
-    static func stubbingNetworking() -> Self {
-        return Networking(provider: OnlineProvider(endpointClosure: endpointsClosure(), requestClosure: Networking.endpointResolver(), stubClosure: MoyaProvider.immediatelyStub, online: .just(true)))
-    }
-
-    func request(_ token: T) -> Observable<Moya.Response> {
+// MARK: - "Public" interfaces
+extension IbexNetworking {
+    func request(_ token: GlanceAPI) -> Observable<Moya.Response> {
         let actualRequest = self.provider.request(token)
         return actualRequest
+    }
+}
+
+// Static methods
+extension NetworkingType {
+    static func ibexNetworking() -> IbexNetworking {
+        return IbexNetworking(provider: newProvider(plugins))
     }
 }
 
@@ -97,10 +106,8 @@ extension NetworkingType {
     }
 
     static var plugins: [PluginType] {
-        var plugins: [PluginType] = []
-        if Configs.Network.loggingEnabled == true {
-            plugins.append(NetworkLoggerPlugin())
-        }
+        let plugins: [PluginType] = [NetworkLoggerPlugin(configuration: .init(formatter: .init(responseData: JSONResponseDataFormatter),
+        logOptions: .verbose)), newworkActivityPlugin]
         return plugins
     }
 
@@ -118,22 +125,72 @@ extension NetworkingType {
     }
 }
 
+private func JSONResponseDataFormatter(_ data: Data) -> String {
+    do {
+        let dataAsJSON = try JSONSerialization.jsonObject(with: data)
+        let prettyData = try JSONSerialization.data(withJSONObject: dataAsJSON, options: .prettyPrinted)
+        return String(data: prettyData, encoding: .utf8) ?? String(data: data, encoding: .utf8) ?? ""
+    } catch {
+        return String(data: data, encoding: .utf8) ?? ""
+    }
+}
+
+private let newworkActivityPlugin = NetworkActivityPlugin { (changeType , targetType) -> () in
+    
+    switch(changeType){
+    case .ended:
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        }
+    case .began:
+        DispatchQueue.main.async {
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        }
+    }
+    
+}
+
+
+//struct JSONHandlePlugin: PluginType {
+//
+//    func process(_ result: Result<Response, MoyaError>, target: TargetType) -> Result<Response, MoyaError> {
+//        switch result {
+//        case .success(let response):
+//            do {
+//                let object = try response.mapObject(BaseMappableModel.self)
+//                if object.code == 200 , let data = object.data {
+//                    let data = try JSONSerialization.data(withJSONObject: data, options: .prettyPrinted)
+//                    return Result<Response, MoyaError>.success(Response(statusCode: 200, data: data))
+//                } else {
+//                    return Result<Response, MoyaError>.failure(.statusCode(response))
+//                }
+//            } catch  {
+//                return Result<Response, MoyaError>.failure(.jsonMapping(response))
+//            }
+//        default:
+//            return result
+//        }
+//    }
+//}
+
+struct AuthPlugin: PluginType {
+    
+    let token: String
+    func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
+        var request = request
+        request.timeoutInterval = 30
+        return request
+    }
+}
+
 private func newProvider<T>(_ plugins: [PluginType], xAccessToken: String? = nil) -> OnlineProvider<T> where T: ProductAPIType {
-    return OnlineProvider(endpointClosure: Networking.endpointsClosure(xAccessToken),
-                          requestClosure: Networking.endpointResolver(),
-                          stubClosure: Networking.APIKeysBasedStubBehaviour,
+    return OnlineProvider(endpointClosure: IbexNetworking.endpointsClosure(xAccessToken),
+                          requestClosure: IbexNetworking.endpointResolver(),
+                          stubClosure: IbexNetworking.APIKeysBasedStubBehaviour,
                           plugins: plugins)
 }
 
 // MARK: - Provider support
-
-func stubbedResponse(_ filename: String) -> Data! {
-    @objc class TestClass: NSObject { }
-
-    let bundle = Bundle(for: TestClass.self)
-    let path = bundle.path(forResource: filename, ofType: "json")
-    return (try? Data(contentsOf: URL(fileURLWithPath: path!)))
-}
 
 private extension String {
     var URLEscapedString: String {

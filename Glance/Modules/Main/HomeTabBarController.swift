@@ -2,8 +2,8 @@
 //  HomeTabBarController.swift
 //  
 //
-//  Created by yanghai on 1/5/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Created by yanghai on 2019/11/20.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import UIKit
@@ -12,99 +12,127 @@ import Localize_Swift
 import RxSwift
 
 enum HomeTabBarItem: Int {
-    case search, news, notifications, settings, login
-
+    case home, category, cart, mine
     private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         switch self {
-        case .search:
-            let vc = SearchViewController(viewModel: viewModel, navigator: navigator)
+        case .home:
+            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
-        case .news:
-            let vc = EventsViewController(viewModel: viewModel, navigator: navigator)
+        case .category:
+            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
-        case .notifications:
-            let vc = NotificationsViewController(viewModel: viewModel, navigator: navigator)
+        case .cart:
+            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
-        case .settings:
-            let vc = SettingsViewController(viewModel: viewModel, navigator: navigator)
-            return NavigationController(rootViewController: vc)
-        case .login:
-            let vc = LoginViewController(viewModel: viewModel, navigator: navigator)
+        case .mine:
+            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         }
     }
-
-    var image: UIImage? {
+    
+    var image_normal: UIImage? {
         switch self {
-        case .search: return R.image.icon_tabbar_search()
-        case .news: return R.image.icon_tabbar_news()
-        case .notifications: return R.image.icon_tabbar_activity()
-        case .settings: return R.image.icon_tabbar_settings()
-        case .login: return R.image.icon_tabbar_login()
+        case .home:
+            return R.image.icon_tabbar_home_normal()?.withRenderingMode(.alwaysOriginal)
+        case .category: return R.image.icon_tabbar_category_normal()?.withRenderingMode(.alwaysOriginal)
+        case .cart: return R.image.icon_tabbar_cart_normal()?.withRenderingMode(.alwaysOriginal)
+        case .mine: return R.image.icon_tabbar_mine_normal()?.withRenderingMode(.alwaysOriginal)
         }
     }
-
+    
+    var image_selected: UIImage? {
+        switch self {
+        case .home: return R.image.icon_tabbar_home_selected()?.withRenderingMode(.alwaysOriginal)
+        case .category: return R.image.icon_tabbar_category_selectedl()?.withRenderingMode(.alwaysOriginal)
+        case .cart: return R.image.icon_tabbar_cart_selected()?.withRenderingMode(.alwaysOriginal)
+        case .mine: return R.image.icon_tabbar_mine_selected()?.withRenderingMode(.alwaysOriginal)
+        }
+    }
+    
+    
     var title: String {
         switch self {
-        case .search: return R.string.localizable.homeTabBarSearchTitle.key.localized()
-        case .news: return R.string.localizable.homeTabBarEventsTitle.key.localized()
-        case .notifications: return R.string.localizable.homeTabBarNotificationsTitle.key.localized()
-        case .settings: return R.string.localizable.homeTabBarSettingsTitle.key.localized()
-        case .login: return R.string.localizable.homeTabBarLoginTitle.key.localized()
+        case .home: return R.string.localizable.tabBarHomeTitle.key.localized()
+        case .category: return R.string.localizable.tabBarCategoryTitle.key.localized()
+        case .cart: return R.string.localizable.tabBarShoppingCartTitle.key.localized()
+        case .mine: return R.string.localizable.tabBarMineTitle.key.localized()
         }
     }
-
+    
     var animation: RAMItemAnimation {
         var animation: RAMItemAnimation
         switch self {
-        case .search: animation = RAMFlipLeftTransitionItemAnimations()
-        case .news: animation = RAMBounceAnimation()
-        case .notifications: animation = RAMBounceAnimation()
-        case .settings: animation = RAMRightRotationAnimation()
-        case .login: animation = RAMBounceAnimation()
+        default:
+            let item = CustomBounceAnimation()
+            item.normalImage = image_normal
+            item.selectedImage = image_selected
+            item.textSelectedColor = UIColor.primary()
+            animation = item
         }
-        _ = themeService.rx
-            .bind({ $0.secondary }, to: animation.rx.iconSelectedColor)
-            .bind({ $0.secondary }, to: animation.rx.textSelectedColor)
+        
         return animation
     }
-
+    
     func getController(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         let vc = controller(with: viewModel, navigator: navigator)
-        let item = RAMAnimatedTabBarItem(title: title, image: image, tag: rawValue)
+        let item = CustomAnimatedTabBarItem(title: title, image: image_normal, tag: rawValue)
+        item.selectedImage = image_selected
         item.animation = animation
-        _ = themeService.rx
-            .bind({ $0.text }, to: item.rx.iconColor)
-            .bind({ $0.text }, to: item.rx.textColor)
+        item.textColor = UIColor.text()
         vc.tabBarItem = item
         return vc
     }
 }
 
 class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
-
+    
     var viewModel: HomeTabBarViewModel?
     var navigator: Navigator!
-
+    
     init(viewModel: ViewModel?, navigator: Navigator) {
         self.viewModel = viewModel as? HomeTabBarViewModel
         self.navigator = navigator
         super.init(nibName: nil, bundle: nil)
     }
-
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
         makeUI()
         bindViewModel()
     }
-
+    
+    
+    
     func makeUI() {
+        // Configure tab bar
+        hero.isEnabled = false
+        tabBar.hero.id = "TabBarID"
+        tabBar.isTranslucent = false
+        
+        
+        if #available(iOS 13, *) {
+            let appearance = self.tabBar.standardAppearance.copy()
+            appearance.shadowImage = UIImage(color: .clear)
+            appearance.backgroundImage = UIImage(color: .white)
+            appearance.backgroundColor = .white
+            tabBar.standardAppearance = appearance
+            
+        } else {
+            tabBar.shadowImage = UIImage(color: .clear)
+            tabBar.backgroundImage = UIImage(color: .white)
+        }
+        
+        tabBar.layer.shadowColor = UIColor.lightGray.cgColor
+        tabBar.layer.shadowOffset = CGSize(width: 0, height: -5)
+        tabBar.layer.shadowOpacity = 0.3
+        tabBar.layer.shadowRadius = 10
+        
+        
         NotificationCenter.default
             .rx.notification(NSNotification.Name(LCLLanguageChangeNotification))
             .subscribe { [weak self] (event) in
@@ -113,37 +141,33 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
                 })
                 self?.setViewControllers(self?.viewControllers, animated: false)
                 self?.setSelectIndex(from: 0, to: self?.selectedIndex ?? 0)
-            }.disposed(by: rx.disposeBag)
-
+        }.disposed(by: rx.disposeBag)
+        
         themeService.rx
-            .bind({ $0.primaryDark }, to: tabBar.rx.barTintColor)
+            .bind({ $0.global }, to: tabBar.rx.barTintColor)
             .disposed(by: rx.disposeBag)
-
-        themeService.typeStream.delay(DispatchTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { (theme) in
-                switch theme {
-                case .light(let color), .dark(let color):
-                    self.changeSelectedColor(color.color, iconSelectedColor: color.color)
-                }
-            }).disposed(by: rx.disposeBag)
+        
+        themeService.typeStream.delay(DispatchTimeInterval.milliseconds(700), scheduler: MainScheduler.instance).subscribe(onNext: { (theme) in
+            switch theme {
+            case .light:
+                self.changeSelectedColor(UIColor.primary(), iconSelectedColor: .clear)
+            }
+        }).disposed(by: rx.disposeBag)
     }
-
+    
+    
+    
+    
     func bindViewModel() {
         guard let viewModel = viewModel else { return }
-
-        let input = HomeTabBarViewModel.Input(whatsNewTrigger: rx.viewDidAppear.mapToVoid())
+        
+        let input = HomeTabBarViewModel.Input()
         let output = viewModel.transform(input: input)
-
-        output.tabBarItems.delay(.milliseconds(50)).drive(onNext: { [weak self] (tabBarItems) in
+        
+        output.tabBarItems.drive(onNext: { [weak self] (tabBarItems) in
             if let strongSelf = self {
                 let controllers = tabBarItems.map { $0.getController(with: viewModel.viewModel(for: $0), navigator: strongSelf.navigator) }
                 strongSelf.setViewControllers(controllers, animated: false)
-            }
-        }).disposed(by: rx.disposeBag)
-
-        output.openWhatsNew.drive(onNext: { [weak self] (block) in
-            if Configs.Network.useStaging == false {
-                self?.navigator.show(segue: .whatsNew(block: block), sender: self, transition: .modal)
             }
         }).disposed(by: rx.disposeBag)
     }

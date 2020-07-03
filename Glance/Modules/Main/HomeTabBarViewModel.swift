@@ -3,59 +3,52 @@
 //  
 //
 //  Created by yanghai on 7/11/18.
-//  Copyright © 2018 yanghai. All rights reserved.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
 import RxCocoa
 import RxSwift
 
-
 class HomeTabBarViewModel: ViewModel, ViewModelType {
 
     struct Input {
-        let whatsNewTrigger: Observable<Void>
     }
 
     struct Output {
         let tabBarItems: Driver<[HomeTabBarItem]>
     }
 
-    let authorized: Bool
-
-
-    init(authorized: Bool, provider: API) {
-        self.authorized = authorized
+    override init(provider: API) {
         super.init(provider: provider)
     }
 
     func transform(input: Input) -> Output {
 
-        let tabBarItems = Observable.just(authorized).map { (authorized) -> [HomeTabBarItem] in
-            if authorized {
-                return [.news, .search, .notifications, .settings]
+        let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in
+            if loggedIn {
+                return [.home, .category, .cart, .mine]
             } else {
-                return [.search, .login, .settings]
+                return [.home, .category, .cart, .mine]
             }
         }.asDriver(onErrorJustReturn: [])
-
-        return Output(tabBarItems: tabBarItems,
-                      openWhatsNew: whatsNewItems.asDriverOnErrorJustComplete())
+        
+        return Output(tabBarItems: tabBarItems)
     }
 
     func viewModel(for tabBarItem: HomeTabBarItem) -> ViewModel {
         switch tabBarItem {
-        case .search:
-            let viewModel = SearchViewModel(provider: provider)
+        case .home:
+            let viewModel = DemoViewModel(provider: provider)
             return viewModel
-        case .notifications:
-            let viewModel = NotificationsViewModel(mode: .mine, provider: provider)
+        case .category:
+            let viewModel = DemoViewModel(provider: provider)
             return viewModel
-        case .settings:
-            let viewModel = SettingsViewModel(provider: provider)
+        case .cart:
+            let viewModel = DemoViewModel(provider: provider)
             return viewModel
-        case .login:
-            let viewModel = LoginViewModel(provider: provider)
+        case .mine:
+            let viewModel = DemoViewModel(provider: provider)
             return viewModel
         }
     }
