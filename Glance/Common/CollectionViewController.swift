@@ -51,7 +51,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     override func makeUI() {
         super.makeUI()
         
-        stackView.spacing = 0
+        stackView.spacing = 0        
         stackView.insertArrangedSubview(collectionView, at: 0)
         
         collectionView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in

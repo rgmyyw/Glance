@@ -52,7 +52,7 @@ struct LightTheme: Theme {
     let textGray = UIColor(hex:0x999EA3)!
     let textSecondary = UIColor(hex:0x515457)!
     
-    let background = UIColor(hex: 0xf5f8fa)!
+    let background = UIColor.white
     let statusBarStyle = UIStatusBarStyle.default
     let barStyle = UIBarStyle.default
     let keyboardAppearance = UIKeyboardAppearance.light

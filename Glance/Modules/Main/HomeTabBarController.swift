@@ -16,10 +16,10 @@ enum HomeTabBarItem: Int {
     private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         switch self {
         case .home:
-            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
+            let vc = HomeViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .category:
-            let vc = DemoViewController(viewModel: viewModel, navigator: navigator)
+            let vc = NoticeViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .cart:
             let vc = DemoViewController(viewModel: viewModel, navigator: navigator)

@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */; };
+		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
+		5D4267B924AF25E6000CB8BF /* HomeRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */; };
+		5D4267BA24AF25E6000CB8BF /* HomeRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */; };
 		5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FA24AEC2F8007A2FCD /* Api.swift */; };
 		5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
@@ -109,12 +113,25 @@
 		5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
 		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
+		5DEFF51024AEE76D007A2FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */; };
+		5DEFF51224AF2841007A2FCD /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */; };
+		5DEFF51524AF287D007A2FCD /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51324AF287D007A2FCD /* NoticeCell.swift */; };
+		5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF51424AF287D007A2FCD /* NoticeCell.xib */; };
+		5DEFF51924AF2A8A007A2FCD /* UserHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */; };
+		5DEFF51B24AF2A97007A2FCD /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */; };
+		5DEFF51D24AF3348007A2FCD /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51C24AF3348007A2FCD /* NotificationViewModel.swift */; };
+		5DEFF51F24AF33C4007A2FCD /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */; };
+		5DEFF52124AF33EB007A2FCD /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF52024AF33EB007A2FCD /* Notice.swift */; };
 		81AAD64A5D0DB083F1FAD2DB /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.debug.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.debug.xcconfig"; sourceTree = "<group>"; };
 		4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
+		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
+		5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendedCell.swift; sourceTree = "<group>"; };
+		5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeRecommendedCell.xib; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEFF0FA24AEC2F8007A2FCD /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceAPI.swift; sourceTree = "<group>"; };
@@ -220,6 +237,15 @@
 		5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
+		5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		5DEFF51324AF287D007A2FCD /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
+		5DEFF51424AF287D007A2FCD /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeadView.swift; sourceTree = "<group>"; };
+		5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHeadView.xib; sourceTree = "<group>"; };
+		5DEFF51C24AF3348007A2FCD /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
+		5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCellViewModel.swift; sourceTree = "<group>"; };
+		5DEFF52024AF33EB007A2FCD /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.release.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +261,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5D4267BB24AF2792000CB8BF /* Notifications */ = {
+			isa = PBXGroup;
+			children = (
+				5D4267BC24AF2792000CB8BF /* Views */,
+				5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */,
+				5DEFF51C24AF3348007A2FCD /* NotificationViewModel.swift */,
+			);
+			path = Notifications;
+			sourceTree = "<group>";
+		};
+		5D4267BC24AF2792000CB8BF /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DEFF51324AF287D007A2FCD /* NoticeCell.swift */,
+				5DEFF51424AF287D007A2FCD /* NoticeCell.xib */,
+				5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		5DE6388124AD769D002F6F6B = {
 			isa = PBXGroup;
 			children = (
@@ -340,6 +386,7 @@
 				5DEFF12D24AEC2F8007A2FCD /* ISO8601DateTransform.swift */,
 				5DEFF13324AEC2F8007A2FCD /* User.swift */,
 				5DEFF14024AEC2F8007A2FCD /* Token.swift */,
+				5DEFF52024AF33EB007A2FCD /* Notice.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -511,6 +558,9 @@
 		5DEFF18F24AEC2F8007A2FCD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5DEFF51724AF29D7007A2FCD /* Views */,
+				5D4267BB24AF2792000CB8BF /* Notifications */,
+				5DEFF50D24AEE73D007A2FCD /* Home */,
 				5DEFF19024AEC2F8007A2FCD /* Demo */,
 				5DEFF2C624AEC2F9007A2FCD /* Main */,
 				5DEFF2ED24AEC2F9007A2FCD /* Login */,
@@ -586,6 +636,35 @@
 				5DEFF4F324AECB7A007A2FCD /* CALayer-Extension.swift */,
 			);
 			path = UIView;
+			sourceTree = "<group>";
+		};
+		5DEFF50D24AEE73D007A2FCD /* Home */ = {
+			isa = PBXGroup;
+			children = (
+				5DEFF50E24AEE73D007A2FCD /* Views */,
+				5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */,
+			);
+			path = Home;
+			sourceTree = "<group>";
+		};
+		5DEFF50E24AEE73D007A2FCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */,
+				5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */,
+				5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */,
+				5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5DEFF51724AF29D7007A2FCD /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */,
+				5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		C0722F36693E71B7F21A33CA /* Pods */ = {
@@ -671,14 +750,18 @@
 				5DEFF4A324AEC2FA007A2FCD /* Main.storyboard in Resources */,
 				5DEFF30924AEC2F9007A2FCD /* Assets.xcassets in Resources */,
 				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
+				5D4267BA24AF25E6000CB8BF /* HomeRecommendedCell.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
+				5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */,
+				5DEFF51B24AF2A97007A2FCD /* UserHeadView.xib in Resources */,
 				5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
+				5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 			);
@@ -753,11 +836,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DEFF51024AEE76D007A2FCD /* HomeViewController.swift in Sources */,
 				5DEFF37924AEC2F9007A2FCD /* CollectionViewController.swift in Sources */,
 				5DEFF34224AEC2F9007A2FCD /* UIImageView-Extension.swift in Sources */,
 				5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */,
 				5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */,
 				5DEFF37124AEC2F9007A2FCD /* DefaultTableViewCellViewModel.swift in Sources */,
+				5DEFF51224AF2841007A2FCD /* NoticeViewController.swift in Sources */,
 				5DEFF31824AEC2F9007A2FCD /* AuthManager.swift in Sources */,
 				5DEFF34424AEC2F9007A2FCD /* UIAlertController-Extensions.swift in Sources */,
 				5DEFF37424AEC2F9007A2FCD /* BarButtonItem.swift in Sources */,
@@ -767,6 +852,7 @@
 				5DEFF30624AEC2F9007A2FCD /* RestApi.swift in Sources */,
 				5DEFF4D324AEC2FA007A2FCD /* ActivityIndicator.swift in Sources */,
 				5DEFF36024AEC2F9007A2FCD /* NavigationBar.swift in Sources */,
+				5DEFF51524AF287D007A2FCD /* NoticeCell.swift in Sources */,
 				5DEFF4F924AECB7A007A2FCD /* UIScreen-Extension.swift in Sources */,
 				5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */,
 				5DEFF32C24AEC2F9007A2FCD /* ISO8601DateTransform.swift in Sources */,
@@ -796,6 +882,7 @@
 				5DEFF37024AEC2F9007A2FCD /* TableViewCell.swift in Sources */,
 				5DEFF34B24AEC2F9007A2FCD /* Observable-Operators.swift in Sources */,
 				5DEFF35724AEC2F9007A2FCD /* Reusable-Extension.swift in Sources */,
+				5D4267B924AF25E6000CB8BF /* HomeRecommendedCell.swift in Sources */,
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
@@ -805,7 +892,9 @@
 				5DEFF37B24AEC2F9007A2FCD /* Configs.swift in Sources */,
 				5DEFF36C24AEC2F9007A2FCD /* Switch.swift in Sources */,
 				5DEFF4A524AEC2FA007A2FCD /* CustomRAMBounceAnimation.swift in Sources */,
+				5DEFF51D24AF3348007A2FCD /* NotificationViewModel.swift in Sources */,
 				5DEFF36424AEC2F9007A2FCD /* SlideImageView.swift in Sources */,
+				5DEFF51924AF2A8A007A2FCD /* UserHeadView.swift in Sources */,
 				5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */,
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
@@ -818,11 +907,13 @@
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
+				5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */,
 				5DEFF31324AEC2F9007A2FCD /* LibsManager.swift in Sources */,
 				5DEFF4F724AECB7A007A2FCD /* UIView-Extension.swift in Sources */,
 				5DEFF37C24AEC2F9007A2FCD /* AppDelegate.swift in Sources */,
 				5DEFF4FC24AED04D007A2FCD /* Base.swift in Sources */,
 				5DEFF4F824AECB7A007A2FCD /* Localizable-Extension.swift in Sources */,
+				5DEFF51F24AF33C4007A2FCD /* NoticeCellViewModel.swift in Sources */,
 				5DEFF35324AEC2F9007A2FCD /* SelfAware.swift in Sources */,
 				5DEFF35B24AEC2F9007A2FCD /* View.swift in Sources */,
 				5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */,
@@ -837,6 +928,7 @@
 				5DEFF37A24AEC2F9007A2FCD /* CountDownButton.swift in Sources */,
 				5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */,
 				5DEFF36B24AEC2F9007A2FCD /* GetVerifiationCodeButton.swift in Sources */,
+				5DEFF52124AF33EB007A2FCD /* Notice.swift in Sources */,
 				5DEFF4D224AEC2FA007A2FCD /* ErrorTracker.swift in Sources */,
 				5DEFF34F24AEC2F9007A2FCD /* UIFont-Extension.swift in Sources */,
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,

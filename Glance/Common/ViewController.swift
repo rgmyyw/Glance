@@ -45,7 +45,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     
     var navigationTitle = "" {
         didSet {
-            navigationItem.title = navigationTitle
+            navigationBar.title = navigationTitle
         }
     }
     
@@ -59,11 +59,13 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         return UIApplication.topViewController()
     }
     
-    lazy var searchBar: SearchBar = {
-        let view = SearchBar(height: 36)
-        view.textField.placeholder = "Search"
-        return view
-    }()
+    private(set) lazy var navigationBar : NavigationBar = NavigationBar()
+    
+//    lazy var searchBar: SearchBar = {
+//        let view = SearchBar(height: 36)
+//        view.textField.placeholder = "Search"
+//        return view
+//    }()
     
     lazy var backBarButton: BarButtonItem = {
         let view = BarButtonItem(image: R.image.icon_navigation_back_black(),action: (self,#selector(navigationBack)))
@@ -91,23 +93,38 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         }
         return view
     }()
-    
+
     private (set) lazy var stackView: StackView = {
         let subviews: [UIView] = []
         let view = StackView(arrangedSubviews: subviews)
         view.spacing = 0
+        
+        self.contentView.addSubview(navigationBar)
         self.contentView.addSubview(view)
+        
+        navigationBar.snp.makeConstraints({ (make) in
+            make.height.equalTo(44)
+            make.left.top.right.equalToSuperview()
+        })
+        
         view.snp.makeConstraints({ (make) in
-            make.edges.equalToSuperview()
+            make.top.equalTo(navigationBar.snp.bottom)
+            make.left.right.bottom.equalToSuperview()
         })
         return view
     }()
-    
+
     override public func viewDidLoad() {
         super.viewDidLoad()
         
+        navigationController?.setNavigationBarHidden(true, animated: false)
+        
+
+        
         // Do any additional setup after loading the view.
         stackView.backgroundColor = .clear
+        
+        
         hbd_titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)]
         
         makeUI()
@@ -193,8 +210,8 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         hero.isEnabled = true
         navigationItem.backBarButtonItem = backBarButton
         
-        languageChanged.subscribe(onNext: { [weak self] () in
-            //            self?.emptyDataViewModel.title.accept(R.string.localizable.commonNoResults.key.localized())
+        languageChanged.subscribe(onNext: {  () in
+            
         }).disposed(by: rx.disposeBag)
         
         motionShakeEvent.subscribe(onNext: { () in

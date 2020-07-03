@@ -12,11 +12,13 @@ class DemoViewController: ViewController {
     
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
+        
     }
        
     override func makeUI() {
         super.makeUI()
         
+        navigationBar.title = "1123asdsa"
         stackView.addArrangedSubview(containerView)
     }
 
