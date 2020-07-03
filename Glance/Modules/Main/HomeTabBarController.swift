@@ -34,8 +34,8 @@ enum HomeTabBarItem: Int {
         switch self {
         case .home:
             return R.image.icon_tabbar_home_normal()?.withRenderingMode(.alwaysOriginal)
-        case .category: return R.image.icon_tabbar_category_normal()?.withRenderingMode(.alwaysOriginal)
-        case .cart: return R.image.icon_tabbar_cart_normal()?.withRenderingMode(.alwaysOriginal)
+        case .category: return R.image.icon_tabbar_notice_normal()?.withRenderingMode(.alwaysOriginal)
+        case .cart: return R.image.icon_tabbar_message_normal()?.withRenderingMode(.alwaysOriginal)
         case .mine: return R.image.icon_tabbar_mine_normal()?.withRenderingMode(.alwaysOriginal)
         }
     }
@@ -43,8 +43,8 @@ enum HomeTabBarItem: Int {
     var image_selected: UIImage? {
         switch self {
         case .home: return R.image.icon_tabbar_home_selected()?.withRenderingMode(.alwaysOriginal)
-        case .category: return R.image.icon_tabbar_category_selectedl()?.withRenderingMode(.alwaysOriginal)
-        case .cart: return R.image.icon_tabbar_cart_selected()?.withRenderingMode(.alwaysOriginal)
+        case .category: return R.image.icon_tabbar_notice_selected()?.withRenderingMode(.alwaysOriginal)
+        case .cart: return R.image.icon_tabbar_message_selected()?.withRenderingMode(.alwaysOriginal)
         case .mine: return R.image.icon_tabbar_mine_selected()?.withRenderingMode(.alwaysOriginal)
         }
     }
@@ -52,10 +52,8 @@ enum HomeTabBarItem: Int {
     
     var title: String {
         switch self {
-        case .home: return R.string.localizable.tabBarHomeTitle.key.localized()
-        case .category: return R.string.localizable.tabBarCategoryTitle.key.localized()
-        case .cart: return R.string.localizable.tabBarShoppingCartTitle.key.localized()
-        case .mine: return R.string.localizable.tabBarMineTitle.key.localized()
+        default:
+            return ""
         }
     }
     
@@ -76,12 +74,15 @@ enum HomeTabBarItem: Int {
     func getController(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         let vc = controller(with: viewModel, navigator: navigator)
         let item = CustomAnimatedTabBarItem(title: title, image: image_normal, tag: rawValue)
+        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 12)
         item.selectedImage = image_selected
         item.animation = animation
         item.textColor = UIColor.text()
         vc.tabBarItem = item
         return vc
     }
+    
+    
 }
 
 class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {

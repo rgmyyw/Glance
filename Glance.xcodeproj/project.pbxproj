@@ -15,10 +15,6 @@
 		5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5DEFF30924AEC2F9007A2FCD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */; };
 		5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
-		5DEFF30B24AEC2F9007A2FCD /* PingFangSC-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10724AEC2F8007A2FCD /* PingFangSC-Regular.ttf */; };
-		5DEFF30C24AEC2F9007A2FCD /* Din-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10824AEC2F8007A2FCD /* Din-Bold.otf */; };
-		5DEFF30D24AEC2F9007A2FCD /* PingFangSC-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10924AEC2F8007A2FCD /* PingFangSC-Medium.ttf */; };
-		5DEFF30E24AEC2F9007A2FCD /* PingFangSC-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10A24AEC2F8007A2FCD /* PingFangSC-Bold.ttf */; };
 		5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF10E24AEC2F8007A2FCD /* PageViewManager.swift */; };
 		5DEFF31324AEC2F9007A2FCD /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11024AEC2F8007A2FCD /* LibsManager.swift */; };
 		5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11124AEC2F8007A2FCD /* ThemeManager.swift */; };
@@ -107,6 +103,12 @@
 		5DEFF4FC24AED04D007A2FCD /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FB24AED04D007A2FCD /* Base.swift */; };
 		5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */; };
 		5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */; };
+		5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
+		5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */; };
+		5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */; };
+		5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
+		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
+		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		81AAD64A5D0DB083F1FAD2DB /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
 /* End PBXBuildFile section */
 
@@ -123,10 +125,6 @@
 		5DEFF10324AEC2F8007A2FCD /* Glance-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Glance-Bridging-Header.h"; sourceTree = "<group>"; };
 		5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Icons.xcassets; sourceTree = "<group>"; };
-		5DEFF10724AEC2F8007A2FCD /* PingFangSC-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFangSC-Regular.ttf"; sourceTree = "<group>"; };
-		5DEFF10824AEC2F8007A2FCD /* Din-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Din-Bold.otf"; sourceTree = "<group>"; };
-		5DEFF10924AEC2F8007A2FCD /* PingFangSC-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFangSC-Medium.ttf"; sourceTree = "<group>"; };
-		5DEFF10A24AEC2F8007A2FCD /* PingFangSC-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PingFangSC-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF10E24AEC2F8007A2FCD /* PageViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewManager.swift; sourceTree = "<group>"; };
 		5DEFF11024AEC2F8007A2FCD /* LibsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibsManager.swift; sourceTree = "<group>"; };
 		5DEFF11124AEC2F8007A2FCD /* ThemeManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeManager.swift; sourceTree = "<group>"; };
@@ -216,6 +214,12 @@
 		5DEFF4FB24AED04D007A2FCD /* Base.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Base.swift; sourceTree = "<group>"; };
 		5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
+		5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Thin.ttf"; sourceTree = "<group>"; };
+		5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Light.ttf"; sourceTree = "<group>"; };
+		5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Black.ttf"; sourceTree = "<group>"; };
+		5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
+		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
+		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.release.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,15 +258,15 @@
 			children = (
 				5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */,
 				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
+				5DEFF18F24AEC2F8007A2FCD /* Modules */,
+				5DEFF12424AEC2F8007A2FCD /* Models */,
 				5DEFF0F924AEC2F8007A2FCD /* Networking */,
 				5DEFF10024AEC2F8007A2FCD /* Resources */,
 				5DEFF10D24AEC2F8007A2FCD /* Managers */,
-				5DEFF12424AEC2F8007A2FCD /* Models */,
 				5DEFF14324AEC2F8007A2FCD /* Extensions */,
 				5DEFF16324AEC2F8007A2FCD /* Common */,
 				5DEFF18924AEC2F8007A2FCD /* Configs */,
 				5DEFF18B24AEC2F8007A2FCD /* Application */,
-				5DEFF18F24AEC2F8007A2FCD /* Modules */,
 				5DEFF2FD24AEC2F9007A2FCD /* Third Party */,
 			);
 			path = Glance;
@@ -303,10 +307,12 @@
 		5DEFF10624AEC2F8007A2FCD /* Font */ = {
 			isa = PBXGroup;
 			children = (
-				5DEFF10724AEC2F8007A2FCD /* PingFangSC-Regular.ttf */,
-				5DEFF10824AEC2F8007A2FCD /* Din-Bold.otf */,
-				5DEFF10924AEC2F8007A2FCD /* PingFangSC-Medium.ttf */,
-				5DEFF10A24AEC2F8007A2FCD /* PingFangSC-Bold.ttf */,
+				5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */,
+				5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */,
+				5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */,
+				5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */,
+				5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */,
+				5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -661,17 +667,19 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */,
 				5DEFF4A324AEC2FA007A2FCD /* Main.storyboard in Resources */,
 				5DEFF30924AEC2F9007A2FCD /* Assets.xcassets in Resources */,
-				5DEFF30B24AEC2F9007A2FCD /* PingFangSC-Regular.ttf in Resources */,
+				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
-				5DEFF30E24AEC2F9007A2FCD /* PingFangSC-Bold.ttf in Resources */,
+				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
+				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
+				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
 				5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
-				5DEFF30C24AEC2F9007A2FCD /* Din-Bold.otf in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
-				5DEFF30D24AEC2F9007A2FCD /* PingFangSC-Medium.ttf in Resources */,
+				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
