@@ -14,7 +14,7 @@ import SafariServices
 import AcknowList
 import MessageUI
 import Hero
-
+import PopupDialog
 
 protocol Navigatable {
     var navigator: Navigator! { get set }
@@ -30,6 +30,7 @@ class Navigator {
         case safariController(URL)
         case webController(URL)
         case tabs(viewModel: HomeTabBarViewModel)
+        case signIn
         
     }
     
@@ -42,6 +43,7 @@ class Navigator {
         case detail
         case alert
         case custom
+        case popDialog
     }
     
     // MARK: - get a single VC
@@ -63,6 +65,9 @@ class Navigator {
         case .demo(let viewModel):
             let vc = DemoViewController(viewModel: viewModel, navigator: self)
             return NavigationController(rootViewController: vc)
+        case .signIn:
+            let vc = SignInViewController()
+            return vc
         }
     }
     
@@ -149,7 +154,11 @@ class Navigator {
             DispatchQueue.main.async {
                 sender.present(target, animated: animated, completion: nil)
             }
-
+        case .popDialog:
+            DispatchQueue.main.async {
+                let popup = PopupDialog(viewController: target, buttonAlignment: .horizontal, transitionStyle: .fadeIn, tapGestureDismissal: true, panGestureDismissal: false)
+                sender.present(popup, animated: animated, completion: nil)
+            }
         default: break
         }
     }

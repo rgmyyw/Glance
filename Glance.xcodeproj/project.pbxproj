@@ -9,8 +9,14 @@
 /* Begin PBXBuildFile section */
 		5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */; };
 		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
-		5D4267B924AF25E6000CB8BF /* HomeRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */; };
-		5D4267BA24AF25E6000CB8BF /* HomeRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */; };
+		5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeCell.swift */; };
+		5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B824AF25E6000CB8BF /* HomeCell.xib */; };
+		5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
+		5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
+		5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
+		5D630AB224B320AD00F0CC45 /* HomeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AB124B320AD00F0CC45 /* HomeCellViewModel.swift */; };
+		5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FA24AEC2F8007A2FCD /* Api.swift */; };
 		5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
@@ -113,7 +119,7 @@
 		5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
 		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
-		5DEFF51024AEE76D007A2FCD /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */; };
+		5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
 		5DEFF51224AF2841007A2FCD /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */; };
 		5DEFF51524AF287D007A2FCD /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51324AF287D007A2FCD /* NoticeCell.swift */; };
 		5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF51424AF287D007A2FCD /* NoticeCell.xib */; };
@@ -130,8 +136,14 @@
 		4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
-		5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeRecommendedCell.swift; sourceTree = "<group>"; };
-		5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeRecommendedCell.xib; sourceTree = "<group>"; };
+		5D4267B724AF25E6000CB8BF /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
+		5D4267B824AF25E6000CB8BF /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5D630AAD24B31B4000F0CC45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		5D630AAF24B3205F00F0CC45 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
+		5D630AB124B320AD00F0CC45 /* HomeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewModel.swift; sourceTree = "<group>"; };
+		5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEFF0FA24AEC2F8007A2FCD /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceAPI.swift; sourceTree = "<group>"; };
@@ -237,7 +249,7 @@
 		5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Medium.ttf"; sourceTree = "<group>"; };
 		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
-		5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5DEFF50F24AEE76D007A2FCD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		5DEFF51324AF287D007A2FCD /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		5DEFF51424AF287D007A2FCD /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
@@ -281,6 +293,13 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5D630AAA24B301A400F0CC45 /* Mine */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Mine;
+			sourceTree = "<group>";
+		};
 		5DE6388124AD769D002F6F6B = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +323,7 @@
 			children = (
 				5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */,
 				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
+				5DEFF18B24AEC2F8007A2FCD /* Application */,
 				5DEFF18F24AEC2F8007A2FCD /* Modules */,
 				5DEFF12424AEC2F8007A2FCD /* Models */,
 				5DEFF0F924AEC2F8007A2FCD /* Networking */,
@@ -312,7 +332,6 @@
 				5DEFF14324AEC2F8007A2FCD /* Extensions */,
 				5DEFF16324AEC2F8007A2FCD /* Common */,
 				5DEFF18924AEC2F8007A2FCD /* Configs */,
-				5DEFF18B24AEC2F8007A2FCD /* Application */,
 				5DEFF2FD24AEC2F9007A2FCD /* Third Party */,
 			);
 			path = Glance;
@@ -387,6 +406,7 @@
 				5DEFF13324AEC2F8007A2FCD /* User.swift */,
 				5DEFF14024AEC2F8007A2FCD /* Token.swift */,
 				5DEFF52024AF33EB007A2FCD /* Notice.swift */,
+				5D630AAD24B31B4000F0CC45 /* Home.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -558,10 +578,11 @@
 		5DEFF18F24AEC2F8007A2FCD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5D630AAA24B301A400F0CC45 /* Mine */,
+				5DEFF19024AEC2F8007A2FCD /* Demo */,
 				5DEFF51724AF29D7007A2FCD /* Views */,
 				5D4267BB24AF2792000CB8BF /* Notifications */,
 				5DEFF50D24AEE73D007A2FCD /* Home */,
-				5DEFF19024AEC2F8007A2FCD /* Demo */,
 				5DEFF2C624AEC2F9007A2FCD /* Main */,
 				5DEFF2ED24AEC2F9007A2FCD /* Login */,
 			);
@@ -595,6 +616,8 @@
 		5DEFF2ED24AEC2F9007A2FCD /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */,
+				5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -642,7 +665,9 @@
 			isa = PBXGroup;
 			children = (
 				5DEFF50E24AEE73D007A2FCD /* Views */,
-				5DEFF50F24AEE76D007A2FCD /* HomeViewController.swift */,
+				5DEFF50F24AEE76D007A2FCD /* HomeController.swift */,
+				5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */,
+				5D630AAF24B3205F00F0CC45 /* HomeSection.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -652,8 +677,9 @@
 			children = (
 				5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */,
 				5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */,
-				5D4267B724AF25E6000CB8BF /* HomeRecommendedCell.swift */,
-				5D4267B824AF25E6000CB8BF /* HomeRecommendedCell.xib */,
+				5D4267B724AF25E6000CB8BF /* HomeCell.swift */,
+				5D4267B824AF25E6000CB8BF /* HomeCell.xib */,
+				5D630AB124B320AD00F0CC45 /* HomeCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -691,8 +717,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DE6389E24AD769F002F6F6B /* Build configuration list for PBXNativeTarget "Glance" */;
 			buildPhases = (
-				5DEFF4E924AEC4AE007A2FCD /* R.Swift */,
 				F27B27AC92E46EA4FE3BA0A0 /* [CP] Check Pods Manifest.lock */,
+				5DEFF4E924AEC4AE007A2FCD /* R.Swift */,
 				5DE6388624AD769D002F6F6B /* Sources */,
 				5DE6388724AD769D002F6F6B /* Frameworks */,
 				5DE6388824AD769D002F6F6B /* Resources */,
@@ -750,7 +776,7 @@
 				5DEFF4A324AEC2FA007A2FCD /* Main.storyboard in Resources */,
 				5DEFF30924AEC2F9007A2FCD /* Assets.xcassets in Resources */,
 				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
-				5D4267BA24AF25E6000CB8BF /* HomeRecommendedCell.xib in Resources */,
+				5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
@@ -763,6 +789,7 @@
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
 				5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
+				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -836,7 +863,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DEFF51024AEE76D007A2FCD /* HomeViewController.swift in Sources */,
+				5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */,
+				5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */,
 				5DEFF37924AEC2F9007A2FCD /* CollectionViewController.swift in Sources */,
 				5DEFF34224AEC2F9007A2FCD /* UIImageView-Extension.swift in Sources */,
 				5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */,
@@ -857,6 +885,7 @@
 				5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */,
 				5DEFF32C24AEC2F9007A2FCD /* ISO8601DateTransform.swift in Sources */,
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
+				5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */,
 				5DEFF36324AEC2F9007A2FCD /* NavigationBarBackDelegate.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
 				5DEFF36A24AEC2F9007A2FCD /* ExceptionError.swift in Sources */,
@@ -879,10 +908,11 @@
 				5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */,
 				5DEFF4F624AECB7A007A2FCD /* UIKit-Extension.swift in Sources */,
 				5DEFF36F24AEC2F9007A2FCD /* ViewModelType.swift in Sources */,
+				5D630AB224B320AD00F0CC45 /* HomeCellViewModel.swift in Sources */,
 				5DEFF37024AEC2F9007A2FCD /* TableViewCell.swift in Sources */,
 				5DEFF34B24AEC2F9007A2FCD /* Observable-Operators.swift in Sources */,
 				5DEFF35724AEC2F9007A2FCD /* Reusable-Extension.swift in Sources */,
-				5D4267B924AF25E6000CB8BF /* HomeRecommendedCell.swift in Sources */,
+				5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */,
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
@@ -918,7 +948,9 @@
 				5DEFF35B24AEC2F9007A2FCD /* View.swift in Sources */,
 				5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */,
 				5DEFF31724AEC2F9007A2FCD /* AppearanceManager.swift in Sources */,
+				5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
+				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,
 				5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */,
 				5DEFF35C24AEC2F9007A2FCD /* PickerView.swift in Sources */,
 				5DEFF32B24AEC2F9007A2FCD /* Version.swift in Sources */,

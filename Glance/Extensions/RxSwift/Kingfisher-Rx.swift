@@ -28,6 +28,24 @@ extension Reactive where Base: UIImageView {
     }
 }
 
+extension Reactive where Base: UIButton {
+
+    public var imageURL: Binder<URL?> {
+        return imageURL(for: .normal, placeholder: nil, options: [])
+    }
+
+    public func imageURL(for controlState: UIControl.State = [],placeholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
+        return Binder(self.base, binding: { (button, url) in
+            if let url = url {
+                button.kf.setImage(with: ImageResource(downloadURL: url), for: controlState, placeholder: placeholderImage, options: options, progressBlock: nil, completionHandler: { (result) in })
+            }
+        })
+    }
+
+}
+
+
+
 extension ImageCache: ReactiveCompatible {}
 
 extension Reactive where Base: ImageCache {

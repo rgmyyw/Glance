@@ -19,30 +19,18 @@ let user = BehaviorRelay<User?>(value: nil)
 
 
 struct User: Mappable {
-    var id: String?
-    var mobile: String?
-    var regionCode: String?
-    var nickName: String?
-    var token: String?
-    var email: String?
-    var birthDate: String?
-    var avatarUrl: String?
-    var gender: Gender?
+    var loginStatus: Bool = false
+    var userId: String?
+    var userImage: String?
+    var displayName: String?
 
     init?(map: Map) {}
-    init() {}
 
     mutating func mapping(map: Map) {
-        
-        id   <- map["id"]
-        mobile   <- map["mobile"]
-        regionCode   <- map["regionCode"]
-        nickName   <- map["nickName"]
-        token   <- map["token"]
-        email   <- map["email"]
-        birthDate   <- map["birthDate"]
-        avatarUrl   <- map["avatarUrl"]
-        gender   <- map["gender"]
+        loginStatus   <- map["loginStatus"]
+        userId   <- map["userId"]
+        userImage   <- map["userImage"]
+        displayName   <- map["displayName"]
     }
 }
 

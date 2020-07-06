@@ -8,17 +8,21 @@
 
 import UIKit
 import Toast_Swift
+import AppAuth
 
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    
     static var shared: AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
     }
-
+    
     var window: UIWindow?
-
+    
+    var currentAuthorizationFlow : OIDExternalUserAgentSession?
+    
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         
@@ -26,7 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         libsManager.setupLibs(with: window)
         AppearanceManager.shared.setup()
         Application.shared.presentInitialScreen(in: window)
-
+        
         connectedToInternet().skip(1).subscribe(onNext: { [weak self] (connected) in
             var style = ToastManager.shared.style
             style.backgroundColor = connected ? UIColor.Material.green: UIColor.Material.red
@@ -38,14 +42,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-   
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
     
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+        if let authorizationFlow = self.currentAuthorizationFlow, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
+            self.currentAuthorizationFlow = nil
+            return true
+        }
         return true
     }
     
     func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool{
-    
+        
         return true
     }
     
@@ -53,6 +60,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         return true
     }
-
-
+    
+    
 }

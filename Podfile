@@ -23,6 +23,7 @@ target 'Glance' do
     pod 'RxOptional', '~> 4.0' 
     pod 'RxTheme', '~> 4.0'
     
+    pod 'AppAuth' , '~> 1.4.0'
 
 	
     # Image
@@ -61,6 +62,8 @@ target 'Glance' do
     pod 'FSPagerView' , '~> 0.8.3'
     pod 'SDCAlertView' , '~> 11.1.2'
     pod 'WZLBadge' , '~> 1.2.6'
+    pod 'PopupDialog', '~> 1.1'
+
     # Keyboard
     pod 'IQKeyboardManagerSwift', '~> 6.0'
 

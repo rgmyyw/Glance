@@ -11,12 +11,14 @@ import RAMAnimatedTabBarController
 import Localize_Swift
 import RxSwift
 
+
 enum HomeTabBarItem: Int {
+    
     case home, category, cart, mine
     private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         switch self {
         case .home:
-            let vc = HomeViewController(viewModel: viewModel, navigator: navigator)
+            let vc = HomeController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .category:
             let vc = NoticeViewController(viewModel: viewModel, navigator: navigator)
@@ -160,6 +162,7 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
     
     
     func bindViewModel() {
+        
         guard let viewModel = viewModel else { return }
         
         let input = HomeTabBarViewModel.Input()
@@ -171,5 +174,13 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
                 strongSelf.setViewControllers(controllers, animated: false)
             }
         }).disposed(by: rx.disposeBag)
+        
+        output.signUp.drive(onNext: {[weak self] () in
+            self?.navigator.show(segue: .signIn, sender: self, transition: .popDialog)
+        }).disposed(by: rx.disposeBag)
+        
+        
+        
+        
     }
 }

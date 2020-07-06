@@ -24,6 +24,12 @@ enum ApiError: Error {
 class RestApi: API {
     
     
+    func getHome(page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
+    }
+    
+    
+    
     
     
     let ibexProvider: IbexNetworking
@@ -88,7 +94,7 @@ extension RestApi {
             .asSingle()
     }
     
-    private func requestArray<T: BaseMappable>(_ target: GlanceAPI, type: T.Type,keyPath : String? = "data.content") -> Single<[T]> {
+    private func requestArray<T: BaseMappable>(_ target: GlanceAPI, type: T.Type,keyPath : String? = "data") -> Single<[T]> {
         
         if let keyPath = keyPath {
             return ibexProvider.request(target)

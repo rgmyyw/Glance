@@ -32,22 +32,23 @@ struct MappableItem<Item>: Mappable {
 struct PageMapable<Item : Mappable> : Mappable {
     
     var total: Int = 0
-    var totalPage: Int = 0
-    var items = [Item]()
     var pageNum: Int = 0
+    var list = [Item]()
+    var hasNext: Bool = false
     var pageSize: Int = 0
+    var hasPrevious: Bool = false
 
     init?(map: Map) {}
-    init() {}
-    
-    mutating func mapping(map: Map) {
+    init() {
         
+    }
+
+    mutating func mapping(map: Map) {
         total   <- map["total"]
-        totalPage   <- map["totalPage"]
-        items   <- map["list"]
         pageNum   <- map["pageNum"]
+        list   <- map["records"]
+        hasNext   <- map["hasNext"]
         pageSize   <- map["pageSize"]
+        hasPrevious   <- map["hasPrevious"]
     }
 }
-
-
