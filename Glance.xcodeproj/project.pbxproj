@@ -11,6 +11,11 @@
 		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeCell.swift */; };
 		5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B824AF25E6000CB8BF /* HomeCell.xib */; };
+		5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* LikePopView.swift */; };
+		5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* LikePopView.xib */; };
+		5D579B3E24B4682500CFC188 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3D24B4682500CFC188 /* UserViewController.swift */; };
+		5D579B4624B4A46B00CFC188 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B4424B4A46B00CFC188 /* SettingViewController.swift */; };
+		5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B4524B4A46B00CFC188 /* SettingViewController.xib */; };
 		5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
 		5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
 		5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
@@ -123,8 +128,6 @@
 		5DEFF51224AF2841007A2FCD /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */; };
 		5DEFF51524AF287D007A2FCD /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51324AF287D007A2FCD /* NoticeCell.swift */; };
 		5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF51424AF287D007A2FCD /* NoticeCell.xib */; };
-		5DEFF51924AF2A8A007A2FCD /* UserHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */; };
-		5DEFF51B24AF2A97007A2FCD /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */; };
 		5DEFF51D24AF3348007A2FCD /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51C24AF3348007A2FCD /* NotificationViewModel.swift */; };
 		5DEFF51F24AF33C4007A2FCD /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */; };
 		5DEFF52124AF33EB007A2FCD /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF52024AF33EB007A2FCD /* Notice.swift */; };
@@ -138,6 +141,11 @@
 		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
 		5D4267B724AF25E6000CB8BF /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5D4267B824AF25E6000CB8BF /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		5D579B3824B4304B00CFC188 /* LikePopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePopView.swift; sourceTree = "<group>"; };
+		5D579B3A24B44A6D00CFC188 /* LikePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePopView.xib; sourceTree = "<group>"; };
+		5D579B3D24B4682500CFC188 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		5D579B4424B4A46B00CFC188 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
+		5D579B4524B4A46B00CFC188 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
 		5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5D630AAD24B31B4000F0CC45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
@@ -253,8 +261,6 @@
 		5DEFF51124AF2841007A2FCD /* NoticeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		5DEFF51324AF287D007A2FCD /* NoticeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		5DEFF51424AF287D007A2FCD /* NoticeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
-		5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeadView.swift; sourceTree = "<group>"; };
-		5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHeadView.xib; sourceTree = "<group>"; };
 		5DEFF51C24AF3348007A2FCD /* NotificationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeCellViewModel.swift; sourceTree = "<group>"; };
 		5DEFF52024AF33EB007A2FCD /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
@@ -289,6 +295,39 @@
 				5DEFF51324AF287D007A2FCD /* NoticeCell.swift */,
 				5DEFF51424AF287D007A2FCD /* NoticeCell.xib */,
 				5DEFF51E24AF33C4007A2FCD /* NoticeCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D579B3C24B4680300CFC188 /* User */ = {
+			isa = PBXGroup;
+			children = (
+				5D579B3F24B4683300CFC188 /* Views */,
+				5D579B3D24B4682500CFC188 /* UserViewController.swift */,
+			);
+			path = User;
+			sourceTree = "<group>";
+		};
+		5D579B3F24B4683300CFC188 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		5D579B4224B4A44E00CFC188 /* Setting */ = {
+			isa = PBXGroup;
+			children = (
+				5D579B4324B4A44E00CFC188 /* Views */,
+				5D579B4424B4A46B00CFC188 /* SettingViewController.swift */,
+				5D579B4524B4A46B00CFC188 /* SettingViewController.xib */,
+			);
+			path = Setting;
+			sourceTree = "<group>";
+		};
+		5D579B4324B4A44E00CFC188 /* Views */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -578,9 +617,11 @@
 		5DEFF18F24AEC2F8007A2FCD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5D579B4224B4A44E00CFC188 /* Setting */,
+				5D579B3C24B4680300CFC188 /* User */,
+				5DEFF51724AF29D7007A2FCD /* Views */,
 				5D630AAA24B301A400F0CC45 /* Mine */,
 				5DEFF19024AEC2F8007A2FCD /* Demo */,
-				5DEFF51724AF29D7007A2FCD /* Views */,
 				5D4267BB24AF2792000CB8BF /* Notifications */,
 				5DEFF50D24AEE73D007A2FCD /* Home */,
 				5DEFF2C624AEC2F9007A2FCD /* Main */,
@@ -687,8 +728,8 @@
 		5DEFF51724AF29D7007A2FCD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5DEFF51824AF2A8A007A2FCD /* UserHeadView.swift */,
-				5DEFF51A24AF2A97007A2FCD /* UserHeadView.xib */,
+				5D579B3824B4304B00CFC188 /* LikePopView.swift */,
+				5D579B3A24B44A6D00CFC188 /* LikePopView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -779,11 +820,12 @@
 				5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
+				5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
+				5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */,
 				5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */,
-				5DEFF51B24AF2A97007A2FCD /* UserHeadView.xib in Resources */,
 				5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
@@ -866,6 +908,7 @@
 				5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */,
 				5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */,
 				5DEFF37924AEC2F9007A2FCD /* CollectionViewController.swift in Sources */,
+				5D579B4624B4A46B00CFC188 /* SettingViewController.swift in Sources */,
 				5DEFF34224AEC2F9007A2FCD /* UIImageView-Extension.swift in Sources */,
 				5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */,
 				5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */,
@@ -904,6 +947,7 @@
 				5DEFF38224AEC2F9007A2FCD /* Demo2ViewController.swift in Sources */,
 				5DEFF32424AEC2F9007A2FCD /* Gender.swift in Sources */,
 				5DEFF34624AEC2F9007A2FCD /* UIColor-Extension.swift in Sources */,
+				5D579B3E24B4682500CFC188 /* UserViewController.swift in Sources */,
 				5DEFF33224AEC2F9007A2FCD /* User.swift in Sources */,
 				5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */,
 				5DEFF4F624AECB7A007A2FCD /* UIKit-Extension.swift in Sources */,
@@ -924,7 +968,6 @@
 				5DEFF4A524AEC2FA007A2FCD /* CustomRAMBounceAnimation.swift in Sources */,
 				5DEFF51D24AF3348007A2FCD /* NotificationViewModel.swift in Sources */,
 				5DEFF36424AEC2F9007A2FCD /* SlideImageView.swift in Sources */,
-				5DEFF51924AF2A8A007A2FCD /* UserHeadView.swift in Sources */,
 				5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */,
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
@@ -947,6 +990,7 @@
 				5DEFF35324AEC2F9007A2FCD /* SelfAware.swift in Sources */,
 				5DEFF35B24AEC2F9007A2FCD /* View.swift in Sources */,
 				5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */,
+				5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */,
 				5DEFF31724AEC2F9007A2FCD /* AppearanceManager.swift in Sources */,
 				5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,

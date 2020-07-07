@@ -12,6 +12,7 @@ import RxSwift
 import RxDataSources
 import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
+import Popover
 
 class HomeController: CollectionViewController {
     
@@ -47,7 +48,17 @@ class HomeController: CollectionViewController {
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(HomeSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
-
+        output.showLikePopView
+            .subscribe(onNext: { (fromView,cellViewModel) in
+                let width = 120
+                let aView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 48))
+                let options: [PopoverOption] = [.type(.down),.sideOffset(100),.sideEdge(20),
+                                                .color(UIColor.black.withAlphaComponent(0.5)),
+                                                .cornerRadius(8),.arrowSize(.zero), .showBlackOverlay(false)]
+                let popover = Popover(options: options, showHandler: nil, dismissHandler: nil)
+                popover.show(aView, fromView: fromView)
+                
+        }).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()

@@ -28,7 +28,11 @@ class RestApi: API {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
     
+    func saveFavorite(id: Any, type: Int) -> Single<Bool> {
+        return requestObject(.saveFavorite(id: id, type: type), type: MappableItem<Bool>.self).map { $0.data ?? false }
+    }
     
+
     
     
     

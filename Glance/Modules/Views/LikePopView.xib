@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="LikePopView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="151" height="42"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwM-v6-5dl">
+                    <rect key="frame" x="0.0" y="0.0" width="151" height="42"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="cHm-Fd-Rl8">
+                            <rect key="frame" x="0.0" y="0.0" width="151" height="42"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7U-rU-VAh">
+                                    <rect key="frame" x="0.0" y="0.0" width="50.5" height="42"/>
+                                    <state key="normal" image="icon_like_haha"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-cg-sH6">
+                                    <rect key="frame" x="50.5" y="0.0" width="50" height="42"/>
+                                    <state key="normal" image="icon_like_love"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evS-zz-5Ya">
+                                    <rect key="frame" x="100.5" y="0.0" width="50.5" height="42"/>
+                                    <state key="normal" image="icon_like_wow"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.23137254901960785" green="0.27843137254901962" blue="0.28235294117647058" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="cHm-Fd-Rl8" secondAttribute="bottom" id="8zT-dP-LJE"/>
+                        <constraint firstItem="cHm-Fd-Rl8" firstAttribute="leading" secondItem="HwM-v6-5dl" secondAttribute="leading" id="LRo-xS-7UU"/>
+                        <constraint firstItem="cHm-Fd-Rl8" firstAttribute="top" secondItem="HwM-v6-5dl" secondAttribute="top" id="PBu-QV-aOY"/>
+                        <constraint firstAttribute="trailing" secondItem="cHm-Fd-Rl8" secondAttribute="trailing" id="y6D-OG-Bj8"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="HwM-v6-5dl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0tf-dO-XLA"/>
+                <constraint firstItem="HwM-v6-5dl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5pv-fS-x2t"/>
+                <constraint firstAttribute="bottom" secondItem="HwM-v6-5dl" secondAttribute="bottom" id="Yy1-P5-05Y"/>
+                <constraint firstAttribute="trailing" secondItem="HwM-v6-5dl" secondAttribute="trailing" id="tGG-rH-qSv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="-323.91304347826087" y="204.91071428571428"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_like_haha" width="26" height="26"/>
+        <image name="icon_like_love" width="26" height="26"/>
+        <image name="icon_like_wow" width="26" height="26"/>
+    </resources>
+</document>

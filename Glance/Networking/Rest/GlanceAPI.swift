@@ -25,7 +25,7 @@ private let assetDir: URL = {
 enum GlanceAPI {
     case download(url: URL, fileName: String?)
     case getHome(page : Int)
-
+    case saveFavorite(id : Any, type : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -44,11 +44,15 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .download: return ""
         case .getHome(let page):
             return "/api/home/\(page)/10"
+        case .saveFavorite:
+            return "/api/saved"
         }
     }
     
     var method: Moya.Method {
         switch self {
+        case .saveFavorite:
+            return .post
         default:
             return .get
         }
@@ -81,6 +85,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
     var parameters: [String: Any]? {
         var params: [String: Any] = [:]
         switch self {
+        case .saveFavorite(let id, let type):
+            params["id"] = id
+            params["type"] = type
         default:
             break
         }
@@ -110,6 +117,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
         switch self {
         default:
             switch method {
+            case .post,.put:
+                return .requestData(parameters?.jsonData() ?? Data())
             default:
                 if let parameters = parameters {
                     return .requestParameters(parameters: parameters, encoding: parameterEncoding)

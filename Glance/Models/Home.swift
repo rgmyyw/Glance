@@ -47,16 +47,18 @@ struct Home: Mappable {
 }
 
 struct Recommend: Mappable {
-    var type: Float = 0.0
-    var productId: Float = 0.0
+    var type: HomeCellType?
+    var productId: Int = 0
     var user: User?
     var image: String?
     var title: String?
     var saved: Bool = false
-    var recommendId: Float = 0.0
-    var reaction: Float = 0.0
-    var postId: Float = 0.0
-
+    var reaction: Int = 0
+    
+    
+    var postId: Int = 0
+    var recommendId: Int = 0
+    
     init?(map: Map) {}
 
     mutating func mapping(map: Map) {
@@ -77,7 +79,7 @@ struct Posts: Mappable {
     var image: String?
     var title: String?
     var saved: Bool = false
-    var postId: Float = 0.0
+    var postId: Int = 0
     var user: User?
 
     init?(map: Map) {}

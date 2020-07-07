@@ -21,6 +21,7 @@ class HomeViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[HomeSection]>
+        let showLikePopView : Observable<(UIView, HomeCellViewModel)>
     }
     
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
@@ -28,6 +29,8 @@ class HomeViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[HomeSection]>(value: [])
+        let saveFavorite = PublishSubject<HomeCellViewModel>()
+        let showLikePopView = PublishSubject<(UIView,HomeCellViewModel)>()
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
@@ -81,10 +84,50 @@ class HomeViewModel: ViewModel, ViewModelType {
 
         
         element.map { items -> [HomeSection] in
-            let sectionItems = items.list.map { HomeSectionItem.recommendItem(viewModel: HomeCellViewModel(item: $0))}
+            let sectionItems = items.list.map { item -> HomeSectionItem  in
+                let viewModel = HomeCellViewModel(item: item)
+                viewModel.saveFavorite.map { _ in  viewModel }.bind(to: saveFavorite).disposed(by: self.rx.disposeBag)
+                viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
+                let sectionItem = HomeSectionItem.recommendItem(viewModel: viewModel)
+                return sectionItem
+            }
             let sections = [HomeSection.recommend(items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
+        
+        saveFavorite
+            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                guard let type = cellViewModel.item.type else { return Observable.just(RxSwift.Event.completed) }
+                let id : Any
+                switch type {
+                case .post:
+                    id = cellViewModel.item.posts?.postId ?? 0
+                case .product:
+                    id = cellViewModel.item.product?.imName ?? ""
+                case .recommend:
+                    id = cellViewModel.item.recommend?.recommendId ?? 0
+                }
+                return self.provider.saveFavorite(id: id, type: type.rawValue)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .map { (cellViewModel, $0)}
+                    .materialize()
+            }).subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .next(let (item,result)):
+                    if result {
+                        item.isFavorite.accept(result)
+                    }
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+
+        
+        
+        
             
 //
 //        input.selection.subscribe(onNext: { item in
@@ -94,6 +137,6 @@ class HomeViewModel: ViewModel, ViewModelType {
 //            saved.onNext(())
 //        }).disposed(by: rx.disposeBag)
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []))
+        return Output(items: elements.asDriver(onErrorJustReturn: []), showLikePopView: showLikePopView.asObservable())
     }
 }

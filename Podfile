@@ -63,6 +63,11 @@ target 'Glance' do
     pod 'SDCAlertView' , '~> 11.1.2'
     pod 'WZLBadge' , '~> 1.2.6'
     pod 'PopupDialog', '~> 1.1'
+    pod "Popover" , '~> 1.3.0'
+    pod 'WMZPageController', '~> 1.1.9'
+    pod 'CWLateralSlide' , '~> 1.6.5'
+
+
 
     # Keyboard
     pod 'IQKeyboardManagerSwift', '~> 6.0'
@@ -73,6 +78,7 @@ target 'Glance' do
     # Code Quality
     pod 'FLEX', '~> 4.0', :configurations => ['Debug']
     pod 'SwifterSwift', '~> 5.0'
+    pod 'EZSwiftExtensions', :git => 'https://github.com/goktugyil/EZSwiftExtensions.git', :branch => 'ceeyang-Swift5.0'
     pod 'BonMot', '~> 5.0'
     pod 'Reusable' , '~> 4.1.0'
 

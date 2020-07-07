@@ -38,6 +38,9 @@ class NavigationBar: View {
     public var leftBarButtonItems : [UIView] = []
     public var rightBarButtonItems : [UIView] = []
     public var contentInset : UIEdgeInsets = UIEdgeInsets(top: 12, left: 15, bottom: 12, right: 15)
+    public var itemMargin : CGFloat = 20
+
+    
     public var backBarButtonItem : UIButton? {
         didSet {
             guard let view = backBarButtonItem else {
@@ -66,6 +69,7 @@ class NavigationBar: View {
             return rightBarButtonItems.first
         }
     }
+    
     
     
     override func makeUI() {
@@ -107,18 +111,18 @@ class NavigationBar: View {
         super.layoutSubviews()
         
         var leftOffset : CGFloat  = contentInset.left
-        for view in leftBarButtonItems {
+        for (index, view) in leftBarButtonItems.enumerated() {
             view.sizeToFit()
-            view.frame = CGRect(x: leftOffset, y: 0, width: view.frame.width, height: leftView.frame.height)
+            view.frame = CGRect(x: index > 0 ? leftOffset + itemMargin : leftOffset, y: 0, width: view.frame.width, height: leftView.frame.height)
             leftOffset = view.frame.maxX
             leftView.addSubview(view)
         }
         
         if !rightBarButtonItems.isEmpty {
             var rightOffset : CGFloat  = rightView.width - contentInset.right
-            for view in rightBarButtonItems {
+            for (index, view) in rightBarButtonItems.enumerated() {
                 view.sizeToFit()
-                rightOffset = (rightOffset - view.frame.width)
+                rightOffset = (rightOffset - view.frame.width - (index > 0 ? itemMargin : 0))
                 view.frame = CGRect(x: rightOffset, y: 0, width: view.frame.width, height: rightView.frame.height)
                 rightView.addSubview(view)
             }
