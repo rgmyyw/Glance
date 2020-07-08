@@ -41,6 +41,20 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     private(set) public lazy var emptyDataView = EmptyDataView.loadFromNib()
     public let emptyDataViewDataSource : EmptyDataViewModel = EmptyDataViewModel()
     
+    private(set) public lazy var backButton : UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.icon_navigation_back_black(), for: .normal)
+        button.sizeToFit()
+        return button
+    }()
+    
+    private(set) public lazy var closeButton : UIButton = {
+        let button = UIButton()
+        button.setImage(R.image.icon_navigation_close(), for: .normal)
+        button.sizeToFit()
+        return button
+    }()
+
     
     
     var navigationTitle = "" {
@@ -48,9 +62,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
             navigationBar.title = navigationTitle
         }
     }
-    
-    let spaceBarButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-    
+        
     
     public let languageChanged = BehaviorRelay<Void>(value: ())
     public let motionShakeEvent = PublishSubject<Void>()
@@ -59,29 +71,9 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         return UIApplication.topViewController()
     }
     
-    private(set) lazy var navigationBar : NavigationBar = NavigationBar()
+    private(set) lazy var navigationBar : NavigationBar = NavigationBar(height: 44)
     
-//    lazy var searchBar: SearchBar = {
-//        let view = SearchBar(height: 36)
-//        view.textField.placeholder = "Search"
-//        return view
-//    }()
-    
-    lazy var backBarButton: BarButtonItem = {
-        let view = BarButtonItem(image: R.image.icon_navigation_back_black(),action: (self,#selector(navigationBack)))
-        return view
-    }()
-    
-    lazy var closeBarButton: BarButtonItem = {
-        let view = BarButtonItem(image: R.image.icon_navigation_close(),
-                                 style: .plain,
-                                 target: self,
-                                 action: nil)
-        return view
-    }()
-    
-    
-    private (set) lazy var contentView: View = {
+    private(set) lazy var contentView: View = {
         let view = View()
         self.view.addSubview(view)
         view.snp.makeConstraints { (make) in
@@ -91,6 +83,12 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
                 make.edges.equalToSuperview()
             }
         }
+        let containerView = StackView(arrangedSubviews: [navigationBar,stackView])
+        containerView.spacing = 0
+        view.addSubview(containerView)
+        containerView.snp.makeConstraints { (make) in
+            make.edges.equalToSuperview()
+        }
         return view
     }()
 
@@ -98,41 +96,20 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         let subviews: [UIView] = []
         let view = StackView(arrangedSubviews: subviews)
         view.spacing = 0
-        
-        self.contentView.addSubview(navigationBar)
-        self.contentView.addSubview(view)
-        
-        navigationBar.snp.makeConstraints({ (make) in
-            make.height.equalTo(44)
-            make.left.top.right.equalToSuperview()
-        })
-        
-        view.snp.makeConstraints({ (make) in
-            make.top.equalTo(navigationBar.snp.bottom)
-            make.left.right.bottom.equalToSuperview()
-        })
         return view
     }()
 
+    
     override public func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationController?.setNavigationBarHidden(true, animated: false)
-        
-
-        
+                
         // Do any additional setup after loading the view.
-        stackView.backgroundColor = .clear
-        
-        
-        hbd_titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)]
-        
+        contentView.backgroundColor = .clear
+                
         makeUI()
         bindViewModel()
-        
-        closeBarButton.rx.tap.asObservable().subscribe(onNext: { [weak self] () in
-            self?.navigator.dismiss(sender: self)
-        }).disposed(by: rx.disposeBag)
+        navigationController?.setNavigationBarHidden(true, animated:false)
         
         
         // Observe device orientation change
@@ -176,21 +153,21 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
             self?.view.endEditing(true)
         }).disposed(by: rx.disposeBag)
         
+        backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         if automaticallyAdjustsLeftBarButtonItem {
             adjustLeftBarButtonItem()
         }
+
         updateUI()
     }
     
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateUI()
-        
         logResourcesCount()
     }
     
@@ -208,7 +185,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     func makeUI() {
         
         hero.isEnabled = true
-        navigationItem.backBarButtonItem = backBarButton
+        //navigationItem.backBarButtonItem = backBarButton
         
         languageChanged.subscribe(onNext: {  () in
             
@@ -221,7 +198,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         
         themeService.rx
             .bind({ $0.background }, to: view.rx.backgroundColor)
-            .bind({ $0.text }, to: [backBarButton.rx.tintColor, closeBarButton.rx.tintColor])
+//            .bind({ $0.text }, to: [backBarButton.rx.tintColor, closeBarButton.rx.tintColor])
             .disposed(by: rx.disposeBag)
         
         
@@ -284,16 +261,6 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         self.updateUI()
     }
     
-    // MARK: Adjusting Navigation Item
-    func adjustLeftBarButtonItem() {
-        
-        if self.navigationController?.viewControllers.count ?? 0 > 1 { // Pushed
-            self.navigationItem.leftBarButtonItem = backBarButton
-        } else if self.presentingViewController != nil { // presented
-            self.navigationItem.leftBarButtonItem = closeBarButton
-        }
-    }
-    
     @objc func closeAction(sender: AnyObject) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -301,6 +268,17 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     @objc func navigationBack() {
         self.navigator.pop(sender: self)
     }
+    
+    // MARK: Adjusting Navigation Item
+    func adjustLeftBarButtonItem() {
+        
+        if self.navigationController?.viewControllers.count ?? 0 > 1 { // Pushed
+            self.navigationBar.leftBarButtonItems.insert(backButton, at: 0)
+        } else if self.presentingViewController != nil { // presented
+            self.navigationBar.leftBarButtonItems.insert(closeButton, at: 0)
+        }
+    }
+
 
 }
 

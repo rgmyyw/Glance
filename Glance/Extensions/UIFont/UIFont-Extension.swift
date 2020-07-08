@@ -16,17 +16,16 @@ import RxSwift
 extension UIFont {
 
 
-    
     static func titleFont(_ size : CGFloat = 16) -> UIFont {
-        return UIFont(name: "PingFang-SC-Medium", size: size)!
+        return UIFont(name: "Helvetica", size: size)!
     }
     
     static func titleBoldFont(_ size : CGFloat = 16) -> UIFont {
-        return UIFont(name: "PingFang-SC-Bold", size: size)!
+        return UIFont(name: "Helvetica-Bold", size: size)!
     }
 
     static func descriptionFont() -> UIFont {
-        return UIFont(name: "PingFang-SC-Medium", size: 14)!
+        return UIFont(name: "Helvetica", size: 14)!
     }
 }
 

@@ -69,7 +69,10 @@ class HomeController: CollectionViewController {
         viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
     
-        
+        collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
+            let demo = DemoViewModel(provider: viewModel.provider)
+            self.navigator.show(segue: .demo(viewModel: demo), sender: self)
+        }).disposed(by: rx.disposeBag)
 
     }
 }

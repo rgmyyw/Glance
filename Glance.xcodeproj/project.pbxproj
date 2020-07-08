@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
+		5D3E47FF24B572870064E3BF /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
+		5D3E480124B579820064E3BF /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */; };
+		5D3E480424B5C32E0064E3BF /* NotificationProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480224B5C32E0064E3BF /* NotificationProfileViewController.swift */; };
+		5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
 		5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */; };
 		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeCell.swift */; };
@@ -22,6 +27,11 @@
 		5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
 		5D630AB224B320AD00F0CC45 /* HomeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AB124B320AD00F0CC45 /* HomeCellViewModel.swift */; };
 		5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
+		5D6C721E24B565C200EA3028 /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721D24B565C200EA3028 /* SettingViewModel.swift */; };
+		5D6C722024B5670000EA3028 /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721F24B5670000EA3028 /* UserViewModel.swift */; };
+		5DDBC09A24B5C5670077DBE5 /* NotificationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */; };
+		5DDBC09C24B5CE580077DBE5 /* UserHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */; };
+		5DDBC09E24B5CE6B0077DBE5 /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
 		5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FA24AEC2F8007A2FCD /* Api.swift */; };
 		5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
@@ -68,7 +78,6 @@
 		5DEFF36024AEC2F9007A2FCD /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16C24AEC2F8007A2FCD /* NavigationBar.swift */; };
 		5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */; };
 		5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16E24AEC2F8007A2FCD /* Message.swift */; };
-		5DEFF36324AEC2F9007A2FCD /* NavigationBarBackDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16F24AEC2F8007A2FCD /* NavigationBarBackDelegate.swift */; };
 		5DEFF36424AEC2F9007A2FCD /* SlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */; };
 		5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
 		5DEFF36624AEC2F9007A2FCD /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */; };
@@ -137,6 +146,11 @@
 /* Begin PBXFileReference section */
 		18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.debug.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.debug.xcconfig"; sourceTree = "<group>"; };
 		4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
+		5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyProfileViewController.xib; sourceTree = "<group>"; };
+		5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewModel.swift; sourceTree = "<group>"; };
+		5D3E480224B5C32E0064E3BF /* NotificationProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileViewController.swift; sourceTree = "<group>"; };
+		5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationProfileViewController.xib; sourceTree = "<group>"; };
 		5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
 		5D4267B724AF25E6000CB8BF /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
@@ -152,6 +166,11 @@
 		5D630AAF24B3205F00F0CC45 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		5D630AB124B320AD00F0CC45 /* HomeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCellViewModel.swift; sourceTree = "<group>"; };
 		5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		5D6C721D24B565C200EA3028 /* SettingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewModel.swift; sourceTree = "<group>"; };
+		5D6C721F24B5670000EA3028 /* UserViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModel.swift; sourceTree = "<group>"; };
+		5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileViewModel.swift; sourceTree = "<group>"; };
+		5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeadView.swift; sourceTree = "<group>"; };
+		5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHeadView.xib; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEFF0FA24AEC2F8007A2FCD /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceAPI.swift; sourceTree = "<group>"; };
@@ -201,7 +220,6 @@
 		5DEFF16C24AEC2F8007A2FCD /* NavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBar.swift; sourceTree = "<group>"; };
 		5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		5DEFF16E24AEC2F8007A2FCD /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
-		5DEFF16F24AEC2F8007A2FCD /* NavigationBarBackDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationBarBackDelegate.swift; sourceTree = "<group>"; };
 		5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideImageView.swift; sourceTree = "<group>"; };
 		5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
@@ -304,6 +322,10 @@
 			children = (
 				5D579B3F24B4683300CFC188 /* Views */,
 				5D579B3D24B4682500CFC188 /* UserViewController.swift */,
+				5D6C721F24B5670000EA3028 /* UserViewModel.swift */,
+				5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */,
+				5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */,
+				5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -311,6 +333,8 @@
 		5D579B3F24B4683300CFC188 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */,
+				5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -321,6 +345,10 @@
 				5D579B4324B4A44E00CFC188 /* Views */,
 				5D579B4424B4A46B00CFC188 /* SettingViewController.swift */,
 				5D579B4524B4A46B00CFC188 /* SettingViewController.xib */,
+				5D6C721D24B565C200EA3028 /* SettingViewModel.swift */,
+				5D3E480224B5C32E0064E3BF /* NotificationProfileViewController.swift */,
+				5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */,
+				5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -551,7 +579,6 @@
 				5DEFF16C24AEC2F8007A2FCD /* NavigationBar.swift */,
 				5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */,
 				5DEFF16E24AEC2F8007A2FCD /* Message.swift */,
-				5DEFF16F24AEC2F8007A2FCD /* NavigationBarBackDelegate.swift */,
 				5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */,
 				5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */,
 				5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */,
@@ -826,13 +853,16 @@
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
 				5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */,
 				5DEFF51624AF287D007A2FCD /* NoticeCell.xib in Resources */,
+				5D3E47FF24B572870064E3BF /* ModifyProfileViewController.xib in Resources */,
 				5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
 				5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */,
+				5DDBC09E24B5CE6B0077DBE5 /* UserHeadView.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
+				5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -913,6 +943,7 @@
 				5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */,
 				5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */,
 				5DEFF37124AEC2F9007A2FCD /* DefaultTableViewCellViewModel.swift in Sources */,
+				5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */,
 				5DEFF51224AF2841007A2FCD /* NoticeViewController.swift in Sources */,
 				5DEFF31824AEC2F9007A2FCD /* AuthManager.swift in Sources */,
 				5DEFF34424AEC2F9007A2FCD /* UIAlertController-Extensions.swift in Sources */,
@@ -929,7 +960,6 @@
 				5DEFF32C24AEC2F9007A2FCD /* ISO8601DateTransform.swift in Sources */,
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
 				5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */,
-				5DEFF36324AEC2F9007A2FCD /* NavigationBarBackDelegate.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
 				5DEFF36A24AEC2F9007A2FCD /* ExceptionError.swift in Sources */,
 				5DEFF4A424AEC2FA007A2FCD /* HomeTabBarController.swift in Sources */,
@@ -960,20 +990,25 @@
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
+				5D3E480424B5C32E0064E3BF /* NotificationProfileViewController.swift in Sources */,
 				5DEFF37D24AEC2F9007A2FCD /* Application.swift in Sources */,
 				5DEFF36624AEC2F9007A2FCD /* ScrollView.swift in Sources */,
+				5D6C722024B5670000EA3028 /* UserViewModel.swift in Sources */,
 				5DEFF38324AEC2F9007A2FCD /* DemoViewModel.swift in Sources */,
 				5DEFF37B24AEC2F9007A2FCD /* Configs.swift in Sources */,
 				5DEFF36C24AEC2F9007A2FCD /* Switch.swift in Sources */,
 				5DEFF4A524AEC2FA007A2FCD /* CustomRAMBounceAnimation.swift in Sources */,
 				5DEFF51D24AF3348007A2FCD /* NotificationViewModel.swift in Sources */,
+				5DDBC09A24B5C5670077DBE5 /* NotificationProfileViewModel.swift in Sources */,
 				5DEFF36424AEC2F9007A2FCD /* SlideImageView.swift in Sources */,
 				5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */,
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
+				5D6C721E24B565C200EA3028 /* SettingViewModel.swift in Sources */,
 				5DEFF34E24AEC2F9007A2FCD /* Kingfisher-Rx.swift in Sources */,
 				5DEFF37E24AEC2F9007A2FCD /* Navigator.swift in Sources */,
 				5DEFF35E24AEC2F9007A2FCD /* NumberButton.swift in Sources */,
+				5D3E480124B579820064E3BF /* ModifyProfileViewModel.swift in Sources */,
 				5DEFF34C24AEC2F9007A2FCD /* Observable-Logging.swift in Sources */,
 				5DEFF31524AEC2F9007A2FCD /* Reachability.swift in Sources */,
 				5DEFF35824AEC2F9007A2FCD /* Toolbar.swift in Sources */,
@@ -1009,6 +1044,7 @@
 				5DEFF34F24AEC2F9007A2FCD /* UIFont-Extension.swift in Sources */,
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,
 				5DEFF36E24AEC2F9007A2FCD /* WebViewController.swift in Sources */,
+				5DDBC09C24B5CE580077DBE5 /* UserHeadView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

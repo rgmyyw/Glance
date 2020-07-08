@@ -27,7 +27,7 @@ extension UIImageView {
         let resource = ImageResource(downloadURL: url)
         kf.setImage(with: resource, placeholder: placeholderImage, options: [], progressBlock: nil) { [weak self](result) in
             if avatar {
-                self?.image =  try? result.get().image.withRoundedCorners(radius: self?.size.height)
+//                self?.image =  try? result.get().image.withRoundedCorners(radius: self.size.height ?? .zero)
             }
         }
     }

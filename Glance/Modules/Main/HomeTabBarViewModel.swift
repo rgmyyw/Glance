@@ -137,7 +137,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
             let viewModel = DemoViewModel(provider: provider)
             return viewModel
         case .mine:
-            let viewModel = DemoViewModel(provider: provider)
+            let viewModel = UserViewModel(provider: provider)
             return viewModel
         }
     }

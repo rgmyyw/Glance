@@ -44,7 +44,7 @@ class WebViewController: ViewController {
 
     lazy var toolbar: Toolbar = {
         let view = Toolbar()
-        view.items = [self.goBackBarButton, self.goForwardBarButton, self.spaceBarButton, self.stopReloadBarButton]
+        view.items = [self.goBackBarButton, self.goForwardBarButton, self.stopReloadBarButton]
         return view
     }()
 

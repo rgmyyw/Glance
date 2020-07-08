@@ -7,9 +7,8 @@
 //
 
 import UIKit
-import HBDNavigationBar
 
-class NavigationController: HBDNavigationController  {
+class NavigationController: UINavigationController  {
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return globalStatusBarStyle.value
@@ -19,10 +18,16 @@ class NavigationController: HBDNavigationController  {
         super.viewDidLoad()
         
         
-        navigationBar.shadowImage = UIImage()
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        
-        
+        /// fix: 打开下面 push 到下一个页面navigationbar 会黑屏
+//        navigationBar.isHidden = true
+//        navigationBar.shadowImage = UIImage()
+//        navigationBar.setBackgroundImage(UIImage(), for: .default)
+//        navigationBar.isTranslucent = false
+//        if #available(iOS 11.0, *) {
+//            navigationBar.prefersLargeTitles = false
+//        } else {
+//            // Fallback on earlier versions
+//        }
         
         
         // Do any additional setup after loading the view.
@@ -33,6 +38,7 @@ class NavigationController: HBDNavigationController  {
         } else {
             hero.isEnabled = true
         }
+        
         hero.modalAnimationType = .autoReverse(presenting: .fade)
         hero.navigationAnimationType = .autoReverse(presenting: .slide(direction: .left))
         
@@ -56,20 +62,23 @@ class NavigationController: HBDNavigationController  {
 //                .disposed(by: rx.disposeBag)
 //        }
         
-        
-        
-
-        
     }
     
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        navigationBar.isHidden = true
+    }
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        navigationBar.isHidden = true
+    }
+
+    
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        
         if self.children.count >= 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)
     }
-    
-    
     
 }

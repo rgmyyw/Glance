@@ -31,7 +31,8 @@ class Navigator {
         case webController(URL)
         case tabs(viewModel: HomeTabBarViewModel)
         case signIn
-        
+        case modifyProfile(viewModel : ModifyProfileViewModel)
+        case notificationProfile(viewModel : NotificationProfileViewModel)
     }
     
     enum Transition {
@@ -67,6 +68,12 @@ class Navigator {
             return NavigationController(rootViewController: vc)
         case .signIn:
             let vc = SignInViewController()
+            return vc
+        case .modifyProfile(let viewModel):
+            let vc = ModifyProfileViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .notificationProfile(let viewModel):
+            let vc = NotificationProfileViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }
