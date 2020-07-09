@@ -12,7 +12,6 @@ import CWLateralSlide
 import RxSwift
 import RxCocoa
 
-
 class UserViewController: ViewController {
     
     lazy var insight : UIButton = {
@@ -35,34 +34,36 @@ class UserViewController: ViewController {
         setting.sizeToFit()
         return setting
     }()
-    
-    
-    
+        
     override func makeUI() {
         super.makeUI()
         
-
         navigationBar.leftBarButtonItem = insight
         navigationBar.rightBarButtonItems = [setting,share]
-
-
-        let pageViewContrller = UserPageController()
-        stackView.addArrangedSubview(pageViewContrller.view)
-        addChild(pageViewContrller)
-        
     }
     
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-    }
     
     override func bindViewModel() {
         super.bindViewModel()
         
         guard let viewModel = viewModel as? UserViewModel else { return }
         let input = UserViewModel.Input()
+        let output = viewModel.transform(input: input)
+        
+        let pageViewContrller = UserPageController()
+        pageViewContrller.provider = self.viewModel?.provider
+        pageViewContrller.navigator = navigator
+        stackView.addArrangedSubview(pageViewContrller.view)
+        addChild(pageViewContrller)
+        
+        output.displayName.drive(pageViewContrller.userHeadView.displayNameLabel.rx.text).disposed(by: rx.disposeBag)
+        output.countryName.drive(pageViewContrller.userHeadView.countryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        output.userHeadImageURL.drive(pageViewContrller.userHeadView.userHeadImageView.rx.imageURL).disposed(by: rx.disposeBag)
+        output.website.drive(pageViewContrller.userHeadView.websiteButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        output.instagram.drive(pageViewContrller.userHeadView.instagramButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        output.bio.drive(pageViewContrller.userHeadView.bioLabel.rx.text).disposed(by: rx.disposeBag)
+        
         
         setting.rx.tap.subscribe(onNext: { [weak self] () in
             guard let self = self else { return }
@@ -74,8 +75,6 @@ class UserViewController: ViewController {
             config?.direction = .fromRight
             config?.showAnimDuration = 0.25
             self.cw_showDrawerViewController(setting, animationType: .mask, configuration: config)
-            
-//            self.navigationController?.pushViewController(setting)
             
         }).disposed(by: rx.disposeBag)
         
@@ -93,30 +92,36 @@ class UserViewController: ViewController {
                 case .notifications:
                     let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
                     self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
-                case .originalPhotos: break
+                case .originalPhotos:
+                    let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
+                    self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
                 case .postsYourLiked: break
-                case .privacy: break
+                case .privacy:
+                    let viewModel = PrivacyViewModel(provider: viewModel.provider)
+                    self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
                 case .syncInstagram: break
                 }
             }).disposed(by: rx.disposeBag)
         
+        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
         
     }
-    
-    
-    
 }
 
 private class UserPageController: WMZPageController {
     
-    var titleDatas = ["asdas","asdas","asdas","asdas","asdas"]
+    var titleDatas = ["200\nPost","200\nRecomm","200\nFollowers","200\nFollowing"]
+    
+    lazy var userHeadView : UserHeadView = UserHeadView.loadFromNib(height: 200,width: self.view.width)
+    
+    var provider : API!
+    var navigator : Navigator!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let vcs = titleDatas.map { vc -> UIViewController in
             let vc = UIViewController()
-            vc.view.backgroundColor = .random
             return vc
         }
         
@@ -126,14 +131,41 @@ private class UserPageController: WMZPageController {
         param.wTopSuspension = true
         param.wBounces = true
         param.wFromNavi =  true
+        param.wMenuAnimal = .init(3)
+        param.wMenuTitleWidth = view.width / titleDatas.count.cgFloat
+        param.wMenuTitleWeight = 44
+        param.wMenuTitleColor = UIColor(hex: 0x999999)!
+        param.wMenuTitleSelectColor = UIColor(hex: 0x999999)!
+        param.titleHeight = 44
+        param.wCustomMenuTitle = { [weak self]titleButtons in
+            guard let buttons = titleButtons as? [WMZPageNaviBtn] else { return }
+            print(buttons)
+            buttons.forEach {
+                self?.updateTitle(by: $0)
+            }
+        }
+        
         param.wMenuHeadView = {
-            let view = UIView()
-            view.frame = CGRect(origin: .zero, size: CGSize(width: 200, height: 200))
-            view.backgroundColor = .random
-            return view
+            return self.userHeadView
         }
         
         self.param = param
+    }
+    
+    func updateTitle(by button : WMZPageNaviBtn) {
+        
+        let title = button.titleLabel?.text ?? ""
+        /// normal
+        let normaltitle = NSMutableAttributedString(string: title,attributes: [.foregroundColor: param.wMenuTitleColor,.font : UIFont.titleFont(12)])
+        /// selected
+        let selectedTitle = NSMutableAttributedString(string: title,attributes: [.foregroundColor: param.wMenuTitleSelectColor,.font : UIFont.titleFont(12)])
+        
+        let titleList = title.components(separatedBy: "\n")
+        normaltitle.addAttributes([.font : UIFont.titleFont(17)], range: title.nsString.range(of: titleList[0]))
+        selectedTitle.addAttributes([.font : UIFont.titleBoldFont(17)], range: title.nsString.range(of: titleList[0]))
+        
+        button.setAttributedTitle(normaltitle, for: .normal)
+        button.setAttributedTitle(selectedTitle, for: .selected)
     }
     
 }

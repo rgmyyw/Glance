@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -23,7 +23,6 @@ enum ApiError: Error {
 
 class RestApi: API {
     
-    
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
@@ -32,9 +31,18 @@ class RestApi: API {
         return requestObject(.saveFavorite(id: id, type: type), type: MappableItem<Bool>.self).map { $0.data ?? false }
     }
     
+    func userDetail(userId: String = "") -> Single<User> {
+        return requestObject(.userDetail(userId: userId), type: User.self)
+    }
 
+    func modifyProfile(data: [String : Any]) -> Single<User> {
+        return requestObject(.modifyProfile(data: data), type: User.self)
+    }
     
-    
+    func uploadImage(type: Int, data: Data) -> Single<String> {
+        return requestObject(.uploadImage(type: type, data: data), type: MappableItem<String>.self).map { $0.data ?? "" }
+    }
+
     
     let ibexProvider: IbexNetworking
     

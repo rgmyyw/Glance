@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -33,6 +33,9 @@ class Navigator {
         case signIn
         case modifyProfile(viewModel : ModifyProfileViewModel)
         case notificationProfile(viewModel : NotificationProfileViewModel)
+        case originalPhotos(viewModel : OriginalPhotosViewModel)
+        case privacy(viewModel : PrivacyViewModel)
+        case blockedList(viewModel : BlockedListViewModel)
     }
     
     enum Transition {
@@ -75,6 +78,16 @@ class Navigator {
         case .notificationProfile(let viewModel):
             let vc = NotificationProfileViewController(viewModel: viewModel, navigator: self)
             return vc
+        case .originalPhotos(let viewModel):
+            let vc = OriginalPhotosViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .privacy(let viewModel):
+            let vc = PrivacyViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .blockedList(let viewModel):
+            let vc = BlockedListViewController(viewModel: viewModel, navigator: self)
+            return vc
+            
         }
     }
     

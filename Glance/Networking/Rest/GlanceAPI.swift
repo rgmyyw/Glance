@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -26,6 +26,9 @@ enum GlanceAPI {
     case download(url: URL, fileName: String?)
     case getHome(page : Int)
     case saveFavorite(id : Any, type : Int)
+    case userDetail(userId : String)
+    case modifyProfile(data : [String : Any])
+    case uploadImage(type: Int, data : Data)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -46,6 +49,12 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/home/\(page)/10"
         case .saveFavorite:
             return "/api/saved"
+        case .userDetail:
+            return "/api/users/detail"
+        case .modifyProfile:
+            return "/api/users/profile"
+        case .uploadImage:
+            return "/api/image"
         }
     }
     
@@ -53,6 +62,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
         switch self {
         case .saveFavorite:
             return .post
+        case .userDetail:
+            return .get
+        case .modifyProfile:
+            return .put
         default:
             return .get
         }
@@ -61,7 +74,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
     
     var headers: [String: String]? {
         
-        var header : [String : String] = ["Content-Type":"application/json"]
+        var header : [String : String]
+        
+        switch self {
+        case .uploadImage:
+            header = ["Content-Type":"application/form-data"]
+        default:
+            header = ["Content-Type":"application/json"]
+        }
         
 //        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
 //            header["Authorization"] = token
@@ -88,6 +108,12 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .saveFavorite(let id, let type):
             params["id"] = id
             params["type"] = type
+        case .userDetail(let userId):
+            if userId.isNotEmpty {
+                params["otherUserId"] = userId
+            }
+        case .modifyProfile(let data):
+            params.merge(dict: data)
         default:
             break
         }
@@ -115,6 +141,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
     
     public var task: Task {
         switch self {
+        case .uploadImage(let type, let data):
+            let fileName = dformatter.string(from: Date()) + ".jpeg"
+            let formData = MultipartFormData(provider: MultipartFormData.FormDataProvider.data(data), name: "image", fileName: fileName, mimeType: "image/jpeg")
+            return .uploadCompositeMultipart([formData], urlParameters: ["type" : type])
         default:
             switch method {
             case .post,.put:

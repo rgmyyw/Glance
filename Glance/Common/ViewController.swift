@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import UIKit
@@ -148,11 +148,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         let twoSwipeGesture = UISwipeGestureRecognizer(target: self, action: #selector(handleTwoFingerSwipe(swipeRecognizer:)))
         twoSwipeGesture.numberOfTouchesRequired = 2
         self.view.addGestureRecognizer(twoSwipeGesture)
-        
-        rx.viewWillDisappear.subscribe({ [weak self] animated in
-            self?.view.endEditing(true)
-        }).disposed(by: rx.disposeBag)
-        
+                
         backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
     }
     
@@ -213,8 +209,9 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
             isLoading ? self?.startAnimating() : self?.stopAnimating()
         }).disposed(by: rx.disposeBag)
         
-        
-        endEditing.subscribe(onNext: {[weak self] () in
+                
+        Observable.merge(rx.viewWillDisappear.mapToVoid(),endEditing)
+            .subscribe(onNext: {[weak self] () in
             self?.view.endEditing(true)
         }).disposed(by: rx.disposeBag)
         

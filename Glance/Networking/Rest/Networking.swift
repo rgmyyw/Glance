@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -41,7 +41,6 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                         do {
                             let object = try response.mapObject(MappableItem<Void>.self)
                             if object.code == 200 {
-                                                                
                             } else {
                                 throw MoyaError.jsonMapping(response)
                             }

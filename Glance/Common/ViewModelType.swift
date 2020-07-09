@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -37,7 +37,6 @@ class ViewModel: NSObject  {
     
     let endEditing = PublishSubject<Void>()
     
-//    let close = PublishSubject<Void>()
     
     init(provider: API) {
         self.provider = provider

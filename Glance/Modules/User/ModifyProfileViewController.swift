@@ -13,7 +13,7 @@ class ModifyProfileViewController: ViewController {
     
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var changeProfilePhotoButton: UIButton!
-    @IBOutlet weak var userHeadImageView: UIView!
+    @IBOutlet weak var userHeadImageView: UIImageView!
     @IBOutlet weak var displayNameTextField: UITextField!
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var countryLabel: UILabel!
@@ -21,7 +21,9 @@ class ModifyProfileViewController: ViewController {
     @IBOutlet weak var websiteTextField: UITextField!
     @IBOutlet weak var bioTextView: UITextView!
     @IBOutlet weak var countryView: UIView!
-    
+    @IBOutlet weak var displayNameCharactersCountLabel: UILabel!
+    @IBOutlet weak var userNameCharactersCountLabel: UILabel!
+
     private let countryPickerView = CountryPickerView()
 
     
@@ -53,14 +55,39 @@ class ModifyProfileViewController: ViewController {
         navigationBar.rightBarButtonItem = save
         stackView.addArrangedSubview(scrollView)
     }
+    
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        
+        guard let viewModel = viewModel as? ModifyProfileViewModel else { return }
+        let input = ModifyProfileViewModel.Input(save: save.rx.tap.asObservable())
+        let output = viewModel.transform(input: input)
+        
+        output.userHeadImageURL.drive(userHeadImageView.rx.imageURL).disposed(by: rx.disposeBag)
+        output.countryName.drive(countryLabel.rx.text).disposed(by: rx.disposeBag)
+        (displayNameTextField.rx.textInput <-> viewModel.displayName).disposed(by: rx.disposeBag)
+        (userNameTextField.rx.textInput <-> viewModel.userName).disposed(by: rx.disposeBag)
+        (instagramTextField.rx.textInput <-> viewModel.instagram).disposed(by: rx.disposeBag)
+        (websiteTextField.rx.textInput <-> viewModel.website).disposed(by: rx.disposeBag)
+        (bioTextView.rx.textInput <-> viewModel.bio).disposed(by: rx.disposeBag)
+        userNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: userNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
+        displayNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: displayNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
+        
+        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
+        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        viewModel.endEditing.bind(to: endEditing).disposed(by: rx.disposeBag)
+    }
+    
+    
 }
 
 
 extension ModifyProfileViewController : CountryPickerViewDelegate {
     
     func countryPickerView(_ countryPickerView: CountryPickerView, didSelectCountry country: Country) {
+        (viewModel as? ModifyProfileViewModel)?.country.accept(country)
         countryLabel.text = country.name
     }
-    
     
 }

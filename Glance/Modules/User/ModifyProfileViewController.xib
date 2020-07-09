@@ -14,10 +14,12 @@
                 <outlet property="changeProfilePhotoButton" destination="FNk-1I-oJF" id="oU3-Ku-KHA"/>
                 <outlet property="countryLabel" destination="Abz-RE-5RI" id="zKD-5P-dHT"/>
                 <outlet property="countryView" destination="Gqr-wf-byO" id="isA-aR-hb0"/>
+                <outlet property="displayNameCharactersCountLabel" destination="gg7-Qb-POM" id="5vP-zS-9qB"/>
                 <outlet property="displayNameTextField" destination="oEG-4w-HpB" id="7EQ-1M-0d3"/>
                 <outlet property="instagramTextField" destination="de8-rP-9og" id="yil-5R-LP0"/>
                 <outlet property="scrollView" destination="RaA-NU-Nws" id="Yv8-gx-6Qg"/>
-                <outlet property="userHeadImageView" destination="EBr-JQ-TWg" id="w9Y-H8-9J6"/>
+                <outlet property="userHeadImageView" destination="OwO-0k-1pJ" id="9ZU-hh-sFf"/>
+                <outlet property="userNameCharactersCountLabel" destination="PmF-Zt-aEa" id="qEu-8z-lcU"/>
                 <outlet property="userNameTextField" destination="E19-Li-0TV" id="VwS-y1-S0e"/>
                 <outlet property="view" destination="jDh-TP-7DP" id="xr3-ih-phH"/>
                 <outlet property="websiteTextField" destination="Lcr-Lm-qV3" id="ZJD-3t-Yb6"/>

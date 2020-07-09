@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2018 fwan. All rights reserved.
+//  Copyright © 2020 fwan. All rights reserved.
 //
 
 import Foundation
@@ -19,18 +19,38 @@ let user = BehaviorRelay<User?>(value: nil)
 
 
 struct User: Mappable {
-    var loginStatus: Bool = false
-    var userId: String?
-    var userImage: String?
+    var website: String?
+    var followerCount: Int = 0
+    var countryName: String?
+    var instagram: String?
+    var loginStatus: Bool?
+    var postCount: Int = 0
+    var recommendCount: Int = 0
+    var isFollow: Bool = false
+    var username: String?
     var displayName: String?
+    var followingCount: Int = 0
+    var userId: String?
+    var bio: String?
+    var userImage: String?
 
     init?(map: Map) {}
 
     mutating func mapping(map: Map) {
+        website   <- map["website"]
+        followerCount   <- map["followerCount"]
+        countryName   <- map["countryName"]
+        instagram   <- map["instagram"]
         loginStatus   <- map["loginStatus"]
-        userId   <- map["userId"]
-        userImage   <- map["userImage"]
+        postCount   <- map["postCount"]
+        recommendCount   <- map["recommendCount"]
+        isFollow   <- map["isFollow"]
+        username   <- map["username"]
         displayName   <- map["displayName"]
+        followingCount   <- map["followingCount"]
+        userId   <- map["userId"]
+        bio   <- map["bio"]
+        userImage   <- map["userImage"]
     }
 }
 
