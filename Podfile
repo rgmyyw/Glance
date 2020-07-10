@@ -67,7 +67,7 @@ target 'Glance' do
     pod 'WMZPageController', '~> 1.1.9'
     pod 'CWLateralSlide' , '~> 1.6.5'
     pod 'CountryPickerView' , '~> 3.1.2'
-
+    pod 'ZLPhotoBrowser'
 
 
     # Keyboard

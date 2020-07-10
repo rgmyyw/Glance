@@ -47,13 +47,11 @@ class NavigationController: UINavigationController  {
 //        if #available(iOS 13.0, *) {
 //            let standardAppearance = self.navigationBar.standardAppearance.copy()
 //            standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)]
-//            standardAppearance.tint
 //            navigationBar.standardAppearance = standardAppearance
 //
 //        } else {
 //
-//            navigationBar.backIndicatorImage = R.image.icon_navigation_back_black()
-//            navigationBar.backIndicatorTransitionMaskImage = R.image.icon_navigation_back_black()
+//            let navigationBar =  UINavigationBar.appearance()
 //
 //            themeService.rx
 //                .bind({ $0.global }, to: navigationBar.rx.tintColor)
@@ -61,6 +59,9 @@ class NavigationController: UINavigationController  {
 //                .bind({ [NSAttributedString.Key.foregroundColor: $0.text, NSAttributedString.Key.font : UIFont.titleFont(18)] }, to: navigationBar.rx.titleTextAttributes)
 //                .disposed(by: rx.disposeBag)
 //        }
+        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)], for: .normal)
+
         
     }
     

@@ -157,7 +157,7 @@
                                                     </state>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="QjK-87-Vhp" firstAttribute="leading" secondItem="5FE-ng-ZIo" secondAttribute="leading" constant="20" id="4LI-d0-OPS"/>
                                                 <constraint firstItem="QjK-87-Vhp" firstAttribute="top" secondItem="5FE-ng-ZIo" secondAttribute="top" id="7Ne-ge-e5V"/>
@@ -178,7 +178,7 @@
                                                     </state>
                                                 </button>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="KjO-TZ-HXS" firstAttribute="leading" secondItem="5S9-U0-Bbd" secondAttribute="leading" constant="20" id="Icd-XM-oGx"/>
                                                 <constraint firstAttribute="height" constant="12" id="sTY-1z-Yk3"/>
@@ -195,7 +195,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="g9X-ae-tLT" firstAttribute="leading" secondItem="RKF-52-cLF" secondAttribute="leading" constant="20" id="5xU-aP-BRl"/>
                                                 <constraint firstItem="g9X-ae-tLT" firstAttribute="top" secondItem="RKF-52-cLF" secondAttribute="top" constant="4" id="UT6-7j-hEB"/>

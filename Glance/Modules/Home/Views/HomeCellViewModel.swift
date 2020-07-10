@@ -12,6 +12,7 @@ import RxCocoa
 
 
 class HomeCellViewModel : CellViewModelProtocol {
+    
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)

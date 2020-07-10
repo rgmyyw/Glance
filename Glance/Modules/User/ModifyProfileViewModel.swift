@@ -30,7 +30,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
     let website = BehaviorRelay<String>(value: user.value?.website ?? "")
     let bio = BehaviorRelay<String>(value: user.value?.bio ?? "")
     let country = BehaviorRelay<Country?>(value: nil)
-    
+    let selectedImage = BehaviorRelay<UIImage?>(value: nil)
     
 
     func transform(input: Input) -> Output {
@@ -38,6 +38,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
         let userHeadImageURL = Observable.just(user.value?.userImage?.url).asDriver(onErrorJustReturn: nil)
         let countryName = Observable.just(user.value?.countryName ?? "").asDriver(onErrorJustReturn: "")
         let commit = PublishSubject<[String : Any]>()
+        let uploadImage = PublishSubject<(UIImage, [String : Any])>()
         
         input.save.subscribe(onNext: { [weak self]() in
             
@@ -75,9 +76,32 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
             if let instagram = self?.instagram.value ,instagram.isNotEmpty {
                 data["instagram"] = instagram
             }
-            commit.onNext(data)
             
+            if let selectedImage = self?.selectedImage.value {
+                uploadImage.onNext((selectedImage, data))
+            } else {
+                commit.onNext(data)
+            }
         }).disposed(by: rx.disposeBag)
+        
+        uploadImage.flatMapLatest({ [weak self] (imageData,param) -> Observable<(RxSwift.Event<(String, [String : Any])>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                guard let data = imageData.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
+                return self.provider.uploadImage(type: UploadImageType.user.rawValue, data: data)
+                    .trackActivity(self.loading)
+                    .trackError(self.error)
+                    .map { ($0,param)}
+                    .materialize()
+            }).subscribe(onNext: { event in
+                switch event {
+                case .next(let (url, param)):
+                    var param = param
+                    param["userImage"] = url
+                    commit.onNext(param)
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
         
         commit.flatMapLatest({ [weak self] (data) -> Observable<(RxSwift.Event<User>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }

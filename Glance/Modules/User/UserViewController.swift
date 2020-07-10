@@ -120,10 +120,18 @@ private class UserPageController: WMZPageController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let vcs = titleDatas.map { vc -> UIViewController in
-            let vc = UIViewController()
-            return vc
-        }
+        let vcs = [UserPostViewController(viewModel: UserPostViewModel(provider: provider), navigator: navigator),
+                   UserRecommViewController(viewModel: UserRecommViewModel(provider: provider), navigator: navigator),
+                   UIViewController(),
+                   UIViewController(),]
+//        
+//        vcs.forEachEnumerated { (index, vc) in
+//            vc.view.backgroundColor = .random
+//        }
+    
+        
+
+        
         
         let param = PageParam()
         param.wTitleArr = titleDatas

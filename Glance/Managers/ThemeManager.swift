@@ -45,11 +45,11 @@ protocol Theme {
 struct LightTheme: Theme {
       
     var global: UIColor = .white
-    let primary = UIColor(hex: 0xF45047)!
+    let primary = UIColor(hex: 0xFF8159)!
     var secondary = UIColor(hex:0x2D4CA9)!
     let separator = UIColor(hex:0xe4ebf2)!
-    let text = UIColor(hex:0x222324)!
-    let textGray = UIColor(hex:0x999EA3)!
+    let text = UIColor(hex:0x333333)!
+    let textGray = UIColor(hex:0x999999)!
     let textSecondary = UIColor(hex:0x515457)!
     
     let background = UIColor.white
@@ -65,19 +65,19 @@ struct LightTheme: Theme {
 
 enum ColorTheme: Int {
     
-    case red
+    case primary
 
-    static let allValues = [red]
+    static let allValues = [primary]
 
     var color: UIColor {
         switch self {
-        case .red: return UIColor(hex:0xF45047)!
+        case .primary: return UIColor(hex: 0xFF8159)!
         }
     }
 
     var title: String {
         switch self {
-        case .red: return "white"
+        case .primary: return "primary"
         }
     }
 }
@@ -124,7 +124,7 @@ extension ThemeType {
     
     /// 获取当前的主题
     static func currentTheme() -> ThemeType {
-        let theme =  ThemeType.light(color: ColorTheme.red)
+        let theme =  ThemeType.light(color: ColorTheme.primary)
         theme.save()
         return theme
     }

@@ -3,7 +3,7 @@
 //  
 //
 //  Created by yanghai on 2019/11/20.
-//  Copyright © 2020 fwan. All rights reserved.
+//  Copyright © 2018 fwan. All rights reserved.
 //
 
 import Foundation
@@ -29,6 +29,8 @@ enum GlanceAPI {
     case userDetail(userId : String)
     case modifyProfile(data : [String : Any])
     case uploadImage(type: Int, data : Data)
+    case userPost(userId : String, pageNum : Int)
+    case userRecommend(userId : String, pageNum : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -46,7 +48,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         switch self {
         case .download: return ""
         case .getHome(let page):
-            return "/api/home/\(page)/10"
+            return "/api/home/\(page)/\(10)"
         case .saveFavorite:
             return "/api/saved"
         case .userDetail:
@@ -55,14 +57,18 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/profile"
         case .uploadImage:
             return "/api/image"
+        case .userPost(_, let pageNum):
+            return "/api/posts/user/\(pageNum)/\(10)"
+        case .userRecommend(_, let pageNum):
+            return "/api/recommends/user/\(pageNum)/\(10)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveFavorite:
+        case .saveFavorite,.uploadImage:
             return .post
-        case .userDetail:
+        case .userDetail,.userPost,.userRecommend:
             return .get
         case .modifyProfile:
             return .put
@@ -108,6 +114,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .saveFavorite(let id, let type):
             params["id"] = id
             params["type"] = type
+        case .userPost(let userId, _),.userRecommend(let userId, _):
+            if userId.isNotEmpty {
+                params["otherUserId"] = userId
+            }
         case .userDetail(let userId):
             if userId.isNotEmpty {
                 params["otherUserId"] = userId

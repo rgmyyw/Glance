@@ -76,7 +76,7 @@ enum HomeTabBarItem: Int {
     func getController(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         let vc = controller(with: viewModel, navigator: navigator)
         let item = CustomAnimatedTabBarItem(title: title, image: image_normal, tag: rawValue)
-        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: 12)
+        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: UIApplication.shared.statusBarFrame.height == 20 ? 6 :  12)
         item.selectedImage = image_selected
         item.animation = animation
         item.textColor = UIColor.text()

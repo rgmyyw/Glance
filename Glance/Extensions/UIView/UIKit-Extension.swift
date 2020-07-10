@@ -47,3 +47,33 @@ extension Array where Element : UIView {
 }
 
 
+extension  UITextField {
+    
+    
+    func limitCharacter(number : Int) {
+        
+        rx.text.orEmpty.map { ($0, $0.count > number) }
+            .subscribe(onNext: { [weak self](text, valid) in
+                if valid , number > 0 {
+                    self?.text = text[0..<number]
+                }
+        }).disposed(by: rx.disposeBag)
+    }
+    
+}
+
+
+
+extension Reactive where Base: UITextField {
+    
+    
+    public var limitCharacterNumber: Binder<UInt8> {
+        return Binder<UInt8>(self.base) { textField, number in
+            let valid = textField.rx.text.orEmpty.map { $0.count < number }
+            valid.subscribe(onNext: { v in
+                
+            }).disposed(by: self.disposeBag)
+        }
+    }
+
+}

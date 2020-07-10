@@ -23,6 +23,9 @@ enum ApiError: Error {
 
 class RestApi: API {
     
+
+    
+    
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
@@ -40,7 +43,16 @@ class RestApi: API {
     }
     
     func uploadImage(type: Int, data: Data) -> Single<String> {
-        return requestObject(.uploadImage(type: type, data: data), type: MappableItem<String>.self).map { $0.data ?? "" }
+        return requestObject(.uploadImage(type: type, data: data), type: UploadImageResult.self)
+            .map { $0.imageUri ?? ""}
+    }
+
+    func userPost(userId: String, pageNum: Int) -> Single<PageMapable<Posts>> {
+        return requestObject(.userPost(userId: userId, pageNum: pageNum), type: PageMapable<Posts>.self)
+    }
+    
+    func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<Recommend>> {
+        return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Recommend>.self)
     }
 
     

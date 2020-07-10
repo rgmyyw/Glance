@@ -63,7 +63,7 @@ class LibsManager: NSObject {
           if theme.isDark != true {
               theme = theme.toggled()
           }
-          theme = theme.withColor(color: .red)
+          theme = theme.withColor(color: .primary)
           themeService.switch(theme)
     }
 

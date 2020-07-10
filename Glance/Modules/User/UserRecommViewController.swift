@@ -1,5 +1,5 @@
 //
-//  UserPostViewController.swift
+//  UserRecommViewController.swift
 //  Glance
 //
 //  Created by yanghai on 2020/7/9.
@@ -15,9 +15,9 @@ import UICollectionView_ARDynamicHeightLayoutCell
 import Popover
 import WMZPageController
 
-class UserPostViewController: CollectionViewController  {
+class UserRecommViewController: CollectionViewController  {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>> = configureDataSouce()
     
     override func makeUI() {
         super.makeUI()
@@ -32,7 +32,7 @@ class UserPostViewController: CollectionViewController  {
         collectionView.headRefreshControl = nil
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        collectionView.register(nibWithCellClass: UserPostCell.self)
+        collectionView.register(nibWithCellClass: UserRecommCell.self)
         
     }
     
@@ -40,14 +40,12 @@ class UserPostViewController: CollectionViewController  {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? UserPostViewModel else { return }
-        
-        
-        
+        guard let viewModel = viewModel as? UserRecommViewModel else { return }
+                
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
-        let input = UserPostViewModel.Input(headerRefresh: refresh,
+        let input = UserRecommViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                            selection: collectionView.rx.modelSelected(UserPostCellViewModel.self).asObservable())
+                                            selection: collectionView.rx.modelSelected(UserRecommCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
         output.showLikePopView
             .subscribe(onNext: { (fromView,cellViewModel) in
@@ -78,11 +76,11 @@ class UserPostViewController: CollectionViewController  {
     }
 }
 // MARK: - DataSouce
-extension UserPostViewController {
+extension UserRecommViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserPostCell.self)
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>> {
+        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserRecommCell.self)
             cell.bind(to: item)
             return cell
         })
@@ -90,7 +88,7 @@ extension UserPostViewController {
     
 }
 
-extension UserPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension UserRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
@@ -111,9 +109,9 @@ extension UserPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let collectionView = collectionView as! CollectionView
-        return collectionView.ar_sizeForCell(withIdentifier: UserPostCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
+        return collectionView.ar_sizeForCell(withIdentifier: UserRecommCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
             if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? UserPostCell
+                let cell = cell  as? UserRecommCell
                 cell?.bind(to: viewModel)
                 cell?.setNeedsLayout()
                 cell?.needsUpdateConstraints()
@@ -125,11 +123,10 @@ extension UserPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
 
 
-extension UserPostViewController : WMZPageProtocol {
+extension UserRecommViewController : WMZPageProtocol {
     
     func getMyScrollView() -> UIScrollView {
         return collectionView
     }
-    
     
 }
