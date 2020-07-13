@@ -127,9 +127,6 @@ extension ModifyProfileViewController {
         ac.configuration.mutuallyExclusiveSelectInMix = false
         ac.configuration.allowDragSelect = true
         ac.configuration.allowSelectOriginal = false
-        
-        
-        
         // 设置相册内部显示拍照按钮
         ac.configuration.allowTakePhotoInLibrary = true
         // 设置在内部拍照按钮上实时显示相机俘获画面

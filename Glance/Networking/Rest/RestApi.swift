@@ -23,8 +23,6 @@ enum ApiError: Error {
 
 class RestApi: API {
     
-
-    
     
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
@@ -53,6 +51,26 @@ class RestApi: API {
     
     func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<Recommend>> {
         return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Recommend>.self)
+    }
+
+    func userRelation(type: UserRelationType, userId: String = "", pageNum: Int) -> Single<PageMapable<UserRelation>> {
+        return requestObject(.userRelation(type: type, userId: userId, pageNum: pageNum), type: PageMapable<UserRelation>.self)
+    }
+    
+    func follow(userId: String) -> Single<Bool> {
+        return requestObject(.follow(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+    }
+    
+    func undoFollow(userId: String) -> Single<Bool> {
+        return requestObject(.undoFollow(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+    }
+    
+    func block(userId: String) -> Single<Bool> {
+        return requestObject(.block(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+    }
+    
+    func undoBlocked(userId: String) -> Single<Bool> {
+        return requestObject(.undoBlocked(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
     }
 
     

@@ -35,7 +35,7 @@ class Navigator {
         case notificationProfile(viewModel : NotificationProfileViewModel)
         case originalPhotos(viewModel : OriginalPhotosViewModel)
         case privacy(viewModel : PrivacyViewModel)
-        case blockedList(viewModel : BlockedListViewModel)
+        case userRelation(viewModel : UserRelationViewModel)
     }
     
     enum Transition {
@@ -84,8 +84,8 @@ class Navigator {
         case .privacy(let viewModel):
             let vc = PrivacyViewController(viewModel: viewModel, navigator: self)
             return vc
-        case .blockedList(let viewModel):
-            let vc = BlockedListViewController(viewModel: viewModel, navigator: self)
+        case .userRelation(let viewModel):
+            let vc = UserRelationViewController(viewModel: viewModel, navigator: self,tableView: .grouped)
             return vc
             
         }

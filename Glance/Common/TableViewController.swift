@@ -30,7 +30,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
         view.estimatedRowHeight = UITableView.automaticDimension
-        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
+//        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
         return view
     }()
@@ -61,7 +61,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
 
         stackView.spacing = 0
         stackView.insertArrangedSubview(tableView, at: 0)
-
+        
         tableView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
             self?.headerRefreshTrigger.onNext(())
         })
@@ -103,7 +103,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         if tableView.headRefreshControl != nil {
             isHeaderLoading.bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }

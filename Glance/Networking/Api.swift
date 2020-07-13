@@ -14,7 +14,7 @@ enum UploadImageType : Int {
 struct UploadImageResult: Mappable {
     var imageUri: String?
     init?(map: Map) {}
-
+    
     mutating func mapping(map: Map) {
         imageUri   <- map["imageUri"]
     }
@@ -31,8 +31,12 @@ protocol API {
     func uploadImage(type: Int, data : Data) -> Single<String>
     func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Posts>>
     func userRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Recommend>>
-
-     
+    func userRelation(type :  UserRelationType, userId : String, pageNum : Int) -> Single<PageMapable<UserRelation>>
+    func follow(userId : String) -> Single<Bool>
+    func undoFollow(userId : String) -> Single<Bool>
+    func block(userId : String) -> Single<Bool>
+    func undoBlocked(userId : String) -> Single<Bool>
+    
 }
 
 

@@ -25,10 +25,9 @@ class PrivacyViewController: ViewController {
         guard let viewModel = viewModel as? PrivacyViewModel else { return }
         
         blockedListCell.rx.tap().subscribe(onNext: { [weak self] () in
-            let viewModel = BlockedListViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .blockedList(viewModel: viewModel), sender: self)
+            let viewModel = UserRelationViewModel(provider: viewModel.provider, type: .blocked)
+            self?.navigator.show(segue: .userRelation(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
         
     }
 

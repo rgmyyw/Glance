@@ -28,6 +28,12 @@ extension Reactive where Base: UIView {
             view.borderColor = color
         }
     }
+    var borderWidth : Binder<CGFloat> {
+        return Binder(self.base) { (view, width) in
+            view.borderWidth = width
+        }
+    }
+
 }
 
 extension Reactive where Base: UIView {
@@ -53,6 +59,17 @@ extension Reactive where Base: UIScrollView {
     public var contentInset: Binder<UIEdgeInsets> {
         return Binder(self.base) { scrollView, contentInset in
             scrollView.contentInset = contentInset
+        }
+    }
+    
+    
+}
+
+extension Reactive where Base: NavigationBar {
+    
+    var title: Binder<String> {
+        return Binder(self.base) { bar, title in
+            bar.title = title
         }
     }
     

@@ -28,6 +28,7 @@ class HomeViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
+        
         let elements = BehaviorRelay<[HomeSection]>(value: [])
         let saveFavorite = PublishSubject<HomeCellViewModel>()
         let showLikePopView = PublishSubject<(UIView,HomeCellViewModel)>()

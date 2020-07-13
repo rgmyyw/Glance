@@ -13,16 +13,15 @@
 		5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
 		5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708624B708BB007B64BA /* PrivacyViewModel.swift */; };
-		5D13708A24B70E15007B64BA /* BlockedListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708824B70E15007B64BA /* BlockedListViewController.swift */; };
-		5D13708D24B70EE2007B64BA /* BlockedListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708C24B70EE2007B64BA /* BlockedListViewModel.swift */; };
+		5D13708D24B70EE2007B64BA /* UserRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */; };
 		5D13709624B70F4B007B64BA /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NoticeViewController.swift */; };
 		5D13709724B70F4B007B64BA /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
 		5D13709824B70F4B007B64BA /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */; };
 		5D13709924B70F4B007B64BA /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NoticeCell.swift */; };
 		5D13709A24B70F4B007B64BA /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NoticeCell.xib */; };
-		5D13709E24B70FA2007B64BA /* BlockedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709C24B70FA2007B64BA /* BlockedCell.swift */; };
-		5D13709F24B70FA2007B64BA /* BlockedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* BlockedCell.xib */; };
-		5D1370A124B7113F007B64BA /* BlockedCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1370A024B7113F007B64BA /* BlockedCellViewModel.swift */; };
+		5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709C24B70FA2007B64BA /* UserRelationCell.swift */; };
+		5D13709F24B70FA2007B64BA /* UserRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* UserRelationCell.xib */; };
+		5D1370A124B7113F007B64BA /* UserRelationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */; };
 		5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
 		5D3E47FF24B572870064E3BF /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
 		5D3E480124B579820064E3BF /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */; };
@@ -32,6 +31,8 @@
 		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B724AF25E6000CB8BF /* HomeCell.swift */; };
 		5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B824AF25E6000CB8BF /* HomeCell.xib */; };
+		5D437DB424BC133400AFBB1F /* UserRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DB324BC133400AFBB1F /* UserRelation.swift */; };
+		5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC224BC3CE800AFBB1F /* UserRelationViewController.swift */; };
 		5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* LikePopView.swift */; };
 		5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* LikePopView.xib */; };
 		5D579B3E24B4682500CFC188 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3D24B4682500CFC188 /* UserViewController.swift */; };
@@ -173,16 +174,15 @@
 		5D13708224B70765007B64BA /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		5D13708324B70765007B64BA /* PrivacyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyViewController.xib; sourceTree = "<group>"; };
 		5D13708624B708BB007B64BA /* PrivacyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewModel.swift; sourceTree = "<group>"; };
-		5D13708824B70E15007B64BA /* BlockedListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListViewController.swift; sourceTree = "<group>"; };
-		5D13708C24B70EE2007B64BA /* BlockedListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedListViewModel.swift; sourceTree = "<group>"; };
+		5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationViewModel.swift; sourceTree = "<group>"; };
 		5D13708F24B70F4B007B64BA /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
 		5D13709024B70F4B007B64BA /* NotificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
 		5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCellViewModel.swift; sourceTree = "<group>"; };
 		5D13709324B70F4B007B64BA /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		5D13709424B70F4B007B64BA /* NoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
-		5D13709C24B70FA2007B64BA /* BlockedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedCell.swift; sourceTree = "<group>"; };
-		5D13709D24B70FA2007B64BA /* BlockedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BlockedCell.xib; sourceTree = "<group>"; };
-		5D1370A024B7113F007B64BA /* BlockedCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlockedCellViewModel.swift; sourceTree = "<group>"; };
+		5D13709C24B70FA2007B64BA /* UserRelationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationCell.swift; sourceTree = "<group>"; };
+		5D13709D24B70FA2007B64BA /* UserRelationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRelationCell.xib; sourceTree = "<group>"; };
+		5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationCellViewModel.swift; sourceTree = "<group>"; };
 		5D31E7AD24B808EC00C8899E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
 		5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyProfileViewController.xib; sourceTree = "<group>"; };
@@ -193,6 +193,8 @@
 		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
 		5D4267B724AF25E6000CB8BF /* HomeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCell.swift; sourceTree = "<group>"; };
 		5D4267B824AF25E6000CB8BF /* HomeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeCell.xib; sourceTree = "<group>"; };
+		5D437DB324BC133400AFBB1F /* UserRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelation.swift; sourceTree = "<group>"; };
+		5D437DC224BC3CE800AFBB1F /* UserRelationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRelationViewController.swift; sourceTree = "<group>"; };
 		5D579B3824B4304B00CFC188 /* LikePopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePopView.swift; sourceTree = "<group>"; };
 		5D579B3A24B44A6D00CFC188 /* LikePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePopView.xib; sourceTree = "<group>"; };
 		5D579B3D24B4682500CFC188 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
@@ -408,8 +410,8 @@
 				5D13708224B70765007B64BA /* PrivacyViewController.swift */,
 				5D13708324B70765007B64BA /* PrivacyViewController.xib */,
 				5D13708624B708BB007B64BA /* PrivacyViewModel.swift */,
-				5D13708824B70E15007B64BA /* BlockedListViewController.swift */,
-				5D13708C24B70EE2007B64BA /* BlockedListViewModel.swift */,
+				5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */,
+				5D437DC224BC3CE800AFBB1F /* UserRelationViewController.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -417,9 +419,9 @@
 		5D579B4324B4A44E00CFC188 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5D13709C24B70FA2007B64BA /* BlockedCell.swift */,
-				5D13709D24B70FA2007B64BA /* BlockedCell.xib */,
-				5D1370A024B7113F007B64BA /* BlockedCellViewModel.swift */,
+				5D13709C24B70FA2007B64BA /* UserRelationCell.swift */,
+				5D13709D24B70FA2007B64BA /* UserRelationCell.xib */,
+				5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -532,6 +534,7 @@
 				5DEFF14024AEC2F8007A2FCD /* Token.swift */,
 				5DEFF52024AF33EB007A2FCD /* Notice.swift */,
 				5D630AAD24B31B4000F0CC45 /* Home.swift */,
+				5D437DB324BC133400AFBB1F /* UserRelation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -924,7 +927,7 @@
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 				5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */,
-				5D13709F24B70FA2007B64BA /* BlockedCell.xib in Resources */,
+				5D13709F24B70FA2007B64BA /* UserRelationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1007,7 +1010,6 @@
 				5D13707E24B70428007B64BA /* OriginalPhotosViewController.swift in Sources */,
 				5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */,
 				5DEFF37124AEC2F9007A2FCD /* DefaultTableViewCellViewModel.swift in Sources */,
-				5D13708A24B70E15007B64BA /* BlockedListViewController.swift in Sources */,
 				5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */,
 				5DEFF31824AEC2F9007A2FCD /* AuthManager.swift in Sources */,
 				5DEFF34424AEC2F9007A2FCD /* UIAlertController-Extensions.swift in Sources */,
@@ -1025,7 +1027,7 @@
 				5DEFF32C24AEC2F9007A2FCD /* ISO8601DateTransform.swift in Sources */,
 				5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */,
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
-				5D1370A124B7113F007B64BA /* BlockedCellViewModel.swift in Sources */,
+				5D1370A124B7113F007B64BA /* UserRelationCellViewModel.swift in Sources */,
 				5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
 				5DEFF36A24AEC2F9007A2FCD /* ExceptionError.swift in Sources */,
@@ -1055,15 +1057,16 @@
 				5DEFF37024AEC2F9007A2FCD /* TableViewCell.swift in Sources */,
 				5DEFF34B24AEC2F9007A2FCD /* Observable-Operators.swift in Sources */,
 				5DEFF35724AEC2F9007A2FCD /* Reusable-Extension.swift in Sources */,
-				5D13709E24B70FA2007B64BA /* BlockedCell.swift in Sources */,
+				5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */,
 				5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */,
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
 				5D3E480424B5C32E0064E3BF /* NotificationProfileViewController.swift in Sources */,
-				5D13708D24B70EE2007B64BA /* BlockedListViewModel.swift in Sources */,
+				5D13708D24B70EE2007B64BA /* UserRelationViewModel.swift in Sources */,
 				5DEFF37D24AEC2F9007A2FCD /* Application.swift in Sources */,
 				5DEFF36624AEC2F9007A2FCD /* ScrollView.swift in Sources */,
+				5D437DB424BC133400AFBB1F /* UserRelation.swift in Sources */,
 				5D6C722024B5670000EA3028 /* UserViewModel.swift in Sources */,
 				5DEFF38324AEC2F9007A2FCD /* DemoViewModel.swift in Sources */,
 				5DEFF37B24AEC2F9007A2FCD /* Configs.swift in Sources */,
@@ -1085,6 +1088,7 @@
 				5DEFF35824AEC2F9007A2FCD /* Toolbar.swift in Sources */,
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserRecommViewController.swift in Sources */,
+				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
 				5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */,

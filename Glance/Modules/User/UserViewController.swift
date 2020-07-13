@@ -34,7 +34,7 @@ class UserViewController: ViewController {
         setting.sizeToFit()
         return setting
     }()
-        
+    
     override func makeUI() {
         super.makeUI()
         
@@ -122,16 +122,10 @@ private class UserPageController: WMZPageController {
         
         let vcs = [UserPostViewController(viewModel: UserPostViewModel(provider: provider), navigator: navigator),
                    UserRecommViewController(viewModel: UserRecommViewModel(provider: provider), navigator: navigator),
-                   UIViewController(),
-                   UIViewController(),]
-//        
-//        vcs.forEachEnumerated { (index, vc) in
-//            vc.view.backgroundColor = .random
-//        }
-    
-        
-
-        
+            UserRelationViewController(viewModel: UserRelationViewModel(provider: provider, type: .followers), navigator: navigator,tableView: .grouped),
+            UserRelationViewController(viewModel: UserRelationViewModel(provider: provider, type: .following), navigator: navigator,tableView: .grouped)
+            
+        ]
         
         let param = PageParam()
         param.wTitleArr = titleDatas

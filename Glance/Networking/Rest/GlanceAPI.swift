@@ -31,6 +31,12 @@ enum GlanceAPI {
     case uploadImage(type: Int, data : Data)
     case userPost(userId : String, pageNum : Int)
     case userRecommend(userId : String, pageNum : Int)
+    case userRelation(type : UserRelationType, userId : String, pageNum : Int)
+    case follow(userId : String)
+    case undoFollow(userId : String)
+    case block(userId : String)
+    case undoBlocked(userId : String)
+
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -61,17 +67,36 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/posts/user/\(pageNum)/\(10)"
         case .userRecommend(_, let pageNum):
             return "/api/recommends/user/\(pageNum)/\(10)"
+        case .userRelation(let type,_, let pageNum):
+            switch type {
+            case .following:
+                return "/api/follow/following/\(pageNum)/\(10)"
+            case .followers:
+                return "/api/follow/followers/\(pageNum)/\(10)"
+            case .blocked:
+                return "/api/blocked/users/\(pageNum)/\(10)"
+            }
+        case .follow:
+            return "/api/follow"
+        case .undoFollow:
+            return "/api/follow/undo"
+        case .block:
+            return "/api/blocked/user"
+        case .undoBlocked:
+            return "/api/blocked/undo"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveFavorite,.uploadImage:
+        case .saveFavorite,.uploadImage,.block,.follow:
             return .post
-        case .userDetail,.userPost,.userRecommend:
+        case .userDetail,.userPost,.userRecommend,.userRelation:
             return .get
         case .modifyProfile:
             return .put
+        case .undoFollow,.undoBlocked:
+            return .delete
         default:
             return .get
         }
@@ -114,7 +139,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .saveFavorite(let id, let type):
             params["id"] = id
             params["type"] = type
-        case .userPost(let userId, _),.userRecommend(let userId, _):
+        case .userPost(let userId, _),
+             .userRecommend(let userId, _),
+             .userRelation(_, let userId, _):
             if userId.isNotEmpty {
                 params["otherUserId"] = userId
             }
@@ -122,6 +149,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
             if userId.isNotEmpty {
                 params["otherUserId"] = userId
             }
+        case .follow(let userId):
+            params["followerUserId"] = userId
+        case .undoFollow(let userId):
+            params["followUserId"] = userId
+        case .block(let userId):
+            params["blockUserId"] = userId
+        case .undoBlocked(let userId):
+            params["undoBlockedUserId"] = userId
         case .modifyProfile(let data):
             params.merge(dict: data)
         default:
