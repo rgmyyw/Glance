@@ -15,13 +15,13 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wwt-5E-d0w">
-                    <rect key="frame" x="0.0" y="0.0" width="290" height="211"/>
+                    <rect key="frame" x="0.0" y="0.0" width="290" height="201"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="mRn-fb-cSm">
-                            <rect key="frame" x="0.0" y="0.0" width="290" height="211"/>
+                            <rect key="frame" x="0.0" y="0.0" width="290" height="201"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="zFc-HE-ylH">
-                                    <rect key="frame" x="0.0" y="0.0" width="290" height="211"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="290" height="201"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hF4-7v-ElF">
                                             <rect key="frame" x="0.0" y="0.0" width="290" height="97"/>
@@ -189,31 +189,23 @@
                                             <rect key="frame" x="0.0" y="151" width="290" height="50"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="going through d rebellious phase" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g9X-ae-tLT">
-                                                    <rect key="frame" x="20" y="4" width="250" height="26"/>
+                                                    <rect key="frame" x="20" y="4" width="250" height="46"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14" id="9Dv-bE-uHg"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
-                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstItem="g9X-ae-tLT" firstAttribute="leading" secondItem="RKF-52-cLF" secondAttribute="leading" constant="20" id="5xU-aP-BRl"/>
                                                 <constraint firstItem="g9X-ae-tLT" firstAttribute="top" secondItem="RKF-52-cLF" secondAttribute="top" constant="4" id="UT6-7j-hEB"/>
-                                                <constraint firstAttribute="bottom" secondItem="g9X-ae-tLT" secondAttribute="bottom" priority="750" constant="20" id="Wpk-b8-qHq"/>
+                                                <constraint firstAttribute="bottom" secondItem="g9X-ae-tLT" secondAttribute="bottom" id="Wpk-b8-qHq"/>
                                                 <constraint firstAttribute="trailing" secondItem="g9X-ae-tLT" secondAttribute="trailing" constant="20" id="mCI-RQ-WWJ"/>
                                             </constraints>
                                         </view>
-                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vTD-mT-y1e">
-                                            <rect key="frame" x="0.0" y="211" width="290" height="0.0"/>
-                                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" id="eoQ-5n-JbX"/>
-                                            </constraints>
-                                        </view>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="vTD-mT-y1e" secondAttribute="bottom" id="f2G-CA-shl"/>
-                                    </constraints>
                                 </stackView>
                             </subviews>
                             <userDefinedRuntimeAttributes>
@@ -223,7 +215,6 @@
                             </userDefinedRuntimeAttributes>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="trailing" secondItem="mRn-fb-cSm" secondAttribute="trailing" id="461-yd-vIm"/>
                         <constraint firstAttribute="bottom" secondItem="mRn-fb-cSm" secondAttribute="bottom" id="5KJ-3i-wwb"/>
@@ -246,14 +237,18 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="bioCell" destination="RKF-52-cLF" id="KWm-b4-96M"/>
                 <outlet property="bioLabel" destination="g9X-ae-tLT" id="9DM-2b-m7p"/>
+                <outlet property="contentView" destination="wwt-5E-d0w" id="8Ba-qg-aW8"/>
                 <outlet property="countryButton" destination="cEq-Lf-Nhs" id="vSA-ob-2YA"/>
                 <outlet property="displayNameLabel" destination="WxC-Y5-hYf" id="IfY-3q-gRt"/>
                 <outlet property="instagramButton" destination="QjK-87-Vhp" id="Vct-pT-Ahd"/>
+                <outlet property="instagramCell" destination="5FE-ng-ZIo" id="TTa-Oa-EO7"/>
                 <outlet property="userHeadImageView" destination="QMe-vg-DF5" id="0VW-uW-r58"/>
                 <outlet property="websiteButton" destination="KjO-TZ-HXS" id="WzG-4O-aZm"/>
+                <outlet property="websiteCell" destination="5S9-U0-Bbd" id="uWo-zl-U8G"/>
             </connections>
-            <point key="canvasLocation" x="-404.34782608695656" y="357.25446428571428"/>
+            <point key="canvasLocation" x="-467" y="339"/>
         </view>
     </objects>
 </document>

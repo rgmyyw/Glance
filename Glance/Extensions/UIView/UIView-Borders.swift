@@ -9,19 +9,19 @@
 import UIKit
 
 extension UIView {
-
+    
     enum BorderSide {
         case left, top, right, bottom
     }
-
+    
     func defaultBorderColor() -> UIColor {
         return UIColor.separator()
     }
-
+    
     func defaultBorderDepth() -> CGFloat {
         return Configs.BaseDimensions.borderWidth
     }
-
+    
     /// Add Border for side with default params
     ///
     /// - Parameter side: Border Side
@@ -30,7 +30,7 @@ extension UIView {
     func addBorder(for side: BorderSide) -> UIView {
         return addBorder(for: side, color: defaultBorderColor(), depth: defaultBorderDepth())
     }
-
+    
     /// Add Bottom Border with default params
     ///
     /// - Parameters:
@@ -50,7 +50,7 @@ extension UIView {
         }
         return border
     }
-
+    
     /// Add Top Border for side with color, depth, length and offsets
     ///
     /// - Parameters:
@@ -116,4 +116,24 @@ extension UIView {
     
     
     
+}
+extension UIView {
+    
+    /// 为View添加阴影
+    func shadow(cornerRadius:CGFloat,shadowOpacity:CGFloat, shadowColor:UIColor, shadowOffset:CGSize,shadowRadius:CGFloat) {
+        if cornerRadius != 0 {
+            layer.cornerRadius = cornerRadius
+            clipsToBounds = false
+        }
+        
+        layer.shadowOpacity = Float(shadowOpacity)
+        
+        layer.shadowColor = shadowColor.cgColor
+        layer.shadowOffset = shadowOffset
+        layer.shadowRadius = shadowRadius
+        
+        //rasterize
+        layer.shouldRasterize = true
+        layer.rasterizationScale = UIScreen.main.scale
+    }
 }

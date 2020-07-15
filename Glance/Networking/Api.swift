@@ -36,7 +36,11 @@ protocol API {
     func undoFollow(userId : String) -> Single<Bool>
     func block(userId : String) -> Single<Bool>
     func undoBlocked(userId : String) -> Single<Bool>
-    
+    func insightPost(userId : String, pageNum : Int) -> Single<PageMapable<Insight>>
+    func insightRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Insight>>
+    func insightsPostDetail(postId : Int) -> Single<InsightsDetail>
+    func insightsrRecommendDetail(recommendId : Int) -> Single<InsightsDetail>
+    func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
 }
 
 

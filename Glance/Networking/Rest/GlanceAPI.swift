@@ -36,7 +36,11 @@ enum GlanceAPI {
     case undoFollow(userId : String)
     case block(userId : String)
     case undoBlocked(userId : String)
-
+    case insightPost(userId : String, pageNum : Int)
+    case insightRecommend(userId : String, pageNum : Int)
+    case insightsPostDetail(postId : Int)
+    case insightsRecommendDetail(recommendId : Int)
+    case reactions(recommendId : Int,pageNum : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -84,6 +88,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/blocked/user"
         case .undoBlocked:
             return "/api/blocked/undo"
+        case .insightPost(_, let pageNum):
+            return "/api/users/insights/posts/\(pageNum)/\(10)"
+        case .insightRecommend(_, let pageNum):
+            return "/api/users/insights/recommends/\(pageNum)/\(10)"
+        case .insightsPostDetail:
+            return "/api/users/insights/posts/detail"
+        case .insightsRecommendDetail:
+            return "/api/users/insights/recommends/detail"
+        case .reactions(_, let pageNum):
+            return "/api/users/insights/recommended/reactions/users/\(pageNum)/\(10)"
         }
     }
     
@@ -91,7 +105,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
         switch self {
         case .saveFavorite,.uploadImage,.block,.follow:
             return .post
-        case .userDetail,.userPost,.userRecommend,.userRelation:
+        case .userDetail,.userPost,
+             .userRecommend,
+             .userRelation,
+             .insightPost,
+             .insightRecommend,
+             .insightsPostDetail,
+             .insightsRecommendDetail,
+             .reactions:
             return .get
         case .modifyProfile:
             return .put
@@ -114,10 +135,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             header = ["Content-Type":"application/json"]
         }
         
-//        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
-//            header["Authorization"] = token
-//        }
-
+        //        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
+        //            header["Authorization"] = token
+        //        }
+        
         header["Authorization"] = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ0SHpZOWZCWElOQ1d2R2xwMnp6ZkphcU5WNHhYbDc0MU9ranZURUNjb1hJIn0.eyJleHAiOjE1OTY2MjAyMTAsImlhdCI6MTU5NDAyODIxMCwianRpIjoiZDhlMDcyZWItZGY1ZC00Y2I1LTkwOTktYmQxOWY1NzcyNjkzIiwiaXNzIjoiaHR0cHM6Ly9nbGFuY2UtZGV2LWFwaS5iZWxpdmUuc2cvYXV0aC9yZWFsbXMvZ2xhbmNlIiwic3ViIjoiZjY5OWQ1MzgtZjlhYi00MjIyLWEwYzYtMTVhNmQxNmE3NGFkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZ2xhbmNlLWFwcCIsInNlc3Npb25fc3RhdGUiOiI2ZDQ4OTdiZi02MjVhLTQyN2QtODgyZC00MDkzNjJlYTA4ZDQiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInNjb3BlIjoib3BlbmlkIn0.Ydlu2RO5glSEBNBs92D75CwGl-XA1ugyCd22MXmJpo97-g_bEHf2oh9ndQ4IXYOqCiRR5OI4fMMMccu5DpkDp1mhQ-QvBU3aje9apZBfM0vwut3Vq0dwV9T33ovkiOFrFspTZ-8NOflthcGfBU4ZjJwKH37X9Tof-3xTb3d5Ltq55pNZfu5KRhsJ1otQX4pBRPfBvS4jAeiFcCFp0usDmS6Lk7GxSsM1MvPZm7L5qwEi77Kk8w8rcjCCealQo2QMo6kFJxv8fY4dLqsYl4BSAqfffZE9OUS3NEv3_RpHQ21KvxQ4HMdScDwqwtQjG9fOS98y0pwBUSN3xCFuOVMPNA"
         
         header["platform"] = "iOS"
@@ -159,6 +180,17 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["undoBlockedUserId"] = userId
         case .modifyProfile(let data):
             params.merge(dict: data)
+        case .insightRecommend(let userId, _),.insightPost(let userId,_):
+            if userId.isNotEmpty {
+                params["otherUserId"] = userId
+            }
+        case .insightsPostDetail(let postId):
+            params["postId"] = postId
+        case .insightsRecommendDetail(let recommendId):
+            params["recommendsId"] = recommendId
+        case .reactions(let recommendId, _):
+            params["recommendId"] = recommendId
+
         default:
             break
         }

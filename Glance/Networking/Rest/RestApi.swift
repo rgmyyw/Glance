@@ -58,19 +58,39 @@ class RestApi: API {
     }
     
     func follow(userId: String) -> Single<Bool> {
-        return requestObject(.follow(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+        return requestObject(.follow(userId: userId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
     func undoFollow(userId: String) -> Single<Bool> {
-        return requestObject(.undoFollow(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+        return requestObject(.undoFollow(userId: userId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
     func block(userId: String) -> Single<Bool> {
-        return requestObject(.block(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+        return requestObject(.block(userId: userId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
     func undoBlocked(userId: String) -> Single<Bool> {
-        return requestObject(.undoBlocked(userId: userId), type: MappableItem<Bool>.self).map { $0.data ?? false}
+        return requestObject(.undoBlocked(userId: userId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+
+    func insightPost(userId: String, pageNum: Int) -> Single<PageMapable<Insight>> {
+        return requestObject(.insightPost(userId: userId, pageNum: pageNum), type: PageMapable<Insight>.self)
+    }
+
+    func insightRecommend(userId: String, pageNum: Int) -> Single<PageMapable<Insight>> {
+        return requestObject(.insightRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Insight>.self)
+    }
+
+    func insightsPostDetail(postId: Int) -> Single<InsightsDetail> {
+        return requestObject(.insightsPostDetail(postId: postId), type: InsightsDetail.self)
+    }
+    
+    func insightsrRecommendDetail(recommendId: Int) -> Single<InsightsDetail> {
+        return requestObject(.insightsRecommendDetail(recommendId: recommendId), type: InsightsDetail.self)
+    }
+    
+    func reactions(recommendId: Int, pageNum: Int) -> Single<PageMapable<Reaction>> {
+        return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
     }
 
     

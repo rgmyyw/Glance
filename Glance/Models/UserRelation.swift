@@ -11,6 +11,7 @@ import ObjectMapper
 struct UserRelation : Mappable {
     
     var isFollow: Bool = false
+    var isBlocked : Bool = false
     var image: String?
     var userId: String?
     var displayName: String?
@@ -25,5 +26,6 @@ struct UserRelation : Mappable {
         userId   <- map["userId"]
         displayName   <- map["displayName"]
         igHandler   <- map["igHandler"]
+        isBlocked <- map["isBlocked"]
     }
 }

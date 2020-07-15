@@ -10,21 +10,22 @@ import Foundation
 import ObjectMapper
 
 open class ISO8601DateTransform: TransformType {
+
     public typealias Object = Date
-    public typealias JSON = String
+    public typealias JSON = Int
 
     public init() {}
 
     open func transformFromJSON(_ value: Any?) -> Date? {
-        if let dateString = value as? String {
-            return dateString.toISODate()?.date
+        if let i = value as? Int {
+            return (i * 1000).milliDate
         }
         return nil
     }
 
-    open func transformToJSON(_ value: Date?) -> String? {
+    open func transformToJSON(_ value: Date?) -> Int? {
         if let date = value {
-            return date.toISO()
+            return date.timeIntervalSince1970.int
         }
         return nil
     }

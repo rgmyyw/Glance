@@ -36,6 +36,10 @@ class Navigator {
         case originalPhotos(viewModel : OriginalPhotosViewModel)
         case privacy(viewModel : PrivacyViewModel)
         case userRelation(viewModel : UserRelationViewModel)
+        case insights(viewModel : InsightsViewModel)
+        case insightsDetail(viewModel : InsightsDetailViewModel)
+        case reactions(viewModel : ReactionsViewModel)
+        
     }
     
     enum Transition {
@@ -87,7 +91,15 @@ class Navigator {
         case .userRelation(let viewModel):
             let vc = UserRelationViewController(viewModel: viewModel, navigator: self,tableView: .grouped)
             return vc
-            
+        case .insights(let viewModel):
+            let vc = InsightsViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .insightsDetail(let viewModel):
+            let vc = InsightsDetailViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .reactions(let viewModel):
+            let vc = ReactionsViewController(viewModel: viewModel, navigator: self)
+            return vc
         }
     }
     

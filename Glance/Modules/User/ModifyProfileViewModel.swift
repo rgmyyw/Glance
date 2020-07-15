@@ -67,13 +67,13 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                 data["countryName"] = country.name
                 data["countryCode"] = country.code
             }
-            if let website = self?.website.value, website.isNotEmpty{
+            if let website = self?.website.value {
                 data["website"] = website
             }
-            if let bio = self?.bio.value ,bio.isNotEmpty{
+            if let bio = self?.bio.value{
                 data["bio"] = bio
             }
-            if let instagram = self?.instagram.value ,instagram.isNotEmpty {
+            if let instagram = self?.instagram.value  {
                 data["instagram"] = instagram
             }
             

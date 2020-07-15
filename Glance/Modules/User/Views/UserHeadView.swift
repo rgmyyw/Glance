@@ -17,6 +17,10 @@ class UserHeadView: View {
     @IBOutlet weak var websiteButton: UIButton!
     @IBOutlet weak var bioLabel: UILabel!
         
+    @IBOutlet weak var instagramCell: UIView!
+    @IBOutlet weak var websiteCell: UIView!
+    @IBOutlet weak var bioCell: UIView!
+    @IBOutlet weak var contentView: UIView!
     
     override func makeUI() {
         super.makeUI()

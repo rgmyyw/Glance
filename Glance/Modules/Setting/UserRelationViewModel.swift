@@ -91,7 +91,7 @@ class UserRelationViewModel: ViewModel, ViewModelType {
         
 
         buttonTap.map { (cellViewModel) -> (UserRelationCellViewModel, Single<Bool>) in
-            let userId = cellViewModel.item.userId ?? ""
+            let userId = cellViewModel.item.1.userId ?? ""
             switch self.type.value {
             case .following,.followers:
                 return (cellViewModel,cellViewModel.isFollow.value ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId))
@@ -115,14 +115,13 @@ class UserRelationViewModel: ViewModel, ViewModelType {
 
             
         element.map { $0.list.map { item -> UserRelationCellViewModel in
-                let cellViewModel =  UserRelationCellViewModel(item: item)
+            let cellViewModel =  UserRelationCellViewModel(item: (self.type.value,item))
                 cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
                 self.type.map { $0.cellButtonNormalTitle }.bind(to: cellViewModel.buttonNormalTitle).disposed(by: self.rx.disposeBag)
                 self.type.map { $0.cellButtonSelectedTitle }.bind(to: cellViewModel.buttonSelectedTitle).disposed(by: self.rx.disposeBag)
                 
                 return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)
-        
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       navigationTitle: navigationTitle)

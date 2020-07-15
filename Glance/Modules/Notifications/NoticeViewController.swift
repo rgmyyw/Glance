@@ -24,7 +24,7 @@ class NoticeViewController: TableViewController {
         tableView.register(nib: NoticeCell.nib, withCellClass: NoticeCell.self)
         tableView.headRefreshControl = nil
         tableView.footRefreshControl = nil
-        tableView.rowHeight = 70 + 12
+        tableView.rowHeight = 75 + 20
         
         
     }

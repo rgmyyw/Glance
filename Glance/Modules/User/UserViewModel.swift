@@ -16,6 +16,7 @@ class UserViewModel: ViewModel, ViewModelType {
     
     struct Input {
         
+        let headerRefresh: Observable<Void>
     }
     
     struct Output {
@@ -26,23 +27,24 @@ class UserViewModel: ViewModel, ViewModelType {
         let instagram : Driver<String>
         let website : Driver<String>
         let bio : Driver<String>
+        let titles : Driver<[String]>
         
     }
     
     let settingSelectedItem = PublishSubject<SettingItem>()
     
     
-
+    
     func transform(input: Input) -> Output {
         
-        Observable.just(())
+        input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 return self.provider.userDetail(userId: "")
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .materialize()
-            }).subscribe(onNext: { [weak self] event in
+            }).subscribe(onNext: {  event in
                 switch event {
                 case .next(let item):
                     user.accept(item)
@@ -50,16 +52,23 @@ class UserViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-
+        
         let userHeadImageURL = user.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
         let displayName = user.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
         let countryName = user.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
         let instagram = user.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
         let website = user.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
         let bio = user.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
- 
         
-        return Output(userHeadImageURL: userHeadImageURL,displayName: displayName, countryName: countryName,instagram: instagram, website: website, bio: bio)
+        let titles = user.filterNil().map { user -> [String] in
+            return ["\(user.postCount)\nPost",
+                "\(user.recommendCount)\nRecomm",
+                "\(user.followerCount)\nFollowers",
+                "\(user.followingCount)\nFollowing"]
+        }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
+        
+        
+        return Output(userHeadImageURL: userHeadImageURL,displayName: displayName, countryName: countryName,instagram: instagram, website: website, bio: bio,titles: titles)
     }
 }
 
