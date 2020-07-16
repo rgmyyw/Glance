@@ -57,7 +57,7 @@ class HomeCellViewModel : CellViewModelProtocol {
             isFavorite.accept(item.product?.saved ?? false)
             recommendButtonHidden.accept(false)
             
-        case .recommend:
+        case .recommendPost,.recommendProduct:
             userName.accept(item.recommend?.user?.displayName)
             userHeadImageURL.accept(item.recommend?.user?.userImage?.url)
             title.accept(item.recommend?.title)

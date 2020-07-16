@@ -50,10 +50,11 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                         if let error = error as? MoyaError {
                             switch error {
                             case .statusCode(let response):
-                                if response.statusCode == 401 {
-                                    AuthManager.removeToken()
-                                    User.removeCurrentUser()
-                                }
+                                print("response.statusCode == 401")
+//                                if response.statusCode == 401 {
+//                                    AuthManager.removeToken()
+//                                    User.removeCurrentUser()
+//                                }
                             default:
                                 UIApplication.shared.keyWindow?.topMostController()?.view.makeToast("server error")
                             }

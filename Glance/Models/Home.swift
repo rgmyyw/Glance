@@ -11,17 +11,20 @@ import ObjectMapper
 
 
 enum HomeCellType : Int {
+    
     case post = 0
     case product = 1
-    case recommend = 2
-    
+    case recommendPost = 2
+    case recommendProduct = 3
     var title : String {
         switch self {
         case .post:
             return "posted"
         case .product:
             return ""
-        case .recommend:
+        case .recommendPost:
+            return "recommended"
+        case .recommendProduct:
             return "recommended"
         }
     }
@@ -60,6 +63,7 @@ struct Recommend: Mappable {
     var recommendId: Int = 0
     
     init?(map: Map) {}
+    init() {}
 
     mutating func mapping(map: Map) {
         type   <- map["type"]

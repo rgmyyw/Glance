@@ -70,13 +70,14 @@ class HomeController: CollectionViewController {
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
         collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
-            let viewModel = DynamicDetailViewModel(provider: viewModel.provider)
+            
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: Recommend())
             self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
     }
 }
-// MARK: - DataSouce
+
 extension HomeController {
     
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<HomeSection> {

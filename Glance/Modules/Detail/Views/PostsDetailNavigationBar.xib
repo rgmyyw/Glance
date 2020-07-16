@@ -10,7 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="DynamicDetailNavigationBar" customModule="Glance" customModuleProvider="target">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="PostsDetailNavigationBar" customModule="Glance" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="520" height="264"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
@@ -66,6 +66,11 @@
                                                 <constraint firstAttribute="height" constant="22" id="KVj-xc-XgQ"/>
                                                 <constraint firstAttribute="width" constant="22" id="i4u-yP-HhM"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LFC-kW-lfA">
                                             <rect key="frame" x="34" y="0.5" width="81" height="17.5"/>
@@ -132,7 +137,13 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="510.14492753623193" y="91.071428571428569"/>
+            <connections>
+                <outlet property="moreButton" destination="SLc-Qs-Ywa" id="gMu-Rb-alk"/>
+                <outlet property="timeLabel" destination="NY8-7b-Qcl" id="COk-e8-2xy"/>
+                <outlet property="userImageView" destination="5Zv-0g-ISS" id="Pgm-Uc-scd"/>
+                <outlet property="userNameLabel" destination="LFC-kW-lfA" id="36j-DS-89x"/>
+            </connections>
+            <point key="canvasLocation" x="1335" y="37"/>
         </view>
     </objects>
     <resources>

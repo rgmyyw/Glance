@@ -58,7 +58,6 @@ target 'Glance' do
     pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
     pod 'UICollectionView-ARDynamicHeightLayoutCell' , '~>  1.0.2'
     pod 'FDFullscreenPopGesture' , '~> 1.1'
-    #pod 'HBDNavigationBar', '~> 1.7.6'
     pod 'FSPagerView' , '~> 0.8.3'
     pod 'SDCAlertView' , '~> 11.1.2'
     pod 'WZLBadge' , '~> 1.2.6'

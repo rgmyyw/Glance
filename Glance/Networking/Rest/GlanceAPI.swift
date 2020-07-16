@@ -25,7 +25,7 @@ private let assetDir: URL = {
 enum GlanceAPI {
     case download(url: URL, fileName: String?)
     case getHome(page : Int)
-    case saveFavorite(id : Any, type : Int)
+    case collect(id : Any, type : Int, state : Bool)
     case userDetail(userId : String)
     case modifyProfile(data : [String : Any])
     case uploadImage(type: Int, data : Data)
@@ -41,6 +41,7 @@ enum GlanceAPI {
     case insightsPostDetail(postId : Int)
     case insightsRecommendDetail(recommendId : Int)
     case reactions(recommendId : Int,pageNum : Int)
+    case postDetail(postId : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -59,7 +60,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .download: return ""
         case .getHome(let page):
             return "/api/home/\(page)/\(10)"
-        case .saveFavorite:
+        case .collect:
             return "/api/saved"
         case .userDetail:
             return "/api/users/detail"
@@ -98,12 +99,15 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/insights/recommends/detail"
         case .reactions(_, let pageNum):
             return "/api/users/insights/recommended/reactions/users/\(pageNum)/\(10)"
+        case .postDetail:
+            return "/api/posts/detail"
+            
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveFavorite,.uploadImage,.block,.follow:
+        case .collect,.uploadImage,.block,.follow:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -112,7 +116,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .insightRecommend,
              .insightsPostDetail,
              .insightsRecommendDetail,
-             .reactions:
+             .reactions,
+             .postDetail:
             return .get
         case .modifyProfile:
             return .put
@@ -157,9 +162,17 @@ extension GlanceAPI: TargetType, ProductAPIType {
     var parameters: [String: Any]? {
         var params: [String: Any] = [:]
         switch self {
-        case .saveFavorite(let id, let type):
-            params["id"] = id
+        case .collect(let id, let type, let state):
+            params["state"] = state.int
             params["type"] = type
+            switch type {
+            case 0,3:
+                params["postId"] = id
+            case 2,4:
+                params["productId"] = id
+            default:
+                break
+            }
         case .userPost(let userId, _),
              .userRecommend(let userId, _),
              .userRelation(_, let userId, _):
@@ -190,7 +203,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["recommendsId"] = recommendId
         case .reactions(let recommendId, _):
             params["recommendId"] = recommendId
-
+        case .postDetail(let postId):
+            params["id"] = postId
         default:
             break
         }

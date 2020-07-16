@@ -9,8 +9,8 @@
 import UIKit
 import Localize_Swift
 
-@IBDesignable
-class Label: UILabel {
+
+@IBDesignable class Label: UILabel {
     
     var textInsets = UIEdgeInsets.zero {
         didSet { invalidateIntrinsicContentSize() }
@@ -29,6 +29,7 @@ class Label: UILabel {
     func makeUI() {
         layer.masksToBounds = true
         numberOfLines = 0
+        textInsets = .zero
         updateUI()
     }
 

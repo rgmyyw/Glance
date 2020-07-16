@@ -25,7 +25,6 @@ protocol API {
     func downloadString(url: URL) -> Single<String>
     func downloadFile(url: URL, fileName: String?) -> Single<Void>
     func getHome(page : Int) -> Single<PageMapable<Home>>
-    func saveFavorite(id : Any, type : Int) -> Single<Bool>
     func userDetail(userId : String) -> Single<User>
     func modifyProfile(data : [String : Any]) -> Single<User>
     func uploadImage(type: Int, data : Data) -> Single<String>
@@ -41,6 +40,9 @@ protocol API {
     func insightsPostDetail(postId : Int) -> Single<InsightsDetail>
     func insightsrRecommendDetail(recommendId : Int) -> Single<InsightsDetail>
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
+    func postDetail(postId : Int) -> Single<PostsDetail>
+    func collect(id : [String : Any], type : Int, state : Bool) -> Single<Bool>
+
 }
 
 

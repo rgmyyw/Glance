@@ -96,35 +96,35 @@ class HomeViewModel: ViewModel, ViewModelType {
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        saveFavorite
-            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                guard let type = cellViewModel.item.type else { return Observable.just(RxSwift.Event.completed) }
-                let id : Any
-                switch type {
-                case .post:
-                    id = cellViewModel.item.posts?.postId ?? 0
-                case .product:
-                    id = cellViewModel.item.product?.imName ?? ""
-                case .recommend:
-                    id = cellViewModel.item.recommend?.recommendId ?? 0
-                }
-                return self.provider.saveFavorite(id: id, type: type.rawValue)
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .map { (cellViewModel, $0)}
-                    .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
-                switch event {
-                case .next(let (item,result)):
-                    if result {
-                        item.isFavorite.accept(result)
-                    }
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
+//        saveFavorite
+//            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
+//                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+//                guard let type = cellViewModel.item.type else { return Observable.just(RxSwift.Event.completed) }
+//                let id : Any
+//                switch type {
+//                case .post:
+//                    id = cellViewModel.item.posts?.postId ?? 0
+//                case .product:
+//                    id = cellViewModel.item.product?.imName ?? ""
+//                case .recommend:
+//                    id = cellViewModel.item.recommend?.recommendId ?? 0
+//                }
+//                return self.provider.saveFavorite(id: id, type: type.rawValue)
+//                    .trackError(self.error)
+//                    .trackActivity(self.loading)
+//                    .map { (cellViewModel, $0)}
+//                    .materialize()
+//            }).subscribe(onNext: { [weak self] event in
+//                guard let self = self else { return }
+//                switch event {
+//                case .next(let (item,result)):
+//                    if result {
+//                        item.isFavorite.accept(result)
+//                    }
+//                default:
+//                    break
+//                }
+//            }).disposed(by: rx.disposeBag)
 
         
         

@@ -27,11 +27,7 @@ class RestApi: API {
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
-    
-    func saveFavorite(id: Any, type: Int) -> Single<Bool> {
-        return requestObject(.saveFavorite(id: id, type: type), type: MappableItem<Bool>.self).map { $0.data ?? false }
-    }
-    
+        
     func userDetail(userId: String = "") -> Single<User> {
         return requestObject(.userDetail(userId: userId), type: User.self)
     }
@@ -93,6 +89,15 @@ class RestApi: API {
         return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
     }
 
+    func postDetail(postId: Int) -> Single<PostsDetail> {
+        return requestObject(.postDetail(postId: postId), type: PostsDetail.self)
+
+    }
+    
+    func collect(id: [String : Any], type: Int, state: Bool) -> Single<Bool> {
+        return requestObject(.collect(id: id, type: type, state: state), type: MappableItem<Bool>.self).map { $0.data ?? false}
+    }
+    
     
     let ibexProvider: IbexNetworking
     
