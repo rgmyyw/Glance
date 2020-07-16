@@ -70,8 +70,8 @@ class HomeController: CollectionViewController {
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
         collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
-            let demo = DemoViewModel(provider: viewModel.provider)
-            self.navigator.show(segue: .demo(viewModel: demo), sender: self)
+            let viewModel = DynamicDetailViewModel(provider: viewModel.provider)
+            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
     }

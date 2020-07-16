@@ -17,6 +17,11 @@
 		5D06524124BEE69C007CE461 /* ReactionsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524024BEE69C007CE461 /* ReactionsCellViewModel.swift */; };
 		5D06524324BEE879007CE461 /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524224BEE879007CE461 /* Reaction.swift */; };
 		5D06524724BEFD3F007CE461 /* DynamicDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524524BEFD3F007CE461 /* DynamicDetailViewController.swift */; };
+		5D06524C24BEFF51007CE461 /* DynamicDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* DynamicDetailNavigationBar.xib */; };
+		5D06524D24BEFF51007CE461 /* DynamicDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524B24BEFF51007CE461 /* DynamicDetailNavigationBar.swift */; };
+		5D06524F24BF0514007CE461 /* DynamicDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* DynamicDetailViewModel.swift */; };
+		5D06525224BF0775007CE461 /* DynamicDetailHeadReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06525024BF0775007CE461 /* DynamicDetailHeadReusableView.swift */; };
+		5D06525324BF0775007CE461 /* DynamicDetailHeadReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06525124BF0775007CE461 /* DynamicDetailHeadReusableView.xib */; };
 		5D13707E24B70428007B64BA /* OriginalPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */; };
 		5D13707F24B70428007B64BA /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
 		5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
@@ -198,6 +203,11 @@
 		5D06524024BEE69C007CE461 /* ReactionsCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsCellViewModel.swift; sourceTree = "<group>"; };
 		5D06524224BEE879007CE461 /* Reaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reaction.swift; sourceTree = "<group>"; };
 		5D06524524BEFD3F007CE461 /* DynamicDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicDetailViewController.swift; sourceTree = "<group>"; };
+		5D06524A24BEFF51007CE461 /* DynamicDetailNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DynamicDetailNavigationBar.xib; sourceTree = "<group>"; };
+		5D06524B24BEFF51007CE461 /* DynamicDetailNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DynamicDetailNavigationBar.swift; sourceTree = "<group>"; };
+		5D06524E24BF0514007CE461 /* DynamicDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicDetailViewModel.swift; sourceTree = "<group>"; };
+		5D06525024BF0775007CE461 /* DynamicDetailHeadReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicDetailHeadReusableView.swift; sourceTree = "<group>"; };
+		5D06525124BF0775007CE461 /* DynamicDetailHeadReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DynamicDetailHeadReusableView.xib; sourceTree = "<group>"; };
 		5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewController.swift; sourceTree = "<group>"; };
 		5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OriginalPhotosViewController.xib; sourceTree = "<group>"; };
 		5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -385,9 +395,22 @@
 		5D06524424BEFCD2007CE461 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
+				5D06524924BEFF51007CE461 /* Views */,
 				5D06524524BEFD3F007CE461 /* DynamicDetailViewController.swift */,
+				5D06524E24BF0514007CE461 /* DynamicDetailViewModel.swift */,
 			);
 			path = Detail;
+			sourceTree = "<group>";
+		};
+		5D06524924BEFF51007CE461 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5D06524B24BEFF51007CE461 /* DynamicDetailNavigationBar.swift */,
+				5D06524A24BEFF51007CE461 /* DynamicDetailNavigationBar.xib */,
+				5D06525024BF0775007CE461 /* DynamicDetailHeadReusableView.swift */,
+				5D06525124BF0775007CE461 /* DynamicDetailHeadReusableView.xib */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		5D13708E24B70F4B007B64BA /* Notifications */ = {
@@ -980,6 +1003,7 @@
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
+				5D06524C24BEFF51007CE461 /* DynamicDetailNavigationBar.xib in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
 				5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */,
@@ -995,6 +1019,7 @@
 				5D437DCB24BD92F800AFBB1F /* InsightsCell.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
+				5D06525324BF0775007CE461 /* DynamicDetailHeadReusableView.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 				5D06523924BEE308007CE461 /* ReactionsViewController.xib in Resources */,
@@ -1158,6 +1183,7 @@
 				5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */,
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
+				5D06525224BF0775007CE461 /* DynamicDetailHeadReusableView.swift in Sources */,
 				5D6C721E24B565C200EA3028 /* SettingViewModel.swift in Sources */,
 				5DB8FE3B24B8502600280F9F /* UserPostViewModel.swift in Sources */,
 				5DEFF34E24AEC2F9007A2FCD /* Kingfisher-Rx.swift in Sources */,
@@ -1168,6 +1194,7 @@
 				5DEFF34C24AEC2F9007A2FCD /* Observable-Logging.swift in Sources */,
 				5DEFF31524AEC2F9007A2FCD /* Reachability.swift in Sources */,
 				5DEFF35824AEC2F9007A2FCD /* Toolbar.swift in Sources */,
+				5D06524D24BEFF51007CE461 /* DynamicDetailNavigationBar.swift in Sources */,
 				5D437DD324BDA19C00AFBB1F /* InsightsChildViewController.swift in Sources */,
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserRecommViewController.swift in Sources */,
@@ -1201,6 +1228,7 @@
 				5DEFF35524AEC2F9007A2FCD /* Foundation-Extension.swift in Sources */,
 				5DEFF37824AEC2F9007A2FCD /* CollectionReusableView.swift in Sources */,
 				5DEFF34324AEC2F9007A2FCD /* UIImage-Extension.swift in Sources */,
+				5D06524F24BF0514007CE461 /* DynamicDetailViewModel.swift in Sources */,
 				5DEFF37A24AEC2F9007A2FCD /* CountDownButton.swift in Sources */,
 				5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */,
 				5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */,
