@@ -1,5 +1,4 @@
 
-
 # Readme
 本项目主要使用 Swift 语言开发，MVVM 架构
 
@@ -25,8 +24,7 @@
 ## 项目结构
 
 ```
-├── Application  # Application
-├── BuyDo.entitlements # 暂时用不到,用于universal lick
+├── Application  # Applicatio
 ├── Common # 通用模块,基类
 ├── Configs  # app 配置
 ├── Extensions # 类扩展
@@ -36,7 +34,7 @@
 ├── Networking # 网络请求
 ├── Resources # 资源
 └── Third\ Party # 第三方
-11 directories, 1 file
+10 directories, 1 file
 ```
 
 ## 环境
