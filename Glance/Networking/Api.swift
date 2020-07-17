@@ -28,8 +28,8 @@ protocol API {
     func userDetail(userId : String) -> Single<User>
     func modifyProfile(data : [String : Any]) -> Single<User>
     func uploadImage(type: Int, data : Data) -> Single<String>
-    func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Posts>>
-    func userRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Recommend>>
+    func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
+    func userRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
     func userRelation(type :  UserRelationType, userId : String, pageNum : Int) -> Single<PageMapable<UserRelation>>
     func follow(userId : String) -> Single<Bool>
     func undoFollow(userId : String) -> Single<Bool>
@@ -41,7 +41,11 @@ protocol API {
     func insightsrRecommendDetail(recommendId : Int) -> Single<InsightsDetail>
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
     func postDetail(postId : Int) -> Single<PostsDetail>
-    func collect(id : [String : Any], type : Int, state : Bool) -> Single<Bool>
+    func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
+    
+    func collect(id : Any, type : Int, state : Bool) -> Single<Bool>
+    func like(id : Any, type : Int, state : Bool) -> Single<Bool>
+    //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }
 

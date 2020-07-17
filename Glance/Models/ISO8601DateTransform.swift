@@ -30,3 +30,37 @@ open class ISO8601DateTransform: TransformType {
         return nil
     }
 }
+
+extension Date {
+    
+    func customizedString() -> String {
+        
+        //获取当前的时间戳
+        let currentTime = Date().timeIntervalSince1970
+        //时间差
+        let reduceTime : TimeInterval = currentTime - timeIntervalSince1970
+        //时间差小于60秒
+        if reduceTime < 60 {
+            return "now"
+        }
+        //时间差大于一分钟小于60分钟内
+        let mins = Int(reduceTime / 60)
+        if mins < 60 {
+            return "\(mins) minute ago"
+        }
+        //时间差大于一小时小于24小时内
+        let hours = Int(reduceTime / 3600)
+        if hours < 24 {
+            return "\(hours) hour ago"
+        }
+        //时间差大于一天小于30天内
+        let days = Int(reduceTime / 3600 / 24)
+        if days < 30 {
+            return "\(days) day ago"
+        }
+
+        return dateString(ofStyle: .long)
+    }
+
+}
+

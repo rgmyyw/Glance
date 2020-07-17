@@ -21,7 +21,7 @@ enum HomeTabBarItem: Int {
             let vc = HomeController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .category:
-            let vc = NoticeViewController(viewModel: viewModel, navigator: navigator)
+            let vc = NotificationViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .cart:
             let vc = DemoViewController(viewModel: viewModel, navigator: navigator)

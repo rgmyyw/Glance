@@ -39,15 +39,18 @@ class HomeController: CollectionViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? HomeViewModel else { return }
-        
-        
+        guard let viewModel = viewModel as? HomeViewModel else { return }        
         
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
         let input = HomeViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(HomeSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
+        output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
+        output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
+            self?.collectionView.reloadData()
+        }).disposed(by: rx.disposeBag)
+
         output.showLikePopView
             .subscribe(onNext: { (fromView,cellViewModel) in
                 let width = 120
@@ -59,22 +62,19 @@ class HomeController: CollectionViewController {
                 popover.show(aView, fromView: fromView)
                 
         }).disposed(by: rx.disposeBag)
-        output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
-        output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
-            self?.collectionView.reloadData()
+        
+        output.postDetail.subscribe(onNext: { (item) in
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
+
+        
         
         viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
-        collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
-            
-            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: Recommend())
-            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
-        }).disposed(by: rx.disposeBag)
-
     }
 }
 

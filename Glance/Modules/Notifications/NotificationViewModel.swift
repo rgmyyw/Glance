@@ -11,34 +11,92 @@ import RxSwift
 import RxCocoa
 
 
-class NoticeViewModel: ViewModel, ViewModelType {
+class NotificationViewModel: ViewModel, ViewModelType {
         
     struct Input {
-        let selection: Observable<NoticeCellViewModel>
+        let headerRefresh: Observable<Void>
+        let footerRefresh: Observable<Void>
+        let selection : Observable<NotificationCellViewModel>
+
     }
 
     struct Output {
-        let items : Driver<[NoticeCellViewModel]>
-        let saved : Driver<Void>
+        let items : Driver<[NotificationCellViewModel]>
+//        let saved : Driver<Void>
     }
     
-    
+    let element : BehaviorRelay<PageMapable<Notification>> = BehaviorRelay(value: PageMapable<Notification>())
+
     func transform(input: Input) -> Output {
         
-        let elements = BehaviorRelay<[NoticeCellViewModel]>(value: [])
-        let items = (0...10).map { _  -> NoticeCellViewModel in
-            return NoticeCellViewModel(item: Notice())
-        }
-        elements.accept(items)
-        let saved = PublishSubject<Void>()
-    
-        input.selection.subscribe(onNext: { item in
-            elements.value.forEach { (i) in i.selected.accept(false) }
-            item.selected.accept(true)
-            saved.onNext(())
-        }).disposed(by: rx.disposeBag)
+        let elements = BehaviorRelay<[NotificationCellViewModel]>(value: [])
                 
-        return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      saved:saved.asDriver(onErrorJustReturn: ()))
+        
+        input.headerRefresh
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Notification>>)> in
+                guard let self = self else {
+                    return Observable.just(RxSwift.Event.completed)
+                }
+                self.page = 1
+                return self.provider.notifications(pageNum: self.page)
+                    .trackError(self.error)
+                    .trackActivity(self.headerLoading)
+                    .materialize()
+            }).subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .next(let item):
+                    self.element.accept(item)
+                    if !item.hasNext  {
+                        self.noMoreData.onNext(())
+                    }
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+        
+        
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Notification>>> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            if !self.element.value.hasNext {
+                self.noMoreData.onNext(())
+                return Observable.just(RxSwift.Event.completed)
+            }
+            self.page += 1
+            return self.provider.notifications(pageNum: self.page)
+                .trackActivity(self.footerLoading)
+                .trackError(self.error)
+                .materialize()
+        }).subscribe(onNext: { [weak self](event) in
+            guard let self = self else { return }
+            switch event {
+            case .next(let item):
+                var temp = item
+                temp.list = self.element.value.list + item.list
+                self.element.accept(temp)
+                if !item.hasNext  {
+                    self.noMoreData.onNext(())
+                }
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+
+        element.map { items -> [NotificationCellViewModel] in
+            return items.list.map { item -> NotificationCellViewModel  in
+                let viewModel = NotificationCellViewModel(item: item)
+                return viewModel
+            }
+        }.bind(to: elements).disposed(by: rx.disposeBag)
+        
+
+        
+//        input.selection.subscribe(onNext: { item in
+//            elements.value.forEach { (i) in i.selected.accept(false) }
+//            item.selected.accept(true)
+//            saved.onNext(())
+//        }).disposed(by: rx.disposeBag)
+                
+        return Output(items: elements.asDriver(onErrorJustReturn: []))
     }
 }

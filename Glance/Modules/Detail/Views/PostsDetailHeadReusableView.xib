@@ -91,7 +91,7 @@
                                         <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="eQy-DE-FdA">
                                             <rect key="frame" x="20" y="0.0" width="253" height="24"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgF-xL-CGz">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xgF-xL-CGz">
                                                     <rect key="frame" x="0.0" y="0.0" width="25" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="MWe-np-ECg"/>
@@ -99,7 +99,7 @@
                                                     <state key="normal" image="icon_dynamic_detail_recommend_normal"/>
                                                     <state key="selected" image="icon_dynamic_detail_recommend_selected"/>
                                                 </button>
-                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4U-jG-CUf">
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="e4U-jG-CUf">
                                                     <rect key="frame" x="47" y="0.0" width="25" height="24"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="25" id="VnU-Am-H1d"/>

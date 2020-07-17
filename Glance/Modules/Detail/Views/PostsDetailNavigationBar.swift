@@ -20,5 +20,6 @@ class PostsDetailNavigationBar: View {
     
     @IBOutlet weak var moreButton: UIButton!
     
+    @IBOutlet weak var backButton: UIButton!
     
 }

@@ -34,38 +34,37 @@ class HomeCellViewModel : CellViewModelProtocol {
     required init(item : Home) {
         self.item = item
         
-        guard let type = item.type else { return }
-        typeName.accept(type.title)
+        typeName.accept(item.type.title)
         
-        switch type {
+        switch item.type {
         case .post:
-            userName.accept(item.posts?.user?.displayName)
-            userHeadImageURL.accept(item.posts?.user?.userImage?.url)
-            title.accept(item.posts?.title)
-            imageURL.accept(item.posts?.image?.url)
+            userName.accept(item.user?.displayName)
+            userHeadImageURL.accept(item.user?.userImage?.url)
+            title.accept(item.title)
+            imageURL.accept(item.image?.url)
             userHidden.accept(false)
-            userOnline.accept(item.posts?.user?.loginStatus ?? false)
+            userOnline.accept(item.user?.loginStatus ?? false)
             emojiButtonHidden.accept(true)
-            isFavorite.accept(item.posts?.saved ?? false)
+            isFavorite.accept(item.saved)
             recommendButtonHidden.accept(false)
         case .product:
             
-            title.accept(item.product?.title)
-            imageURL.accept(item.product?.productUrl?.url)
+            title.accept(item.title)
+            imageURL.accept(item.productUrl?.url)
             userHidden.accept(true)
             emojiButtonHidden.accept(true)
-            isFavorite.accept(item.product?.saved ?? false)
+            isFavorite.accept(item.saved)
             recommendButtonHidden.accept(false)
             
         case .recommendPost,.recommendProduct:
-            userName.accept(item.recommend?.user?.displayName)
-            userHeadImageURL.accept(item.recommend?.user?.userImage?.url)
-            title.accept(item.recommend?.title)
-            imageURL.accept(item.recommend?.image?.url)
+            userName.accept(item.user?.displayName)
+            userHeadImageURL.accept(item.user?.userImage?.url)
+            title.accept(item.title)
+            imageURL.accept(item.image?.url)
             userHidden.accept(false)
-            userOnline.accept(item.recommend?.user?.loginStatus ?? false)
+            userOnline.accept(item.user?.loginStatus ?? false)
             emojiButtonHidden.accept(false)
-            isFavorite.accept(item.recommend?.saved ?? false)
+            isFavorite.accept(item.saved ?? false)
             recommendButtonHidden.accept(true)
         }
     }

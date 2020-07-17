@@ -131,7 +131,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
             let viewModel = HomeViewModel(provider: provider)
             return viewModel
         case .category:
-            let viewModel = NoticeViewModel(provider: provider)
+            let viewModel = NotificationViewModel(provider: provider)
             return viewModel
         case .cart:
             let viewModel = DemoViewModel(provider: provider)

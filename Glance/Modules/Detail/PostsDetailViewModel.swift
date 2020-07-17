@@ -27,9 +27,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     }
     
     
-    let item : BehaviorRelay<Recommend>
+    let item : BehaviorRelay<Home>
     
-    init(provider: API,item : Recommend) {
+    init(provider: API,item : Home) {
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
     }
@@ -42,24 +42,23 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[PostsDetailSection]>(value: [])
         let userImageURL = element.map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
         let userName = element.map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
-        let time = element.map { _ in "1231231" }.asDriver(onErrorJustReturn: "")
+        let time = element.map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
         
-        let save = PublishSubject<Void>()
-        let like = PublishSubject<Void>()
-        let recommend = PublishSubject<Void>()
+        let savePost = PublishSubject<PostsDetailSectionCellViewModel>()
+        let saveProduct = PublishSubject<PostsDetailCellViewModel>()
+        let like = PublishSubject<PostsDetailSectionCellViewModel>()
+        let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
         
+
         
-        Observable.just(())
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PostsDetail>)> in
-                guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
-                }
-                return self.provider.postDetail(postId: 77)
+        item.map { $0.postId }
+            .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PostsDetail>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                return self.provider.postDetail(postId: id)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
+            }).subscribe(onNext: { event in
                 switch event {
                 case .next(let item):
                     element.accept(item)
@@ -71,9 +70,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         element.map { element -> [PostsDetailSection] in
             let viewModel = PostsDetailSectionCellViewModel(item: element)
-            viewModel.save.bind(to: save).disposed(by: self.rx.disposeBag)
-            viewModel.like.bind(to: like).disposed(by: self.rx.disposeBag)
-            viewModel.recommend.bind(to: recommend).disposed(by: self.rx.disposeBag)
+            viewModel.save.map { viewModel}.bind(to: savePost).disposed(by: self.rx.disposeBag)
+            viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
+            viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
             //            viewModel.height
             //                .subscribe(onNext: { (height) in
             //                    elements.accept(elements.value)
@@ -86,6 +85,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             }
             let similarItems = element.similarProducts.map { item -> PostsDetailSectionItem in
                 let cellViewModel = PostsDetailCellViewModel(item: item)
+                cellViewModel.save.map { cellViewModel }.bind(to: saveProduct).disposed(by: self.rx.disposeBag)
                 return PostsDetailSectionItem.similar(viewModel: cellViewModel)
             }
             
@@ -93,24 +93,65 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
             return [head,tagged,similar]
         }.bind(to: elements).disposed(by: rx.disposeBag)
-       
         
-//        save.map { (self.item.value,element.value) }
-//            .flatMapLatest({ [weak self] (item, element) -> Observable<(RxSwift.Event<Bool>)> in
-//                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-//                return self.provider.collect(id: item.postId, type: item.type?.rawValue ?? 0, state: element.saved)
-//                    .trackError(self.error)
-//                    .trackActivity(self.loading)
-//                    .materialize()
-//            }).subscribe(onNext: { [weak self] event in
-//                guard let self = self else { return }
-//                switch event {
-//                case .next(let item):
-//                    element.accept(item)
-//                default:
-//                    break
-//                }
-//            }).disposed(by: rx.disposeBag)
+        
+        savePost.map { ($0,element.value,self.item.value) }
+            .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                let state = !cellViewModel.saved.value
+                return self.provider.collect(id: item.postId, type: HomeCellType.post.rawValue, state: state)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .map { (cellViewModel, $0)}
+                    .materialize()
+            }).subscribe(onNext: { event in
+                switch event {
+                case .next(let (cellViewModel, result)):
+                    if result {
+                        cellViewModel.saved.accept(result)
+                    }
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+        
+        saveProduct
+            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(PostsDetailCellViewModel,Bool)>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                let state = !cellViewModel.saved.value
+                return self.provider.collect(id: cellViewModel.item.imName ?? "", type: HomeCellType.product.rawValue, state: state)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .map { (cellViewModel, $0)}
+                    .materialize()
+            }).subscribe(onNext: { event in
+                switch event {
+                case .next(let (cellViewModel, result)):
+                    cellViewModel.saved.accept(result)
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+        
+
+        like.map { ($0,element.value,self.item.value) }
+            .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                let state = !cellViewModel.liked.value
+                return self.provider.like(id: item.postId, type: HomeCellType.post.rawValue, state: state)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .map { (cellViewModel, $0)}
+                    .materialize()
+            }).subscribe(onNext: { event in
+                switch event {
+                case .next(let (cellViewModel, result)):
+                    cellViewModel.liked.accept(result)
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+
         
         
         

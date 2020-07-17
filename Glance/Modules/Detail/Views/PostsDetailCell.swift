@@ -16,13 +16,16 @@ class PostsDetailCell: CollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var shadowView: UIView!
+    @IBOutlet weak var saveImageView: UIButton!
+    
     
     override func bind<T>(to viewModel: T) where T : PostsDetailCellViewModel {
         super.bind(to: viewModel)
         
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
-        
+        viewModel.saved.bind(to: saveImageView.rx.isSelected).disposed(by: cellDisposeBag)
+        saveImageView.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
     }
 
     

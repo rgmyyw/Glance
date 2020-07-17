@@ -25,7 +25,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
         let showLikePopView : Observable<(UIView, UserPostCellViewModel)>
     }
     
-    let element : BehaviorRelay<PageMapable<Posts>> = BehaviorRelay(value: PageMapable<Posts>())
+    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     
     func transform(input: Input) -> Output {
         
@@ -34,7 +34,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
         let showLikePopView = PublishSubject<(UIView,UserPostCellViewModel)>()
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Posts>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
@@ -57,7 +57,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Posts>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !self.element.value.hasNext {
                 self.noMoreData.onNext(())

@@ -29,14 +29,15 @@
 		5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
 		5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708624B708BB007B64BA /* PrivacyViewModel.swift */; };
 		5D13708D24B70EE2007B64BA /* UserRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */; };
-		5D13709624B70F4B007B64BA /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NoticeViewController.swift */; };
+		5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NotificationViewController.swift */; };
 		5D13709724B70F4B007B64BA /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
-		5D13709824B70F4B007B64BA /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */; };
-		5D13709924B70F4B007B64BA /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NoticeCell.swift */; };
-		5D13709A24B70F4B007B64BA /* NoticeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NoticeCell.xib */; };
+		5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
+		5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
+		5D13709A24B70F4B007B64BA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
 		5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709C24B70FA2007B64BA /* UserRelationCell.swift */; };
 		5D13709F24B70FA2007B64BA /* UserRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* UserRelationCell.xib */; };
 		5D1370A124B7113F007B64BA /* UserRelationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */; };
+		5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
 		5D1D5AF424BFF007008C0C82 /* PostsDetailTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */; };
 		5D1D5AF524BFF007008C0C82 /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
 		5D1D5AF824BFF0F9008C0C82 /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
@@ -193,7 +194,6 @@
 		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
-		5DEFF52124AF33EB007A2FCD /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF52024AF33EB007A2FCD /* Notice.swift */; };
 		81AAD64A5D0DB083F1FAD2DB /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
 /* End PBXBuildFile section */
 
@@ -222,14 +222,15 @@
 		5D13708324B70765007B64BA /* PrivacyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyViewController.xib; sourceTree = "<group>"; };
 		5D13708624B708BB007B64BA /* PrivacyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewModel.swift; sourceTree = "<group>"; };
 		5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationViewModel.swift; sourceTree = "<group>"; };
-		5D13708F24B70F4B007B64BA /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		5D13708F24B70F4B007B64BA /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		5D13709024B70F4B007B64BA /* NotificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
-		5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCellViewModel.swift; sourceTree = "<group>"; };
-		5D13709324B70F4B007B64BA /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
-		5D13709424B70F4B007B64BA /* NoticeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NoticeCell.xib; sourceTree = "<group>"; };
+		5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
+		5D13709324B70F4B007B64BA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		5D13709424B70F4B007B64BA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		5D13709C24B70FA2007B64BA /* UserRelationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationCell.swift; sourceTree = "<group>"; };
 		5D13709D24B70FA2007B64BA /* UserRelationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRelationCell.xib; sourceTree = "<group>"; };
 		5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationCellViewModel.swift; sourceTree = "<group>"; };
+		5D16BB3924C15C4F003B5633 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailTitleReusableView.swift; sourceTree = "<group>"; };
 		5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailTitleReusableView.xib; sourceTree = "<group>"; };
 		5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCell.swift; sourceTree = "<group>"; };
@@ -390,7 +391,6 @@
 		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		5DEFF50F24AEE76D007A2FCD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		5DEFF52024AF33EB007A2FCD /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.release.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -437,7 +437,7 @@
 			isa = PBXGroup;
 			children = (
 				5D13709124B70F4B007B64BA /* Views */,
-				5D13708F24B70F4B007B64BA /* NoticeViewController.swift */,
+				5D13708F24B70F4B007B64BA /* NotificationViewController.swift */,
 				5D13709024B70F4B007B64BA /* NotificationViewModel.swift */,
 			);
 			path = Notifications;
@@ -446,9 +446,9 @@
 		5D13709124B70F4B007B64BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */,
-				5D13709324B70F4B007B64BA /* NoticeCell.swift */,
-				5D13709424B70F4B007B64BA /* NoticeCell.xib */,
+				5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */,
+				5D13709324B70F4B007B64BA /* NotificationCell.swift */,
+				5D13709424B70F4B007B64BA /* NotificationCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -639,13 +639,13 @@
 				5DEFF12C24AEC2F8007A2FCD /* Version.swift */,
 				5DEFF13324AEC2F8007A2FCD /* User.swift */,
 				5DEFF14024AEC2F8007A2FCD /* Token.swift */,
-				5DEFF52024AF33EB007A2FCD /* Notice.swift */,
 				5D630AAD24B31B4000F0CC45 /* Home.swift */,
 				5D437DB324BC133400AFBB1F /* UserRelation.swift */,
 				5D437DCE24BD9D2C00AFBB1F /* Insight.swift */,
 				5D06523424BEB37C007CE461 /* InsightsDetail.swift */,
 				5D06524224BEE879007CE461 /* Reaction.swift */,
 				5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */,
+				5D16BB3924C15C4F003B5633 /* Notification.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1019,7 +1019,7 @@
 				5DEFF30924AEC2F9007A2FCD /* Assets.xcassets in Resources */,
 				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
 				5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */,
-				5D13709A24B70F4B007B64BA /* NoticeCell.xib in Resources */,
+				5D13709A24B70F4B007B64BA /* NotificationCell.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */,
@@ -1132,6 +1132,7 @@
 				5D437DD824BEA67600AFBB1F /* InsightsDetailViewController.swift in Sources */,
 				5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */,
 				5DEFF37124AEC2F9007A2FCD /* DefaultTableViewCellViewModel.swift in Sources */,
+				5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */,
 				5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */,
 				5DEFF31824AEC2F9007A2FCD /* AuthManager.swift in Sources */,
 				5DEFF34424AEC2F9007A2FCD /* UIAlertController-Extensions.swift in Sources */,
@@ -1246,7 +1247,7 @@
 				5DEFF31724AEC2F9007A2FCD /* AppearanceManager.swift in Sources */,
 				5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
-				5D13709624B70F4B007B64BA /* NoticeViewController.swift in Sources */,
+				5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */,
 				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,
 				5D437DCA24BD92F800AFBB1F /* InsightsCell.swift in Sources */,
 				5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */,
@@ -1261,13 +1262,12 @@
 				5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */,
 				5DEFF36B24AEC2F9007A2FCD /* GetVerifiationCodeButton.swift in Sources */,
 				5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */,
-				5DEFF52124AF33EB007A2FCD /* Notice.swift in Sources */,
-				5D13709824B70F4B007B64BA /* NoticeCellViewModel.swift in Sources */,
+				5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */,
 				5DEFF4D224AEC2FA007A2FCD /* ErrorTracker.swift in Sources */,
 				5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */,
 				5DEFF34F24AEC2F9007A2FCD /* UIFont-Extension.swift in Sources */,
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,
-				5D13709924B70F4B007B64BA /* NoticeCell.swift in Sources */,
+				5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */,
 				5DEFF36E24AEC2F9007A2FCD /* WebViewController.swift in Sources */,
 				5DDBC09C24B5CE580077DBE5 /* UserHeadView.swift in Sources */,
 				5D437DC524BD8A4B00AFBB1F /* InsightsViewController.swift in Sources */,

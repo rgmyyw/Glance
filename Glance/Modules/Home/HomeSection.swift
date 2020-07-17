@@ -17,6 +17,13 @@ enum HomeSection {
 
 enum HomeSectionItem {
     case recommendItem(viewModel: HomeCellViewModel)
+    
+    var viewModel : HomeCellViewModel {
+        switch self {
+        case .recommendItem(let viewModel):
+            return viewModel
+        }
+    }
 }
 
 extension HomeSection: SectionModelType {

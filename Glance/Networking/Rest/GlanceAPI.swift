@@ -41,7 +41,9 @@ enum GlanceAPI {
     case insightsPostDetail(postId : Int)
     case insightsRecommendDetail(recommendId : Int)
     case reactions(recommendId : Int,pageNum : Int)
+    case notifications(page : Int)
     case postDetail(postId : Int)
+    case like(id : Any, type : Int, state : Bool)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -59,7 +61,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         switch self {
         case .download: return ""
         case .getHome(let page):
-            return "/api/home/\(page)/\(10)"
+            return "/api/home/v2/\(page)/\(10)"
         case .collect:
             return "/api/saved"
         case .userDetail:
@@ -101,13 +103,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/insights/recommended/reactions/users/\(pageNum)/\(10)"
         case .postDetail:
             return "/api/posts/detail"
-            
+        case .notifications(let pageNum):
+            return "/api/notifications/\(pageNum)/\(10)"
+        case .like:
+            return "/api/liked"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .collect,.uploadImage,.block,.follow:
+        case .collect,.like,.uploadImage,.block,.follow:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -117,7 +122,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .insightsPostDetail,
              .insightsRecommendDetail,
              .reactions,
-             .postDetail:
+             .postDetail,
+             .notifications:
             return .get
         case .modifyProfile:
             return .put
@@ -163,12 +169,23 @@ extension GlanceAPI: TargetType, ProductAPIType {
         var params: [String: Any] = [:]
         switch self {
         case .collect(let id, let type, let state):
-            params["state"] = state.int
+            params["updateSaved"] = state.int
             params["type"] = type
             switch type {
-            case 0,3:
+            case 0,2:
                 params["postId"] = id
-            case 2,4:
+            case 1,3:
+                params["productId"] = id
+            default:
+                break
+            }
+        case .like(let id, let type, let state):
+            params["updateLiked"] = state.int
+            params["type"] = type
+            switch type {
+            case 0,2:
+                params["postId"] = id
+            case 1,3:
                 params["productId"] = id
             default:
                 break

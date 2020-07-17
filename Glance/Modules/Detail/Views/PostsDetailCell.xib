@@ -92,6 +92,7 @@
             <connections>
                 <outlet property="bgView" destination="Q7u-a2-GdJ" id="yec-03-LIe"/>
                 <outlet property="imageView" destination="cIv-FF-eQm" id="ymC-pb-n4X"/>
+                <outlet property="saveImageView" destination="ac4-dW-YYg" id="wTG-Cg-dCd"/>
                 <outlet property="shadowView" destination="wFS-BY-0bl" id="JR7-8l-JiW"/>
                 <outlet property="titleLabel" destination="Ssj-Cc-WrW" id="m0G-2u-HQW"/>
             </connections>

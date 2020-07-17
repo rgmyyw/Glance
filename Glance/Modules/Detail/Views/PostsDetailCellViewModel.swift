@@ -17,15 +17,15 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let saved = BehaviorRelay<Bool>(value: false)
     
+    let save = PublishSubject<Void>()
     
     
     
     required init(item : PostsDetailProduct) {
         self.item = item
         
-        let url = "https://n.sinaimg.cn/spider2020713/360/w760h400/20200713/3d8c-iwhseit9157724.png"
+        imageURL.accept(item.imUrl?.url)
         title.accept(item.title)
-        imageURL.accept(url.url)
         saved.accept(item.saved)
     }
 }

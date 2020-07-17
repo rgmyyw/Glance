@@ -58,6 +58,10 @@ class PostsDetailViewController: CollectionViewController {
         viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
         viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        customNavigationBar.backButton.rx
+            .tap.subscribe(onNext: { [weak self]() in
+                self?.navigator.pop(sender: self)
+            }).disposed(by: rx.disposeBag)
     }
 }
 

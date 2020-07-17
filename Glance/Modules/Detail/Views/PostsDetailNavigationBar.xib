@@ -138,6 +138,7 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
+                <outlet property="backButton" destination="bNe-RE-pDc" id="Ewj-L1-z6p"/>
                 <outlet property="moreButton" destination="SLc-Qs-Ywa" id="gMu-Rb-alk"/>
                 <outlet property="timeLabel" destination="NY8-7b-Qcl" id="COk-e8-2xy"/>
                 <outlet property="userImageView" destination="5Zv-0g-ISS" id="Pgm-Uc-scd"/>

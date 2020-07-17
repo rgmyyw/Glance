@@ -12,7 +12,7 @@ import RxCocoa
 
 class UserPostCellViewModel : CellViewModelProtocol {
     
-    let item : Posts
+    let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let emojiButtonHidden = BehaviorRelay<Bool>(value: false)
@@ -23,7 +23,7 @@ class UserPostCellViewModel : CellViewModelProtocol {
     let showLikePopView = PublishSubject<UIView>()
     
     
-    required init(item : Posts) {
+    required init(item : Home) {
         self.item = item
         
 

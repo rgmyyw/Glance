@@ -13,7 +13,7 @@ import RxCocoa
 
 class UserRecommCellViewModel : CellViewModelProtocol {
     
-    let item : Recommend
+    let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
@@ -23,7 +23,7 @@ class UserRecommCellViewModel : CellViewModelProtocol {
     let showLikePopView = PublishSubject<UIView>()
     
     
-    required init(item : Recommend) {
+    required init(item : Home) {
         self.item = item
         
         title.accept(item.title)

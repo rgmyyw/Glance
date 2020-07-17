@@ -33,7 +33,7 @@ class PostsDetailHeadReusableView: CollectionReusableView {
         viewModel.postTitle.bind(to: postTitleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.postImageURL.bind(to: postImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.recommended.bind(to: recommendButton.rx.isSelected ).disposed(by: cellDisposeBag)
-        viewModel.liked.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.liked.bind(to: likeButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
 
         likeButton.rx.tap.bind(to: viewModel.like).disposed(by: cellDisposeBag)

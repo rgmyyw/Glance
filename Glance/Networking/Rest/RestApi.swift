@@ -27,11 +27,11 @@ class RestApi: API {
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
-        
+    
     func userDetail(userId: String = "") -> Single<User> {
         return requestObject(.userDetail(userId: userId), type: User.self)
     }
-
+    
     func modifyProfile(data: [String : Any]) -> Single<User> {
         return requestObject(.modifyProfile(data: data), type: User.self)
     }
@@ -40,15 +40,15 @@ class RestApi: API {
         return requestObject(.uploadImage(type: type, data: data), type: UploadImageResult.self)
             .map { $0.imageUri ?? ""}
     }
-
-    func userPost(userId: String, pageNum: Int) -> Single<PageMapable<Posts>> {
-        return requestObject(.userPost(userId: userId, pageNum: pageNum), type: PageMapable<Posts>.self)
+    
+    func userPost(userId: String, pageNum: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.userPost(userId: userId, pageNum: pageNum), type: PageMapable<Home>.self)
     }
     
-    func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<Recommend>> {
-        return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Recommend>.self)
+    func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Home>.self)
     }
-
+    
     func userRelation(type: UserRelationType, userId: String = "", pageNum: Int) -> Single<PageMapable<UserRelation>> {
         return requestObject(.userRelation(type: type, userId: userId, pageNum: pageNum), type: PageMapable<UserRelation>.self)
     }
@@ -68,15 +68,15 @@ class RestApi: API {
     func undoBlocked(userId: String) -> Single<Bool> {
         return requestObject(.undoBlocked(userId: userId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
-
+    
     func insightPost(userId: String, pageNum: Int) -> Single<PageMapable<Insight>> {
         return requestObject(.insightPost(userId: userId, pageNum: pageNum), type: PageMapable<Insight>.self)
     }
-
+    
     func insightRecommend(userId: String, pageNum: Int) -> Single<PageMapable<Insight>> {
         return requestObject(.insightRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Insight>.self)
     }
-
+    
     func insightsPostDetail(postId: Int) -> Single<InsightsDetail> {
         return requestObject(.insightsPostDetail(postId: postId), type: InsightsDetail.self)
     }
@@ -88,16 +88,23 @@ class RestApi: API {
     func reactions(recommendId: Int, pageNum: Int) -> Single<PageMapable<Reaction>> {
         return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
     }
-
+    
     func postDetail(postId: Int) -> Single<PostsDetail> {
         return requestObject(.postDetail(postId: postId), type: PostsDetail.self)
-
+        
     }
     
-    func collect(id: [String : Any], type: Int, state: Bool) -> Single<Bool> {
-        return requestObject(.collect(id: id, type: type, state: state), type: MappableItem<Bool>.self).map { $0.data ?? false}
+    func collect(id: Any, type: Int, state: Bool) -> Single<Bool> {
+        return requestObject(.collect(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
+    func like(id: Any, type: Int, state: Bool) -> Single<Bool> {
+        return requestObject(.like(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+    
+    func notifications(pageNum: Int) -> Single<PageMapable<Notification>> {
+        return requestObject(.notifications(page: pageNum), type: PageMapable<Notification>.self)
+    }
     
     let ibexProvider: IbexNetworking
     
@@ -129,7 +136,7 @@ extension RestApi {
             .mapToVoid()
             .asSingle()
     }
-        
+    
     
 }
 

@@ -22,7 +22,8 @@ struct PostsDetail: Mappable {
     var title: String?
     var recommended: Bool = false
     var userId: String?
-
+    var postsTime : Date?
+    
     init?(map: Map) {}
     init() {}
     mutating func mapping(map: Map) {
@@ -39,6 +40,7 @@ struct PostsDetail: Mappable {
         title   <- map["title"]
         recommended   <- map["recommended"]
         userId   <- map["userId"]
+        postsTime <- (map["postsTime"], ISO8601DateTransform())
     }
 }
 
