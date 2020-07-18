@@ -30,6 +30,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     let item : BehaviorRelay<Home>
     
     init(provider: API,item : Home) {
+        var item = item
+        item.postId = 77
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
     }

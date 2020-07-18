@@ -14,7 +14,7 @@ import RxSwift
 
 enum HomeTabBarItem: Int {
     
-    case home, category, cart, mine
+    case home, category, cart, mine, center
     private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         switch self {
         case .home:
@@ -29,6 +29,8 @@ enum HomeTabBarItem: Int {
         case .mine:
             let vc = UserViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
+        case .center:
+            return DemoViewController.init(viewModel: viewModel, navigator: navigator)
         }
     }
     
@@ -39,6 +41,7 @@ enum HomeTabBarItem: Int {
         case .category: return R.image.icon_tabbar_notice_normal()?.withRenderingMode(.alwaysOriginal)
         case .cart: return R.image.icon_tabbar_message_normal()?.withRenderingMode(.alwaysOriginal)
         case .mine: return R.image.icon_tabbar_mine_normal()?.withRenderingMode(.alwaysOriginal)
+        case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
         }
     }
     
@@ -48,6 +51,7 @@ enum HomeTabBarItem: Int {
         case .category: return R.image.icon_tabbar_notice_selected()?.withRenderingMode(.alwaysOriginal)
         case .cart: return R.image.icon_tabbar_message_selected()?.withRenderingMode(.alwaysOriginal)
         case .mine: return R.image.icon_tabbar_mine_selected()?.withRenderingMode(.alwaysOriginal)
+        case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
         }
     }
     
@@ -87,10 +91,11 @@ enum HomeTabBarItem: Int {
     
 }
 
-class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
+class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarControllerDelegate {
     
     var viewModel: HomeTabBarViewModel?
     var navigator: Navigator!
+    let popView = PublishPopView.loadFromNib()
     
     init(viewModel: ViewModel?, navigator: Navigator) {
         self.viewModel = viewModel as? HomeTabBarViewModel
@@ -116,6 +121,7 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
         hero.isEnabled = false
         tabBar.hero.id = "TabBarID"
         tabBar.isTranslucent = false
+        delegate = self
         
         
         if #available(iOS 13, *) {
@@ -150,14 +156,30 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
             .bind({ $0.global }, to: tabBar.rx.barTintColor)
             .disposed(by: rx.disposeBag)
         
-        themeService.typeStream.delay(DispatchTimeInterval.milliseconds(700), scheduler: MainScheduler.instance).subscribe(onNext: { (theme) in
-            switch theme {
-            case .light:
-                self.changeSelectedColor(UIColor.primary(), iconSelectedColor: .clear)
-            }
-        }).disposed(by: rx.disposeBag)
+        themeService.typeStream.delay(DispatchTimeInterval.milliseconds(700), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { (theme) in
+                switch theme {
+                case .light:
+                    self.changeSelectedColor(UIColor.primary(), iconSelectedColor: .clear)
+                }
+            }).disposed(by: rx.disposeBag)
+        
+        
+        
+        
     }
     
+   
+    
+    func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
+
+        if viewController.isKind(of: DemoViewController.self) {
+            popView.addAnimate()
+            return false
+        } else {
+            return true
+        }
+    }
     
     
     
@@ -178,9 +200,6 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable {
         output.signUp.drive(onNext: {[weak self] () in
             self?.navigator.show(segue: .signIn, sender: self, transition: .popDialog)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
         
     }
 }

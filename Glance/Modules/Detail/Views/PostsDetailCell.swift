@@ -32,6 +32,9 @@ class PostsDetailCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
         
+//        backgroundColor = .random
+        
+        
         imageView.clipsToBounds = true
         clipsToBounds = false
         bgView.clipsToBounds = false
@@ -42,12 +45,5 @@ class PostsDetailCell: CollectionViewCell {
         let opacity : CGFloat = 0.65
         shadowView.shadow(cornerRadius: 10, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 2)
 
-    }
-}
-
-extension NSLayoutConstraint {
-    override public var description: String {
-        let id = identifier ?? "NO ID"
-        return "id: \(id), constant: \(constant) , "
     }
 }

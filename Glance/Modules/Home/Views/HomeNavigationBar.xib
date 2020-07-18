@@ -95,6 +95,10 @@
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="savedButton" destination="4Zu-9t-bP6" id="g4m-y2-yXp"/>
+                <outlet property="shoppingCartButton" destination="6OJ-Bc-D6V" id="ax4-4g-7Mw"/>
+            </connections>
             <point key="canvasLocation" x="56" y="147"/>
         </view>
     </objects>

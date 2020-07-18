@@ -23,7 +23,9 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
     
     required init(item : PostsDetailProduct) {
         self.item = item
-        
+        var item = item
+        item.imUrl = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg"
+
         imageURL.accept(item.imUrl?.url)
         title.accept(item.title)
         saved.accept(item.saved)
@@ -54,6 +56,8 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     
     required init(item : PostsDetail) {
         self.item = item
+        
+        
         userImageURL.accept(item.userImage?.url)
         userName.accept(item.displayName)
         postImageURL.accept(item.postImage?.url)

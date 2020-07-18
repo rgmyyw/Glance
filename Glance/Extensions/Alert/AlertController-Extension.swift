@@ -63,7 +63,7 @@ extension AlertController {
 }
 
 @discardableResult
-public func showAlert(title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
+public func showAlert(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
     let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .alert)
     let titles = optionTitles
     let actions = titles.enumerated().map { offset, item -> AlertAction in

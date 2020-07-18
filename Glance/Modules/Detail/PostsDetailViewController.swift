@@ -12,8 +12,6 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
-
 class PostsDetailViewController: CollectionViewController {
     
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<PostsDetailSection> = configureDataSouce()
@@ -31,7 +29,9 @@ class PostsDetailViewController: CollectionViewController {
 
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-        collectionView.register(nibWithCellClass: PostsDetailCell.self)
+//        collectionView.register(nibWithCellClass: PostsDetailCell.self)
+        collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: "PostsDetailCell1")
+        collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: "PostsDetailCell2")
         collectionView.headRefreshControl = nil
         collectionView.footRefreshControl = nil
         collectionView.register(nib: PostsDetailHeadReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailHeadReusableView.self)
@@ -71,12 +71,15 @@ extension PostsDetailViewController {
         return RxCollectionViewSectionedReloadDataSource<PostsDetailSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             switch item {
             case .tagged(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostsDetailCell1", for: indexPath) as! PostsDetailCell
+                ///let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
+
                 cell.titleLabel.font = UIFont.titleBoldFont(10)
                 cell.bind(to: viewModel)
                 return cell
             case .similar(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
+                ///let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
+                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "PostsDetailCell2", for: indexPath) as! PostsDetailCell
                 cell.titleLabel.font = UIFont.titleBoldFont(12)
                 cell.bind(to: viewModel)
                 return cell
@@ -125,7 +128,7 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch dataSouce.sectionModels[section] {
-        case .head(let viewModel):
+        case .head:
             return CGSize(width: collectionView.width, height: 450)
         case .similar,.tagged:
             return CGSize(width: collectionView.width, height: 50)
@@ -145,28 +148,37 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
+//
+//        let collectionView = collectionView as! CollectionView
+//        let col = dataSouce[indexPath.section].column.cgFloat
+//        let width : CGFloat = collectionView.width - (inset * 2.0) - ((col - 1.0) * 15.0)
+//        var fixedWidth = width / col
         
-        let collectionView = collectionView as! CollectionView
-        let col = dataSouce[indexPath.section].column.cgFloat
-        let width : CGFloat = collectionView.width - (inset * 2.0) - ((col - 1.0) * 15.0)
-        let fixedWidth = width / col
-        
-        return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth + 18) {[weak self] (cell) in
-            
-            if case let .similar(viewModel) = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? PostsDetailCell
-                cell?.bind(to: viewModel)
-                cell?.setNeedsLayout()
-                cell?.layoutIfNeeded()
-                
+//        print(fixedWidth)
+//
+        switch dataSouce.sectionModels[indexPath.section] {
+        case .similar:
+            return collectionView.ar_sizeForCell(withIdentifier: "PostsDetailCell2", indexPath: indexPath, fixedHeight: 200) { (cell) in
+                if case let .similar(viewModel) = self.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
+                    let cell = cell  as? PostsDetailCell
+//                    cell?.titleLabel.preferredMaxLayoutWidth = fixedWidth - 15
+                    cell?.bind(to: viewModel)
+//                    cell?.setNeedsLayout()
+//                    cell?.layoutIfNeeded()
+                }
             }
-            
-            if case let .tagged(viewModel) = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? PostsDetailCell
-                cell?.bind(to: viewModel)
-                cell?.setNeedsLayout()
-                cell?.layoutIfNeeded()
+        case .tagged:
+            return collectionView.ar_sizeForCell(withIdentifier: "PostsDetailCell1", indexPath: indexPath, fixedHeight: 210) { (cell) in
+                if case let .tagged(viewModel) = self.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
+                    let cell = cell  as? PostsDetailCell
+//                    cell?.titleLabel.preferredMaxLayoutWidth = fixedWidth - 10
+                    cell?.bind(to: viewModel)
+//                    cell?.setNeedsLayout()
+//                    cell?.layoutIfNeeded()
+                }
             }
+        default:
+            fatalError()
         }
     }
     

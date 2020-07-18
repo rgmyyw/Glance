@@ -106,6 +106,16 @@ class RestApi: API {
         return requestObject(.notifications(page: pageNum), type: PageMapable<Notification>.self)
     }
     
+    func shoppingCart(pageNum: Int) -> Single<PageMapable<ShoppingCart>> {
+        return requestObject(.shoppingCart(pageNum: pageNum), type: PageMapable<ShoppingCart>.self)
+        
+    }
+    
+    func shoppingCartDelete(productId: String) -> Single<Bool> {
+        return requestObject(.shoppingCartDelete(productId: productId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+    
+    
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

@@ -68,6 +68,11 @@ class HomeController: CollectionViewController {
             self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
+        customNavigationBar.shoppingCartButton
+            .rx.tap.subscribe(onNext: { [weak self]() in
+                let viewModel = ShoppingCartViewModel(provider: viewModel.provider)
+                self?.navigator.show(segue: .shoppingCart(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
         
         
         viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)

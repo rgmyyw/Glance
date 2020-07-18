@@ -40,6 +40,7 @@ class Navigator {
         case insightsDetail(viewModel : InsightsDetailViewModel)
         case reactions(viewModel : ReactionsViewModel)
         case dynamicDetail(viewModel : PostsDetailViewModel)
+        case shoppingCart(viewModel : ShoppingCartViewModel)
     }
     
     enum Transition {
@@ -103,7 +104,9 @@ class Navigator {
         case .dynamicDetail(let viewModel):
             let vc = PostsDetailViewController(viewModel: viewModel, navigator: self)
             return vc
-
+        case .shoppingCart(let viewModel):
+            let vc = ShoppingCartViewController(viewModel: viewModel, navigator: self)
+            return vc
         }
     }
     

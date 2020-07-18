@@ -42,7 +42,9 @@ enum GlanceAPI {
     case insightsRecommendDetail(recommendId : Int)
     case reactions(recommendId : Int,pageNum : Int)
     case notifications(page : Int)
+    case shoppingCart(pageNum : Int)
     case postDetail(postId : Int)
+    case shoppingCartDelete(productId : String)
     case like(id : Any, type : Int, state : Bool)
 }
 
@@ -107,6 +109,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/notifications/\(pageNum)/\(10)"
         case .like:
             return "/api/liked"
+        case .shoppingCart(let pageNum):
+            return "/api/shoppingCart/\(pageNum)/\(10)"
+        case .shoppingCartDelete(let productId):
+            return "/api/shoppingCart/\(productId)"
         }
     }
     
@@ -123,11 +129,12 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .insightsRecommendDetail,
              .reactions,
              .postDetail,
-             .notifications:
+             .notifications,
+             .shoppingCart:
             return .get
         case .modifyProfile:
             return .put
-        case .undoFollow,.undoBlocked:
+        case .undoFollow,.undoBlocked,.shoppingCartDelete:
             return .delete
         default:
             return .get

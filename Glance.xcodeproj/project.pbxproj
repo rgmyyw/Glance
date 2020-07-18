@@ -85,6 +85,14 @@
 		5D7D49B024B8648500F919EB /* UserRecommCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49AE24B8648500F919EB /* UserRecommCell.swift */; };
 		5D7D49B124B8648500F919EB /* UserRecommCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7D49AF24B8648500F919EB /* UserRecommCell.xib */; };
 		5D7D49B324B864A700F919EB /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */; };
+		5DB1C79424C290690071A0E1 /* PublishPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79324C290690071A0E1 /* PublishPopView.swift */; };
+		5DB1C79624C298F30071A0E1 /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
+		5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */; };
+		5DB1C79C24C2DD490071A0E1 /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */; };
+		5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */; };
+		5DB1C7A024C2DD7C0071A0E1 /* ShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */; };
+		5DB1C7A224C2E3580071A0E1 /* ShoppingCartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */; };
+		5DB1C7A424C2EA8C0071A0E1 /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C7A324C2EA8C0071A0E1 /* ShoppingCart.swift */; };
 		5DB8FE3B24B8502600280F9F /* UserPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3A24B8502600280F9F /* UserPostViewModel.swift */; };
 		5DB8FE3D24B85A0A00280F9F /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3C24B85A0A00280F9F /* UserPostCellViewModel.swift */; };
 		5DB8FE4024B85ABD00280F9F /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3E24B85ABD00280F9F /* UserPostCell.swift */; };
@@ -279,6 +287,14 @@
 		5D7D49AE24B8648500F919EB /* UserRecommCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecommCell.swift; sourceTree = "<group>"; };
 		5D7D49AF24B8648500F919EB /* UserRecommCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserRecommCell.xib; sourceTree = "<group>"; };
 		5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecommCellViewModel.swift; sourceTree = "<group>"; };
+		5DB1C79324C290690071A0E1 /* PublishPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishPopView.swift; sourceTree = "<group>"; };
+		5DB1C79524C298F30071A0E1 /* PublishPopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublishPopView.xib; sourceTree = "<group>"; };
+		5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewController.swift; sourceTree = "<group>"; };
+		5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShoppingCartViewModel.swift; sourceTree = "<group>"; };
+		5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCell.swift; sourceTree = "<group>"; };
+		5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShoppingCartCell.xib; sourceTree = "<group>"; };
+		5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCartCellViewModel.swift; sourceTree = "<group>"; };
+		5DB1C7A324C2EA8C0071A0E1 /* ShoppingCart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingCart.swift; sourceTree = "<group>"; };
 		5DB8FE3A24B8502600280F9F /* UserPostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostViewModel.swift; sourceTree = "<group>"; };
 		5DB8FE3C24B85A0A00280F9F /* UserPostCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostCellViewModel.swift; sourceTree = "<group>"; };
 		5DB8FE3E24B85ABD00280F9F /* UserPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostCell.swift; sourceTree = "<group>"; };
@@ -533,6 +549,26 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5DB1C79724C2DCE00071A0E1 /* ShoppingCart */ = {
+			isa = PBXGroup;
+			children = (
+				5DB1C79824C2DCE00071A0E1 /* Views */,
+				5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */,
+				5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */,
+			);
+			path = ShoppingCart;
+			sourceTree = "<group>";
+		};
+		5DB1C79824C2DCE00071A0E1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */,
+				5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */,
+				5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		5DE6388124AD769D002F6F6B = {
 			isa = PBXGroup;
 			children = (
@@ -646,6 +682,7 @@
 				5D06524224BEE879007CE461 /* Reaction.swift */,
 				5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */,
 				5D16BB3924C15C4F003B5633 /* Notification.swift */,
+				5DB1C7A324C2EA8C0071A0E1 /* ShoppingCart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -816,6 +853,7 @@
 		5DEFF18F24AEC2F8007A2FCD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5DB1C79724C2DCE00071A0E1 /* ShoppingCart */,
 				5D06524424BEFCD2007CE461 /* Detail */,
 				5D13708E24B70F4B007B64BA /* Notifications */,
 				5D579B4224B4A44E00CFC188 /* Setting */,
@@ -849,6 +887,8 @@
 				5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */,
 				5DEFF2CC24AEC2F9007A2FCD /* HomeTabBarController.swift */,
 				5DEFF2CD24AEC2F9007A2FCD /* CustomRAMBounceAnimation.swift */,
+				5DB1C79324C290690071A0E1 /* PublishPopView.swift */,
+				5DB1C79524C298F30071A0E1 /* PublishPopView.xib */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1020,6 +1060,7 @@
 				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
 				5D4267BA24AF25E6000CB8BF /* HomeCell.xib in Resources */,
 				5D13709A24B70F4B007B64BA /* NotificationCell.xib in Resources */,
+				5DB1C79624C298F30071A0E1 /* PublishPopView.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */,
@@ -1036,6 +1077,7 @@
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
 				5D437DD924BEA67600AFBB1F /* InsightsDetailViewController.xib in Resources */,
 				5D1D5AF524BFF007008C0C82 /* PostsDetailTitleReusableView.xib in Resources */,
+				5DB1C7A024C2DD7C0071A0E1 /* ShoppingCartCell.xib in Resources */,
 				5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */,
 				5DDBC09E24B5CE6B0077DBE5 /* UserHeadView.xib in Resources */,
 				5D437DCB24BD92F800AFBB1F /* InsightsCell.xib in Resources */,
@@ -1126,6 +1168,7 @@
 				5D13709724B70F4B007B64BA /* NotificationViewModel.swift in Sources */,
 				5D06523B24BEE549007CE461 /* ReactionsViewModel.swift in Sources */,
 				5D579B4624B4A46B00CFC188 /* SettingViewController.swift in Sources */,
+				5DB1C79424C290690071A0E1 /* PublishPopView.swift in Sources */,
 				5DEFF34224AEC2F9007A2FCD /* UIImageView-Extension.swift in Sources */,
 				5DEFF31124AEC2F9007A2FCD /* PageViewManager.swift in Sources */,
 				5D13707E24B70428007B64BA /* OriginalPhotosViewController.swift in Sources */,
@@ -1149,6 +1192,7 @@
 				5DEFF4F924AECB7A007A2FCD /* UIScreen-Extension.swift in Sources */,
 				5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */,
 				5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */,
+				5DB1C79C24C2DD490071A0E1 /* ShoppingCartViewModel.swift in Sources */,
 				5D1D5AFD24BFFD69008C0C82 /* PostsDetailCellViewModel.swift in Sources */,
 				5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */,
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
@@ -1193,6 +1237,7 @@
 				5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */,
 				5D4267B924AF25E6000CB8BF /* HomeCell.swift in Sources */,
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
+				5DB1C7A424C2EA8C0071A0E1 /* ShoppingCart.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
 				5D437DD524BEA04700AFBB1F /* ISO8601DateTransform.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
@@ -1227,6 +1272,7 @@
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserRecommViewController.swift in Sources */,
 				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
+				5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
 				5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */,
@@ -1249,6 +1295,7 @@
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
 				5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */,
 				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,
+				5DB1C7A224C2E3580071A0E1 /* ShoppingCartCellViewModel.swift in Sources */,
 				5D437DCA24BD92F800AFBB1F /* InsightsCell.swift in Sources */,
 				5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */,
 				5DEFF35C24AEC2F9007A2FCD /* PickerView.swift in Sources */,
@@ -1256,6 +1303,7 @@
 				5DEFF35524AEC2F9007A2FCD /* Foundation-Extension.swift in Sources */,
 				5DEFF37824AEC2F9007A2FCD /* CollectionReusableView.swift in Sources */,
 				5DEFF34324AEC2F9007A2FCD /* UIImage-Extension.swift in Sources */,
+				5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */,
 				5D06524F24BF0514007CE461 /* PostsDetailViewModel.swift in Sources */,
 				5DEFF37A24AEC2F9007A2FCD /* CountDownButton.swift in Sources */,
 				5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */,
