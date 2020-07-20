@@ -20,6 +20,7 @@ class ShoppingCartCell: TableViewCell {
     @IBOutlet weak var brandLabel: UILabel!
 
     @IBOutlet weak var deleteButton: UIButton!
+    @IBOutlet weak var comparePriceButton: UIButton!
     
     
     override func makeUI() {
@@ -40,6 +41,7 @@ class ShoppingCartCell: TableViewCell {
         viewModel.price.map { "$\($0 ?? "0")"}.bind(to: priceLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.brand.bind(to: brandLabel.rx.text).disposed(by: cellDisposeBag)
         deleteButton.rx.tap.bind(to: viewModel.delete).disposed(by: cellDisposeBag)
+        comparePriceButton.rx.tap.bind(to: viewModel.comparePrice).disposed(by: cellDisposeBag)
     }
     
     

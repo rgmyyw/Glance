@@ -101,6 +101,11 @@
 		5DDBC09C24B5CE580077DBE5 /* UserHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */; };
 		5DDBC09E24B5CE6B0077DBE5 /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
 		5DDBC0A024B6BE700077DBE5 /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09F24B6BE700077DBE5 /* UserPostViewController.swift */; };
+		5DDF02D924C5308B00E55D0F /* ComparePriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */; };
+		5DDF02DB24C530D300E55D0F /* ComparePriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */; };
+		5DDF02DE24C5331600E55D0F /* ComparePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */; };
+		5DDF02DF24C5331600E55D0F /* ComparePriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */; };
+		5DDF02E124C534DF00E55D0F /* ComparePriceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */; };
 		5DEFF30324AEC2F9007A2FCD /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FA24AEC2F8007A2FCD /* Api.swift */; };
 		5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
@@ -303,6 +308,11 @@
 		5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHeadView.swift; sourceTree = "<group>"; };
 		5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserHeadView.xib; sourceTree = "<group>"; };
 		5DDBC09F24B6BE700077DBE5 /* UserPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostViewController.swift; sourceTree = "<group>"; };
+		5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceViewController.swift; sourceTree = "<group>"; };
+		5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceViewModel.swift; sourceTree = "<group>"; };
+		5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceCell.swift; sourceTree = "<group>"; };
+		5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComparePriceCell.xib; sourceTree = "<group>"; };
+		5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceCellViewModel.swift; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DEFF0FA24AEC2F8007A2FCD /* Api.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Api.swift; sourceTree = "<group>"; };
 		5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlanceAPI.swift; sourceTree = "<group>"; };
@@ -555,6 +565,8 @@
 				5DB1C79824C2DCE00071A0E1 /* Views */,
 				5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */,
 				5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */,
+				5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */,
+				5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */,
 			);
 			path = ShoppingCart;
 			sourceTree = "<group>";
@@ -565,6 +577,9 @@
 				5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */,
 				5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */,
 				5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */,
+				5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */,
+				5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */,
+				5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1089,6 +1104,7 @@
 				5D06523924BEE308007CE461 /* ReactionsViewController.xib in Resources */,
 				5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */,
 				5D1D5AF924BFF0FA008C0C82 /* PostsDetailCell.xib in Resources */,
+				5DDF02DF24C5331600E55D0F /* ComparePriceCell.xib in Resources */,
 				5D13709F24B70FA2007B64BA /* UserRelationCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1205,6 +1221,7 @@
 				5DEFF4A424AEC2FA007A2FCD /* HomeTabBarController.swift in Sources */,
 				5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */,
 				5DEFF33F24AEC2F9007A2FCD /* Token.swift in Sources */,
+				5DDF02DE24C5331600E55D0F /* ComparePriceCell.swift in Sources */,
 				5DEFF36824AEC2F9007A2FCD /* TableViewController.swift in Sources */,
 				5D7D49B324B864A700F919EB /* UserRecommCellViewModel.swift in Sources */,
 				5DEFF31924AEC2F9007A2FCD /* LogManager.swift in Sources */,
@@ -1216,6 +1233,7 @@
 				5DEFF34D24AEC2F9007A2FCD /* KafkaRefresh-Rx.swift in Sources */,
 				5DEFF4FA24AECB7A007A2FCD /* CALayer-Extension.swift in Sources */,
 				5DEFF36D24AEC2F9007A2FCD /* TextField.swift in Sources */,
+				5DDF02DB24C530D300E55D0F /* ComparePriceViewModel.swift in Sources */,
 				5DB8FE3D24B85A0A00280F9F /* UserPostCellViewModel.swift in Sources */,
 				5DEFF35924AEC2F9007A2FCD /* Label.swift in Sources */,
 				5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */,
@@ -1274,6 +1292,7 @@
 				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
 				5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
+				5DDF02D924C5308B00E55D0F /* ComparePriceViewController.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
 				5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */,
 				5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */,
@@ -1312,6 +1331,7 @@
 				5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */,
 				5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */,
 				5DEFF4D224AEC2FA007A2FCD /* ErrorTracker.swift in Sources */,
+				5DDF02E124C534DF00E55D0F /* ComparePriceCellViewModel.swift in Sources */,
 				5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */,
 				5DEFF34F24AEC2F9007A2FCD /* UIFont-Extension.swift in Sources */,
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,

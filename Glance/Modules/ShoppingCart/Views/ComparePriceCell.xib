@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="83" id="D2V-fo-Qwj" customClass="ComparePriceCell" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="373" height="83"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="D2V-fo-Qwj" id="l1r-UB-hVT">
+                <rect key="frame" x="0.0" y="0.0" width="373" height="83"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hKv-dl-vlh">
+                        <rect key="frame" x="20" y="0.0" width="333" height="83"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wym-wa-cVs">
+                                <rect key="frame" x="0.0" y="19.5" width="44" height="44"/>
+                                <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="jVO-SW-DBD"/>
+                                    <constraint firstAttribute="width" constant="44" id="vgJ-Il-HUG"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="5"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="right" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right" translatesAutoresizingMaskIntoConstraints="NO" id="h9x-cA-Qfb">
+                                <rect key="frame" x="309" y="29.5" width="24" height="24"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$77.23" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pDD-Y4-prn">
+                                <rect key="frame" x="272" y="34.5" width="37" height="14"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="12"/>
+                                <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Amazon" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jtq-j7-Gp3">
+                                <rect key="frame" x="56" y="33.5" width="54.5" height="16.5"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="14"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="pDD-Y4-prn" firstAttribute="centerY" secondItem="h9x-cA-Qfb" secondAttribute="centerY" id="0SI-XG-iug"/>
+                            <constraint firstItem="wym-wa-cVs" firstAttribute="leading" secondItem="hKv-dl-vlh" secondAttribute="leading" id="9Zj-cM-LQo"/>
+                            <constraint firstItem="wym-wa-cVs" firstAttribute="centerY" secondItem="hKv-dl-vlh" secondAttribute="centerY" id="DDd-VN-cf1"/>
+                            <constraint firstItem="Jtq-j7-Gp3" firstAttribute="leading" secondItem="wym-wa-cVs" secondAttribute="trailing" constant="12" id="EVW-i6-Y1G"/>
+                            <constraint firstItem="Jtq-j7-Gp3" firstAttribute="centerY" secondItem="wym-wa-cVs" secondAttribute="centerY" id="Eea-Xb-dvv"/>
+                            <constraint firstItem="h9x-cA-Qfb" firstAttribute="leading" secondItem="pDD-Y4-prn" secondAttribute="trailing" id="bJO-O4-PHT"/>
+                            <constraint firstItem="h9x-cA-Qfb" firstAttribute="centerY" secondItem="hKv-dl-vlh" secondAttribute="centerY" id="dKj-DE-oDj"/>
+                            <constraint firstAttribute="trailing" secondItem="h9x-cA-Qfb" secondAttribute="trailing" id="lB1-av-Bpu"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="hKv-dl-vlh" secondAttribute="trailing" constant="20" id="399-EP-S12"/>
+                    <constraint firstAttribute="bottom" secondItem="hKv-dl-vlh" secondAttribute="bottom" id="daj-Qc-kW5"/>
+                    <constraint firstItem="hKv-dl-vlh" firstAttribute="top" secondItem="l1r-UB-hVT" secondAttribute="top" id="pdw-rD-9oO"/>
+                    <constraint firstItem="hKv-dl-vlh" firstAttribute="leading" secondItem="l1r-UB-hVT" secondAttribute="leading" constant="20" id="zK0-Cp-pFi"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="7Hv-Ew-tBA"/>
+            <point key="canvasLocation" x="-1308" y="-82"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="icon_arrow_right" width="24" height="24"/>
+    </resources>
+</document>

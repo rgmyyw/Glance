@@ -1,8 +1,8 @@
 //
-//  ShoppingCartCellViewModel.swift
+//  ComparePriceCellViewModel.swift
 //  Glance
 //
-//  Created by yanghai on 2020/7/18.
+//  Created by yanghai on 2020/7/20.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ShoppingCartCellViewModel: CellViewModelProtocol  {
+class ComparePriceCellViewModel: CellViewModelProtocol  {
 
     let item : ShoppingCart
     let imageURL = BehaviorRelay<URL?>(value: nil)

@@ -41,9 +41,7 @@ class ShoppingCartViewController: TableViewController {
             .drive(tableView.rx.items(cellIdentifier: ShoppingCartCell.reuseIdentifier, cellType: ShoppingCartCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
-        
-        
-        
+                
 
         output.delete.subscribe(onNext: { [weak self]cellViewModel in
             guard let self = self else { return }
@@ -56,6 +54,13 @@ class ShoppingCartViewController: TableViewController {
             }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
+        output.comparePrice
+            .subscribe(onNext: { [weak self](item) in
+                let viewModel = ComparePriceViewModel(provider: viewModel.provider)
+                self?.navigator.show(segue: .comparePrice(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
+        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
         viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)

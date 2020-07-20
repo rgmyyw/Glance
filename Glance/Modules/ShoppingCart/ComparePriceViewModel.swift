@@ -1,8 +1,8 @@
 //
-//  NoticeViewModel.swift
+//  ComparePriceViewModel.swift
 //  Glance
 //
-//  Created by yanghai on 2020/7/3.
+//  Created by yanghai on 2020/7/20.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
@@ -10,21 +10,19 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class ShoppingCartViewModel: ViewModel, ViewModelType {
+class ComparePriceViewModel: ViewModel, ViewModelType {
         
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<ShoppingCartCellViewModel>
-
     }
 
     struct Output {
         let items : Driver<[ShoppingCartCellViewModel]>
-        let delete : Observable<ShoppingCartCellViewModel>
-        let comparePrice : Observable<ShoppingCart>
+
     }
-    
+    //ComparePriceCellViewModel
     let element : BehaviorRelay<PageMapable<ShoppingCart>> = BehaviorRelay(value: PageMapable<ShoppingCart>())
     let confirmDelete = PublishSubject<ShoppingCartCellViewModel>()
     
@@ -32,8 +30,6 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[ShoppingCartCellViewModel]>(value: [])
-        let delete = PublishSubject<ShoppingCartCellViewModel>()
-        let comparePrice = PublishSubject<ShoppingCart>()
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<ShoppingCart>>)> in
@@ -88,8 +84,6 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         element.map { items -> [ShoppingCartCellViewModel] in
             return items.list.map { item -> ShoppingCartCellViewModel  in
                 let viewModel = ShoppingCartCellViewModel(item: item)
-                viewModel.delete.map { viewModel}.bind(to: delete).disposed(by: self.rx.disposeBag)
-                viewModel.comparePrice.map { viewModel.item }.bind(to: comparePrice).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
         }.bind(to: elements).disposed(by: rx.disposeBag)
@@ -103,13 +97,12 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                     .trackActivity(self.loading)
                     .map { (cellViewModel,$0)}
                     .materialize()
-            }).subscribe(onNext: { [weak self] event in
+            }).subscribe(onNext: { event in
                 switch event {
                 case .next(let (cellViewModel, result)):
                     var items = elements.value
                     items.removeFirst(where: { $0.item == cellViewModel.item})
                     elements.accept(items)
-                    self?.message.onNext(.init("Product has been removed"))
                 default:
                     break
                 }
@@ -122,6 +115,6 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
 //            saved.onNext(())
 //        }).disposed(by: rx.disposeBag)
                 
-        return Output(items: elements.asDriver(onErrorJustReturn: []), delete: delete.asObservable(), comparePrice: comparePrice.asObservable())
+        return Output(items: elements.asDriver(onErrorJustReturn: []))
     }
 }

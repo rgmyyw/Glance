@@ -149,7 +149,7 @@
                 <outlet property="typeImageView" destination="c0r-cN-jxg" id="CcS-Lv-syX"/>
                 <outlet property="userImageView" destination="m6j-pd-ZQ9" id="sfQ-Ip-9FH"/>
             </connections>
-            <point key="canvasLocation" x="-1075" y="-109"/>
+            <point key="canvasLocation" x="-1075.3623188405797" y="-109.15178571428571"/>
         </tableViewCell>
     </objects>
     <resources>

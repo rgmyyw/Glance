@@ -158,6 +158,7 @@
             <connections>
                 <outlet property="bgView" destination="zjV-gK-J0P" id="zWS-av-X4d"/>
                 <outlet property="brandLabel" destination="YlX-OL-JL7" id="VSj-7x-jXW"/>
+                <outlet property="comparePriceButton" destination="SCS-aA-72x" id="9n1-z7-Hjy"/>
                 <outlet property="deleteButton" destination="QM0-qh-2qO" id="FQd-vV-bHx"/>
                 <outlet property="priceLabel" destination="QPO-D1-NzD" id="VD6-Xh-XaN"/>
                 <outlet property="productImageView" destination="Nrx-cq-tHF" id="pQO-xq-oSB"/>
