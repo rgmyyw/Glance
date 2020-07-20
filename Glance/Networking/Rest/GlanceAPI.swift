@@ -46,6 +46,7 @@ enum GlanceAPI {
     case postDetail(postId : Int)
     case shoppingCartDelete(productId : String)
     case like(id : Any, type : Int, state : Bool)
+    case savedCllectionClassify
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -113,6 +114,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/shoppingCart/\(pageNum)/\(10)"
         case .shoppingCartDelete(let productId):
             return "/api/shoppingCart/\(productId)"
+        case .savedCllectionClassify:
+            return "/api/users/saved/classify"
         }
     }
     
@@ -130,7 +133,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .reactions,
              .postDetail,
              .notifications,
-             .shoppingCart:
+             .shoppingCart,
+             .savedCllectionClassify:
             return .get
         case .modifyProfile:
             return .put

@@ -156,6 +156,8 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
         
 //        print(fixedWidth)
 //
+        
+        
         switch dataSouce.sectionModels[indexPath.section] {
         case .similar:
             return collectionView.ar_sizeForCell(withIdentifier: "PostsDetailCell2", indexPath: indexPath, fixedHeight: 200) { (cell) in

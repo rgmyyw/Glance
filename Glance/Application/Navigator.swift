@@ -42,6 +42,8 @@ class Navigator {
         case dynamicDetail(viewModel : PostsDetailViewModel)
         case shoppingCart(viewModel : ShoppingCartViewModel)
         case comparePrice(viewModel : ComparePriceViewModel)
+        case savedCollectionClassify(viewModel : SavedCollectionClassifyViewModel)
+        case savedCollection(viewModel : SavedCollectionViewModel)
     }
     
     enum Transition {
@@ -110,6 +112,12 @@ class Navigator {
             return vc
         case .comparePrice(let viewModel):
             let vc = ComparePriceViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .savedCollectionClassify(let viewModel):
+            let vc = SavedCollectionClassifyViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .savedCollection(let viewModel):
+            let vc = SavedCollectionViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

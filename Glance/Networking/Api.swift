@@ -46,6 +46,8 @@ protocol API {
     func shoppingCartDelete(productId : String) -> Single<Bool>
     func collect(id : Any, type : Int, state : Bool) -> Single<Bool>
     func like(id : Any, type : Int, state : Bool) -> Single<Bool>
+    func savedCllectionClassify() -> Single<SavedCollection>
+    
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

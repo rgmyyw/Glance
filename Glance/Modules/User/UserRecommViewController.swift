@@ -28,6 +28,7 @@ class UserRecommViewController: CollectionViewController  {
         layout.columnCount = 2
         layout.delegate = self
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+        layout.minimumLineSpacing = 20
         
         collectionView.headRefreshControl = nil
         collectionView.collectionViewLayout = layout

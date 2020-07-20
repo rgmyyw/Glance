@@ -115,6 +115,9 @@ class RestApi: API {
         return requestObject(.shoppingCartDelete(productId: productId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
+    func savedCllectionClassify() -> Single<SavedCollection> {
+        return requestObject(.savedCllectionClassify, type: SavedCollection.self)
+    }
     
     let ibexProvider: IbexNetworking
     
