@@ -88,9 +88,8 @@ target 'Glance' do
   
   pod 'CryptoSwift' , '~> 1.3.1'
   
-  
-  
-  
+ 
+ 
 end
 
 post_install do |installer|

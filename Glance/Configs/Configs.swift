@@ -9,24 +9,7 @@
 import UIKit
 
 enum Keys {
-    case wechat
-    
-    var apiKey: String {
-        switch self {
-        case .wechat: return ""
-        default:
-            return ""
-        }
-    }
-    
-    var appId: String {
-        switch self {
-        case .wechat: return ""
-        default:
-            return ""
-        }
-    }
-    
+
     struct Instagram  {
         static let kIssuer = "https://glance-dev-api.belive.sg/auth/realms/glance"
         static let kClientID = "glance-app"

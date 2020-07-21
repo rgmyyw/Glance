@@ -10,11 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 enum SignInType {
     case instagram
 }
-
 
 class SignInViewController: UIViewController {
         

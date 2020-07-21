@@ -19,14 +19,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     var window: UIWindow?
-    
-    var currentAuthorizationFlow : OIDExternalUserAgentSession?
-    
-    
+        
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
         UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-
+        
         let libsManager = LibsManager.shared
         libsManager.setupLibs(with: window)
         AppearanceManager.shared.setup()
@@ -45,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-        if let authorizationFlow = self.currentAuthorizationFlow, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
-            self.currentAuthorizationFlow = nil
+        if let authorizationFlow = OAuthManager.shared.currentAuthorizationFlow.value, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
+            OAuthManager.shared.currentAuthorizationFlow.accept(nil)
             return true
         }
         return true

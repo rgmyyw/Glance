@@ -11,6 +11,7 @@ import KeychainAccess
 import ObjectMapper
 import RxSwift
 import RxCocoa
+import AppAuth
 
 let loggedIn = BehaviorRelay<Bool>(value: false)
 
@@ -21,7 +22,9 @@ class AuthManager {
     // MARK: - Properties
     fileprivate let tokenKey = "TokenKey"
     fileprivate let keychain = Keychain(service: Configs.App.bundleIdentifier)
-
+    
+    let currentAuthorizationFlow = BehaviorRelay<OIDExternalUserAgentSession?>(value: nil)
+    
     let tokenChanged = PublishSubject<Token?>()
 
     init() {
@@ -59,4 +62,30 @@ class AuthManager {
     class func tokenValidated() {
         AuthManager.shared.token?.isValid = true
     }
+    
+    /// 获取到  账户信息  isLogin:是否来源于登录
+//    func handleAccount(accessToken: String, isLogin: Bool) -> (){
+//        
+//        print("accessToken \(accessToken) , isLogin \(isLogin)")
+//        guard accessToken.count > 0 else {
+//            return
+//        }
+//        
+//        
+////        // 1. 更新账户token信息
+////        let userInfoModel  = UserInfoSingleCase.shared
+////        userInfoModel.updateTokenInfo(accessToken)
+////
+////        // 2. 持久化
+////        if let accessToken = userInfoModel._accessToken{
+////            String.PreferencesSave(key: kAccount_accessToken, valueStr: accessToken)
+////            String.PreferencesSave(key: kAccount_User_login, valueStr: "1")
+////        }
+////
+////        if isLogin { // 来源于登录
+////            getUserInfoFirstly()
+////        }
+//    }
+//
+    
 }

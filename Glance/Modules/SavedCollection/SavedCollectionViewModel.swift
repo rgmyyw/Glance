@@ -126,12 +126,13 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                 .map { (cellViewModel, $0)}
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
-            guard let self = self else { return }
             switch event {
             case .next(let (cellViewModel,result)):
-                var section = elements.value[0]
-                section.items.removeFirst(where: { $0.item == cellViewModel.item})
-                elements.accept([section])
+                if !result {
+                    var section = elements.value[0]
+                    section.items.removeFirst(where: { $0.item == cellViewModel.item})
+                    elements.accept([section])
+                }
             default:
                 break
             }

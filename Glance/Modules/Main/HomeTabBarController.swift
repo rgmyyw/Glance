@@ -96,6 +96,8 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
     var viewModel: HomeTabBarViewModel?
     var navigator: Navigator!
     let popView = PublishPopView.loadFromNib()
+    let message = PublishSubject<Message>()
+    
     
     init(viewModel: ViewModel?, navigator: Navigator) {
         self.viewModel = viewModel as? HomeTabBarViewModel
@@ -156,7 +158,8 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
             .bind({ $0.global }, to: tabBar.rx.barTintColor)
             .disposed(by: rx.disposeBag)
         
-        themeService.typeStream.delay(DispatchTimeInterval.milliseconds(700), scheduler: MainScheduler.instance)
+        themeService.typeStream
+            .delay(DispatchTimeInterval.milliseconds(700), scheduler: MainScheduler.instance)
             .subscribe(onNext: { (theme) in
                 switch theme {
                 case .light:
@@ -164,15 +167,19 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
                 }
             }).disposed(by: rx.disposeBag)
         
+        viewModel?.message.bind(to: message).disposed(by: rx.disposeBag)
         
-        
-        
+        message.subscribe(onNext: {[weak self] message in
+            
+            self?.view.makeToast(message.subTitle,position: .center, title: message.title,style: message.style )
+        }).disposed(by: rx.disposeBag)
+
     }
     
-   
+    
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-
+        
         if viewController.isKind(of: DemoViewController.self) {
             popView.addAnimate()
             return false
@@ -198,7 +205,9 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
         }).disposed(by: rx.disposeBag)
         
         output.signUp.drive(onNext: {[weak self] () in
-            self?.navigator.show(segue: .signIn, sender: self, transition: .popDialog)
+            //            self?.navigator.show(segue: .signIn, sender: self, transition: .popDialog)
+            OAuthManager.shared.instagramOAuth(presenting: self)
+            
         }).disposed(by: rx.disposeBag)
         
     }
