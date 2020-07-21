@@ -25,7 +25,6 @@ private let assetDir: URL = {
 enum GlanceAPI {
     case download(url: URL, fileName: String?)
     case getHome(page : Int)
-    case collect(id : Any, type : Int, state : Bool)
     case userDetail(userId : String)
     case modifyProfile(data : [String : Any])
     case uploadImage(type: Int, data : Data)
@@ -46,7 +45,10 @@ enum GlanceAPI {
     case postDetail(postId : Int)
     case shoppingCartDelete(productId : String)
     case like(id : Any, type : Int, state : Bool)
+    case saveCollection(id : Any, type : Int, state : Bool)
     case savedCllectionClassify
+    case savedCollection(pageNum : Int)
+
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -65,7 +67,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .download: return ""
         case .getHome(let page):
             return "/api/home/v2/\(page)/\(10)"
-        case .collect:
+        case .saveCollection:
             return "/api/saved"
         case .userDetail:
             return "/api/users/detail"
@@ -116,12 +118,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/shoppingCart/\(productId)"
         case .savedCllectionClassify:
             return "/api/users/saved/classify"
+        case .savedCollection(let pageNum):
+            return "/api/users/saved/lists/\(pageNum)/\(10)"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .collect,.like,.uploadImage,.block,.follow:
+        case .saveCollection,.like,.uploadImage,.block,.follow:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -179,7 +183,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
     var parameters: [String: Any]? {
         var params: [String: Any] = [:]
         switch self {
-        case .collect(let id, let type, let state):
+        case .saveCollection(let id, let type, let state):
             params["updateSaved"] = state.int
             params["type"] = type
             switch type {

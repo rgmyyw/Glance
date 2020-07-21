@@ -101,7 +101,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 let state = !cellViewModel.saved.value
-                return self.provider.collect(id: item.postId, type: HomeCellType.post.rawValue, state: state)
+                return self.provider.saveCollection(id: item.id, type: item.type.rawValue, state: state)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .map { (cellViewModel, $0)}
@@ -121,7 +121,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(PostsDetailCellViewModel,Bool)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 let state = !cellViewModel.saved.value
-                return self.provider.collect(id: cellViewModel.item.imName ?? "", type: HomeCellType.product.rawValue, state: state)
+                return self.provider.saveCollection(id: cellViewModel.item.imName ?? "", type: HomeCellType.product.rawValue, state: state)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .map { (cellViewModel, $0)}

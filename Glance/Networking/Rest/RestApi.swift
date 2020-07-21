@@ -94,10 +94,6 @@ class RestApi: API {
         
     }
     
-    func collect(id: Any, type: Int, state: Bool) -> Single<Bool> {
-        return requestObject(.collect(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
-    }
-    
     func like(id: Any, type: Int, state: Bool) -> Single<Bool> {
         return requestObject(.like(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
@@ -115,9 +111,23 @@ class RestApi: API {
         return requestObject(.shoppingCartDelete(productId: productId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
-    func savedCllectionClassify() -> Single<SavedCollection> {
+    func savedCollectionClassify() -> Single<SavedCollection> {
         return requestObject(.savedCllectionClassify, type: SavedCollection.self)
     }
+    
+    func savedCollection(pageNum: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.savedCollection(pageNum: pageNum), type: PageMapable<Home>.self)
+    }
+    
+    /// 收藏 : 返回值，是对这个id 操作最终的结果，取消还是进行收藏
+    /// - Parameters:
+    ///   - id: id
+    ///   - type: 类型 post,product, recommend post, recommend product
+    ///   - state: 收藏状态, false 是取消收藏 , true 收藏
+    func saveCollection(id: Any, type: Int, state: Bool) -> Single<Bool> {
+        return requestObject(.saveCollection(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+    
     
     let ibexProvider: IbexNetworking
     

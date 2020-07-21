@@ -44,10 +44,12 @@ protocol API {
     func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
-    func collect(id : Any, type : Int, state : Bool) -> Single<Bool>
     func like(id : Any, type : Int, state : Bool) -> Single<Bool>
-    func savedCllectionClassify() -> Single<SavedCollection>
-    
+    func saveCollection(id : Any, type : Int, state : Bool) -> Single<Bool>
+    func savedCollection(pageNum : Int) ->  Single<PageMapable<Home>>
+    func savedCollectionClassify() -> Single<SavedCollection>
+
+
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

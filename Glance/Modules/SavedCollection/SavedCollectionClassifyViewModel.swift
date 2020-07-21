@@ -31,7 +31,7 @@ class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
         Observable.just(())
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<SavedCollection>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.savedCllectionClassify()
+                return self.provider.savedCollectionClassify()
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()

@@ -26,15 +26,8 @@ class SavedCollectionCell: CollectionViewCell {
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.deleteButtonHidden.bind(to: deleteButton.rx.isHidden).disposed(by: cellDisposeBag)
-                
-        viewModel.imageURL.subscribe(onNext: { [weak self]url in
-            guard let url = url else { return }
+        deleteButton.rx.tap.bind(to: viewModel.delete).disposed(by: cellDisposeBag)
         
-//            self?.imageView.kf.setImage(with: resource, placeholder: UIImage(), options: nil, progressBlock: nil) { (result) in
-//
-//            }
-
-        }).disposed(by: cellDisposeBag)
     }
 
 }

@@ -30,7 +30,7 @@ enum HomeCellType : Int {
     }
 }
 
-struct Home: Mappable {
+struct Home: Mappable, Equatable {
     
     var saved: Bool = false
     var user: User?
@@ -41,10 +41,19 @@ struct Home: Mappable {
     
     var postId: Int = 0
     var recommendId: Int = 0
-    var productId: Int = 0
+    var productId: String?
     
     var productUrl: String?
     var reaction: Int = 0
+    
+    var id : Any {
+        switch type {
+        case .post,.recommendPost:
+            return postId
+        case .product,.recommendProduct:
+            return productId ?? ""
+        }
+    }
     
 
     init?(map: Map) {}
@@ -61,6 +70,17 @@ struct Home: Mappable {
         productUrl   <- map["productUrl"]
         reaction   <- map["reaction"]
     }
+    
+    static func == (lhs: Home, rhs: Home) -> Bool {
+        if lhs.type != rhs.type { return false }
+        switch lhs.type {
+        case .post,.recommendPost:
+            return lhs.postId == rhs.postId
+        case .product,.recommendProduct:
+            return lhs.productId == lhs.productId
+        }
+    }
+    
 }
 
 //
