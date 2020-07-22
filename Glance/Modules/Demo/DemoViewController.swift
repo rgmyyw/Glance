@@ -15,7 +15,10 @@ class DemoViewController: ViewController {
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
         
-        needSignUp.onNext(())
+        let viewModel = InterestViewModel(provider: self.viewModel!.provider)
+        self.navigator.show(segue: .interest(viewModel: viewModel), sender: self)
+        
+        //needSignUp.onNext(())
     }
        
     override func makeUI() {

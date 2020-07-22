@@ -48,6 +48,8 @@ enum GlanceAPI {
     case saveCollection(id : Any, type : Int, state : Bool)
     case savedCllectionClassify
     case savedCollection(pageNum : Int)
+    case interest(level : Int)
+    case updateUserInterest(ids : String)
 
 }
 
@@ -120,12 +122,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/saved/classify"
         case .savedCollection(let pageNum):
             return "/api/users/saved/lists/\(pageNum)/\(10)"
+        case .interest:
+            return "/api/interests/lists"
+        case .updateUserInterest:
+            return "/api/users/interests"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveCollection,.like,.uploadImage,.block,.follow:
+        case .saveCollection,.like,.uploadImage,.block,.follow,.updateUserInterest:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -138,7 +144,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .postDetail,
              .notifications,
              .shoppingCart,
-             .savedCllectionClassify:
+             .savedCllectionClassify,
+             .interest:
             return .get
         case .modifyProfile:
             return .put
@@ -237,6 +244,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["recommendId"] = recommendId
         case .postDetail(let postId):
             params["id"] = postId
+        case .interest(let level):
+            params["level"] = level
+        case .updateUserInterest(let ids):
+            params["ids"] = ids
         default:
             break
         }

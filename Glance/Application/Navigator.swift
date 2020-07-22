@@ -44,6 +44,7 @@ class Navigator {
         case comparePrice(viewModel : ComparePriceViewModel)
         case savedCollectionClassify(viewModel : SavedCollectionClassifyViewModel)
         case savedCollection(viewModel : SavedCollectionViewModel)
+        case interest(viewModel : InterestViewModel)
     }
     
     enum Transition {
@@ -118,6 +119,9 @@ class Navigator {
             return vc
         case .savedCollection(let viewModel):
             let vc = SavedCollectionViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .interest(let viewModel):
+            let vc = InterestViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

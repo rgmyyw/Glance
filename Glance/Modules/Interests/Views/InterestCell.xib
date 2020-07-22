@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="InterestCell" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="205" height="136"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="205" height="136"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uzn-je-qKm">
+                        <rect key="frame" x="0.0" y="0.0" width="205" height="136"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="zGP-cC-y2h">
+                                <rect key="frame" x="0.0" y="0.0" width="205" height="136"/>
+                            </imageView>
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sie-dB-x61">
+                                <rect key="frame" x="176" y="5" width="24" height="24"/>
+                                <state key="normal" image="icon_cell_unselect_large"/>
+                                <state key="selected" image="icon_cell_select_large"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bjm-jS-mKR">
+                                <rect key="frame" x="10" y="113" width="34" height="15"/>
+                                <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="13"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="zGP-cC-y2h" secondAttribute="trailing" id="3lH-sa-zoE"/>
+                            <constraint firstItem="Sie-dB-x61" firstAttribute="top" secondItem="Uzn-je-qKm" secondAttribute="top" constant="5" id="DK8-07-Zjb"/>
+                            <constraint firstAttribute="trailing" secondItem="Sie-dB-x61" secondAttribute="trailing" constant="5" id="HVi-HK-mIS"/>
+                            <constraint firstItem="bjm-jS-mKR" firstAttribute="leading" secondItem="Uzn-je-qKm" secondAttribute="leading" constant="10" id="Lkb-Vz-FAK"/>
+                            <constraint firstAttribute="bottom" secondItem="bjm-jS-mKR" secondAttribute="bottom" constant="8" id="PWe-qk-UMm"/>
+                            <constraint firstItem="zGP-cC-y2h" firstAttribute="leading" secondItem="Uzn-je-qKm" secondAttribute="leading" id="Rcr-sc-aNp"/>
+                            <constraint firstItem="zGP-cC-y2h" firstAttribute="top" secondItem="Uzn-je-qKm" secondAttribute="top" id="dac-YJ-Qqe"/>
+                            <constraint firstAttribute="bottom" secondItem="zGP-cC-y2h" secondAttribute="bottom" id="rQf-JX-Zc1"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="7"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="Uzn-je-qKm" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="5iA-Jk-K7U"/>
+                <constraint firstAttribute="trailing" secondItem="Uzn-je-qKm" secondAttribute="trailing" id="7ol-7d-KbO"/>
+                <constraint firstItem="Uzn-je-qKm" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Wbx-aF-oKn"/>
+                <constraint firstAttribute="bottom" secondItem="Uzn-je-qKm" secondAttribute="bottom" id="mxt-Ub-Go5"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="205" height="136"/>
+            <connections>
+                <outlet property="bgView" destination="Uzn-je-qKm" id="Tg6-7b-pgg"/>
+                <outlet property="imageView" destination="zGP-cC-y2h" id="Nd9-Kh-TUw"/>
+                <outlet property="selectButton" destination="Sie-dB-x61" id="1uN-wK-ARF"/>
+                <outlet property="titleLabel" destination="bjm-jS-mKR" id="GiH-Zq-qJs"/>
+            </connections>
+            <point key="canvasLocation" x="-820" y="32"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="icon_cell_select_large" width="24" height="24"/>
+        <image name="icon_cell_unselect_large" width="24" height="24"/>
+    </resources>
+</document>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Bold.ttf">
+            <string>Roboto-Bold</string>
+        </array>
+        <array key="Roboto-Medium.ttf">
+            <string>Roboto-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="tEq-D3-W2Y" customClass="InterestNavigationBar" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="409" height="62"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hII-am-jFw">
+                    <rect key="frame" x="15" y="22" width="379" height="36"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T8V-Rx-vwU">
+                            <rect key="frame" x="299" y="0.0" width="80" height="36"/>
+                            <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="80" id="x23-Ue-17e"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Roboto-Medium" family="Roboto" pointSize="14"/>
+                            <state key="normal" title="Next">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="7"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" alpha="0.0" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Pick your interests" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3N8-R8-zeS">
+                            <rect key="frame" x="40" y="5.5" width="176.5" height="25"/>
+                            <fontDescription key="fontDescription" name="Roboto-Bold" family="Roboto" pointSize="21"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="T8V-Rx-vwU" secondAttribute="trailing" id="K4f-42-xX3"/>
+                        <constraint firstItem="3N8-R8-zeS" firstAttribute="centerY" secondItem="T8V-Rx-vwU" secondAttribute="centerY" id="NgZ-B8-N91"/>
+                        <constraint firstItem="T8V-Rx-vwU" firstAttribute="top" secondItem="hII-am-jFw" secondAttribute="top" id="ZDu-TH-O3T"/>
+                        <constraint firstAttribute="height" constant="36" id="Ztz-Ps-ff0"/>
+                        <constraint firstAttribute="bottom" secondItem="T8V-Rx-vwU" secondAttribute="bottom" id="rmf-LT-r55"/>
+                        <constraint firstItem="3N8-R8-zeS" firstAttribute="leading" secondItem="hII-am-jFw" secondAttribute="leading" constant="40" id="zz3-3Q-080"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="hII-am-jFw" secondAttribute="bottom" constant="4" id="KB0-ca-P1w"/>
+                <constraint firstItem="hII-am-jFw" firstAttribute="leading" secondItem="tEq-D3-W2Y" secondAttribute="leading" constant="15" id="Nmk-8a-smZ"/>
+                <constraint firstAttribute="trailing" secondItem="hII-am-jFw" secondAttribute="trailing" constant="15" id="nAC-Xd-1GW"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="bWj-79-G2x"/>
+            <connections>
+                <outlet property="nextButton" destination="T8V-Rx-vwU" id="g0Y-aR-IIp"/>
+                <outlet property="titleLabel" destination="3N8-R8-zeS" id="p22-NZ-K55"/>
+            </connections>
+            <point key="canvasLocation" x="-57" y="128"/>
+        </view>
+    </objects>
+</document>

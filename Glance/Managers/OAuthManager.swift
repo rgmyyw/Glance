@@ -129,7 +129,6 @@ extension OAuthManager {
                 return
             }
             
-            
             // builds authentication request
             let request = OIDAuthorizationRequest(configuration: configuration ,
                                                   clientId: kClientID,

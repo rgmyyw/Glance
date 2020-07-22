@@ -128,6 +128,13 @@ class RestApi: API {
         return requestObject(.saveCollection(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
+    func interest(level: Int) -> Single<[Interest]> {
+        return requestArray(.interest(level: level), type: Interest.self)
+    }
+    
+    func updateUserInterest(ids: String) -> Single<Bool> {
+        return requestObject(.updateUserInterest(ids: ids), type: MappableItem<Void>.self,keyPath: nil).map { $0.code == 200}
+    }
     
     let ibexProvider: IbexNetworking
     

@@ -48,7 +48,8 @@ protocol API {
     func saveCollection(id : Any, type : Int, state : Bool) -> Single<Bool>
     func savedCollection(pageNum : Int) ->  Single<PageMapable<Home>>
     func savedCollectionClassify() -> Single<SavedCollection>
-
+    func interest(level : Int) -> Single<[Interest]>
+    func updateUserInterest(ids : String) -> Single<Bool>
 
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
