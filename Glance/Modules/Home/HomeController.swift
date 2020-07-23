@@ -63,9 +63,13 @@ class HomeController: CollectionViewController {
                 
         }).disposed(by: rx.disposeBag)
         
-        output.postDetail.subscribe(onNext: { (item) in
+        output.detail.drive(onNext: { (item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
-            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+            let controller = PostsDetailViewController(viewModel: viewModel, navigator: self.navigator)
+            self.navigationController?.pushViewController(controller, animated: true)
+//            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+            
+            
         }).disposed(by: rx.disposeBag)
 
         customNavigationBar.shoppingCartButton

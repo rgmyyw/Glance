@@ -24,7 +24,7 @@ class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let element = BehaviorRelay<SavedCollection?>(value: nil)
-        let total = element.filterNil().map { "\($0.savedCount)Saved"}.asDriver(onErrorJustReturn: "")
+        let total = element.filterNil().map { "\($0.savedCount) Saved"}.asDriver(onErrorJustReturn: "")
         let imagesURL = element.filterNil().map {  $0.imageList.map { Observable.just($0.url) } }.asDriver(onErrorJustReturn: [])
         
         

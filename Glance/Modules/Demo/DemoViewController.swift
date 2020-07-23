@@ -15,16 +15,14 @@ class DemoViewController: ViewController {
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
         
-        let viewModel = InterestViewModel(provider: self.viewModel!.provider)
-        self.navigator.show(segue: .interest(viewModel: viewModel), sender: self)
         
-        //needSignUp.onNext(())
+        needSignUp.onNext(())
     }
        
     override func makeUI() {
         super.makeUI()
         
-        navigationBar.title = "1123asdsa"
+        navigationBar.title = "Chat Inbox"
         stackView.addArrangedSubview(containerView)
     }
 

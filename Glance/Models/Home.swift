@@ -57,6 +57,7 @@ struct Home: Mappable, Equatable {
     
 
     init?(map: Map) {}
+    init() {}
 
     mutating func mapping(map: Map) {
         saved   <- map["saved"]

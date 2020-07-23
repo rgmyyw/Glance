@@ -73,7 +73,7 @@
                 <outlet property="nextButton" destination="T8V-Rx-vwU" id="g0Y-aR-IIp"/>
                 <outlet property="titleLabel" destination="3N8-R8-zeS" id="p22-NZ-K55"/>
             </connections>
-            <point key="canvasLocation" x="-57" y="128"/>
+            <point key="canvasLocation" x="-567" y="28"/>
         </view>
     </objects>
 </document>

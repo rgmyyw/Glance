@@ -34,9 +34,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         item.postId = 77
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
+        
     }
-    
-    
     
     func transform(input: Input) -> Output {
         
@@ -50,13 +49,10 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let saveProduct = PublishSubject<PostsDetailCellViewModel>()
         let like = PublishSubject<PostsDetailSectionCellViewModel>()
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
-        
-
-        
-        item.map { $0.postId }
-            .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PostsDetail>)> in
+            
+        item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.postDetail(postId: id)
+                return self.provider.detail(id: item.id, type: item.type.rawValue)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .materialize()
@@ -69,18 +65,29 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
         
-        
-        element.map { element -> [PostsDetailSection] in
+                
+        Observable.combineLatest(element, item).map { (element , item) -> [PostsDetailSection] in
+            
             let viewModel = PostsDetailSectionCellViewModel(item: element)
             viewModel.save.map { viewModel}.bind(to: savePost).disposed(by: self.rx.disposeBag)
             viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
             viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
-            //            viewModel.height
-            //                .subscribe(onNext: { (height) in
-            //                    elements.accept(elements.value)
-            //            }).disposed(by: self.rx.disposeBag)
             
-            let head = PostsDetailSection.head(viewModel: viewModel)
+            
+            var sections : [PostsDetailSection]
+            let banner = PostsDetailSection.banner(viewModel: viewModel)
+            let price = PostsDetailSection.price(viewModel: viewModel)
+            let title = PostsDetailSection.title(viewModel: viewModel)
+            let tags = PostsDetailSection.tags(viewModel: viewModel)
+            let tool = PostsDetailSection.tool(viewModel: viewModel)
+            
+            switch item.type {
+            case .post,.recommendPost:
+                sections = [banner,title,tool]
+            case .product,.recommendProduct:
+                sections = [banner,price,title,tags,tool]
+            }
+
             let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in
                 let cellViewModel = PostsDetailCellViewModel(item: item)
                 return PostsDetailSectionItem.tagged(viewModel: cellViewModel)
@@ -93,7 +100,12 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             
             let tagged = PostsDetailSection.tagged(viewModel: "Tagged Products", items: taggedItems)
             let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
-            return [head,tagged,similar]
+            
+            
+            sections.append(tagged)
+            sections.append(similar)
+            
+            return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         
@@ -154,11 +166,6 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
 
-        
-        
-        
-        
-        
         return Output(items: elements.asDriver(onErrorJustReturn: []), userImageURL: userImageURL,userName: userName,time : time)
     }
 }

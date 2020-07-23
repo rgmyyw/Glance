@@ -54,7 +54,10 @@ target 'Glance' do
   pod 'FloatingPanel', '~> 1.0'
   pod 'DNSPageView' , '~> 1.5.0'
   pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
-  pod 'UICollectionView-ARDynamicHeightLayoutCell' , '~>  1.0.2'
+  pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.6'
+  
+#  pod 'UICollectionView-ARDynamicHeightLayoutCell'
+
   pod 'FDFullscreenPopGesture' , '~> 1.1'
   pod 'FSPagerView' , '~> 0.8.3'
   pod 'SDCAlertView' , '~> 11.1.2'
@@ -67,6 +70,8 @@ target 'Glance' do
   pod 'ZLPhotoBrowser' , '~> 3.2.0'
   pod 'SwipeCellKit' , '~> 2.7.1'
   pod 'XHWebImageAutoSize' , '~> 1.1.2'
+  pod 'JXBanner'
+
    
   
   

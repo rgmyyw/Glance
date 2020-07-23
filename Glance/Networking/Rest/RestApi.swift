@@ -23,7 +23,6 @@ enum ApiError: Error {
 
 class RestApi: API {
     
-    
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
@@ -89,8 +88,8 @@ class RestApi: API {
         return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
     }
     
-    func postDetail(postId: Int) -> Single<PostsDetail> {
-        return requestObject(.postDetail(postId: postId), type: PostsDetail.self)
+    func detail(id: Any, type: Int) -> Single<PostsDetail> {
+        return requestObject(.detail(id: id, type : type), type: PostsDetail.self)
         
     }
     

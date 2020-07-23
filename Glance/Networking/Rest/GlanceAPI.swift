@@ -42,7 +42,7 @@ enum GlanceAPI {
     case reactions(recommendId : Int,pageNum : Int)
     case notifications(page : Int)
     case shoppingCart(pageNum : Int)
-    case postDetail(postId : Int)
+    case detail(id : Any, type : Int)
     case shoppingCartDelete(productId : String)
     case like(id : Any, type : Int, state : Bool)
     case saveCollection(id : Any, type : Int, state : Bool)
@@ -108,8 +108,15 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/insights/recommends/detail"
         case .reactions(_, let pageNum):
             return "/api/users/insights/recommended/reactions/users/\(pageNum)/\(10)"
-        case .postDetail:
-            return "/api/posts/detail"
+        case .detail(_, let type):
+            switch type {
+            case 0,2:
+                return "/api/posts/detail"
+            case 1,3:
+                return "/api/products/detail"
+            default:
+                fatalError()
+            }
         case .notifications(let pageNum):
             return "/api/notifications/\(pageNum)/\(10)"
         case .like:
@@ -141,7 +148,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .insightsPostDetail,
              .insightsRecommendDetail,
              .reactions,
-             .postDetail,
+             .detail,
              .notifications,
              .shoppingCart,
              .savedCllectionClassify,
@@ -242,12 +249,19 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["recommendsId"] = recommendId
         case .reactions(let recommendId, _):
             params["recommendId"] = recommendId
-        case .postDetail(let postId):
-            params["id"] = postId
         case .interest(let level):
             params["level"] = level
         case .updateUserInterest(let ids):
             params["ids"] = ids
+        case .detail(let id, let type):
+            switch type {
+            case 0,2:
+                params["id"] = id
+            case 1,3:
+                params["productId"] = id
+            default:
+                break
+            }
         default:
             break
         }

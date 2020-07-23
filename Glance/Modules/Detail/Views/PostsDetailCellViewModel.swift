@@ -54,6 +54,8 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let recommend = PublishSubject<Void>()
     
     
+    
+    
     required init(item : PostsDetail) {
         self.item = item
         
@@ -61,8 +63,9 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
         userImageURL.accept(item.userImage?.url)
         userName.accept(item.displayName)
         postImageURL.accept(item.postImage?.url)
-        postTitle.accept(item.title)
-        
+//        postTitle.accept(item.title)
+        postTitle.accept(String.random(ofLength: Int.random(in: 50...100)))
+
         saved.accept(item.saved)
         liked.accept(item.liked)
         recommended.accept(item.recommended)

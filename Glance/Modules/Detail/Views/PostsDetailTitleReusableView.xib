@@ -11,14 +11,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="PostsDetailTitleReusableView" customModule="Glance" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-hH-PqU">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="50"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="100"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb8-gL-RLn">
-                            <rect key="frame" x="20" y="16.5" width="31" height="17.5"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb8-gL-RLn">
+                            <rect key="frame" x="20" y="15" width="280" height="85"/>
                             <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -26,8 +26,10 @@
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
-                        <constraint firstItem="Kb8-gL-RLn" firstAttribute="centerY" secondItem="zNX-hH-PqU" secondAttribute="centerY" id="FQk-3A-YM2"/>
+                        <constraint firstAttribute="bottom" secondItem="Kb8-gL-RLn" secondAttribute="bottom" id="1Ug-wW-IW2"/>
                         <constraint firstItem="Kb8-gL-RLn" firstAttribute="leading" secondItem="zNX-hH-PqU" secondAttribute="leading" constant="20" id="FcM-im-kgx"/>
+                        <constraint firstItem="Kb8-gL-RLn" firstAttribute="top" secondItem="zNX-hH-PqU" secondAttribute="top" constant="15" id="oht-qd-Zop"/>
+                        <constraint firstAttribute="trailing" secondItem="Kb8-gL-RLn" secondAttribute="trailing" constant="20" id="uUE-bw-OeU"/>
                     </constraints>
                 </view>
             </subviews>
@@ -39,9 +41,10 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
+                <outlet property="bgView" destination="zNX-hH-PqU" id="dsF-bI-GDk"/>
                 <outlet property="titleLabel" destination="Kb8-gL-RLn" id="1rK-RF-HdW"/>
             </connections>
-            <point key="canvasLocation" x="132" y="154"/>
+            <point key="canvasLocation" x="-946.37681159420299" y="-29.464285714285712"/>
         </collectionReusableView>
     </objects>
 </document>

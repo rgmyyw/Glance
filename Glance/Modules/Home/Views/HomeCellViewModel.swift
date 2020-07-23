@@ -36,6 +36,10 @@ class HomeCellViewModel : CellViewModelProtocol {
         
         typeName.accept(item.type.title)
         
+        var item = item
+        item.image = "https://img14.360buyimg.com/n0/jfs/t1/114746/7/9219/113962/5ed8dc5aEb58f859d/623d77ec2b96bfee.jpg"
+        item.productUrl = item.image
+        
         switch item.type {
         case .post:
             userName.accept(item.user?.displayName)
@@ -64,7 +68,7 @@ class HomeCellViewModel : CellViewModelProtocol {
             userHidden.accept(false)
             userOnline.accept(item.user?.loginStatus ?? false)
             emojiButtonHidden.accept(false)
-            isFavorite.accept(item.saved ?? false)
+            isFavorite.accept(item.saved)
             recommendButtonHidden.accept(true)
         }
     }

@@ -1,0 +1,110 @@
+//
+//  PostsDetailBannerReusableView.swift
+//  Glance
+//
+//  Created by yanghai on 2020/7/22.
+//  Copyright © 2020 yanghai. All rights reserved.
+//
+
+import UIKit
+import JXBanner
+import JXPageControl
+import RxSwift
+import RxCocoa
+
+
+class PostsDetailBannerReusableView: CollectionReusableView {
+    
+    @IBOutlet weak var banner: JXBanner!
+    
+    let items = BehaviorRelay<[String]>(value: (0...10).map { "\($0).jpg" })
+    
+    override func makeUI() {
+        super.makeUI()
+        
+        banner.placeholderImgView.image = UIImage(named: "banner_placeholder")
+        banner.delegate = self
+        banner.dataSource = self
+    }
+}
+
+//MARK:- JXBannerDataSource
+extension PostsDetailBannerReusableView: JXBannerDataSource {
+    
+    func jxBanner(_ banner: JXBannerType)
+        -> (JXBannerCellRegister) {
+            return JXBannerCellRegister(type: JXBannerCell.self,
+                                        reuseIdentifier: "JXBannerCell")
+    }
+    
+    func jxBanner(numberOfItems banner: JXBannerType)
+        -> Int { return items.value.count }
+    
+    func jxBanner(_ banner: JXBannerType,
+                  cellForItemAt index: Int,
+                  cell: UICollectionViewCell)
+        -> UICollectionViewCell {
+            let tempCell = cell as! JXBannerCell
+            tempCell.msgBgView.isHidden = true
+            tempCell.imageView.image = UIImage(named: items.value[index])
+//            tempCell.imageView.contentMode = .scaleAspectFill
+            return tempCell
+    }
+    
+    func jxBanner(_ banner: JXBannerType, layoutParams: JXBannerLayoutParams) -> JXBannerLayoutParams {
+        
+        layoutParams.itemSize = CGSize(width: UIScreen.width, height: height)
+        layoutParams.itemSpacing = 0
+        //        layoutParams.maximumAngle = 0
+        //        layoutParams.minimumAlpha = 1
+        //        layoutParams.rateHorisonMargin = 1
+        //        layoutParams.rateOfChange = 0
+        //        layoutParams.layoutType = nil
+        return layoutParams
+    }
+    
+    func jxBanner(_ banner: JXBannerType, params: JXBannerParams) -> JXBannerParams {
+        params.timeInterval = 1.5
+        params.isAutoPlay = true
+        params.cycleWay = .forward
+        return params
+    }
+    
+    func jxBanner(pageControl banner: JXBannerType, numberOfPages: Int, coverView: UIView, builder: JXBannerPageControlBuilder) -> JXBannerPageControlBuilder {
+        let pageControl = JXPageControlScale()
+        pageControl.contentMode = .bottom
+        pageControl.activeSize = CGSize(width: 12, height: 5)
+        pageControl.inactiveSize = CGSize(width: 5, height: 5)
+        pageControl.activeColor = UIColor.primary()
+        pageControl.inactiveColor = UIColor.white.withAlphaComponent(0.3)
+        pageControl.columnSpacing = 0
+        pageControl.isAnimation = true
+        builder.pageControl = pageControl
+        builder.layout = {
+            pageControl.snp.makeConstraints { (maker) in
+                maker.left.right.equalTo(coverView)
+                maker.bottom.equalTo(coverView.snp.bottom).offset(-20)
+                maker.height.equalTo(28)
+            }
+        }
+        return builder
+
+    }
+
+}
+
+//MARK:- JXBannerDelegate
+extension PostsDetailBannerReusableView: JXBannerDelegate {
+    public func jxBanner(_ banner: JXBannerType,
+                         didSelectItemAt index: Int) {
+        //print(index)
+    }
+    
+    func jxBanner(_ banner: JXBannerType, center index: Int) {
+        //print(index)
+    }
+    
+
+}
+
+

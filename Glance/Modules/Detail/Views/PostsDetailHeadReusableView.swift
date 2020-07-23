@@ -21,10 +21,11 @@ class PostsDetailHeadReusableView: CollectionReusableView {
     @IBOutlet weak var bgView: UIView!
     
     
-    
-    
+
     override func makeUI() {
         super.makeUI()
+
+        self.autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
     
     override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {

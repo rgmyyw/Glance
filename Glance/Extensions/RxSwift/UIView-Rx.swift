@@ -70,11 +70,9 @@ extension Reactive where Base: NavigationBar {
     var title: Binder<String> {
         return Binder(self.base) { bar, title in
             bar.title = title
+            bar.layoutSubviews()
         }
     }
     
     
 }
-
-
-

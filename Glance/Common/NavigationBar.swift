@@ -16,24 +16,33 @@ class NavigationBar: View {
     
     private lazy var titleLabel : UILabel = {
         let titleLabel = UILabel()
-        titleLabel.numberOfLines = 0
+        titleLabel.numberOfLines = 1
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.titleBoldFont(18)
         titleLabel.textColor = UIColor.text()
         return titleLabel
     }()
     
+    
+    
+    
+    
     public var title : String? {
         didSet {
-
+            
+            titleLabel.text = title
+            
             /// 方案一: title 左对齐
-            /**
+            /// /**
             if titleLabel.superview == nil {
                 leftBarButtonItems.append(titleLabel)
-            }*/
-            titleLabel.text = title
+                layoutSubviews()
+            }
+            /// 方案二: title 居中对齐
+            /**
             titleLabel.sizeToFit()
             layoutSubviews()
+            */
         }
     }
     
@@ -86,45 +95,47 @@ class NavigationBar: View {
         
         backgroundColor = .white
         
-        addSubview(leftView)
+        
         addSubview(rightView)
-        addSubview(titleLabel)
+        addSubview(leftView)
         
         
         
         /// 方案一: title 左对齐
-        /**
+        // /**
+        
          leftView.snp.makeConstraints { (make) in
-         make.left.bottom.equalTo(self)
-         make.height.equalTo(44)
+             make.left.bottom.equalTo(self)
+             make.height.equalTo(44)
          }
          
          rightView.snp.makeConstraints { (make) in
-         make.bottom.right.equalTo(self)
-         make.height.equalTo(leftView.snp.height)
-         make.left.equalTo(leftView.snp.right)
-         make.width.equalTo(leftView.snp.width)
+             make.bottom.right.equalTo(self)
+             make.height.equalTo(leftView.snp.height)
+             make.left.equalTo(leftView.snp.right)
+             make.width.equalTo(leftView.snp.width)
          }
-         */
+         //*/
         
         /// 方案二: title 居中对齐
-        titleLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(self)
-            make.width.greaterThanOrEqualTo(40)
-            make.height.equalTo(44)
-            make.bottom.equalTo(snp.bottom).offset(-4)
-        }
-        leftView.snp.makeConstraints { (make) in
-            make.height.centerY.equalTo(titleLabel)
-            make.left.equalTo(self)
-            make.right.equalTo(titleLabel.snp.left)
-        }
-        
-        rightView.snp.makeConstraints { (make) in
-            make.height.centerY.equalTo(leftView)
-            make.right.equalTo(self)
-            make.left.equalTo(titleLabel.snp.right)
-        }
+//        addSubview(leftView)
+//        titleLabel.snp.makeConstraints { (make) in
+//            make.centerX.equalTo(self)
+//            make.width.greaterThanOrEqualTo(40)
+//            make.height.equalTo(44)
+//            make.bottom.equalTo(snp.bottom).offset(-4)
+//        }
+//        leftView.snp.makeConstraints { (make) in
+//            make.height.centerY.equalTo(titleLabel)
+//            make.left.equalTo(self)
+//            make.right.equalTo(titleLabel.snp.left)
+//        }
+//
+//        rightView.snp.makeConstraints { (make) in
+//            make.height.centerY.equalTo(leftView)
+//            make.right.equalTo(self)
+//            make.left.equalTo(titleLabel.snp.right)
+//        }
         
         
     }

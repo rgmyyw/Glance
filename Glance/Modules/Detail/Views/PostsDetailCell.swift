@@ -22,6 +22,7 @@ class PostsDetailCell: CollectionViewCell {
     override func bind<T>(to viewModel: T) where T : PostsDetailCellViewModel {
         super.bind(to: viewModel)
         
+        
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveImageView.rx.isSelected).disposed(by: cellDisposeBag)
@@ -33,7 +34,9 @@ class PostsDetailCell: CollectionViewCell {
         super.makeUI()
         
 //        backgroundColor = .random
-        
+//        bgView.backgroundColor = .random        
+        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
         
         imageView.clipsToBounds = true
         clipsToBounds = false

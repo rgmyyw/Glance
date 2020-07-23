@@ -40,7 +40,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         let back = PublishSubject<Void>()
         let delete = PublishSubject<SavedCollectionCellViewModel>()
         
-        let navigationTitle = isEdit.map { $0 ? "Edit Collection" : "Saved Collection List" }.asDriver(onErrorJustReturn: "")
+        let navigationTitle = isEdit.map { $0 ? "Edit Collection" : "All" }.asDriver(onErrorJustReturn: "")
         let backButtonImage = isEdit.map { $0 ? R.image.icon_navigation_close() : R.image.icon_navigation_back_black() }.asDriver(onErrorJustReturn: nil)
         let editButtonImage = isEdit.map { $0 ? nil : R.image.icon_navigation_edit() }.asDriver(onErrorJustReturn: nil)
         let editButtonTitle = isEdit.map { $0 ? "DONE" : nil }.asDriver(onErrorJustReturn: "")

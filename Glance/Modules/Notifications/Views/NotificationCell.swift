@@ -27,7 +27,7 @@ class NotificationCell: TableViewCell {
         let color = UIColor(hex:0x828282)!.withAlphaComponent(0.2)
         let opacity : CGFloat = 1
         bgView.shadow(cornerRadius: 8, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 5)
-        
+        userImageView.backgroundColor = .random
     }
     
     override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {

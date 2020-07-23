@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="PostsDetailToolBarReusableView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="286" height="59"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JGx-IR-wdn">
+                    <rect key="frame" x="0.0" y="0.0" width="286" height="59"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="22" translatesAutoresizingMaskIntoConstraints="NO" id="ThW-zY-BA7">
+                            <rect key="frame" x="20" y="0.0" width="246" height="59"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GKU-rt-J4J">
+                                    <rect key="frame" x="0.0" y="0.0" width="25" height="59"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="qYb-Jh-7ap"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_dynamic_detail_recommend_normal"/>
+                                    <state key="selected" image="icon_dynamic_detail_recommend_selected"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Njp-zh-Kai">
+                                    <rect key="frame" x="47" y="0.0" width="25" height="59"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="vtu-sc-1e3"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_cell_like_normal"/>
+                                    <state key="selected" image="icon_cell_like_selected"/>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rTw-3p-xf0">
+                                    <rect key="frame" x="94" y="0.0" width="25" height="59"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="2Od-6e-KWc"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_navigation_share"/>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bdJ-OL-18l">
+                                    <rect key="frame" x="141" y="0.0" width="58" height="59"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l9Z-PR-AIh">
+                                    <rect key="frame" x="221" y="0.0" width="25" height="59"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="25" id="zxi-If-kTp"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_dynamic_detail_save"/>
+                                    <state key="selected" image="icon_dynamic_detail_saved"/>
+                                </button>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="ThW-zY-BA7" firstAttribute="top" secondItem="JGx-IR-wdn" secondAttribute="top" id="4Bd-bI-RhY"/>
+                        <constraint firstItem="ThW-zY-BA7" firstAttribute="leading" secondItem="JGx-IR-wdn" secondAttribute="leading" constant="20" id="5W6-G1-gkz"/>
+                        <constraint firstAttribute="bottom" secondItem="ThW-zY-BA7" secondAttribute="bottom" id="U7b-NY-6jc"/>
+                        <constraint firstAttribute="trailing" secondItem="ThW-zY-BA7" secondAttribute="trailing" constant="20" id="i3y-Ub-V8B"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="JGx-IR-wdn" secondAttribute="trailing" id="5Vz-gK-j0j"/>
+                <constraint firstAttribute="bottom" secondItem="JGx-IR-wdn" secondAttribute="bottom" id="V73-Bb-stp"/>
+                <constraint firstItem="JGx-IR-wdn" firstAttribute="leading" secondItem="U6b-Vx-4bR" secondAttribute="leading" id="h9X-id-DDd"/>
+                <constraint firstItem="JGx-IR-wdn" firstAttribute="top" secondItem="U6b-Vx-4bR" secondAttribute="top" id="kf0-Wm-wPb"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
+            <connections>
+                <outlet property="bgView" destination="JGx-IR-wdn" id="m12-TM-WyF"/>
+            </connections>
+            <point key="canvasLocation" x="107.24637681159422" y="142.96875"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="icon_cell_like_normal" width="21" height="19"/>
+        <image name="icon_cell_like_selected" width="21" height="19"/>
+        <image name="icon_dynamic_detail_recommend_normal" width="24" height="24"/>
+        <image name="icon_dynamic_detail_recommend_selected" width="23" height="22.5"/>
+        <image name="icon_dynamic_detail_save" width="21" height="21"/>
+        <image name="icon_dynamic_detail_saved" width="21.5" height="21.5"/>
+        <image name="icon_navigation_share" width="22" height="22"/>
+    </resources>
+</document>

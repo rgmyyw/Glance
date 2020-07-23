@@ -40,7 +40,7 @@ protocol API {
     func insightsPostDetail(postId : Int) -> Single<InsightsDetail>
     func insightsrRecommendDetail(recommendId : Int) -> Single<InsightsDetail>
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
-    func postDetail(postId : Int) -> Single<PostsDetail>
+    func detail(id : Any, type : Int) -> Single<PostsDetail>
     func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
