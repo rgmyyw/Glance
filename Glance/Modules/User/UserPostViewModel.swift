@@ -23,6 +23,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[SectionModel<Void,UserPostCellViewModel>]>
         let showLikePopView : Observable<(UIView, UserPostCellViewModel)>
+        let detail : Driver<Home>
     }
     
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
@@ -32,6 +33,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SectionModel<Void,UserPostCellViewModel>]>(value: [])
         let saveFavorite = PublishSubject<UserPostCellViewModel>()
         let showLikePopView = PublishSubject<(UIView,UserPostCellViewModel)>()
+        let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
@@ -125,6 +127,10 @@ class UserPostViewModel: ViewModel, ViewModelType {
 //                }
 //            }).disposed(by: rx.disposeBag)
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []), showLikePopView: showLikePopView.asObservable())
+        
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
+                      showLikePopView: showLikePopView.asObservable(),
+                      detail: detail)
+        
     }
 }
