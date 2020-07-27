@@ -104,3 +104,40 @@ extension UIView {
 }
 
 
+public extension UIView {
+
+    
+    struct UIViewPrivateKeys {
+        static var enableDebugKey : String = "enableDebugKey"
+    }
+    
+    /// 递归当前view并做一些事情
+    /// - Parameters:
+    ///   - current: 是否包含
+    ///   - handle: 对这些做什么
+    func recursive( _ current : Bool = false, _ handle : (UIView) -> (Void)) {
+        if current { handle(self) }
+        for i in self.subviews {
+            handle(i)
+            i.recursive(false, handle)
+        }
+    }
+}
+
+public extension UIView {
+    
+    /// 开启调试模式,为view 以及子viewz 自动设置随机颜色!
+    var enableDebug : Bool {
+        set{
+            objc_setAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
+            if newValue == true {
+                self.recursive(true) { $0.backgroundColor = UIColor.random() }
+            } else {
+                self.recursive(true) { $0.backgroundColor = .white }
+            }
+        }
+        get{
+            return objc_getAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey) as? Bool ?? false
+        }
+    }
+}

@@ -41,6 +41,11 @@
                                                 <constraint firstAttribute="height" constant="22" id="9ly-yY-FaS"/>
                                                 <constraint firstAttribute="width" constant="22" id="u7F-H5-wrt"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                    <real key="value" value="11"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Blocked List" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="y90-78-RRy">
                                             <rect key="frame" x="34" y="9" width="83" height="18"/>
@@ -147,12 +152,18 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="backButton" destination="bNe-RE-pDc" id="Ewj-L1-z6p"/>
-                <outlet property="moreButton" destination="SLc-Qs-Ywa" id="gMu-Rb-alk"/>
-                <outlet property="timeLabel" destination="NY8-7b-Qcl" id="COk-e8-2xy"/>
-                <outlet property="userImageView" destination="5Zv-0g-ISS" id="Pgm-Uc-scd"/>
-                <outlet property="userNameLabel" destination="LFC-kW-lfA" id="36j-DS-89x"/>
+                <outlet property="moreButton" destination="SLc-Qs-Ywa" id="cbJ-Fv-xrm"/>
+                <outlet property="otherBgView" destination="2sc-Mv-gL2" id="9eg-9d-5Ij"/>
+                <outlet property="otherImageView" destination="nJZ-n2-eXF" id="SBA-uO-7jH"/>
+                <outlet property="otherNameLabel" destination="y90-78-RRy" id="zn0-vd-EdG"/>
+                <outlet property="otherTimeLabel" destination="8Mn-PH-acf" id="XtV-ja-hMh"/>
+                <outlet property="ownBgView" destination="5yi-GF-NZw" id="vaJ-tr-tjh"/>
+                <outlet property="ownImageView" destination="5Zv-0g-ISS" id="gVQ-rR-lta"/>
+                <outlet property="ownImageWidth" destination="i4u-yP-HhM" id="dSJ-UV-GAP"/>
+                <outlet property="ownNameLabel" destination="LFC-kW-lfA" id="Rcq-8o-fzk"/>
+                <outlet property="ownTimeLabel" destination="NY8-7b-Qcl" id="cQJ-BI-lq3"/>
             </connections>
-            <point key="canvasLocation" x="1335" y="37"/>
+            <point key="canvasLocation" x="1264" y="31"/>
         </view>
     </objects>
     <resources>

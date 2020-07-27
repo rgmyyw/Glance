@@ -69,8 +69,7 @@ class UserPostViewController: CollectionViewController  {
         
         output.detail.drive(onNext: { [weak self](item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
-            let controller = self?.topViewController
-            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: controller)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController)
         }).disposed(by: rx.disposeBag)
         
         
@@ -78,11 +77,6 @@ class UserPostViewController: CollectionViewController  {
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
-        
-        collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
-            let demo = DemoViewModel(provider: viewModel.provider)
-            self.navigator.show(segue: .demo(viewModel: demo), sender: self)
-        }).disposed(by: rx.disposeBag)
         
     }
 }

@@ -54,7 +54,7 @@ target 'Glance' do
   pod 'FloatingPanel', '~> 1.0'
   pod 'DNSPageView' , '~> 1.5.0'
   pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
-  pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.6'
+  pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.8'
   
 #  pod 'UICollectionView-ARDynamicHeightLayoutCell'
 

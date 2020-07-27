@@ -24,7 +24,7 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
     required init(item : PostsDetailProduct) {
         self.item = item
         var item = item
-        item.imUrl = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg"
+        //item.imUrl = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg"
 
         imageURL.accept(item.imUrl?.url)
         title.accept(item.title)
@@ -46,26 +46,24 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let liked = BehaviorRelay<Bool>(value: false)
     let recommended = BehaviorRelay<Bool>(value: false)
     
-    let height = BehaviorRelay<CGFloat>(value: 400)
-    
+
+    let price = BehaviorRelay<String?>(value: nil)
+
     
     let save = PublishSubject<Void>()
     let like = PublishSubject<Void>()
-    let recommend = PublishSubject<Void>()
-    
-    
+    let recommend = PublishSubject<Void>()    
     
     
     required init(item : PostsDetail) {
         self.item = item
         
-        
         userImageURL.accept(item.userImage?.url)
         userName.accept(item.displayName)
         postImageURL.accept(item.postImage?.url)
-//        postTitle.accept(item.title)
-        postTitle.accept(String.random(ofLength: Int.random(in: 50...100)))
-
+        postTitle.accept(item.title)
+        price.accept("$ \(item.price)")
+        
         saved.accept(item.saved)
         liked.accept(item.liked)
         recommended.accept(item.recommended)

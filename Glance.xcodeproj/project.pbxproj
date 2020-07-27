@@ -20,8 +20,6 @@
 		5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
 		5D06524D24BEFF51007CE461 /* PostsDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */; };
 		5D06524F24BF0514007CE461 /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
-		5D06525224BF0775007CE461 /* PostsDetailHeadReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06525024BF0775007CE461 /* PostsDetailHeadReusableView.swift */; };
-		5D06525324BF0775007CE461 /* PostsDetailHeadReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06525124BF0775007CE461 /* PostsDetailHeadReusableView.xib */; };
 		5D13707E24B70428007B64BA /* OriginalPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */; };
 		5D13707F24B70428007B64BA /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
 		5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
@@ -271,8 +269,6 @@
 		5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsDetailNavigationBar.xib; sourceTree = "<group>"; };
 		5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsDetailNavigationBar.swift; sourceTree = "<group>"; };
 		5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailViewModel.swift; sourceTree = "<group>"; };
-		5D06525024BF0775007CE461 /* PostsDetailHeadReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailHeadReusableView.swift; sourceTree = "<group>"; };
-		5D06525124BF0775007CE461 /* PostsDetailHeadReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailHeadReusableView.xib; sourceTree = "<group>"; };
 		5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewController.swift; sourceTree = "<group>"; };
 		5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OriginalPhotosViewController.xib; sourceTree = "<group>"; };
 		5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -538,8 +534,6 @@
 			children = (
 				5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */,
 				5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */,
-				5D06525024BF0775007CE461 /* PostsDetailHeadReusableView.swift */,
-				5D06525124BF0775007CE461 /* PostsDetailHeadReusableView.xib */,
 				5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */,
 				5D1D5AF724BFF0F9008C0C82 /* PostsDetailCell.xib */,
 				5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */,
@@ -1307,7 +1301,6 @@
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5D1D379E24C847CC00B2A1E2 /* 15.jpg in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
-				5D06525324BF0775007CE461 /* PostsDetailHeadReusableView.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
 				5D1D379D24C847CC00B2A1E2 /* 14.jpg in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
@@ -1503,7 +1496,6 @@
 				5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */,
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
-				5D06525224BF0775007CE461 /* PostsDetailHeadReusableView.swift in Sources */,
 				5D6C721E24B565C200EA3028 /* SettingViewModel.swift in Sources */,
 				5DB8FE3B24B8502600280F9F /* UserPostViewModel.swift in Sources */,
 				5DEFF34E24AEC2F9007A2FCD /* Kingfisher-Rx.swift in Sources */,

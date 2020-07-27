@@ -44,7 +44,7 @@
                 <outlet property="bgView" destination="zNX-hH-PqU" id="dsF-bI-GDk"/>
                 <outlet property="titleLabel" destination="Kb8-gL-RLn" id="1rK-RF-HdW"/>
             </connections>
-            <point key="canvasLocation" x="-946.37681159420299" y="-29.464285714285712"/>
+            <point key="canvasLocation" x="-555" y="5"/>
         </collectionReusableView>
     </objects>
 </document>

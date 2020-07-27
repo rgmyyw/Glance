@@ -24,6 +24,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let userImageURL : Driver<URL?>
         let userName : Driver<String>
         let time : Driver<String>
+        let editable : Driver<Bool>
+        let userImageViewHidden : Driver<Bool>
     }
     
     
@@ -31,7 +33,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     
     init(provider: API,item : Home) {
         var item = item
-        item.postId = 77
+        //item.postId = 77
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
         
@@ -44,11 +46,16 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let userImageURL = element.map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
         let userName = element.map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
         let time = element.map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
+        let editable = element.map { $0.own }.asDriver(onErrorJustReturn: false)
+        let userImageViewHidden = item.map { $0.type == .product || $0.type == .recommendProduct }
+            .asDriver(onErrorJustReturn: true)
         
         let savePost = PublishSubject<PostsDetailSectionCellViewModel>()
         let saveProduct = PublishSubject<PostsDetailCellViewModel>()
         let like = PublishSubject<PostsDetailSectionCellViewModel>()
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
+        
+        
             
         item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -85,7 +92,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .post,.recommendPost:
                 sections = [banner,title,tool]
             case .product,.recommendProduct:
-                sections = [banner,price,title,tags,tool]
+                //sections = [banner,price,title,tags,tool]
+                sections = [banner,price,title,tool]
+
             }
 
             let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in
@@ -97,14 +106,18 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 cellViewModel.save.map { cellViewModel }.bind(to: saveProduct).disposed(by: self.rx.disposeBag)
                 return PostsDetailSectionItem.similar(viewModel: cellViewModel)
             }
-            
             let tagged = PostsDetailSection.tagged(viewModel: "Tagged Products", items: taggedItems)
             let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
+
             
-            
-            sections.append(tagged)
-            sections.append(similar)
-            
+            switch item.type {
+            case .post,.recommendPost:
+                sections.append(tagged)
+                sections.append(similar)
+            case .product,.recommendProduct:
+                sections.append(similar)
+            }
+
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
@@ -165,7 +178,10 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
+        
+        
+        
 
-        return Output(items: elements.asDriver(onErrorJustReturn: []), userImageURL: userImageURL,userName: userName,time : time)
+        return Output(items: elements.asDriver(onErrorJustReturn: []), userImageURL: userImageURL,userName: userName,time : time, editable: editable, userImageViewHidden: userImageViewHidden)
     }
 }
