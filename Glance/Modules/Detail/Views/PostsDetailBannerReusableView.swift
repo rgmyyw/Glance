@@ -25,6 +25,7 @@ class PostsDetailBannerReusableView: CollectionReusableView {
         banner.placeholderImgView.image = UIImage(named: "banner_placeholder")
         banner.delegate = self
         banner.dataSource = self
+//        enableDebug = true
     }
 }
 
@@ -33,8 +34,9 @@ extension PostsDetailBannerReusableView: JXBannerDataSource {
     
     func jxBanner(_ banner: JXBannerType)
         -> (JXBannerCellRegister) {
-            return JXBannerCellRegister(type: JXBannerCell.self,
-                                        reuseIdentifier: "JXBannerCell")
+            return JXBannerCellRegister(type: PostsDetailBannerCell.self,
+                                        reuseIdentifier: "PostsDetailBannerCell",
+                                        nib: PostsDetailBannerCell.nib)
     }
     
     func jxBanner(numberOfItems banner: JXBannerType)
@@ -44,16 +46,16 @@ extension PostsDetailBannerReusableView: JXBannerDataSource {
                   cellForItemAt index: Int,
                   cell: UICollectionViewCell)
         -> UICollectionViewCell {
-            let tempCell = cell as! JXBannerCell
-            tempCell.msgBgView.isHidden = true
+            let tempCell = cell as! PostsDetailBannerCell
+            tempCell.contentMode = .scaleToFill
             tempCell.imageView.image = UIImage(named: items.value[index])
-//            tempCell.imageView.contentMode = .scaleAspectFill
+
             return tempCell
     }
     
     func jxBanner(_ banner: JXBannerType, layoutParams: JXBannerLayoutParams) -> JXBannerLayoutParams {
         
-        layoutParams.itemSize = CGSize(width: UIScreen.width, height: height)
+        layoutParams.itemSize = CGSize(width: UIScreen.width, height: 350)
         layoutParams.itemSpacing = 0
         //        layoutParams.maximumAngle = 0
         //        layoutParams.minimumAlpha = 1
@@ -95,6 +97,7 @@ extension PostsDetailBannerReusableView: JXBannerDataSource {
 
 //MARK:- JXBannerDelegate
 extension PostsDetailBannerReusableView: JXBannerDelegate {
+    
     public func jxBanner(_ banner: JXBannerType,
                          didSelectItemAt index: Int) {
         //print(index)

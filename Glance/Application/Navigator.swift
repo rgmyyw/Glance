@@ -45,6 +45,7 @@ class Navigator {
         case savedCollectionClassify(viewModel : SavedCollectionClassifyViewModel)
         case savedCollection(viewModel : SavedCollectionViewModel)
         case interest(viewModel : InterestViewModel)
+        case visualSearch(viewModel: VisualSearchViewModel)
     }
     
     enum Transition {
@@ -122,6 +123,9 @@ class Navigator {
             return vc
         case .interest(let viewModel):
             let vc = InterestViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .visualSearch(let viewModel):
+            let vc = VisualSearchViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

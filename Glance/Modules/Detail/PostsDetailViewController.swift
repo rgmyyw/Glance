@@ -16,11 +16,15 @@ class PostsDetailViewController: CollectionViewController {
     
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<PostsDetailSection> = configureDataSouce()
     private lazy var customNavigationBar : PostsDetailNavigationBar = PostsDetailNavigationBar.loadFromNib(height: 44,width: self.view.width)
+    private lazy var bottomBar : PostsDetailBottomBar = PostsDetailBottomBar.loadFromNib(height: 62,width: self.view.width)
+
     
     override func makeUI() {
         super.makeUI()
         
+        
         navigationBar.addSubview(customNavigationBar)
+        stackView.addArrangedSubview(bottomBar)
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.delegate = self
@@ -31,21 +35,15 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
 
         collectionView.headRefreshControl = nil
-        collectionView.footRefreshControl = nil
+//        collectionView.footRefreshControl = nil
         
         collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: PostsDetailCell.reuseIdentifier)
-
         collectionView.register(nib: PostsDetailBannerReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailBannerReusableView.self)
-
         collectionView.register(nib: PostsDetailPriceReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailPriceReusableView.self)
-
         collectionView.register(nib: PostsDetailTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTitleReusableView.self)
-
         collectionView.register(nib: PostsDetailTagsReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTagsReusableView.self)
-
         collectionView.register(nib: PostsDetailToolBarReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailToolBarReusableView.self)
-
-        
+        collectionView.register(nib: PostsDetailSectionTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailSectionTitleReusableView.self)
         
         emptyDataViewDataSource.enable.accept(false)
         
@@ -57,27 +55,28 @@ class PostsDetailViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? PostsDetailViewModel else { return }
         dataSouce.configureSupplementaryView = configureSupplementaryView()
-        let input = PostsDetailViewModel.Input(selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable())
+        
+        let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
+        let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh, selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(), addShoppingCart: bottomBar.backgroundView.rx.tap())
         let output = viewModel.transform(input: input)
-        output.editable.drive(customNavigationBar.otherBgView.rx.isHidden).disposed(by: rx.disposeBag)
-        output.editable.map { !$0} .drive(customNavigationBar.ownBgView.rx.isHidden).disposed(by: rx.disposeBag)
-        
-        output.editable.drive(onNext: {(i) in
-            print(!i)
-            print("...")
-        }).disposed(by: rx.disposeBag)
-        
         output.userName.drive(customNavigationBar.ownNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.userName.drive(customNavigationBar.otherNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.userImageURL.drive(customNavigationBar.ownImageView.rx.imageURL).disposed(by: rx.disposeBag)
         output.userImageURL.drive(customNavigationBar.otherImageView.rx.imageURL).disposed(by: rx.disposeBag)
         output.time.drive(customNavigationBar.ownTimeLabel.rx.text).disposed(by: rx.disposeBag)
         output.time.drive(customNavigationBar.otherTimeLabel.rx.text).disposed(by: rx.disposeBag)
-        output.userImageViewHidden.drive(onNext: { [weak self]hidden in
-            self?.customNavigationBar.ownImageWidth.constant = hidden ? 0 : 22
-            self?.customNavigationBar.layoutIfNeeded()
+        output.time.drive(customNavigationBar.productTimeLabel.rx.text).disposed(by: rx.disposeBag)
+        output.productName.drive(customNavigationBar.productNameLabel.rx.text).disposed(by: rx.disposeBag)
+        output.bottomBarHidden.drive(bottomBar.rx.isHidden).disposed(by: rx.disposeBag)
+        output.bottomBarTitle.drive(bottomBar.titleLabel.rx.text).disposed(by: rx.disposeBag)
+        output.bottomBarAddButtonHidden.drive(bottomBar.addButton.rx.isHidden).disposed(by: rx.disposeBag)
+        output.bottomBarBackgroundColor.drive(bottomBar.backgroundView.rx.backgroundColor).disposed(by: rx.disposeBag)
+        output.bottomBarEnable.drive(bottomBar.backgroundView.rx.isUserInteractionEnabled).disposed(by: rx.disposeBag)
+        output.navigationBarType
+            .drive(onNext: { [weak self](type) in
+                self?.customNavigationBar.items[type].isHidden = false
         }).disposed(by: rx.disposeBag)
-        
+                
         
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -85,8 +84,10 @@ class PostsDetailViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
 
         viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
+        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
         customNavigationBar.backButton.rx
             .tap.subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
@@ -104,13 +105,13 @@ extension PostsDetailViewController {
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
                 cell.titleLabel.font = UIFont.titleBoldFont(10)
                 cell.bind(to: viewModel)
-                //cell.enableDebug = true
+               
                 return cell
             case .similar(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
                 cell.titleLabel.font = UIFont.titleBoldFont(12)
                 cell.bind(to: viewModel)
-                //cell.enableDebug = true
+               
                 return cell
             }
         })
@@ -124,12 +125,12 @@ extension PostsDetailViewController {
             case .banner(let viewModel) :
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailBannerReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
-                //view.enableDebug = true
+                 
                 return view
             case .similar(let title, _),.tagged(let title, _):
-                let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailTitleReusableView.self, for: indexPath)
+                let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailSectionTitleReusableView.self, for: indexPath)
                 view.titleLabel.text = title
-                view.titleLabel.font = UIFont.titleBoldFont(15)
+            
                 return view
             case .price(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailPriceReusableView.self, for: indexPath)
@@ -140,21 +141,17 @@ extension PostsDetailViewController {
             case .title(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailTitleReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
-                view.titleLabel.font = UIFont.titleFont(14)
-                //view.enableDebug = true
 
                 return view
             case .tags(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailTagsReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
-                //view.enableDebug = true
 
                 return view
 
             case .tool(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailToolBarReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
-                //view.enableDebug = true
 
                 return view
 
@@ -182,13 +179,13 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
         switch dataSouce.sectionModels[section] {
         case .banner:
-            return CGSize(width: collectionView.width, height: 200)
+            return CGSize(width: collectionView.width, height: 350)
         case .similar,.tagged:
             return CGSize(width: collectionView.width, height: 50)
         case .price:
-            return CGSize(width: collectionView.width, height: 44)
+            return CGSize(width: collectionView.width, height: 30)
         case .title:
-            return collectionView.ar_size(forReusableViewHeightIdentifier: PostsDetailTitleReusableView.reuseIdentifier, indexPath: IndexPath(row: 0, section: section), fixedWidth: 20) { (cell) in
+            return collectionView.ar_size(forReusableViewHeightIdentifier: PostsDetailTitleReusableView.reuseIdentifier, indexPath: IndexPath(row: 0, section: section), fixedWidth: collectionView.width - 40) { (cell) in
                 let cell = cell  as? PostsDetailTitleReusableView
                 if let viewModel = self.dataSouce.sectionModels[section].viewModel {
                     cell?.bind(to: viewModel)
@@ -217,32 +214,22 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-        let collectionView = collectionView as! CollectionView
-        let col = dataSouce[indexPath.section].column.cgFloat
-        let width : CGFloat = collectionView.width - (inset * 2.0) - ((col - 1.0) * 15.0)
-        let fixedWidth = width / col
-
-
+        
+        let viewModel = dataSouce[indexPath.section].items[indexPath.item].viewModel
+        viewModel.col = dataSouce[indexPath.section].column.cgFloat
+        let width : CGFloat = collectionView.width - (inset * 2.0) - ((viewModel.col - 1.0) * 15.0)
+        let fixedWidth = width / viewModel.col
+                
         switch dataSouce.sectionModels[indexPath.section] {
         case .similar:
             return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
-                if case let .similar(viewModel) = self.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                    let cell = cell  as? PostsDetailCell
-                    cell?.bind(to: viewModel)
-                    cell?.setNeedsLayout()
-                    cell?.layoutIfNeeded()
-                }
+                let cell = cell  as? PostsDetailCell
+                cell?.bind(to: viewModel)
             }
         case .tagged:
             return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
-                if case let .tagged(viewModel) = self.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                    let cell = cell  as? PostsDetailCell
-                    cell?.bind(to: viewModel)
-                    cell?.setNeedsLayout()
-                    cell?.layoutIfNeeded()
-
-                }
+                let cell = cell  as? PostsDetailCell
+                cell?.bind(to: viewModel)
             }
         default:
             fatalError()

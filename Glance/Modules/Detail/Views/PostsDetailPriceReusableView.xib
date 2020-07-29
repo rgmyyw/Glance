@@ -11,30 +11,30 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="U6b-Vx-4bR" customClass="PostsDetailPriceReusableView" customModule="Glance" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+            <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CAM-C2-SFM">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="from" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wLX-Fg-aih">
-                            <rect key="frame" x="20" y="15" width="30" height="18"/>
-                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                            <rect key="frame" x="20" y="35" width="24" height="14"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                            <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="$ 70.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bcK-bq-j5G">
-                            <rect key="frame" x="57.5" y="15" width="51" height="18"/>
+                            <rect key="frame" x="51.5" y="33" width="51" height="18"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right_orange" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-In-5vO">
-                            <rect key="frame" x="294" y="19" width="6" height="10"/>
+                            <rect key="frame" x="294" y="37" width="6" height="10"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRg-Jj-fmW">
-                            <rect key="frame" x="263" y="16" width="24.5" height="16.5"/>
+                            <rect key="frame" x="263" y="34" width="24.5" height="16.5"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                             <color key="textColor" red="1" green="0.50196078431372548" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -48,8 +48,8 @@
                         <constraint firstItem="xp6-In-5vO" firstAttribute="leading" secondItem="WRg-Jj-fmW" secondAttribute="trailing" constant="6.5" id="IsX-is-ib8"/>
                         <constraint firstItem="wLX-Fg-aih" firstAttribute="leading" secondItem="CAM-C2-SFM" secondAttribute="leading" constant="20" id="MIR-7f-yi6"/>
                         <constraint firstItem="WRg-Jj-fmW" firstAttribute="centerY" secondItem="xp6-In-5vO" secondAttribute="centerY" id="j9d-BT-XFC"/>
+                        <constraint firstAttribute="bottom" secondItem="wLX-Fg-aih" secondAttribute="bottom" id="kJI-uv-kOJ"/>
                         <constraint firstItem="bcK-bq-j5G" firstAttribute="centerY" secondItem="wLX-Fg-aih" secondAttribute="centerY" id="lpn-1g-xrF"/>
-                        <constraint firstItem="wLX-Fg-aih" firstAttribute="top" secondItem="CAM-C2-SFM" secondAttribute="top" constant="15" id="zah-OK-eG0"/>
                     </constraints>
                 </view>
             </subviews>
@@ -64,7 +64,7 @@
                 <outlet property="bgView" destination="CAM-C2-SFM" id="JNg-go-9N6"/>
                 <outlet property="priceLabel" destination="bcK-bq-j5G" id="dPQ-hJ-Qs5"/>
             </connections>
-            <point key="canvasLocation" x="17" y="14"/>
+            <point key="canvasLocation" x="15.942028985507248" y="26.450892857142858"/>
         </collectionReusableView>
     </objects>
     <resources>

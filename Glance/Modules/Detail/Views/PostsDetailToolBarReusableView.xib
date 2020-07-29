@@ -76,6 +76,10 @@
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
                 <outlet property="bgView" destination="JGx-IR-wdn" id="m12-TM-WyF"/>
+                <outlet property="likeButton" destination="Njp-zh-Kai" id="rIT-RZ-Uwc"/>
+                <outlet property="recommendButton" destination="GKU-rt-J4J" id="xME-Fb-Grz"/>
+                <outlet property="saveButton" destination="l9Z-PR-AIh" id="gxC-ig-azu"/>
+                <outlet property="shareButton" destination="rTw-3p-xf0" id="Fiy-cq-qCz"/>
             </connections>
             <point key="canvasLocation" x="107.24637681159422" y="142.96875"/>
         </collectionReusableView>

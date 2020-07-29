@@ -27,7 +27,7 @@ enum GlanceAPI {
     case getHome(page : Int)
     case userDetail(userId : String)
     case modifyProfile(data : [String : Any])
-    case uploadImage(type: Int, data : Data)
+    case uploadImage(type: Int, size : CGSize, data : Data)
     case userPost(userId : String, pageNum : Int)
     case userRecommend(userId : String, pageNum : Int)
     case userRelation(type : UserRelationType, userId : String, pageNum : Int)
@@ -45,12 +45,13 @@ enum GlanceAPI {
     case detail(id : Any, type : Int)
     case shoppingCartDelete(productId : String)
     case like(id : Any, type : Int, state : Bool)
-    case saveCollection(id : Any, type : Int, state : Bool)
+    case saveCollection(param : [String : Any])
     case savedCllectionClassify
     case savedCollection(pageNum : Int)
     case interest(level : Int)
     case updateUserInterest(ids : String)
-
+    case similarProduct(id : Any, type : Int,page : Int)
+    case addShoppingCart(productId : String)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -133,12 +134,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/interests/lists"
         case .updateUserInterest:
             return "/api/users/interests"
+        case .similarProduct(_, _, let pageNum):
+            return "/api/products/similar/\(pageNum)/\(10)"
+        case .addShoppingCart:
+            return "/api/shoppingCart"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveCollection,.like,.uploadImage,.block,.follow,.updateUserInterest:
+        case .saveCollection,.like,.uploadImage,.block,.follow,.updateUserInterest,.addShoppingCart:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -152,7 +157,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .notifications,
              .shoppingCart,
              .savedCllectionClassify,
-             .interest:
+             .interest,
+             .similarProduct:
             return .get
         case .modifyProfile:
             return .put
@@ -197,17 +203,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
     var parameters: [String: Any]? {
         var params: [String: Any] = [:]
         switch self {
-        case .saveCollection(let id, let type, let state):
-            params["updateSaved"] = state.int
-            params["type"] = type
-            switch type {
-            case 0,2:
-                params["postId"] = id
-            case 1,3:
-                params["productId"] = id
-            default:
-                break
-            }
+        case .saveCollection(let param):
+            params.merge(dict: param)
+            
         case .like(let id, let type, let state):
             params["updateLiked"] = state.int
             params["type"] = type
@@ -262,6 +260,17 @@ extension GlanceAPI: TargetType, ProductAPIType {
             default:
                 break
             }
+        case .similarProduct(let id, let type, _):
+            switch type {
+            case 0,2:
+                params["postId"] = id
+            case 1,3:
+                params["productId"] = id
+            default:
+                break
+            }
+        case .addShoppingCart(let productId):
+            params["productId"] = productId
         default:
             break
         }
@@ -289,10 +298,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
     
     public var task: Task {
         switch self {
-        case .uploadImage(let type, let data):
+        case .uploadImage(let type, let size ,let data):
             let fileName = dformatter.string(from: Date()) + ".jpeg"
             let formData = MultipartFormData(provider: MultipartFormData.FormDataProvider.data(data), name: "image", fileName: fileName, mimeType: "image/jpeg")
-            return .uploadCompositeMultipart([formData], urlParameters: ["type" : type])
+            return .uploadCompositeMultipart([formData], urlParameters: ["type" : type, "w" : size.width , "h" : size.height])
         default:
             switch method {
             case .post,.put:

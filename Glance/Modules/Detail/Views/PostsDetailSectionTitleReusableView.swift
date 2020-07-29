@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PostsDetailTitleReusableView: CollectionReusableView {
+class PostsDetailSectionTitleReusableView: CollectionReusableView {
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bgView: UIView!    

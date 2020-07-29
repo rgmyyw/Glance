@@ -19,14 +19,25 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
     
     let save = PublishSubject<Void>()
     
+    var col : CGFloat = 2
     
+    var height : CGFloat {
+        let inset : CGFloat = 20
+        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col - 1.0) * 15.0)
+        if let urlParameters = item.image?.urlParameters() {
+            let width = urlParameters["w"]?.cgFloat() ?? 0
+            let height = urlParameters["h"]?.cgFloat() ?? 0
+            return ((cellWidth / width) * height) / col
+        } else {
+            return 200
+        }
+    }
+        
     
     required init(item : PostsDetailProduct) {
         self.item = item
-        var item = item
-        //item.imUrl = "https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3892521478,1695688217&fm=26&gp=0.jpg"
-
-        imageURL.accept(item.imUrl?.url)
+        
+        imageURL.accept(item.image?.url)
         title.accept(item.title)
         saved.accept(item.saved)
     }

@@ -35,8 +35,8 @@ class RestApi: API {
         return requestObject(.modifyProfile(data: data), type: User.self)
     }
     
-    func uploadImage(type: Int, data: Data) -> Single<String> {
-        return requestObject(.uploadImage(type: type, data: data), type: UploadImageResult.self)
+    func uploadImage(type: Int, size : CGSize, data : Data) -> Single<String> {
+        return requestObject(.uploadImage(type: type, size : size, data: data), type: UploadImageResult.self)
             .map { $0.imageUri ?? ""}
     }
     
@@ -123,8 +123,8 @@ class RestApi: API {
     ///   - id: id
     ///   - type: 类型 post,product, recommend post, recommend product
     ///   - state: 收藏状态, false 是取消收藏 , true 收藏
-    func saveCollection(id: Any, type: Int, state: Bool) -> Single<Bool> {
-        return requestObject(.saveCollection(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    func saveCollection(param: [String : Any]) -> Single<Bool> {
+        return requestObject(.saveCollection(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
     func interest(level: Int) -> Single<[Interest]> {
@@ -134,6 +134,15 @@ class RestApi: API {
     func updateUserInterest(ids: String) -> Single<Bool> {
         return requestObject(.updateUserInterest(ids: ids), type: MappableItem<Void>.self,keyPath: nil).map { $0.code == 200}
     }
+    
+    func similarProduct(id: Any, type: Int, page: Int) -> Single<PageMapable<PostsDetailProduct>> {
+        return requestObject(.similarProduct(id: id, type: type, page: page), type: PageMapable<PostsDetailProduct>.self)
+    }
+    
+    func addShoppingCart(productId: String) -> Single<Bool> {
+        return requestObject(.addShoppingCart(productId: productId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+    
     
     let ibexProvider: IbexNetworking
     

@@ -120,12 +120,23 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         
         delete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(SavedCollectionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            return self.provider.saveCollection(id: cellViewModel.item.id, type: cellViewModel.item.type.rawValue, state: false)
+            let type = cellViewModel.item.type
+            var params = [String : Any]()
+            params["type"] = type.rawValue
+            params["updateSaved"] = false
+            switch type {
+            case .post,.recommendPost:
+                params["postId"] = cellViewModel.item.postId
+            case .product,.recommendProduct:
+                params["productId"] = cellViewModel.item.productId
+            }
+
+            return self.provider.saveCollection(param: params)
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .map { (cellViewModel, $0)}
                 .materialize()
-        }).subscribe(onNext: { [weak self] event in
+        }).subscribe(onNext: {  event in
             switch event {
             case .next(let (cellViewModel,result)):
                 if !result {

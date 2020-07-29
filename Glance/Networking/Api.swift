@@ -27,7 +27,7 @@ protocol API {
     func getHome(page : Int) -> Single<PageMapable<Home>>
     func userDetail(userId : String) -> Single<User>
     func modifyProfile(data : [String : Any]) -> Single<User>
-    func uploadImage(type: Int, data : Data) -> Single<String>
+    func uploadImage(type: Int, size : CGSize, data : Data) -> Single<String>
     func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
     func userRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
     func userRelation(type :  UserRelationType, userId : String, pageNum : Int) -> Single<PageMapable<UserRelation>>
@@ -45,12 +45,13 @@ protocol API {
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
     func like(id : Any, type : Int, state : Bool) -> Single<Bool>
-    func saveCollection(id : Any, type : Int, state : Bool) -> Single<Bool>
+    func saveCollection(param : [String : Any]) -> Single<Bool>
     func savedCollection(pageNum : Int) ->  Single<PageMapable<Home>>
     func savedCollectionClassify() -> Single<SavedCollection>
     func interest(level : Int) -> Single<[Interest]>
     func updateUserInterest(ids : String) -> Single<Bool>
-
+    func similarProduct(id : Any, type : Int,page : Int) -> Single<PageMapable<PostsDetailProduct>>
+    func addShoppingCart(productId : String) -> Single<Bool>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

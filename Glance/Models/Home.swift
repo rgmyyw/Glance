@@ -55,6 +55,19 @@ struct Home: Mappable, Equatable {
         }
     }
     
+    
+    var isProduct : Bool {
+        switch type {
+        case .post,.recommendPost:
+            return false
+        case .product,.recommendProduct:
+            return true
+        }
+    }
+    var isPost : Bool {
+        return !isProduct
+    }
+
 
     init?(map: Map) {}
     init() {}

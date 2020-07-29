@@ -15,8 +15,9 @@ import RxSwift
 class PostsDetailViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        //        let footerRefresh: Observable<Void>
+        let footerRefresh: Observable<Void>
         let selection : Observable<PostsDetailSectionItem>
+        let addShoppingCart : Observable<Void>
     }
     
     struct Output {
@@ -24,20 +25,29 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let userImageURL : Driver<URL?>
         let userName : Driver<String>
         let time : Driver<String>
-        let editable : Driver<Bool>
-        let userImageViewHidden : Driver<Bool>
+        let navigationBarType : Driver<Int>
+        let productName : Driver<String>
+        let bottomBarHidden : Driver<Bool>
+        let bottomBarTitle : Driver<String>
+        let bottomBarAddButtonHidden : Driver<Bool>
+        let bottomBarBackgroundColor : Driver<UIColor?>
+        let bottomBarEnable : Driver<Bool>
     }
     
     
     let item : BehaviorRelay<Home>
     
     init(provider: API,item : Home) {
-        var item = item
+        
+        //        var item = item
         //item.postId = 77
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
+        self.page = 0
         
     }
+    
+    let similar = BehaviorRelay<PageMapable<PostsDetailProduct>>(value: PageMapable())
     
     func transform(input: Input) -> Output {
         
@@ -45,38 +55,107 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[PostsDetailSection]>(value: [])
         let userImageURL = element.map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
         let userName = element.map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
+        let productName = element.map { $0.brand ?? "" }.asDriver(onErrorJustReturn: "")
         let time = element.map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
-        let editable = element.map { $0.own }.asDriver(onErrorJustReturn: false)
-        let userImageViewHidden = item.map { $0.type == .product || $0.type == .recommendProduct }
-            .asDriver(onErrorJustReturn: true)
         
-        let savePost = PublishSubject<PostsDetailSectionCellViewModel>()
-        let saveProduct = PublishSubject<PostsDetailCellViewModel>()
+        /// 底部添加购物车按钮
+        let bottomBarHidden = item.map { !$0.isProduct }.asDriver(onErrorJustReturn: true)
+        let bottomBarState = BehaviorRelay<Bool>(value: false)
+        let bottomBarTitle = bottomBarState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
+        let bottomBarAddButtonHidden = bottomBarState.map { $0 }.asDriver(onErrorJustReturn: false)
+        let bottomBarBackgroundColor = bottomBarState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
+        let bottomBarEnable = bottomBarState.map { !$0 }.asDriver(onErrorJustReturn: false)
+        element.map { $0.inShoppingList }.bind(to: bottomBarState).disposed(by: rx.disposeBag)
+        
+        /// 添加收藏
+        let saveCurrent = PublishSubject<PostsDetailSectionCellViewModel>()
+        let saveOther = PublishSubject<PostsDetailCellViewModel>()
+        let save = PublishSubject<(AnyObject, [String : Any])>()
+        
         let like = PublishSubject<PostsDetailSectionCellViewModel>()
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
         
-        
-            
-        item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.detail(id: item.id, type: item.type.rawValue)
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .materialize()
-            }).subscribe(onNext: { event in
-                switch event {
-                case .next(let item):
-                    element.accept(item)
-                default:
-                    break
+        let navigationBarType = Observable.combineLatest(element.map { $0.own },item.map { $0.type})
+            .map { (own, type) -> Int in
+                switch type {
+                case .product,.recommendProduct:
+                    return 0
+                case .post,.recommendPost:
+                    return own ? 1 : 2
                 }
-            }).disposed(by: rx.disposeBag)
+        }.asDriver(onErrorJustReturn: -1)
         
+        item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.detail(id: item.id, type: item.type.rawValue)
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .materialize()
+        }).subscribe(onNext: { event in
+            switch event {
+            case .next(let item):
+                element.accept(item)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<PostsDetailProduct>>> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            if !self.similar.value.hasNext {
+                self.noMoreData.onNext(())
+                return Observable.just(RxSwift.Event.next(PageMapable(hasNext: false)))
+                    .trackActivity(self.footerLoading)
+            }
+            self.page += 1
+            return self.provider.similarProduct(id: self.item.value.id, type: self.item.value.type.rawValue, page: self.page)
+                .trackActivity(self.footerLoading)
+                .trackError(self.error)
+                .materialize()
+        }).subscribe(onNext: { [weak self](event) in
+            guard let self = self else { return }
+            switch event {
+            case .next(let result):
+                var newResult = result
+                newResult.list = self.similar.value.list + result.list
+                self.similar.accept(newResult)
+                if newResult.total <= self.page {
+                    self.noMoreData.onNext(())
+                }
                 
-        Observable.combineLatest(element, item).map { (element , item) -> [PostsDetailSection] in
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        saveCurrent.map { cellViewModel -> (AnyObject,[String : Any]) in
+            let item = self.item.value
+            var params = [String : Any]()
+            params["type"] = item.type.rawValue
+            params["updateSaved"] = !cellViewModel.saved.value
+            switch item.type {
+            case .post,.recommendPost:
+                params["postId"] = item.postId
+            case .product,.recommendProduct:
+                params["productId"] = item.productId
+            }
+            return (cellViewModel,params)
+        }.bind(to: save).disposed(by: rx.disposeBag)
+        
+        
+        saveOther.map { cellViewModel -> (AnyObject,[String : Any]) in
+            var params = [String : Any]()
+            params["type"] = HomeCellType.product.rawValue
+            params["updateSaved"] = !cellViewModel.saved.value
+            params["productId"] = cellViewModel.item.productId
+            return (cellViewModel,params)
+        }.bind(to: save).disposed(by: rx.disposeBag)
+        
+        Observable.combineLatest(element, item, similar).map { (element , item,similar) -> [PostsDetailSection] in
             
             let viewModel = PostsDetailSectionCellViewModel(item: element)
-            viewModel.save.map { viewModel}.bind(to: savePost).disposed(by: self.rx.disposeBag)
+            viewModel.save.map { viewModel}.bind(to: saveCurrent).disposed(by: self.rx.disposeBag)
             viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
             viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
             
@@ -94,21 +173,22 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .product,.recommendProduct:
                 //sections = [banner,price,title,tags,tool]
                 sections = [banner,price,title,tool]
-
+                
             }
-
+            
             let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in
                 let cellViewModel = PostsDetailCellViewModel(item: item)
+                cellViewModel.save.map { cellViewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
                 return PostsDetailSectionItem.tagged(viewModel: cellViewModel)
             }
-            let similarItems = element.similarProducts.map { item -> PostsDetailSectionItem in
+            let similarItems = similar.list.map { item -> PostsDetailSectionItem in
                 let cellViewModel = PostsDetailCellViewModel(item: item)
-                cellViewModel.save.map { cellViewModel }.bind(to: saveProduct).disposed(by: self.rx.disposeBag)
+                cellViewModel.save.map { cellViewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
                 return PostsDetailSectionItem.similar(viewModel: cellViewModel)
             }
             let tagged = PostsDetailSection.tagged(viewModel: "Tagged Products", items: taggedItems)
             let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
-
+            
             
             switch item.type {
             case .post,.recommendPost:
@@ -117,55 +197,38 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .product,.recommendProduct:
                 sections.append(similar)
             }
-
             return sections
-        }.bind(to: elements).disposed(by: rx.disposeBag)
+            
+        }.share().bind(to: elements).disposed(by: rx.disposeBag)
         
         
-        savePost.map { ($0,element.value,self.item.value) }
-            .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                let state = !cellViewModel.saved.value
-                return self.provider.saveCollection(id: item.id, type: item.type.rawValue, state: state)
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .map { (cellViewModel, $0)}
-                    .materialize()
-            }).subscribe(onNext: { event in
-                switch event {
-                case .next(let (cellViewModel, result)):
-                    if result {
-                        cellViewModel.saved.accept(result)
-                    }
-                default:
-                    break
+        save.flatMapLatest({ [weak self] (cellViewModel, param) -> Observable<(RxSwift.Event<(AnyObject,Bool)>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.saveCollection(param: param)
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .map { (cellViewModel, $0)}
+                .materialize()
+        }).subscribe(onNext: { event in
+            switch event {
+            case .next(let (cellViewModel, result)):
+                if let item = cellViewModel as? PostsDetailSectionCellViewModel {
+                    item.saved.accept(result)
+                } else if let item = cellViewModel as? PostsDetailCellViewModel {
+                    item.saved.accept(result)
                 }
-            }).disposed(by: rx.disposeBag)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
-        saveProduct
-            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(PostsDetailCellViewModel,Bool)>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                let state = !cellViewModel.saved.value
-                return self.provider.saveCollection(id: cellViewModel.item.imName ?? "", type: HomeCellType.product.rawValue, state: state)
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .map { (cellViewModel, $0)}
-                    .materialize()
-            }).subscribe(onNext: { event in
-                switch event {
-                case .next(let (cellViewModel, result)):
-                    cellViewModel.saved.accept(result)
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
         
-
+        
         like.map { ($0,element.value,self.item.value) }
             .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 let state = !cellViewModel.liked.value
-                return self.provider.like(id: item.postId, type: HomeCellType.post.rawValue, state: state)
+                return self.provider.like(id: item.id, type: item.type.rawValue, state: state)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .map { (cellViewModel, $0)}
@@ -179,9 +242,36 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
         
+        input.addShoppingCart
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                return self.provider.addShoppingCart(productId: self.item.value.productId ?? "")
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .materialize()
+            }).subscribe(onNext: { [weak self] event in
+                switch event {
+                case .next(let result):
+                    bottomBarState.accept(result)
+                    self?.message.onNext(.init("Successfully added to your shopping list"))
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
         
         
-
-        return Output(items: elements.asDriver(onErrorJustReturn: []), userImageURL: userImageURL,userName: userName,time : time, editable: editable, userImageViewHidden: userImageViewHidden)
+        
+        
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
+                      userImageURL: userImageURL,
+                      userName: userName,
+                      time : time,
+                      navigationBarType: navigationBarType,
+                      productName: productName,
+                      bottomBarHidden: bottomBarHidden,
+                      bottomBarTitle:bottomBarTitle ,
+                      bottomBarAddButtonHidden:bottomBarAddButtonHidden,
+                      bottomBarBackgroundColor: bottomBarBackgroundColor,
+                      bottomBarEnable: bottomBarEnable)
     }
 }

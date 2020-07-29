@@ -87,7 +87,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
         uploadImage.flatMapLatest({ [weak self] (imageData,param) -> Observable<(RxSwift.Event<(String, [String : Any])>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 guard let data = imageData.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
-                return self.provider.uploadImage(type: UploadImageType.user.rawValue, data: data)
+            return self.provider.uploadImage(type: UploadImageType.user.rawValue, size: imageData.size, data: data)
                     .trackActivity(self.loading)
                     .trackError(self.error)
                     .map { ($0,param)}

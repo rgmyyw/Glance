@@ -154,3 +154,25 @@ extension String {
     }
     
 }
+
+extension String {
+    
+    func urlParameters() -> [String: String]? {
+        var params: [String: String] = [:]
+        let array = self.components(separatedBy: "?")
+        if array.count == 2 {
+            let paramsStr = array[1]
+            if paramsStr.count > 0 {
+                let paramsArray = paramsStr.components(separatedBy: "&")
+                for param in paramsArray {
+                    let arr = param.components(separatedBy: "=")
+                    if arr.count == 2 {
+                        params[arr[0]] = arr[1]
+                    }
+                }
+            }
+        }
+        return params
+    }
+
+}

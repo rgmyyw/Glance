@@ -23,6 +23,13 @@ enum PostsDetailSection  {
 enum PostsDetailSectionItem {
     case tagged(viewModel: PostsDetailCellViewModel)
     case similar(viewModel: PostsDetailCellViewModel)
+    
+    var viewModel : PostsDetailCellViewModel {
+        switch self {
+        case .tagged(let viewModel),.similar(let viewModel):
+            return viewModel
+        }
+    }
 }
 
 extension PostsDetailSection: SectionModelType {

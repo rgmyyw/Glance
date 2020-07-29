@@ -15,9 +15,14 @@ class DemoViewController: ViewController {
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
         
-        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: Home())
-        self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+//        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: Home())
+//        self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         //needSignUp.onNext(())
+        
+        
+          let viewModel = VisualSearchViewModel(provider: self.viewModel!.provider)
+            self.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self)
+        
     }
        
     override func makeUI() {

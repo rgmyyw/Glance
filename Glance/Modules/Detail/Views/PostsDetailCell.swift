@@ -17,12 +17,15 @@ class PostsDetailCell: CollectionViewCell {
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var saveImageView: UIButton!
-    
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+
     
     override func bind<T>(to viewModel: T) where T : PostsDetailCellViewModel {
         super.bind(to: viewModel)
         
         
+        //print(viewModel.height)
+        imageViewHeight.constant = viewModel.height
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveImageView.rx.isSelected).disposed(by: cellDisposeBag)
@@ -33,6 +36,7 @@ class PostsDetailCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
         
+//        enableDebug = true
 //        backgroundColor = .random
 //        bgView.backgroundColor = .random        
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
@@ -43,10 +47,10 @@ class PostsDetailCell: CollectionViewCell {
         bgView.clipsToBounds = false
         shadowView.clipsToBounds = false
         
-        let shadowOffset = CGSize(width: 1, height: 1)
+        let shadowOffset = CGSize(width: 0, height: 1)
         let color = UIColor(hex:0x999999)!
-        let opacity : CGFloat = 0.65
-        shadowView.shadow(cornerRadius: 10, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 2)
+        let opacity : CGFloat = 0.14
+        shadowView.shadow(cornerRadius: 10, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 12)
 
     }
 }
