@@ -143,6 +143,9 @@ class RestApi: API {
         return requestObject(.addShoppingCart(productId: productId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
+    func visualSearch(params: [String : Any]) -> Single<VisualSearchPageMapable> {
+        return requestObject(.visualSearch(params: params), type: VisualSearchPageMapable.self)
+    }
     
     let ibexProvider: IbexNetworking
     

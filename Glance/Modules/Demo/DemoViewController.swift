@@ -20,7 +20,7 @@ class DemoViewController: ViewController {
         //needSignUp.onNext(())
         
         
-          let viewModel = VisualSearchViewModel(provider: self.viewModel!.provider)
+          let viewModel = VisualSearchViewModel(provider: self.viewModel!.provider,image: UIImage(named: "66.png")!)
             self.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self)
         
     }

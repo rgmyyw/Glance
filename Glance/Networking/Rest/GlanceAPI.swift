@@ -52,6 +52,7 @@ enum GlanceAPI {
     case updateUserInterest(ids : String)
     case similarProduct(id : Any, type : Int,page : Int)
     case addShoppingCart(productId : String)
+    case visualSearch(params : [String : Any])
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -138,12 +139,21 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/products/similar/\(pageNum)/\(10)"
         case .addShoppingCart:
             return "/api/shoppingCart"
+        case .visualSearch:
+            return "/api/visual-search"
         }
     }
     
     var method: Moya.Method {
         switch self {
-        case .saveCollection,.like,.uploadImage,.block,.follow,.updateUserInterest,.addShoppingCart:
+        case .saveCollection,
+             .like,
+             .uploadImage,
+             .block,
+             .follow,
+             .updateUserInterest,
+             .addShoppingCart,
+             .visualSearch:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -271,6 +281,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             }
         case .addShoppingCart(let productId):
             params["productId"] = productId
+        case .visualSearch(let param):
+            params.merge(dict: param)
         default:
             break
         }

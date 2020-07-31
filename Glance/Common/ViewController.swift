@@ -83,6 +83,8 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
                 make.edges.equalToSuperview()
             }
         }
+        navigationBar.bottomLineColor = UIColor(hex: 0xEEEEEE)
+        navigationBar.bottomLineView.isHidden = true
         let containerView = StackView(arrangedSubviews: [navigationBar,stackView])
         containerView.spacing = 0
         view.addSubview(containerView)

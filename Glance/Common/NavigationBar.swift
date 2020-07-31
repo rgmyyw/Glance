@@ -14,6 +14,21 @@ class NavigationBar: View {
     private lazy var leftView : UIView = UIView()
     private lazy var rightView : UIView = UIView()
     
+    public var bottomLineHeight : CGFloat = 0.5 {
+        didSet {
+            bottomLineView.snp.updateConstraints { (make) in make.height.equalTo(bottomLineHeight) }
+            layoutIfNeeded()
+        }
+    }
+    public var bottomLineColor : UIColor? = UIColor.gray {
+        didSet {
+            bottomLineView.backgroundColor = bottomLineColor
+        }
+    }
+    
+    public let bottomLineView = UIView()
+        
+    
     private lazy var titleLabel : UILabel = {
         let titleLabel = UILabel()
         titleLabel.numberOfLines = 1
@@ -98,6 +113,7 @@ class NavigationBar: View {
         
         addSubview(rightView)
         addSubview(leftView)
+        addSubview(bottomLineView)
         
         
         
@@ -115,6 +131,12 @@ class NavigationBar: View {
              make.left.equalTo(leftView.snp.right)
              make.width.equalTo(leftView.snp.width)
          }
+        
+        bottomLineView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self)
+            make.height.equalTo(bottomLineHeight)
+        }
+        
          //*/
         
         /// 方案二: title 居中对齐

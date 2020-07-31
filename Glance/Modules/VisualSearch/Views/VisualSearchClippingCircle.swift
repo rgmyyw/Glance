@@ -8,17 +8,81 @@
 
 import UIKit
 
+
 class VisualSearchClippingCircle: UIView {
     
-    var bgColor : UIColor = .white
+    let corner : UIRectCorner
+    var lineColor = UIColor.white
+    var lineWidth : CGFloat = 12
+    
+    init(corner : UIRectCorner, frame : CGRect) {
+        self.corner = corner
+        super.init(frame: frame)
+        layer.masksToBounds = false
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func draw(_ rect: CGRect) {
-        let context = UIGraphicsGetCurrentContext()
-        var rct = self.bounds;
-        rct.origin.x = rct.size.width / 2 - rct.size.width / 6
-        rct.origin.y = rct.size.height / 2 - rct.size.height / 6
-        rct.size.width /= 3;
-        rct.size.height /= 3;
-        context?.setFillColor(bgColor.cgColor)
-        context?.fillEllipse(in: rct)
+        
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // 4个角的 线的宽度
+        let linewidthAngle : CGFloat = lineWidth // 经验参数：6和4
+        
+        // 画扫码矩形以及周边半透明黑色坐标参数
+        let diffAngle : CGFloat = 2
+        context.setStrokeColor(lineColor.cgColor)
+        context.setLineWidth(linewidthAngle)
+        
+        let wAngle : CGFloat = bounds.width
+        let hAngle : CGFloat = bounds.height
+        //
+        let leftX = 0 - diffAngle
+        let topY = 0 - diffAngle
+        let rightX = bounds.width + diffAngle
+        let bottomY = bounds.height + diffAngle
+        
+        switch corner {
+        case .topLeft:
+            // 左上角水平线
+            context.move(to: CGPoint(x: leftX - linewidthAngle / 2, y: topY))
+            context.addLine(to: CGPoint(x: leftX + wAngle, y: topY))
+            
+            // 左上角垂直线
+            context.move(to: CGPoint(x: leftX, y: topY - linewidthAngle / 2))
+            context.addLine(to: CGPoint(x: leftX, y: topY + hAngle))
+        case .bottomLeft:
+            // 左下角水平线
+            context.move(to: CGPoint(x: leftX - linewidthAngle / 2, y: bottomY))
+            context.addLine(to: CGPoint(x: leftX + wAngle, y: bottomY))
+            
+            // 左下角垂直线
+            context.move(to: CGPoint(x: leftX, y: bottomY + linewidthAngle / 2))
+            context.addLine(to: CGPoint(x: leftX, y: bottomY - hAngle))
+        case .topRight:
+            // 右上角水平线
+            context.move(to: CGPoint(x: rightX + linewidthAngle / 2, y: topY))
+            context.addLine(to: CGPoint(x: rightX - wAngle, y: topY))
+            
+            // 右上角垂直线
+            context.move(to: CGPoint(x: rightX, y: topY - linewidthAngle / 2))
+            context.addLine(to: CGPoint(x: rightX, y: topY + hAngle))
+        case .bottomRight:
+            // 右下角水平线
+            context.move(to: CGPoint(x: rightX + linewidthAngle / 2, y: bottomY))
+            context.addLine(to: CGPoint(x: rightX - wAngle, y: bottomY))
+            
+            // 右下角垂直线
+            context.move(to: CGPoint(x: rightX, y: bottomY + linewidthAngle / 2))
+            context.addLine(to: CGPoint(x: rightX, y: bottomY - hAngle))
+        default:
+            break
+        }
+                
+        context.strokePath()
+        
     }
 }

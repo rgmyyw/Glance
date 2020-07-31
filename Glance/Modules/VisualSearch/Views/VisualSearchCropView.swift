@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 class VisualSearchCropView: UIView {
     
@@ -16,17 +19,21 @@ class VisualSearchCropView: UIView {
     private lazy var rtView : VisualSearchClippingCircle = makeClippingCircleView(with: 2)
     private lazy var rbView : VisualSearchClippingCircle = makeClippingCircleView(with: 3)
     private var isInitialize : Bool = false
+    let scrollView : UIScrollView = UIScrollView()
     
     fileprivate var dragging: Bool = false
     fileprivate var initialRect: CGRect = .zero
+    
+    
+    
     
     public var image : UIImage? {
         set {
             originSize = newValue?.size ?? .zero
             imageView.image = newValue
             isInitialize = true
-            setNeedsLayout()
             
+            setNeedsLayout()
             sendSubviewToBack(imageView)
         }
         get {
@@ -34,16 +41,38 @@ class VisualSearchCropView: UIView {
         }
     }
     
+    public let current = BehaviorRelay<CGRect>(value: .zero)
+    
+    
     private var clippingRect : CGRect  {
         set{
             let rect = newValue
-            ltView.center = convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: imageView)
-            lbView.center = convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
-            rtView.center = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
-            rbView.center = convert(CGPoint(x: rect.origin.x + rect.size.width,
-                                            y: rect.origin.y + rect.size.height),from: imageView)
+            let offset : CGFloat = 4
+            
+            var lt = convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: imageView)
+            lt.x += ltView.frame.width * 0.5 - offset
+            lt.y += ltView.frame.height * 0.5 - offset
+            ltView.center = lt
+            
+            var lb = convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
+            lb.x += lbView.frame.width * 0.5 - offset
+            lb.y -= lbView.frame.height * 0.5 - offset
+            lbView.center = lb
+            
+            var rt = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
+            rt.x -= rtView.frame.width * 0.5 - offset
+            rt.y += rtView.frame.height * 0.5 - offset
+            rtView.center = rt
+            
+            var rb = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height),from: imageView)
+            rb.x -= rbView.frame.width * 0.5 - offset
+            rb.y -= rbView.frame.height * 0.5 - offset
+            rbView.center = rb
+
             gridLayer.clippingRect = rect
+            setNeedsDisplay()
             gridLayer.setNeedsDisplay()
+            current.accept(newValue)
 
         }
         get {
@@ -51,9 +80,9 @@ class VisualSearchCropView: UIView {
         }
     }
     
-    private lazy var imageView : UIImageView = {
+    private(set) public lazy var imageView : UIImageView = {
         let view = UIImageView()
-        view.contentMode = .scaleAspectFit
+        view.contentMode = .scaleToFill
         view.isUserInteractionEnabled = true
         addSubview(view)
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGridView(_:)))
@@ -138,9 +167,13 @@ extension VisualSearchCropView {
         
         if w > maxW {
             w = maxW
+            fatalError()
         }
         
-        let frame = CGRect(x: 0, y: 0, width: w, height: h)
+        var frame = CGRect(x: 0, y: 0, width: w, height: h)
+        frame.origin.x = center.x - w * 0.5
+        frame.origin.y = 0
+        
         if isInitialize {
             UIView.animate(withDuration: 0.2) {
                 self.imageView.frame = frame
@@ -154,13 +187,47 @@ extension VisualSearchCropView {
         
         let rect = imageView.bounds
         if animated {
+            
             let imageView = self.imageView
+//            let offset : CGFloat = 4
+//
+//            let size : CGFloat = imageView.bounds.width
+//            var rect = CGRect(origin: .zero, size: CGSize(width: size, height: size))
+//            rect.x = imageView.centerX - size * 0.5
+//            rect.y = imageView.centerY - size * 0.5
+//
+//            var lt = convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: imageView)
+//            lt.x += ltView.frame.width * 0.5 - offset
+//            lt.y += ltView.frame.height * 0.5 - offset
+//            ltView.center = lt
+//
+//            var lb = convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
+//            lb.x += lbView.frame.width * 0.5 - offset
+//            lb.y -= lbView.frame.height * 0.5 - offset
+//            lbView.center = lb
+//
+//            var rt = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
+//            rt.x -= rtView.frame.width * 0.5 - offset
+//            rt.y += rtView.frame.height * 0.5 - offset
+//            rtView.center = rt
+//
+//            var rb = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height),from: imageView)
+//            rb.x -= rbView.frame.width * 0.5 - offset
+//            rb.y -= rbView.frame.height * 0.5 - offset
+//            rbView.center = rb
+            //                self.ltView.center = lt
+            //                self.lbView.center = lb
+            //                self.rtView.center = rt
+            //                self.rbView.center = rb
+
+
             UIView.animate(withDuration: 0.25) {
+                
                 self.ltView.center = self.convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: imageView)
-                self.lbView.center = self.convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
-                self.rtView.center = self.convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
-                self.rbView.center = self.convert(CGPoint(x: rect.origin.x + rect.size.width,
-                                                          y: rect.origin.y + rect.size.height),from: imageView)
+                              self.lbView.center = self.convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
+                              self.rtView.center = self.convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
+                              self.rbView.center = self.convert(CGPoint(x: rect.origin.x + rect.size.width,
+                                                                        y: rect.origin.y + rect.size.height),from: imageView)
             }
             let animation = CABasicAnimation(keyPath: "clippingRect")
             animation.duration = 0.2;
@@ -169,6 +236,7 @@ extension VisualSearchCropView {
             gridLayer.add(animation, forKey: nil)
             gridLayer.clippingRect = rect
             gridLayer.setNeedsDisplay()
+            current.accept(rect)
             
         } else {
             self.clippingRect = rect
@@ -182,9 +250,24 @@ extension VisualSearchCropView {
 extension VisualSearchCropView {
     
     func makeClippingCircleView(with tag : Int) -> VisualSearchClippingCircle {
-        let view = VisualSearchClippingCircle(frame: CGRect(x: 0, y: 0, width: 50, height: 50))
+        
+        var corner : UIRectCorner
+        switch tag {
+        case 0:
+            corner = .topLeft
+        case 1:
+            corner = .bottomLeft
+        case 2:
+            corner = .topRight
+        case 3:
+            corner = .bottomRight
+        default:
+           fatalError()
+        }
+        print(corner.rawValue)
+        
+        let view = VisualSearchClippingCircle(corner: corner,frame: CGRect(x: 0, y: 0, width: 20, height: 20))
         view.backgroundColor = UIColor.clear
-        view.bgColor = UIColor.white
         view.tag = tag
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panCircleView(_:)))
         view.addGestureRecognizer(panGesture)
@@ -356,4 +439,13 @@ extension VisualSearchCropView {
         clippingRect = rct
     }
     
+}
+
+extension Reactive where Base: VisualSearchCropView {
+    
+    var image: Binder<UIImage?> {
+        return Binder(self.base) { view, image in
+            view.image = image
+        }
+    }
 }

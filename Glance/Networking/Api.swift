@@ -52,6 +52,8 @@ protocol API {
     func updateUserInterest(ids : String) -> Single<Bool>
     func similarProduct(id : Any, type : Int,page : Int) -> Single<PageMapable<PostsDetailProduct>>
     func addShoppingCart(productId : String) -> Single<Bool>
+    func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
+    
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }
