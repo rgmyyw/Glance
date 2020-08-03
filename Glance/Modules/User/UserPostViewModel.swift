@@ -50,9 +50,8 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    if !item.hasNext  {
-                        self.noMoreData.onNext(())
-                    }
+                    
+                self.hasData.onNext(item.hasNext)
                 default:
                     break
                 }
@@ -62,7 +61,6 @@ class UserPostViewModel: ViewModel, ViewModelType {
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !self.element.value.hasNext {
-                self.noMoreData.onNext(())
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
@@ -77,9 +75,8 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = self.element.value.list + item.list
                 self.element.accept(temp)
-                if !item.hasNext  {
-                    self.noMoreData.onNext(())
-                }
+                self.hasData.onNext(item.hasNext)
+                
             default:
                 break
             }

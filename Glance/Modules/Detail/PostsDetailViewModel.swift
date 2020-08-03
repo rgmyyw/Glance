@@ -104,7 +104,6 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<PostsDetailProduct>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !self.similar.value.hasNext {
-                self.noMoreData.onNext(())
                 return Observable.just(RxSwift.Event.next(PageMapable(hasNext: false)))
                     .trackActivity(self.footerLoading)
             }
@@ -120,9 +119,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 var newResult = result
                 newResult.list = self.similar.value.list + result.list
                 self.similar.accept(newResult)
-                if newResult.total <= self.page {
-                    self.noMoreData.onNext(())
-                }
+                self.hasData.onNext(result.hasNext)
                 
             default:
                 break

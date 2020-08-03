@@ -53,7 +53,7 @@ protocol API {
     func similarProduct(id : Any, type : Int,page : Int) -> Single<PageMapable<PostsDetailProduct>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
-    
+    func searchProductInApp(keywords : String, page : Int) -> Single<PageMapable<Home>>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

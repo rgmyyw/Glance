@@ -21,7 +21,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     
-    let noMoreData = PublishSubject<Void>()
+    let hasData = PublishSubject<Bool>()
     
     private let style : UITableView.Style
 
@@ -70,19 +70,22 @@ class TableViewController: ViewController, UIScrollViewDelegate {
             self?.footerRefreshTrigger.onNext(())
         })
 
-        tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "no data")
+        tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
         tableView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
-        headerRefreshTrigger.subscribe(onNext: { [weak self] in
-            if let footRefreshControl = self?.tableView.footRefreshControl {
-                footRefreshControl.resumeRefreshAvailable()
-            }
-        }).disposed(by: rx.disposeBag)
+
         
 
-        noMoreData.subscribe(onNext: {[weak self] (_) in
-            self?.tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "no Data!")
-        }).disposed(by: rx.disposeBag)
         
+        hasData.subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (hasData) in
+                guard let footRefreshControl = self?.tableView.footRefreshControl  else { return }
+                if !hasData {
+                    footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                } else {
+                    footRefreshControl.resumeRefreshAvailable()
+                }
+            }).disposed(by: rx.disposeBag)
+
 
         tableView.footRefreshControl.autoRefreshOnFoot = true
 

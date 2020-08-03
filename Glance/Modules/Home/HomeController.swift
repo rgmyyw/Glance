@@ -87,7 +87,7 @@ class HomeController: CollectionViewController {
         
         viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
+        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
     }

@@ -55,8 +55,7 @@ class VisualSearchResultViewController: CollectionViewController  {
             make.left.equalTo(20)
             make.top.equalTo(20)
         }
-        
-
+                    
         
         
         let layout = ZLCollectionViewVerticalLayout()
@@ -88,11 +87,16 @@ class VisualSearchResultViewController: CollectionViewController  {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
         
+        (navigationBar.rightBarButtonItem as? UIButton)?
+            .rx.tap.subscribe(onNext: { [weak self]() in
+                let viewModel = VisualSearchProductViewModel(provider: viewModel.provider)
+                self?.navigator.show(segue: .visualSearchProduct(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
         
         
         viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
+        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
         viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
         

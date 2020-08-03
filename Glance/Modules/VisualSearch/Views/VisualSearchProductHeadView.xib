@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="VisualSearchProductHeadView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="214"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yWW-aK-nLR">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="214"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="f8T-do-916">
+                            <rect key="frame" x="20" y="168" width="374" height="34"/>
+                            <subviews>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OOE-3H-b0a">
+                                    <rect key="frame" x="0.0" y="0.0" width="262" height="34"/>
+                                    <color key="backgroundColor" red="0.93333333333333335" green="0.93333333333333335" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="34" id="pvW-2n-OOB"/>
+                                    </constraints>
+                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XXQ-Bc-fAS">
+                                    <rect key="frame" x="277" y="0.0" width="22" height="34"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="22" id="56m-3F-lYq"/>
+                                    </constraints>
+                                    <state key="normal" image="icon_navigation_search"/>
+                                </button>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="me1-Va-c4F">
+                                    <rect key="frame" x="314" y="0.0" width="60" height="34"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstItem="OOE-3H-b0a" firstAttribute="width" secondItem="f8T-do-916" secondAttribute="width" multiplier="0.7" id="zIF-WR-8OH"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="f8T-do-916" firstAttribute="leading" secondItem="yWW-aK-nLR" secondAttribute="leading" constant="20" id="UGI-ln-upA"/>
+                        <constraint firstAttribute="trailing" secondItem="f8T-do-916" secondAttribute="trailing" constant="20" id="rzL-WH-IVt"/>
+                        <constraint firstAttribute="bottom" secondItem="f8T-do-916" secondAttribute="bottom" constant="12" id="zNy-jg-sdy"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="yWW-aK-nLR" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="2wC-Hw-Mxf"/>
+                <constraint firstAttribute="trailing" secondItem="yWW-aK-nLR" secondAttribute="trailing" id="EZ2-U4-2Dz"/>
+                <constraint firstAttribute="bottom" secondItem="yWW-aK-nLR" secondAttribute="bottom" id="MnQ-jd-b67"/>
+                <constraint firstItem="yWW-aK-nLR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="bjg-Wc-xNL"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="searchButton" destination="XXQ-Bc-fAS" id="UgS-2w-Vld"/>
+                <outlet property="textFiled" destination="OOE-3H-b0a" id="V1R-v5-jr5"/>
+            </connections>
+            <point key="canvasLocation" x="140.57971014492756" y="370.98214285714283"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_navigation_search" width="22" height="22"/>
+    </resources>
+</document>

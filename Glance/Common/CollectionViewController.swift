@@ -19,7 +19,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     
-    let noMoreData = PublishSubject<Void>()
+    let hasData = PublishSubject<Bool>()
     
     
     lazy var collectionView: CollectionView = {
@@ -64,18 +64,15 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         
         collectionView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
         collectionView.footRefreshControl.autoRefreshOnFoot = true
+                
         
-        headerRefreshTrigger.subscribe(onNext: { [weak self] in
-            if let footRefreshControl = self?.collectionView.footRefreshControl {
-                footRefreshControl.resumeRefreshAvailable()
-            }
-        }).disposed(by: rx.disposeBag)
-        
-        
-        noMoreData.subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] (_) in
-                if let footRefreshControl = self?.collectionView.footRefreshControl {
-                    footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "")
+        hasData.subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] (hasData) in
+                guard let footRefreshControl = self?.collectionView.footRefreshControl  else { return }
+                if !hasData {
+                    footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                } else {
+                    footRefreshControl.resumeRefreshAvailable()
                 }
             }).disposed(by: rx.disposeBag)
         

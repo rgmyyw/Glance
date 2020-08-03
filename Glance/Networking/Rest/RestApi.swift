@@ -147,6 +147,10 @@ class RestApi: API {
         return requestObject(.visualSearch(params: params), type: VisualSearchPageMapable.self)
     }
     
+    func searchProductInApp(keywords: String, page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.searchProductInApp(keywords: keywords, page: page), type: PageMapable<Home>.self)
+    }
+    
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

@@ -20,6 +20,9 @@ class EmptyDataViewModel {
     let verticalOffsetY = BehaviorRelay<CGFloat>(value: 0 )
     let contentInsetTop = BehaviorRelay<CGFloat>(value: 0)
     
+    
+    
+    
     let tap = PublishSubject<Void>()
     let enable =  BehaviorRelay<Bool>(value: true)
     

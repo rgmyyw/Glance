@@ -28,7 +28,8 @@ class ViewModel: NSObject  {
     let loading = ActivityIndicator()
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()
-    let noMoreData = PublishSubject<Void>()
+    let hasData = PublishSubject<Bool>()
+    let resumeRefreshAvailable = PublishSubject<Void>()
 
     let error = ErrorTracker()
     let parsedError = PublishSubject<ApiError>()
