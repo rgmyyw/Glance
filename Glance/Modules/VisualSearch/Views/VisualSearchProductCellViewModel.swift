@@ -14,10 +14,7 @@ class VisualSearchProductCellViewModel : CellViewModelProtocol {
     
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
-    let selected = BehaviorRelay<Bool>(value: false)
-    
-    let selection = PublishSubject<Void>()
-    
+
     var col : CGFloat = 2
     
     var height : CGFloat {

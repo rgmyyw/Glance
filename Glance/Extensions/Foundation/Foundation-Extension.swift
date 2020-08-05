@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import UIKit
+
 
 extension Int {
     
@@ -174,5 +176,45 @@ extension String {
         }
         return params
     }
+    
+}
 
+extension UILabel {
+    
+    func boundingRect(size : CGSize) -> CGSize {
+        guard let text = self.text  else {
+            return .zero
+        }
+        return text.boundingRect(with: size, font: font)
+    }
+    
+}
+
+
+extension String {
+    
+    func boundingRect(with constrainedSize: CGSize, font: UIFont, lineSpacing: CGFloat? = nil) -> CGSize {
+        let attritube = NSMutableAttributedString(string: self)
+        let range = NSRange(location: 0, length: attritube.length)
+        attritube.addAttributes([NSAttributedString.Key.font: font], range: range)
+        if lineSpacing != nil {
+            let paragraphStyle = NSMutableParagraphStyle()
+            paragraphStyle.lineSpacing = lineSpacing!
+            attritube.addAttribute(NSAttributedString.Key.paragraphStyle, value: paragraphStyle, range: range)
+        }
+        
+        let rect = attritube.boundingRect(with: constrainedSize, options: [.usesLineFragmentOrigin, .usesFontLeading], context: nil)
+        var size = rect.size
+        
+        if let currentLineSpacing = lineSpacing {
+            // 文本的高度减去字体高度小于等于行间距，判断为当前只有1行
+            let spacing = size.height - font.lineHeight
+            if spacing <= currentLineSpacing && spacing > 0 {
+                size = CGSize(width: size.width, height: font.lineHeight)
+            }
+        }
+        
+        return size
+    }
+    
 }

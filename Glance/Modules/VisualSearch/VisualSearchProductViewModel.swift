@@ -19,7 +19,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     struct Input {
         let search: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<VisualSearchProductCellViewModel>
+        let selection : Observable<VisualSearchProductSectionItem>
     }
     
     struct Output {
@@ -28,20 +28,22 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     
     
     let textInput = BehaviorRelay<String>(value: "")
-    
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let selected = PublishSubject<Home>()
+    
+    
     
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchProductSection]>(value: [])
-        let selectedCellViewModel = BehaviorRelay<[VisualSearchProductCellViewModel]>(value:[])
-        
+
         input.search
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 elements.accept([])
+                self.endEditing.onNext(())
                 self.page = 1
                 let text = self.textInput.value
                 return self.provider.searchProductInApp(keywords: text, page: self.page)
@@ -80,8 +82,6 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 temp.list = self.element.value.list + item.list
                 self.element.accept(temp)
                 self.hasData.onNext(item.hasNext)
-                
-                
             default:
                 break
             }
@@ -98,16 +98,9 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             let section = VisualSearchProductSection(section: 0, elements: sectionItems)
             return [section]
             
-        }.share(replay: 1).bind(to: elements).disposed(by: rx.disposeBag)
-        
-        
-        
-        input.selection.subscribe(onNext: { cellViewModel in
-            cellViewModel.selected.accept(!cellViewModel.selected.value)
-            ///let selected = elements.value.map { $0.items }.flatMap { $0.filter { $0.selected.value } }
-            //            selectedCellViewModel.accept(selected)
-            
-        }).disposed(by: rx.disposeBag)
+        }.bind(to: elements).disposed(by: rx.disposeBag)
+                
+        input.selection.map { $0.viewModel.item }.bind(to: selected).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []))
     }

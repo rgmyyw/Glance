@@ -64,13 +64,18 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         
         collectionView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
         collectionView.footRefreshControl.autoRefreshOnFoot = true
-                
+
+    
         
         hasData.subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (hasData) in
                 guard let footRefreshControl = self?.collectionView.footRefreshControl  else { return }
                 if !hasData {
-                    footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                    if self?.collectionView.isEmptyDataSetVisible == false {
+                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                    } else {
+                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: nil)
+                    }
                 } else {
                     footRefreshControl.resumeRefreshAvailable()
                 }

@@ -67,13 +67,38 @@ public func showAlert(with title: String? = nil, message: String?, optionTitles:
     let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .alert)
     let titles = optionTitles
     let actions = titles.enumerated().map { offset, item -> AlertAction in
-        let action = AlertAction(title: item, style: .preferred)
+        let action = AlertAction(title: item, style: .normal)
         action.accessibilityIdentifier = offset.string
         return action
     }
-    let cancel = AlertAction(title: cancel, style: .destructive)
+    let cancel = AlertAction(title: cancel, style: .preferred)
     cancel.accessibilityIdentifier = "-1"
     controller.addAction(cancel)
+    controller.addActions(actions)
+    controller.present()
+    return controller.asObservable()
+}
+
+@discardableResult
+public func showActionSheet(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
+    return showActionSheet(with: title, message: message, optionTitles: optionTitles, cancel: cancel)
+}
+
+@discardableResult
+public func showActionSheet(with title: String? = nil, message: String?, optionTitles: [String] , cancel : String = "Cancel" ) -> Observable<Int> {
+    let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .actionSheet)
+    let titles = optionTitles
+    
+    let cancel = AlertAction(title: cancel, style: .preferred)
+    cancel.accessibilityIdentifier = "-1"
+    controller.addAction(cancel)
+    
+    
+    let actions = titles.enumerated().map { offset, item -> AlertAction in
+        let action = AlertAction(title: item, style: .normal)
+        action.accessibilityIdentifier = offset.string
+        return action
+    }
     controller.addActions(actions)
     controller.present()
     return controller.asObservable()

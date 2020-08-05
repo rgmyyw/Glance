@@ -16,26 +16,26 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<VisualSearchResultCellViewModel>
+        let selection : Observable<VisualSearchResultSectionItem>
     }
     
     struct Output {
-        let items : Driver<[SectionModel<Void,VisualSearchResultCellViewModel>]>
+        let items : Driver<[VisualSearchResultSection]>
     }
     
     let imageURI = BehaviorRelay<String?>(value: nil)
     let currentRect : BehaviorRelay<CGRect> = BehaviorRelay<CGRect>(value: .zero)
     let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    
+    let searchSelection = PublishSubject<Home>()
     
     let element : BehaviorRelay<(Bool,VisualSearchPageMapable)> = BehaviorRelay(value: (false,VisualSearchPageMapable()))
     
     func transform(input: Input) -> Output {
         
-        let elements = BehaviorRelay<[SectionModel<Void,VisualSearchResultCellViewModel>]>(value: [])
-        let selectedCellViewModel = BehaviorRelay<[VisualSearchResultCellViewModel]>(value:[])
+        let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
+        let selectedItems = BehaviorRelay<[VisualSearchResultSectionItem]>(value:[])
         let box = BehaviorRelay<[CGFloat]>(value: [])
-        selectedCellViewModel.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
+        selectedItems.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
         
         currentRect.filter { $0 != .zero }
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
@@ -51,32 +51,32 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         box.filterEmpty()
             .flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<VisualSearchPageMapable>)> in
-            guard let self = self else {
-                return Observable.just(RxSwift.Event.completed)
-            }
-            self.page = 1
-            var param = [String : Any]()
-            param["page"] = self.page
-            param["limit"] = 10
-            param["imUri"] = self.imageURI.value ?? ""
-            param["imUrl"] = ""
-            param["box"] = box
-            //imId ["imId"]
-            return self.provider.visualSearch(params: param)
-                .trackError(self.error)
-                .trackActivity(self.headerLoading)
-                .materialize()
-        }).subscribe(onNext: { [weak self] event in
-            guard let self = self else { return }
-            switch event {
-            case .next(let item):
-                self.element.accept((true, item))
-                self.hasData.onNext(item.hasNext)
-                
-            default:
-                break
-            }
-        }).disposed(by: rx.disposeBag)
+                guard let self = self else {
+                    return Observable.just(RxSwift.Event.completed)
+                }
+                self.page = 1
+                var param = [String : Any]()
+                param["page"] = self.page
+                param["limit"] = 10
+                param["imUri"] = self.imageURI.value ?? ""
+                param["imUrl"] = ""
+                param["box"] = box
+                //imId ["imId"]
+                return self.provider.visualSearch(params: param)
+                    .trackError(self.error)
+                    .trackActivity(self.headerLoading)
+                    .materialize()
+            }).subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .next(let item):
+                    self.element.accept((true, item))
+                    self.hasData.onNext(item.hasNext)
+                    
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<VisualSearchPageMapable>> in
@@ -110,37 +110,51 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        element.map { (first,items) -> [SectionModel<Void,VisualSearchResultCellViewModel>] in
-            let sectionItems = items.list.map { item -> VisualSearchResultCellViewModel  in
+        element.map { (first,items) -> [VisualSearchResultSection] in
+            let sectionItems = items.list.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
                 let viewModel = VisualSearchResultCellViewModel(item: item)
-                return viewModel
+                let item = VisualSearchResultSectionItem(item: offset, viewModel: viewModel)
+                return item
             }
             if first, let item = sectionItems.first {
-                item.selected.accept(true)
+                item.viewModel.selected.accept(true)
                 self.bottomViewHidden.accept(false)
-                selectedCellViewModel.accept([item])
+                selectedItems.accept([item])
             }
-            selectedCellViewModel.value.forEach { item in
-                for cellViewModel in sectionItems {
-                    if item.item.productId == cellViewModel.item.productId {
-                        cellViewModel.selected.accept(true)
+            selectedItems.value.forEach { selected in
+                for current in sectionItems {
+                    if selected.viewModel.item.productId == current.viewModel.item.productId {
+                        current.viewModel.selected.accept(true)
                         break
                     }
                 }
             }
-            let sections = [SectionModel<Void,VisualSearchResultCellViewModel>(model: (), items: sectionItems)]
-            return sections
+            return [VisualSearchResultSection(section: 0, elements: sectionItems)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        input.selection.subscribe(onNext: { cellViewModel in
-            cellViewModel.selected.accept(!cellViewModel.selected.value)
-            let selected = elements.value.map { $0.items }.flatMap { $0.filter { $0.selected.value } }
-            selectedCellViewModel.accept(selected)
-            
-            
-            
+        
+        searchSelection.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .map { item -> VisualSearchResultSectionItem in
+                let viewModel = VisualSearchResultCellViewModel(item: item)
+                viewModel.selected.accept(true)
+                return VisualSearchResultSectionItem(item: elements.value[0].items.count, viewModel: viewModel)
+        }.map { item -> [VisualSearchResultSection] in
+            selectedItems.accept(selectedItems.value + [item])
+            let section = elements.value[0]
+            var items =  section.items
+            items.insert(item, at: 0)
+            return [VisualSearchResultSection(original: section, items: items)]
+        }.bind(to: elements).disposed(by: rx.disposeBag)
+        
+        
+        
+        
+        input.selection.subscribe(onNext: { selection in
+            selection.viewModel.selected.accept(!selection.viewModel.selected.value)
+            let selected = elements.value.map { $0.items }.flatMap { $0.filter { $0.viewModel.selected.value } }
+            selectedItems.accept(selected)
         }).disposed(by: rx.disposeBag)
-
+        
         
         
         

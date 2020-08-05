@@ -17,7 +17,7 @@ import WMZPageController
 
 class VisualSearchResultViewController: CollectionViewController  {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,VisualSearchResultCellViewModel>> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<VisualSearchResultSection> = configureDataSouce()
     
     override func makeUI() {
         super.makeUI()
@@ -80,7 +80,7 @@ class VisualSearchResultViewController: CollectionViewController  {
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
         let input = VisualSearchResultViewModel.Input(headerRefresh: refresh,
                                                       footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                      selection: collectionView.rx.modelSelected(VisualSearchResultCellViewModel.self).asObservable())
+                                                      selection: collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -89,8 +89,10 @@ class VisualSearchResultViewController: CollectionViewController  {
         
         (navigationBar.rightBarButtonItem as? UIButton)?
             .rx.tap.subscribe(onNext: { [weak self]() in
-                let viewModel = VisualSearchProductViewModel(provider: viewModel.provider)
-                self?.navigator.show(segue: .visualSearchProduct(viewModel: viewModel), sender: self)
+                guard let self = self else { return }
+                let search = VisualSearchProductViewModel(provider: viewModel.provider)
+                search.selected.bind(to: viewModel.searchSelection).disposed(by: self.rx.disposeBag)
+                self.navigator.show(segue: .visualSearchProduct(viewModel: search), sender: self)
         }).disposed(by: rx.disposeBag)
         
         
@@ -105,10 +107,10 @@ class VisualSearchResultViewController: CollectionViewController  {
 // MARK: - DataSouce
 extension VisualSearchResultViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,VisualSearchResultCellViewModel>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,VisualSearchResultCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<VisualSearchResultSection> {
+        return RxCollectionViewSectionedAnimatedDataSource<VisualSearchResultSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: VisualSearchResultCell.self)
-            cell.bind(to: item)
+            cell.bind(to: item.viewModel)
             return cell
         })
     }
@@ -137,9 +139,9 @@ extension VisualSearchResultViewController : ZLCollectionViewBaseFlowLayoutDeleg
         
         let collectionView = collectionView as! CollectionView
         return collectionView.ar_sizeForCell(withIdentifier: VisualSearchResultCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
-            if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
+            if let item = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? VisualSearchResultCell
-                cell?.bind(to: viewModel)
+                cell?.bind(to: item.viewModel)
                 cell?.setNeedsLayout()
                 cell?.needsUpdateConstraints()
             }

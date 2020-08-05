@@ -151,6 +151,18 @@ class RestApi: API {
         return requestObject(.searchProductInApp(keywords: keywords, page: page), type: PageMapable<Home>.self)
     }
     
+    
+    func categories() -> Single<[Categories]> {
+        return requestArray(.categories, type: Categories.self)
+    }
+    
+    
+    func addProduct(param: [String : Any]) -> Single<String> {
+        return requestObject(.addProduct(param: param), type: MappableItem<[String : String]>.self).map { $0.data?["imName"] ?? ""}
+
+    }
+    
+    
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

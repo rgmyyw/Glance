@@ -9,6 +9,8 @@
 import UIKit
 import FloatingPanel
 
+
+
 class VisualSearchViewController: ViewController {
     
     let cropView : VisualSearchCropView = VisualSearchCropView()
@@ -17,6 +19,8 @@ class VisualSearchViewController: ViewController {
     
     override func makeUI() {
         super.makeUI()
+        
+        
         
         contentView.removeFromSuperview()
         view.addSubview(cropView)

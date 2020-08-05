@@ -213,6 +213,7 @@
                 <outlet property="emojiButton" destination="Pof-qs-RZ6" id="8II-jS-a6L"/>
                 <outlet property="favorite" destination="gRM-00-gU2" id="3Na-6b-DDi"/>
                 <outlet property="imageView" destination="ZTZ-yO-wQn" id="BvM-Gm-hUE"/>
+                <outlet property="imageViewHeight" destination="2V2-zn-cAF" id="PEE-8I-nQy"/>
                 <outlet property="likeButton" destination="Pof-qs-RZ6" id="m2d-Nh-nbq"/>
                 <outlet property="moreButton" destination="iAW-0Z-Jtu" id="8tz-Vu-hfj"/>
                 <outlet property="recommendButton" destination="owU-Q7-vzR" id="50j-Er-4Ij"/>
@@ -224,7 +225,7 @@
                 <outlet property="userNameLabel" destination="bXB-AG-eNZ" id="WEu-Te-feO"/>
                 <outlet property="userOnlineImageView" destination="1ME-r9-kYs" id="X3H-G6-xQ1"/>
             </connections>
-            <point key="canvasLocation" x="-197" y="28"/>
+            <point key="canvasLocation" x="-826" y="-40"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -47,6 +47,8 @@ class Navigator {
         case interest(viewModel : InterestViewModel)
         case visualSearch(viewModel: VisualSearchViewModel)
         case visualSearchProduct(viewModel: VisualSearchProductViewModel)
+        case addProduct(viewModel: AddProductViewModel)
+        
     }
     
     enum Transition {
@@ -130,6 +132,9 @@ class Navigator {
             return vc
         case .visualSearchProduct(let viewModel):
             let vc = VisualSearchProductViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .addProduct(let viewModel):
+            let vc = AddProductViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

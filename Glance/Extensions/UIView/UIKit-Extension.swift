@@ -57,6 +57,7 @@ extension  UITextField {
                 if valid , number > 0 {
                     self?.text = text[0..<number]
                 }
+                
         }).disposed(by: rx.disposeBag)
     }
     

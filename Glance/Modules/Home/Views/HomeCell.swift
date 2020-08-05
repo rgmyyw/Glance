@@ -24,6 +24,14 @@ class HomeCell: CollectionViewCell {
     @IBOutlet weak var userOnlineImageView: UIImageView!
     @IBOutlet weak var favorite: UIButton!
     @IBOutlet weak var likeButton: UIButton!
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+    
+    
+    override func makeUI() {
+        super.makeUI()
+        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
+    }
     
     override func bind<T>(to viewModel: T) where T : HomeCellViewModel {
         super.bind(to: viewModel)

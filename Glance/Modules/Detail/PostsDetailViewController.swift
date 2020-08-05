@@ -225,6 +225,7 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
                 let cell = cell  as? PostsDetailCell
                 cell?.bind(to: viewModel)
+                
             }
         case .tagged:
             return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in

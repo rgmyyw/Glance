@@ -40,9 +40,7 @@ class VisualSearchProductViewController: CollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: VisualSearchProductCell.self)
         
-        stackView.insertArrangedSubview(headVaiew, at: 0)
-        
-        
+        stackView.insertArrangedSubview(headVaiew, at: 0)        
                 
     }
     
@@ -55,7 +53,7 @@ class VisualSearchProductViewController: CollectionViewController {
         
         let input = VisualSearchProductViewModel.Input(search: headVaiew.searchButton.rx.tap.asObservable(),
                                                        footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                       selection: collectionView.rx.modelSelected(VisualSearchProductCellViewModel.self).asObservable())
+                                                       selection: collectionView.rx.modelSelected(VisualSearchProductSectionItem.self).asObservable())
         
         (headVaiew.textFiled.rx.textInput <-> viewModel.textInput ).disposed(by: rx.disposeBag)
         
@@ -70,24 +68,28 @@ class VisualSearchProductViewController: CollectionViewController {
                 let viewModel = VisualSearchProductViewModel(provider: viewModel.provider)
                 self?.navigator.show(segue: .visualSearchProduct(viewModel: viewModel), sender: self)
             }).disposed(by: rx.disposeBag)
-        
-        
+                
         addProductYourself.subscribe(onNext: { [weak self]() in
             
-            
+        }).disposed(by: rx.disposeBag)
+        
+        viewModel.selected.mapToVoid()
+            .subscribe(onNext: { [weak self]() in
+                self?.navigator.pop(sender: self)
         }).disposed(by: rx.disposeBag)
 
-        rx.viewDidAppear.mapToVoid().observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self]() in
-                self?.headVaiew.textFiled.becomeFirstResponder()
-        }).disposed(by: rx.disposeBag)
-
-        rx.viewWillDisappear.mapToVoid().observeOn(MainScheduler.instance)
-            .subscribe(onNext: { [weak self]() in
-                self?.headVaiew.textFiled.resignFirstResponder()
-        }).disposed(by: rx.disposeBag)
+//        rx.viewDidAppear.mapToVoid().observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self]() in
+//                self?.headVaiew.textFiled.becomeFirstResponder()
+//        }).disposed(by: rx.disposeBag)
+//
+//        rx.viewWillDisappear.mapToVoid().observeOn(MainScheduler.instance)
+//            .subscribe(onNext: { [weak self]() in
+//                self?.headVaiew.textFiled.resignFirstResponder()
+//        }).disposed(by: rx.disposeBag)
 
         
+        viewModel.endEditing.bind(to: endEditing).disposed(by: rx.disposeBag)
         viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
         viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)

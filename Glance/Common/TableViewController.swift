@@ -14,23 +14,23 @@ import Toast_Swift
 
 
 class TableViewController: ViewController, UIScrollViewDelegate {
-
+    
     let headerRefreshTrigger = PublishSubject<Void>()
     let footerRefreshTrigger = PublishSubject<Void>()
-
+    
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     
     let hasData = PublishSubject<Bool>()
     
     private let style : UITableView.Style
-
+    
     lazy var tableView: TableView = {
         let view = TableView(frame: .zero, style: style)
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
         view.estimatedRowHeight = UITableView.automaticDimension
-//        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
+        //        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
         return view
     }()
@@ -48,47 +48,48 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        
     }
     
     
-
+    
     override func makeUI() {
         super.makeUI()
-
+        
         stackView.spacing = 0
         stackView.insertArrangedSubview(tableView, at: 0)
         
         tableView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
             self?.headerRefreshTrigger.onNext(())
         })
-
+        
         tableView.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
             self?.footerRefreshTrigger.onNext(())
         })
-
-        tableView.footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
-        tableView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
-
         
-
+        
+        tableView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
+        tableView.footRefreshControl.autoRefreshOnFoot = true
+        
         
         hasData.subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] (hasData) in
                 guard let footRefreshControl = self?.tableView.footRefreshControl  else { return }
                 if !hasData {
-                    footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                    if self?.tableView.isEmptyDataSetVisible == false {
+                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
+                    }
                 } else {
                     footRefreshControl.resumeRefreshAvailable()
                 }
             }).disposed(by: rx.disposeBag)
-
-
+        
+        
         tableView.footRefreshControl.autoRefreshOnFoot = true
-
+        
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
                                                emptyDataViewDataSource.enable.mapToVoid(),
@@ -100,13 +101,13 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         updateEmptyDataSet.subscribe(onNext: { [weak self] _ in
             self?.tableView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
-
-
+        
+        
     }
     
     override func bindViewModel() {
         super.bindViewModel()
-
+        
         if tableView.headRefreshControl != nil {
             isHeaderLoading.bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
@@ -114,7 +115,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
             isFooterLoading.bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
     }
-
+    
     override func updateUI() {
         super.updateUI()
         
@@ -123,7 +124,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
 }
 
 extension TableViewController {
-
+    
     func deselectSelectedRow() {
         if let selectedIndexPaths = tableView.indexPathsForSelectedRows {
             selectedIndexPaths.forEach({ (indexPath) in

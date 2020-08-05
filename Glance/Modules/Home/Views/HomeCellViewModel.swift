@@ -31,14 +31,26 @@ class HomeCellViewModel : CellViewModelProtocol {
     let showLikePopView = PublishSubject<UIView>()
     
     
+    var col : CGFloat = 2
+    
+    var height : CGFloat {
+        let inset : CGFloat = 20
+        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col - 1.0) * 15.0)
+        if let urlParameters = item.image?.urlParameters() {
+            let width = urlParameters["w"]?.cgFloat() ?? 0
+            let height = urlParameters["h"]?.cgFloat() ?? 0
+            return ((cellWidth / width) * height) / col
+        } else {
+            return 200
+        }
+    }
+
+    
     required init(item : Home) {
         self.item = item
         
         typeName.accept(item.type.title)
-        
-//        var item = item
-//        item.image = "https://img14.360buyimg.com/n0/jfs/t1/114746/7/9219/113962/5ed8dc5aEb58f859d/623d77ec2b96bfee.jpg"
-//        item.productUrl = item.image
+
         
         switch item.type {
         case .post:

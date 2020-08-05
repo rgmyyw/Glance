@@ -13,7 +13,6 @@ class VisualSearchProductCell: CollectionViewCell {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var shadowView: UIView!
-    @IBOutlet weak var selectionButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     
     
@@ -21,8 +20,6 @@ class VisualSearchProductCell: CollectionViewCell {
         super.bind(to: viewModel)
         imageViewHeight.constant = viewModel.height
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
-        viewModel.selected.bind(to: selectionButton.rx.isSelected).disposed(by: cellDisposeBag)
-        selectionButton.rx.tap.bind(to: viewModel.selection).disposed(by: cellDisposeBag)
     }
     
     
