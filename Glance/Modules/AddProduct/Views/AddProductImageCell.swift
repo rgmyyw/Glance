@@ -16,13 +16,13 @@ class AddProductImageCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
 
+        imageView.backgroundColor = UIColor.random
     }
     
     override func bind<T>(to viewModel: T) where T : AddProductImageCellViewModel {
         super.bind(to: viewModel)
         
         editButton.rx.tap().bind(to: viewModel.edit).disposed(by: cellDisposeBag)
-        
         viewModel.image.bind(to: imageView.rx.image).disposed(by: cellDisposeBag)
     }
 }

@@ -18,6 +18,25 @@ class SavedCollectionCellViewModel : CellViewModelProtocol {
     let deleteButtonHidden = BehaviorRelay<Bool>(value: true)
     let delete = PublishSubject<Void>()
     
+    var col : CGFloat = 2
+    
+    var height : CGFloat {
+        let inset : CGFloat = 20
+        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col - 1.0) * 15.0)
+        if let urlParameters = item.image?.urlParameters() {
+            let width = urlParameters["w"]?.cgFloat() ?? 0
+            let height = urlParameters["h"]?.cgFloat() ?? 0
+            var imageHeight = ((cellWidth / width) * height) / col
+            if imageHeight.isNaN {
+                imageHeight = 200
+            }
+            return imageHeight
+        } else {
+            return 200
+        }
+    }
+    
+    
     required init(item : Home) {
         self.item = item
         

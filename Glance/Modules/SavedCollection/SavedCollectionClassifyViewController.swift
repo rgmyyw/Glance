@@ -36,9 +36,7 @@ class SavedCollectionClassifyViewController: ViewController {
             }
         }).disposed(by: rx.disposeBag)
         
-        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
 
         
         items.tapGesture()

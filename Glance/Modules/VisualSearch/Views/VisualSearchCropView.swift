@@ -153,8 +153,8 @@ extension VisualSearchCropView {
         
         guard image != nil else { return }
         var w = UIScreen.main.bounds.width
-        let maxH : CGFloat = bounds.height
-        let maxW : CGFloat = bounds.width
+        let maxH : CGFloat = bounds.height - UIApplication.shared.statusBarFrame.height
+        let maxW : CGFloat = bounds.width - 40
         
         let imageWidth = originSize.width
         let imageHeight = originSize.height
@@ -167,12 +167,12 @@ extension VisualSearchCropView {
         
         if w > maxW {
             w = maxW
-            fatalError()
+            h = w * imageHeight / imageHeight
         }
         
         var frame = CGRect(x: 0, y: 0, width: w, height: h)
         frame.origin.x = center.x - w * 0.5
-        frame.origin.y = 0
+        frame.origin.y = UIApplication.shared.statusBarFrame.height
         
         if isInitialize {
             UIView.animate(withDuration: 0.2) {

@@ -36,7 +36,7 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQa-op-OmK">
+                            <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQa-op-OmK">
                                 <rect key="frame" x="153" y="10" width="25" height="25"/>
                                 <state key="normal" image="icon_cell_selection_normal"/>
                                 <state key="selected" image="icon_cell_selection_selected"/>

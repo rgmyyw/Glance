@@ -152,6 +152,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         self.view.addGestureRecognizer(twoSwipeGesture)
                 
         backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
+        closeButton.addTarget(self, action: #selector(closeAction), for: .touchUpInside)
     }
     
     public override func viewWillAppear(_ animated: Bool) {
@@ -166,7 +167,6 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     public override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateUI()
-        logResourcesCount()
     }
     
     deinit {
@@ -183,8 +183,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     func makeUI() {
         
         hero.isEnabled = true
-        //navigationItem.backBarButtonItem = backBarButton
-        
+
         languageChanged.subscribe(onNext: {  () in
             
         }).disposed(by: rx.disposeBag)
@@ -202,10 +201,18 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         
         emptyDataView.bind(to: emptyDataViewDataSource)
         
+        
         updateUI()
     }
     
     func bindViewModel() {
+        
+        viewModel?.endEditing.bind(to: endEditing).disposed(by: rx.disposeBag)
+        viewModel?.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
+        viewModel?.message.bind(to: message).disposed(by: rx.disposeBag)
+        viewModel?.exceptionError.bind(to: exceptionError).disposed(by: rx.disposeBag)
+        viewModel?.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
         
         isLoading.asDriver().drive(onNext: { [weak self] (isLoading) in
             isLoading ? self?.startAnimating() : self?.stopAnimating()
@@ -260,8 +267,8 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         self.updateUI()
     }
     
-    @objc func closeAction(sender: AnyObject) {
-        self.dismiss(animated: true, completion: nil)
+    @objc func closeAction() {
+        self.navigator.dismiss(sender: self, animated: true)
     }
     
     @objc func navigationBack() {

@@ -46,8 +46,6 @@ class AddProductViewController: CollectionViewController {
         collectionView.register(nib: AddProductButtonReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductButtonReusableView.self)
         collectionView.register(nib: AddProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductTitleReusableView.self)
 
-
-
         
         collectionView.register(nib: PostsDetailSectionTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailSectionTitleReusableView.self)
         
@@ -83,12 +81,16 @@ class AddProductViewController: CollectionViewController {
                 }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
+        output.detail.drive(onNext: { [weak self](productId) in
+        
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: Home(productId: productId))
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+            
+        }).disposed(by: rx.disposeBag)
+        
 
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
-        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
+        
+        
 
     }
 }
@@ -99,9 +101,9 @@ extension AddProductViewController {
         return RxCollectionViewSectionedAnimatedDataSource<AddProductSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             
             switch item {
-            case .thumbnail(let viewModel):
+            case .thumbnail(_,let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: AddProductImageCell.self)
-                //cell.bind(to: viewModel)
+                cell.bind(to: viewModel)
                 return cell
             case .tag(_,let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: AddProductTagCell.self)
@@ -138,7 +140,6 @@ extension AddProductViewController {
 
             case .thumbnail:
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductTitleReusableView.self, for: indexPath)
-                //view.bind(to: viewModel)
                 return view
 
             case .website(let viewModel):
@@ -187,7 +188,7 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
         case .tagRelatedKeywords:
             return CGSize(width: collectionView.width, height: 125)
         case .thumbnail:
-            return CGSize(width: collectionView.width, height: 40)
+            return CGSize(width: collectionView.width, height: 60)
         case .categary,.productName,.brand,.website:
             return CGSize(width: collectionView.width, height: 98)
         case .button:

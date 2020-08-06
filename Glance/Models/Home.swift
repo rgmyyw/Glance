@@ -67,7 +67,13 @@ struct Home: Mappable, Equatable {
     var isPost : Bool {
         return !isProduct
     }
-
+    
+    
+    init(productId : String) {
+        self.productId = productId
+        self.type = .product
+    }
+    
 
     init?(map: Map) {}
     init() {}

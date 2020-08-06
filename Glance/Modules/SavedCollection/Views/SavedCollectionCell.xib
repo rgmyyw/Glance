@@ -18,19 +18,19 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JtD-3V-947">
-                        <rect key="frame" x="0.0" y="0.0" width="169" height="220"/>
+                        <rect key="frame" x="0.0" y="0.0" width="169" height="120"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xNs-IX-UWe">
-                                <rect key="frame" x="0.0" y="0.0" width="169" height="220"/>
+                                <rect key="frame" x="0.0" y="0.0" width="169" height="120"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FlO-FM-Lz7">
-                                        <rect key="frame" x="0.0" y="0.0" width="169" height="200"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="169" height="100"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PZK-RY-ifq">
-                                                <rect key="frame" x="0.0" y="0.0" width="169" height="200"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="169" height="100"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="3bF-m0-xr2"/>
+                                                    <constraint firstAttribute="height" constant="100" id="3bF-m0-xr2"/>
                                                 </constraints>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -38,7 +38,7 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnY-Di-19e">
+                                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnY-Di-19e">
                                                 <rect key="frame" x="129" y="10" width="30" height="30"/>
                                                 <state key="normal" image="icon_cell_delete_orange"/>
                                             </button>
@@ -54,7 +54,7 @@
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MTe-IT-eSN">
-                                        <rect key="frame" x="0.0" y="200" width="169" height="20"/>
+                                        <rect key="frame" x="0.0" y="100" width="169" height="20"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Urban Decay Shine Like..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mRd-qi-swQ">
                                                 <rect key="frame" x="5" y="0.0" width="159" height="20"/>
@@ -81,7 +81,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ir6-Vp-jP0">
-                                        <rect key="frame" x="0.0" y="220" width="169" height="0.0"/>
+                                        <rect key="frame" x="0.0" y="120" width="169" height="0.0"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" id="VHz-ab-6tz"/>
@@ -117,6 +117,7 @@
             <connections>
                 <outlet property="deleteButton" destination="GnY-Di-19e" id="3CD-9y-EhV"/>
                 <outlet property="imageView" destination="PZK-RY-ifq" id="9c6-Rs-aN5"/>
+                <outlet property="imageViewHeight" destination="3bF-m0-xr2" id="kyN-zb-9UM"/>
                 <outlet property="titleLabel" destination="mRd-qi-swQ" id="UfN-sh-Xkr"/>
             </connections>
             <point key="canvasLocation" x="-944.20289855072474" y="-99.441964285714278"/>

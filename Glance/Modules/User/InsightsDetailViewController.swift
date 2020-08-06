@@ -60,8 +60,7 @@ class InsightsDetailViewController: ViewController {
         output.available.subscribe(onNext: {[weak self] items in
             items.forEach { self?.cells[$0].isHidden = false }
         }).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
         
     }
 

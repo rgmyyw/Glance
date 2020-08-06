@@ -100,6 +100,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     override func bindViewModel() {
         super.bindViewModel()
         
+        viewModel?.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
+        viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
+        viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
+        
         if collectionView.headRefreshControl != nil {
             isHeaderLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: collectionView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }

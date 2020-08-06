@@ -46,8 +46,6 @@ class SavedCollectionViewController: CollectionViewController  {
         var inset = navigationBar.contentInset
         inset.right = 20
         navigationBar.contentInset = inset
-        // Observe application did change language notification
-
         
 
     }
@@ -89,12 +87,6 @@ class SavedCollectionViewController: CollectionViewController  {
             .subscribe(onNext: { [weak self] in
                 self?.navigationBar.layoutSubviews()
             }).disposed(by: rx.disposeBag)
-                
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
         collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
             let demo = DemoViewModel(provider: viewModel.provider)
@@ -110,21 +102,6 @@ extension SavedCollectionViewController {
         return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SavedCollectionCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SavedCollectionCell.self)
             cell.bind(to: item)
-//            item.imageURL.subscribe(onNext: { [weak self]url in
-//                guard let url = url  else { return }
-//                cell.imageView.kf.setImage(with: ImageResource(downloadURL: url), placeholder: UIImage(),
-//                                            options: nil, progressBlock: nil) { (result) in
-//                    switch result {
-//                    case .success(let item):
-//                        XHWebImageAutoSize.storeImageSize(item.image, for: url) { (r) in
-//                            self?.collectionView.xh_reloadData(for: url)
-//                        }
-//                    default:
-//                        break
-//                    }
-//                }
-//            }).disposed(by: cell.cellDisposeBag)
-
             return cell
         })
     }
@@ -156,14 +133,10 @@ extension SavedCollectionViewController : ZLCollectionViewBaseFlowLayoutDelegate
         let width : CGFloat = collectionView.width - (inset * 2.0) - ((col - 1.0) * 15.0)
         let itemWidth = width / col
 
-//        return CGSize(width: itemWidth, height: XHWebImageAutoSize.imageHeight(for: dataSouce[indexPath.section].items[indexPath.item].imageURL.value!, layoutWidth: itemWidth, estimateHeight: 200))
-
-        return collectionView.ar_sizeForCell(withIdentifier: SavedCollectionCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
+        return collectionView.ar_sizeForCell(withIdentifier: SavedCollectionCell.reuseIdentifier, indexPath: indexPath, fixedWidth: itemWidth) {[weak self] (cell) in
             if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? SavedCollectionCell
                 cell?.bind(to: viewModel)
-                cell?.setNeedsLayout()
-                cell?.needsUpdateConstraints()
             }
         }
         

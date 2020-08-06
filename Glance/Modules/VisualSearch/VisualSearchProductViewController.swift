@@ -19,7 +19,41 @@ class VisualSearchProductViewController: CollectionViewController {
     
     private lazy var headVaiew : VisualSearchProductHeadView = VisualSearchProductHeadView.loadFromNib(height: 64)
     private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<VisualSearchProductSection> = configureDataSouce()
-    private let addProductYourself = PublishSubject<Void>()
+    private let add = PublishSubject<Void>()
+    
+    lazy var emptyView : UIView = {
+        
+        let view = UIView()
+        let titleLabel = UILabel()
+        titleLabel.text = "Can’t find product?Try other words or"
+        titleLabel.textColor = UIColor(hex:0x999999)
+        titleLabel.textAlignment = .center
+        titleLabel.font = UIFont.titleFont(12)
+        let button = UIButton()
+        let attr : [NSAttributedString.Key : Any] = [.underlineStyle: NSNumber(integerLiteral: NSUnderlineStyle.single.rawValue),
+                                                     .underlineColor: UIColor.primary(),
+                                                     .font: titleLabel.font!,
+                                                     .foregroundColor: UIColor.primary()]
+        button.setAttributedTitle(NSAttributedString(string: "add product yourself.", attributes: attr), for: .normal)
+        button.rx.tap.bind(to: add).disposed(by: self.rx.disposeBag)
+        view.addSubview(titleLabel)
+        view.addSubview(button)
+        titleLabel.snp.makeConstraints { (make) in
+            make.centerX.equalTo(view)
+            make.top.equalTo(0)
+        }
+        button.snp.makeConstraints { (make) in
+            make.centerX.equalTo(titleLabel.snp.centerX)
+            make.top.equalTo(titleLabel.snp.bottom).offset(4)
+        }
+        view.snp.makeConstraints { (make) in
+            make.width.equalTo(UIScreen.width)
+            make.height.equalTo(60)
+        }
+        return view
+
+    }()
+    
     
     override func makeUI() {
         super.makeUI()
@@ -41,7 +75,7 @@ class VisualSearchProductViewController: CollectionViewController {
         collectionView.register(nibWithCellClass: VisualSearchProductCell.self)
         
         stackView.insertArrangedSubview(headVaiew, at: 0)        
-                
+        
     }
     
     
@@ -53,7 +87,8 @@ class VisualSearchProductViewController: CollectionViewController {
         
         let input = VisualSearchProductViewModel.Input(search: headVaiew.searchButton.rx.tap.asObservable(),
                                                        footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                       selection: collectionView.rx.modelSelected(VisualSearchProductSectionItem.self).asObservable())
+                                                       selection: collectionView.rx.modelSelected(VisualSearchProductSectionItem.self).asObservable(),
+                                                       add: add.asObservable())
         
         (headVaiew.textFiled.rx.textInput <-> viewModel.textInput ).disposed(by: rx.disposeBag)
         
@@ -63,71 +98,21 @@ class VisualSearchProductViewController: CollectionViewController {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
         
-        (navigationBar.rightBarButtonItem as? UIButton)?
-            .rx.tap.subscribe(onNext: { [weak self]() in
-                let viewModel = VisualSearchProductViewModel(provider: viewModel.provider)
-                self?.navigator.show(segue: .visualSearchProduct(viewModel: viewModel), sender: self)
-            }).disposed(by: rx.disposeBag)
-                
-        addProductYourself.subscribe(onNext: { [weak self]() in
-            
+    
+        output.add.subscribe(onNext: { [weak self](image) in
+            let viewModel = AddProductViewModel(provider: viewModel.provider, image: image)
+            self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
         viewModel.selected.mapToVoid()
             .subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
-        }).disposed(by: rx.disposeBag)
-
-//        rx.viewDidAppear.mapToVoid().observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self]() in
-//                self?.headVaiew.textFiled.becomeFirstResponder()
-//        }).disposed(by: rx.disposeBag)
-//
-//        rx.viewWillDisappear.mapToVoid().observeOn(MainScheduler.instance)
-//            .subscribe(onNext: { [weak self]() in
-//                self?.headVaiew.textFiled.resignFirstResponder()
-//        }).disposed(by: rx.disposeBag)
-
-        
-        viewModel.endEditing.bind(to: endEditing).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
-        
+            }).disposed(by: rx.disposeBag)
         
     }
     
     override func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-            
-        let view = UIView()
-        let titleLabel = UILabel()
-        titleLabel.text = "Can’t find product?Try other words or"
-        titleLabel.textColor = UIColor(hex:0x999999)
-        titleLabel.textAlignment = .center
-        titleLabel.font = UIFont.titleFont(12)
-        let button = UIButton()
-        let attr : [NSAttributedString.Key : Any] = [.underlineStyle: NSNumber(integerLiteral: NSUnderlineStyle.single.rawValue),
-                                                     .underlineColor: UIColor.primary(),
-                                                     .font: titleLabel.font!,
-                                                     .foregroundColor: UIColor.primary()]
-        button.setAttributedTitle(NSAttributedString(string: "add product yourself.", attributes: attr), for: .normal)
-        button.rx.tap.bind(to: addProductYourself).disposed(by: rx.disposeBag)
-        view.addSubview(titleLabel)
-        view.addSubview(button)
-        titleLabel.snp.makeConstraints { (make) in
-            make.centerX.equalTo(view)
-            make.top.equalTo(0)
-        }
-        button.snp.makeConstraints { (make) in
-            make.centerX.equalTo(titleLabel.snp.centerX)
-            make.top.equalTo(titleLabel.snp.bottom).offset(4)
-        }
-        view.snp.makeConstraints { (make) in
-            make.width.equalTo(UIScreen.width)
-            make.height.equalTo(60)
-        }
-        return view
+        return emptyView
     }
     
     override func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
@@ -184,3 +169,4 @@ extension VisualSearchProductViewController : ZLCollectionViewBaseFlowLayoutDele
         
     }
 }
+ 

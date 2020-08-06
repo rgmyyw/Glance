@@ -72,6 +72,7 @@ target 'Glance' do
   pod 'XHWebImageAutoSize' , '~> 1.1.2'
   pod 'JXBanner'
 
+
    
   
   

@@ -24,7 +24,7 @@ class VisualSearchViewController: ViewController {
         
         contentView.removeFromSuperview()
         view.addSubview(cropView)
-        cropView.frame = CGRect(x: 0, y: 0, w: view.bounds.width, h: UIScreen.height * 0.5)
+        cropView.frame = CGRect(x: 0, y: 0, w: view.bounds.width, h: view.bounds.width + UIApplication.shared.statusBarFrame.height)
         cropView.backgroundColor = UIColor.black
         view.backgroundColor = cropView.backgroundColor
         
@@ -62,6 +62,7 @@ class VisualSearchViewController: ViewController {
         let output = viewModel.transform(input: input)
         
         let result = VisualSearchResultViewModel(provider: viewModel.provider)
+        viewModel.image.bind(to: result.sourceImage).disposed(by: rx.disposeBag)
 
         result.bottomViewHidden.subscribe(onNext: { [weak self] (hidden) in
             UIView.animate(withDuration: 0.25) { self?.bottomView.alpha = (!hidden).int.cgFloat }
@@ -76,8 +77,7 @@ class VisualSearchViewController: ViewController {
         output.imageURI.drive(result.imageURI).disposed(by: rx.disposeBag)
         
         viewModel.image.bind(to: cropView.rx.image).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
         
     }
     
@@ -90,6 +90,7 @@ extension VisualSearchViewController  : FloatingPanelControllerDelegate {
     // MARK: FloatingPanelControllerDelegate
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         let layout = FloatingPanelStocksLayout()
+        layout.halfHeight = view.height - cropView.height - 20
         return layout
     }
     
@@ -126,6 +127,9 @@ extension VisualSearchViewController  : FloatingPanelControllerDelegate {
 // MARK: My custom layout
 class FloatingPanelStocksLayout: FloatingPanelLayout {
     
+    
+    var halfHeight : CGFloat = UIScreen.width
+    
     var initialPosition: FloatingPanelPosition {
         return .half
     }
@@ -140,7 +144,7 @@ class FloatingPanelStocksLayout: FloatingPanelLayout {
     func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
         case .full: return 20
-        case .half: return (UIScreen.height * 0.5) - 34 - 20
+        case .half: return halfHeight //(UIScreen.height * 0.5) - 34 - 20
         case .tip: return 85.0 + 44.0 // Visible + ToolView
             
         default: return nil

@@ -43,6 +43,7 @@ class VisualSearchResultViewController: CollectionViewController  {
         // 返回按钮
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         
+        
         let titleBgView = View(height: 60)
         let titleLabel = UILabel()
         titleLabel.text = "Suggested Products"
@@ -55,7 +56,7 @@ class VisualSearchResultViewController: CollectionViewController  {
             make.left.equalTo(20)
             make.top.equalTo(20)
         }
-                    
+        
         
         
         let layout = ZLCollectionViewVerticalLayout()
@@ -71,6 +72,9 @@ class VisualSearchResultViewController: CollectionViewController  {
         
     }
     
+    override func navigationBack() {
+        self.navigator.dismiss(sender: self, animated: true)
+    }
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -80,26 +84,22 @@ class VisualSearchResultViewController: CollectionViewController  {
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
         let input = VisualSearchResultViewModel.Input(headerRefresh: refresh,
                                                       footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                      selection: collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable())
+                                                      selection: collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable(),
+                                                      search: (navigationBar.rightBarButtonItem as! UIButton).rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
-        (navigationBar.rightBarButtonItem as? UIButton)?
-            .rx.tap.subscribe(onNext: { [weak self]() in
-                guard let self = self else { return }
-                let search = VisualSearchProductViewModel(provider: viewModel.provider)
-                search.selected.bind(to: viewModel.searchSelection).disposed(by: self.rx.disposeBag)
-                self.navigator.show(segue: .visualSearchProduct(viewModel: search), sender: self)
+                
+        output.search.subscribe(onNext: { [weak self](image) in
+            guard let self = self else { return }
+            let search = VisualSearchProductViewModel(provider: viewModel.provider, image: image)
+            search.selected.bind(to: viewModel.searchSelection).disposed(by: self.rx.disposeBag)
+            self.navigator.show(segue: .visualSearchProduct(viewModel: search), sender: self)
         }).disposed(by: rx.disposeBag)
         
         
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
         
         
     }

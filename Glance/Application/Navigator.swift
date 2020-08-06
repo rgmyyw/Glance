@@ -209,10 +209,12 @@ class Navigator {
             }
         case .modal:
             // present modally
-            let nav = NavigationController(rootViewController: target)
-            nav.modalPresentationStyle = .custom
-            sender.present(nav, animated: animated, completion: nil)
-            
+            DispatchQueue.main.async {
+                let nav = NavigationController(rootViewController: target)
+                nav.modalPresentationStyle = .custom
+                sender.present(nav, animated: animated, completion: nil)
+            }
+
         case .detail:
             DispatchQueue.main.async {
                 let nav = NavigationController(rootViewController: target)

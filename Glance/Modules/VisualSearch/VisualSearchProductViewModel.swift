@@ -20,10 +20,12 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         let search: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<VisualSearchProductSectionItem>
+        let add : Observable<Void>
     }
     
     struct Output {
         let items : Driver<[VisualSearchProductSection]>
+        let add : Observable<UIImage>
     }
     
     
@@ -31,36 +33,42 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     let selected = PublishSubject<Home>()
     
+    let image : BehaviorRelay<UIImage>
     
+    init(provider: API, image : UIImage) {
+        self.image = BehaviorRelay(value: image)
+        super.init(provider: provider)
+    }
+
     
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchProductSection]>(value: [])
-
-        input.search
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
-                guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
-                }
-                elements.accept([])
-                self.endEditing.onNext(())
-                self.page = 1
-                let text = self.textInput.value
-                return self.provider.searchProductInApp(keywords: text, page: self.page)
-                    .trackError(self.error)
-                    .trackActivity(self.headerLoading)
-                    .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
-                switch event {
-                case .next(let item):
-                    self.element.accept(item)
-                    
+        let add = input.add.map { self.image.value }
+        
+        input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            guard let self = self else {
+                return Observable.just(RxSwift.Event.completed)
+            }
+            elements.accept([])
+            self.endEditing.onNext(())
+            self.page = 1
+            let text = self.textInput.value
+            return self.provider.searchProductInApp(keywords: text, page: self.page)
+                .trackError(self.error)
+                .trackActivity(self.headerLoading)
+                .materialize()
+        }).subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .next(let item):
+                self.element.accept(item)
+                
                 self.hasData.onNext(item.hasNext)
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
@@ -89,6 +97,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         
         
         element.map { element -> [VisualSearchProductSection] in
+            if element.list.isEmpty { return [] }
             
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> VisualSearchProductSectionItem in
                 let cellViewModel = VisualSearchProductCellViewModel(item: item)
@@ -99,9 +108,9 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             return [section]
             
         }.bind(to: elements).disposed(by: rx.disposeBag)
-                
+        
         input.selection.map { $0.viewModel.item }.bind(to: selected).disposed(by: rx.disposeBag)
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []))
+        return Output(items: elements.asDriver(onErrorJustReturn: []), add: add)
     }
 }

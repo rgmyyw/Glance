@@ -80,9 +80,8 @@ class ModifyProfileViewController: ViewController {
         userNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: userNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
         displayNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: displayNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
         
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
-        viewModel.endEditing.bind(to: endEditing).disposed(by: rx.disposeBag)
+        
+        
         
         changeProfilePhotoButton.rx.tap
             .subscribe(onNext: { [weak self]() in

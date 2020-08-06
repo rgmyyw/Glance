@@ -12,6 +12,9 @@
  */
 /*弹出一堆小视图，带回弹*/
 import UIKit
+import RxSwift
+import RxCocoa
+
 
 protocol PopSomeColorViewDelegate {
     func selectBtnTag(btnTag: NSInteger)
@@ -35,8 +38,11 @@ class PublishPopView: View {
     let btnWH: CGFloat = (screenWidth - 120)/3
     lazy var btnMarr: NSMutableArray = NSMutableArray()
     
-    
+    @IBOutlet var imageViews: [UIImageView]!
     @IBOutlet weak var contentViewBottom: NSLayoutConstraint!
+    
+    
+    let selection = PublishSubject<Int>()
     
     override func makeUI() {
         super.makeUI()
@@ -79,6 +85,14 @@ class PublishPopView: View {
         backgroundView.rx.tap().subscribe(onNext: { [weak self]() in
             self?.cancelBtnClick(btn: self!.cancelBtn)
         }).disposed(by: rx.disposeBag)
+        
+        imageViews.tapGesture().bind(to: selection).disposed(by: rx.disposeBag)
+        selection.mapToVoid()
+            .subscribe(onNext: { [weak self]() in
+                self?.cancelBtnClick(btn: self!.cancelBtn)
+        }).disposed(by: rx.disposeBag)
+        
+        
     }
     
     
@@ -141,8 +155,6 @@ class PublishPopView: View {
             self.removeFromSuperview()
         }
 
-        
-        
         
         //        if btn != cancelBtn {
         //            self.delegate?.selectBtnTag(btnTag: btn.tag)

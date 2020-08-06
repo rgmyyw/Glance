@@ -17,7 +17,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     struct Input {
         let footerRefresh: Observable<Void>
         let selection : Observable<PostsDetailSectionItem>
-        let addShoppingCart : Observable<Void>
+        let bottomButtonTrigger : Observable<Void>
     }
     
     struct Output {
@@ -31,7 +31,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let bottomBarTitle : Driver<String>
         let bottomBarAddButtonHidden : Driver<Bool>
         let bottomBarBackgroundColor : Driver<UIColor?>
-        let bottomBarEnable : Driver<Bool>
+        let shoppingCart : Driver<Void>
     }
     
     
@@ -57,15 +57,18 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let userName = element.map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
         let productName = element.map { $0.brand ?? "" }.asDriver(onErrorJustReturn: "")
         let time = element.map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
+        let addShoppingCart = PublishSubject<Void>()
+        let shoppingCartList = PublishSubject<Void>()
+        
         
         /// 底部添加购物车按钮
         let bottomBarHidden = item.map { !$0.isProduct }.asDriver(onErrorJustReturn: true)
-        let bottomBarState = BehaviorRelay<Bool>(value: false)
-        let bottomBarTitle = bottomBarState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
-        let bottomBarAddButtonHidden = bottomBarState.map { $0 }.asDriver(onErrorJustReturn: false)
-        let bottomBarBackgroundColor = bottomBarState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
-        let bottomBarEnable = bottomBarState.map { !$0 }.asDriver(onErrorJustReturn: false)
-        element.map { $0.inShoppingList }.bind(to: bottomBarState).disposed(by: rx.disposeBag)
+        let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
+        let bottomBarButtonTitle = bottomBarButtonState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
+        let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }.asDriver(onErrorJustReturn: false)
+        let bottomBarBackgroundColor = bottomBarButtonState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
+        
+        
         
         /// 添加收藏
         let saveCurrent = PublishSubject<PostsDetailSectionCellViewModel>()
@@ -74,6 +77,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         let like = PublishSubject<PostsDetailSectionCellViewModel>()
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
+        
+        //
+        element.map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
         let navigationBarType = Observable.combineLatest(element.map { $0.own },item.map { $0.type})
             .map { (own, type) -> Int in
@@ -239,23 +245,26 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
         
-        input.addShoppingCart
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.addShoppingCart(productId: self.item.value.productId ?? "")
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                switch event {
-                case .next(let result):
-                    bottomBarState.accept(result)
-                    self?.message.onNext(.init("Successfully added to your shopping list"))
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
+        addShoppingCart.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.addShoppingCart(productId: self.item.value.productId ?? "")
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .materialize()
+        }).subscribe(onNext: { [weak self] event in
+            switch event {
+            case .next(let result):
+                bottomBarButtonState.accept(result)
+                self?.message.onNext(.init("Successfully added to your shopping list"))
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
+        input.bottomButtonTrigger.subscribe(onNext: { () in
+            let subject = bottomBarButtonState.value ? shoppingCartList : addShoppingCart
+            subject.onNext(())
+        }).disposed(by: rx.disposeBag)
         
         
         
@@ -266,9 +275,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       navigationBarType: navigationBarType,
                       productName: productName,
                       bottomBarHidden: bottomBarHidden,
-                      bottomBarTitle:bottomBarTitle ,
+                      bottomBarTitle:bottomBarButtonTitle ,
                       bottomBarAddButtonHidden:bottomBarAddButtonHidden,
                       bottomBarBackgroundColor: bottomBarBackgroundColor,
-                      bottomBarEnable: bottomBarEnable)
+                      shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()))
     }
 }

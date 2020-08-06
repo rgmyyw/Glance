@@ -39,8 +39,7 @@ class UserRelationViewController: TableViewController {
 
         output.navigationTitle.drive(navigationBar.rx.title).disposed(by: rx.disposeBag)
         output.navigationTitle.map { $0.isEmpty}.drive(navigationBar.rx.isHidden).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
 
     }
     

@@ -17,10 +17,12 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<VisualSearchResultSectionItem>
+        let search : Observable<Void>
     }
     
     struct Output {
         let items : Driver<[VisualSearchResultSection]>
+        let search : Observable<UIImage>
     }
     
     let imageURI = BehaviorRelay<String?>(value: nil)
@@ -28,6 +30,8 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let searchSelection = PublishSubject<Home>()
     
+    
+    let sourceImage = BehaviorRelay<UIImage?>(value: nil)
     let element : BehaviorRelay<(Bool,VisualSearchPageMapable)> = BehaviorRelay(value: (false,VisualSearchPageMapable()))
     
     func transform(input: Input) -> Output {
@@ -35,6 +39,8 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
         let selectedItems = BehaviorRelay<[VisualSearchResultSectionItem]>(value:[])
         let box = BehaviorRelay<[CGFloat]>(value: [])
+        let search = input.search.map { self.sourceImage.value}.filterNil()
+        
         selectedItems.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
         
         currentRect.filter { $0 != .zero }
@@ -54,6 +60,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
+                elements.accept([])
                 self.page = 1
                 var param = [String : Any]()
                 param["page"] = self.page
@@ -64,7 +71,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 //imId ["imId"]
                 return self.provider.visualSearch(params: param)
                     .trackError(self.error)
-                    .trackActivity(self.headerLoading)
+                    .trackActivity(self.loading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
@@ -111,6 +118,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         element.map { (first,items) -> [VisualSearchResultSection] in
+            
+            if items.list.isEmpty { return []}
+            
             let sectionItems = items.list.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
                 let viewModel = VisualSearchResultCellViewModel(item: item)
                 let item = VisualSearchResultSectionItem(item: offset, viewModel: viewModel)
@@ -160,6 +170,6 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []))
+        return Output(items: elements.asDriver(onErrorJustReturn: []), search: search)
     }
 }

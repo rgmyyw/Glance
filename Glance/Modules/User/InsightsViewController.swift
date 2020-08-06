@@ -37,8 +37,7 @@ class InsightsViewController: ViewController {
         let output = viewModel.transform(input: input)
         
         containerController.param = setupPageViewConfig(viewModel: viewModel)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
         viewModel.selected
             .subscribe(onNext: { [weak self](type , item) in
                 let viewModel = InsightsDetailViewModel(provider: viewModel.provider, type: type, item: item.item)

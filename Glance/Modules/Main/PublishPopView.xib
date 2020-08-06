@@ -183,6 +183,10 @@
                 <outlet property="backgroundView" destination="qFA-FN-eru" id="Moc-V0-fWB"/>
                 <outlet property="contentView" destination="Dbj-2e-A3f" id="bBs-tk-0NV"/>
                 <outlet property="contentViewBottom" destination="neN-XN-yS6" id="7p1-fJ-vQz"/>
+                <outletCollection property="imageViews" destination="nCe-CN-D25" collectionClass="NSMutableArray" id="R1c-VZ-tKh"/>
+                <outletCollection property="imageViews" destination="ook-Sf-SiU" collectionClass="NSMutableArray" id="fND-jx-IgT"/>
+                <outletCollection property="imageViews" destination="zOa-hf-xEv" collectionClass="NSMutableArray" id="oOB-0V-zex"/>
+                <outletCollection property="imageViews" destination="aMT-Sg-hOr" collectionClass="NSMutableArray" id="QLo-RE-poV"/>
             </connections>
             <point key="canvasLocation" x="-868" y="167"/>
         </view>
@@ -190,7 +194,7 @@
     <resources>
         <image name="icon_publish_Instagram" width="56.5" height="56.5"/>
         <image name="icon_publish_board" width="56.5" height="56.5"/>
-        <image name="icon_publish_draft" width="57" height="57"/>
+        <image name="icon_publish_draft" width="56.5" height="56.5"/>
         <image name="icon_publish_upload" width="56.5" height="56.5"/>
     </resources>
 </document>

@@ -19,9 +19,9 @@ class DemoViewController: ViewController {
 //        self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         //needSignUp.onNext(())
         
-        
-          let viewModel = AddProductViewModel(provider: self.viewModel!.provider)
-            self.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
+//        
+//        let viewModel = AddProductViewModel(provider: self.viewModel!.provider, image: <#UIImage#>)
+//            self.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
         
     }
        

@@ -16,7 +16,7 @@ class PostsDetailViewController: CollectionViewController {
     
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<PostsDetailSection> = configureDataSouce()
     private lazy var customNavigationBar : PostsDetailNavigationBar = PostsDetailNavigationBar.loadFromNib(height: 44,width: self.view.width)
-    private lazy var bottomBar : PostsDetailBottomBar = PostsDetailBottomBar.loadFromNib(height: 62,width: self.view.width)
+    private lazy var bottomBar : PostsDetailBottomBar = PostsDetailBottomBar.loadFromNib(height: UIApplication.shared.statusBarFrame.height == 20 ? 62 : 42,width: self.view.width)
 
     
     override func makeUI() {
@@ -44,7 +44,6 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.register(nib: PostsDetailTagsReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTagsReusableView.self)
         collectionView.register(nib: PostsDetailToolBarReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailToolBarReusableView.self)
         collectionView.register(nib: PostsDetailSectionTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailSectionTitleReusableView.self)
-        
         emptyDataViewDataSource.enable.accept(false)
         
     }
@@ -57,7 +56,9 @@ class PostsDetailViewController: CollectionViewController {
         dataSouce.configureSupplementaryView = configureSupplementaryView()
         
         let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
-        let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh, selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(), addShoppingCart: bottomBar.backgroundView.rx.tap())
+        let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh,
+                                               selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(),
+                                               bottomButtonTrigger: bottomBar.backgroundView.rx.tap())
         let output = viewModel.transform(input: input)
         output.userName.drive(customNavigationBar.ownNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.userName.drive(customNavigationBar.otherNameLabel.rx.text).disposed(by: rx.disposeBag)
@@ -71,7 +72,12 @@ class PostsDetailViewController: CollectionViewController {
         output.bottomBarTitle.drive(bottomBar.titleLabel.rx.text).disposed(by: rx.disposeBag)
         output.bottomBarAddButtonHidden.drive(bottomBar.addButton.rx.isHidden).disposed(by: rx.disposeBag)
         output.bottomBarBackgroundColor.drive(bottomBar.backgroundView.rx.backgroundColor).disposed(by: rx.disposeBag)
-        output.bottomBarEnable.drive(bottomBar.backgroundView.rx.isUserInteractionEnabled).disposed(by: rx.disposeBag)
+        
+        output.shoppingCart.drive(onNext: { [weak self]() in
+            let viewModel = ShoppingCartViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .shoppingCart(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
         output.navigationBarType
             .drive(onNext: { [weak self](type) in
                 self?.customNavigationBar.items[type].isHidden = false
@@ -82,12 +88,7 @@ class PostsDetailViewController: CollectionViewController {
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
-        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
+        
         customNavigationBar.backButton.rx
             .tap.subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)

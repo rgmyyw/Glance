@@ -27,7 +27,11 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
         if let urlParameters = item.image?.urlParameters() {
             let width = urlParameters["w"]?.cgFloat() ?? 0
             let height = urlParameters["h"]?.cgFloat() ?? 0
-            return ((cellWidth / width) * height) / col
+            var imageHeight = ((cellWidth / width) * height) / col
+            if imageHeight.isNaN {
+                imageHeight = 200
+            }
+            return imageHeight
         } else {
             return 200
         }

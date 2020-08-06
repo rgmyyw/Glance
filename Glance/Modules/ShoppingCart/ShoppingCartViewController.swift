@@ -60,12 +60,8 @@ class ShoppingCartViewController: TableViewController {
                 self?.navigator.show(segue: .comparePrice(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
-        viewModel.message.bind(to: message).disposed(by: rx.disposeBag)
-        viewModel.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
-        viewModel.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel.loading.asObservable().bind(to: isLoading).disposed(by: rx.disposeBag)
-        viewModel.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
-        viewModel.parsedError.asObservable().bind(to: error).disposed(by: rx.disposeBag)
+        
+        
 
     }
     

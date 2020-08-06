@@ -19,9 +19,17 @@ class AddProductViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[AddProductSection]>
         let selectionCategory : Driver<[Categories]>
+        let detail : Driver<String>
     }
     
     let selectedCategory = PublishSubject<Categories>()
+    
+    let image : BehaviorRelay<UIImage>
+    
+    init(provider: API, image : UIImage) {
+        self.image = BehaviorRelay(value: image)
+        super.init(provider: provider)
+    }
     
     
     func transform(input: Input) -> Output {
@@ -35,6 +43,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         let uploadImage = PublishSubject<(UIImage, [String : Any])>()
         let commit = PublishSubject<[String : Any]>()
         let edit = PublishSubject<AddProductImageCellViewModel>()
+        let detail = PublishSubject<String>()
         
         
         Observable.just(()).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Categories]>)> in
@@ -59,10 +68,10 @@ class AddProductViewModel: ViewModel, ViewModelType {
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .materialize()
-        }).subscribe(onNext: { [weak self] event in
+        }).subscribe(onNext: {  event in
             switch event {
             case .next(let productId):
-                print(productId)
+                detail.onNext(productId)
             default:
                 break
             }
@@ -80,24 +89,20 @@ class AddProductViewModel: ViewModel, ViewModelType {
                 let viewModel = AddProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
                 let item = AddProductSectionItem.tag(identity: number.string,viewModel: viewModel)
                 viewModel.delete.map { item }.bind(to: deleteTag).disposed(by: self.rx.disposeBag)
-                
                 return item
             }
-            
-            let image = (0..<1).map { number ->  AddProductSectionItem in
-                let viewModel = AddProductImageCellViewModel(item: UIImage(named: "12.jpg")!)
-                viewModel.edit.map { viewModel }.bind(to: edit).disposed(by: self.rx.disposeBag)
-                let item = AddProductSectionItem.thumbnail(identity: number.string,viewModel: viewModel)
-                return item
-            }
-            
+                        
+            let imageItem = AddProductImageCellViewModel(item: self.image.value)
+            imageItem.edit.map { imageItem }.bind(to: edit).disposed(by: self.rx.disposeBag)
+            let image = AddProductSectionItem.thumbnail(identity: String.random(ofLength: Int.random(in: 0..<10)),viewModel: imageItem)
+
             let name = AddProductSection.productName(viewModel: viewModel)
             let categary = AddProductSection.categary(viewModel: viewModel)
             let inputKeyword = AddProductSection.tagRelatedKeywords(viewModel: viewModel)
             let tags = AddProductSection.tags(items: tagItems)
             let brand = AddProductSection.brand(viewModel: viewModel)
             let website = AddProductSection.website(viewModel: viewModel)
-            let thumbnail = AddProductSection.thumbnail(items: image)
+            let thumbnail = AddProductSection.thumbnail(items: [image])
             let button = AddProductSection.button(viewModel: viewModel)
             
             return [name, categary,inputKeyword,tags,brand,website,thumbnail,button]
@@ -160,7 +165,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
             let tags = elements.value[3].items
             
             guard let productName = viewModel?.productName.value, productName.count > 5 else {
-                self?.exceptionError.onNext(.general(message: "minimum of 6"))
+                self?.exceptionError.onNext(.general(message: "productName minimum of 6"))
                 return
             }
             
@@ -170,7 +175,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
             }
             
             guard let brand = viewModel?.brand.value  else {
-                self?.exceptionError.onNext(.general(message: "minimum of 2"))
+                self?.exceptionError.onNext(.general(message: "brand minimum of 2"))
                 return
             }
             
@@ -199,9 +204,11 @@ class AddProductViewModel: ViewModel, ViewModelType {
         edit.subscribe(onNext: { [weak self](cellViewModel) in
             self?.message.onNext(.init("click image edit"))
         }).disposed(by: rx.disposeBag)
-                
+        
+        
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      selectionCategory : selectionCategory.asDriver(onErrorJustReturn: []))
+                      selectionCategory : selectionCategory.asDriver(onErrorJustReturn: []),
+                      detail: detail.asDriver(onErrorJustReturn: ""))
     }
 }
 

@@ -170,10 +170,9 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
         viewModel?.message.bind(to: message).disposed(by: rx.disposeBag)
         
         message.subscribe(onNext: {[weak self] message in
-            
             self?.view.makeToast(message.subTitle,position: .center, title: message.title,style: message.style )
         }).disposed(by: rx.disposeBag)
-
+        
     }
     
     
@@ -210,5 +209,36 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
             
         }).disposed(by: rx.disposeBag)
         
+        
+        popView.selection.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: {[weak self] item in
+                self?.selection(item: item)
+            }).disposed(by: rx.disposeBag)
     }
+    
+    func selection(item : Int) {
+        
+        guard let viewModel = viewModel else { return }
+        
+        switch item {
+        case 0:
+            
+            ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
+                config.maxSelectCount = 1
+                config.editAfterSelectThumbnailImage = true
+                config.saveNewImageAfterEdit = false
+                
+            }) { [weak self] (images, assets, isOriginal) in
+                
+                guard let image = images?.first else { return }
+                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+            }
+
+        default:
+            break
+        }
+        
+    }
+    
 }

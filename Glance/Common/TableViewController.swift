@@ -107,13 +107,18 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     
     override func bindViewModel() {
         super.bindViewModel()
-        
+
+        viewModel?.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
+        viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
+        viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
+                
         if tableView.headRefreshControl != nil {
-            isHeaderLoading.bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+            isHeaderLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
         if tableView.footRefreshControl != nil {
-            isFooterLoading.bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+            isFooterLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
+
     }
     
     override func updateUI() {
