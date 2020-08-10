@@ -16,11 +16,12 @@ class VisualSearchResultCell: CollectionViewCell {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var selectionButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    
+        
     
     override func bind<T>(to viewModel: T) where T : VisualSearchResultCellViewModel {
         super.bind(to: viewModel)
-        imageViewHeight.constant = viewModel.height
+        
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.selected.bind(to: selectionButton.rx.isSelected).disposed(by: cellDisposeBag)
@@ -31,11 +32,7 @@ class VisualSearchResultCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
         
-        //        enableDebug = true
-        //        backgroundColor = .random
-        //        bgView.backgroundColor = .random
-        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         imageView.clipsToBounds = true
         clipsToBounds = false

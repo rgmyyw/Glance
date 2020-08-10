@@ -56,6 +56,7 @@ enum GlanceAPI {
     case searchProductInApp(keywords : String, page : Int)
     case categories
     case addProduct(param : [String : Any])
+    case postProduct(param : [String : Any])
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -150,6 +151,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/categories"
         case .addProduct:
             return "/api/products"
+        case .postProduct:
+            return "/api/posts"
         }
     }
     
@@ -163,7 +166,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .updateUserInterest,
              .addShoppingCart,
              .visualSearch,
-             .addProduct:
+             .addProduct,
+             .postProduct:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -299,6 +303,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["keywords"] = keywords
         case .addProduct(let param):
             params.merge(dict: param)
+        case .postProduct(let param):
+            params.merge(dict: param)
+
         default:
             break
         }

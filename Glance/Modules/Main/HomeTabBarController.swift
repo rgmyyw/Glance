@@ -112,6 +112,7 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         makeUI()
         bindViewModel()
     }

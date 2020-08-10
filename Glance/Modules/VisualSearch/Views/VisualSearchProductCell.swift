@@ -18,7 +18,7 @@ class VisualSearchProductCell: CollectionViewCell {
     
     override func bind<T>(to viewModel: T) where T : VisualSearchProductCellViewModel {
         super.bind(to: viewModel)
-        imageViewHeight.constant = viewModel.height
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
     }
     
@@ -26,7 +26,7 @@ class VisualSearchProductCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
 
-        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         imageView.clipsToBounds = true
         clipsToBounds = false

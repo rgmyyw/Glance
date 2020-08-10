@@ -137,13 +137,11 @@ extension VisualSearchResultViewController : ZLCollectionViewBaseFlowLayoutDeleg
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let collectionView = collectionView as! CollectionView
-        return collectionView.ar_sizeForCell(withIdentifier: VisualSearchResultCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        return collectionView.ar_sizeForCell(withIdentifier: VisualSearchResultCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
             if let item = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? VisualSearchResultCell
                 cell?.bind(to: item.viewModel)
-                cell?.setNeedsLayout()
-                cell?.needsUpdateConstraints()
             }
         }
         

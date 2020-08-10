@@ -15,13 +15,18 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let currentRect : Observable<CGRect>
+        let commit : Observable<Void>
     }
     struct Output {
         let imageURI : Driver<String>
         let currentRect : Driver<CGRect>
+        let post : Observable<(UIImage , [Home])>
     }
     
     let image : BehaviorRelay<UIImage>
+    
+    let selection = BehaviorRelay<[Home]>(value: [])
+    
     
     init(provider: API, image : UIImage) {
         self.image = BehaviorRelay(value: image)
@@ -33,8 +38,11 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
         let imageURI = PublishSubject<String>()
         let currentRect = PublishSubject<CGRect>()
+        let post = input.commit.map { (self.image.value, self.selection.value)}
         
-        image.flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in
+        
+        image.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 guard let data = image.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
             return self.provider.uploadImage(type: UploadImageType.visualSearch.rawValue, size: image.size, data: data)
@@ -54,6 +62,7 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
 
         return Output(imageURI: imageURI.asDriver(onErrorJustReturn: ""),
-                      currentRect: currentRect.asDriver(onErrorJustReturn: .zero))
+                      currentRect: currentRect.asDriver(onErrorJustReturn: .zero),
+                      post: post)
     }
 }

@@ -48,6 +48,7 @@ class Navigator {
         case visualSearch(viewModel: VisualSearchViewModel)
         case visualSearchProduct(viewModel: VisualSearchProductViewModel)
         case addProduct(viewModel: AddProductViewModel)
+        case postProduct(viewModel: PostProductViewModel)
         
     }
     
@@ -135,6 +136,9 @@ class Navigator {
             return vc
         case .addProduct(let viewModel):
             let vc = AddProductViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .postProduct(let viewModel):
+            let vc = PostProductViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

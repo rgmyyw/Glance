@@ -18,15 +18,11 @@ class PostsDetailCell: CollectionViewCell {
     @IBOutlet weak var shadowView: UIView!
     @IBOutlet weak var saveImageView: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-
-    
-    
-    
     
     override func bind<T>(to viewModel: T) where T : PostsDetailCellViewModel {
         super.bind(to: viewModel)
                 
-        imageViewHeight.constant = viewModel.height
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveImageView.rx.isSelected).disposed(by: cellDisposeBag)
@@ -38,12 +34,9 @@ class PostsDetailCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
         
-//        enableDebug = true
-//        backgroundColor = .random
-//        bgView.backgroundColor = .random        
-        self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 
-        
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+
         imageView.clipsToBounds = true
         clipsToBounds = false
         bgView.clipsToBounds = false

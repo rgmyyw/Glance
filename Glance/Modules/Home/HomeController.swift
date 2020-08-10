@@ -41,7 +41,7 @@ class HomeController: CollectionViewController {
         
         guard let viewModel = viewModel as? HomeViewModel else { return }        
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
+        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
         let input = HomeViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(HomeSectionItem.self).asObservable())
@@ -84,7 +84,12 @@ class HomeController: CollectionViewController {
                 self?.navigator.show(segue: .savedCollectionClassify(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
-        
+        NotificationCenter.default.rx
+            .notification(.kUpdateHomeData)
+            .map { $0.userInfo as? [String : String]}
+            .map { $0?["message"]}.filterNil()
+            .map { Message($0)}.bind(to: message)
+            .disposed(by: rx.disposeBag)
         
         
     }
@@ -133,13 +138,12 @@ extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let collectionView = collectionView as! CollectionView
-        return collectionView.ar_sizeForCell(withIdentifier: HomeCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        
+        return collectionView.ar_sizeForCell(withIdentifier: HomeCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
             if case let .recommendItem(viewModel) = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? HomeCell
                 cell?.bind(to: viewModel)
-                cell?.setNeedsLayout()
-                cell?.needsUpdateConstraints()
             }
         }
         

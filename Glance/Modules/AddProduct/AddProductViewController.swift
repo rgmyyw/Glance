@@ -46,9 +46,6 @@ class AddProductViewController: CollectionViewController {
         collectionView.register(nib: AddProductButtonReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductButtonReusableView.self)
         collectionView.register(nib: AddProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductTitleReusableView.self)
 
-        
-        collectionView.register(nib: PostsDetailSectionTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailSectionTitleReusableView.self)
-        
         emptyDataViewDataSource.enable.accept(false)
         
     }
@@ -81,10 +78,10 @@ class AddProductViewController: CollectionViewController {
                 }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
-        output.detail.drive(onNext: { [weak self](productId) in
-        
-            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: Home(productId: productId))
-            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+        output.post.subscribe(onNext: { [weak self](image,home) in
+            self?.navigationController?.popToRootViewController(animated: false)
+            let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [home])
+            self?.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
             
         }).disposed(by: rx.disposeBag)
         

@@ -37,7 +37,7 @@ class HomeCell: CollectionViewCell {
         super.bind(to: viewModel)
     
         imageView.backgroundColor = .lightGray
-        
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.userHeadImageURL.bind(to: userHeadImageButton.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.typeName.bind(to: typeLabel.rx.text).disposed(by: cellDisposeBag)

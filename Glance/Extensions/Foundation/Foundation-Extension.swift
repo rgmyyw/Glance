@@ -213,8 +213,66 @@ extension String {
                 size = CGSize(width: size.width, height: font.lineHeight)
             }
         }
-        
         return size
     }
     
 }
+
+extension NSNotification.Name {
+ 
+    public static let kUpdateHomeData : NSNotification.Name = NSNotification.Name("kUpdateHomeData")
+    
+}
+
+extension String {
+    
+    func urlImageSize(nan : CGFloat = 200) -> CGSize {
+        if let urlParameters = self.urlParameters() , urlParameters.isNotEmpty {
+            guard let width = urlParameters["w"]?.cgFloat(), !width.isNaN else {
+                return .zero
+            }
+            guard let height = urlParameters["h"]?.cgFloat() ,!height.isNaN else {
+                return .zero
+            }
+            return CGSize(width: width, height: height)
+        } else {
+            return .zero
+        }
+
+    }
+}
+
+protocol CollectionCellImageHeightCalculateable {
+    var image : String? { get }
+    var imageHeight : CGFloat { get }
+    var col : Int  { get}
+    var inset : CGFloat { get }
+    var itemInset : CGFloat { get }
+    var defaultHeight : CGFloat { get }
+}
+
+extension CollectionCellImageHeightCalculateable {
+    
+    var inset : CGFloat {
+        return 20
+    }
+    
+    var itemInset : CGFloat {
+        return 15
+    }
+    var defaultHeight : CGFloat {
+        return 200
+    }
+    
+    var imageHeight : CGFloat {
+        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col.cgFloat - 1.0) * itemInset)
+        if let size =  image?.urlImageSize() , size != .zero {
+            return ((cellWidth / size.width) * size.height) / col.cgFloat
+        } else {
+            return defaultHeight
+        }
+    }
+    
+}
+
+

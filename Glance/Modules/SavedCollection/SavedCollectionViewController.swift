@@ -127,13 +127,9 @@ extension SavedCollectionViewController : ZLCollectionViewBaseFlowLayoutDelegate
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let collectionView = collectionView as! CollectionView
-        let col : CGFloat = 2
-        let width : CGFloat = collectionView.width - (inset * 2.0) - ((col - 1.0) * 15.0)
-        let itemWidth = width / col
-
-        return collectionView.ar_sizeForCell(withIdentifier: SavedCollectionCell.reuseIdentifier, indexPath: indexPath, fixedWidth: itemWidth) {[weak self] (cell) in
+            
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        return collectionView.ar_sizeForCell(withIdentifier: SavedCollectionCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
             if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? SavedCollectionCell
                 cell?.bind(to: viewModel)

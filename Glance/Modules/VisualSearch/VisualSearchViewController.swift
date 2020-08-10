@@ -13,13 +13,17 @@ import FloatingPanel
 
 class VisualSearchViewController: ViewController {
     
-    let cropView : VisualSearchCropView = VisualSearchCropView()
-    let panel = FloatingPanelController()
-    let bottomView : VisualSearchBottomView = VisualSearchBottomView.loadFromNib(height : 100)
+    fileprivate let cropView : VisualSearchCropView = VisualSearchCropView()
+    fileprivate let panel = FloatingPanelController()
+    fileprivate let bottomView : VisualSearchBottomView = VisualSearchBottomView.loadFromNib(height : 100)
+    fileprivate lazy var postProduct : PostProductViewController = {
+        let viewModel = PostProductViewModel(provider: self.viewModel!.provider, image: nil,taggedItems: [])
+        let controller  = PostProductViewController(viewModel: viewModel, navigator: navigator)
+        return controller
+    }()
     
     override func makeUI() {
         super.makeUI()
-        
         
         
         contentView.removeFromSuperview()
@@ -58,27 +62,35 @@ class VisualSearchViewController: ViewController {
         
         guard let viewModel = viewModel as? VisualSearchViewModel else { return }
         
-        let input = VisualSearchViewModel.Input(currentRect: cropView.current.asObservable())
+        let input = VisualSearchViewModel.Input(currentRect: cropView.current.asObservable(),commit:  bottomView.button.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
-        let result = VisualSearchResultViewModel(provider: viewModel.provider)
-        viewModel.image.bind(to: result.sourceImage).disposed(by: rx.disposeBag)
+        output.post.subscribe(onNext: { [weak self](image, items) in
+            guard let self = self else { return }
+            let viewModel = self.postProduct.viewModel as? PostProductViewModel
+            viewModel?.currentImage.accept(image)
+            viewModel?.items.accept(items)
+            self.navigationController?.pushViewController(self.postProduct)
+        }).disposed(by: rx.disposeBag)
 
+        
+        let result = VisualSearchResultViewModel(provider: viewModel.provider, image: viewModel.image.value)
+        result.selectedItems.bind(to: viewModel.selection).disposed(by: rx.disposeBag)
         result.bottomViewHidden.subscribe(onNext: { [weak self] (hidden) in
             UIView.animate(withDuration: 0.25) { self?.bottomView.alpha = (!hidden).int.cgFloat }
         }).disposed(by: rx.disposeBag)
-        let vc = VisualSearchResultViewController(viewModel: result, navigator: navigator)
         
+        
+        let vc = VisualSearchResultViewController(viewModel: result, navigator: navigator)
         panel.set(contentViewController: vc)
         panel.addPanel(toParent: self)
         panel.track(scrollView: vc.collectionView)
-        
+
         output.currentRect.drive(result.currentRect).disposed(by: rx.disposeBag)
         output.imageURI.drive(result.imageURI).disposed(by: rx.disposeBag)
-        
         viewModel.image.bind(to: cropView.rx.image).disposed(by: rx.disposeBag)
         
-        
+
     }
     
     

@@ -20,8 +20,8 @@ class DemoViewController: ViewController {
         //needSignUp.onNext(())
         
 //        
-//        let viewModel = AddProductViewModel(provider: self.viewModel!.provider, image: <#UIImage#>)
-//            self.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
+        let viewModel = PostProductViewModel(provider: self.viewModel!.provider, image: UIImage(named:"1.png" ), taggedItems: [])
+            self.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
         
     }
        

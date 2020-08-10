@@ -105,10 +105,10 @@ class LibsManager: NSObject {
 
     func setupActivityView() {
         NVActivityIndicatorView.DEFAULT_TYPE = .lineScalePulseOutRapid
-        NVActivityIndicatorView.DEFAULT_COLOR = UIColor.secondary().withAlphaComponent(0.5)
+        NVActivityIndicatorView.DEFAULT_COLOR = UIColor.secondary().withAlphaComponent(1)
         NVActivityIndicatorView.DEFAULT_BLOCKER_SIZE = CGSize(width: 20, height: 20)
         NVActivityIndicatorView.DEFAULT_PADDING = 0
-        NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR = UIColor.black.withAlphaComponent(0.00)
+        NVActivityIndicatorView.DEFAULT_BLOCKER_BACKGROUND_COLOR = UIColor.black.withAlphaComponent(0)
     }
 
     func setupKeyboardManager() {

@@ -16,12 +16,20 @@ class UserPostCell: CollectionViewCell {
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var favorite: UIButton!
+    @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
+    
+    
+    override func makeUI() {
+        super.makeUI()
+        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+    }
 
     override func bind<T>(to viewModel: T) where T : UserPostCellViewModel {
         super.bind(to: viewModel)
     
         imageView.backgroundColor = .lightGray
 
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.isFavorite.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)

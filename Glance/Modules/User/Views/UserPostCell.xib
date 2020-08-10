@@ -144,6 +144,7 @@
             <connections>
                 <outlet property="favorite" destination="gRM-00-gU2" id="SK1-H9-fan"/>
                 <outlet property="imageView" destination="ZTZ-yO-wQn" id="6Vx-ys-MWQ"/>
+                <outlet property="imageViewHeight" destination="2V2-zn-cAF" id="VEf-wq-dUM"/>
                 <outlet property="moreButton" destination="iAW-0Z-Jtu" id="Ube-gW-6qh"/>
                 <outlet property="recommendButton" destination="owU-Q7-vzR" id="ZbS-Wf-R6C"/>
                 <outlet property="titleLabel" destination="roz-7i-TtU" id="CZy-Mo-AqC"/>

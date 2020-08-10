@@ -226,7 +226,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         
         
         message.subscribe(onNext: {[weak self] message in
-            self?.view.makeToast(message.subTitle,position: .center, title: message.title,style: message.style )
+            self?.view.makeToast(message.subTitle,position: .bottom, title: message.title,style: message.style )
         }).disposed(by: rx.disposeBag)
         
         exceptionError.filterNil().subscribe(onNext: { [weak self] error in

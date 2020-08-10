@@ -19,12 +19,12 @@ class AddProductViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[AddProductSection]>
         let selectionCategory : Driver<[Categories]>
-        let detail : Driver<String>
+        let post : Observable<(UIImage,Home)>
     }
     
     let selectedCategory = PublishSubject<Categories>()
     
-    let image : BehaviorRelay<UIImage>
+    private let image : BehaviorRelay<UIImage>
     
     init(provider: API, image : UIImage) {
         self.image = BehaviorRelay(value: image)
@@ -43,7 +43,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         let uploadImage = PublishSubject<(UIImage, [String : Any])>()
         let commit = PublishSubject<[String : Any]>()
         let edit = PublishSubject<AddProductImageCellViewModel>()
-        let detail = PublishSubject<String>()
+        let post = PublishSubject<(UIImage,Home)>()
         
         
         Observable.just(()).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Categories]>)> in
@@ -68,10 +68,12 @@ class AddProductViewModel: ViewModel, ViewModelType {
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .materialize()
-        }).subscribe(onNext: {  event in
+        }).subscribe(onNext: {[weak self] event in
+            guard let self = self else { return }
             switch event {
             case .next(let productId):
-                detail.onNext(productId)
+                var home = Home(productId: productId)
+                post.onNext((self.image.value,home))
             default:
                 break
             }
@@ -208,7 +210,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       selectionCategory : selectionCategory.asDriver(onErrorJustReturn: []),
-                      detail: detail.asDriver(onErrorJustReturn: ""))
+                      post: post.asObservable())
     }
 }
 

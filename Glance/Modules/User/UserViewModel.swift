@@ -15,8 +15,9 @@ import RxCocoa
 class UserViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        
         let headerRefresh: Observable<Void>
+        let insight : Observable<Void>
+        let setting : Observable<Void>
     }
     
     struct Output {
@@ -28,14 +29,18 @@ class UserViewModel: ViewModel, ViewModelType {
         let website : Driver<String>
         let bio : Driver<String>
         let titles : Driver<[String]>
-        
+        let updateHeadLayout : Driver<Void>
+        let insight : Driver<Void>
+        let setting : Driver<Void>
     }
     
-    let settingSelectedItem = PublishSubject<SettingItem>()
-    
-    
+    let settingSelectedItem = PublishSubject<SettingItem>()    
     
     func transform(input: Input) -> Output {
+        
+        let insight = input.insight.asDriver(onErrorJustReturn: ())
+        let setting = input.setting.asDriver(onErrorJustReturn: ())
+        let updateHeadLayout = PublishSubject<Void>()
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
@@ -48,6 +53,7 @@ class UserViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     user.accept(item)
+                    updateHeadLayout.onNext(())
                 default:
                     break
                 }
@@ -68,7 +74,18 @@ class UserViewModel: ViewModel, ViewModelType {
         }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
         
         
-        return Output(userHeadImageURL: userHeadImageURL,displayName: displayName, countryName: countryName,instagram: instagram, website: website, bio: bio,titles: titles)
+        
+        
+        return Output(userHeadImageURL: userHeadImageURL,
+                      displayName: displayName,
+                      countryName: countryName,
+                      instagram: instagram,
+                      website: website,
+                      bio: bio,
+                      titles: titles,
+                      updateHeadLayout: updateHeadLayout.asDriver(onErrorJustReturn: ()),
+                      insight: insight ,
+                      setting: setting)
     }
 }
 

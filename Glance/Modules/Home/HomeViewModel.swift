@@ -34,7 +34,8 @@ class HomeViewModel: ViewModel, ViewModelType {
         let saveFavorite = PublishSubject<HomeCellViewModel>()
         let showLikePopView = PublishSubject<(UIView,HomeCellViewModel)>()
         let detail = input.selection.map { $0.viewModel.item }
-
+        
+        
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
@@ -134,6 +135,9 @@ class HomeViewModel: ViewModel, ViewModelType {
 //            CurrencyManager.shared.setDefault(item.item)
 //            saved.onNext(())
 //        }).disposed(by: rx.disposeBag)
+        
+        
+        
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       showLikePopView: showLikePopView.asObservable(),

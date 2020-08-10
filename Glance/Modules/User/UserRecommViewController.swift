@@ -48,17 +48,6 @@ class UserRecommViewController: CollectionViewController  {
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
                                             selection: collectionView.rx.modelSelected(UserRecommCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
-        output.showLikePopView
-            .subscribe(onNext: { (fromView,cellViewModel) in
-                let width = 120
-                let aView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 48))
-                let options: [PopoverOption] = [.type(.down),.sideOffset(100),.sideEdge(20),
-                                                .color(UIColor.black.withAlphaComponent(0.5)),
-                                                .cornerRadius(8),.arrowSize(.zero), .showBlackOverlay(false)]
-                let popover = Popover(options: options, showHandler: nil, dismissHandler: nil)
-                popover.show(aView, fromView: fromView)
-                
-            }).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
@@ -110,13 +99,11 @@ extension UserRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let collectionView = collectionView as! CollectionView
-        return collectionView.ar_sizeForCell(withIdentifier: UserRecommCell.reuseIdentifier, indexPath: indexPath, fixedWidth: collectionView.itemWidth(forItemsPerRow: 2)) {[weak self] (cell) in
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        return collectionView.ar_sizeForCell(withIdentifier: UserRecommCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
             if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
                 let cell = cell  as? UserRecommCell
                 cell?.bind(to: viewModel)
-                cell?.setNeedsLayout()
-                cell?.needsUpdateConstraints()
             }
         }
         

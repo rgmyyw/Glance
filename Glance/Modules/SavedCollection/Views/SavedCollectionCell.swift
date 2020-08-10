@@ -18,17 +18,25 @@ class SavedCollectionCell: CollectionViewCell {
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     
+    @IBOutlet weak var bgView: UIView!
     
     override func makeUI() {
         super.makeUI()
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        
+        let shadowOffset = CGSize(width: 1, height: 1)
+        let color = UIColor(hex:0x828282)!
+        let opacity : CGFloat = 0.2
+        bgView.shadow(cornerRadius: 8, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 15)
+        contentView.clipsToBounds = false
+        clipsToBounds = false
     }
     
     override func bind<T>(to viewModel: T) where T : SavedCollectionCellViewModel {
         super.bind(to: viewModel)
         
-        imageViewHeight.constant = viewModel.height
-        imageView.backgroundColor = .lightGray
+        imageViewHeight.constant = viewModel.imageHeight
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         //viewModel.deleteButtonHidden.bind(to: deleteButton.rx.isHidden).disposed(by: cellDisposeBag)
@@ -39,5 +47,6 @@ class SavedCollectionCell: CollectionViewCell {
             }
         }).disposed(by: cellDisposeBag)
     }
+
     
 }

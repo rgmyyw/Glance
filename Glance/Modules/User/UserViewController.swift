@@ -42,6 +42,11 @@ class UserViewController: ViewController {
     
     private lazy var containerController : WMZPageController = {
         let container = WMZPageController()
+        container.param = setupPageViewConfig(provider: viewModel!.provider)
+        container.downSc.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
+            self?.headerRefreshTrigger.onNext(())
+        })
+
         return container
     }()
     
@@ -60,14 +65,11 @@ class UserViewController: ViewController {
         
         let refresh = Observable.just(()).merge(with: headerRefreshTrigger.asObservable())
         guard let viewModel = viewModel as? UserViewModel else { return }
-        let input = UserViewModel.Input(headerRefresh: refresh)
+        let input = UserViewModel.Input(headerRefresh: refresh,
+                                        insight: insight.rx.tap.asObservable(),
+                                        setting: setting.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
-        
-        containerController.param = setupPageViewConfig(provider: viewModel.provider)
-        containerController.downSc.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
-            print("下拉刷新 ...")
-            self?.headerRefreshTrigger.onNext(())
-        })
+                
         
         isHeaderLoading.bind(to: containerController.downSc.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
 
@@ -83,7 +85,13 @@ class UserViewController: ViewController {
         output.bio.map { $0.isEmpty }.drive(userHeadView.bioCell.rx.isHidden).disposed(by: rx.disposeBag)
         
         
-        setting.rx.tap.subscribe(onNext: { [weak self] () in
+        output.insight.drive(onNext: { [weak self]() in
+            let viewModel = InsightsViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
+            
+        output.setting.drive(onNext: { [weak self] () in
             guard let self = self else { return }
             let settingViewModel = SettingViewModel(provider: viewModel.provider)
             settingViewModel.selectedItem.bind(to: viewModel.settingSelectedItem).disposed(by: self.rx.disposeBag)
@@ -93,15 +101,8 @@ class UserViewController: ViewController {
             config?.direction = .fromRight
             config?.showAnimDuration = 0.25
             self.cw_showDrawerViewController(setting, animationType: .mask, configuration: config)
+        }).disposed(by: rx.disposeBag)
             
-        }).disposed(by: rx.disposeBag)
-        
-        insight.rx.tap.subscribe(onNext: { [weak self]() in
-            let viewModel = InsightsViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
-        }).disposed(by: rx.disposeBag)
-        
-        
         
         viewModel.settingSelectedItem
             .delay(.milliseconds(100), scheduler: MainScheduler.instance)
@@ -128,10 +129,7 @@ class UserViewController: ViewController {
                 }
             }).disposed(by: rx.disposeBag)
         
-        
-        user.filterNil().mapToVoid()
-            .delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self]() in
+        output.updateHeadLayout.drive(onNext: { [weak self]() in
                 guard let self = self else { return }
                 self.userHeadView.layoutIfNeeded()
                 self.userHeadView.snp.updateConstraints { (make) in
@@ -144,6 +142,7 @@ class UserViewController: ViewController {
             }).disposed(by: rx.disposeBag)
         
         output.titles.drive(onNext: {[weak self] (titles) in
+            
             self?.containerController.param.wTitleArr = titles
             self?.containerController.update()
         }).disposed(by: rx.disposeBag)

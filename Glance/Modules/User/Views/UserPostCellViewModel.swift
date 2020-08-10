@@ -10,7 +10,11 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class UserPostCellViewModel : CellViewModelProtocol {
+
+
+class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable{
+    
+    
     
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
@@ -21,7 +25,14 @@ class UserPostCellViewModel : CellViewModelProtocol {
 
     let saveFavorite = PublishSubject<Void>()
     let showLikePopView = PublishSubject<UIView>()
+
+    var image: String? {
+        return item.image
+    }
     
+    var col: Int {
+        return 2
+    }
     
     required init(item : Home) {
         self.item = item

@@ -32,11 +32,6 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="100" id="3bF-m0-xr2"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GnY-Di-19e">
                                                 <rect key="frame" x="129" y="10" width="30" height="30"/>
@@ -98,11 +93,6 @@
                             <constraint firstItem="xNs-IX-UWe" firstAttribute="top" secondItem="JtD-3V-947" secondAttribute="top" id="EKf-01-NvX"/>
                             <constraint firstItem="xNs-IX-UWe" firstAttribute="leading" secondItem="JtD-3V-947" secondAttribute="leading" id="XCn-DK-oQT"/>
                         </constraints>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="8"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
                     </view>
                 </subviews>
             </view>
@@ -115,6 +105,7 @@
             <viewLayoutGuide key="safeArea" id="pUa-fi-ez7"/>
             <size key="customSize" width="169" height="247"/>
             <connections>
+                <outlet property="bgView" destination="JtD-3V-947" id="ZDI-FV-Nr6"/>
                 <outlet property="deleteButton" destination="GnY-Di-19e" id="3CD-9y-EhV"/>
                 <outlet property="imageView" destination="PZK-RY-ifq" id="9c6-Rs-aN5"/>
                 <outlet property="imageViewHeight" destination="3bF-m0-xr2" id="kyN-zb-9UM"/>

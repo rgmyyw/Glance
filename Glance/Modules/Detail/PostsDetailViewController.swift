@@ -217,10 +217,9 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let viewModel = dataSouce[indexPath.section].items[indexPath.item].viewModel
-        viewModel.col = dataSouce[indexPath.section].column.cgFloat
-        let width : CGFloat = collectionView.width - (inset * 2.0) - ((viewModel.col - 1.0) * 15.0)
-        let fixedWidth = width / viewModel.col
-                
+        viewModel.column = dataSouce[indexPath.section].column.cgFloat
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: dataSouce[indexPath.section].column,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        
         switch dataSouce.sectionModels[indexPath.section] {
         case .similar:
             return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in

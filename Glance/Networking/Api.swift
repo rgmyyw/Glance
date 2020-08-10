@@ -56,6 +56,7 @@ protocol API {
     func searchProductInApp(keywords : String, page : Int) -> Single<PageMapable<Home>>
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
+    func postProduct(param : [String : Any]) -> Single<Bool>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

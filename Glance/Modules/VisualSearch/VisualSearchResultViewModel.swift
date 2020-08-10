@@ -23,7 +23,11 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[VisualSearchResultSection]>
         let search : Observable<UIImage>
+
     }
+    
+    private let image : BehaviorRelay<UIImage>
+    
     
     let imageURI = BehaviorRelay<String?>(value: nil)
     let currentRect : BehaviorRelay<CGRect> = BehaviorRelay<CGRect>(value: .zero)
@@ -31,17 +35,25 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     let searchSelection = PublishSubject<Home>()
     
     
-    let sourceImage = BehaviorRelay<UIImage?>(value: nil)
     let element : BehaviorRelay<(Bool,VisualSearchPageMapable)> = BehaviorRelay(value: (false,VisualSearchPageMapable()))
+    
+    let selectedItems = BehaviorRelay<[Home]>(value: [])
+    
+    init(provider: API, image : UIImage) {
+        self.image = BehaviorRelay(value: image)
+        super.init(provider: provider)
+    }
     
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
         let selectedItems = BehaviorRelay<[VisualSearchResultSectionItem]>(value:[])
         let box = BehaviorRelay<[CGFloat]>(value: [])
-        let search = input.search.map { self.sourceImage.value}.filterNil()
+        let search = input.search.map { self.image.value }
+        
         
         selectedItems.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
+        selectedItems.map { $0.map { $0.viewModel.item }}.bind(to: self.selectedItems).disposed(by: rx.disposeBag)
         
         currentRect.filter { $0 != .zero }
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
@@ -164,10 +176,6 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             let selected = elements.value.map { $0.items }.flatMap { $0.filter { $0.viewModel.selected.value } }
             selectedItems.accept(selected)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
-        
         
         
         return Output(items: elements.asDriver(onErrorJustReturn: []), search: search)

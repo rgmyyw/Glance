@@ -10,7 +10,8 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PostsDetailCellViewModel : CellViewModelProtocol {
+//CollectionCellImageHeightCalculateable
+class PostsDetailCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable  {
     
     let item : PostsDetailProduct
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
@@ -19,22 +20,14 @@ class PostsDetailCellViewModel : CellViewModelProtocol {
     
     let save = PublishSubject<Void>()
     
-    var col : CGFloat = 2
+    var image: String? {
+        return item.image
+    }
+  
+    var column : CGFloat = 0
     
-    var height : CGFloat {
-        let inset : CGFloat = 20
-        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col - 1.0) * 15.0)
-        if let urlParameters = item.image?.urlParameters() {
-            let width = urlParameters["w"]?.cgFloat() ?? 0
-            let height = urlParameters["h"]?.cgFloat() ?? 0
-            var imageHeight = ((cellWidth / width) * height) / col
-            if imageHeight.isNaN {
-                imageHeight = 200
-            }
-            return imageHeight
-        } else {
-            return 200
-        }
+    var col: Int {
+        return column.int
     }
         
     
