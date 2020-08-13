@@ -220,11 +220,6 @@ class PostProductViewModel: ViewModel, ViewModelType {
             
         }).disposed(by: rx.disposeBag)
         
-
-        
-        
-        
-        
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       detail: detail.asDriver(onErrorJustReturn: ""),

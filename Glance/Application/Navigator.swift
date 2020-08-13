@@ -49,7 +49,8 @@ class Navigator {
         case visualSearchProduct(viewModel: VisualSearchProductViewModel)
         case addProduct(viewModel: AddProductViewModel)
         case postProduct(viewModel: PostProductViewModel)
-        
+        case styleBoard(viewModel: StyleBoardViewModel)
+        case styleBoardSearch(viewModel: StyleBoardSearchViewModel)
     }
     
     enum Transition {
@@ -140,6 +141,13 @@ class Navigator {
         case .postProduct(let viewModel):
             let vc = PostProductViewController(viewModel: viewModel, navigator: self)
             return vc
+            
+        case .styleBoard(let viewModel):
+            let vc = StyleBoardViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .styleBoardSearch(let viewModel):
+            let vc = StyleBoardSearchViewController(viewModel: viewModel, navigator: self)
+            return vc
         }
     }
     
@@ -218,7 +226,7 @@ class Navigator {
                 nav.modalPresentationStyle = .custom
                 sender.present(nav, animated: animated, completion: nil)
             }
-
+            
         case .detail:
             DispatchQueue.main.async {
                 let nav = NavigationController(rootViewController: target)

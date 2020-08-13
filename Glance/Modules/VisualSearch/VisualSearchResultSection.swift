@@ -18,8 +18,6 @@ struct VisualSearchResultSection {
 struct VisualSearchResultSectionItem {
     var item : Int
     var viewModel : VisualSearchResultCellViewModel
-    
-    
 }
 
 extension VisualSearchResultSectionItem: IdentifiableType {

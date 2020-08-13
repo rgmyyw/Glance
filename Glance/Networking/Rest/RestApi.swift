@@ -147,8 +147,8 @@ class RestApi: API {
         return requestObject(.visualSearch(params: params), type: VisualSearchPageMapable.self)
     }
     
-    func searchProductInApp(keywords: String, page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.searchProductInApp(keywords: keywords, page: page), type: PageMapable<Home>.self)
+    func search(type: SearchType,keywords: String, page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.search(type: type, keywords: keywords, page: page), type: PageMapable<Home>.self)
     }
     
     

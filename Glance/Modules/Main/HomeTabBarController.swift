@@ -235,7 +235,10 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
                 let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
                 self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
             }
-
+            
+        case 1:
+            let styleBoard = StyleBoardViewModel(provider: viewModel.provider)
+            self.navigator.show(segue: .styleBoard(viewModel: styleBoard), sender: self,transition: .modal)
         default:
             break
         }

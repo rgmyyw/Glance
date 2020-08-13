@@ -20,6 +20,10 @@ struct UploadImageResult: Mappable {
     }
 }
 
+
+
+
+
 protocol API {
     
     func downloadString(url: URL) -> Single<String>
@@ -53,7 +57,11 @@ protocol API {
     func similarProduct(id : Any, type : Int,page : Int) -> Single<PageMapable<PostsDetailProduct>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
-    func searchProductInApp(keywords : String, page : Int) -> Single<PageMapable<Home>>
+    
+    
+    func search(type : SearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
+    
+    
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
     func postProduct(param : [String : Any]) -> Single<Bool>

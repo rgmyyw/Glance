@@ -42,7 +42,11 @@ class StackView: UIStackView {
         view.removeFromSuperview()
         super.addArrangedSubview(view)
     }
-
+    
+    override func insertArrangedSubview(_ view: UIView, at stackIndex: Int) {
+        view.removeFromSuperview()
+        super.insertArrangedSubview(view, at: stackIndex)
+    }
     
     
     

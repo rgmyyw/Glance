@@ -84,10 +84,6 @@ class AddProductViewController: CollectionViewController {
             self?.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
             
         }).disposed(by: rx.disposeBag)
-        
-
-        
-        
 
     }
 }
