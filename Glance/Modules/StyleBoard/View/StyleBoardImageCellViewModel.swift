@@ -19,12 +19,18 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
     
     let add = PublishSubject<Void>()
     let delete = PublishSubject<Void>()
+    let edit = PublishSubject<Void>()
     
     var size : CGSize {
-        if var size = item.image?.urlImageSize() {
-            size.width = size.width * 0.2
-            size.height = size.height * 0.2
-            return size
+        if let size = item.image?.urlImageSize() {
+            let maxH : CGFloat = UIScreen.main.bounds.width * 0.5
+            var w = UIScreen.main.bounds.width
+            var h = w * size.height / size.width
+            if h > maxH {
+                h = maxH
+                w = h * size.width / size.height
+            }
+            return CGSize(width: w, height: h)
             
         } else {
             return .zero

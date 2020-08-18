@@ -28,7 +28,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
     }
     
     
-    let textInput = BehaviorRelay<String>(value: "")
+    let textInput = BehaviorRelay<String>(value: "k")
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     let selection = PublishSubject<[Home]>()
     

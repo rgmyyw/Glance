@@ -168,6 +168,19 @@ class StyleBoardEditView: UIView {
         }
     }
     
+    private var _viewModel:StyleBoardImageCellViewModel?
+    var viewModel:StyleBoardImageCellViewModel? {
+        set {
+            _viewModel = newValue
+            if let imageView = contentView as? UIImageView {
+                _viewModel?.image.bind(to: imageView.rx.imageURL).disposed(by: rx.disposeBag)
+            }            
+        }
+        get {
+            return _viewModel
+        }
+    }
+
     
     
     /// A convenient property for you to store extra information.
@@ -186,7 +199,7 @@ class StyleBoardEditView: UIView {
         self.defaultMinimumSize = 4 * self.defaultInset
         
         var frame = contentView.frame
-        frame = CGRect(x: 0, y: 0, width: frame.size.width + CGFloat(self.defaultInset) * 2, height: frame.size.height + CGFloat(self.defaultInset) * 2)
+        frame = CGRect(x: frame.x, y: frame.y, width: frame.size.width + CGFloat(self.defaultInset) * 2, height: frame.size.height + CGFloat(self.defaultInset) * 2)
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.addGestureRecognizer(self.moveGesture)
@@ -229,6 +242,9 @@ class StyleBoardEditView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+
+    
     
     /**
      *  Use image to customize each editing handler.
@@ -478,7 +494,10 @@ class StyleBoardEditView: UIView {
         if let delegate = self.delegate {
             delegate.styleBoardEditViewDidClose(self)
         }
-        self.removeFromSuperview()
+        if self.superview != nil {
+            self.viewModel?.delete.onNext(())
+            self.removeFromSuperview()
+        }
     }
     
     @objc
@@ -490,10 +509,8 @@ class StyleBoardEditView: UIView {
     
     @objc
     func handleEditGesture(_ recognizer: UITapGestureRecognizer) {
-        
-        
-        ///
-        
+
+        viewModel?.edit.onNext(())
     }
 
     

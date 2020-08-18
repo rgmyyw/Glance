@@ -14,19 +14,18 @@ import RxCocoa
 class VisualSearchViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let currentRect : Observable<CGRect>
+        let currentBox : Observable<Box>
         let commit : Observable<Void>
     }
     struct Output {
         let imageURI : Driver<String>
-        let currentRect : Driver<CGRect>
+        let currentBox : Driver<Box>
         let post : Observable<(UIImage , [Home])>
     }
     
     let image : BehaviorRelay<UIImage>
     
     let selection = BehaviorRelay<[Home]>(value: [])
-    
     
     init(provider: API, image : UIImage) {
         self.image = BehaviorRelay(value: image)
@@ -37,11 +36,11 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let imageURI = PublishSubject<String>()
-        let currentRect = PublishSubject<CGRect>()
+        let currentBox = PublishSubject<Box>()
         let post = input.commit.map { (self.image.value, self.selection.value)}
         
         
-        image.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+        image.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 guard let data = image.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
@@ -53,7 +52,7 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let (url)):
                     imageURI.onNext(url)
-                    input.currentRect.bind(to: currentRect).disposed(by: self.rx.disposeBag)
+                    input.currentBox.bind(to: currentBox).disposed(by: self.rx.disposeBag)
                 default:
                     break
                 }
@@ -62,7 +61,7 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
 
         return Output(imageURI: imageURI.asDriver(onErrorJustReturn: ""),
-                      currentRect: currentRect.asDriver(onErrorJustReturn: .zero),
+                      currentBox: currentBox.asDriver(onErrorJustReturn: .zero),
                       post: post)
     }
 }

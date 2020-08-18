@@ -13,7 +13,6 @@ import RxCocoa
 
 class StyleBoardViewModel: ViewModel, ViewModelType {
     
-    
     struct Input {
         let next : Observable<Void>
     }
@@ -21,51 +20,59 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
     struct Output {
         let currentProducts : Driver<[StyleBoardSection]>
         let add : Driver<Void>
+        let nextButtonEnable : Driver<Bool>
     }
     
     let selection = PublishSubject<[Home]>()
     let selected : BehaviorRelay<[Home]> = BehaviorRelay(value: [])
-        
     
-
     
     func transform(input: Input) -> Output {
         
 
         let elements = BehaviorRelay<[StyleBoardSection]>(value: [])
         let add = PublishSubject<Void>()
-        let delete = PublishSubject<StyleBoardSectionItem>()
-        let currentImages = selected.map { $0.map { Observable.just($0.image?.url)} }.asDriver(onErrorJustReturn: [])
-        
-        selection.map { $0 + elements.value[0].items.map { $0.viewModel.item }.filterDuplicates { $0.productId }  }.bind(to: selected).disposed(by: rx.disposeBag)
+        let delete = PublishSubject<StyleBoardImageCellViewModel>()
+        let nextButtonEnable = selected.map { $0.isNotEmpty }.asDriver(onErrorJustReturn: false)
+                
+        selection.map { ($0 + self.selected.value).filterDuplicates { $0.productId }  }
+            .filter { $0.count != self.selected.value.count }
+            .bind(to: selected).disposed(by: rx.disposeBag)
 
-        
         selected.map { i -> [StyleBoardSection] in
-            var items = i
-            if i.isNotEmpty { items.removeLast() }
-            let elements = items.enumerated().map { (offset, item) -> StyleBoardSectionItem in
+            var elements = i.enumerated().map { (offset, item) -> StyleBoardSectionItem in
                 let viewModel = StyleBoardImageCellViewModel(item: item)
-                let item = StyleBoardSectionItem.image(identity: offset.string, viewModel: viewModel)
-                viewModel.delete.map { item }.bind(to: delete).disposed(by: self.rx.disposeBag)
+                viewModel.delete.map { viewModel }.bind(to: delete).disposed(by: self.rx.disposeBag)
+                let item = StyleBoardSectionItem.image(identity: viewModel.item.productId!, viewModel: viewModel)
                 return item
             }
-            let viewModel = StyleBoardImageCellViewModel(item: Home(productId: "-1"))
-            let empty = StyleBoardSectionItem.image(identity: "-1", viewModel: viewModel)
-            viewModel.add.bind(to: add).disposed(by: self.rx.disposeBag)
-
-            return [StyleBoardSection.images(items: elements + [empty])]
+            let emptyViewModel = StyleBoardImageCellViewModel(item: Home(productId: "-1"))
+            let empty = StyleBoardSectionItem.image(identity: "-1", viewModel: emptyViewModel)
+            emptyViewModel.add.bind(to: add).disposed(by: self.rx.disposeBag)
+            elements.append(empty)
+            
+            return [StyleBoardSection.images(items: elements)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        delete.subscribe(onNext: { (item) in
-            let section = elements.value[0]
-            var items = section.items
-            items.removeFirst(item)
-            elements.accept([StyleBoardSection.init(original: section, items: items)])
+        delete.subscribe(onNext: { [weak self](viewModel) in
+            print("will delete productId: \(viewModel.item.productId ?? "")")
+            var items = self?.selected.value ?? []
+            print("current:\(items.compactMap { $0.productId }) ")
+            let index = items.firstIndex { $0.productId == viewModel.item.productId }
+            if let index = index{
+                items.remove(at: index)
+            } else {
+                print("not found")
+            }
+            print("delete complete:\(items.compactMap { $0.productId})")
+            self?.selected.accept(items)
+            
         }).disposed(by: rx.disposeBag)
         
         
         return Output(currentProducts: elements.asDriver(onErrorJustReturn: []),
-                      add: add.asDriver(onErrorJustReturn: ()))
+                      add: add.asDriver(onErrorJustReturn: ()),
+                      nextButtonEnable: nextButtonEnable)
     }
 }
 

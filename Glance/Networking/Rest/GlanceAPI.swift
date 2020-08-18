@@ -144,7 +144,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .addShoppingCart:
             return "/api/shoppingCart"
         case .visualSearch:
-            return "/api/visual-search"
+            return "/api/discoversearch"
         case .search(let type,_, let pageNum):
             switch type {
             case .inApp:

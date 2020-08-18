@@ -10,7 +10,6 @@ import UIKit
 import FloatingPanel
 
 
-
 class VisualSearchViewController: ViewController {
     
     fileprivate let cropView : VisualSearchCropView = VisualSearchCropView()
@@ -22,13 +21,18 @@ class VisualSearchViewController: ViewController {
         return controller
     }()
     
+
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     override func makeUI() {
         super.makeUI()
-        
+                
         
         contentView.removeFromSuperview()
         view.addSubview(cropView)
-        cropView.frame = CGRect(x: 0, y: 0, w: view.bounds.width, h: view.bounds.width + UIApplication.shared.statusBarFrame.height)
+        cropView.frame = CGRect(x: 0, y: 0, w: view.bounds.width, h: view.bounds.width )
         cropView.backgroundColor = UIColor.black
         view.backgroundColor = cropView.backgroundColor
         
@@ -62,7 +66,8 @@ class VisualSearchViewController: ViewController {
         
         guard let viewModel = viewModel as? VisualSearchViewModel else { return }
         
-        let input = VisualSearchViewModel.Input(currentRect: cropView.current.asObservable(),commit:  bottomView.button.rx.tap.asObservable())
+        let input = VisualSearchViewModel.Input(currentBox: cropView.current.asObservable(),
+                                                commit:  bottomView.button.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
         output.post.subscribe(onNext: { [weak self](image, items) in
@@ -72,7 +77,7 @@ class VisualSearchViewController: ViewController {
             viewModel?.items.accept(items)
             self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
-
+        
         
         let result = VisualSearchResultViewModel(provider: viewModel.provider, image: viewModel.image.value)
         result.selectedItems.bind(to: viewModel.selection).disposed(by: rx.disposeBag)
@@ -85,12 +90,12 @@ class VisualSearchViewController: ViewController {
         panel.set(contentViewController: vc)
         panel.addPanel(toParent: self)
         panel.track(scrollView: vc.collectionView)
-
-        output.currentRect.drive(result.currentRect).disposed(by: rx.disposeBag)
+        
+        output.currentBox.drive(result.currentBox).disposed(by: rx.disposeBag)
         output.imageURI.drive(result.imageURI).disposed(by: rx.disposeBag)
         viewModel.image.bind(to: cropView.rx.image).disposed(by: rx.disposeBag)
         
-
+        
     }
     
     
@@ -102,7 +107,7 @@ extension VisualSearchViewController  : FloatingPanelControllerDelegate {
     // MARK: FloatingPanelControllerDelegate
     func floatingPanel(_ vc: FloatingPanelController, layoutFor newCollection: UITraitCollection) -> FloatingPanelLayout? {
         let layout = FloatingPanelStocksLayout()
-        layout.halfHeight = view.height - cropView.height - 20
+        layout.halfHeight = view.height - cropView.height
         return layout
     }
     
@@ -155,8 +160,13 @@ class FloatingPanelStocksLayout: FloatingPanelLayout {
     
     func insetFor(position: FloatingPanelPosition) -> CGFloat? {
         switch position {
-        case .full: return 20
-        case .half: return halfHeight //(UIScreen.height * 0.5) - 34 - 20
+        case .full: return 0
+        case .half:
+            var  bottomSafeArea : CGFloat = 0
+            if #available(iOS 11, *) {
+                bottomSafeArea = UIApplication.shared.keyWindow?.safeAreaInsets.bottom ?? 0
+            }
+            return halfHeight - bottomSafeArea //(UIScreen.height * 0.5) - 34 - 20
         case .tip: return 85.0 + 44.0 // Visible + ToolView
             
         default: return nil

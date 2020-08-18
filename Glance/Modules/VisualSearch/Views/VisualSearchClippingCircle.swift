@@ -13,7 +13,7 @@ class VisualSearchClippingCircle: UIView {
     
     let corner : UIRectCorner
     var lineColor = UIColor.white
-    var lineWidth : CGFloat = 12
+    var lineWidth : CGFloat = 10
     
     init(corner : UIRectCorner, frame : CGRect) {
         self.corner = corner
@@ -33,10 +33,11 @@ class VisualSearchClippingCircle: UIView {
         let linewidthAngle : CGFloat = lineWidth // 经验参数：6和4
         
         // 画扫码矩形以及周边半透明黑色坐标参数
-        let diffAngle : CGFloat = 2
+        let diffAngle : CGFloat = 0
         context.setStrokeColor(lineColor.cgColor)
         context.setLineWidth(linewidthAngle)
-        
+        context.setLineCap(.round)
+
         let wAngle : CGFloat = bounds.width
         let hAngle : CGFloat = bounds.height
         //

@@ -30,7 +30,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     
     
     let imageURI = BehaviorRelay<String?>(value: nil)
-    let currentRect : BehaviorRelay<CGRect> = BehaviorRelay<CGRect>(value: .zero)
+    let currentBox : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
     let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
     let searchSelection = PublishSubject<Home>()
     
@@ -55,19 +55,8 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         selectedItems.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
         selectedItems.map { $0.map { $0.viewModel.item }}.bind(to: self.selectedItems).disposed(by: rx.disposeBag)
         
-        currentRect.filter { $0 != .zero }
+        currentBox.filter { $0 != .zero }
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { rect in
-                var rect = rect
-                let scale = UIScreen.main.scale
-                rect.x = rect.x * scale * 2.0
-                rect.y = rect.y * scale * 2.0
-                rect.size.width = rect.width * scale * 2.0
-                rect.size.height = rect.height * scale * 2.0
-                box.accept([rect.x, rect.x + rect.width, rect.y, rect.y + rect.height])
-            }).disposed(by: rx.disposeBag)
-        
-        box.filterEmpty()
             .flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<VisualSearchPageMapable>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
@@ -79,18 +68,20 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 param["limit"] = 10
                 param["imUri"] = self.imageURI.value ?? ""
                 param["imUrl"] = ""
-                param["box"] = box
+                param["box"] = box.toArray()
+                
                 //imId ["imId"]
                 return self.provider.visualSearch(params: param)
                     .trackError(self.error)
-                    .trackActivity(self.loading)
+//                    .trackActivity(self.loading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
                 switch event {
                 case .next(let item):
-                    self.element.accept((true, item))
-                    self.hasData.onNext(item.hasNext)
+                    break
+//                    self.element.accept((true, item))
+//                    self.hasData.onNext(item.hasNext)
                     
                 default:
                     break
@@ -98,11 +89,12 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
+        
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<VisualSearchPageMapable>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.1.hasNext {
-                return Observable.just(RxSwift.Event.completed)
-            }
+//            if !self.element.value.1.hasNext {
+//                return Observable.just(RxSwift.Event.completed)
+//            }
             self.page += 1
             var param = [String : Any]()
             param["page"] = self.page
@@ -120,9 +112,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.1.list + item.list
-                self.element.accept((false,temp))
-                self.hasData.onNext(item.hasNext)
+//                temp.list = self.element.value.1.list + item.list
+//                self.element.accept((false,temp))
+//                self.hasData.onNext(item.hasNext)
                 
             default:
                 break
@@ -130,28 +122,29 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         element.map { (first,items) -> [VisualSearchResultSection] in
-            
-            if items.list.isEmpty { return []}
-            
-            let sectionItems = items.list.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
-                let viewModel = VisualSearchResultCellViewModel(item: item)
-                let item = VisualSearchResultSectionItem(item: offset, viewModel: viewModel)
-                return item
-            }
-            if first, let item = sectionItems.first {
-                item.viewModel.selected.accept(true)
-                self.bottomViewHidden.accept(false)
-                selectedItems.accept([item])
-            }
-            selectedItems.value.forEach { selected in
-                for current in sectionItems {
-                    if selected.viewModel.item.productId == current.viewModel.item.productId {
-                        current.viewModel.selected.accept(true)
-                        break
-                    }
-                }
-            }
-            return [VisualSearchResultSection(section: 0, elements: sectionItems)]
+//
+//            if items.list.isEmpty { return []}
+//
+//            let sectionItems = items.list.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
+//                let viewModel = VisualSearchResultCellViewModel(item: item)
+//                let item = VisualSearchResultSectionItem(item: offset, viewModel: viewModel)
+//                return item
+//            }
+//            if first, let item = sectionItems.first {
+//                item.viewModel.selected.accept(true)
+//                self.bottomViewHidden.accept(false)
+//                selectedItems.accept([item])
+//            }
+//            selectedItems.value.forEach { selected in
+//                for current in sectionItems {
+//                    if selected.viewModel.item.productId == current.viewModel.item.productId {
+//                        current.viewModel.selected.accept(true)
+//                        break
+//                    }
+//                }
+//            }
+//            return [VisualSearchResultSection(section: 0, elements: sectionItems)]
+            return []
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         
@@ -168,6 +161,8 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             return [VisualSearchResultSection(original: section, items: items)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
+        
+//        element.takeWhile(<#T##predicate: ((Bool, VisualSearchPageMapable)) throws -> Bool##((Bool, VisualSearchPageMapable)) throws -> Bool#>)
         
         
         

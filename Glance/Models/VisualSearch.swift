@@ -9,28 +9,42 @@
 import UIKit
 import ObjectMapper
 
-struct VisualSearchPageMapable : Mappable {
-    
-    var total: Int = 0
+struct VisualSearchPageMapable: Mappable {
+    var boxProducts = [BoxProducts]()
     var pageNum: Int = 0
-    var list = [Home]()
-    var hasNext: Bool = true
+    var imId: String?
     var pageSize: Int = 0
-    var hasPrevious: Bool = false
-    var imId:  String?
 
     init?(map: Map) {}
-    init(hasNext : Bool = true) {
-        self.hasNext = hasNext
-    }
+    init() {}
 
     mutating func mapping(map: Map) {
-        total   <- map["total"]
+        boxProducts   <- map["boxProducts"]
         pageNum   <- map["pageNum"]
-        list   <- map["productList"]
-        hasNext   <- map["hasNext"]
+        imId   <- map["imId"]
         pageSize   <- map["pageSize"]
-        hasPrevious   <- map["hasPrevious"]
-        imId <- map["imId"]
+
+    }
+}
+
+
+struct BoxProducts: Mappable {
+    var score: Int = 0
+    var productList = [Home]()
+    var box : [Int] = [Int]()
+    var type: String?
+    var total: Int = 0
+    var pageNum: Int = 0
+    
+
+    
+    init?(map: Map) {}
+
+    mutating func mapping(map: Map) {
+        score   <- map["score"]
+        productList   <- map["productList"]
+        box   <- map["box"]
+        type   <- map["type"]
+        total   <- map["total"]
     }
 }
