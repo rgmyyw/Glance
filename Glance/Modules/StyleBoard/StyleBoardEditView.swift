@@ -199,7 +199,7 @@ class StyleBoardEditView: UIView {
         self.defaultMinimumSize = 4 * self.defaultInset
         
         var frame = contentView.frame
-        frame = CGRect(x: frame.x, y: frame.y, width: frame.size.width + CGFloat(self.defaultInset) * 2, height: frame.size.height + CGFloat(self.defaultInset) * 2)
+        frame = CGRect(x: frame.origin.x, y: frame.origin.y, width: frame.size.width + CGFloat(self.defaultInset) * 2, height: frame.size.height + CGFloat(self.defaultInset) * 2)
         super.init(frame: frame)
         self.backgroundColor = UIColor.clear
         self.addGestureRecognizer(self.moveGesture)

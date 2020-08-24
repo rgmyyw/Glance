@@ -77,3 +77,25 @@ extension Reactive where Base: NavigationBar {
     
 }
 
+extension Reactive where Base: VisualSearchCropView {
+    
+    var image: Binder<UIImage?> {
+        return Binder(self.base) { view, image in
+            view.image = image
+        }
+    }
+
+    var selectionBox: Binder<Box> {
+        return Binder(self.base) { view, box in
+            view.selectionBox(box: box)
+        }
+    }
+        
+    var updateBox: Binder<[(Bool,Box)]> {
+        return Binder(self.base) { view, items in
+            view.updateBox(actions: items)
+        }
+    }
+
+    
+}

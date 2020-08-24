@@ -16,7 +16,7 @@ class AddProductInputKeywordReusableView: CollectionReusableView {
     
     override func makeUI() {
         super.makeUI()
-        textField.addLeftTextPadding(12)
+        textField.addPaddingLeft(12)
         textField.limitCharacter(number: 50)
         
     }

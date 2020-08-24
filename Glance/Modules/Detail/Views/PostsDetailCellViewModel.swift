@@ -54,7 +54,7 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let liked = BehaviorRelay<Bool>(value: false)
     let recommended = BehaviorRelay<Bool>(value: false)
     
-
+    let currency = BehaviorRelay<String?>(value: nil)
     let price = BehaviorRelay<String?>(value: nil)
 
     
@@ -68,9 +68,17 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
         
         userImageURL.accept(item.userImage?.url)
         userName.accept(item.displayName)
-        postImageURL.accept(item.postImage?.url)
+        
+        if let image = item.postImage?.url {
+            postImageURL.accept(image)
+        }
+        if let image = item.image?.url {
+            postImageURL.accept(image)
+        }
+
+        
         postTitle.accept(item.title)
-        price.accept("$ \(item.price)")
+        price.accept("\(item.currency ?? "currency is nil") \(item.price)")
         
         saved.accept(item.saved)
         liked.accept(item.liked)

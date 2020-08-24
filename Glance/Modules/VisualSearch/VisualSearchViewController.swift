@@ -32,9 +32,9 @@ class VisualSearchViewController: ViewController {
         
         contentView.removeFromSuperview()
         view.addSubview(cropView)
-        cropView.frame = CGRect(x: 0, y: 0, w: view.bounds.width, h: view.bounds.width )
+        cropView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: view.bounds.width )
         cropView.backgroundColor = UIColor.black
-        view.backgroundColor = cropView.backgroundColor
+        view.backgroundColor = cropView.backgroundColor?.withAlphaComponent(0.5)
         
         panel.surfaceView.backgroundColor = UIColor(displayP3Red: 30.0/255.0, green: 30.0/255.0, blue: 30.0/255.0, alpha: 1.0)
         panel.surfaceView.setValue(10, forKey: "cornerRadius")
@@ -70,17 +70,31 @@ class VisualSearchViewController: ViewController {
                                                 commit:  bottomView.button.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
+        
+        // 提前绑定, 重复绑定会出发多次
+        (self.postProduct.viewModel as? PostProductViewModel)?.edit
+            .bind(to: viewModel.selectionBox).disposed(by: rx.disposeBag)
         output.post.subscribe(onNext: { [weak self](image, items) in
             guard let self = self else { return }
-            let viewModel = self.postProduct.viewModel as? PostProductViewModel
-            viewModel?.currentImage.accept(image)
-            viewModel?.items.accept(items)
+            let postProductViewModel = self.postProduct.viewModel as? PostProductViewModel
+            postProductViewModel?.currentImage.accept(image)
+            postProductViewModel?.items.accept(items)
+            
             self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
         
+        output.updateBox.bind(to: cropView.rx.updateBox).disposed(by: rx.disposeBag)
+        output.selectionBox.bind(to: cropView.rx.selectionBox).disposed(by: rx.disposeBag)
+        
+//        output.selection.bind(to: cropView.rx.selection).disposed(by: rx.disposeBag)
+//        output.boxes.drive(cropView.rx.boxes).disposed(by: rx.disposeBag)
         
         let result = VisualSearchResultViewModel(provider: viewModel.provider, image: viewModel.image.value)
-        result.selectedItems.bind(to: viewModel.selection).disposed(by: rx.disposeBag)
+//        result.selectedItems.bind(to: viewModel.selection).disposed(by: rx.disposeBag)
+//        result.boxes.bind(to: viewModel.boxes).disposed(by: rx.disposeBag)
+        result.updateBox.bind(to: viewModel.updateBox).disposed(by: rx.disposeBag)
+        result.selected.bind(to: viewModel.selected).disposed(by: rx.disposeBag)
+        
         result.bottomViewHidden.subscribe(onNext: { [weak self] (hidden) in
             UIView.animate(withDuration: 0.25) { self?.bottomView.alpha = (!hidden).int.cgFloat }
         }).disposed(by: rx.disposeBag)
@@ -95,7 +109,7 @@ class VisualSearchViewController: ViewController {
         output.imageURI.drive(result.imageURI).disposed(by: rx.disposeBag)
         viewModel.image.bind(to: cropView.rx.image).disposed(by: rx.disposeBag)
         
-        
+
     }
     
     

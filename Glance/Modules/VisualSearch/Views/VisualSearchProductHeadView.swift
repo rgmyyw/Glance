@@ -16,6 +16,6 @@ class VisualSearchProductHeadView: View {
     override func makeUI() {
         super.makeUI()
         
-        textFiled.addLeftTextPadding(12)
+        textFiled.addPaddingLeft(12)
     }
 }

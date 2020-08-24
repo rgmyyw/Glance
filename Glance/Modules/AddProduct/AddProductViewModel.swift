@@ -19,15 +19,17 @@ class AddProductViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[AddProductSection]>
         let selectionCategory : Driver<[Categories]>
-        let post : Observable<(UIImage,Home)>
+        let post : Observable<(UIImage,Box,Home)>
     }
     
     let selectedCategory = PublishSubject<Categories>()
     
     private let image : BehaviorRelay<UIImage>
+    private let box : BehaviorRelay<Box>
     
-    init(provider: API, image : UIImage) {
+    init(provider: API, image : UIImage , box : Box) {
         self.image = BehaviorRelay(value: image)
+        self.box = BehaviorRelay(value: box)
         super.init(provider: provider)
     }
     
@@ -43,7 +45,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         let uploadImage = PublishSubject<(UIImage, [String : Any])>()
         let commit = PublishSubject<[String : Any]>()
         let edit = PublishSubject<AddProductImageCellViewModel>()
-        let post = PublishSubject<(UIImage,Home)>()
+        let post = PublishSubject<(UIImage,Box,Home)>()
         
         
         Observable.just(()).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Categories]>)> in
@@ -73,7 +75,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let productId):
                 var home = Home(productId: productId)
-                post.onNext((self.image.value,home))
+                post.onNext((self.image.value,self.box.value,home))
             default:
                 break
             }
@@ -87,12 +89,12 @@ class AddProductViewModel: ViewModel, ViewModelType {
             viewModel.commit.bind(to: commitButtonTap).disposed(by: self.rx.disposeBag)
             self.selectedCategory.bind(to: viewModel.selectedCategory).disposed(by: self.rx.disposeBag)
             
-            let tagItems = (1..<4).map { number ->  AddProductSectionItem in
-                let viewModel = AddProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
-                let item = AddProductSectionItem.tag(identity: number.string,viewModel: viewModel)
-                viewModel.delete.map { item }.bind(to: deleteTag).disposed(by: self.rx.disposeBag)
-                return item
-            }
+//            let tagItems = (1..<4).map { number ->  AddProductSectionItem in
+//                let viewModel = AddProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
+//                let item = AddProductSectionItem.tag(identity: number.string,viewModel: viewModel)
+//                viewModel.delete.map { item }.bind(to: deleteTag).disposed(by: self.rx.disposeBag)
+//                return item
+//            }
                         
             let imageItem = AddProductImageCellViewModel(item: self.image.value)
             imageItem.edit.map { imageItem }.bind(to: edit).disposed(by: self.rx.disposeBag)
@@ -100,15 +102,16 @@ class AddProductViewModel: ViewModel, ViewModelType {
 
             let name = AddProductSection.productName(viewModel: viewModel)
             let categary = AddProductSection.categary(viewModel: viewModel)
-            let inputKeyword = AddProductSection.tagRelatedKeywords(viewModel: viewModel)
-            let tags = AddProductSection.tags(items: tagItems)
+//            let inputKeyword = AddProductSection.tagRelatedKeywords(viewModel: viewModel)
+//            let tags = AddProductSection.tags(items: tagItems)
             let brand = AddProductSection.brand(viewModel: viewModel)
             let website = AddProductSection.website(viewModel: viewModel)
             let thumbnail = AddProductSection.thumbnail(items: [image])
             let button = AddProductSection.button(viewModel: viewModel)
             
-            return [name, categary,inputKeyword,tags,brand,website,thumbnail,button]
-            
+            //return [name, categary,inputKeyword,tags,brand,website,thumbnail,button]
+            return [name, categary,brand,website,thumbnail,button]
+
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         
@@ -163,8 +166,8 @@ class AddProductViewModel: ViewModel, ViewModelType {
         commitButtonTap.subscribe(onNext: { [weak self] () in
             
             let viewModel = elements.value.first?.viewModel
-            let thumbnail = elements.value[6].items
-            let tags = elements.value[3].items
+            let thumbnail = elements.value[4].items
+            //let tags = elements.value[1].items
             
             guard let productName = viewModel?.productName.value, productName.count > 5 else {
                 self?.exceptionError.onNext(.general(message: "productName minimum of 6"))
@@ -191,14 +194,14 @@ class AddProductViewModel: ViewModel, ViewModelType {
                 return
             }
             
-            let tag = tags.compactMap { $0.viewModel(AddProductTagCellViewModel.self).title.value }    
-            
+            //let tag = tags.compactMap { $0.viewModel(AddProductTagCellViewModel.self).title.value }
             var param = [String : Any]()
             param["productName"] = productName
             param["categoryId"] = categoryId
             param["brand"] = brand
             param["website"] = website
-            param["tags"] = tag
+            
+            //param["tags"] = tag
             uploadImage.onNext((image, param))
             
         }).disposed(by: rx.disposeBag)

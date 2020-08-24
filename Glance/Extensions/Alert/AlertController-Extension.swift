@@ -62,44 +62,49 @@ extension AlertController {
     }
 }
 
-@discardableResult
-public func showAlert(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
-    let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .alert)
-    let titles = optionTitles
-    let actions = titles.enumerated().map { offset, item -> AlertAction in
-        let action = AlertAction(title: item, style: .normal)
-        action.accessibilityIdentifier = offset.string
-        return action
+struct Alert {
+    @discardableResult
+    public static func showAlert(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
+        let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .alert)
+        let titles = optionTitles
+        let actions = titles.enumerated().map { offset, item -> AlertAction in
+            let action = AlertAction(title: item, style: .normal)
+            action.accessibilityIdentifier = offset.string
+            return action
+        }
+        let cancel = AlertAction(title: cancel, style: .preferred)
+        cancel.accessibilityIdentifier = "-1"
+        controller.addAction(cancel)
+        controller.addActions(actions)
+        controller.present()
+        return controller.asObservable()
     }
-    let cancel = AlertAction(title: cancel, style: .preferred)
-    cancel.accessibilityIdentifier = "-1"
-    controller.addAction(cancel)
-    controller.addActions(actions)
-    controller.present()
-    return controller.asObservable()
+
+    @discardableResult
+    public static func showActionSheet(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
+        return showActionSheet(with: title, message: message, optionTitles: optionTitles, cancel: cancel)
+    }
+
+    @discardableResult
+    public static func showActionSheet(with title: String? = nil, message: String?, optionTitles: [String] , cancel : String = "Cancel" ) -> Observable<Int> {
+        let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .actionSheet)
+        let titles = optionTitles
+        
+        let cancel = AlertAction(title: cancel, style: .preferred)
+        cancel.accessibilityIdentifier = "-1"
+        controller.addAction(cancel)
+        
+        
+        let actions = titles.enumerated().map { offset, item -> AlertAction in
+            let action = AlertAction(title: item, style: .normal)
+            action.accessibilityIdentifier = offset.string
+            return action
+        }
+        controller.addActions(actions)
+        controller.present()
+        return controller.asObservable()
+    }
+
 }
 
-@discardableResult
-public func showActionSheet(with title: String? = nil, message: String?, optionTitles: String ... , cancel : String = "Cancel" ) -> Observable<Int> {
-    return showActionSheet(with: title, message: message, optionTitles: optionTitles, cancel: cancel)
-}
 
-@discardableResult
-public func showActionSheet(with title: String? = nil, message: String?, optionTitles: [String] , cancel : String = "Cancel" ) -> Observable<Int> {
-    let controller = AlertController(customTitle: title, customMessage: message, preferredStyle: .actionSheet)
-    let titles = optionTitles
-    
-    let cancel = AlertAction(title: cancel, style: .preferred)
-    cancel.accessibilityIdentifier = "-1"
-    controller.addAction(cancel)
-    
-    
-    let actions = titles.enumerated().map { offset, item -> AlertAction in
-        let action = AlertAction(title: item, style: .normal)
-        action.accessibilityIdentifier = offset.string
-        return action
-    }
-    controller.addActions(actions)
-    controller.present()
-    return controller.asObservable()
-}

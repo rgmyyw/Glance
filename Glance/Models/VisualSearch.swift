@@ -14,16 +14,29 @@ struct VisualSearchPageMapable: Mappable {
     var pageNum: Int = 0
     var imId: String?
     var pageSize: Int = 0
+    
+
+    
+    var boxes : [Box] {
+        return boxProducts.compactMap { $0.box}
+    }
+    
 
     init?(map: Map) {}
     init() {}
+    
+    init(boxProduct : BoxProducts) {
+        self.boxProducts = [boxProduct]
+        self.pageNum = 1
+        self.pageSize = 10
+    }
 
     mutating func mapping(map: Map) {
         boxProducts   <- map["boxProducts"]
         pageNum   <- map["pageNum"]
         imId   <- map["imId"]
         pageSize   <- map["pageSize"]
-
+        
     }
 }
 
@@ -31,10 +44,15 @@ struct VisualSearchPageMapable: Mappable {
 struct BoxProducts: Mappable {
     var score: Int = 0
     var productList = [Home]()
-    var box : [Int] = [Int]()
+    var box : Box?
     var type: String?
     var total: Int = 0
     var pageNum: Int = 0
+    var hasNext : Bool = true
+    
+    
+    var selected : Home?
+    var system : Bool = false
     
 
     
@@ -43,8 +61,9 @@ struct BoxProducts: Mappable {
     mutating func mapping(map: Map) {
         score   <- map["score"]
         productList   <- map["productList"]
-        box   <- map["box"]
+        box   <- (map["box"] , BoxTransform())
         type   <- map["type"]
         total   <- map["total"]
+        hasNext <- map["hasNext"]
     }
 }

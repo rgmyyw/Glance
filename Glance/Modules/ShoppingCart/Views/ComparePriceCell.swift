@@ -20,6 +20,7 @@ class ComparePriceCell: SwipeTableViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         subviews.forEach { (view) in
+            
             if view.className == "SwipeActionsView" {
                 view.addGradient(colors: [UIColor(hex: 0xFBE8E2),UIColor(hex: 0xFFB39F),UIColor(hex: 0xFF8159)])
             }

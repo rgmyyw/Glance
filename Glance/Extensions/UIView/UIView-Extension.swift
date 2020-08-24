@@ -131,7 +131,7 @@ public extension UIView {
         set{
             objc_setAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
             if newValue == true {
-                self.recursive(true) { $0.backgroundColor = UIColor.random() }
+                self.recursive(true) { $0.backgroundColor = UIColor.random }
             } else {
                 self.recursive(true) { $0.backgroundColor = .white }
             }

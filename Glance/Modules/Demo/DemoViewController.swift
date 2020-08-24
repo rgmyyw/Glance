@@ -34,8 +34,8 @@ class DemoViewController: ViewController {
                 
                 
         
-        let viewModel = StyleBoardSearchViewModel(provider: provider)
-        self.navigator.show(segue: .styleBoardSearch(viewModel: viewModel), sender: self)
+//        let viewModel = StyleBoardSearchViewModel(provider: provider)
+//        self.navigator.show(segue: .styleBoardSearch(viewModel: viewModel), sender: self)
 
     }
        

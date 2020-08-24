@@ -43,7 +43,7 @@ class StyleBoardSearchViewController: CollectionViewController  {
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationTitle = "Add Products"
         navigationBar.rightBarButtonItem = addButton
-        textField.addLeftTextPadding(10)
+        textField.addPaddingLeft(12)
         stackView.insertArrangedSubview(titleView, at: 0)
         emptyView.removeFromSuperview()
         
@@ -112,7 +112,7 @@ class StyleBoardSearchViewController: CollectionViewController  {
 
         uploadYourselfButton.rx.tap
             .subscribe(onNext: { [unowned self ]() in
-                Glance.showAlert(with: "Leave to list an item?",
+                Alert.showAlert(with: "Leave to list an item?",
                                  message: "Your current edits will be saved in your Profile so that you can complete your post later.",
                                  optionTitles: "Leave",
                                  cancel: "Cancel")

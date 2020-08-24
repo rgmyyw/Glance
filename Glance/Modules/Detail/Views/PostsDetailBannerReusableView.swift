@@ -16,17 +16,24 @@ import RxCocoa
 class PostsDetailBannerReusableView: CollectionReusableView {
     
     @IBOutlet weak var banner: JXBanner!
+    @IBOutlet weak var imageView: UIImageView!
     
-    let items = BehaviorRelay<[String]>(value: (0...10).map { "\($0).jpg" })
-    
+    let items = BehaviorRelay<[String]>(value: [])
+//    let items = BehaviorRelay<[String]>(value: (0...10).map { "\($0).jpg" })
+
     override func makeUI() {
         super.makeUI()
         
         banner.placeholderImgView.image = UIImage(named: "banner_placeholder")
         banner.delegate = self
         banner.dataSource = self
-//        enableDebug = true
     }
+    
+    override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
+        super.bind(to: viewModel)
+        viewModel.postImageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
+    }
+    
 }
 
 //MARK:- JXBannerDataSource

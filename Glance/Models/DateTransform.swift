@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
 
-open class ISO8601DateTransform: TransformType {
+open class DateTransform: TransformType {
 
     public typealias Object = Date
     public typealias JSON = Int

@@ -123,20 +123,16 @@ class StyleBoardViewController: ViewController {
         let input = StyleBoardViewModel.Input(next: nextButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         output.nextButtonEnable.drive(nextButton.rx.isEnabled).disposed(by: rx.disposeBag)
-        output.currentProducts.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
-        output.currentProducts.map { $0[0].items.compactMap { $0.viewModel }
-            .filter { $0.item.productId != "-1" }}
+        output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
+        output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "-1" }}
+            .filterNil()
             .drive(onNext: {[weak self] items in
+                
                 let productIds = items.compactMap { $0.item.productId }
-                let elements = self?.imageViews.map { $0 } ?? []
-                print("current productIds:\(productIds)")
-                print("imageView productId:\(elements.map { $0.viewModel.item.productId })")
-                
-                
-                elements.enumerated().map { ($0, $1.0, $1.1)}
-                    .forEach { (offset,view, vm) in
-                        let productId = vm.item.productId ?? ""
-                        if productIds.contains(productId) == false {
+                let elements = self?.imageViews.map { $0 }
+                if let elements = elements , elements.isNotEmpty {
+                    elements.enumerated().map { ($0, $1.0, $1.1)}.forEach { (offset,view, vm) in
+                        if let productId = vm.item.productId,!productIds.contains(productId) {
                             print("will remove : \(productId)")
                             let index = self?.imageViews.firstIndex { $1.item.productId == vm.item.productId }
                             if let index = index {
@@ -148,9 +144,11 @@ class StyleBoardViewController: ViewController {
                                 fatalError()
                             }
                         }
+                    }
                 }
-                
-                print("filter complete:\(self?.imageViews.compactMap { $0.viewModel.item.productId } ?? [])")
+                //print("current productIds:\(productIds)")
+                //print("imageView productId:\(imageViews.map { $0.viewModel.item.productId })")
+//                print("filter complete:\(elements.compactMap { $0.viewModel.item.productId })")
                 items.forEach { self?.addImageView(viewModel: $0) }
                 
             }).disposed(by: rx.disposeBag)
@@ -167,20 +165,24 @@ class StyleBoardViewController: ViewController {
     func addImageView(viewModel : StyleBoardImageCellViewModel) {
         
         let contains = imageViews.map { $0.viewModel.item.productId }.contains(viewModel.item.productId)
-        let item = imageViews.filter { $0.viewModel.item == viewModel.item }.first
-        if contains , let item = item {
-            item.view.viewModel = viewModel
+        let element = imageViews.filter { $0.viewModel.item == viewModel.item }.first
+        
+        if contains , let element = element {
+            element.view.viewModel = viewModel
             let index = imageViews.firstIndex { $1.item.productId == viewModel.item.productId }
             if let index = index {
                 imageViews.remove(at: index)
-                imageViews.append(item)
+                imageViews.append(element)
             } else {
                 fatalError()
             }
             return
         }
-            
-        let point = CGPoint(x: CGFloat.random(in: 20..<(containerView.width * 0.5)), y: CGFloat.random(in: 20..<(containerView.height * 0.5)))
+        
+        let x = CGFloat.random(in: 20..<(containerView.width * 0.5))
+        let y = CGFloat.random(in: 20..<(containerView.width * 0.5))
+         
+        let point = CGPoint(x: x, y: y)
         let imageView = UIImageView(frame: CGRect(origin: point, size: viewModel.size))
         
         let contentView = StyleBoardEditView(contentView: imageView)

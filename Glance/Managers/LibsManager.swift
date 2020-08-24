@@ -13,7 +13,9 @@ import SnapKit
 import IQKeyboardManagerSwift
 import CocoaLumberjack
 import Kingfisher
+#if DEBUG
 import FLEX
+#endif
 import NVActivityIndicatorView
 import NSObject_Rx
 import RxViewController
@@ -24,7 +26,7 @@ import SwiftDate
 import KafkaRefresh
 import DropDown
 import Toast_Swift
-import EZSwiftExtensions
+//import EZSwiftExtensions
 
 
 
@@ -138,7 +140,9 @@ class LibsManager: NSObject {
     }
 
     func setupFLEX() {
+        #if DEBUG
         FLEXManager.shared.isNetworkDebuggingEnabled = true
+        #endif
     }
     
     func setupPgyer() {
@@ -161,7 +165,9 @@ class LibsManager: NSObject {
 extension LibsManager {
 
     func showFlex() {
+        #if DEBUG
         FLEXManager.shared.showExplorer()
+        #endif
     }
 
     func removeKingfisherCache() -> Observable<Void> {

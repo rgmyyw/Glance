@@ -14,7 +14,7 @@ class AddProductNameReusableView: CollectionReusableView {
     
     override func makeUI() {
         super.makeUI()
-        textField.addLeftTextPadding(12)
+        textField.addPaddingLeft(12)
     }
     
     

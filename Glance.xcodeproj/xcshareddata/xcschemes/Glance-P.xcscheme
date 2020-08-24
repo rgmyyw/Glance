@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5DE6388924AD769D002F6F6B"
-               BuildableName = "Glance.app"
-               BlueprintName = "Glance"
+               BlueprintIdentifier = "5DCC2CBE24F34F04000AC40A"
+               BuildableName = "Glance-P.app"
+               BlueprintName = "Glance-P"
                ReferencedContainer = "container:Glance.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -44,19 +44,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DE6388924AD769D002F6F6B"
-            BuildableName = "Glance.app"
-            BlueprintName = "Glance"
+            BlueprintIdentifier = "5DCC2CBE24F34F04000AC40A"
+            BuildableName = "Glance-P.app"
+            BlueprintName = "Glance-P"
             ReferencedContainer = "container:Glance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "OS_ACTIVITY_MODE"
-            value = "disable"
-            isEnabled = "NO">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -68,9 +61,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DE6388924AD769D002F6F6B"
-            BuildableName = "Glance.app"
-            BlueprintName = "Glance"
+            BlueprintIdentifier = "5DCC2CBE24F34F04000AC40A"
+            BuildableName = "Glance-P.app"
+            BlueprintName = "Glance-P"
             ReferencedContainer = "container:Glance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

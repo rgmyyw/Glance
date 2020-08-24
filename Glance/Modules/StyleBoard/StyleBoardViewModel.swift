@@ -18,7 +18,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
     }
     
     struct Output {
-        let currentProducts : Driver<[StyleBoardSection]>
+        let items : Driver<[StyleBoardSection]>
         let add : Driver<Void>
         let nextButtonEnable : Driver<Bool>
     }
@@ -36,6 +36,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         let nextButtonEnable = selected.map { $0.isNotEmpty }.asDriver(onErrorJustReturn: false)
                 
         selection.map { ($0 + self.selected.value).filterDuplicates { $0.productId }  }
+            .filterEmpty()
             .filter { $0.count != self.selected.value.count }
             .bind(to: selected).disposed(by: rx.disposeBag)
 
@@ -70,7 +71,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        return Output(currentProducts: elements.asDriver(onErrorJustReturn: []),
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
                       add: add.asDriver(onErrorJustReturn: ()),
                       nextButtonEnable: nextButtonEnable)
     }

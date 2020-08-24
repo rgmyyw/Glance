@@ -42,6 +42,9 @@ class PostProductViewController: CollectionViewController {
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 10
         
+        let spec = View(height: 35)
+        stackView.insertArrangedSubview(spec, at: 0)
+        
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
@@ -95,9 +98,9 @@ class PostProductViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
         
-        output.edit
-            .drive(onNext: { [weak self]() in
-                self?.navigationController?.popViewController(animated: true)
+        viewModel.edit
+        .mapToVoid().subscribe(onNext: { [weak self]() in
+            self?.navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
     }
     

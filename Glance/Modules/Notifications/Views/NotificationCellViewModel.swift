@@ -23,7 +23,6 @@ class NotificationCellViewModel: CellViewModelProtocol {
     
     
     required init(item : Notification) {
-        
         self.item = item
         self.userImageURL.accept(item.user?.userImage?.url)
         self.title.accept(item.title)

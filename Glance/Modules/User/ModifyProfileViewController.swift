@@ -47,7 +47,7 @@ class ModifyProfileViewController: ViewController {
         [displayNameTextField,userNameTextField
             ,instagramTextField,websiteTextField]
             .forEach { (view) in
-                view?.addLeftTextPadding(10)
+                view?.addPaddingLeft(12)
         }
         
         countryView.rx.tap()

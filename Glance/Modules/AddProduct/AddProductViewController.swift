@@ -72,15 +72,15 @@ class AddProductViewController: CollectionViewController {
             .drive(onNext: {[weak self] (items) in
                 guard let self = self else { return }
                 let titles = items.compactMap { $0.name }
-                showActionSheet(message: "", optionTitles: titles)
+                Alert.showActionSheet(message: "", optionTitles: titles)
                     .subscribe(onNext: { (index) in
                         viewModel.selectedCategory.onNext(items[index])
                 }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
-        output.post.subscribe(onNext: { [weak self](image,home) in
+        output.post.subscribe(onNext: { [weak self](image,box,home) in
             self?.navigationController?.popToRootViewController(animated: false)
-            let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [home])
+            let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [(box,home)])
             self?.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
             
         }).disposed(by: rx.disposeBag)

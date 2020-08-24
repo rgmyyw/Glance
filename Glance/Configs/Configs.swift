@@ -23,7 +23,8 @@ enum Keys {
 struct Configs {
     
     struct App {
-        static let url = "http://glance:glance@192.168.1.218:8090"
+        //static let url = "http://glance:glance@192.168.1.218:8090"
+        static let url = "http://54.255.236.62:8099"
         static let bundleIdentifier = Bundle.main.infoDictionary!["CFBundleIdentifier"] as! String
     }
     

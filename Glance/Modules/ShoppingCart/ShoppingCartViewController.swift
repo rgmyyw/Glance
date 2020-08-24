@@ -45,7 +45,7 @@ class ShoppingCartViewController: TableViewController {
 
         output.delete.subscribe(onNext: { [weak self]cellViewModel in
             guard let self = self else { return }
-            Glance.showAlert(with: "Remove product?",
+            Alert.showAlert(with: "Remove product?",
                          message: "You’reabout to remove this product.",
                          optionTitles: "REMOVE",
                          cancel: "CANCEL")

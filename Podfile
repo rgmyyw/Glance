@@ -85,7 +85,6 @@ target 'Glance' do
   # Code Quality
   pod 'FLEX', '~> 4.0', :configurations => ['Debug']
   pod 'SwifterSwift', '~> 5.0'
-  pod 'EZSwiftExtensions', :git => 'https://github.com/goktugyil/EZSwiftExtensions.git', :branch => 'ceeyang-Swift5.0'
   pod 'BonMot', '~> 5.0'
   pod 'Reusable' , '~> 4.1.0'
   

@@ -38,7 +38,19 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[StyleBoardSearchSection]>(value: [])
         let placeholder = input.currentType.map { $0.placeholder }.asDriver(onErrorJustReturn: "")
         let addButtonEnable = BehaviorRelay<Bool>(value: false)
-        input.add.map { elements.value.flatMap { $0.items.filter { $0.viewModel.selected.value }.map { $0.viewModel.item } }}.bind(to: selection).disposed(by: rx.disposeBag)
+        
+        input.add.flatMapLatest { () -> Observable<[Home]> in
+            let elements = elements.value.flatMap { $0.items.filter { $0.viewModel.selected.value } }
+            let items = elements.map { $0.viewModel.item }
+            return Observable.just(items)
+        }.bind(to: selection).disposed(by: rx.disposeBag)
+        
+        input.selection.subscribe(onNext: { item in
+            item.viewModel.selected.accept(!item.viewModel.selected.value)
+            let items =  elements.value.flatMap { $0.items.map { $0.viewModel } }.filter { $0.selected.value }
+            addButtonEnable.accept(!items.isEmpty)
+        }).disposed(by: rx.disposeBag)
+        
         
         textInput.filterEmpty()
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
@@ -103,11 +115,6 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        input.selection.subscribe(onNext: { item in
-            item.viewModel.selected.accept(!item.viewModel.selected.value)
-            let items =  elements.value.flatMap { $0.items.map { $0.viewModel } }.filter { $0.selected.value }
-            addButtonEnable.accept(!items.isEmpty)
-        }).disposed(by: rx.disposeBag)
         
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),

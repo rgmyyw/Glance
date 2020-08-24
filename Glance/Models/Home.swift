@@ -37,7 +37,7 @@ struct Home: Mappable, Equatable {
     var image: String?
     
     var title: String?
-    var type: HomeCellType = .post
+    var type: HomeCellType = .product
     
     var postId: Int = 0
     var recommendId: Int = 0
@@ -97,7 +97,7 @@ struct Home: Mappable, Equatable {
         case .post,.recommendPost:
             return lhs.postId == rhs.postId
         case .product,.recommendProduct:
-            return lhs.productId == lhs.productId
+            return lhs.productId == rhs.productId
         }
     }
     

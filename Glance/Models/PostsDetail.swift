@@ -35,7 +35,7 @@ struct PostsDetail: Mappable {
     var liked: Bool = false
     var lastTimeOnline: Float = 0.0
     var saved: Bool = false
-    //var similarProducts = [PostsDetailProduct]()
+
     var shared: Bool = false
     var taggedProducts = [PostsDetailProduct]()
     var postId: Int = 0
@@ -52,6 +52,7 @@ struct PostsDetail: Mappable {
     var image: String?
     var price : Int = 0
     var inShoppingList: Bool = false
+    var currency : String?
 
     
     init?(map: Map) {}
@@ -77,6 +78,8 @@ struct PostsDetail: Mappable {
         productId <- map["productId"]
         image <- map["image"]
         inShoppingList <- map["inShoppingList"]
+        currency <- map["currency"]
+        
     }
 }
 

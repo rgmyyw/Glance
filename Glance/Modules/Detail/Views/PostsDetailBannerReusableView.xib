@@ -20,12 +20,19 @@
                             <rect key="frame" x="0.0" y="0.0" width="297" height="216"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         </view>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zjy-6n-UCt">
+                            <rect key="frame" x="0.0" y="0.0" width="297" height="216"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Zjy-6n-UCt" secondAttribute="trailing" id="2ys-TG-boC"/>
                         <constraint firstAttribute="bottom" secondItem="GgR-xL-0fP" secondAttribute="bottom" id="7IM-rC-MJH"/>
                         <constraint firstAttribute="trailing" secondItem="GgR-xL-0fP" secondAttribute="trailing" id="9iZ-TD-wA3"/>
+                        <constraint firstItem="Zjy-6n-UCt" firstAttribute="top" secondItem="gzF-mF-P3Y" secondAttribute="top" id="ARg-El-5rY"/>
                         <constraint firstItem="GgR-xL-0fP" firstAttribute="top" secondItem="gzF-mF-P3Y" secondAttribute="top" id="HDm-EQ-HGJ"/>
+                        <constraint firstItem="Zjy-6n-UCt" firstAttribute="leading" secondItem="gzF-mF-P3Y" secondAttribute="leading" id="KfA-Wv-ZBm"/>
+                        <constraint firstAttribute="bottom" secondItem="Zjy-6n-UCt" secondAttribute="bottom" id="bqL-dX-CXB"/>
                         <constraint firstItem="GgR-xL-0fP" firstAttribute="leading" secondItem="gzF-mF-P3Y" secondAttribute="leading" id="ptb-yH-YMa"/>
                     </constraints>
                 </view>
@@ -39,6 +46,7 @@
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <connections>
                 <outlet property="banner" destination="GgR-xL-0fP" id="KHi-d1-Izk"/>
+                <outlet property="imageView" destination="Zjy-6n-UCt" id="Frd-te-Z0I"/>
             </connections>
             <point key="canvasLocation" x="-497.82608695652181" y="-285.26785714285711"/>
         </collectionReusableView>

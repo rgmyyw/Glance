@@ -99,12 +99,13 @@ class VisualSearchProductViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
     
-        output.add.subscribe(onNext: { [weak self](image) in
-            let viewModel = AddProductViewModel(provider: viewModel.provider, image: image)
+        output.add.subscribe(onNext: { [weak self](box,image) in
+            let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, box: box)
             self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
         viewModel.selected.mapToVoid()
+//            .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
             }).disposed(by: rx.disposeBag)

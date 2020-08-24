@@ -22,6 +22,9 @@ class VisualSearchResultViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
         
+        
+        
+        
         // titleLabel
         let navigationTitleLabel = UILabel()
         navigationTitleLabel.text = "Visual Search"
@@ -92,13 +95,12 @@ class VisualSearchResultViewController: CollectionViewController  {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
                 
-        output.search.subscribe(onNext: { [weak self](image) in
+        output.search.subscribe(onNext: { [weak self](box, image) in
             guard let self = self else { return }
-            let search = VisualSearchProductViewModel(provider: viewModel.provider, image: image)
+            let search = VisualSearchProductViewModel(provider: viewModel.provider, image: image, box: box)
             search.selected.bind(to: viewModel.searchSelection).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .visualSearchProduct(viewModel: search), sender: self)
         }).disposed(by: rx.disposeBag)
-        
         
         
         

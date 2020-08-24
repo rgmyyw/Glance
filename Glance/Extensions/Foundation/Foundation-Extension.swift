@@ -276,3 +276,32 @@ extension CollectionCellImageHeightCalculateable {
 }
 
 
+extension NSObject {
+    public var className: String {
+        return type(of: self).className
+    }
+
+    public static var className: String {
+        return String(describing: self)
+    }
+}
+
+extension String {
+    
+    public subscript(integerIndex: Int) -> Character {
+        let index = self.index(startIndex, offsetBy: integerIndex)
+        return self[index]
+    }
+    
+    public subscript(integerRange: Range<Int>) -> String {
+        let start = self.index(startIndex, offsetBy: integerRange.lowerBound)
+        let end = self.index(startIndex, offsetBy: integerRange.upperBound)
+        return String(self[start..<end])
+    }
+    
+    
+    public subscript(integerClosedRange: ClosedRange<Int>) -> String {
+        return self[integerClosedRange.lowerBound..<(integerClosedRange.upperBound + 1)]
+    }
+
+}

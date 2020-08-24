@@ -25,18 +25,20 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[VisualSearchProductSection]>
-        let add : Observable<UIImage>
+        let add : Observable<(box : Box, image: UIImage)>
     }
     
     
     let textInput = BehaviorRelay<String>(value: "")
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
-    let selected = PublishSubject<Home>()
+    let selected = PublishSubject<(box : Box, item : Home)>()
     
     let image : BehaviorRelay<UIImage>
+    let currentBox : BehaviorRelay<Box>
     
-    init(provider: API, image : UIImage) {
+    init(provider: API, image : UIImage, box : Box) {
         self.image = BehaviorRelay(value: image)
+        self.currentBox = BehaviorRelay(value: box)
         super.init(provider: provider)
     }
 
@@ -44,7 +46,8 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchProductSection]>(value: [])
-        let add = input.add.map { self.image.value }
+        let add = input.add.map { (box : self.currentBox.value,image : self.image.value)}
+        
         
         input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
             guard let self = self else {
@@ -109,8 +112,20 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        input.selection.map { $0.viewModel.item }.bind(to: selected).disposed(by: rx.disposeBag)
+        input.selection
+            .subscribe(onNext: { [weak self](item) in
+                guard let self = self else { return }
+                self.selected.onNext((self.currentBox.value, item.viewModel.item))
+        }).disposed(by: rx.disposeBag)
         
+//        input.selection.map { (box : self.currentBox.value, item : $0.viewModel.item) }
+//            .bind(to: selected).disposed(by: rx.disposeBag)
+//
+        
+        selected.subscribe(onNext: { ( item) in
+            print(item)
+        })
+
         return Output(items: elements.asDriver(onErrorJustReturn: []), add: add)
     }
 }

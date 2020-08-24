@@ -15,7 +15,7 @@ class AddProductWebsiteReusableView: CollectionReusableView {
     override func makeUI() {
         super.makeUI()
         
-        textField.addLeftTextPadding(12)
+        textField.addPaddingLeft(12)
     }
     override func bind<T>(to viewModel: T) where T : AddProductSectionCellViewModel {
         super.bind(to: viewModel)
