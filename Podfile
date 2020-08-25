@@ -3,10 +3,10 @@ platform :ios, '10.0'
 use_frameworks!
 inhibit_all_warnings!
 
-target 'Glance' do
+
+abstract_target 'Glance' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
-  
   # Pods for Glance
   
   pod 'Moya/RxSwift'
@@ -93,7 +93,9 @@ target 'Glance' do
   
   pod 'CryptoSwift' , '~> 1.3.1'
   
- 
+  target 'Glance-D'
+  target 'Glance-P'
+  target 'Glance-R'
  
 end
 

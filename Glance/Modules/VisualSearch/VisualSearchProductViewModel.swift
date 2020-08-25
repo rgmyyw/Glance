@@ -13,9 +13,7 @@ import RxDataSources
 
 
 class VisualSearchProductViewModel: ViewModel, ViewModelType {
-    
-    
-    
+        
     struct Input {
         let search: Observable<Void>
         let footerRefresh: Observable<Void>
@@ -46,7 +44,9 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchProductSection]>(value: [])
-        let add = input.add.map { (box : self.currentBox.value,image : self.image.value)}
+        let add = PublishSubject<Void>()
+        input.add.bind(to: add).disposed(by: rx.disposeBag)
+        let addAction = add.map { (box : self.currentBox.value,image : self.image.value)}
         
         
         input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
@@ -107,7 +107,10 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 let sectionItem = VisualSearchProductSectionItem(item: indexPath, viewModel: cellViewModel)
                 return sectionItem
             }
-            let section = VisualSearchProductSection(section: 0, elements: sectionItems)
+            
+            let empty = VisualSearchProductEmptyCellModel(item: ())
+            empty.add.bind(to: add).disposed(by: self.rx.disposeBag)
+            let section = VisualSearchProductSection(section: 0, elements: sectionItems, viewModel: empty)
             return [section]
             
         }.bind(to: elements).disposed(by: rx.disposeBag)
@@ -118,14 +121,6 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 self.selected.onNext((self.currentBox.value, item.viewModel.item))
         }).disposed(by: rx.disposeBag)
         
-//        input.selection.map { (box : self.currentBox.value, item : $0.viewModel.item) }
-//            .bind(to: selected).disposed(by: rx.disposeBag)
-//
-        
-        selected.subscribe(onNext: { ( item) in
-            print(item)
-        })
-
-        return Output(items: elements.asDriver(onErrorJustReturn: []), add: add)
+        return Output(items: elements.asDriver(onErrorJustReturn: []), add: addAction)
     }
 }

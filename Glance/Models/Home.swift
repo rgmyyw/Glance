@@ -74,6 +74,11 @@ struct Home: Mappable, Equatable {
         self.type = .product
     }
     
+    init(postId : Int) {
+        self.postId = postId
+        self.type = .post
+    }
+
 
     init?(map: Map) {}
     init() {}

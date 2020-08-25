@@ -23,8 +23,6 @@ class AuthManager {
     fileprivate let tokenKey = "TokenKey"
     fileprivate let keychain = Keychain(service: Configs.App.bundleIdentifier)
     
-    let currentAuthorizationFlow = BehaviorRelay<OIDExternalUserAgentSession?>(value: nil)
-    
     let tokenChanged = PublishSubject<Token?>()
 
     init() {

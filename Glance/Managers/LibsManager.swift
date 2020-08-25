@@ -52,7 +52,7 @@ class LibsManager: NSObject {
         libsManager.setupDropDown()
         libsManager.setupToast()
         libsManager.setupPgyer()
-        OAuthManager.shared.load.onNext(true)
+        OAuthManager.shared.readLocal(isForce: true)
     }
 
     func setupTheme() {

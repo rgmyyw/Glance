@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		47055B0A98AD1FED50893922 /* Pods_Glance_Glance_P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */; };
 		5D06523324BEAF9A007CE461 /* InsightsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */; };
 		5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5D06523724BEE2AB007CE461 /* ReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */; };
@@ -58,6 +59,15 @@
 		5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */; };
 		5D1D5AFD24BFFD69008C0C82 /* PostsDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */; };
 		5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
+		5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
+		5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
+		5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
+		5D3AA29B24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */; };
+		5D3AA29C24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */; };
+		5D3AA29D24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */; };
+		5D3AA29F24F4AECB00CBCE76 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */; };
+		5D3AA2A024F4AECB00CBCE76 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */; };
+		5D3AA2A124F4AECB00CBCE76 /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */; };
 		5D3B316024D2A0280039D1B9 /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
 		5D3B316224D2A1810039D1B9 /* VisualSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316124D2A1810039D1B9 /* VisualSearchResultViewModel.swift */; };
 		5D3B316524D2A3D40039D1B9 /* VisualSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316324D2A3D40039D1B9 /* VisualSearchResultCell.swift */; };
@@ -468,7 +478,6 @@
 		5DCC2DB124F34F04000AC40A /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DCC2DB224F34F04000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5DCC2DB324F34F04000AC40A /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
-		5DCC2DB524F34F04000AC40A /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
 		5DCC2DB724F34F04000AC40A /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
 		5DCC2DB824F34F04000AC40A /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
 		5DCC2DB924F34F04000AC40A /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
@@ -800,7 +809,6 @@
 		5DCC2F0924F34F2A000AC40A /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DCC2F0A24F34F2A000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5DCC2F0B24F34F2A000AC40A /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
-		5DCC2F0D24F34F2A000AC40A /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
 		5DCC2F0F24F34F2A000AC40A /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
 		5DCC2F1024F34F2A000AC40A /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
 		5DCC2F1124F34F2A000AC40A /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
@@ -890,6 +898,24 @@
 		5DCC2F6524F34F2A000AC40A /* AddProductInputKeywordReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF024D959E000AD4B43 /* AddProductInputKeywordReusableView.xib */; };
 		5DCC2F6624F34F2A000AC40A /* UserRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* UserRelationCell.xib */; };
 		5DCC2F6724F34F2A000AC40A /* PostsDetailBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */; };
+		5DCC2F7124F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */; };
+		5DCC2F7224F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */; };
+		5DCC2F7324F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */; };
+		5DCC2F7524F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */; };
+		5DCC2F7624F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */; };
+		5DCC2F7724F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */; };
+		5DCC2F7924F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
+		5DCC2F7A24F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
+		5DCC2F7B24F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
+		5DCC2F8324F36528000AC40A /* InsightsLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */; };
+		5DCC2F8424F36528000AC40A /* InsightsLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */; };
+		5DCC2F8524F36528000AC40A /* InsightsLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */; };
+		5DCC2F8624F36528000AC40A /* InsightsLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */; };
+		5DCC2F8724F36528000AC40A /* InsightsLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */; };
+		5DCC2F8824F36528000AC40A /* InsightsLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */; };
+		5DCC2F8D24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
+		5DCC2F8E24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
+		5DCC2F8F24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
 		5DD8513724CED72A00278361 /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DD8513924CED72F00278361 /* PostsDetailBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */; };
 		5DDBC09A24B5C5670077DBE5 /* NotificationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */; };
@@ -1002,12 +1028,15 @@
 		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
-		81AAD64A5D0DB083F1FAD2DB /* Pods_Glance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */; };
+		AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */; };
+		D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.debug.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.debug.xcconfig"; sourceTree = "<group>"; };
-		4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.release.xcconfig"; sourceTree = "<group>"; };
+		2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.debug.xcconfig"; sourceTree = "<group>"; };
 		5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetailViewModel.swift; sourceTree = "<group>"; };
 		5D06523424BEB37C007CE461 /* InsightsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetail.swift; sourceTree = "<group>"; };
 		5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsViewController.swift; sourceTree = "<group>"; };
@@ -1060,6 +1089,9 @@
 		5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCellViewModel.swift; sourceTree = "<group>"; };
 		5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetail.swift; sourceTree = "<group>"; };
 		5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-R-Info.plist"; sourceTree = "<group>"; };
+		5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductReusableView.swift; sourceTree = "<group>"; };
+		5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchProductReusableView.xib; sourceTree = "<group>"; };
+		5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
 		5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchResultViewController.swift; sourceTree = "<group>"; };
 		5D3B316124D2A1810039D1B9 /* VisualSearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchResultViewModel.swift; sourceTree = "<group>"; };
 		5D3B316324D2A3D40039D1B9 /* VisualSearchResultCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchResultCell.swift; sourceTree = "<group>"; };
@@ -1232,6 +1264,12 @@
 		5DCC2F6C24F34F2A000AC40A /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCC2F6E24F3521E000AC40A /* Glance-P-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-P-Info.plist"; sourceTree = "<group>"; };
 		5DCC2F6F24F3521E000AC40A /* Glance-D-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-D-Info.plist"; sourceTree = "<group>"; };
+		5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsRelationViewController.swift; sourceTree = "<group>"; };
+		5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightsRelationViewModel.swift; sourceTree = "<group>"; };
+		5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsRelation.swift; sourceTree = "<group>"; };
+		5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsightsLikeCell.swift; path = Glance/Modules/User/InsightsLikeCell.swift; sourceTree = SOURCE_ROOT; };
+		5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InsightsLikeCell.xib; path = Glance/Modules/User/InsightsLikeCell.xib; sourceTree = SOURCE_ROOT; };
+		5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsightsLikeCellViewModel.swift; path = Glance/Modules/User/InsightsLikeCellViewModel.swift; sourceTree = SOURCE_ROOT; };
 		5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBottomBar.swift; sourceTree = "<group>"; };
 		5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBottomBar.xib; sourceTree = "<group>"; };
 		5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileViewModel.swift; sourceTree = "<group>"; };
@@ -1347,7 +1385,13 @@
 		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		5DEFF50F24AEE76D007A2FCD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
+		A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.release.xcconfig"; sourceTree = "<group>"; };
+		BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.debug.xcconfig"; sourceTree = "<group>"; };
+		C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.release.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.release.xcconfig"; sourceTree = "<group>"; };
+		EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1355,7 +1399,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCC2DB524F34F04000AC40A /* Pods_Glance.framework in Frameworks */,
+				47055B0A98AD1FED50893922 /* Pods_Glance_Glance_P.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1363,7 +1407,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5DCC2F0D24F34F2A000AC40A /* Pods_Glance.framework in Frameworks */,
+				AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1371,7 +1415,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81AAD64A5D0DB083F1FAD2DB /* Pods_Glance.framework in Frameworks */,
+				D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1484,6 +1528,8 @@
 				5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */,
 				5D06523824BEE308007CE461 /* ReactionsViewController.xib */,
 				5D06523A24BEE549007CE461 /* ReactionsViewModel.swift */,
+				5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */,
+				5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -1505,6 +1551,9 @@
 				5D06523C24BEE59A007CE461 /* ReactionsCell.swift */,
 				5D06523D24BEE59A007CE461 /* ReactionsCell.xib */,
 				5D06524024BEE69C007CE461 /* ReactionsCellViewModel.swift */,
+				5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */,
+				5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */,
+				5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1761,6 +1810,8 @@
 				5D6B4DC424D7A61C0024924B /* VisualSearchProductCell.swift */,
 				5D6B4DC524D7A61C0024924B /* VisualSearchProductCell.xib */,
 				5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */,
+				5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */,
+				5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1892,6 +1943,7 @@
 				5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */,
 				5DB6AC0324D96D7100AD4B43 /* Categories.swift */,
 				5D8D1C8224EB66C1009A7B53 /* Box.swift */,
+				5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2114,6 +2166,7 @@
 			children = (
 				5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */,
 				5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */,
+				5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -2194,6 +2247,12 @@
 			children = (
 				18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */,
 				DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */,
+				9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */,
+				EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */,
+				2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */,
+				A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */,
+				BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */,
+				2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2201,7 +2260,9 @@
 		E8F61AC65C9BC9366987BE91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4AC9489FCC8CD869B5103156 /* Pods_Glance.framework */,
+				BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */,
+				1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */,
+				C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2317,12 +2378,14 @@
 				5DCC2DBB24F34F04000AC40A /* PostProductTagCell.xib in Resources */,
 				5DCC2DBC24F34F04000AC40A /* Roboto-Medium.ttf in Resources */,
 				5DCC2DBD24F34F04000AC40A /* PostProductInputKeywordReusableView.xib in Resources */,
+				5D3AA29C24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DCC2DBE24F34F04000AC40A /* UserPostCell.xib in Resources */,
 				5DCC2DBF24F34F04000AC40A /* PostsDetailBannerCell.xib in Resources */,
 				5DCC2DC024F34F04000AC40A /* 9.jpg in Resources */,
 				5DCC2DC124F34F04000AC40A /* ReactionsCell.xib in Resources */,
 				5DCC2DC224F34F04000AC40A /* 1.jpg in Resources */,
 				5DCC2DC324F34F04000AC40A /* StyleBoardImageCell.xib in Resources */,
+				5DCC2F8724F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5DCC2DC424F34F04000AC40A /* PostProductCaptionReusableView.xib in Resources */,
 				5DCC2DC524F34F04000AC40A /* 4.jpg in Resources */,
 				5DCC2DC624F34F04000AC40A /* PostsDetailTagsReusableView.xib in Resources */,
@@ -2413,12 +2476,14 @@
 				5DCC2F1324F34F2A000AC40A /* PostProductTagCell.xib in Resources */,
 				5DCC2F1424F34F2A000AC40A /* Roboto-Medium.ttf in Resources */,
 				5DCC2F1524F34F2A000AC40A /* PostProductInputKeywordReusableView.xib in Resources */,
+				5D3AA29D24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DCC2F1624F34F2A000AC40A /* UserPostCell.xib in Resources */,
 				5DCC2F1724F34F2A000AC40A /* PostsDetailBannerCell.xib in Resources */,
 				5DCC2F1824F34F2A000AC40A /* 9.jpg in Resources */,
 				5DCC2F1924F34F2A000AC40A /* ReactionsCell.xib in Resources */,
 				5DCC2F1A24F34F2A000AC40A /* 1.jpg in Resources */,
 				5DCC2F1B24F34F2A000AC40A /* StyleBoardImageCell.xib in Resources */,
+				5DCC2F8824F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5DCC2F1C24F34F2A000AC40A /* PostProductCaptionReusableView.xib in Resources */,
 				5DCC2F1D24F34F2A000AC40A /* 4.jpg in Resources */,
 				5DCC2F1E24F34F2A000AC40A /* PostsDetailTagsReusableView.xib in Resources */,
@@ -2509,12 +2574,14 @@
 				5D6FEAA524DC03090062F90B /* PostProductTagCell.xib in Resources */,
 				5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */,
 				5D6FEAA724DC03090062F90B /* PostProductInputKeywordReusableView.xib in Resources */,
+				5D3AA29B24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DB8FE4124B85ABD00280F9F /* UserPostCell.xib in Resources */,
 				5DC669D724CFDC7300FF1092 /* PostsDetailBannerCell.xib in Resources */,
 				5D1D379C24C847CC00B2A1E2 /* 9.jpg in Resources */,
 				5D06523F24BEE59A007CE461 /* ReactionsCell.xib in Resources */,
 				5D1D37A924C847CC00B2A1E2 /* 1.jpg in Resources */,
 				5DC3131524E3E89500CC3F89 /* StyleBoardImageCell.xib in Resources */,
+				5DCC2F8624F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5D6FEA9324DC03090062F90B /* PostProductCaptionReusableView.xib in Resources */,
 				5D1D37A324C847CC00B2A1E2 /* 4.jpg in Resources */,
 				5DAB29CA24C83705003C3E00 /* PostsDetailTagsReusableView.xib in Resources */,
@@ -2612,7 +2679,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-P-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2645,15 +2712,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DCC2E1724F34F2A000AC40A /* [CP] Check Pods Manifest.lock */ = {
@@ -2671,7 +2738,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-R-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2704,15 +2771,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DEFF4E924AEC4AE007A2FCD /* R.Swift */ = {
@@ -2750,7 +2817,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-D-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2763,15 +2830,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance/Pods-Glance-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -2941,12 +3008,16 @@
 				5DCC2D5F24F34F04000AC40A /* StyleBoardImageCell.swift in Sources */,
 				5DCC2D6024F34F04000AC40A /* SavedCollectionViewModel.swift in Sources */,
 				5DCC2D6124F34F04000AC40A /* InsightsChildViewController.swift in Sources */,
+				5DCC2F7A24F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DCC2D6224F34F04000AC40A /* NavigationController.swift in Sources */,
 				5DCC2D6324F34F04000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
 				5DCC2D6424F34F04000AC40A /* UserRecommViewController.swift in Sources */,
 				5DCC2D6524F34F04000AC40A /* UserRelationViewController.swift in Sources */,
+				5DCC2F7624F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5DCC2D6624F34F04000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2D6724F34F04000AC40A /* ShoppingCartCell.swift in Sources */,
+				5DCC2F8E24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
+				5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2D6824F34F04000AC40A /* ThemeManager.swift in Sources */,
 				5DCC2D6924F34F04000AC40A /* VisualSearchCropView.swift in Sources */,
 				5DCC2D6A24F34F04000AC40A /* ComparePriceViewController.swift in Sources */,
@@ -2967,6 +3038,7 @@
 				5DCC2D7924F34F04000AC40A /* AppDelegate.swift in Sources */,
 				5DCC2D7A24F34F04000AC40A /* Base.swift in Sources */,
 				5DCC2D7B24F34F04000AC40A /* ReactionsCell.swift in Sources */,
+				5DCC2F7224F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
 				5DCC2D7C24F34F04000AC40A /* Localizable-Extension.swift in Sources */,
 				5DCC2D7D24F34F04000AC40A /* UserPostCell.swift in Sources */,
 				5DCC2D7E24F34F04000AC40A /* SavedCollectionClassifyViewModel.swift in Sources */,
@@ -2979,6 +3051,7 @@
 				5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2D8624F34F04000AC40A /* Reaction.swift in Sources */,
 				5DCC2D8724F34F04000AC40A /* UserRecommCell.swift in Sources */,
+				5DCC2F8424F36528000AC40A /* InsightsLikeCell.swift in Sources */,
 				5DCC2D8824F34F04000AC40A /* AppearanceManager.swift in Sources */,
 				5DCC2D8924F34F04000AC40A /* HomeSection.swift in Sources */,
 				5DCC2D8A24F34F04000AC40A /* AddProductButtonReusableView.swift in Sources */,
@@ -2999,6 +3072,7 @@
 				5DCC2D9924F34F04000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
 				5DCC2D9A24F34F04000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2D9B24F34F04000AC40A /* ShoppingCartViewController.swift in Sources */,
+				5D3AA2A024F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5DCC2D9C24F34F04000AC40A /* PostProductViewModel.swift in Sources */,
 				5DCC2D9D24F34F04000AC40A /* PostsDetailViewModel.swift in Sources */,
 				5DCC2D9E24F34F04000AC40A /* CountDownButton.swift in Sources */,
@@ -3190,12 +3264,16 @@
 				5DCC2EB724F34F2A000AC40A /* StyleBoardImageCell.swift in Sources */,
 				5DCC2EB824F34F2A000AC40A /* SavedCollectionViewModel.swift in Sources */,
 				5DCC2EB924F34F2A000AC40A /* InsightsChildViewController.swift in Sources */,
+				5DCC2F7B24F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DCC2EBA24F34F2A000AC40A /* NavigationController.swift in Sources */,
 				5DCC2EBB24F34F2A000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
 				5DCC2EBC24F34F2A000AC40A /* UserRecommViewController.swift in Sources */,
 				5DCC2EBD24F34F2A000AC40A /* UserRelationViewController.swift in Sources */,
+				5DCC2F7724F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5DCC2EBE24F34F2A000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2EBF24F34F2A000AC40A /* ShoppingCartCell.swift in Sources */,
+				5DCC2F8F24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
+				5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2EC024F34F2A000AC40A /* ThemeManager.swift in Sources */,
 				5DCC2EC124F34F2A000AC40A /* VisualSearchCropView.swift in Sources */,
 				5DCC2EC224F34F2A000AC40A /* ComparePriceViewController.swift in Sources */,
@@ -3216,6 +3294,7 @@
 				5DCC2ED124F34F2A000AC40A /* AppDelegate.swift in Sources */,
 				5DCC2ED224F34F2A000AC40A /* Base.swift in Sources */,
 				5DCC2ED324F34F2A000AC40A /* ReactionsCell.swift in Sources */,
+				5DCC2F7324F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
 				5DCC2ED424F34F2A000AC40A /* Localizable-Extension.swift in Sources */,
 				5DCC2ED524F34F2A000AC40A /* UserPostCell.swift in Sources */,
 				5DCC2ED624F34F2A000AC40A /* SavedCollectionClassifyViewModel.swift in Sources */,
@@ -3228,6 +3307,7 @@
 				5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2EDE24F34F2A000AC40A /* Reaction.swift in Sources */,
 				5DCC2EDF24F34F2A000AC40A /* UserRecommCell.swift in Sources */,
+				5DCC2F8524F36528000AC40A /* InsightsLikeCell.swift in Sources */,
 				5DCC2EE024F34F2A000AC40A /* AppearanceManager.swift in Sources */,
 				5DCC2EE124F34F2A000AC40A /* HomeSection.swift in Sources */,
 				5DCC2EE224F34F2A000AC40A /* AddProductButtonReusableView.swift in Sources */,
@@ -3248,6 +3328,7 @@
 				5DCC2EF124F34F2A000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
 				5DCC2EF224F34F2A000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2EF324F34F2A000AC40A /* ShoppingCartViewController.swift in Sources */,
+				5D3AA2A124F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5DCC2EF424F34F2A000AC40A /* PostProductViewModel.swift in Sources */,
 				5DCC2EF524F34F2A000AC40A /* PostsDetailViewModel.swift in Sources */,
 				5DCC2EF624F34F2A000AC40A /* CountDownButton.swift in Sources */,
@@ -3439,12 +3520,16 @@
 				5DC3131424E3E89500CC3F89 /* StyleBoardImageCell.swift in Sources */,
 				5D5B018324C5857300832F05 /* SavedCollectionViewModel.swift in Sources */,
 				5D437DD324BDA19C00AFBB1F /* InsightsChildViewController.swift in Sources */,
+				5DCC2F7924F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5DAB29C524C836DA003C3E00 /* PostsDetailPriceReusableView.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserRecommViewController.swift in Sources */,
 				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
+				5DCC2F7524F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5D7B429524EA7964005AF1F6 /* BoxTransform.swift in Sources */,
 				5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */,
+				5DCC2F8D24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
+				5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5D3F263724D179CA00A825BB /* VisualSearchCropView.swift in Sources */,
 				5DDF02D924C5308B00E55D0F /* ComparePriceViewController.swift in Sources */,
@@ -3465,6 +3550,7 @@
 				5DEFF37C24AEC2F9007A2FCD /* AppDelegate.swift in Sources */,
 				5DEFF4FC24AED04D007A2FCD /* Base.swift in Sources */,
 				5D06523E24BEE59A007CE461 /* ReactionsCell.swift in Sources */,
+				5DCC2F7124F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
 				5DEFF4F824AECB7A007A2FCD /* Localizable-Extension.swift in Sources */,
 				5DB8FE4024B85ABD00280F9F /* UserPostCell.swift in Sources */,
 				5D5B017D24C573E500832F05 /* SavedCollectionClassifyViewModel.swift in Sources */,
@@ -3477,6 +3563,7 @@
 				5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */,
 				5D06524324BEE879007CE461 /* Reaction.swift in Sources */,
 				5D7D49B024B8648500F919EB /* UserRecommCell.swift in Sources */,
+				5DCC2F8324F36528000AC40A /* InsightsLikeCell.swift in Sources */,
 				5DEFF31724AEC2F9007A2FCD /* AppearanceManager.swift in Sources */,
 				5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */,
 				5DB6AC0124D96A0B00AD4B43 /* AddProductButtonReusableView.swift in Sources */,
@@ -3497,6 +3584,7 @@
 				5D6FEA9724DC03090062F90B /* PostProductSectionCellViewModel.swift in Sources */,
 				5D6FEA9F24DC03090062F90B /* PostProductCaptionReusableView.swift in Sources */,
 				5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */,
+				5D3AA29F24F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5D6FEA6024DC019C0062F90B /* PostProductViewModel.swift in Sources */,
 				5D06524F24BF0514007CE461 /* PostsDetailViewModel.swift in Sources */,
 				5DEFF37A24AEC2F9007A2FCD /* CountDownButton.swift in Sources */,
@@ -3556,7 +3644,7 @@
 /* Begin XCBuildConfiguration section */
 		5DCC2E1224F34F04000AC40A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */;
+			baseConfigurationReference = 2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3569,7 +3657,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-p";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3580,7 +3669,7 @@
 		};
 		5DCC2E1324F34F04000AC40A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */;
+			baseConfigurationReference = A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3593,7 +3682,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-p";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3604,7 +3694,7 @@
 		};
 		5DCC2F6A24F34F2A000AC40A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */;
+			baseConfigurationReference = BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3615,6 +3705,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
 				PRODUCT_NAME = Glance;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3626,7 +3717,7 @@
 		};
 		5DCC2F6B24F34F2A000AC40A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */;
+			baseConfigurationReference = 2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3637,6 +3728,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
 				PRODUCT_NAME = Glance;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -3764,7 +3856,7 @@
 		};
 		5DE6389F24AD769F002F6F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */;
+			baseConfigurationReference = 9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3777,7 +3869,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				OTHER_SWIFT_FLAGS = "-D DEVELOP $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3788,7 +3881,7 @@
 		};
 		5DE638A024AD769F002F6F6B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */;
+			baseConfigurationReference = EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -3801,7 +3894,8 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				OTHER_SWIFT_FLAGS = "-D DEVELOP $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";

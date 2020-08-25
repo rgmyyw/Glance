@@ -38,7 +38,7 @@ class InsightsDetailViewController: ViewController {
         
         guard let viewModel = viewModel as? InsightsDetailViewModel else { return }
         
-        let input = InsightsDetailViewModel.Input(selection: cells.tapGesture())
+        let input = InsightsDetailViewModel.Input(selection: cells.tapGesture(), previewPost: previewButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         output.imageURL.drive(imageView.rx.imageURL).disposed(by: rx.disposeBag)
         output.title.drive(titleLabel.rx.text).disposed(by: rx.disposeBag)
@@ -57,11 +57,24 @@ class InsightsDetailViewController: ViewController {
             self?.navigator.show(segue: .reactions(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
+        output.likes.subscribe(onNext: {[weak self] (item) in
+            let viewModel = InsightsRelationViewModel(provider: viewModel.provider, item: item, type: .liked)
+            self?.navigator.show(segue: .insightsRelation(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
+        output.recommend.subscribe(onNext: {[weak self] (item) in
+            let viewModel = InsightsRelationViewModel(provider: viewModel.provider, item: item, type: .recommend)
+            self?.navigator.show(segue: .insightsRelation(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
         output.available.subscribe(onNext: {[weak self] items in
             items.forEach { self?.cells[$0].isHidden = false }
         }).disposed(by: rx.disposeBag)
         
-        
+        output.previewPost.drive(onNext: {[weak self] (item) in
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
     }
 
 }

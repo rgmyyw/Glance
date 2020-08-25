@@ -42,11 +42,29 @@ final class Application: NSObject {
         guard let window = window, let provider = provider else { return }
         self.window = window
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            let viewModel = DemoViewModel(provider : provider)
-//            self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
-            let viewModel = HomeTabBarViewModel(provider: provider)
-            self.navigator.show(segue: .tabs(viewModel: viewModel), sender: nil, transition: .root(in: window))
+            if loggedIn.value {
+                self.showTabbar(provider: provider, window: window)
+            } else {
+                self.showSignIn(provider: provider, window: window)
+            }
         }
+    }
+    
+    func showSignIn(provider : API, window : UIWindow) {
+        let viewModel = SignInViewModel(provider: provider)
+        self.navigator.show(segue: .signIn(viewModel: viewModel), sender: nil, transition: .root(in: window))
+    }
+    
+    
+    func showTabbar(provider : API, window : UIWindow) {
+        let viewModel = HomeTabBarViewModel(provider: provider)
+        self.navigator.show(segue: .tabs(viewModel: viewModel), sender: nil, transition: .root(in: window))
+    }
+
+    
+    func showInterest(provider : API, window : UIWindow) {
+        let viewModel = InterestViewModel(provider: provider)
+        self.navigator.show(segue: .interest(viewModel: viewModel), sender: nil, transition: .root(in: window))
     }
     
     func logout() {
@@ -58,6 +76,12 @@ final class Application: NSObject {
     
     func presentTestScreen(in window: UIWindow?) {
         guard let window = window, let provider = provider else { return }
+    }
+    
+    func presentDemoScreen(in window: UIWindow?) {
+        guard let window = window, let provider = provider else { return }
+        let viewModel = DemoViewModel(provider : provider)
+        self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
     }
 
 }

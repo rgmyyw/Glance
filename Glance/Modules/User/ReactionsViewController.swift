@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 
 class ReactionsViewController: TableViewController {
-        
+    
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var lineView: UIView!
     
@@ -24,9 +24,14 @@ class ReactionsViewController: TableViewController {
         headView.removeFromSuperview()
         stackView.insertArrangedSubview(headView, at: 0)
         navigationTitle = "Reactions"
-        lineView.shadow(cornerRadius: 0, shadowOpacity: 1,
-                        shadowColor: UIColor(hex: 0x828282)!.withAlphaComponent(0.2),
-                        shadowOffset: CGSize(width: 0, height: 1), shadowRadius: 5)
+        headView.clipsToBounds = false
+        
+        lineView.layer.shadowOffset = CGSize(width: 0, height: 1)
+        lineView.layer.shadowColor = UIColor(hex: 0x828282)!.withAlphaComponent(0.2).cgColor
+        lineView.layer.shadowOpacity = 1
+        lineView.clipsToBounds = false
+//        lineView.layer.shadowPath = UIBezierPath.
+//        lineView.addShadow(ofColor: <#T##UIColor#>, radius: <#T##CGFloat#>, offset: <#T##CGSize#>, opacity: <#T##Float#>)
         
     }
     
@@ -35,17 +40,36 @@ class ReactionsViewController: TableViewController {
         guard let viewModel = viewModel as? ReactionsViewModel else { return }
         
         let input = ReactionsViewModel.Input(selection: tableView.rx.modelSelected(ReactionsCellViewModel.self).asObservable(),
-                                                footerRefresh: footerRefreshTrigger.asObservable())
+                                             footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
-
+        
         output.items
             .drive(tableView.rx.items(cellIdentifier: ReactionsCell.reuseIdentifier, cellType: ReactionsCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
         
         
-
+        
     }
     
 }
 
+//func applyCurvedShadow(view: UIView) {
+//    let size = view.bounds.size
+//    let width = size.width
+//    let height = size.height
+//    let path = UIBezierPath()
+//    path.move(to: CGPoint(x: width, y: 0))
+//    path.addLine(to: CGPoint(x: width + 3, y: 0))
+//    path.addLine(to: CGPoint(x: width + 3, y: height))
+//    path.addLine(to: CGPoint(x:0, y: height))
+//    path.close()
+//    let layer = view.layer
+//    layer.shadowPath = path.cgPath
+//    layer.shadowColor = UIColor.black.cgColor
+//    layer.shadowOpacity = 0.3
+//    layer.shadowRadius = 3
+//    layer.shadowOffset = CGSize(width: 3, height: 0)
+//}
+//
+//

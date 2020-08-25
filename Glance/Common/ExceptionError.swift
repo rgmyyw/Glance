@@ -9,7 +9,9 @@
 import UIKit
 
 enum ExceptionError: Error , CustomStringConvertible{
-    case general(message: String)
+    
+    case general(_ message: String)
+    
     
     var description: String {
         switch self {

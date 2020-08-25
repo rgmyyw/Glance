@@ -30,7 +30,7 @@ class Navigator {
         case safariController(URL)
         case webController(URL)
         case tabs(viewModel: HomeTabBarViewModel)
-        case signIn
+        case signIn(viewModel: SignInViewModel)
         case modifyProfile(viewModel : ModifyProfileViewModel)
         case notificationProfile(viewModel : NotificationProfileViewModel)
         case originalPhotos(viewModel : OriginalPhotosViewModel)
@@ -51,11 +51,12 @@ class Navigator {
         case postProduct(viewModel: PostProductViewModel)
         case styleBoard(viewModel: StyleBoardViewModel)
         case styleBoardSearch(viewModel: StyleBoardSearchViewModel)
+        case insightsRelation(viewModel : InsightsRelationViewModel)
+
     }
     
     enum Transition {
         case root(in: UIWindow)
-        case demo(in: UIWindow)
         case navigation(type: HeroDefaultAnimationType)
         case customModal(type: HeroDefaultAnimationType)
         case modal
@@ -84,8 +85,8 @@ class Navigator {
         case .demo(let viewModel):
             let vc = DemoViewController(viewModel: viewModel, navigator: self)
             return NavigationController(rootViewController: vc)
-        case .signIn:
-            let vc = SignInViewController()
+        case .signIn(let viewModel):
+            let vc = SignInViewController(viewModel: viewModel, navigator: self)
             return vc
         case .modifyProfile(let viewModel):
             let vc = ModifyProfileViewController(viewModel: viewModel, navigator: self)
@@ -148,6 +149,9 @@ class Navigator {
         case .styleBoardSearch(let viewModel):
             let vc = StyleBoardSearchViewController(viewModel: viewModel, navigator: self)
             return vc
+        case .insightsRelation(let viewModel):
+            let vc = InsightsRelationViewController(viewModel: viewModel, navigator: self)
+            return vc
         }
     }
     
@@ -188,7 +192,7 @@ class Navigator {
     
     private func show(target: UIViewController, sender: UIViewController?,animated : Bool = true, transition: Transition) {
         switch transition {
-        case .root(in: let window),.demo(in: let window):
+        case .root(in: let window):
             window.rootViewController = target
             return
         case .custom: return

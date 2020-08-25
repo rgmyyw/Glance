@@ -14,6 +14,7 @@ import Differentiator
 struct VisualSearchProductSection {
     var section : Int
     var elements : [VisualSearchProductSectionItem]
+    var viewModel : VisualSearchProductEmptyCellModel
 }
 
 struct VisualSearchProductSectionItem {

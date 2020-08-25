@@ -57,6 +57,10 @@ enum GlanceAPI {
     case categories
     case addProduct(param : [String : Any])
     case postProduct(param : [String : Any])
+    case insightsLiked(postId: Int,pageNum : Int)
+    case insightsRecommend(postId: Int,pageNum : Int)
+    case logout
+    case isNewUser
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -161,6 +165,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/products"
         case .postProduct:
             return "/api/posts"
+        case .insightsLiked(_,let pageNum):
+            return "/api/users/insights/liked/\(pageNum)/10"
+        case .insightsRecommend(_,let pageNum):
+            return "/api/users/insights/recommended/users/\(pageNum)/10"
+        case .logout:
+            return "/api/users/logout"
+        case .isNewUser:
+            return "/api/users/is-new"
         }
     }
     
@@ -175,7 +187,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .addShoppingCart,
              .visualSearch,
              .addProduct,
-             .postProduct:
+             .postProduct,
+             .logout:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -192,7 +205,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .interest,
              .similarProduct,
              .search,
-             .categories:
+             .categories,
+             .insightsRecommend,
+             .insightsLiked,
+             .isNewUser:
             return .get
         case .modifyProfile:
             return .put
@@ -215,16 +231,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             header = ["Content-Type":"application/json"]
         }
         
-        //        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
-        //            header["Authorization"] = token
-        //        }
-        
-//        header["Authorization"] = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ0SHpZOWZCWElOQ1d2R2xwMnp6ZkphcU5WNHhYbDc0MU9ranZURUNjb1hJIn0.eyJleHAiOjE1OTkyNzE2OTgsImlhdCI6MTU5NjY3OTY5OCwianRpIjoiYWU1MTczNTQtMjJjMi00YjJmLTg0OTAtMzcyNTFhMmEwMDdjIiwiaXNzIjoiaHR0cHM6Ly9nbGFuY2UtZGV2LWFwaS5iZWxpdmUuc2cvYXV0aC9yZWFsbXMvZ2xhbmNlIiwic3ViIjoiZjY5OWQ1MzgtZjlhYi00MjIyLWEwYzYtMTVhNmQxNmE3NGFkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZ2xhbmNlLWFwcCIsInNlc3Npb25fc3RhdGUiOiIxNDE2MTRjNy0xZDlmLTRiYTYtOGVkZi1hMzI3YjE1ZGNkODkiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIn0.clpjgQbM65f-Mm1vh9HlC5NLJ3dytyohhmvzxOoQLxTQsO_w2aR_OZrtlmbr6iI8Bg_T9Sh7arTjpjq74nmO85SZrydSR0W7rNxmnYCxZylbKqIxVRD_fsxWIs4AO5bu5mER60vycZ71W8YDe4qbkNC4-ppACCUwwsvJs0rB035Man-wsqPhaui75Z9_Ak4Y20YUYPh-1JlBNjPC542ZZSXcUiTYKc2BA2FrtpEC0hxfXkEctrqkPr3-MT8JU6gwOSVUAOgkWiEcn0MK4bhPqgNByiTM64ePuReWoeyc6A_EL7GGe6vBvPdkxSGUD6jw7Qgqp2SwjWpvKPmALzrSJA"
-        
-        header["Authorization"] = "Bearer eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJ0SHpZOWZCWElOQ1d2R2xwMnp6ZkphcU5WNHhYbDc0MU9ranZURUNjb1hJIn0.eyJleHAiOjE2MDU3NzQ0NDcsImlhdCI6MTU5Nzk5ODQ0NywianRpIjoiYTczZTRmZGItNjU4Ny00MzEyLWEwMmEtMjk3MDA5NjVlYjgxIiwiaXNzIjoiaHR0cHM6Ly9nbGFuY2UtZGV2LWFwaS5iZWxpdmUuc2cvYXV0aC9yZWFsbXMvZ2xhbmNlIiwic3ViIjoiZjY5OWQ1MzgtZjlhYi00MjIyLWEwYzYtMTVhNmQxNmE3NGFkIiwidHlwIjoiQmVhcmVyIiwiYXpwIjoiZ2xhbmNlLWFwcCIsInNlc3Npb25fc3RhdGUiOiI3NmMyNmU4Ny0xN2Y0LTQ2YTgtOGVlMC1iYTI5MGMzNzZmZmYiLCJhY3IiOiIxIiwicmVhbG1fYWNjZXNzIjp7InJvbGVzIjpbIm9mZmxpbmVfYWNjZXNzIiwidW1hX2F1dGhvcml6YXRpb24iXX0sInNjb3BlIjoib3BlbmlkIG9mZmxpbmVfYWNjZXNzIn0.f43LQwv4hXzVCYf1QkrDJFxuCLK9aquqKZ_UTlpe-eGYLRoLQb_FwpZGi0-bl1Cv92yk5mlYLVY03cvakHxejRGJErFm2l-46P4ZYsVQBK94sMvsyUAZgBL54iZZ7XB_3yq0CDOw8GL6yhbZcTQFPgsVebn-fCjmV8KOUWVfQ60XiBzC_hmK6BZemFkVtzH4iDfLSxPdxuDOORXHrbxPkOxnIwzaN_blWOwMacXtclCozO7ok_fNFOJoL7dWTU7LoLqzZnrPIgeHcX9KK9GPHYaXw_Np64pN63h9Gli9NhXArG5dyt1IEZdF9J8IvQyKiknxecZVUNWYRaDKBT9hRQ"
+        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
+            header["Authorization"] = "Bearer \(token)"
+        }
 
-        
-        
         header["platform"] = "iOS"
         header["channel-id"] = "1"
         header["app-version"] = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
@@ -317,7 +327,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params.merge(dict: param)
         case .postProduct(let param):
             params.merge(dict: param)
-
+        case .insightsLiked(let postId, _):
+            params["postId"] = postId
+        case .insightsRecommend(let postId, _):
+            params["postId"] = postId
+            
         default:
             break
         }

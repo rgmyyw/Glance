@@ -22,7 +22,7 @@ class InterestViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[SectionModel<Void,InterestCellViewModel>]>
-        let rootViewContrller : Driver<Void>
+        let tabbar : Driver<Void>
     }
     
     let element : BehaviorRelay<[Interest]> = BehaviorRelay(value: [])
@@ -32,7 +32,7 @@ class InterestViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SectionModel<Void,InterestCellViewModel>]>(value: [])
         let selection = PublishSubject<InterestCellViewModel>()
         let commit = PublishSubject<String>()
-        let rootViewContrller = PublishSubject<Void>()
+        let tabbar = PublishSubject<Void>()
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Interest]>)> in
@@ -74,7 +74,7 @@ class InterestViewModel: ViewModel, ViewModelType {
                 return items.filter { $0.selected.value }
         }.subscribe(onNext: { [weak self] items in
             guard items.count >= 3 else {
-                self?.exceptionError.onNext(.general(message: "Please choose at least three"))
+                self?.exceptionError.onNext(.general("Please choose at least three"))
                 return
             }
             let ids = items.map { $0.item.interestId.string }.joined()
@@ -93,7 +93,7 @@ class InterestViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let result):
                 if result {
-                    rootViewContrller.onNext(())
+                    tabbar.onNext(())
                 }
             default:
                 break
@@ -102,6 +102,6 @@ class InterestViewModel: ViewModel, ViewModelType {
         
         
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []), rootViewContrller: rootViewContrller.asDriver(onErrorJustReturn: ()))
+        return Output(items: elements.asDriver(onErrorJustReturn: []), tabbar: tabbar.asDriver(onErrorJustReturn: ()))
     }
 }

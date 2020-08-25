@@ -172,22 +172,22 @@ class PostProductViewModel: ViewModel, ViewModelType {
 //                let systemTags = elements.value[3].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
                 let taggedItems = elements.value.last?.items.map { $0.viewModel(PostProductCellViewModel.self)}
                 guard let caption = viewModel?.caption.value, caption.isNotEmpty else {
-                    self?.exceptionError.onNext(.general(message: "caption is empty"))
+                    self?.exceptionError.onNext(.general("caption is empty"))
                     return
                 }
                 
 //                guard let custom = customTags  else {
-//                    self?.exceptionError.onNext(.general(message: "customTags is empty"))
+//                    self?.exceptionError.onNext(.general("customTags is empty"))
 //                    return
 //                }
 //
 //                guard let system = systemTags else {
-//                    self?.exceptionError.onNext(.general(message: "systemTags is empty"))
+//                    self?.exceptionError.onNext(.general("systemTags is empty"))
 //                    return
 //                }
                 
                 guard let tagged = taggedItems else {
-                    self?.exceptionError.onNext(.general(message: "You must select a tagged item"))
+                    self?.exceptionError.onNext(.general("You must select a tagged item"))
                     return
                 }
                 

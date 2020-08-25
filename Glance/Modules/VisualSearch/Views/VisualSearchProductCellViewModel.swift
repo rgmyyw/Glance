@@ -30,3 +30,13 @@ class VisualSearchProductCellViewModel : CellViewModelProtocol , CollectionCellI
         imageURL.accept(item.image?.url)
     }
 }
+
+class VisualSearchProductEmptyCellModel : CellViewModelProtocol {
+    
+    let item : ()
+    let add = PublishSubject<Void>()
+
+    required init(item : ()) {
+        self.item = item
+    }
+}

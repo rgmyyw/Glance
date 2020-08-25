@@ -12,7 +12,7 @@ import RxCocoa
 import RxDataSources
 
 
-enum InsightsType {
+enum InsightsType  {
     case post, recommend
     
     var detailNavigationTitle : String {
@@ -31,7 +31,7 @@ enum InsightsType {
             return "View recomm"
         }
     }
-    
+
 }
 
 class InsightsViewModel: ViewModel, ViewModelType {

@@ -10,30 +10,29 @@ import UIKit
 import RxSwift
 import RxCocoa
 import AppAuth
+import NVActivityIndicatorView
 
 /// AppAuth key
-let kIssuer = "https://glance-dev-api.belive.sg/auth/realms/glance"
-let kClientID = "glance-app"
-let kRedirectURI = "com.glance.auth:/oauth2redirect"
-let kAppAuthStateKey = "authState";
-
+private let kIssuer = "https://glance-dev-api.belive.sg/auth/realms/glance"
+private let kClientID = "glance-app"
+private let kRedirectURI = "com.glance.auth:/oauth2redirect"
+private let kAppAuthStateKey = "authState";
 
 class OAuthManager : NSObject {
     
     static let shared = OAuthManager()
     
-    let state = BehaviorRelay<OIDAuthState?>(value: nil)
-    let currentAuthorizationFlow = BehaviorRelay<OIDExternalUserAgentSession?>(value: nil)
-    let didChange = PublishSubject<Void>()
-    let update = PublishSubject<OIDAuthState>()
-    let error = PublishSubject<Error>()
-    let refreshToken = PublishSubject<OIDAuthState>()
-    let load = PublishSubject<Bool>()
+    private let state = BehaviorRelay<OIDAuthState?>(value: nil)
+    private let didChange = PublishSubject<Void>()
+    private let update = PublishSubject<OIDAuthState>()
+    private let error = PublishSubject<Error>()
+    private let refreshToken = PublishSubject<OIDAuthState>()
+    
+    public let currentAuthorizationFlow = BehaviorRelay<OIDExternalUserAgentSession?>(value: nil)
     
     
     override init() {
         super.init()
-        
         
         didChange.subscribe(onNext: { [weak self] () in
             var data: Data?
@@ -53,6 +52,7 @@ class OAuthManager : NSObject {
             
         }).disposed(by: rx.disposeBag)
         
+        
         refreshToken.subscribe(onNext: { (state) in
             state.performAction { (accessToken, idToken, error) in
                 if let err = error {
@@ -70,28 +70,28 @@ class OAuthManager : NSObject {
             }
         }).disposed(by: rx.disposeBag)
         
-        load.subscribe(onNext: { [weak self] (isForce) in
-            guard let data = UserDefaults.standard.object(forKey: kAppAuthStateKey) as? Data else { return }
-            if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
-                self?.update.onNext(authState)
-                if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
-                    if isForce {
-                        self?.refreshToken.onNext(authState)
-                    } else {
-                        let dateNow = Date()
-                        if dateNow >= dateEnd {
-                            self?.refreshToken.onNext(authState)
-                        }
-                    }
-                }
-            }
-        }).disposed(by: rx.disposeBag)
-        
         error.subscribe(onNext: {(error) in
             print("error: \(error.localizedDescription)")
         }).disposed(by: rx.disposeBag)
-        
     }
+    
+    func readLocal(isForce : Bool) {
+        //        guard let data = UserDefaults.standard.object(forKey: kAppAuthStateKey) as? Data else { return }
+        //        if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
+        //            update.onNext(authState)
+        //            if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
+        //                if isForce {
+        //                    refreshToken.onNext(authState)
+        //                } else {
+        //                    let dateNow = Date()
+        //                    if dateNow >= dateEnd {
+        //                        refreshToken.onNext(authState)
+        //                    }
+        //                }
+        //            }
+        //        }
+    }
+    
     
 }
 
@@ -106,6 +106,8 @@ extension OAuthManager {
             view?.makeToast("Error creating URL for : \(kIssuer)")
             return
         }
+        
+        (presenting as? ViewController)?.isLoading.accept(true)
         
         OIDAuthorizationService.discoverConfiguration(forIssuer: issuer) { [weak self] configuration, error in
             guard let self = self else { return }
@@ -129,14 +131,19 @@ extension OAuthManager {
                 return
             }
             
+            
+            let additionalParameters = ["kc_idp_hint" : "instagram"]
+            let scopes : [String] = ["offline_access","openid"]
+            (presenting as? ViewController)?.isLoading.accept(false)
+            
             // builds authentication request
             let request = OIDAuthorizationRequest(configuration: configuration ,
                                                   clientId: kClientID,
                                                   clientSecret: nil,
-                                                  scopes: ["offline_access"],
+                                                  scopes: scopes,
                                                   redirectURL: redirectURI,
                                                   responseType: OIDResponseTypeCode,
-                                                  additionalParameters: ["kc_idp_hint" : "instagram"])
+                                                  additionalParameters: additionalParameters)
             
             // performs authentication request
             let currentAuthorizationFlow = OIDAuthorizationService.present(request, presenting: presenting) { (response, error) in
@@ -158,6 +165,7 @@ extension OAuthManager {
                             //print("Received token response with accessToken: \(tokenResponse.accessToken ?? "DEFAULT_TOKEN")")
                             self?.state.value?.update(with: response, error: error)
                             AuthManager.setToken(token: Token(basicToken: accessToken))
+                            print("Token:\n \(accessToken)")
                         } else {
                             view?.makeToast("Token exchange error: \(error?.localizedDescription ?? "DEFAULT_ERROR")")
                             self?.state.value?.update(with: response, error: error)

@@ -51,12 +51,12 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let element : BehaviorRelay<PostsDetail> = BehaviorRelay(value: PostsDetail())
+        let element : BehaviorRelay<PostsDetail?> = BehaviorRelay(value: nil)
         let elements = BehaviorRelay<[PostsDetailSection]>(value: [])
-        let userImageURL = element.map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
-        let userName = element.map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
-        let productName = element.map { $0.brand ?? "" }.asDriver(onErrorJustReturn: "")
-        let time = element.map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
+        let userImageURL = element.filterNil().map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
+        let userName = element.filterNil().map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
+        let productName = element.filterNil().map { $0.brand ?? "" }.asDriver(onErrorJustReturn: "")
+        let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
         
@@ -79,9 +79,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
         
         //
-        element.map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
+        element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
-        let navigationBarType = Observable.combineLatest(element.map { $0.own },item.map { $0.type})
+        let navigationBarType = Observable.combineLatest(element.filterNil().map { $0.own },item.map { $0.type})
             .map { (own, type) -> Int in
                 switch type {
                 case .product,.recommendProduct:
@@ -155,7 +155,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             return (cellViewModel,params)
         }.bind(to: save).disposed(by: rx.disposeBag)
         
-        Observable.combineLatest(element, item, similar).map { (element , item,similar) -> [PostsDetailSection] in
+        Observable.combineLatest(element.filterNil(), item, similar).map { (element , item,similar) -> [PostsDetailSection] in
             
             let viewModel = PostsDetailSectionCellViewModel(item: element)
             viewModel.save.map { viewModel}.bind(to: saveCurrent).disposed(by: self.rx.disposeBag)

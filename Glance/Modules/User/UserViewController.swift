@@ -94,7 +94,7 @@ class UserViewController: ViewController {
         output.setting.drive(onNext: { [weak self] () in
             guard let self = self else { return }
             let settingViewModel = SettingViewModel(provider: viewModel.provider)
-            settingViewModel.selectedItem.bind(to: viewModel.settingSelectedItem).disposed(by: self.rx.disposeBag)
+            settingViewModel.selectedItem.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: viewModel.settingSelectedItem).disposed(by: self.rx.disposeBag)
             let setting = SettingViewController(viewModel: settingViewModel, navigator: self.navigator)
             let config = CWLateralSlideConfiguration.default()
             setting.view.backgroundColor = .white
@@ -104,30 +104,6 @@ class UserViewController: ViewController {
         }).disposed(by: rx.disposeBag)
             
         
-        viewModel.settingSelectedItem
-            .delay(.milliseconds(100), scheduler: MainScheduler.instance)
-            .subscribe(onNext: { [weak self](item) in
-                switch item {
-                case .about: break
-                case .followAndInviteFriends: break
-                case .help: break
-                case .logout: break
-                case .modifyProfile:
-                    let viewModel = ModifyProfileViewModel(provider: viewModel.provider)
-                    self?.navigator.show(segue: .modifyProfile(viewModel: viewModel), sender: self)
-                case .notifications:
-                    let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
-                    self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
-                case .originalPhotos:
-                    let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
-                    self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
-                case .postsYourLiked: break
-                case .privacy:
-                    let viewModel = PrivacyViewModel(provider: viewModel.provider)
-                    self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
-                case .syncInstagram: break
-                }
-            }).disposed(by: rx.disposeBag)
         
         output.updateHeadLayout.drive(onNext: { [weak self]() in
                 guard let self = self else { return }
@@ -142,14 +118,41 @@ class UserViewController: ViewController {
             }).disposed(by: rx.disposeBag)
         
         output.titles.drive(onNext: {[weak self] (titles) in
-            
             self?.containerController.param.wTitleArr = titles
             self?.containerController.update()
         }).disposed(by: rx.disposeBag)
         
+        output.about.subscribe(onNext: { () in
+            
+        }).disposed(by: rx.disposeBag)
+                
+        
+        output.modifyProfile.subscribe(onNext: { [weak self]() in
+            let viewModel = ModifyProfileViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .modifyProfile(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
         
         
-        
+        output.notifications.subscribe(onNext: { [weak self]() in
+            let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
+        output.originalPhotos.subscribe(onNext: { [weak self]() in
+            let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
+        output.privacy.subscribe(onNext: { [weak self]() in
+            let viewModel = PrivacyViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
+        output.signIn.subscribe(onNext: { () in
+            guard let window = Application.shared.window else { return }
+            Application.shared.showTabbar(provider: viewModel.provider, window: window)
+        }).disposed(by: rx.disposeBag)
+
     }
     
     

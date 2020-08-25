@@ -35,7 +35,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         let elements : BehaviorRelay<[ReactionsCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<ReactionsCellViewModel>()
         
-        item.map { $0.recommendId}
+        item.map { $0.recommendId }.filterNil()
             .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<Reaction>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
@@ -64,7 +64,8 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.reactions(recommendId: self.item.value.recommendId, pageNum: self.page)
+            let id = self.item.value.recommendId ?? 0
+            return self.provider.reactions(recommendId:id , pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()

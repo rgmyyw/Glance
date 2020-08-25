@@ -65,6 +65,10 @@ protocol API {
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
     func postProduct(param : [String : Any]) -> Single<Bool>
+    func insightsLiked(postId: Int,pageNum : Int) ->  Single<PageMapable<InsightsRelation>>
+    func insightsRecommend(postId: Int,pageNum : Int) ->  Single<PageMapable<InsightsRelation>>
+    func logout() -> Single<Bool>
+    func isNewUser() -> Signal<Bool>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

@@ -15,6 +15,7 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let selection : Observable<Int>
+        let previewPost : Observable<Void>
     }
     
     struct Output {
@@ -33,6 +34,10 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
         let previewButtonTitle : Driver<String>
         let navigationTitle :  Driver<String>
         let reaction : Observable<Insight>
+        let recommend : Observable<Insight>
+        let likes : Observable<Insight>
+        let previewPost : Driver<Home>
+        
     }
     
     private let item : BehaviorRelay<Insight>
@@ -48,20 +53,43 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
     
     
     func transform(input: Input) -> Output {
-
+        
         let element = BehaviorRelay<InsightsDetail?>(value: nil)
-        let available = type.map { $0 == .post ? [0,2,3,4] : [1,2]}
+        let available = type.map { $0 == .post ? [0,2,3,4] : [1]}
         let previewButtonTitle = type.map { $0.previewButtonTitle }.asDriver(onErrorJustReturn: "")
         let navigationTitle = type.map { $0.detailNavigationTitle }.asDriver(onErrorJustReturn: "")
-
+        let previewPost = PublishSubject<Home>()
+        
         let reaction = input.selection.filter { $0 == 1}.map { _ in self.item.value }
+        let recommend = input.selection.filter { $0 == 2}.map { _ in self.item.value }
+        let likes = input.selection.filter { $0 == 3}.map { _ in self.item.value }
+        
+        input.previewPost.map { _ -> Home? in
+            guard let type = self.item.value.type else {
+                self.exceptionError.onNext(.general("type is nil"))
+                return nil
+            }
+            switch type {
+            case .post,.recommendPost:
+                if let postId = self.item.value.postId {
+                    return Home(postId: postId)
+                }
+            case .product,.recommendProduct:
+                if let productId = self.item.value.productId {
+                    return Home(productId: productId)
+                }
+            }
+            return nil
+        }.filterNil().bind(to: previewPost)
+            .disposed(by: rx.disposeBag)
+        
         
         
         Observable.zip(type,item).flatMapLatest({ [weak self] (type, item) -> Observable<(RxSwift.Event<InsightsDetail>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let request : Single<InsightsDetail> = type == .post ?
-                self.provider.insightsPostDetail(postId: item.postId):
-                self.provider.insightsrRecommendDetail(recommendId: item.recommendId)
+                self.provider.insightsPostDetail(postId: item.postId ?? 0):
+                self.provider.insightsrRecommendDetail(recommendId: item.recommendId ?? 0)
             return request
                 .trackActivity(self.loading)
                 .trackError(self.error)
@@ -88,27 +116,27 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
         let likesCount = element.filterNil().map { $0.likesCount.string }.asDriver(onErrorJustReturn: "")
         let sharesCount = element.filterNil().map { $0.sharesCount.string }.asDriver(onErrorJustReturn: "")
         let reactionsCount = element.filterNil().map { $0.reactionsCount.string }.asDriver(onErrorJustReturn: "")
-
-            
-        
-//        commit.flatMapLatest({ [weak self] (data) -> Observable<(RxSwift.Event<User>)> in
-//            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-//            return self.provider.modifyProfile(data: data)
-//                .trackActivity(self.loading)
-//                .trackError(self.error)
-//                .materialize()
-//        }).subscribe(onNext: { [weak self] event in
-//            switch event {
-//            case .next(let item):
-//                user.accept(item)
-//            default:
-//                break
-//            }
-//        }).disposed(by: rx.disposeBag)
         
         
         
-        return Output(imageURL: imageURL, title: title, time: time, reachedCount: reachedCount, interactionsCount: interactionsCount, saveCount: saveCount, recommendsCount: recommendsCount, likesCount: likesCount, sharesCount: sharesCount, reactionsCount: reactionsCount, available: available, previewButtonTitle: previewButtonTitle,navigationTitle : navigationTitle, reaction: reaction)
+        //        commit.flatMapLatest({ [weak self] (data) -> Observable<(RxSwift.Event<User>)> in
+        //            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+        //            return self.provider.modifyProfile(data: data)
+        //                .trackActivity(self.loading)
+        //                .trackError(self.error)
+        //                .materialize()
+        //        }).subscribe(onNext: { [weak self] event in
+        //            switch event {
+        //            case .next(let item):
+        //                user.accept(item)
+        //            default:
+        //                break
+        //            }
+        //        }).disposed(by: rx.disposeBag)
+        
+        
+        
+        return Output(imageURL: imageURL, title: title, time: time, reachedCount: reachedCount, interactionsCount: interactionsCount, saveCount: saveCount, recommendsCount: recommendsCount, likesCount: likesCount, sharesCount: sharesCount, reactionsCount: reactionsCount, available: available, previewButtonTitle: previewButtonTitle,navigationTitle : navigationTitle, reaction: reaction, recommend: recommend, likes: likes, previewPost: previewPost.asDriver(onErrorJustReturn: Home()))
         
     }
 }

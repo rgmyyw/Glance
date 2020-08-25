@@ -44,17 +44,17 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
             
             self?.endEditing.onNext(())
             guard let userId = user.value?.userId else {
-                self?.exceptionError.onNext(.general(message: "userId not empty"))
+                self?.exceptionError.onNext(.general("userId not empty"))
                 return
             }
 
             guard let userName = self?.userName.value, userName.isNotEmpty else {
-                self?.exceptionError.onNext(.general(message: "username not empty"))
+                self?.exceptionError.onNext(.general("username not empty"))
                 return
             }
             
             guard let displayName = self?.displayName.value, displayName.isNotEmpty else {
-                self?.exceptionError.onNext(.general(message: "displayName not empty"))
+                self?.exceptionError.onNext(.general("displayName not empty"))
                 return
             }
             

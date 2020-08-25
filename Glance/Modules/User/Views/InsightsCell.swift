@@ -22,7 +22,10 @@ class InsightsCell: TableViewCell {
     
     override func makeUI() {
         super.makeUI()
-         
+        
+        contentView.clipsToBounds = false
+        clipsToBounds = false
+        
         let shadowOffset = CGSize(width: 0, height: 1)
         let color = UIColor(hex:0x828282)!.withAlphaComponent(0.2)
         let opacity : CGFloat = 1

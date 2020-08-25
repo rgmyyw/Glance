@@ -181,10 +181,10 @@
                             </subviews>
                         </stackView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HgF-SS-tuB">
-                            <rect key="frame" x="0.0" y="109" width="414" height="2"/>
+                            <rect key="frame" x="0.0" y="111" width="414" height="0.0"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="2" id="pqP-L5-OGf"/>
+                                <constraint firstAttribute="height" id="pqP-L5-OGf"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -208,7 +208,7 @@
                 <constraint firstItem="yT2-DA-ntf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="s3A-lF-Ohe"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="133" y="154"/>
+            <point key="canvasLocation" x="-87" y="173"/>
         </view>
     </objects>
     <resources>

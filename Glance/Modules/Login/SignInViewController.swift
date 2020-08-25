@@ -14,23 +14,48 @@ enum SignInType {
     case instagram
 }
 
-class SignInViewController: UIViewController {
-        
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet var instagramImageView: UIImageView!
-        
+class SignInViewController: ViewController {
     
     let type = PublishSubject<SignInType>()
+    
+    @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var instagramButton: UIButton!
+    
+    override func makeUI() {
+        super.makeUI()
+        stackView.addArrangedSubview(containerView)
+        instagramButton.addGradient(colors: [UIColor(hex: 0xFF8D5F),UIColor(hex: 0xFFB465)], start: .zero, end: CGPoint(x: 1, y: 1))
+    }
+    
+    override func bindViewModel() {
+        super.bindViewModel()
+        guard let viewModel = viewModel as? SignInViewModel else { return }
+        
+        let input = SignInViewModel.Input(instagram: instagramButton.rx.tap.asObservable())
+        let output = viewModel.transform(input: input)
+        
+        output.instagramOAuth.drive(onNext: { [weak self]() in
+            OAuthManager.shared.instagramOAuth(presenting: self)
+        }).disposed(by: rx.disposeBag)
+        
+        output.tabbar.delay(RxTimeInterval.milliseconds(500)).drive(onNext: { () in
+            guard let window = Application.shared.window else { return }
+            Application.shared.showTabbar(provider: viewModel.provider, window: window)
+        }).disposed(by: rx.disposeBag)
+        
+        output.interest.delay(RxTimeInterval.milliseconds(500)).drive(onNext: { () in
+            guard let window = Application.shared.window else { return }
+            Application.shared.showInterest(provider: viewModel.provider, window: window)
+        }).disposed(by: rx.disposeBag)
+        
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
             
-        instagramImageView.rx.tap().map { SignInType.instagram }
+        instagramButton.rx.tap.map { SignInType.instagram }
             .bind(to: type).disposed(by: rx.disposeBag)
         
-        closeButton.rx.tap
-            .subscribe(onNext: { [weak self]() in
-            self?.dismiss(animated: true, completion: nil)
-        }).disposed(by: rx.disposeBag)
     }
 }

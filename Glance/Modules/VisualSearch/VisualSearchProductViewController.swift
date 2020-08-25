@@ -22,7 +22,7 @@ class VisualSearchProductViewController: CollectionViewController {
     private let add = PublishSubject<Void>()
     
     lazy var emptyView : UIView = {
-        
+
         let view = UIView()
         let titleLabel = UILabel()
         titleLabel.text = "Can’t find product?Try other words or"
@@ -73,7 +73,8 @@ class VisualSearchProductViewController: CollectionViewController {
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: VisualSearchProductCell.self)
-        
+        collectionView.register(nib: VisualSearchProductReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withClass: VisualSearchProductReusableView.self)
+
         stackView.insertArrangedSubview(headVaiew, at: 0)        
         
     }
@@ -92,6 +93,7 @@ class VisualSearchProductViewController: CollectionViewController {
         
         (headVaiew.textFiled.rx.textInput <-> viewModel.textInput ).disposed(by: rx.disposeBag)
         
+        dataSouce.configureSupplementaryView = configureSupplementaryView()
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -111,15 +113,15 @@ class VisualSearchProductViewController: CollectionViewController {
             }).disposed(by: rx.disposeBag)
         
     }
-    
+
     override func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         return emptyView
     }
-    
+
     override func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
         return .clear
     }
-    
+
     override func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
         return emptyDataViewDataSource.verticalOffsetY.value
     }
@@ -135,7 +137,21 @@ extension VisualSearchProductViewController {
             return cell
         })
     }
-    
+    fileprivate func configureSupplementaryView() -> (CollectionViewSectionedDataSource<VisualSearchProductSection>, UICollectionView, String, IndexPath) -> UICollectionReusableView {
+        return {  (dataSouce, collectionView, kind, indexPath) -> UICollectionReusableView in
+            
+            if kind == UICollectionView.elementKindSectionFooter {
+                let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: VisualSearchProductReusableView.self, for: indexPath)
+                view.bind(to: dataSouce[indexPath.section].viewModel)
+                return view
+            } else {
+                
+            }
+            fatalError()
+        }
+    }
+
+
 }
 
 extension VisualSearchProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
@@ -150,6 +166,10 @@ extension VisualSearchProductViewController : ZLCollectionViewBaseFlowLayoutDele
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .zero
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
+        return CGSize(width: collectionView.bounds.width, height: 100)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
@@ -169,5 +189,7 @@ extension VisualSearchProductViewController : ZLCollectionViewBaseFlowLayoutDele
         }
         
     }
+    
+    
 }
  

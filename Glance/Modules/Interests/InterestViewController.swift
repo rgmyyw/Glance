@@ -57,12 +57,11 @@ class InterestViewController: CollectionViewController  {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
         
-        output.rootViewContrller.drive(onNext: { [weak self]() in
-            self?.exceptionError.onNext(.general(message: "To rootViewController!"))
+        output.tabbar.drive(onNext: { () in
+            guard let window = Application.shared.window else { return }
+            Application.shared.showTabbar(provider: viewModel.provider, window: window)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+                
         
         collectionView.rx.contentOffset.map { $0.y }
             .subscribe(onNext: { [weak self] offsetY in

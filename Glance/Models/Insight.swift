@@ -9,13 +9,28 @@
 import ObjectMapper
 
 struct Insight: Mappable {
-    var recommendId : Int = 0
-    var postId: Int = 0
+    var recommendId : Int? = 0
+    var postId: Int? = 0
+    var productId : String?
+    
     var interactionsCount: Int = 0
     var image: String?
     var reachCount: Int = 0
     var title: String?
     var created: Date?
+    var type : HomeCellType?
+    
+    var id : Int? {
+        guard let type = type else { return nil }
+        
+        switch type {
+        case .post,.recommendPost:
+            return postId
+        case .product, .recommendProduct:
+            return recommendId
+        }
+    }
+    
 
     init?(map: Map) {}
 
@@ -27,5 +42,7 @@ struct Insight: Mappable {
         reachCount   <- map["reachCount"]
         title   <- map["title"]
         recommendId   <- map["recommendId"]
+        type <- map["type"]
+        productId <- map["productId"]
     }
 }

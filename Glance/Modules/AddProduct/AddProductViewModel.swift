@@ -170,27 +170,27 @@ class AddProductViewModel: ViewModel, ViewModelType {
             //let tags = elements.value[1].items
             
             guard let productName = viewModel?.productName.value, productName.count > 5 else {
-                self?.exceptionError.onNext(.general(message: "productName minimum of 6"))
+                self?.exceptionError.onNext(.general("productName minimum of 6"))
                 return
             }
             
             guard let categoryId = viewModel?.selectedCategory.value?.categoryId  else {
-                self?.exceptionError.onNext(.general(message: "choose category"))
+                self?.exceptionError.onNext(.general("choose category"))
                 return
             }
             
             guard let brand = viewModel?.brand.value  else {
-                self?.exceptionError.onNext(.general(message: "brand minimum of 2"))
+                self?.exceptionError.onNext(.general("brand minimum of 2"))
                 return
             }
             
             guard let website = viewModel?.website.value  else {
-                self?.exceptionError.onNext(.general(message: "input website not correct"))
+                self?.exceptionError.onNext(.general("input website not correct"))
                 return
             }
             
             guard case let .thumbnail(_, imageItem) = thumbnail.first , let image = imageItem.image.value  else {
-                self?.exceptionError.onNext(.general(message: "not found image"))
+                self?.exceptionError.onNext(.general("not found image"))
                 return
             }
             

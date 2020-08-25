@@ -166,6 +166,23 @@ class RestApi: API {
         return requestObject(.postProduct(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.code == 200 }
     }
     
+    func insightsLiked(postId: Int, pageNum: Int) -> Single<PageMapable<InsightsRelation>> {
+        return requestObject(.insightsLiked(postId: postId, pageNum: pageNum), type: PageMapable<InsightsRelation>.self)
+    }
+    func insightsRecommend(postId : Int, pageNum: Int) -> Single<PageMapable<InsightsRelation>> {
+        return requestObject(.insightsRecommend(postId: postId, pageNum: pageNum), type: PageMapable<InsightsRelation>.self)
+        
+    }
+    
+    func logout() -> Single<Bool> {
+        return requestObject(.logout, type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+
+    func isNewUser() -> Signal<Bool> {
+        return requestObject(.isNewUser, type: MappableItem<[String : Bool]>.self,keyPath: nil).map { $0.data?["isNewUser"] ?? false }.asSignal(onErrorJustReturn: false)
+    }
+    
+    
     
     let ibexProvider: IbexNetworking
     

@@ -35,7 +35,6 @@ class InsightsViewController: ViewController {
         guard let viewModel = viewModel as? InsightsViewModel else { return }
         let input = InsightsViewModel.Input()
         let output = viewModel.transform(input: input)
-        
         containerController.param = setupPageViewConfig(viewModel: viewModel)
         
         viewModel.selected
