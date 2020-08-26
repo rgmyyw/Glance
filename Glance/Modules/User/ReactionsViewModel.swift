@@ -19,6 +19,10 @@ class ReactionsViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[ReactionsCellViewModel]>
+        let heart : Driver<String>
+        let haha : Driver<String>
+        let wow : Driver<String>
+        
     }
     
     private let item : BehaviorRelay<Insight>
@@ -34,6 +38,10 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         
         let elements : BehaviorRelay<[ReactionsCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<ReactionsCellViewModel>()
+        let heart = PublishSubject<String>()
+        let haha = PublishSubject<String>()
+        let wow = PublishSubject<String>()
+        
         
         item.map { $0.recommendId }.filterNil()
             .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<Reaction>>)> in
@@ -57,6 +65,29 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
         
+        
+        item.map { $0.recommendId }.filterNil()
+            .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<ReactionAnalysis>)> in
+                guard let self = self else {
+                    return Observable.just(RxSwift.Event.completed)
+                }
+                self.page = 1
+                return self.provider.reactionAnalysis(recommendId: id)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .materialize()
+            }).subscribe(onNext: { [weak self] event in
+                guard let self = self else { return }
+                switch event {
+                case .next(let item):
+                    haha.onNext(item.haha.string)
+                    heart.onNext(item.heart.string)
+                    wow.onNext(item.wow.string)
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
+
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Reaction>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -107,6 +138,9 @@ class ReactionsViewModel: ViewModel, ViewModelType {
             return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []))
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
+                      heart: heart.asDriver(onErrorJustReturn: ""),
+                      haha: haha.asDriver(onErrorJustReturn: ""),
+                      wow: wow.asDriver(onErrorJustReturn: ""))
     }
 }

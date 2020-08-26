@@ -44,17 +44,19 @@ protocol API {
     func insightsPostDetail(postId : Int) -> Single<InsightsDetail>
     func insightsrRecommendDetail(recommendId : Int) -> Single<InsightsDetail>
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
-    func detail(id : Any, type : Int) -> Single<PostsDetail>
+    func postDetail(postId : Int) -> Single<PostsDetail>
+    func productDetail(productId : String) -> Single<PostsDetail>
+    
     func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
-    func like(id : Any, type : Int, state : Bool) -> Single<Bool>
+    func like(param : [String : Any]) -> Single<Bool>
     func saveCollection(param : [String : Any]) -> Single<Bool>
     func savedCollection(pageNum : Int) ->  Single<PageMapable<Home>>
     func savedCollectionClassify() -> Single<SavedCollection>
     func interest(level : Int) -> Single<[Interest]>
     func updateUserInterest(ids : String) -> Single<Bool>
-    func similarProduct(id : Any, type : Int,page : Int) -> Single<PageMapable<PostsDetailProduct>>
+    func similarProduct(params : [String : Any],page : Int) -> Single<PageMapable<PostsDetailProduct>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
     
@@ -69,6 +71,7 @@ protocol API {
     func insightsRecommend(postId: Int,pageNum : Int) ->  Single<PageMapable<InsightsRelation>>
     func logout() -> Single<Bool>
     func isNewUser() -> Signal<Bool>
+    func reactionAnalysis(recommendId : Int) -> Single<ReactionAnalysis>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

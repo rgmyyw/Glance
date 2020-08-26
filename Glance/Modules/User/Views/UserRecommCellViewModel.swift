@@ -17,9 +17,9 @@ class UserRecommCellViewModel : CellViewModelProtocol, CollectionCellImageHeight
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
-    let isFavorite = BehaviorRelay<Bool>(value: false)
+    let saved = BehaviorRelay<Bool>(value: false)
 
-    let saveFavorite = PublishSubject<Void>()
+    let save = PublishSubject<Void>()
     let showLikePopView = PublishSubject<UIView>()
     
     var image: String? {

@@ -37,9 +37,9 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ac4-dW-YYg">
-                                <rect key="frame" x="152" y="0.0" width="36" height="37"/>
-                                <state key="normal" image="icon_cell_triangle_gary"/>
-                                <state key="selected" image="icon_cell_triangle_red"/>
+                                <rect key="frame" x="152" y="0.0" width="36" height="35.5"/>
+                                <state key="normal" image="icon_cell_triangle_red"/>
+                                <state key="selected" image="icon_cell_triangle_gary"/>
                             </button>
                             <label verifyAmbiguity="ignoreSizes" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Urban Decay Shine Like...Urban Decay Shine Like...Urban Decay Shine Like..." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ssj-Cc-WrW">
                                 <rect key="frame" x="5" y="30" width="178" height="55.5"/>

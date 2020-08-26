@@ -113,6 +113,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     user.accept(item)
+                    self?.message.onNext(.init("modify profile success"))
                 default:
                     break
                 }

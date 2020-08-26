@@ -29,9 +29,12 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         let editButtonImage : Driver<UIImage?>
         let editButtonTitle : Driver<String?>
         let back : Driver<Void>
+        let delete : Observable<SavedCollectionCellViewModel>
+        let detail : Driver<Home>
     }
     
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let confirmDelete = PublishSubject<SavedCollectionCellViewModel>()
     
     func transform(input: Input) -> Output {
         
@@ -44,6 +47,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         let backButtonImage = isEdit.map { $0 ? R.image.icon_navigation_close() : R.image.icon_navigation_back_black() }.asDriver(onErrorJustReturn: nil)
         let editButtonImage = isEdit.map { $0 ? nil : R.image.icon_navigation_edit() }.asDriver(onErrorJustReturn: nil)
         let editButtonTitle = isEdit.map { $0 ? "DONE" : nil }.asDriver(onErrorJustReturn: "")
+        let detail = input.selection.filter { _ in !isEdit.value }.map { $0.item }.asDriver(onErrorJustReturn: Home())
         
         
         input.edit.map { !$0 }.bind(to: isEdit).disposed(by: rx.disposeBag)
@@ -114,19 +118,12 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        delete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(SavedCollectionCellViewModel,Bool)>)> in
+        confirmDelete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(SavedCollectionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            let type = cellViewModel.item.type
             var params = [String : Any]()
-            params["type"] = type.rawValue
+            params["type"] = cellViewModel.item.type?.rawValue ?? -1
             params["updateSaved"] = false
-            switch type {
-            case .post,.recommendPost:
-                params["postId"] = cellViewModel.item.postId
-            case .product,.recommendProduct:
-                params["productId"] = cellViewModel.item.productId
-            }
-
+            params.merge(dict: cellViewModel.item.id)
             return self.provider.saveCollection(param: params)
                 .trackError(self.error)
                 .trackActivity(self.loading)
@@ -153,6 +150,8 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                       navigationTitle: navigationTitle,
                       editButtonImage: editButtonImage,
                       editButtonTitle: editButtonTitle,
-                      back: back.asDriver(onErrorJustReturn: ()))
+                      back: back.asDriver(onErrorJustReturn: ()),
+                      delete: delete.asObservable(),
+                      detail: detail)
     }
 }

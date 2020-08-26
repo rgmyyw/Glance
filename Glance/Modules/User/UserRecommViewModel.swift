@@ -31,7 +31,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[SectionModel<Void,UserRecommCellViewModel>]>(value: [])
-        let saveFavorite = PublishSubject<UserRecommCellViewModel>()
+        let save = PublishSubject<UserRecommCellViewModel>()
         let showLikePopView = PublishSubject<(UIView,UserRecommCellViewModel)>()
         let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
         
@@ -51,7 +51,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 case .next(let item):
                     self.element.accept(item)
                     
-                self.hasData.onNext(item.hasNext)
+                    self.hasData.onNext(item.hasNext)
                 default:
                     break
                 }
@@ -80,12 +80,12 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-
+        
         
         element.map { items -> [SectionModel<Void,UserRecommCellViewModel>] in
             let sectionItems = items.list.map { item -> UserRecommCellViewModel  in
                 let viewModel = UserRecommCellViewModel(item: item)
-                viewModel.saveFavorite.map { _ in  viewModel }.bind(to: saveFavorite).disposed(by: self.rx.disposeBag)
+                viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
                 viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
@@ -93,35 +93,25 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-//        saveFavorite
-//            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
-//                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-//                guard let type = cellViewModel.item.type else { return Observable.just(RxSwift.Event.completed) }
-//                let id : Any
-//                switch type {
-//                case .post:
-//                    id = cellViewModel.item.posts?.postId ?? 0
-//                case .product:
-//                    id = cellViewModel.item.product?.imName ?? ""
-//                case .recommend:
-//                    id = cellViewModel.item.recommend?.recommendId ?? 0
-//                }
-//                return self.provider.saveFavorite(id: id, type: type.rawValue)
-//                    .trackError(self.error)
-//                    .trackActivity(self.loading)
-//                    .map { (cellViewModel, $0)}
-//                    .materialize()
-//            }).subscribe(onNext: { [weak self] event in
-//                guard let self = self else { return }
-//                switch event {
-//                case .next(let (item,result)):
-//                    if result {
-//                        item.isFavorite.accept(result)
-//                    }
-//                default:
-//                    break
-//                }
-//            }).disposed(by: rx.disposeBag)
+        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(UserRecommCellViewModel,Bool)>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            var params = [String : Any]()
+            params["type"] = cellViewModel.item.type?.rawValue ?? -1
+            params["updateSaved"] = !cellViewModel.saved.value
+            params.merge(dict: cellViewModel.item.id)
+            return self.provider.saveCollection(param: params)
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .map { (cellViewModel, $0)}
+                .materialize()
+        }).subscribe(onNext: { event in
+            switch event {
+            case .next(let (cellViewModel, result)):
+                cellViewModel.saved.accept(result)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       showLikePopView: showLikePopView.asObservable(),

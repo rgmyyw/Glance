@@ -74,6 +74,9 @@
 		5D3B316624D2A3D40039D1B9 /* VisualSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3B316424D2A3D40039D1B9 /* VisualSearchResultCell.xib */; };
 		5D3B316824D2A4550039D1B9 /* VisualSearchResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316724D2A4550039D1B9 /* VisualSearchResultCellViewModel.swift */; };
 		5D3B316A24D3ACBB0039D1B9 /* VisualSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */; };
+		5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */; };
+		5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */; };
+		5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */; };
 		5D3E47FE24B572870064E3BF /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
 		5D3E47FF24B572870064E3BF /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
 		5D3E480124B579820064E3BF /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */; };
@@ -1098,6 +1101,7 @@
 		5D3B316424D2A3D40039D1B9 /* VisualSearchResultCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchResultCell.xib; sourceTree = "<group>"; };
 		5D3B316724D2A4550039D1B9 /* VisualSearchResultCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchResultCellViewModel.swift; sourceTree = "<group>"; };
 		5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearch.swift; sourceTree = "<group>"; };
+		5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionAnalysis.swift; sourceTree = "<group>"; };
 		5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewController.swift; sourceTree = "<group>"; };
 		5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ModifyProfileViewController.xib; sourceTree = "<group>"; };
 		5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModifyProfileViewModel.swift; sourceTree = "<group>"; };
@@ -1944,6 +1948,7 @@
 				5DB6AC0324D96D7100AD4B43 /* Categories.swift */,
 				5D8D1C8224EB66C1009A7B53 /* Box.swift */,
 				5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */,
+				5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3048,6 +3053,7 @@
 				5DCC2D8224F34F04000AC40A /* LikePopView.swift in Sources */,
 				5DCC2D8324F34F04000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2D8424F34F04000AC40A /* ImagePickerManager.swift in Sources */,
+				5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2D8624F34F04000AC40A /* Reaction.swift in Sources */,
 				5DCC2D8724F34F04000AC40A /* UserRecommCell.swift in Sources */,
@@ -3304,6 +3310,7 @@
 				5DCC2EDA24F34F2A000AC40A /* LikePopView.swift in Sources */,
 				5DCC2EDB24F34F2A000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2EDC24F34F2A000AC40A /* ImagePickerManager.swift in Sources */,
+				5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2EDE24F34F2A000AC40A /* Reaction.swift in Sources */,
 				5DCC2EDF24F34F2A000AC40A /* UserRecommCell.swift in Sources */,
@@ -3560,6 +3567,7 @@
 				5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */,
 				5DC3130F24E3E52300CC3F89 /* StyleBoardViewModel.swift in Sources */,
 				5DC669E324D0068600FF1092 /* ImagePickerManager.swift in Sources */,
+				5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */,
 				5D06524324BEE879007CE461 /* Reaction.swift in Sources */,
 				5D7D49B024B8648500F919EB /* UserRecommCell.swift in Sources */,

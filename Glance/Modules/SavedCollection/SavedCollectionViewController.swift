@@ -47,13 +47,12 @@ class SavedCollectionViewController: CollectionViewController  {
         inset.right = 20
         navigationBar.contentInset = inset
         
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         backButton.removeTarget(self, action: #selector(navigationBack), for: .touchUpInside)
-
+        
     }
     
     
@@ -79,6 +78,18 @@ class SavedCollectionViewController: CollectionViewController  {
         output.isEdit.drive(backButton.rx.isSelected).disposed(by: rx.disposeBag)
         output.editButtonTitle.drive(edit.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.editButtonImage.drive(edit.rx.image(for: .normal)).disposed(by: rx.disposeBag)
+        output.delete.subscribe(onNext: { cellViewmodel in
+            Alert.showAlert(with: "Delete collection?",
+                             message: "Everything within this board will still remain in your “All” collection folder.",
+                             optionTitles: "DELETE",
+                             cancel: "CANCEL")
+                .subscribe(onNext: { index in
+                    if index == 0 {
+                        viewModel.confirmDelete.onNext(cellViewmodel)
+                    }
+                }).disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
         output.back.drive(onNext: { [weak self] () in
             self?.navigator.pop(sender: self)
         }).disposed(by: rx.disposeBag)
@@ -87,10 +98,10 @@ class SavedCollectionViewController: CollectionViewController  {
             .subscribe(onNext: { [weak self] in
                 self?.navigationBar.layoutSubviews()
             }).disposed(by: rx.disposeBag)
-        
-        collectionView.rx.itemSelected.subscribe(onNext: { (indexpATH) in
-            let demo = DemoViewModel(provider: viewModel.provider)
-            self.navigator.show(segue: .demo(viewModel: demo), sender: self)
+
+        output.detail.drive(onNext: { (item) in
+            let detail = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self.navigator.show(segue: .dynamicDetail(viewModel: detail), sender: self)
         }).disposed(by: rx.disposeBag)
         
     }

@@ -88,13 +88,16 @@ class RestApi: API {
         return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
     }
     
-    func detail(id: Any, type: Int) -> Single<PostsDetail> {
-        return requestObject(.detail(id: id, type : type), type: PostsDetail.self)
-        
+    func postDetail(postId: Int) -> Single<PostsDetail> {
+        return requestObject(.postDetail(postId: postId), type: PostsDetail.self)
     }
     
-    func like(id: Any, type: Int, state: Bool) -> Single<Bool> {
-        return requestObject(.like(id: id, type: type, state: state), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    func productDetail(productId: String) -> Single<PostsDetail> {
+        return requestObject(.productDetail(productId: productId), type: PostsDetail.self)
+    }
+    
+    func like(param: [String : Any]) -> Single<Bool> {
+        return requestObject(.like(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
     func notifications(pageNum: Int) -> Single<PageMapable<Notification>> {
@@ -135,8 +138,8 @@ class RestApi: API {
         return requestObject(.updateUserInterest(ids: ids), type: MappableItem<Void>.self,keyPath: nil).map { $0.code == 200}
     }
     
-    func similarProduct(id: Any, type: Int, page: Int) -> Single<PageMapable<PostsDetailProduct>> {
-        return requestObject(.similarProduct(id: id, type: type, page: page), type: PageMapable<PostsDetailProduct>.self)
+    func similarProduct(params: [String : Any], page: Int) -> Single<PageMapable<PostsDetailProduct>> {
+        return requestObject(.similarProduct(params: params, page: page), type: PageMapable<PostsDetailProduct>.self)
     }
     
     func addShoppingCart(productId: String) -> Single<Bool> {
@@ -182,7 +185,10 @@ class RestApi: API {
         return requestObject(.isNewUser, type: MappableItem<[String : Bool]>.self,keyPath: nil).map { $0.data?["isNewUser"] ?? false }.asSignal(onErrorJustReturn: false)
     }
     
-    
+    func reactionAnalysis(recommendId: Int) -> Single<ReactionAnalysis> {
+        return requestObject(.reactionAnalysis(recommendId: recommendId), type: ReactionAnalysis.self)
+
+    }
     
     let ibexProvider: IbexNetworking
     

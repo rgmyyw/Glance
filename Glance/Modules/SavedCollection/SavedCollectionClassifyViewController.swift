@@ -26,7 +26,7 @@ class SavedCollectionClassifyViewController: ViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? SavedCollectionClassifyViewModel else { return }
         
-        let input = SavedCollectionClassifyViewModel.Input()
+        let input = SavedCollectionClassifyViewModel.Input(refresh: rx.viewWillAppear.mapToVoid())
         let output = viewModel.transform(input: input)
         output.total.drive(totalLabel.rx.text).disposed(by: rx.disposeBag)
         output.images.drive(onNext: { [weak self] images in
@@ -36,9 +36,7 @@ class SavedCollectionClassifyViewController: ViewController {
             }
         }).disposed(by: rx.disposeBag)
         
-        
-
-        
+                
         items.tapGesture()
             .subscribe(onNext: { [weak self](_) in
                 let viewModel = SavedCollectionViewModel(provider: viewModel.provider)

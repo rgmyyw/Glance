@@ -64,7 +64,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         
         collectionView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
         collectionView.footRefreshControl.autoRefreshOnFoot = true
-
     
         
         hasData.subscribeOn(MainScheduler.instance)

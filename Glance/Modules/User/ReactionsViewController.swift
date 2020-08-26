@@ -14,6 +14,9 @@ class ReactionsViewController: TableViewController {
     
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var lineView: UIView!
+    @IBOutlet weak var hahaLabel: UILabel!
+    @IBOutlet weak var heartLabel: UILabel!
+    @IBOutlet weak var wowLabel: UILabel!
     
     override func makeUI() {
         super.makeUI()
@@ -47,7 +50,9 @@ class ReactionsViewController: TableViewController {
             .drive(tableView.rx.items(cellIdentifier: ReactionsCell.reuseIdentifier, cellType: ReactionsCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
-        
+        output.haha.drive(hahaLabel.rx.text).disposed(by: rx.disposeBag)
+        output.wow.drive(wowLabel.rx.text).disposed(by: rx.disposeBag)
+        output.heart.drive(heartLabel.rx.text).disposed(by: rx.disposeBag)
         
         
     }

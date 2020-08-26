@@ -91,7 +91,7 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </view>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fn3-rq-voZ">
+                                    <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fn3-rq-voZ">
                                         <rect key="frame" x="0.0" y="32" width="196" height="200"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZTZ-yO-wQn">
@@ -110,10 +110,10 @@
                                                 <rect key="frame" x="6" y="168" width="22" height="22"/>
                                                 <state key="normal" image="icon_cell_emoji"/>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRM-00-gU2">
-                                                <rect key="frame" x="160" y="0.0" width="36" height="37"/>
-                                                <state key="normal" image="icon_cell_triangle_gary"/>
-                                                <state key="selected" image="icon_cell_triangle_red"/>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRM-00-gU2">
+                                                <rect key="frame" x="160.5" y="0.0" width="35.5" height="35.5"/>
+                                                <state key="normal" image="icon_cell_triangle_red"/>
+                                                <state key="selected" image="icon_cell_triangle_gary"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

@@ -44,7 +44,7 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.register(nib: PostsDetailTagsReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTagsReusableView.self)
         collectionView.register(nib: PostsDetailToolBarReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailToolBarReusableView.self)
         collectionView.register(nib: PostsDetailSectionTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailSectionTitleReusableView.self)
-        emptyDataViewDataSource.enable.accept(false)
+        emptyDataViewDataSource.enable.accept(true)
         
     }
 
@@ -89,10 +89,19 @@ class PostsDetailViewController: CollectionViewController {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
         
+        output.detail
+            .drive(onNext: { (item) in
+                let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+                self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
         customNavigationBar.backButton.rx
             .tap.subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
             }).disposed(by: rx.disposeBag)
+        
+        
+        
     }
 }
 

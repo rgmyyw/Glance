@@ -32,9 +32,9 @@ class UserPostCell: CollectionViewCell {
         imageViewHeight.constant = viewModel.imageHeight
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
-        viewModel.isFavorite.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.saved.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
-        favorite.rx.tap.bind(to: viewModel.saveFavorite).disposed(by: cellDisposeBag)
+        favorite.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
     }
 
 }

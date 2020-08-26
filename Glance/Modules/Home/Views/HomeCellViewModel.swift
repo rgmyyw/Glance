@@ -12,9 +12,7 @@ import RxCocoa
 
 
 class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
-    
-    
-    
+        
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -27,9 +25,9 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     let userOnline = BehaviorRelay<Bool>(value: false)
     let emojiButtonHidden = BehaviorRelay<Bool>(value: false)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
-    let isFavorite = BehaviorRelay<Bool>(value: false)
+    let saved = BehaviorRelay<Bool>(value: false)
 
-    let saveFavorite = PublishSubject<Void>()
+    let save = PublishSubject<Void>()
     let showLikePopView = PublishSubject<UIView>()
     
     
@@ -44,10 +42,10 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     required init(item : Home) {
         self.item = item
         
-        typeName.accept(item.type.title)
-
+        guard let type = item.type else { return }
+        typeName.accept(type.title)
         
-        switch item.type {
+        switch type {
         case .post:
             userName.accept(item.user?.displayName)
             userHeadImageURL.accept(item.user?.userImage?.url)
@@ -56,7 +54,7 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
             userHidden.accept(false)
             userOnline.accept(item.user?.loginStatus ?? false)
             emojiButtonHidden.accept(true)
-            isFavorite.accept(item.saved)
+            saved.accept(item.saved)
             recommendButtonHidden.accept(false)
         case .product:
             
@@ -64,7 +62,7 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
             imageURL.accept(item.productUrl?.url)
             userHidden.accept(true)
             emojiButtonHidden.accept(true)
-            isFavorite.accept(item.saved)
+            saved.accept(item.saved)
             recommendButtonHidden.accept(false)
             
         case .recommendPost,.recommendProduct:
@@ -75,7 +73,7 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
             userHidden.accept(false)
             userOnline.accept(item.user?.loginStatus ?? false)
             emojiButtonHidden.accept(false)
-            isFavorite.accept(item.saved)
+            saved.accept(item.saved)
             recommendButtonHidden.accept(true)
         }
     }

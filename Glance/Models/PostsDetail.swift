@@ -9,24 +9,6 @@
 import ObjectMapper
 
 
-//struct Data: Mappable {
-
-//
-//    init?(map: Map) {}
-//
-//    mutating func mapping(map: Map) {
-//        brand   <- map["brand"]
-//        image   <- map["image"]
-//        title   <- map["title"]
-//        price   <- map["price"]
-//        saved   <- map["saved"]
-//        liked   <- map["liked"]
-//        recommended   <- map["recommended"]
-//        inShoppingList   <- map["inShoppingList"]
-//        shared   <- map["shared"]
-//        productId   <- map["productId"]
-//    }
-//}
 
 struct PostsDetail: Mappable {
     /// post detail
@@ -54,6 +36,19 @@ struct PostsDetail: Mappable {
     var inShoppingList: Bool = false
     var currency : String?
 
+    var type : HomeCellType?
+    
+    var id : [String : Any] {
+        guard let type = type else { return [:]}
+        switch type {
+        case .post,.recommendPost:
+            return ["postId" : postId]
+        case .product,.recommendProduct:
+            return ["productId" : productId ?? ""]
+        }
+    }
+
+    
     
     init?(map: Map) {}
     init() {}
@@ -71,7 +66,7 @@ struct PostsDetail: Mappable {
         title   <- map["title"]
         recommended   <- map["recommended"]
         userId   <- map["userId"]
-        postsTime <- (map["postsTime"], ISO8601DateTransform())
+        postsTime <- (map["postsTime"], DateTransform())
         own <- map["own"]
         brand <- map["brand"]
         price <- map["price"]

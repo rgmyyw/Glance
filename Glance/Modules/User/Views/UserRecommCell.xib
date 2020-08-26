@@ -43,9 +43,9 @@
                                                 <state key="normal" image="icon_cell_emoji"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRM-00-gU2">
-                                                <rect key="frame" x="160" y="0.0" width="36" height="37"/>
-                                                <state key="normal" image="icon_cell_triangle_gary"/>
-                                                <state key="selected" image="icon_cell_triangle_red"/>
+                                                <rect key="frame" x="160.5" y="0.0" width="35.5" height="35.5"/>
+                                                <state key="normal" image="icon_cell_triangle_red"/>
+                                                <state key="selected" image="icon_cell_triangle_gary"/>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>

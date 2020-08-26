@@ -24,13 +24,14 @@ class SavedCollectionCell: CollectionViewCell {
         super.makeUI()
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
-        
-        let shadowOffset = CGSize(width: 1, height: 1)
-        let color = UIColor(hex:0x828282)!
-        let opacity : CGFloat = 0.2
-        bgView.shadow(cornerRadius: 8, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 15)
-        contentView.clipsToBounds = false
-        clipsToBounds = false
+        imageView.cornerRadius = 8
+//        
+//        let shadowOffset = CGSize(width: 1, height: 1)
+//        let color = UIColor(hex:0x828282)!
+//        let opacity : CGFloat = 0.2
+//        bgView.shadow(cornerRadius: 8, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 15)
+//        contentView.clipsToBounds = false
+//        clipsToBounds = false
     }
     
     override func bind<T>(to viewModel: T) where T : SavedCollectionCellViewModel {

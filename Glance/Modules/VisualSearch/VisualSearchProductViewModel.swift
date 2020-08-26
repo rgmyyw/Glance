@@ -48,9 +48,12 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         input.add.bind(to: add).disposed(by: rx.disposeBag)
         let addAction = add.map { (box : self.currentBox.value,image : self.image.value)}
         
-        
         input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
             guard let self = self else {
+                return Observable.just(RxSwift.Event.completed)
+            }
+            guard self.textInput.value.isNotEmpty else {
+                self.exceptionError.onNext(.general("Please enter the search keyword"))
                 return Observable.just(RxSwift.Event.completed)
             }
             elements.accept([])
@@ -66,7 +69,6 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 self.element.accept(item)
-                
                 self.hasData.onNext(item.hasNext)
             default:
                 break

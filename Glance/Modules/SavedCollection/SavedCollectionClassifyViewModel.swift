@@ -13,6 +13,7 @@ import RxCocoa
 class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
     
     struct Input {
+        let refresh : Observable<Void>
     }
     
     struct Output {
@@ -27,13 +28,12 @@ class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
         let total = element.filterNil().map { "\($0.savedCount) Saved"}.asDriver(onErrorJustReturn: "")
         let imagesURL = element.filterNil().map {  $0.imageList.map { Observable.just($0.url) } }.asDriver(onErrorJustReturn: [])
         
-        
-        Observable.just(())
+        input.refresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<SavedCollection>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 return self.provider.savedCollectionClassify()
                     .trackError(self.error)
-                    .trackActivity(self.headerLoading)
+                    .trackActivity(self.loading)
                     .materialize()
             }).subscribe(onNext: {  event in
                 switch event {

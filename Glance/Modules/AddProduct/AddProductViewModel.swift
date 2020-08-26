@@ -74,7 +74,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
             guard let self = self else { return }
             switch event {
             case .next(let productId):
-                var home = Home(productId: productId)
+                let home = Home(productId: productId)
                 post.onNext((self.image.value,self.box.value,home))
             default:
                 break
@@ -105,12 +105,12 @@ class AddProductViewModel: ViewModel, ViewModelType {
 //            let inputKeyword = AddProductSection.tagRelatedKeywords(viewModel: viewModel)
 //            let tags = AddProductSection.tags(items: tagItems)
             let brand = AddProductSection.brand(viewModel: viewModel)
-            let website = AddProductSection.website(viewModel: viewModel)
+            // let website = AddProductSection.website(viewModel: viewModel)
             let thumbnail = AddProductSection.thumbnail(items: [image])
             let button = AddProductSection.button(viewModel: viewModel)
             
             //return [name, categary,inputKeyword,tags,brand,website,thumbnail,button]
-            return [name, categary,brand,website,thumbnail,button]
+            return [name, categary,brand,thumbnail,button]
 
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
@@ -184,10 +184,10 @@ class AddProductViewModel: ViewModel, ViewModelType {
                 return
             }
             
-            guard let website = viewModel?.website.value  else {
-                self?.exceptionError.onNext(.general("input website not correct"))
-                return
-            }
+//            guard let website = viewModel?.website.value  else {
+//                self?.exceptionError.onNext(.general("input website not correct"))
+//                return
+//            }
             
             guard case let .thumbnail(_, imageItem) = thumbnail.first , let image = imageItem.image.value  else {
                 self?.exceptionError.onNext(.general("not found image"))
@@ -199,9 +199,9 @@ class AddProductViewModel: ViewModel, ViewModelType {
             param["productName"] = productName
             param["categoryId"] = categoryId
             param["brand"] = brand
-            param["website"] = website
-            
+            //param["website"] = website
             //param["tags"] = tag
+            
             uploadImage.onNext((image, param))
             
         }).disposed(by: rx.disposeBag)

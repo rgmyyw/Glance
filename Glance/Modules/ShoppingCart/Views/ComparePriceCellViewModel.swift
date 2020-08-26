@@ -24,7 +24,7 @@ class ComparePriceCellViewModel: CellViewModelProtocol  {
     required init(item : ShoppingCart) {
         
         self.item = item
-        self.imageURL.accept(item.imUrl?.url)
+        self.imageURL.accept(item.image?.url)
         self.title.accept(item.productTitle)
         self.price.accept(item.price)
         self.brand.accept(item.brand)

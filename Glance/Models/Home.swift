@@ -16,6 +16,19 @@ enum HomeCellType : Int {
     case recommendPost = 2
     case recommendProduct = 3
     
+    var isProduct : Bool {
+        switch self {
+        case .post,.recommendPost:
+            return false
+        case .product,.recommendProduct:
+            return true
+        }
+    }
+    var isPost : Bool {
+        return !isProduct
+    }
+    
+    
     var title : String {
         switch self {
         case .post:
@@ -37,7 +50,7 @@ struct Home: Mappable, Equatable {
     var image: String?
     
     var title: String?
-    var type: HomeCellType = .product
+    var type: HomeCellType? = .product
     
     var postId: Int = 0
     var recommendId: Int = 0
@@ -46,28 +59,16 @@ struct Home: Mappable, Equatable {
     var productUrl: String?
     var reaction: Int = 0
     
-    var id : Any {
+    
+    var id : [String : Any] {
+        guard let type = type  else { return [:] }
         switch type {
         case .post,.recommendPost:
-            return postId
+            return ["postId" : postId]
         case .product,.recommendProduct:
-            return productId ?? ""
+            return ["productId" : productId ?? ""]
         }
     }
-    
-    
-    var isProduct : Bool {
-        switch type {
-        case .post,.recommendPost:
-            return false
-        case .product,.recommendProduct:
-            return true
-        }
-    }
-    var isPost : Bool {
-        return !isProduct
-    }
-    
     
     init(productId : String) {
         self.productId = productId
@@ -78,11 +79,11 @@ struct Home: Mappable, Equatable {
         self.postId = postId
         self.type = .post
     }
-
-
+    
+    
     init?(map: Map) {}
     init() {}
-
+    
     mutating func mapping(map: Map) {
         saved   <- map["saved"]
         user   <- map["user"]
@@ -97,8 +98,9 @@ struct Home: Mappable, Equatable {
     }
     
     static func == (lhs: Home, rhs: Home) -> Bool {
-        if lhs.type != rhs.type { return false }
-        switch lhs.type {
+        guard let ltype = lhs.type ,let rtype = rhs.type else { return  false }
+        if ltype != rtype { return false }
+        switch ltype {
         case .post,.recommendPost:
             return lhs.postId == rhs.postId
         case .product,.recommendProduct:

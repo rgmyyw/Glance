@@ -72,7 +72,7 @@ class VisualSearchResultViewController: CollectionViewController  {
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: VisualSearchResultCell.self)
-        
+        exceptionToastPosition = .center
     }
     
     override func navigationBack() {

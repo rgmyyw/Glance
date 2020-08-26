@@ -32,6 +32,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let bottomBarAddButtonHidden : Driver<Bool>
         let bottomBarBackgroundColor : Driver<UIColor?>
         let shoppingCart : Driver<Void>
+        let detail : Driver<Home>
     }
     
     
@@ -59,10 +60,11 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
+        let detail = input.selection.map { Home(productId: $0.viewModel.item.productId ?? "") }.asDriver(onErrorJustReturn: Home())
         
         
         /// 底部添加购物车按钮
-        let bottomBarHidden = item.map { !$0.isProduct }.asDriver(onErrorJustReturn: true)
+        let bottomBarHidden = item.map { !($0.type?.isProduct ?? false) }.asDriver(onErrorJustReturn: true)
         let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
         let bottomBarButtonTitle = bottomBarButtonState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
         let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }.asDriver(onErrorJustReturn: false)
@@ -81,8 +83,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         //
         element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
-        let navigationBarType = Observable.combineLatest(element.filterNil().map { $0.own },item.map { $0.type})
-            .map { (own, type) -> Int in
+        let navigationBarType = Observable.combineLatest(element.filterNil().map { $0.own },item.map { $0.type}.filterNil()).map { (own, type) -> Int in
                 switch type {
                 case .product,.recommendProduct:
                     return 0
@@ -92,14 +93,17 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         }.asDriver(onErrorJustReturn: -1)
         
         item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            return self.provider.detail(id: item.id, type: item.type.rawValue)
+            guard let self = self ,let type = item.type else { return Observable.just(RxSwift.Event.completed) }
+            let request = type.isProduct ? self.provider.productDetail(productId: item.productId ?? "") :
+                self.provider.postDetail(postId: item.postId)
+            return request
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .materialize()
-        }).subscribe(onNext: { event in
+        }).subscribe(onNext: { [weak self] event in
             switch event {
-            case .next(let item):
+            case .next(var item):
+                item.type = self?.item.value.type
                 element.accept(item)
             default:
                 break
@@ -114,7 +118,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                     .trackActivity(self.footerLoading)
             }
             self.page += 1
-            return self.provider.similarProduct(id: self.item.value.id, type: self.item.value.type.rawValue, page: self.page)
+            return self.provider.similarProduct(params: self.item.value.id, page: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -135,17 +139,11 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         saveCurrent.map { cellViewModel -> (AnyObject,[String : Any]) in
             let item = self.item.value
             var params = [String : Any]()
-            params["type"] = item.type.rawValue
+            params["type"] = item.type?.isProduct.int ?? -1
             params["updateSaved"] = !cellViewModel.saved.value
-            switch item.type {
-            case .post,.recommendPost:
-                params["postId"] = item.postId
-            case .product,.recommendProduct:
-                params["productId"] = item.productId
-            }
+            params.merge(dict: cellViewModel.item.id)
             return (cellViewModel,params)
         }.bind(to: save).disposed(by: rx.disposeBag)
-        
         
         saveOther.map { cellViewModel -> (AnyObject,[String : Any]) in
             var params = [String : Any]()
@@ -155,13 +153,12 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             return (cellViewModel,params)
         }.bind(to: save).disposed(by: rx.disposeBag)
         
-        Observable.combineLatest(element.filterNil(), item, similar).map { (element , item,similar) -> [PostsDetailSection] in
-            
+        Observable.combineLatest(element.filterNil(), item, similar).map { (element , item ,similar) -> [PostsDetailSection] in
+            guard let type = item.type else { return [] }
             let viewModel = PostsDetailSectionCellViewModel(item: element)
             viewModel.save.map { viewModel}.bind(to: saveCurrent).disposed(by: self.rx.disposeBag)
             viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
             viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
-            
             
             var sections : [PostsDetailSection]
             let banner = PostsDetailSection.banner(viewModel: viewModel)
@@ -170,7 +167,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             let tags = PostsDetailSection.tags(viewModel: viewModel)
             let tool = PostsDetailSection.tool(viewModel: viewModel)
             
-            switch item.type {
+            switch type {
             case .post,.recommendPost:
                 sections = [banner,title,tool]
             case .product,.recommendProduct:
@@ -191,9 +188,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             }
             let tagged = PostsDetailSection.tagged(viewModel: "Tagged Products", items: taggedItems)
             let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
-            
-            
-            switch item.type {
+            switch type {
             case .post,.recommendPost:
                 sections.append(tagged)
                 sections.append(similar)
@@ -225,13 +220,14 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        
-        
         like.map { ($0,element.value,self.item.value) }
             .flatMapLatest({ [weak self] (cellViewModel, element, item) -> Observable<(RxSwift.Event<(PostsDetailSectionCellViewModel,Bool)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                let state = !cellViewModel.liked.value
-                return self.provider.like(id: item.id, type: item.type.rawValue, state: state)
+                var params = [String : Any]()
+                params["type"] = cellViewModel.item.type?.isProduct.int ?? 0
+                params["updateLiked"] = !cellViewModel.liked.value
+                params.merge(dict: cellViewModel.item.id)
+                return self.provider.like(param: params)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .map { (cellViewModel, $0)}
@@ -278,6 +274,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       bottomBarTitle:bottomBarButtonTitle ,
                       bottomBarAddButtonHidden:bottomBarAddButtonHidden,
                       bottomBarBackgroundColor: bottomBarBackgroundColor,
-                      shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()))
+                      shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()),
+                      detail: detail)
     }
 }

@@ -21,9 +21,9 @@ class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightC
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let emojiButtonHidden = BehaviorRelay<Bool>(value: false)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
-    let isFavorite = BehaviorRelay<Bool>(value: false)
+    let saved = BehaviorRelay<Bool>(value: false)
 
-    let saveFavorite = PublishSubject<Void>()
+    let save = PublishSubject<Void>()
     let showLikePopView = PublishSubject<UIView>()
 
     var image: String? {

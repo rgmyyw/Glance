@@ -16,6 +16,10 @@ struct Box : Equatable {
     var x2 : Int = 0
     var y2 : Int = 0
     
+    var string : String {
+        return "\(x1),\(x2),\(y1),\(y2)"
+    }
+    
     
     /// PT 初始化
     /// - Parameter rect: PT rect
@@ -75,7 +79,7 @@ struct Box : Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        let offset : CGFloat = 25
+        let offset : CGFloat = 50
         //        switch lhs.x1 - rhs.x1 {
         //        case (-offset)...offset:
         //            break

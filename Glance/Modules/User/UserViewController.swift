@@ -150,7 +150,7 @@ class UserViewController: ViewController {
 
         output.signIn.subscribe(onNext: { () in
             guard let window = Application.shared.window else { return }
-            Application.shared.showTabbar(provider: viewModel.provider, window: window)
+            Application.shared.showSignIn(provider: viewModel.provider, window: window)
         }).disposed(by: rx.disposeBag)
 
     }
@@ -172,7 +172,7 @@ extension UserViewController {
         ]
         
         let config = PageParam()
-        config.wTitleArr = ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"]
+        config.wTitleArr = ["0\nPosts","0\nRecomm","0\nFollowers","0\nFollowing"]
         config.wControllers = vcs
         config.wTopSuspension = true
         config.wBounces = true

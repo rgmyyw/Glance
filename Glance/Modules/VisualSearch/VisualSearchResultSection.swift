@@ -11,19 +11,19 @@ import RxDataSources
 import Differentiator
 
 struct VisualSearchResultSection {
-    var section : Int
+    var section : String
     var elements : [VisualSearchResultSectionItem]
 }
 
 struct VisualSearchResultSectionItem {
-    var item : Int
+    var item : String
     var viewModel : VisualSearchResultCellViewModel
 }
 
 extension VisualSearchResultSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
-        return item.string
+        return item
     }
 }
 extension VisualSearchResultSectionItem: Equatable {
@@ -34,10 +34,11 @@ extension VisualSearchResultSectionItem: Equatable {
 
 extension VisualSearchResultSection: AnimatableSectionModelType, IdentifiableType {
     
+    typealias Identity = String
+    
     typealias Item = VisualSearchResultSectionItem
     
-    typealias Identity = String
-    var identity: Identity { return section.string }
+    var identity: Identity { return section }
     
     var items: [Item] {
         return elements

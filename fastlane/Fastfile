@@ -1,0 +1,81 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+
+# 自动更新 fastlane
+# update_fastlane
+
+fastlane_version "2.150.0"
+
+
+default_platform(:ios)
+
+platform :ios do
+
+  # 所有lane执行之前，可以做如执行cocoapods的pod install
+  before_all do
+	#cocoapods
+  end
+
+  desc "发布 指定版本 到 苹果商店"
+  lane :release_apple do
+    gym(scheme: ENV['SCHEME_NAME'],
+      silent: true,  
+      export_method:"app-store",
+      buildlog_path:"fastlanelog",
+      output_directory:"build",
+      clean: true  
+    )
+    deliver
+    review_time(platform: "iOS")
+  end
+
+  desc "导出发布版iPA"
+  lane :export_IPA do
+    gym(scheme: ENV['SCHEME_NAME'],
+      silent: true,  
+      export_method:"app-store",
+      buildlog_path:"fastlanelog",
+      output_directory:"build",
+      clean: true 
+    )
+  end
+
+  desc "导出开发环境iPA"
+  lane :export_Ad_Hoc_IPA do
+    gym(scheme: ENV['SCHEME_NAME'],
+      silent: true,  
+      export_method:"development",
+      buildlog_path:"fastlanelog",
+      output_directory:"build",
+      clean: true  
+    )
+  end
+
+  desc "获取开发证书和配置文件"
+  lane :getDevCert do
+    register_devices(devices_file: "./fastlane/multiple-device-upload-ios.txt")
+    sh "fastlane match nuke development -force"
+    match(
+      git_branch: "team1",
+      type: 'development'
+    )
+  end
+
+  
+
+
+
+
+
+end

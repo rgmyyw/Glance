@@ -13,6 +13,9 @@ import DZNEmptyDataSet
 import NVActivityIndicatorView
 import Localize_Swift
 import Hero
+import Toast_Swift
+
+
 
 class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable {
     
@@ -40,6 +43,13 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     public let endEditing = PublishSubject<Void>()
     private(set) public lazy var emptyDataView = EmptyDataView.loadFromNib()
     public let emptyDataViewDataSource : EmptyDataViewModel = EmptyDataViewModel()
+    
+    
+    public var messageToastPosition: ToastPosition = .bottom
+    public var exceptionToastPosition: ToastPosition = .bottom
+    
+    private(set) public lazy var errorToastStyle : ToastStyle =  ToastManager.shared.style
+    private(set) public lazy var messageToastStyle : ToastStyle =  ToastManager.shared.style
     
     private(set) public lazy var backButton : UIButton = {
         let button = UIButton()
@@ -226,11 +236,11 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         
         
         message.subscribe(onNext: {[weak self] message in
-            self?.view.makeToast(message.subTitle,position: .bottom, title: message.title,style: message.style )
+            self?.view.makeToast(message.subTitle,position: self?.messageToastPosition ?? .bottom, title: message.title,style: message.style )
         }).disposed(by: rx.disposeBag)
         
         exceptionError.filterNil().subscribe(onNext: { [weak self] error in
-            self?.view.makeToast(error.description)
+            self?.view.makeToast(error.description,position: self?.exceptionToastPosition ?? .bottom)
         }).disposed(by: rx.disposeBag)
         
         
@@ -242,7 +252,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
                 title = response.message ?? ""
                 description = response.detail()
             }
-            self?.view.makeToast(description, title: title, image: nil)
+            self?.view.makeToast(description, position: self?.exceptionToastPosition ?? .bottom, title: title)
         }).disposed(by: rx.disposeBag)
         
     }

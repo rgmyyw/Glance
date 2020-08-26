@@ -194,23 +194,28 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         
         element.map { $0?.boxes }.map { $0?.firstIndex { $0 == self.currentBox.value } }.filterNil().map { (boxIndex) -> [VisualSearchResultSection] in
-            elements.accept([])
+            
             guard let boxProducts = self.element.value?.boxProducts , boxIndex < boxProducts.count  else { return [] }
+            
             let element = boxProducts[boxIndex]
             let box = element.box
             var items = element.productList
             
-            /// 如果当前已选中的数组中 包含当前的box
+            /// 如果当前已选中的数组中 包含当前的box, 进行更新选中状态
             let exist = selected.value.map { $0.box }.contains(where:  { $0 == box})
             
+            /// 过滤已经选中的商品
             var x = selected.value
             x.removeAll(where: { $0.box == box})
             items.removeAll(where: { x.map { $0.item.productId }.contains($0.productId)})
             
             
+            let sectionId = box?.string ?? ""
+            
+            /// 生成cell
             let sectionItems = items.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
                 let viewModel = VisualSearchResultCellViewModel(item: item)
-                let item = VisualSearchResultSectionItem(item: offset, viewModel: viewModel)
+                let item = VisualSearchResultSectionItem(item: "\(sectionId)-\(offset)-\((item.productId ?? offset.string))", viewModel: viewModel)
                 return item
             }
             
@@ -224,7 +229,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 }
             }
             
-            return [VisualSearchResultSection(section: 0, elements: sectionItems)]
+            return [VisualSearchResultSection(section: sectionId, elements: sectionItems)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         searchSelection.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
@@ -237,24 +242,12 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 item.productList.insert(model, at: 0)
                 var element = self.element.value
                 element?.boxProducts[boxIndex] = item
+                elements.accept([])
                 self.element.accept(element)
             
         }).disposed(by: rx.disposeBag)
         
-        
-//        searchSelection.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
-//            .map { item -> VisualSearchResultSectionItem in
-//                let viewModel = VisualSearchResultCellViewModel(item: item)
-//                viewModel.selected.accept(false)
-//                return VisualSearchResultSectionItem(item: elements.value[0].items.count, viewModel: viewModel)
-//        }.map { item -> [VisualSearchResultSection] in
-//
-//            let section = elements.value[0]
-//            var items =  section.items
-//            items.insert(item, at: 0)
-//            return [VisualSearchResultSection(original: section, items: items)]
-//        }.bind(to: elements).disposed(by: rx.disposeBag)
-        
+  
         
         input.selection.subscribe(onNext: { [weak self] selection in
             guard let self = self else { return }

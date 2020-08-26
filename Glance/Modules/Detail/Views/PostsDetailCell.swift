@@ -35,17 +35,17 @@ class PostsDetailCell: CollectionViewCell {
         super.makeUI()
         
 
-        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-
-        imageView.clipsToBounds = true
-        clipsToBounds = false
-        bgView.clipsToBounds = false
-        shadowView.clipsToBounds = false
-        
-        let shadowOffset = CGSize(width: 0, height: 1)
-        let color = UIColor(hex:0x999999)!
-        let opacity : CGFloat = 0.14
-        shadowView.shadow(cornerRadius: 10, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 12)
+//        contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+//
+//        imageView.clipsToBounds = true
+//        clipsToBounds = false
+//        bgView.clipsToBounds = false
+//        shadowView.clipsToBounds = false
+//        
+//        let shadowOffset = CGSize(width: 0, height: 1)
+//        let color = UIColor(hex:0x999999)!
+//        let opacity : CGFloat = 0.14
+//        shadowView.shadow(cornerRadius: 10, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 12)
 
     }
 }

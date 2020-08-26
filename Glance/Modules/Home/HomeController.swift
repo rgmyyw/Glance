@@ -33,13 +33,15 @@ class HomeController: CollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: HomeCell.self)
         
+        
+
     }
     
     
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? HomeViewModel else { return }        
+        guard let viewModel = viewModel as? HomeViewModel else { return }
         
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
         let input = HomeViewModel.Input(headerRefresh: refresh,

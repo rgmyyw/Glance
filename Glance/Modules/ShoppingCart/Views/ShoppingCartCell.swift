@@ -38,7 +38,7 @@ class ShoppingCartCell: TableViewCell {
         
         viewModel.imageURL.bind(to: productImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.price.map { "$\($0 ?? "0")"}.bind(to: priceLabel.rx.text).disposed(by: cellDisposeBag)
+        viewModel.price.map { "\(viewModel.currency.value ?? "")\($0 ?? "0")"}.bind(to: priceLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.brand.bind(to: brandLabel.rx.text).disposed(by: cellDisposeBag)
         deleteButton.rx.tap.bind(to: viewModel.delete).disposed(by: cellDisposeBag)
         comparePriceButton.rx.tap.bind(to: viewModel.comparePrice).disposed(by: cellDisposeBag)

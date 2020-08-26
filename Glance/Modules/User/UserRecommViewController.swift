@@ -54,15 +54,9 @@ class UserRecommViewController: CollectionViewController  {
         }).disposed(by: rx.disposeBag)
         
         output.detail.drive(onNext: { [weak self](item) in
-//            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
-//            let controller = self?.topViewController
-//            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: controller)
-        }).disposed(by: rx.disposeBag)
-        
-        
-        
-        
-    
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController)
+        }).disposed(by: rx.disposeBag)    
         
     }
 }

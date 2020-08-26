@@ -46,9 +46,9 @@ class HomeCell: CollectionViewCell {
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userOnline.map { !$0}.bind(to: userOnlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.emojiButtonHidden.bind(to: emojiButton.rx.isHidden).disposed(by: cellDisposeBag)
-        viewModel.isFavorite.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.saved.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
-        favorite.rx.tap.bind(to: viewModel.saveFavorite).disposed(by: cellDisposeBag)
+        favorite.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
         likeButton.rx.tap.map { self.likeButton }.bind(to: viewModel.showLikePopView).disposed(by: cellDisposeBag)
     }
 
