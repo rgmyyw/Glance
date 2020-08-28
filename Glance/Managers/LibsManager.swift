@@ -26,7 +26,8 @@ import SwiftDate
 import KafkaRefresh
 import DropDown
 import Toast_Swift
-//import EZSwiftExtensions
+
+
 
 
 
@@ -52,6 +53,7 @@ class LibsManager: NSObject {
         libsManager.setupDropDown()
         libsManager.setupToast()
         libsManager.setupPgyer()
+
         OAuthManager.shared.readLocal(isForce: true)
     }
 
@@ -70,12 +72,27 @@ class LibsManager: NSObject {
     }
 
     func setupDropDown() {
+        
+        if #available(iOS 11.0, *) {
+            DropDown.appearance().setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
+        }
+        
+        
+        
+//        tableViewContainer.layer.masksToBounds = false
+//        tableViewContainer.layer.cornerRadius = cornerRadius
+//        tableViewContainer.layer.shadowColor = shadowColor.cgColor
+//        tableViewContainer.layer.shadowOffset = shadowOffset
+//        tableViewContainer.layer.shadowOpacity = shadowOpacity
+//        tableViewContainer.layer.shadowRadius = shadowRadius
+
         themeService.attrsStream.subscribe(onNext: { (theme) in
-            DropDown.appearance().backgroundColor = theme.primary
-            DropDown.appearance().selectionBackgroundColor = theme.primary
+            DropDown.appearance().backgroundColor = .white
+            DropDown.appearance().selectionBackgroundColor = UIColor.white
             DropDown.appearance().textColor = theme.text
             DropDown.appearance().selectedTextColor = theme.text
             DropDown.appearance().separatorColor = theme.separator
+            
         }).disposed(by: rx.disposeBag)
     }
 
@@ -159,6 +176,7 @@ class LibsManager: NSObject {
 //        PgyManager.shared()?.shakingThreshold = 2.5
 
     }
+    
 
 }
 

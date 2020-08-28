@@ -11,12 +11,28 @@ import ZLCollectionViewFlowLayout
 import RxSwift
 import RxCocoa
 import RxDataSources
+import DropDown
 
 class PostsDetailViewController: CollectionViewController {
     
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<PostsDetailSection> = configureDataSouce()
     private lazy var customNavigationBar : PostsDetailNavigationBar = PostsDetailNavigationBar.loadFromNib(height: 44,width: self.view.width)
     private lazy var bottomBar : PostsDetailBottomBar = PostsDetailBottomBar.loadFromNib(height: UIApplication.shared.statusBarFrame.height == 20 ? 62 : 42,width: self.view.width)
+
+    
+    lazy var sortDropDown: DropDownView = {
+        let view = DropDownView(anchorView: customNavigationBar.moreButton)
+        view.dd_shadowColor = UIColor(hex:0x696969)!
+        view.dd_shadowOpacity = 1
+        view.dd_cornerRadius = 5
+        view.dd_shadowOffset = CGSize(width: 0, height: 2)
+        view.textFont = UIFont.titleFont(12)
+        view.cellHeight = 32
+        view.animationduration = 0.25
+        view.bottomOffset = CGPoint(x: 0, y: customNavigationBar.moreButton.height + 8)
+        view.width = 100
+        return view
+    }()
 
     
     override func makeUI() {
@@ -58,7 +74,8 @@ class PostsDetailViewController: CollectionViewController {
         let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
         let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh,
                                                selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(),
-                                               bottomButtonTrigger: bottomBar.backgroundView.rx.tap())
+                                               bottomButtonTrigger: bottomBar.backgroundView.rx.tap(),
+                                               memu: customNavigationBar.moreButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         output.userName.drive(customNavigationBar.ownNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.userName.drive(customNavigationBar.otherNameLabel.rx.text).disposed(by: rx.disposeBag)
@@ -100,7 +117,12 @@ class PostsDetailViewController: CollectionViewController {
                 self?.navigator.pop(sender: self)
             }).disposed(by: rx.disposeBag)
         
-        
+        output.popMemu.drive(onNext: { [weak self](items) in
+            guard let self = self else { return }
+            self.sortDropDown.dataSource = items.map { $0.title}
+            self.sortDropDown.show()
+            
+        }).disposed(by: rx.disposeBag)
         
     }
 }

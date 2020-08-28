@@ -11,6 +11,26 @@ import RxCocoa
 import RxSwift
 
 
+struct PostsDetailMemuItem {
+    var type : PostsDetailMemuType
+    var title : String {
+        return type.title
+    }
+}
+
+enum PostsDetailMemuType {
+    case edit
+    case delete
+    
+    var title : String {
+        switch self {
+        case .delete:
+            return "Delete"
+        case .edit:
+            return "Edit"
+        }
+    }
+}
 
 class PostsDetailViewModel: ViewModel, ViewModelType {
     
@@ -18,6 +38,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let footerRefresh: Observable<Void>
         let selection : Observable<PostsDetailSectionItem>
         let bottomButtonTrigger : Observable<Void>
+        let memu : Observable<Void>
     }
     
     struct Output {
@@ -33,15 +54,14 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let bottomBarBackgroundColor : Driver<UIColor?>
         let shoppingCart : Driver<Void>
         let detail : Driver<Home>
+        let popMemu : Driver<[PostsDetailMemuItem]>
     }
     
     
     let item : BehaviorRelay<Home>
+    let memuSelection = PublishSubject<PostsDetailMemuItem>()
     
     init(provider: API,item : Home) {
-        
-        //        var item = item
-        //item.postId = 77
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
         self.page = 0
@@ -61,6 +81,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
         let detail = input.selection.map { Home(productId: $0.viewModel.item.productId ?? "") }.asDriver(onErrorJustReturn: Home())
+        let popMemu = input.memu.map { [PostsDetailMemuItem(type: .delete),PostsDetailMemuItem(type: .edit)] }.asDriver(onErrorJustReturn: [])
         
         
         /// 底部添加购物车按钮
@@ -275,6 +296,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       bottomBarAddButtonHidden:bottomBarAddButtonHidden,
                       bottomBarBackgroundColor: bottomBarBackgroundColor,
                       shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()),
-                      detail: detail)
+                      detail: detail, popMemu: popMemu)
     }
 }
+

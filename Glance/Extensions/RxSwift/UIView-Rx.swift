@@ -10,6 +10,7 @@ import UIKit
 import RxCocoa
 import RxSwift
 import WZLBadge
+import PopMenu
 
 
 extension Reactive where Base: UITextField {
@@ -99,3 +100,20 @@ extension Reactive where Base: VisualSearchCropView {
 
     
 }
+
+//
+//extension AlertController {
+//
+//    public func addActions(_ actions: [AlertAction]) {
+//        actions.forEach {
+//            addAction($0)
+//        }
+//    }
+//
+//    func asObservable() -> Observable<Int> {
+//        return Observable.merge(actions.map { $0.asObservable() })
+//    }
+//}
+
+
+

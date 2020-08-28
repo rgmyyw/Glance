@@ -59,6 +59,9 @@
 		5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */; };
 		5D1D5AFD24BFFD69008C0C82 /* PostsDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */; };
 		5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
+		5D20EC7F24F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
+		5D20EC8024F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
+		5D20EC8124F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
 		5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
 		5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
 		5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
@@ -1091,6 +1094,7 @@
 		5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailSection.swift; sourceTree = "<group>"; };
 		5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCellViewModel.swift; sourceTree = "<group>"; };
 		5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetail.swift; sourceTree = "<group>"; };
+		5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopMenu.swift; sourceTree = "<group>"; };
 		5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-R-Info.plist"; sourceTree = "<group>"; };
 		5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductReusableView.swift; sourceTree = "<group>"; };
 		5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchProductReusableView.xib; sourceTree = "<group>"; };
@@ -1949,6 +1953,7 @@
 				5D8D1C8224EB66C1009A7B53 /* Box.swift */,
 				5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */,
 				5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */,
+				5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3018,6 +3023,7 @@
 				5DCC2D6324F34F04000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
 				5DCC2D6424F34F04000AC40A /* UserRecommViewController.swift in Sources */,
 				5DCC2D6524F34F04000AC40A /* UserRelationViewController.swift in Sources */,
+				5D20EC8024F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7624F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5DCC2D6624F34F04000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2D6724F34F04000AC40A /* ShoppingCartCell.swift in Sources */,
@@ -3275,6 +3281,7 @@
 				5DCC2EBB24F34F2A000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
 				5DCC2EBC24F34F2A000AC40A /* UserRecommViewController.swift in Sources */,
 				5DCC2EBD24F34F2A000AC40A /* UserRelationViewController.swift in Sources */,
+				5D20EC8124F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7724F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5DCC2EBE24F34F2A000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2EBF24F34F2A000AC40A /* ShoppingCartCell.swift in Sources */,
@@ -3532,6 +3539,7 @@
 				5DAB29C524C836DA003C3E00 /* PostsDetailPriceReusableView.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserRecommViewController.swift in Sources */,
 				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
+				5D20EC7F24F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7524F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
 				5D7B429524EA7964005AF1F6 /* BoxTransform.swift in Sources */,
 				5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */,

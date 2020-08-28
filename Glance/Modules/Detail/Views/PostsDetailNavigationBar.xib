@@ -199,7 +199,7 @@
                 <outletCollection property="items" destination="5yi-GF-NZw" collectionClass="NSMutableArray" id="Ld6-rW-E6T"/>
                 <outletCollection property="items" destination="2sc-Mv-gL2" collectionClass="NSMutableArray" id="cOt-T2-NEa"/>
             </connections>
-            <point key="canvasLocation" x="1528" y="25"/>
+            <point key="canvasLocation" x="1180" y="-19"/>
         </view>
     </objects>
     <resources>
