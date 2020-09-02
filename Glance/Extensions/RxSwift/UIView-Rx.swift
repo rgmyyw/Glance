@@ -101,6 +101,22 @@ extension Reactive where Base: VisualSearchCropView {
     
 }
 
+
+extension DropDownView {
+    
+    
+    func selection() -> Observable<Int>{
+        let subject = PublishSubject<Int>()
+        selectionAction = { index, item in
+            subject.onNext(index)
+        }
+        return subject.asObservable()
+    }
+    
+    
+}
+
+
 //
 //extension AlertController {
 //

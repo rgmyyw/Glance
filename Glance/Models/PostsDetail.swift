@@ -19,7 +19,7 @@ struct PostsDetail: Mappable {
     var saved: Bool = false
 
     var shared: Bool = false
-    var taggedProducts = [PostsDetailProduct]()
+    var taggedProducts = [Home]()
     var postId: Int = 0
     var userImage: String?
     var title: String?
@@ -75,24 +75,5 @@ struct PostsDetail: Mappable {
         inShoppingList <- map["inShoppingList"]
         currency <- map["currency"]
         
-    }
-}
-
-struct PostsDetailProduct: Mappable {
-    
-    var productId: String?
-    var saved: Bool = false
-    var productUrl: String?
-    var title: String?
-    var image: String?
-
-    init?(map: Map) {}
-
-    mutating func mapping(map: Map) {
-        productId   <- map["productId"]
-        saved   <- map["saved"]
-        productUrl   <- map["productUrl"]
-        title   <- map["title"]
-        image   <- map["image"]
     }
 }

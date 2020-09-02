@@ -30,7 +30,8 @@ class HomeCell: CollectionViewCell {
     override func makeUI() {
         super.makeUI()
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-
+//UIImageView().zl_enlargeValidTouchArea(withInset: 10)
+        
     }
     
     override func bind<T>(to viewModel: T) where T : HomeCellViewModel {
@@ -48,8 +49,13 @@ class HomeCell: CollectionViewCell {
         viewModel.emojiButtonHidden.bind(to: emojiButton.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
+        viewModel.recommended.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.reactionImage.bind(to: emojiButton.rx.image(for: .normal)).disposed(by: cellDisposeBag)
+        
         favorite.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
-        likeButton.rx.tap.map { self.likeButton }.bind(to: viewModel.showLikePopView).disposed(by: cellDisposeBag)
+        likeButton.rx.tap.map { self.likeButton }.bind(to: viewModel.reaction).disposed(by: cellDisposeBag)
+        recommendButton.rx.tap.bind(to: viewModel.recommend).disposed(by: cellDisposeBag)
+        userHeadImageButton.rx.tap.bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
     }
 
 }

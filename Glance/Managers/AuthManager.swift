@@ -27,6 +27,7 @@ class AuthManager {
 
     init() {
         loggedIn.accept(hasValidToken)
+        user.accept(User.currentUser())
     }
 
     var token: Token? {

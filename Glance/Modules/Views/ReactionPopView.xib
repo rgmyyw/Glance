@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB" customClass="ReactionPopView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="150" height="47"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HwM-v6-5dl">
+                    <rect key="frame" x="0.0" y="0.0" width="150" height="47"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cHm-Fd-Rl8">
+                            <rect key="frame" x="12" y="10.5" width="125" height="26"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g7U-rU-VAh">
+                                    <rect key="frame" x="0.0" y="0.0" width="27.5" height="26"/>
+                                    <state key="normal" image="icon_reaction_haha"/>
+                                </button>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UVe-cg-sH6">
+                                    <rect key="frame" x="32.5" y="0.0" width="27.5" height="26"/>
+                                    <state key="normal" image="icon_reaction_heart"/>
+                                </button>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="evS-zz-5Ya">
+                                    <rect key="frame" x="65" y="0.0" width="27.5" height="26"/>
+                                    <state key="normal" image="icon_reaction_wow"/>
+                                </button>
+                                <button opaque="NO" contentMode="center" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lEe-8h-iPt">
+                                    <rect key="frame" x="97.5" y="0.0" width="27.5" height="26"/>
+                                    <state key="normal" image="icon_reaction_sad"/>
+                                </button>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="26" id="MZm-em-fUV"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="cHm-Fd-Rl8" secondAttribute="trailing" constant="12" id="98E-UJ-3ff"/>
+                        <constraint firstItem="cHm-Fd-Rl8" firstAttribute="leading" secondItem="HwM-v6-5dl" secondAttribute="leading" constant="12" id="LNm-Vy-EnM"/>
+                        <constraint firstItem="cHm-Fd-Rl8" firstAttribute="centerY" secondItem="HwM-v6-5dl" secondAttribute="centerY" id="gS9-eu-wfU"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="17.5"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="HwM-v6-5dl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="0tf-dO-XLA"/>
+                <constraint firstItem="HwM-v6-5dl" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="5pv-fS-x2t"/>
+                <constraint firstAttribute="bottom" secondItem="HwM-v6-5dl" secondAttribute="bottom" id="Yy1-P5-05Y"/>
+                <constraint firstAttribute="trailing" secondItem="HwM-v6-5dl" secondAttribute="trailing" id="tGG-rH-qSv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="contentView" destination="HwM-v6-5dl" id="C0Y-Og-hgP"/>
+                <outlet property="stackVaiew" destination="cHm-Fd-Rl8" id="qgL-1K-tLN"/>
+                <outletCollection property="items" destination="g7U-rU-VAh" collectionClass="NSMutableArray" id="VoO-gl-XzG"/>
+                <outletCollection property="items" destination="UVe-cg-sH6" collectionClass="NSMutableArray" id="6Zz-zJ-hwx"/>
+                <outletCollection property="items" destination="evS-zz-5Ya" collectionClass="NSMutableArray" id="e9J-do-Hgz"/>
+                <outletCollection property="items" destination="lEe-8h-iPt" collectionClass="NSMutableArray" id="lWD-TM-UsJ"/>
+            </connections>
+            <point key="canvasLocation" x="-471" y="-39"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_reaction_haha" width="26" height="26"/>
+        <image name="icon_reaction_heart" width="26" height="26"/>
+        <image name="icon_reaction_sad" width="27.5" height="27.5"/>
+        <image name="icon_reaction_wow" width="26" height="26"/>
+    </resources>
+</document>

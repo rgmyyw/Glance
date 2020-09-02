@@ -221,6 +221,7 @@ extension String {
 extension NSNotification.Name {
  
     public static let kUpdateHomeData : NSNotification.Name = NSNotification.Name("kUpdateHomeData")
+    public static let kRemovePostItem : NSNotification.Name = NSNotification.Name("kRemovePostItem")
     
 }
 

@@ -48,7 +48,7 @@ abstract_target 'Glance' do
   pod 'AcknowList', '~> 1.8'
   pod 'KafkaRefresh', '~> 1.0'
   pod 'Highlightr', '~> 2.0'
-  pod 'DropDown', :git => 'https://github.com/rgmyyw/DropDown.git' ,  :branch => 'master'
+  pod 'DropDown', :git => 'https://github.com/rgmyyw/DropDown.git', :tag => '2.3.18'
   pod 'Toast-Swift', '~> 5.0'
   pod 'HMSegmentedControl', '~> 1.0'
   pod 'FloatingPanel', '~> 1.0'

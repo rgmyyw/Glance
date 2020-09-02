@@ -55,7 +55,7 @@ platform :ios do
   lane :export_Ad_Hoc_IPA do
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
-      export_method:"development",
+      export_method:"ad-hoc",
       buildlog_path:"fastlanelog",
       output_directory:"build",
       clean: true  

@@ -78,19 +78,19 @@ class NotificationViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-//        element.map { items -> [NotificationCellViewModel] in
-//            return items.list.map { item -> NotificationCellViewModel  in
-//                let viewModel = NotificationCellViewModel(item: item)
-//                return viewModel
-//            }
-//        }.bind(to: elements).disposed(by: rx.disposeBag)
+        element.map { items -> [NotificationCellViewModel] in
+            return items.list.map { item -> NotificationCellViewModel  in
+                let viewModel = NotificationCellViewModel(item: item)
+                return viewModel
+            }
+        }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        let items = (0...20).map { (_) -> NotificationCellViewModel  in
-            let viewModel = NotificationCellViewModel(item: Notification())
-            return viewModel
-        }
-        
-        elements.accept(items)
+//        let items = (0...20).map { (_) -> NotificationCellViewModel  in
+//            let viewModel = NotificationCellViewModel(item: Notification())
+//            return viewModel
+//        }
+//
+//        elements.accept(items)
 
         
 //        input.selection.subscribe(onNext: { item in

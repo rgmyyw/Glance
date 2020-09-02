@@ -38,9 +38,10 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owU-Q7-vzR">
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="owU-Q7-vzR">
                                                 <rect key="frame" x="6" y="168" width="22" height="22"/>
-                                                <state key="normal" image="icon_cell_emoji"/>
+                                                <state key="normal" image="icon_button_recommend_black_normal"/>
+                                                <state key="selected" image="icon_button_recommend_selected"/>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gRM-00-gU2">
                                                 <rect key="frame" x="160.5" y="0.0" width="35.5" height="35.5"/>
@@ -153,7 +154,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icon_cell_emoji" width="22" height="22"/>
+        <image name="icon_button_recommend_black_normal" width="22" height="22"/>
+        <image name="icon_button_recommend_selected" width="23" height="22.5"/>
         <image name="icon_cell_more" width="16" height="3"/>
         <image name="icon_cell_triangle_gary" width="36" height="37"/>
         <image name="icon_cell_triangle_red" width="35.5" height="35.5"/>

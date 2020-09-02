@@ -22,6 +22,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         let heart : Driver<String>
         let haha : Driver<String>
         let wow : Driver<String>
+        let sad : Driver<String>
         
     }
     
@@ -41,7 +42,8 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         let heart = PublishSubject<String>()
         let haha = PublishSubject<String>()
         let wow = PublishSubject<String>()
-        
+        let sad = PublishSubject<String>()
+
         
         item.map { $0.recommendId }.filterNil()
             .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<Reaction>>)> in
@@ -83,6 +85,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                     haha.onNext(item.haha.string)
                     heart.onNext(item.heart.string)
                     wow.onNext(item.wow.string)
+                    sad.onNext(item.sad.string)
                 default:
                     break
                 }
@@ -141,6 +144,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       heart: heart.asDriver(onErrorJustReturn: ""),
                       haha: haha.asDriver(onErrorJustReturn: ""),
-                      wow: wow.asDriver(onErrorJustReturn: ""))
+                      wow: wow.asDriver(onErrorJustReturn: ""),
+                      sad: sad.asDriver(onErrorJustReturn: ""))
     }
 }

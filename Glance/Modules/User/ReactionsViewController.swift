@@ -17,6 +17,7 @@ class ReactionsViewController: TableViewController {
     @IBOutlet weak var hahaLabel: UILabel!
     @IBOutlet weak var heartLabel: UILabel!
     @IBOutlet weak var wowLabel: UILabel!
+    @IBOutlet weak var sadLabel: UILabel!
     
     override func makeUI() {
         super.makeUI()
@@ -53,28 +54,9 @@ class ReactionsViewController: TableViewController {
         output.haha.drive(hahaLabel.rx.text).disposed(by: rx.disposeBag)
         output.wow.drive(wowLabel.rx.text).disposed(by: rx.disposeBag)
         output.heart.drive(heartLabel.rx.text).disposed(by: rx.disposeBag)
-        
+        output.sad.drive(sadLabel.rx.text).disposed(by: rx.disposeBag)
         
     }
     
 }
 
-//func applyCurvedShadow(view: UIView) {
-//    let size = view.bounds.size
-//    let width = size.width
-//    let height = size.height
-//    let path = UIBezierPath()
-//    path.move(to: CGPoint(x: width, y: 0))
-//    path.addLine(to: CGPoint(x: width + 3, y: 0))
-//    path.addLine(to: CGPoint(x: width + 3, y: height))
-//    path.addLine(to: CGPoint(x:0, y: height))
-//    path.close()
-//    let layer = view.layer
-//    layer.shadowPath = path.cgPath
-//    layer.shadowColor = UIColor.black.cgColor
-//    layer.shadowOpacity = 0.3
-//    layer.shadowRadius = 3
-//    layer.shadowOffset = CGSize(width: 3, height: 0)
-//}
-//
-//

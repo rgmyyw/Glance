@@ -20,17 +20,19 @@ class PostsDetailViewController: CollectionViewController {
     private lazy var bottomBar : PostsDetailBottomBar = PostsDetailBottomBar.loadFromNib(height: UIApplication.shared.statusBarFrame.height == 20 ? 62 : 42,width: self.view.width)
 
     
-    lazy var sortDropDown: DropDownView = {
+    lazy var memu: DropDownView = {
         let view = DropDownView(anchorView: customNavigationBar.moreButton)
         view.dd_shadowColor = UIColor(hex:0x696969)!
-        view.dd_shadowOpacity = 1
+        view.dd_shadowOpacity = 0.5
         view.dd_cornerRadius = 5
         view.dd_shadowOffset = CGSize(width: 0, height: 2)
         view.textFont = UIFont.titleFont(12)
         view.cellHeight = 32
         view.animationduration = 0.25
-        view.bottomOffset = CGPoint(x: 0, y: customNavigationBar.moreButton.height + 8)
-        view.width = 100
+        let dd_width : CGFloat = 100
+        view.dd_width = dd_width
+        view.bottomOffset = CGPoint(x: -(dd_width - 15), y: customNavigationBar.moreButton.height + 5)
+
         return view
     }()
 
@@ -70,12 +72,14 @@ class PostsDetailViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? PostsDetailViewModel else { return }
         dataSouce.configureSupplementaryView = configureSupplementaryView()
+
         
         let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
         let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh,
                                                selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(),
                                                bottomButtonTrigger: bottomBar.backgroundView.rx.tap(),
-                                               memu: customNavigationBar.moreButton.rx.tap.asObservable())
+                                               memu: customNavigationBar.moreButton.rx.tap.asObservable(),
+                                               memuSelection: memu.selection())
         let output = viewModel.transform(input: input)
         output.userName.drive(customNavigationBar.ownNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.userName.drive(customNavigationBar.otherNameLabel.rx.text).disposed(by: rx.disposeBag)
@@ -112,6 +116,19 @@ class PostsDetailViewController: CollectionViewController {
                 self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
+        output.delete
+            .drive(onNext: { () in
+                Alert.showAlert(with: "Delete your post?",
+                                 message: "Your post will be deleted.",
+                                 optionTitles: "DELETE",
+                                 cancel: "CANCEL")
+                    .subscribe(onNext: { index in
+                        if index == 0 {
+                            viewModel.deletePost.onNext(())
+                        }
+                    }).disposed(by: self.rx.disposeBag)
+        }).disposed(by: rx.disposeBag)
+        
         customNavigationBar.backButton.rx
             .tap.subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
@@ -119,10 +136,16 @@ class PostsDetailViewController: CollectionViewController {
         
         output.popMemu.drive(onNext: { [weak self](items) in
             guard let self = self else { return }
-            self.sortDropDown.dataSource = items.map { $0.title}
-            self.sortDropDown.show()
-            
+            self.memu.dataSource = items.map { "  \($0.title)"}
+            self.memu.show()
         }).disposed(by: rx.disposeBag)
+        
+        
+        output.back.delay(RxTimeInterval.milliseconds(1000))
+            .drive(onNext: { [weak self](_) in
+            self?.navigator.pop(sender: self)
+        }).disposed(by: rx.disposeBag)
+        
         
     }
 }

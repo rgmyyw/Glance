@@ -62,6 +62,7 @@ class PostProductViewController: CollectionViewController {
 
         navigationBar.rightBarButtonItem = postButton
         emptyDataViewDataSource.enable.accept(false)
+        
     }
 
     

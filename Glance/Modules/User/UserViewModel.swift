@@ -10,18 +10,60 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+enum UserNavigationAction : Int {
+    case back = 0
+    case share = 1
+    case more = 2
+    case insight = 3
+    case setting = 4
+    
+}
+
+
+
+struct UserDetailMemuItem {
+    var type : UserDetailMemuType
+    var title : String {
+        return type.title
+    }
+}
+
+enum UserDetailMemuType {
+    case report
+    case block
+    
+    var title : String {
+        switch self {
+        case .report:
+            return "Report user"
+        case .block:
+            return "Block user"
+        }
+    }
+    var image : UIImage? {
+        switch self {
+        case .report:
+            return R.image.icon_button_report()
+        case .block:
+            return R.image.icon_button_report()
+        }
+    }
+}
+
 
 
 class UserViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let headerRefresh: Observable<Void>
+        let refresh: Observable<Void>
         let insight : Observable<Void>
         let setting : Observable<Void>
+        let follow : Observable<Void>
+        let chat : Observable<Void>
+        let memu : Observable<Void>
     }
     
     struct Output {
-        
         let userHeadImageURL : Driver<URL?>
         let displayName : Driver<String>
         let countryName : Driver<String>
@@ -42,7 +84,24 @@ class UserViewModel: ViewModel, ViewModelType {
         let postsYourLiked : Observable<Void>
         let syncInstagram : Observable<Void>
         let privacy : Observable<Void>
+        let navigationBarAvailable :  Observable<(left: [UserNavigationAction], right: [UserNavigationAction])>
+        let otherUserBgViewHidden : Driver<Bool>
+        let followButtonBackground : Driver<UIColor>
+        let followButtonImage : Driver<UIImage?>
+        let followButtonTitleColor : Driver<UIColor>
+        let memu : Driver<[UserDetailMemuItem]>
+    }
+    
+    let current : BehaviorRelay<User?>
+    
+    init(provider: API, otherUser : User? = nil) {
+        if let otherUser = otherUser , otherUser.userId != user.value?.userId{
+            current = BehaviorRelay(value: otherUser)
+        } else{
+            current = user
+        }
 
+        super.init(provider: provider)
     }
     
     let settingSelectedItem = PublishSubject<SettingItem>()    
@@ -51,8 +110,10 @@ class UserViewModel: ViewModel, ViewModelType {
         
         let insight = input.insight.asDriver(onErrorJustReturn: ())
         let setting = input.setting.asDriver(onErrorJustReturn: ())
-        let updateHeadLayout = PublishSubject<Void>()
+        let updateHeadLayout = current.mapToVoid().asDriver(onErrorJustReturn: ())
+        let refresh = PublishSubject<Void>()
         let signIn = PublishSubject<Void>()
+        let popMemu = input.memu.map { [UserDetailMemuItem(type: .report),UserDetailMemuItem(type: .block)] }.asDriver(onErrorJustReturn: [])
 
         let about = settingSelectedItem.filter { $0 == .about }.mapToVoid()
         let help = settingSelectedItem.filter { $0 == .help }.mapToVoid()
@@ -64,60 +125,115 @@ class UserViewModel: ViewModel, ViewModelType {
         let postsYourLiked = settingSelectedItem.filter { $0 == .postsYourLiked }.mapToVoid()
         let syncInstagram = settingSelectedItem.filter { $0 == .syncInstagram }.mapToVoid()
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
+        let navigationBarAvailable = current.map { $0?.userId == user.value?.userId }
+            .map { current -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
+                if current {
+                    return ([.insight], [.setting,.share])
+                } else {
+                    return ([.back], [.more,.share])
+                }
+        }
         
-     
+        
         logout.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.logout()
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .materialize()
-            }).subscribe(onNext: { [weak self]  event in
-                switch event {
-                case .next(let result):
-                    if result {
-                        AuthManager.removeToken()
-                        User.removeCurrentUser()
-                        signIn.onNext(())
-                    } else {
-                        self?.exceptionError.onNext(.general("logout request return false"))
-                    }
-                default:
-                    break
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.logout()
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .materialize()
+        }).subscribe(onNext: { [weak self]  event in
+            switch event {
+            case .next(let result):
+                if result {
+                    AuthManager.removeToken()
+                    User.removeCurrentUser()
+                    signIn.onNext(())
+                } else {
+                    self?.exceptionError.onNext(.general("logout request return false"))
                 }
-            }).disposed(by: rx.disposeBag)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
-        input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                return self.provider.userDetail(userId: "")
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .materialize()
-            }).subscribe(onNext: {  event in
-                switch event {
-                case .next(let item):
-                    user.accept(item)
-                    updateHeadLayout.onNext(())
-                default:
-                    break
+        
+        input.refresh.merge(with: refresh).flatMapLatest({ [weak self] (user) -> Observable<(RxSwift.Event<User>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.userDetail(userId: self.current.value?.userId ?? "")
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .materialize()
+        }).subscribe(onNext: { [weak self] event in
+            switch event {
+            case .next(let item):
+                self?.current.accept(item)
+                if user.value == nil {
+                    item.save()
                 }
-            }).disposed(by: rx.disposeBag)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
-        let userHeadImageURL = user.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
-        let displayName = user.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
-        let countryName = user.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
-        let instagram = user.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
-        let website = user.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
-        let bio = user.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
+    
+        input.follow.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<Bool>> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            let isFollow = self.current.value?.isFollow ?? false
+            let userId = self.current.value?.userId ?? ""
+            let request = isFollow ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId)
+            return request
+                .trackActivity(self.loading)
+                .trackError(self.error)
+                .materialize()
+        }).subscribe(onNext: { [weak self](event) in
+            switch event {
+            case .next(let result):
+                var current = self?.current.value
+                current?.isFollow = result
+                self?.current.accept(current)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+
         
-        let titles = user.filterNil().map { user -> [String] in
-            return ["\(user.postCount)\nPost",
+        let otherUserBgViewHidden = current.map { $0 == user.value }.asDriver(onErrorJustReturn: true)
+        let userHeadImageURL = current.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
+        let displayName = current.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
+        let countryName = current.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
+        let instagram = current.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
+        let website = current.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
+        let bio = current.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
+        let followButtonBackground = current.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
+        let followButtonImage = current.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
+        let followButtonTitleColor = current.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
+        
+
+
+        
+        
+        input.chat.map { () in Message("Features under development...")}
+            .bind(to: message).disposed(by: rx.disposeBag)
+
+        
+        
+        
+        let titles = current.filterNil().map { user -> [String] in
+            return ["\(user.postCount)\nPosts",
                 "\(user.recommendCount)\nRecomm",
                 "\(user.followerCount)\nFollowers",
                 "\(user.followingCount)\nFollowing"]
-        }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
-
+        }.asDriver(onErrorJustReturn: ["0\nPosts","0\nRecomm","0\nFollowers","0\nFollowing"])
+        
+        
+        kUpdateItem.subscribe(onNext: { (state, item,trigger) in
+            switch state {
+            case .delete:
+                refresh.onNext(())
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
 
         
         return Output(userHeadImageURL: userHeadImageURL,
@@ -139,7 +255,13 @@ class UserViewModel: ViewModel, ViewModelType {
                       originalPhotos:originalPhotos,
                       postsYourLiked: postsYourLiked,
                       syncInstagram: syncInstagram ,
-                      privacy: privacy)
+                      privacy: privacy,
+                      navigationBarAvailable: navigationBarAvailable,
+                      otherUserBgViewHidden: otherUserBgViewHidden,
+                      followButtonBackground: followButtonBackground.asDriver(onErrorJustReturn: .white),
+                      followButtonImage: followButtonImage.asDriver(onErrorJustReturn: nil),
+                      followButtonTitleColor: followButtonTitleColor.asDriver(onErrorJustReturn: .white),
+                      memu: popMemu )
     }
 }
 

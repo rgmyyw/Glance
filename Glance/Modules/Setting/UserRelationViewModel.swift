@@ -23,11 +23,16 @@ class UserRelationViewModel: ViewModel, ViewModelType {
     }
     
     private let type : BehaviorRelay<UserRelationType>
+    let current : BehaviorRelay<User?>
     
-    init(provider: API, type : UserRelationType) {
+    init(provider: API, type : UserRelationType,otherUser : User? = nil) {
         self.type = BehaviorRelay(value: type)
+        self.current = BehaviorRelay(value: otherUser)
         super.init(provider: provider)
+        
     }
+    
+    
     
     let tableViewHeadHidden = BehaviorRelay(value: true)
     let element : BehaviorRelay<PageMapable<UserRelation>> = BehaviorRelay(value: PageMapable<UserRelation>())
@@ -45,7 +50,7 @@ class UserRelationViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.userRelation(type: self.type.value, userId: "", pageNum: self.page)
+                return self.provider.userRelation(type: self.type.value, userId: self.current.value?.userId ?? "", pageNum: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -67,7 +72,7 @@ class UserRelationViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.userRelation(type: self.type.value, userId: "", pageNum: self.page)
+            return self.provider.userRelation(type: self.type.value, userId: self.current.value?.userId ?? "", pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()

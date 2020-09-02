@@ -11,23 +11,11 @@ import ObjectMapper
 
 
 enum HomeCellType : Int {
+    
     case post = 0
     case product = 1
     case recommendPost = 2
     case recommendProduct = 3
-    
-    var isProduct : Bool {
-        switch self {
-        case .post,.recommendPost:
-            return false
-        case .product,.recommendProduct:
-            return true
-        }
-    }
-    var isPost : Bool {
-        return !isProduct
-    }
-    
     
     var title : String {
         switch self {
@@ -41,33 +29,99 @@ enum HomeCellType : Int {
             return "recommended"
         }
     }
+
+    
 }
+
+/// 判断是否为post 还是 商品
+extension HomeCellType {
+    
+    var isPost : Bool { return !isProduct }
+    
+    var isProduct : Bool {
+        switch self {
+        case .post,.recommendPost:
+            return false
+        default:
+            return true
+        }
+    }
+}
+
+
+/// 首页
+extension HomeCellType {
+    
+    /// 详情页, 首页显示用户是否显示头像
+    var userEnable : Bool {
+        switch self {
+        case .post,.recommendPost:
+            return true
+        default:
+            return false
+        }
+    }
+    
+    /// emoji 表情是否显示
+    var emojiEnable : Bool {
+        switch self {
+        case .post,.product:
+            return false
+        default:
+            return true
+        }
+    }
+    
+    /// emoji 表情是否显示
+    var recommendEnable : Bool {
+        switch self {
+        case .post,.product:
+            return true
+        default:
+            return false
+        }
+    }
+
+}
+
+
+
+
+
 
 struct Home: Mappable, Equatable {
     
-    var saved: Bool = false
-    var user: User?
+    var title: String?
+    var type: HomeCellType?
     var image: String?
     
-    var title: String?
-    var type: HomeCellType? = .product
-    
+    var user: User?
+        
     var postId: Int = 0
-    var recommendId: Int = 0
-    var productId: String?
     
+    var productId: String?
     var productUrl: String?
-    var reaction: Int = 0
+    
+    var recommendId: Int = 0
+    var recommended : Bool = false
+    var reaction: ReactionType?
+    
+    var saved: Bool = false
     
     
     var id : [String : Any] {
         guard let type = type  else { return [:] }
+        var param = [String :Any]()
         switch type {
         case .post,.recommendPost:
-            return ["postId" : postId]
+            param["postId"] = postId
         case .product,.recommendProduct:
-            return ["productId" : productId ?? ""]
+            param["productId"] = productId ?? ""
         }
+        if recommendId > 0  {
+            param["recommendId"] = recommendId
+        }
+        return param
     }
     
     init(productId : String) {
@@ -93,8 +147,8 @@ struct Home: Mappable, Equatable {
         postId   <- map["postId"]
         recommendId   <- map["recommendId"]
         productId   <- map["productId"]
-        productUrl   <- map["productUrl"]
-        reaction   <- map["reaction"]
+        recommended <- map["recommended"]
+        reaction <- map["reactionType"]
     }
     
     static func == (lhs: Home, rhs: Home) -> Bool {
@@ -109,6 +163,8 @@ struct Home: Mappable, Equatable {
     }
     
 }
+
+
 
 //
 //

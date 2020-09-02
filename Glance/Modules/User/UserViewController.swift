@@ -17,7 +17,7 @@ class UserViewController: ViewController {
     private let headerRefreshTrigger = PublishSubject<Void>()
     private let isHeaderLoading = PublishSubject<Bool>()
     private lazy var userHeadView : UserHeadView = UserHeadView.loadFromNib(height: 200, width: self.view.width)
-
+    
     
     private lazy var insight : UIButton = {
         let insight = UIButton()
@@ -28,7 +28,7 @@ class UserViewController: ViewController {
     
     private lazy var share : UIButton = {
         let share  = UIButton()
-        share.setImage(R.image.icon_navigation_share(), for: .normal)
+        share.setImage(R.image.icon_button_share(), for: .normal)
         share.sizeToFit()
         return share
     }()
@@ -40,19 +40,49 @@ class UserViewController: ViewController {
         return setting
     }()
     
+    private lazy var more : UIButton = {
+        let more  = UIButton()
+        more.setImage(R.image.icon_navigation_more(), for: .normal)
+        more.sizeToFit()
+        return more
+    }()
+    
+    
+    lazy var memu: DropDownView = {
+        let view = DropDownView(anchorView: more)
+        view.dd_shadowColor = UIColor(hex:0x696969)!
+        view.dd_shadowOpacity = 0.5
+        view.dd_cornerRadius = 5
+        view.dd_shadowOffset = CGSize(width: 0, height: 2)
+        view.textFont = UIFont.titleFont(12)
+        view.cellHeight = 32
+        view.animationduration = 0.25
+        let dd_width : CGFloat = 100
+        view.dd_width = dd_width
+        view.bottomOffset = CGPoint(x: -(dd_width - 15), y: more.height + 5)
+
+        return view
+    }()
+
+    
+    lazy var navigationItems = [backButton,share,more,insight, setting]
+    
+    
     private lazy var containerController : WMZPageController = {
         let container = WMZPageController()
         container.param = setupPageViewConfig(provider: viewModel!.provider)
         container.downSc.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
             self?.headerRefreshTrigger.onNext(())
         })
-
+        //isHeaderLoading.bind(to: container.downSc.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        ///addChild(container)
         return container
     }()
     
     override func makeUI() {
         super.makeUI()
         
+        automaticallyAdjustsLeftBarButtonItem = false
         navigationBar.leftBarButtonItem = insight
         navigationBar.rightBarButtonItems = [setting,share]
         stackView.addArrangedSubview(containerController.view)
@@ -65,32 +95,33 @@ class UserViewController: ViewController {
         
         let refresh = Observable.just(()).merge(with: headerRefreshTrigger.asObservable())
         guard let viewModel = viewModel as? UserViewModel else { return }
-        let input = UserViewModel.Input(headerRefresh: refresh,
+        let input = UserViewModel.Input(refresh: refresh,
                                         insight: insight.rx.tap.asObservable(),
-                                        setting: setting.rx.tap.asObservable())
+                                        setting: setting.rx.tap.asObservable(),
+                                        follow: userHeadView.followButton.rx.tap.asObservable(),
+                                        chat: userHeadView.chatButton.rx.tap.asObservable(),
+                                        memu: more.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
-                
         
-        isHeaderLoading.bind(to: containerController.downSc.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
 
+        
         output.displayName.drive(userHeadView.displayNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.countryName.drive(userHeadView.countryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+        output.displayName.drive(userHeadView.otherUserDisplayNameLabel.rx.text).disposed(by: rx.disposeBag)
+        output.countryName.drive(userHeadView.otherUserCountryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.userHeadImageURL.drive(userHeadView.userHeadImageView.rx.imageURL).disposed(by: rx.disposeBag)
-        
         output.instagram.drive(userHeadView.instagramButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.website.drive(userHeadView.websiteButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.bio.drive(userHeadView.bioLabel.rx.text).disposed(by: rx.disposeBag)
         output.instagram.map { $0.isEmpty }.drive(userHeadView.instagramCell.rx.isHidden).disposed(by: rx.disposeBag)
         output.website.map { $0.isEmpty }.drive(userHeadView.websiteCell.rx.isHidden).disposed(by: rx.disposeBag)
         output.bio.map { $0.isEmpty }.drive(userHeadView.bioCell.rx.isHidden).disposed(by: rx.disposeBag)
+        output.otherUserBgViewHidden.drive(userHeadView.otherUserBgView.rx.isHidden).disposed(by: rx.disposeBag)
+        output.otherUserBgViewHidden.map { !$0}.drive(userHeadView.ownUserBgView.rx.isHidden).disposed(by: rx.disposeBag)
+        output.followButtonImage.drive(userHeadView.followButton.rx.image(for: .normal)).disposed(by: rx.disposeBag)
+        output.followButtonBackground.drive(userHeadView.followButton.rx.backgroundColor).disposed(by: rx.disposeBag)
+        output.followButtonTitleColor.drive(userHeadView.followButton.rx.titleColor(for: .normal)).disposed(by: rx.disposeBag)
         
-        
-        output.insight.drive(onNext: { [weak self]() in
-            let viewModel = InsightsViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
-        }).disposed(by: rx.disposeBag)
-        
-            
         output.setting.drive(onNext: { [weak self] () in
             guard let self = self else { return }
             let settingViewModel = SettingViewModel(provider: viewModel.provider)
@@ -102,20 +133,33 @@ class UserViewController: ViewController {
             config?.showAnimDuration = 0.25
             self.cw_showDrawerViewController(setting, animationType: .mask, configuration: config)
         }).disposed(by: rx.disposeBag)
-            
+        
+        
+        
+        output.navigationBarAvailable
+            .subscribe(onNext: { [weak self](left,right) in
+                let leftItems = left.compactMap { self?.navigationItems[$0.rawValue] }
+                self?.navigationBar.leftBarButtonItems = leftItems
+                let rightItems = right.compactMap { self?.navigationItems[$0.rawValue] }
+                self?.navigationBar.rightBarButtonItems = rightItems
+            }).disposed(by: rx.disposeBag)
         
         
         output.updateHeadLayout.drive(onNext: { [weak self]() in
-                guard let self = self else { return }
-                self.userHeadView.layoutIfNeeded()
-                self.userHeadView.snp.updateConstraints { (make) in
-                    make.width.equalTo(self.view.width)
-                    make.height.equalTo(self.userHeadView.contentView.frame.maxY)
-                }
-                self.userHeadView.setNeedsLayout()
-                self.userHeadView.layoutIfNeeded()
-                self.containerController.updateHeadView()
-            }).disposed(by: rx.disposeBag)
+            guard let self = self else { return }
+            if self.containerController.view.superview == nil {
+                self.stackView.addArrangedSubview(self.containerController.view)
+            }
+            
+            self.userHeadView.layoutIfNeeded()
+            self.userHeadView.snp.updateConstraints { (make) in
+                make.width.equalTo(self.view.width)
+                make.height.equalTo(self.userHeadView.contentView.frame.maxY)
+            }
+            self.userHeadView.setNeedsLayout()
+            self.userHeadView.layoutIfNeeded()
+            self.containerController.updateHeadView()
+        }).disposed(by: rx.disposeBag)
         
         output.titles.drive(onNext: {[weak self] (titles) in
             self?.containerController.param.wTitleArr = titles
@@ -125,7 +169,7 @@ class UserViewController: ViewController {
         output.about.subscribe(onNext: { () in
             
         }).disposed(by: rx.disposeBag)
-                
+        
         
         output.modifyProfile.subscribe(onNext: { [weak self]() in
             let viewModel = ModifyProfileViewModel(provider: viewModel.provider)
@@ -137,20 +181,32 @@ class UserViewController: ViewController {
             let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.originalPhotos.subscribe(onNext: { [weak self]() in
             let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.privacy.subscribe(onNext: { [weak self]() in
             let viewModel = PrivacyViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.signIn.subscribe(onNext: { () in
             guard let window = Application.shared.window else { return }
             Application.shared.showSignIn(provider: viewModel.provider, window: window)
+        }).disposed(by: rx.disposeBag)
+        
+        output.insight.drive(onNext: { [weak self]() in
+            let viewModel = InsightsViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
+        
+        output.memu.drive(onNext: { [weak self](items) in
+            guard let self = self else { return }
+            self.memu.dataSource = items.map { "  \($0.title)"}
+            self.memu.show()
         }).disposed(by: rx.disposeBag)
 
     }
@@ -165,11 +221,18 @@ extension UserViewController {
     
     fileprivate func setupPageViewConfig(provider : API) -> WMZPageParam {
         
-        let vcs = [UserPostViewController(viewModel: UserPostViewModel(provider: provider), navigator: navigator),
-                   UserRecommViewController(viewModel: UserRecommViewModel(provider: provider), navigator: navigator),
-                   UserRelationViewController(viewModel: UserRelationViewModel(provider: provider, type: .followers), navigator: navigator,tableView: .grouped),
-                   UserRelationViewController(viewModel: UserRelationViewModel(provider: provider, type: .following), navigator: navigator,tableView: .grouped)
-        ]
+        let user = (viewModel as? UserViewModel)?.current.value
+        let post = UserPostViewModel(provider: provider,otherUser: user)
+        let recommend = UserRecommViewModel(provider: provider,otherUser: user)
+        let followers = UserRelationViewModel(provider: provider, type: .followers,otherUser: user)
+        let following = UserRelationViewModel(provider: provider, type: .following,otherUser: user)
+        followers.parsedError.bind(to: error).disposed(by: rx.disposeBag)
+        following.parsedError.bind(to: error).disposed(by: rx.disposeBag)
+        
+        let vcs = [UserPostViewController(viewModel: post, navigator: navigator),
+                   UserRecommViewController(viewModel: recommend, navigator: navigator),
+                   UserRelationViewController(viewModel: followers, navigator: navigator,tableView: .grouped),
+                   UserRelationViewController(viewModel: following, navigator: navigator,tableView: .grouped)]
         
         let config = PageParam()
         config.wTitleArr = ["0\nPosts","0\nRecomm","0\nFollowers","0\nFollowing"]

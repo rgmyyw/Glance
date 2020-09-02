@@ -68,7 +68,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                 self.page = 1
                 return self.provider.savedCollection(pageNum: self.page)
                     .trackError(self.error)
-                    .trackActivity(self.headerLoading)
+                    .trackActivity(self.loading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }

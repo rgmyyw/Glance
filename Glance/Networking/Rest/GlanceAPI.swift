@@ -63,6 +63,9 @@ enum GlanceAPI {
     case logout
     case isNewUser
     case reactionAnalysis(recommendId : Int)
+    case deletePost(postId : Int)
+    case recommend(param : [String : Any])
+    case reaction(recommendId : Int,type : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -172,6 +175,12 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/users/is-new"
         case .reactionAnalysis:
             return "/api/users/insights/recommended/reactions/counts"
+        case .deletePost(let postId):
+            return "/api/posts/\(postId)"
+        case .recommend:
+            return "/api/recommends"
+        case .reaction:
+            return "/api/recommends/reactions"
         }
     }
     
@@ -187,7 +196,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .visualSearch,
              .addProduct,
              .postProduct,
-             .logout:
+             .logout,
+             .recommend,
+             .reaction:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -213,7 +224,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return .get
         case .modifyProfile:
             return .put
-        case .undoFollow,.undoBlocked,.shoppingCartDelete:
+        case .undoFollow,.undoBlocked,.shoppingCartDelete,.deletePost:
             return .delete
         default:
             return .get
@@ -318,6 +329,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["postId"] = postId
         case .reactionAnalysis(let recommendId):
             params["recommendId"] = recommendId
+        case .recommend(let param):
+            params.merge(dict: param)
+        case .reaction(let recommendId,let type):
+            params["recommendId"] = recommendId
+            params["type"] = type
         default:
             break
         }

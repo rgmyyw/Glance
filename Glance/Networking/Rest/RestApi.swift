@@ -138,8 +138,8 @@ class RestApi: API {
         return requestObject(.updateUserInterest(ids: ids), type: MappableItem<Void>.self,keyPath: nil).map { $0.code == 200}
     }
     
-    func similarProduct(params: [String : Any], page: Int) -> Single<PageMapable<PostsDetailProduct>> {
-        return requestObject(.similarProduct(params: params, page: page), type: PageMapable<PostsDetailProduct>.self)
+    func similarProduct(params: [String : Any], page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.similarProduct(params: params, page: page), type: PageMapable<Home>.self)
     }
     
     func addShoppingCart(productId: String) -> Single<Bool> {
@@ -187,7 +187,18 @@ class RestApi: API {
     
     func reactionAnalysis(recommendId: Int) -> Single<ReactionAnalysis> {
         return requestObject(.reactionAnalysis(recommendId: recommendId), type: ReactionAnalysis.self)
-
+    }
+    
+    func deletePost(postId: Int) -> Single<Bool> {
+        return requestObject(.deletePost(postId: postId), type: MappableItem<Bool>.self,keyPath: nil).map { $0.code == 200 }
+    }
+    
+    func recommend(param: [String : Any]) -> Single<Bool> {
+        return requestObject(.recommend(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
+    }
+    
+    func reaction(recommendId: Int, type: Int) -> Single<Bool> {
+        return requestObject(.reaction(recommendId: recommendId, type: type), type: MappableItem<Bool>.self,keyPath: nil).map { $0.code == 200 }
     }
     
     let ibexProvider: IbexNetworking

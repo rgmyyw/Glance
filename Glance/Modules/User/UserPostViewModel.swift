@@ -26,6 +26,14 @@ class UserPostViewModel: ViewModel, ViewModelType {
         let detail : Driver<Home>
     }
     
+    let current = BehaviorRelay<User?>(value: nil)
+    
+    init(provider: API,otherUser : User?) {
+        super.init(provider: provider)
+        current.accept(otherUser)
+    }
+    
+    
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     
     func transform(input: Input) -> Output {
@@ -41,7 +49,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.userPost(userId: "",pageNum: self.page)
+                return self.provider.userPost(userId: self.current.value?.userId ?? "",pageNum: self.page)
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .materialize()
@@ -64,7 +72,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.userPost(userId: "",pageNum: self.page)
+            return self.provider.userPost(userId: self.current.value?.userId ?? "",pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -84,8 +92,10 @@ class UserPostViewModel: ViewModel, ViewModelType {
 
         
         element.map { items -> [SectionModel<Void,UserPostCellViewModel>] in
+            
             let sectionItems = items.list.map { item -> UserPostCellViewModel  in
                 let viewModel = UserPostCellViewModel(item: item)
+                viewModel.recommendButtonHidden.accept((self.current.value != nil) ? self.current.value == user.value : true)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
                 viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
                 return viewModel
@@ -105,13 +115,40 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .map { (cellViewModel, $0)}
                 .materialize()
-        }).subscribe(onNext: { event in
+        }).subscribe(onNext: { [weak self] event in
             switch event {
             case .next(let (cellViewModel, result)):
                 cellViewModel.saved.accept(result)
+                var item = cellViewModel.item
+                item.recommended = result
+                kUpdateItem.onNext((.saved,item,self))
+                
             default:
                 break
             }
+        }).disposed(by: rx.disposeBag)
+        
+
+        kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
+            guard trigger != self else { return }
+            guard var t = self?.element.value else { return }
+            let items = elements.value.flatMap { $0.items }.filter { $0.item == item}
+            switch state {
+            case .delete:
+                var list = t.list
+                if let index = list.firstIndex(where: { $0 == item}) {
+                    list.remove(at: index)
+                    t.list = list
+                    self?.element.accept(t)
+                }
+            case .like:
+                break
+            case .saved:
+                items.forEach { $0.saved.accept(item.saved)}
+            case .recommend:
+                items.forEach { $0.saved.accept(item.recommended)}
+            }
+                
         }).disposed(by: rx.disposeBag)
 
     

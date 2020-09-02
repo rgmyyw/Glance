@@ -19,6 +19,7 @@ class HomeController: CollectionViewController {
     private lazy var customNavigationBar : HomeNavigationBar = HomeNavigationBar.loadFromNib(height: 44,width: self.view.width)
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<HomeSection> = configureDataSouce()
 
+
     override func makeUI() {
         super.makeUI()
         
@@ -53,26 +54,27 @@ class HomeController: CollectionViewController {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
 
-        output.showLikePopView
-            .subscribe(onNext: { (fromView,cellViewModel) in
-                let width = 120
-                let aView = UIView(frame: CGRect(x: 0, y: 0, width: width, height: 48))
-                let options: [PopoverOption] = [.type(.down),.sideOffset(100),.sideEdge(20),
-                                                .color(UIColor.black.withAlphaComponent(0.5)),
-                                                .cornerRadius(8),.arrowSize(.zero), .showBlackOverlay(false)]
-                let popover = Popover(options: options, showHandler: nil, dismissHandler: nil)
-                popover.show(aView, fromView: fromView)
-                
+        output.reaction.subscribe(onNext: { [weak self] (fromView,cellViewModel) in
+            ReactionPopManager.share.show(in: self?.collectionView, anchorView: fromView) { (selection ) in
+                viewModel.selectionReaction.onNext((cellViewModel,selection))
+            }
         }).disposed(by: rx.disposeBag)
         
-        output.detail.drive(onNext: { (item) in
+        output.detail.drive(onNext: { [weak self](item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
-            let controller = PostsDetailViewController(viewModel: viewModel, navigator: self.navigator)
-            self.navigationController?.pushViewController(controller, animated: true)
-//            self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
-            
-            
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
+        
+        output.userDetail.drive(onNext: { [weak self](current) in
+            if current == user.value {
+                let tabbar = UIApplication.shared.keyWindow?.rootViewController as? HomeTabBarController
+                tabbar?.setSelectIndex(from: tabbar?.selectedIndex ?? 0, to: 4)
+            } else {
+                let viewModel = UserViewModel(provider: viewModel.provider, otherUser: current)
+                self?.navigator.show(segue: .user(viewModel: viewModel), sender: self)
+            }
+        }).disposed(by: rx.disposeBag)
+        
 
         customNavigationBar.shoppingCartButton
             .rx.tap.subscribe(onNext: { [weak self]() in
@@ -86,6 +88,9 @@ class HomeController: CollectionViewController {
                 self?.navigator.show(segue: .savedCollectionClassify(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
+        
+        
+        
         NotificationCenter.default.rx
             .notification(.kUpdateHomeData)
             .map { $0.userInfo as? [String : String]}

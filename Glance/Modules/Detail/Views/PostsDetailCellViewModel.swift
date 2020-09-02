@@ -13,7 +13,7 @@ import RxCocoa
 //CollectionCellImageHeightCalculateable
 class PostsDetailCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable  {
     
-    let item : PostsDetailProduct
+    let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let saved = BehaviorRelay<Bool>(value: false)
@@ -31,7 +31,7 @@ class PostsDetailCellViewModel : CellViewModelProtocol , CollectionCellImageHeig
     }
         
     
-    required init(item : PostsDetailProduct) {
+    required init(item : Home) {
         self.item = item
         
         imageURL.accept(item.image?.url)

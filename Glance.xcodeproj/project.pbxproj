@@ -105,8 +105,8 @@
 		5D437DD524BEA04700AFBB1F /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD424BEA04700AFBB1F /* DateTransform.swift */; };
 		5D437DD824BEA67600AFBB1F /* InsightsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */; };
 		5D437DD924BEA67600AFBB1F /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
-		5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* LikePopView.swift */; };
-		5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* LikePopView.xib */; };
+		5D579B3924B4304B00CFC188 /* ReactionPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* ReactionPopView.swift */; };
+		5D579B3B24B44A6D00CFC188 /* ReactionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* ReactionPopView.xib */; };
 		5D579B3E24B4682500CFC188 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3D24B4682500CFC188 /* UserViewController.swift */; };
 		5D579B4624B4A46B00CFC188 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B4424B4A46B00CFC188 /* SettingViewController.swift */; };
 		5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B4524B4A46B00CFC188 /* SettingViewController.xib */; };
@@ -434,7 +434,7 @@
 		5DCC2D7F24F34F04000AC40A /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15D24AEC2F8007A2FCD /* SelfAware.swift */; };
 		5DCC2D8024F34F04000AC40A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16724AEC2F8007A2FCD /* View.swift */; };
 		5DCC2D8124F34F04000AC40A /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
-		5DCC2D8224F34F04000AC40A /* LikePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* LikePopView.swift */; };
+		5DCC2D8224F34F04000AC40A /* ReactionPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* ReactionPopView.swift */; };
 		5DCC2D8324F34F04000AC40A /* StyleBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */; };
 		5DCC2D8424F34F04000AC40A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E224D0068600FF1092 /* ImagePickerManager.swift */; };
 		5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
@@ -518,7 +518,7 @@
 		5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
 		5DCC2DD824F34F04000AC40A /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
-		5DCC2DD924F34F04000AC40A /* LikePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* LikePopView.xib */; };
+		5DCC2DD924F34F04000AC40A /* ReactionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* ReactionPopView.xib */; };
 		5DCC2DDA24F34F04000AC40A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DCC2DDB24F34F04000AC40A /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
 		5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
@@ -765,7 +765,7 @@
 		5DCC2ED724F34F2A000AC40A /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15D24AEC2F8007A2FCD /* SelfAware.swift */; };
 		5DCC2ED824F34F2A000AC40A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16724AEC2F8007A2FCD /* View.swift */; };
 		5DCC2ED924F34F2A000AC40A /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
-		5DCC2EDA24F34F2A000AC40A /* LikePopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* LikePopView.swift */; };
+		5DCC2EDA24F34F2A000AC40A /* ReactionPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3824B4304B00CFC188 /* ReactionPopView.swift */; };
 		5DCC2EDB24F34F2A000AC40A /* StyleBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */; };
 		5DCC2EDC24F34F2A000AC40A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E224D0068600FF1092 /* ImagePickerManager.swift */; };
 		5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
@@ -849,7 +849,7 @@
 		5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
 		5DCC2F3024F34F2A000AC40A /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
-		5DCC2F3124F34F2A000AC40A /* LikePopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* LikePopView.xib */; };
+		5DCC2F3124F34F2A000AC40A /* ReactionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B3A24B44A6D00CFC188 /* ReactionPopView.xib */; };
 		5DCC2F3224F34F2A000AC40A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DCC2F3324F34F2A000AC40A /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
 		5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
@@ -1131,8 +1131,8 @@
 		5D437DD424BEA04700AFBB1F /* DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
 		5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetailViewController.swift; sourceTree = "<group>"; };
 		5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsightsDetailViewController.xib; sourceTree = "<group>"; };
-		5D579B3824B4304B00CFC188 /* LikePopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LikePopView.swift; sourceTree = "<group>"; };
-		5D579B3A24B44A6D00CFC188 /* LikePopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LikePopView.xib; sourceTree = "<group>"; };
+		5D579B3824B4304B00CFC188 /* ReactionPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionPopView.swift; sourceTree = "<group>"; };
+		5D579B3A24B44A6D00CFC188 /* ReactionPopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReactionPopView.xib; sourceTree = "<group>"; };
 		5D579B3D24B4682500CFC188 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		5D579B4424B4A46B00CFC188 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5D579B4524B4A46B00CFC188 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -2246,8 +2246,8 @@
 		5DEFF51724AF29D7007A2FCD /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5D579B3824B4304B00CFC188 /* LikePopView.swift */,
-				5D579B3A24B44A6D00CFC188 /* LikePopView.xib */,
+				5D579B3824B4304B00CFC188 /* ReactionPopView.swift */,
+				5D579B3A24B44A6D00CFC188 /* ReactionPopView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2417,7 +2417,7 @@
 				5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
 				5DCC2DD824F34F04000AC40A /* 5.jpg in Resources */,
-				5DCC2DD924F34F04000AC40A /* LikePopView.xib in Resources */,
+				5DCC2DD924F34F04000AC40A /* ReactionPopView.xib in Resources */,
 				5DCC2DDA24F34F04000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2DDB24F34F04000AC40A /* InterestCell.xib in Resources */,
 				5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */,
@@ -2515,7 +2515,7 @@
 				5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
 				5DCC2F3024F34F2A000AC40A /* 5.jpg in Resources */,
-				5DCC2F3124F34F2A000AC40A /* LikePopView.xib in Resources */,
+				5DCC2F3124F34F2A000AC40A /* ReactionPopView.xib in Resources */,
 				5DCC2F3224F34F2A000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2F3324F34F2A000AC40A /* InterestCell.xib in Resources */,
 				5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */,
@@ -2613,7 +2613,7 @@
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DB6ABFA24D95A8900AD4B43 /* AddProductWebsiteReusableView.xib in Resources */,
 				5D1D37A424C847CC00B2A1E2 /* 5.jpg in Resources */,
-				5D579B3B24B44A6D00CFC188 /* LikePopView.xib in Resources */,
+				5D579B3B24B44A6D00CFC188 /* ReactionPopView.xib in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
 				5DBC3AAA24C7DA43006B0032 /* InterestCell.xib in Resources */,
 				5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */,
@@ -3056,7 +3056,7 @@
 				5DCC2D7F24F34F04000AC40A /* SelfAware.swift in Sources */,
 				5DCC2D8024F34F04000AC40A /* View.swift in Sources */,
 				5DCC2D8124F34F04000AC40A /* DemoViewController.swift in Sources */,
-				5DCC2D8224F34F04000AC40A /* LikePopView.swift in Sources */,
+				5DCC2D8224F34F04000AC40A /* ReactionPopView.swift in Sources */,
 				5DCC2D8324F34F04000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2D8424F34F04000AC40A /* ImagePickerManager.swift in Sources */,
 				5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */,
@@ -3314,7 +3314,7 @@
 				5DCC2ED724F34F2A000AC40A /* SelfAware.swift in Sources */,
 				5DCC2ED824F34F2A000AC40A /* View.swift in Sources */,
 				5DCC2ED924F34F2A000AC40A /* DemoViewController.swift in Sources */,
-				5DCC2EDA24F34F2A000AC40A /* LikePopView.swift in Sources */,
+				5DCC2EDA24F34F2A000AC40A /* ReactionPopView.swift in Sources */,
 				5DCC2EDB24F34F2A000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2EDC24F34F2A000AC40A /* ImagePickerManager.swift in Sources */,
 				5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */,
@@ -3572,7 +3572,7 @@
 				5DEFF35324AEC2F9007A2FCD /* SelfAware.swift in Sources */,
 				5DEFF35B24AEC2F9007A2FCD /* View.swift in Sources */,
 				5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */,
-				5D579B3924B4304B00CFC188 /* LikePopView.swift in Sources */,
+				5D579B3924B4304B00CFC188 /* ReactionPopView.swift in Sources */,
 				5DC3130F24E3E52300CC3F89 /* StyleBoardViewModel.swift in Sources */,
 				5DC669E324D0068600FF1092 /* ImagePickerManager.swift in Sources */,
 				5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */,

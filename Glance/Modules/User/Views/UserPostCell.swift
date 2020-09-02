@@ -10,8 +10,8 @@ import UIKit
 import RxSwiftExt
 
 class UserPostCell: CollectionViewCell {
-    
     @IBOutlet weak var recommendButton: UIButton!
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
@@ -33,8 +33,9 @@ class UserPostCell: CollectionViewCell {
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: favorite.rx.isSelected).disposed(by: cellDisposeBag)
-        viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
         favorite.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
+        viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
+
     }
 
 }

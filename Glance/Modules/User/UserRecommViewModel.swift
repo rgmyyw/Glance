@@ -28,20 +28,29 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     
+    let current = BehaviorRelay<User?>(value: nil)
+    
+    init(provider: API,otherUser : User? = nil) {
+        super.init(provider: provider)
+        current.accept(otherUser)
+    }
+
+    
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[SectionModel<Void,UserRecommCellViewModel>]>(value: [])
         let save = PublishSubject<UserRecommCellViewModel>()
         let showLikePopView = PublishSubject<(UIView,UserRecommCellViewModel)>()
         let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
-        
+        let recommend = PublishSubject<UserRecommCellViewModel>()
+
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.userRecommend(userId: "",pageNum: self.page)
+                return self.provider.userRecommend(userId: self.current.value?.userId ?? "",pageNum: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -64,7 +73,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.userRecommend(userId: "",pageNum: self.page)
+            return self.provider.userRecommend(userId: self.current.value?.userId ?? "",pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -86,6 +95,8 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             let sectionItems = items.list.map { item -> UserRecommCellViewModel  in
                 let viewModel = UserRecommCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
+                viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
+                viewModel.recommendButtonHidden.accept(((self.current.value != nil) ? self.current.value != user.value : false))
                 viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
@@ -108,10 +119,61 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let (cellViewModel, result)):
                 cellViewModel.saved.accept(result)
+                var item = cellViewModel.item
+                item.recommended = result
+                kUpdateItem.onNext((.saved,item,self))
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
+
+        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(UserRecommCellViewModel,Bool)>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            var params = [String : Any]()
+            params["recommend"] = !cellViewModel.recommended.value
+            params.merge(dict: cellViewModel.item.id)
+            return self.provider.recommend(param: params)
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .map { (cellViewModel, $0)}
+                .materialize()
+        }).subscribe(onNext: {  [weak self]event in
+            switch event {
+            case .next(let (cellViewModel,result)):
+                cellViewModel.recommended.accept(result)
+                var item = cellViewModel.item
+                item.recommended = result
+                kUpdateItem.onNext((.recommend,item,self))
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+
+        
+        
+        kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
+            guard trigger != self else { return }
+            guard var t = self?.element.value else { return }
+            let items = elements.value.flatMap { $0.items }.filter { $0.item == item}
+            switch state {
+            case .delete:
+                var list = t.list
+                if let index = list.firstIndex(where: { $0 == item}) {
+                    list.remove(at: index)
+                    t.list = list
+                    self?.element.accept(t)
+                }
+            case .like:
+                break
+            case .saved:
+                items.forEach { $0.saved.accept(item.saved)}
+            case .recommend:
+                items.forEach { $0.saved.accept(item.recommended)}
+            }
+                
+        }).disposed(by: rx.disposeBag)
+
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       showLikePopView: showLikePopView.asObservable(),

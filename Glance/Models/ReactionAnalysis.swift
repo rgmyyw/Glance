@@ -12,6 +12,7 @@ struct ReactionAnalysis: Mappable {
     var heart: Int = 0
     var haha: Int = 0
     var wow: Int = 0
+    var sad : Int = 0
 
     init?(map: Map) {}
 
@@ -19,5 +20,6 @@ struct ReactionAnalysis: Mappable {
         heart   <- map["heart"]
         haha   <- map["haha"]
         wow   <- map["wow"]
+        sad   <- map["sad"]
     }
 }

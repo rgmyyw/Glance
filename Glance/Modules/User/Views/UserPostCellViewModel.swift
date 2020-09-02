@@ -11,9 +11,7 @@ import RxSwift
 import RxCocoa
 
 
-
 class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable{
-    
     
     
     let item : Home
@@ -36,12 +34,13 @@ class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightC
     
     required init(item : Home) {
         self.item = item
+            
+        guard let type = item.type else { return }
         
-
         title.accept(item.title)
         imageURL.accept(item.image?.url)
-        emojiButtonHidden.accept(true)
-        recommendButtonHidden.accept(false)
-
+        emojiButtonHidden.accept(!type.emojiEnable)
+        saved.accept(item.saved)
+        
     }
 }

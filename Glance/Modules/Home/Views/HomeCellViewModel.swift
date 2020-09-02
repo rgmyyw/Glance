@@ -20,6 +20,9 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     let userHeadImageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let typeName = BehaviorRelay<String?>(value: nil)
     let time : BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let recommended = BehaviorRelay<Bool>(value : false)
+    let reactionImage = BehaviorRelay<UIImage?>(value : nil)
+    
     
     let userHidden = BehaviorRelay<Bool>(value: false)
     let userOnline = BehaviorRelay<Bool>(value: false)
@@ -27,8 +30,12 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
     let saved = BehaviorRelay<Bool>(value: false)
 
+    
+    
     let save = PublishSubject<Void>()
-    let showLikePopView = PublishSubject<UIView>()
+    let recommend = PublishSubject<Void>()
+    let userDetail = PublishSubject<Void>()
+    let reaction = PublishSubject<UIView>()
     
     
     var image: String? {
@@ -43,38 +50,19 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
         self.item = item
         
         guard let type = item.type else { return }
-        typeName.accept(type.title)
         
-        switch type {
-        case .post:
-            userName.accept(item.user?.displayName)
-            userHeadImageURL.accept(item.user?.userImage?.url)
-            title.accept(item.title)
-            imageURL.accept(item.image?.url)
-            userHidden.accept(false)
-            userOnline.accept(item.user?.loginStatus ?? false)
-            emojiButtonHidden.accept(true)
-            saved.accept(item.saved)
-            recommendButtonHidden.accept(false)
-        case .product:
-            
-            title.accept(item.title)
-            imageURL.accept(item.productUrl?.url)
-            userHidden.accept(true)
-            emojiButtonHidden.accept(true)
-            saved.accept(item.saved)
-            recommendButtonHidden.accept(false)
-            
-        case .recommendPost,.recommendProduct:
-            userName.accept(item.user?.displayName)
-            userHeadImageURL.accept(item.user?.userImage?.url)
-            title.accept(item.title)
-            imageURL.accept(item.image?.url)
-            userHidden.accept(false)
-            userOnline.accept(item.user?.loginStatus ?? false)
-            emojiButtonHidden.accept(false)
-            saved.accept(item.saved)
-            recommendButtonHidden.accept(true)
-        }
+        userName.accept(item.user?.displayName)
+        userHeadImageURL.accept(item.user?.userImage?.url)
+        imageURL.accept(item.image?.url)
+        title.accept(item.title)
+        userOnline.accept(item.user?.loginStatus ?? false)
+        recommended.accept(item.recommended)
+        saved.accept(item.saved)
+        userHidden.accept(!type.userEnable)
+        emojiButtonHidden.accept(!type.emojiEnable)
+        recommendButtonHidden.accept(!type.recommendEnable)
+        typeName.accept(type.title)
+        reactionImage.accept(item.reaction?.image)
+        
     }
 }

@@ -166,7 +166,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         commitButtonTap.subscribe(onNext: { [weak self] () in
             
             let viewModel = elements.value.first?.viewModel
-            let thumbnail = elements.value[4].items
+            let thumbnail = elements.value[3].items
             //let tags = elements.value[1].items
             
             guard let productName = viewModel?.productName.value, productName.count > 5 else {

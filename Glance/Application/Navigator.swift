@@ -52,6 +52,7 @@ class Navigator {
         case styleBoard(viewModel: StyleBoardViewModel)
         case styleBoardSearch(viewModel: StyleBoardSearchViewModel)
         case insightsRelation(viewModel : InsightsRelationViewModel)
+        case user(viewModel : UserViewModel)
 
     }
     
@@ -151,6 +152,9 @@ class Navigator {
             return vc
         case .insightsRelation(let viewModel):
             let vc = InsightsRelationViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .user(let viewModel):
+            let vc = UserViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

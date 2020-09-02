@@ -56,7 +56,7 @@ protocol API {
     func savedCollectionClassify() -> Single<SavedCollection>
     func interest(level : Int) -> Single<[Interest]>
     func updateUserInterest(ids : String) -> Single<Bool>
-    func similarProduct(params : [String : Any],page : Int) -> Single<PageMapable<PostsDetailProduct>>
+    func similarProduct(params : [String : Any],page : Int) -> Single<PageMapable<Home>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
     
@@ -72,6 +72,9 @@ protocol API {
     func logout() -> Single<Bool>
     func isNewUser() -> Signal<Bool>
     func reactionAnalysis(recommendId : Int) -> Single<ReactionAnalysis>
+    func deletePost(postId : Int) -> Single<Bool>
+    func recommend(param : [String : Any]) -> Single<Bool>
+    func reaction(recommendId : Int,type : Int) -> Single<Bool>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

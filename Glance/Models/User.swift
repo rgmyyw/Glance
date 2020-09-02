@@ -23,7 +23,7 @@ struct User: Mappable {
     var followerCount: Int = 0
     var countryName: String?
     var instagram: String?
-    var loginStatus: Bool?
+    var loginStatus: Bool = false
     var postCount: Int = 0
     var recommendCount: Int = 0
     var isFollow: Bool = false
@@ -33,8 +33,10 @@ struct User: Mappable {
     var userId: String?
     var bio: String?
     var userImage: String?
-
+    var reaction: ReactionType?
+    
     init?(map: Map) {}
+    init() {}
 
     mutating func mapping(map: Map) {
         website   <- map["website"]
@@ -51,6 +53,7 @@ struct User: Mappable {
         userId   <- map["userId"]
         bio   <- map["bio"]
         userImage   <- map["userImage"]
+        reaction   <- map["reaction"]
     }
 }
 
@@ -81,3 +84,11 @@ extension User {
 }
 
 
+extension User : Equatable {
+    
+    static func == (lhs: Self, rhs: Self) -> Bool {        
+        guard let lUserId = lhs.userId,let rUserId = rhs.userId else { return false }
+        return lUserId == rUserId
+    }
+
+}
