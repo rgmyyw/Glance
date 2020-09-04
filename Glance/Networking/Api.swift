@@ -4,26 +4,6 @@ import RxCocoa
 import ObjectMapper
 
 
-enum UploadImageType : Int {
-    case visualSearch = 0
-    case post = 1
-    case postDraft = 2
-    case user = 3
-}
-
-struct UploadImageResult: Mappable {
-    var imageUri: String?
-    init?(map: Map) {}
-    
-    mutating func mapping(map: Map) {
-        imageUri   <- map["imageUri"]
-    }
-}
-
-
-
-
-
 protocol API {
     
     func downloadString(url: URL) -> Single<String>
@@ -46,7 +26,6 @@ protocol API {
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<Reaction>>
     func postDetail(postId : Int) -> Single<PostsDetail>
     func productDetail(productId : String) -> Single<PostsDetail>
-    
     func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
@@ -59,11 +38,7 @@ protocol API {
     func similarProduct(params : [String : Any],page : Int) -> Single<PageMapable<Home>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
-    
-    
     func search(type : SearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
-    
-    
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
     func postProduct(param : [String : Any]) -> Single<Bool>

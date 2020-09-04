@@ -14,6 +14,7 @@ class UserRelationViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let selection: Observable<UserRelationCellViewModel>
+        let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
     }
     
@@ -44,7 +45,7 @@ class UserRelationViewModel: ViewModel, ViewModelType {
         let elements : BehaviorRelay<[UserRelationCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<UserRelationCellViewModel>()
         
-        Observable.just(())
+        input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<UserRelation>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)

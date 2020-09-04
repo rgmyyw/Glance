@@ -62,6 +62,9 @@
 		5D20EC7F24F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
 		5D20EC8024F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
 		5D20EC8124F8BD8E002738C8 /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
+		5D34C8852501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
+		5D34C8862501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
+		5D34C8872501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
 		5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
 		5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
 		5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
@@ -1096,6 +1099,7 @@
 		5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetail.swift; sourceTree = "<group>"; };
 		5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopMenu.swift; sourceTree = "<group>"; };
 		5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-R-Info.plist"; sourceTree = "<group>"; };
+		5D34C8842501EC4C0051F7C1 /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductReusableView.swift; sourceTree = "<group>"; };
 		5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchProductReusableView.xib; sourceTree = "<group>"; };
 		5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewModel.swift; sourceTree = "<group>"; };
@@ -1954,6 +1958,7 @@
 				5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */,
 				5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */,
 				5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */,
+				5D34C8842501EC4C0051F7C1 /* UploadImage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2928,6 +2933,7 @@
 				5DCC2D0524F34F04000AC40A /* UserRecommCellViewModel.swift in Sources */,
 				5DCC2D0624F34F04000AC40A /* LogManager.swift in Sources */,
 				5DCC2D0724F34F04000AC40A /* UIView-Rx.swift in Sources */,
+				5D34C8862501EC4C0051F7C1 /* UploadImage.swift in Sources */,
 				5DCC2D0824F34F04000AC40A /* ReactionsViewController.swift in Sources */,
 				5DCC2D0924F34F04000AC40A /* InsightsCellViewModel.swift in Sources */,
 				5DCC2D0A24F34F04000AC40A /* SearchType.swift in Sources */,
@@ -3186,6 +3192,7 @@
 				5DCC2E5D24F34F2A000AC40A /* UserRecommCellViewModel.swift in Sources */,
 				5DCC2E5E24F34F2A000AC40A /* LogManager.swift in Sources */,
 				5DCC2E5F24F34F2A000AC40A /* UIView-Rx.swift in Sources */,
+				5D34C8872501EC4C0051F7C1 /* UploadImage.swift in Sources */,
 				5DCC2E6024F34F2A000AC40A /* ReactionsViewController.swift in Sources */,
 				5DCC2E6124F34F2A000AC40A /* InsightsCellViewModel.swift in Sources */,
 				5DCC2E6224F34F2A000AC40A /* SearchType.swift in Sources */,
@@ -3444,6 +3451,7 @@
 				5D7D49B324B864A700F919EB /* UserRecommCellViewModel.swift in Sources */,
 				5DEFF31924AEC2F9007A2FCD /* LogManager.swift in Sources */,
 				5DEFF34A24AEC2F9007A2FCD /* UIView-Rx.swift in Sources */,
+				5D34C8852501EC4C0051F7C1 /* UploadImage.swift in Sources */,
 				5D06523724BEE2AB007CE461 /* ReactionsViewController.swift in Sources */,
 				5D437DCD24BD989B00AFBB1F /* InsightsCellViewModel.swift in Sources */,
 				5D7B189E24E4F8FC00D021EA /* SearchType.swift in Sources */,
@@ -3664,9 +3672,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3674,7 +3682,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-p";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3689,9 +3697,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3699,7 +3707,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-p";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3714,15 +3722,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-R-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.belive.glance;
 				PRODUCT_NAME = Glance;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3737,15 +3745,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-R-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = com.yanghaitest.glance;
+				PRODUCT_BUNDLE_IDENTIFIER = com.belive.glance;
 				PRODUCT_NAME = Glance;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3876,9 +3884,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3886,7 +3894,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D DEVELOP $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-d";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -3901,9 +3909,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 4C3HH729UW;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -3911,7 +3919,7 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D DEVELOP $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.yanghai.glance-d";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";

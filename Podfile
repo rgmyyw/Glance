@@ -64,7 +64,7 @@ abstract_target 'Glance' do
   pod 'WZLBadge' , '~> 1.2.6'
   pod 'PopupDialog', '~> 1.1'
   pod "Popover" , '~> 1.3.0'
-  pod 'WMZPageController', '~> 1.1.9'
+  pod 'WMZPageController', '~> 1.2.5'
   pod 'CWLateralSlide' , '~> 1.6.5'
   pod 'CountryPickerView' , '~> 3.1.2'
   pod 'ZLPhotoBrowser' , '~> 3.2.0'

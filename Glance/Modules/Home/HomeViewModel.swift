@@ -18,7 +18,19 @@ enum UpdateItemState {
     case delete
 }
 
+enum UpdateUserDataType {
+    case post
+    case recommend
+    case followers
+    case following
+}
+
+
+
+
 let kUpdateItem = PublishSubject<(state : UpdateItemState, item : Home, trigger : ViewModel? )>()
+let kUpdateUserData = PublishSubject<(type : UpdateUserDataType, item : Home, trigger : ViewModel? )>()
+
 
 
 class HomeViewModel: ViewModel, ViewModelType {
@@ -182,7 +194,6 @@ class HomeViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        
         kUpdateItem.subscribe(onNext: { [weak self](state, item ,trigger) in
             guard trigger != self else { return }
             guard var t = self?.element.value else { return }
@@ -200,7 +211,7 @@ class HomeViewModel: ViewModel, ViewModelType {
             case .saved:
                 items.forEach { $0.saved.accept(item.saved)}
             case .recommend:
-                items.forEach { $0.saved.accept(item.recommended)}
+                items.forEach { $0.recommended.accept(item.recommended)}
             }
             
         }).disposed(by: rx.disposeBag)

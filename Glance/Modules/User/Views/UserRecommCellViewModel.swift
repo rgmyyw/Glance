@@ -17,12 +17,11 @@ class UserRecommCellViewModel : CellViewModelProtocol, CollectionCellImageHeight
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
-    let recommended = BehaviorRelay<Bool>(value: false)
+    let recommended = BehaviorRelay<Bool>(value: true)
     let saved = BehaviorRelay<Bool>(value: false)
 
     let save = PublishSubject<Void>()
     let recommend = PublishSubject<Void>()
-    let showLikePopView = PublishSubject<UIView>()
     
     var image: String? {
         return item.image
@@ -34,11 +33,13 @@ class UserRecommCellViewModel : CellViewModelProtocol, CollectionCellImageHeight
     
     required init(item : Home) {
         self.item = item
-        guard let type = item.type else { return }
-        
+
         title.accept(item.title)
         imageURL.accept(item.image?.url)
-        //recommendButtonHidden.accept(false)
+        recommended.accept(item.recommended)
         saved.accept(item.saved)
+        
+        
+        //recommendButtonHidden.accept(false)
     }
 }

@@ -17,12 +17,12 @@ class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightC
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let emojiButtonHidden = BehaviorRelay<Bool>(value: false)
     let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
+    let recommended = BehaviorRelay<Bool>(value: false)
     let saved = BehaviorRelay<Bool>(value: false)
 
     let save = PublishSubject<Void>()
-    let showLikePopView = PublishSubject<UIView>()
+    let recommend = PublishSubject<Void>()
 
     var image: String? {
         return item.image
@@ -34,13 +34,10 @@ class UserPostCellViewModel : CellViewModelProtocol , CollectionCellImageHeightC
     
     required init(item : Home) {
         self.item = item
-            
-        guard let type = item.type else { return }
         
         title.accept(item.title)
         imageURL.accept(item.image?.url)
-        emojiButtonHidden.accept(!type.emojiEnable)
         saved.accept(item.saved)
-        
+        recommended.accept(item.recommended)
     }
 }

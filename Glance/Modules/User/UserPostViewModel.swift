@@ -22,7 +22,6 @@ class UserPostViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[SectionModel<Void,UserPostCellViewModel>]>
-        let showLikePopView : Observable<(UIView, UserPostCellViewModel)>
         let detail : Driver<Home>
     }
     
@@ -40,8 +39,9 @@ class UserPostViewModel: ViewModel, ViewModelType {
         
         let elements = BehaviorRelay<[SectionModel<Void,UserPostCellViewModel>]>(value: [])
         let save = PublishSubject<UserPostCellViewModel>()
-        let showLikePopView = PublishSubject<(UIView,UserPostCellViewModel)>()
         let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
+        let recommend = PublishSubject<UserPostCellViewModel>()
+
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
@@ -51,7 +51,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 self.page = 1
                 return self.provider.userPost(userId: self.current.value?.userId ?? "",pageNum: self.page)
                     .trackError(self.error)
-                    .trackActivity(self.loading)
+                    .trackActivity(self.headerLoading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
@@ -96,8 +96,8 @@ class UserPostViewModel: ViewModel, ViewModelType {
             let sectionItems = items.list.map { item -> UserPostCellViewModel  in
                 let viewModel = UserPostCellViewModel(item: item)
                 viewModel.recommendButtonHidden.accept((self.current.value != nil) ? self.current.value == user.value : true)
+                viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
-                viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
             let sections = [SectionModel<Void,UserPostCellViewModel>(model: (), items: sectionItems)]
@@ -129,6 +129,29 @@ class UserPostViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
 
+        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(UserPostCellViewModel,Bool)>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            var params = [String : Any]()
+            params["recommend"] = !cellViewModel.recommended.value
+            params.merge(dict: cellViewModel.item.id)
+            return self.provider.recommend(param: params)
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .map { (cellViewModel, $0)}
+                .materialize()
+        }).subscribe(onNext: {  [weak self]event in
+            switch event {
+            case .next(let (cellViewModel,result)):
+                cellViewModel.recommended.accept(result)
+                var item = cellViewModel.item
+                item.recommended = result
+                kUpdateItem.onNext((.recommend,item,self))
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+
+        
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
             guard trigger != self else { return }
             guard var t = self?.element.value else { return }
@@ -146,14 +169,13 @@ class UserPostViewModel: ViewModel, ViewModelType {
             case .saved:
                 items.forEach { $0.saved.accept(item.saved)}
             case .recommend:
-                items.forEach { $0.saved.accept(item.recommended)}
+                items.forEach { $0.recommended.accept(item.recommended)}
             }
                 
         }).disposed(by: rx.disposeBag)
 
     
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      showLikePopView: showLikePopView.asObservable(),
                       detail: detail)
         
     }

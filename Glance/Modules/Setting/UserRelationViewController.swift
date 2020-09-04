@@ -18,7 +18,7 @@ class UserRelationViewController: TableViewController {
         super.makeUI()
         
         tableView.register(nib: UserRelationCell.nib, withCellClass: UserRelationCell.self)
-        tableView.headRefreshControl = nil
+        //tableView.headRefreshControl = nil
         tableView.rowHeight = 70
         
         
@@ -29,6 +29,7 @@ class UserRelationViewController: TableViewController {
         guard let viewModel = viewModel as? UserRelationViewModel else { return }
         
         let input = UserRelationViewModel.Input(selection: tableView.rx.modelSelected(UserRelationCellViewModel.self).asObservable(),
+                                                headerRefresh : headerRefreshTrigger.asObservable(),
                                                 footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
 

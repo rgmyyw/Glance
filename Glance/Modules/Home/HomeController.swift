@@ -38,7 +38,14 @@ class HomeController: CollectionViewController {
 
     }
     
-    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        collectionView.headRefreshControl.beginRefreshing()
+        collectionView.headRefreshControl.refreshHandler()
+        
+    }
+
     override func bindViewModel() {
         super.bindViewModel()
         

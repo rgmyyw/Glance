@@ -28,6 +28,8 @@ class SignInViewModel: ViewModel, ViewModelType {
         let instagramOAuth = input.instagram.asDriver(onErrorJustReturn: ())
         let tabbar = PublishSubject<Void>()
         let interest = PublishSubject<Void>()
+        let loadUserDetail = PublishSubject<Bool>()
+        
     
         AuthManager.shared.tokenChanged.filterNil()
             .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
@@ -40,15 +42,33 @@ class SignInViewModel: ViewModel, ViewModelType {
             }).subscribe(onNext: {  event in
                 switch event {
                 case .next(let newUser):
-                    if newUser {
-                        interest.onNext(())
-                    } else {
-                        tabbar.onNext(())
-                    }
+                    loadUserDetail.onNext(newUser)
+                    
                 default:
                     break
                 }
             }).disposed(by: rx.disposeBag)
+        
+        loadUserDetail.flatMapLatest({ [weak self] (isNewUser) -> Observable<(RxSwift.Event<(Bool,User)>)> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            return self.provider.userDetail(userId: "")
+                .trackError(self.error)
+                .trackActivity(self.loading)
+                .map { (isNewUser,$0)}
+                .materialize()
+        }).subscribe(onNext: {  event in
+            switch event {
+            case .next(let (isNewUser, user)):
+                user.save()
+                if isNewUser {
+                    interest.onNext(())
+                } else {
+                    tabbar.onNext(())
+                }
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
 
         return Output(instagramOAuth: instagramOAuth,
                       tabbar: tabbar.asDriver(onErrorJustReturn: ()),

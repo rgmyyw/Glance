@@ -10,8 +10,8 @@ import ObjectMapper
 
 enum ReactionType : Int {
     case none = 0
-    case heart = 1
-    case haha = 2
+    case haha = 1
+    case heart = 2
     case wow = 3
     case sad = 4
     

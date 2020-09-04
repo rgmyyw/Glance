@@ -92,12 +92,15 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let delete = input.memuSelection.filter { $0 == 1}.mapToVoid().asDriver(onErrorJustReturn: ())
         
         
+        
         /// 底部添加购物车按钮
-        let bottomBarHidden = item.map { !($0.type?.isProduct ?? false) }.asDriver(onErrorJustReturn: true)
+        let isProduct = item.map { !($0.type?.isProduct ?? false) }
+        let bottomBarHidden = Observable.combineLatest(elements.filterEmpty(), isProduct).map { $1}.asDriver(onErrorJustReturn: true)
         let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
         let bottomBarButtonTitle = bottomBarButtonState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
         let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }.asDriver(onErrorJustReturn: false)
         let bottomBarBackgroundColor = bottomBarButtonState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
+        
         element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
         /// 添加收藏
@@ -211,7 +214,6 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .product,.recommendProduct:
                 //sections = [banner,price,title,tags,tool]
                 sections = [banner,price,title,tool]
-                
             }
             
             let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in

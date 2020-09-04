@@ -29,10 +29,10 @@ class UserPostViewController: CollectionViewController  {
         layout.delegate = self
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
-        collectionView.headRefreshControl = nil
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: UserPostCell.self)
+        
         
     }
     
@@ -114,6 +114,4 @@ extension UserPostViewController : WMZPageProtocol {
     func getMyScrollView() -> UIScrollView {
         return collectionView
     }
-    
-    
 }

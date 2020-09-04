@@ -50,6 +50,46 @@ enum UserDetailMemuType {
     }
 }
 
+//struct UserModuleItem {
+//    var viewModel : ViewModel
+//}
+//
+enum UserModuleItem {
+    
+    case post(viewModel : UserPostViewModel)
+    case recommend(viewModel : UserRecommViewModel)
+    case followers(viewModel : UserRelationViewModel)
+    case following(viewModel : UserRelationViewModel)
+    
+    var defaultTitle : String {
+        switch self {
+        case .post:
+            return "0\nPosts"
+        case .recommend:
+            return "0\nRecomm"
+        case .followers:
+            return "0\nFollowers"
+        case .following:
+            return "0\nFollowing"
+        }
+    }
+    
+    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+        guard navigator != nil else {
+            return nil
+        }
+        switch self {
+        case .post(let viewModel):
+            return .userPost(viewModel: viewModel)
+        case .recommend(let viewModel):
+            return .userRecommend(viewModel: viewModel)
+        case .followers(let viewModel):
+            return .userRelation(viewModel: viewModel)
+        case .following(let viewModel):
+            return .userRelation(viewModel: viewModel)
+        }
+    }
+}
 
 
 class UserViewModel: ViewModel, ViewModelType {
@@ -90,6 +130,7 @@ class UserViewModel: ViewModel, ViewModelType {
         let followButtonImage : Driver<UIImage?>
         let followButtonTitleColor : Driver<UIColor>
         let memu : Driver<[UserDetailMemuItem]>
+        let config : Driver<[UserModuleItem]>
     }
     
     let current : BehaviorRelay<User?>
@@ -107,6 +148,36 @@ class UserViewModel: ViewModel, ViewModelType {
     let settingSelectedItem = PublishSubject<SettingItem>()    
     
     func transform(input: Input) -> Output {
+        
+        let otherUserBgViewHidden = current.map { $0 == user.value }.asDriver(onErrorJustReturn: true)
+        let userHeadImageURL = current.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
+        let displayName = current.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
+        let countryName = current.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
+        let instagram = current.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
+        let website = current.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
+        let bio = current.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
+        let followButtonBackground = current.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
+        let followButtonImage = current.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
+        let followButtonTitleColor = current.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
+        input.chat.map { () in Message("Features under development...")}
+            .bind(to: message).disposed(by: rx.disposeBag)
+
+        
+        let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
+            let user = self.current.value
+            let post = UserPostViewModel(provider: self.provider, otherUser: user)
+            let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
+            let followers = UserRelationViewModel(provider: self.provider, type: .followers, otherUser: user)
+            let following = UserRelationViewModel(provider: self.provider, type: .following, otherUser: user)
+            let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
+                                           .followers(viewModel: followers),.following(viewModel: following)]
+            followers.parsedError.bind(to: self.parsedError).disposed(by: self.rx.disposeBag)
+            following.parsedError.bind(to: self.parsedError).disposed(by: self.rx.disposeBag)
+
+            observer.onNext(items)
+            observer.onCompleted()
+            return Disposables.create { }
+        }
         
         let insight = input.insight.asDriver(onErrorJustReturn: ())
         let setting = input.setting.asDriver(onErrorJustReturn: ())
@@ -157,7 +228,8 @@ class UserViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        input.refresh.merge(with: refresh).flatMapLatest({ [weak self] (user) -> Observable<(RxSwift.Event<User>)> in
+        input.refresh.merge(with: refresh).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
+            
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.userDetail(userId: self.current.value?.userId ?? "")
                 .trackError(self.error)
@@ -196,26 +268,6 @@ class UserViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-        
-        let otherUserBgViewHidden = current.map { $0 == user.value }.asDriver(onErrorJustReturn: true)
-        let userHeadImageURL = current.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
-        let displayName = current.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
-        let countryName = current.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
-        let instagram = current.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
-        let website = current.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
-        let bio = current.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
-        let followButtonBackground = current.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
-        let followButtonImage = current.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
-        let followButtonTitleColor = current.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
-        
-
-
-        
-        
-        input.chat.map { () in Message("Features under development...")}
-            .bind(to: message).disposed(by: rx.disposeBag)
-
-        
         
         
         let titles = current.filterNil().map { user -> [String] in
@@ -261,7 +313,11 @@ class UserViewModel: ViewModel, ViewModelType {
                       followButtonBackground: followButtonBackground.asDriver(onErrorJustReturn: .white),
                       followButtonImage: followButtonImage.asDriver(onErrorJustReturn: nil),
                       followButtonTitleColor: followButtonTitleColor.asDriver(onErrorJustReturn: .white),
-                      memu: popMemu )
+                      memu: popMemu,
+                      config: config.asDriver(onErrorJustReturn: []) )
     }
+    
+ 
+    
 }
 

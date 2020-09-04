@@ -40,7 +40,6 @@ class PostsDetailViewController: CollectionViewController {
     override func makeUI() {
         super.makeUI()
         
-        
         navigationBar.addSubview(customNavigationBar)
         stackView.addArrangedSubview(bottomBar)
         
@@ -53,8 +52,7 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
 
         collectionView.headRefreshControl = nil
-//        collectionView.footRefreshControl = nil
-        
+
         collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: PostsDetailCell.reuseIdentifier)
         collectionView.register(nib: PostsDetailBannerReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailBannerReusableView.self)
         collectionView.register(nib: PostsDetailPriceReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailPriceReusableView.self)

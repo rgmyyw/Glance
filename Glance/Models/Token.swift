@@ -28,6 +28,7 @@ struct Token: Mappable {
     // Basic
     var basicToken: String?
     
+    
     var expired : Int = 0
 
     

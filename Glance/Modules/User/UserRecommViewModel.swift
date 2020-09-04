@@ -22,11 +22,10 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[SectionModel<Void,UserRecommCellViewModel>]>
-        let showLikePopView : Observable<(UIView, UserRecommCellViewModel)>
         let detail : Driver<Home>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     
     let current = BehaviorRelay<User?>(value: nil)
     
@@ -40,7 +39,6 @@ class UserRecommViewModel: ViewModel, ViewModelType {
         
         let elements = BehaviorRelay<[SectionModel<Void,UserRecommCellViewModel>]>(value: [])
         let save = PublishSubject<UserRecommCellViewModel>()
-        let showLikePopView = PublishSubject<(UIView,UserRecommCellViewModel)>()
         let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
         let recommend = PublishSubject<UserRecommCellViewModel>()
 
@@ -69,7 +67,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
+            if !(self.element.value?.hasNext ?? false) {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
@@ -82,7 +80,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
                 self.hasData.onNext(item.hasNext)
             default:
@@ -91,13 +89,12 @@ class UserRecommViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        element.map { items -> [SectionModel<Void,UserRecommCellViewModel>] in
+        element.filterNil().map { items -> [SectionModel<Void,UserRecommCellViewModel>] in
             let sectionItems = items.list.map { item -> UserRecommCellViewModel  in
                 let viewModel = UserRecommCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
                 viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.recommendButtonHidden.accept(((self.current.value != nil) ? self.current.value != user.value : false))
-                viewModel.showLikePopView.map { ($0, viewModel) }.bind(to: showLikePopView).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
             let sections = [SectionModel<Void,UserRecommCellViewModel>(model: (), items: sectionItems)]
@@ -155,7 +152,8 @@ class UserRecommViewModel: ViewModel, ViewModelType {
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
             guard trigger != self else { return }
             guard var t = self?.element.value else { return }
-            let items = elements.value.flatMap { $0.items }.filter { $0.item == item}
+            let items =  elements.value.first?.items
+
             switch state {
             case .delete:
                 var list = t.list
@@ -167,16 +165,22 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             case .like:
                 break
             case .saved:
-                items.forEach { $0.saved.accept(item.saved)}
+                items?.forEach { $0.saved.accept(item.saved)}
             case .recommend:
-                items.forEach { $0.saved.accept(item.recommended)}
+                var element = self?.element.value
+                if item.recommended == false {
+                    element?.list.removeAll(where: { $0 == item})
+                } else {
+                    element?.list.insert(item, at: 0)
+                }
+                element?.list.removeDuplicates()
+                self?.element.accept(element)
             }
                 
         }).disposed(by: rx.disposeBag)
 
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      showLikePopView: showLikePopView.asObservable(),
                       detail: detail)
     }
 }
