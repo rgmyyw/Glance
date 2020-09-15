@@ -1,5 +1,5 @@
 //
-//  HomeCellViewModel.swift
+//  DefaultColltionCellViewModel.swift
 //  Glance
 //
 //  Created by yanghai on 2020/7/6.
@@ -10,9 +10,9 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
-class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
+class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
         
+    
     let item : Home
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -36,8 +36,7 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     let recommend = PublishSubject<Void>()
     let userDetail = PublishSubject<Void>()
     let reaction = PublishSubject<UIView>()
-    
-    
+        
     var image: String? {
         return item.image
     }
@@ -45,6 +44,22 @@ class HomeCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalcul
     var col: Int {
         return 2
     }
+    
+    
+    func makeItemType() -> DefaultColltionSectionItem {
+        guard let type = item.type else { return .none }
+        switch type {
+        case .post:
+            return .post(viewModel: self)
+        case .product:
+            return .product(viewModel: self)
+        case .recommendPost:
+            return .recommendPost(viewModel: self)
+        case .recommendProduct:
+            return .recommendProduct(viewModel: self)
+        }
+    }
+    
     
     required init(item : Home) {
         self.item = item

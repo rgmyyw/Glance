@@ -105,6 +105,19 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.setNeedsLayout()
+        tableView.layoutIfNeeded()
+        emptyDataView.snp.makeConstraints { (make) in
+            make.size.equalTo(tableView.frame.size)
+        }
+        emptyDataView.setNeedsLayout()
+        emptyDataView.layoutIfNeeded()
+        tableView.reloadEmptyDataSet()
+    }
+
+    
     override func bindViewModel() {
         super.bindViewModel()
 

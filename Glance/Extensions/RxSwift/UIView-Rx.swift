@@ -116,6 +116,51 @@ extension DropDownView {
     
 }
 
+extension Reactive where Base: UIView {
+    
+    var becomeFirstResponder: Binder<Void> {
+        return Binder(self.base) { view, _ in
+            view.becomeFirstResponder()
+        }
+    }
+    
+    var resignFirstResponder: Binder<Void> {
+        return Binder(self.base) { view, _ in
+            view.resignFirstResponder()
+        }
+    }    
+}
+
+
+extension UITextField : UITextFieldDelegate {
+    
+    private enum RuntimeKey {
+        static let textFieldReturn = "textFieldReturn"
+    }
+    
+    /// 监听内textFieldReturn 点击, 内部使用代理, 使用会覆盖
+    func `return`() -> Observable<Void>{
+        self.delegate = self
+        
+        if let subject = objc_getAssociatedObject(self, RuntimeKey.textFieldReturn) as? PublishSubject<Void> {
+            return subject.asObservable()
+        }
+        let subject = PublishSubject<()>()
+        objc_setAssociatedObject(self, RuntimeKey.textFieldReturn, subject, .OBJC_ASSOCIATION_RETAIN)
+        return subject.asObservable()
+    }
+    
+    public func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        guard let subject = objc_getAssociatedObject(self, RuntimeKey.textFieldReturn) as? PublishSubject<()> else {
+            return true
+        }
+        subject.onNext(())
+        return true
+    }
+}
+
+
+
 
 //
 //extension AlertController {

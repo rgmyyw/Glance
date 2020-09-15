@@ -66,6 +66,8 @@ enum GlanceAPI {
     case deletePost(postId : Int)
     case recommend(param : [String : Any])
     case reaction(recommendId : Int,type : Int)
+    case searchFacets(query : String)
+    case searchThemeClassify
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -181,6 +183,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/recommends"
         case .reaction:
             return "/api/recommends/reactions"
+        case .searchFacets:
+            return "/api/search/facets"
+        case .searchThemeClassify:
+            return "/api/search/theme/classify"
+
         }
     }
     
@@ -220,7 +227,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .insightsRecommend,
              .insightsLiked,
              .isNewUser,
-             .reactionAnalysis:
+             .reactionAnalysis,
+             .searchFacets,
+             .searchThemeClassify:
             return .get
         case .modifyProfile:
             return .put
@@ -246,10 +255,6 @@ extension GlanceAPI: TargetType, ProductAPIType {
         if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
             header["Authorization"] = "Bearer \(token)"
         }
-        
-
-        
-        
 
         header["platform"] = "iOS"
         header["channel-id"] = "1"
@@ -333,6 +338,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .reaction(let recommendId,let type):
             params["recommendId"] = recommendId
             params["type"] = type
+        case .searchFacets(let query):
+            params["query"] = query
         default:
             break
         }

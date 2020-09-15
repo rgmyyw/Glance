@@ -1,0 +1,12 @@
+User defaults from command line:
+    IDEArchivePathOverride = /Users/yanghai/Library/Developer/Xcode/Archives/2020-09-11/Glance 2020-09-11 17.58.26.xcarchive
+
+note: Using new build system
+
+** CLEAN SUCCEEDED **
+
+note: Using new build system
+note: Planning build
+note: Constructing build description
+error: Glance-R has conflicting provisioning settings. Glance-R is automatically signed for development, but a conflicting code signing identity iPhone Distribution has been manually specified. Set the code signing identity value to "iPhone Developer" in the build settings editor, or switch to manual signing in the Signing & Capabilities editor. (in target 'Glance-R' from project 'Glance')
+

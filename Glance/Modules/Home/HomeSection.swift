@@ -12,36 +12,26 @@ import RxSwift
 import RxCocoa
 
 enum HomeSection {
-    case recommend(items: [HomeSectionItem])
+    case single(items: [DefaultColltionSectionItem])
 }
 
-enum HomeSectionItem {
-    case recommendItem(viewModel: HomeCellViewModel)
-    
-    var viewModel : HomeCellViewModel {
-        switch self {
-        case .recommendItem(let viewModel):
-            return viewModel
-        }
-    }
-}
 
 extension HomeSection: SectionModelType {
     
-    typealias Item = HomeSectionItem
+    typealias Item = DefaultColltionSectionItem
     
     
-    var items: [HomeSectionItem] {
+    var items: [DefaultColltionSectionItem] {
         switch  self {
-        case .recommend(let items):
+        case .single(let items):
             return items.map { $0 }
         }
     }
     
     init(original: HomeSection, items: [Item]) {
         switch original {
-        case .recommend(let items):
-            self = .recommend(items: items)
+        case .single(let items):
+            self = .single(items: items)
         }
     }
 }

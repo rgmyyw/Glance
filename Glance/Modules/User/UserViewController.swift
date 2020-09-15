@@ -142,7 +142,8 @@ class UserViewController: ViewController {
         output.followButtonImage.drive(userHeadView.followButton.rx.image(for: .normal)).disposed(by: rx.disposeBag)
         output.followButtonBackground.drive(userHeadView.followButton.rx.backgroundColor).disposed(by: rx.disposeBag)
         output.followButtonTitleColor.drive(userHeadView.followButton.rx.titleColor(for: .normal)).disposed(by: rx.disposeBag)
-        
+        output.followButtonTitle.drive(userHeadView.followButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
+
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
             controllers.forEach { self?.addChild($0)}

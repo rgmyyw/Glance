@@ -11,10 +11,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="HomeCell" customModule="Glance" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="196" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="196" height="346"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="196" height="272"/>
+                <rect key="frame" x="0.0" y="0.0" width="196" height="346"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjK-qb-Iq0">
@@ -214,7 +214,7 @@
                 <constraint firstAttribute="bottom" secondItem="mjK-qb-Iq0" secondAttribute="bottom" priority="750" id="mMW-Yq-2DA"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <size key="customSize" width="196" height="272"/>
+            <size key="customSize" width="196" height="346"/>
             <connections>
                 <outlet property="emojiButton" destination="Pof-qs-RZ6" id="8II-jS-a6L"/>
                 <outlet property="favorite" destination="gRM-00-gU2" id="3Na-6b-DDi"/>
@@ -231,7 +231,7 @@
                 <outlet property="userNameLabel" destination="bXB-AG-eNZ" id="WEu-Te-feO"/>
                 <outlet property="userOnlineImageView" destination="1ME-r9-kYs" id="X3H-G6-xQ1"/>
             </connections>
-            <point key="canvasLocation" x="-1162.3188405797102" y="-58.258928571428569"/>
+            <point key="canvasLocation" x="-1404.3478260869567" y="-52.232142857142854"/>
         </collectionViewCell>
     </objects>
     <resources>

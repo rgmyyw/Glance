@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Roboto-Regular.ttf">
+            <string>Roboto-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="1Hs-Zb-BU1" customClass="SearchResultNavigationBar" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="308" height="44"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4J0-gr-8aq">
+                    <rect key="frame" x="15" y="0.0" width="278" height="44"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="I4h-Ym-BiZ">
+                            <rect key="frame" x="0.0" y="4" width="278" height="36"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Dno-hq-4WY">
+                                    <rect key="frame" x="0.0" y="0.0" width="22" height="36"/>
+                                    <subviews>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P2d-39-O36">
+                                            <rect key="frame" x="0.0" y="7" width="22" height="22"/>
+                                            <state key="normal" image="icon_navigation_back_black"/>
+                                        </button>
+                                    </subviews>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="22" id="OC1-8F-VPk"/>
+                                        <constraint firstItem="P2d-39-O36" firstAttribute="centerY" secondItem="Dno-hq-4WY" secondAttribute="centerY" id="piY-G2-9WZ"/>
+                                        <constraint firstItem="P2d-39-O36" firstAttribute="leading" secondItem="Dno-hq-4WY" secondAttribute="leading" id="uMe-nk-TVu"/>
+                                    </constraints>
+                                </view>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c5X-CB-Y69">
+                                    <rect key="frame" x="34" y="0.0" width="244" height="36"/>
+                                    <subviews>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search" translatesAutoresizingMaskIntoConstraints="NO" id="fYm-zB-hOr">
+                                            <rect key="frame" x="10" y="11" width="14" height="14"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="14" id="46e-kE-wdH"/>
+                                                <constraint firstAttribute="height" constant="14" id="vNj-F0-fn9"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   " lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q0I-Z8-Fr4">
+                                            <rect key="frame" x="32" y="4" width="176" height="28"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="28" id="VSK-XH-kci"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="14"/>
+                                            <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_camera" translatesAutoresizingMaskIntoConstraints="NO" id="5Ok-pj-lUh">
+                                            <rect key="frame" x="218" y="10" width="16" height="16"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="16" id="eG0-s1-Vuw"/>
+                                                <constraint firstAttribute="height" constant="16" id="mg7-hs-OqK"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                    <constraints>
+                                        <constraint firstItem="fYm-zB-hOr" firstAttribute="leading" secondItem="c5X-CB-Y69" secondAttribute="leading" constant="10" id="0Lr-Dz-gem"/>
+                                        <constraint firstItem="q0I-Z8-Fr4" firstAttribute="centerY" secondItem="fYm-zB-hOr" secondAttribute="centerY" id="5yM-l9-5aU"/>
+                                        <constraint firstItem="5Ok-pj-lUh" firstAttribute="centerY" secondItem="c5X-CB-Y69" secondAttribute="centerY" id="AI6-4n-Hlk"/>
+                                        <constraint firstAttribute="trailing" secondItem="5Ok-pj-lUh" secondAttribute="trailing" constant="10" id="Mfr-2C-jua"/>
+                                        <constraint firstItem="q0I-Z8-Fr4" firstAttribute="leading" secondItem="fYm-zB-hOr" secondAttribute="trailing" constant="8" id="Ua9-eR-Ha2"/>
+                                        <constraint firstItem="5Ok-pj-lUh" firstAttribute="leading" secondItem="q0I-Z8-Fr4" secondAttribute="trailing" constant="10" id="cQe-db-muU"/>
+                                        <constraint firstItem="fYm-zB-hOr" firstAttribute="centerY" secondItem="c5X-CB-Y69" secondAttribute="centerY" id="inJ-uw-5cd"/>
+                                    </constraints>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                            <real key="value" value="5"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="tAb-WZ-ne0"/>
+                            </constraints>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="I4h-Ym-BiZ" secondAttribute="trailing" id="VLb-8w-3f1"/>
+                        <constraint firstItem="I4h-Ym-BiZ" firstAttribute="leading" secondItem="4J0-gr-8aq" secondAttribute="leading" id="VqC-Az-XQX"/>
+                        <constraint firstAttribute="bottom" secondItem="I4h-Ym-BiZ" secondAttribute="bottom" constant="4" id="yS7-ae-feA"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="4J0-gr-8aq" secondAttribute="bottom" id="AFW-jB-DXT"/>
+                <constraint firstItem="4J0-gr-8aq" firstAttribute="top" secondItem="1Hs-Zb-BU1" secondAttribute="top" id="AQu-Ct-4US"/>
+                <constraint firstAttribute="trailing" secondItem="4J0-gr-8aq" secondAttribute="trailing" constant="15" id="Kgs-um-J9N"/>
+                <constraint firstItem="4J0-gr-8aq" firstAttribute="leading" secondItem="1Hs-Zb-BU1" secondAttribute="leading" constant="15" id="vK5-PX-xjD"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="QUY-lH-yq3"/>
+            <connections>
+                <outlet property="backButton" destination="P2d-39-O36" id="KZB-C0-ILE"/>
+                <outlet property="cameraButton" destination="5Ok-pj-lUh" id="rNt-n5-iCd"/>
+                <outlet property="searchView" destination="c5X-CB-Y69" id="gpV-bX-Fhx"/>
+                <outlet property="titleLabel" destination="q0I-Z8-Fr4" id="PTq-en-HdL"/>
+            </connections>
+            <point key="canvasLocation" x="48" y="9"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="icon_camera" width="16" height="16"/>
+        <image name="icon_navigation_back_black" width="22" height="18"/>
+        <image name="icon_search" width="14" height="14"/>
+    </resources>
+</document>

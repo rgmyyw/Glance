@@ -26,7 +26,7 @@ struct Configs {
         #if DEVELOP
         static let url = "http://glance:glance@192.168.1.218:8090"
         #elseif PREVIEW
-        static let url = "http://54.255.236.62:8099"
+        static let url = "http://18.139.208.252:8099"
         #elseif RELEASE
         static let url = "http://54.255.236.62:8099"
         #endif

@@ -157,6 +157,10 @@ extension String {
     
 }
 
+
+
+
+
 extension String {
     
     func urlParameters() -> [String: String]? {

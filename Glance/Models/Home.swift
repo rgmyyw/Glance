@@ -12,6 +12,9 @@ import ObjectMapper
 
 enum HomeCellType : Int {
     
+    
+    static let all : [HomeCellType] = [.post,.product,.recommendPost,.recommendProduct]
+    
     case post = 0
     case product = 1
     case recommendPost = 2
@@ -29,7 +32,7 @@ enum HomeCellType : Int {
             return "recommended"
         }
     }
-
+    
     
 }
 

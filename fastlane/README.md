@@ -12,7 +12,7 @@ Install _fastlane_ using
 ```
 [sudo] gem install fastlane -NV
 ```
-or alternatively using `brew cask install fastlane`
+or alternatively using `brew install fastlane`
 
 # Available Actions
 ## iOS
@@ -36,6 +36,11 @@ fastlane ios export_Ad_Hoc_IPA
 fastlane ios getDevCert
 ```
 获取开发证书和配置文件
+### ios beta
+```
+fastlane ios beta
+```
+Glance-D: Push a new beta build to TestFlight
 
 ----
 

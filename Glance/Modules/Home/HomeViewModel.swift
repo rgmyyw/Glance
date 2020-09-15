@@ -38,30 +38,32 @@ class HomeViewModel: ViewModel, ViewModelType {
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<HomeSectionItem>
+        let selection : Observable<DefaultColltionSectionItem>
+        let search : Observable<Void>
         
     }
     
     struct Output {
         let items : Driver<[HomeSection]>
-        let reaction : Observable<(UIView, HomeCellViewModel)>
+        let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
         let detail : Driver<Home>
         let userDetail : Driver<User>
+        let search : Observable<Void>
     }
     
     let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
     
     
-    let selectionReaction = PublishSubject<(cellViewModel : HomeCellViewModel , type : ReactionType)>()
+    let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
     
     func transform(input: Input) -> Output {
         
         
         let elements = BehaviorRelay<[HomeSection]>(value: [])
-        let save = PublishSubject<HomeCellViewModel>()
-        let reaction = PublishSubject<(UIView,HomeCellViewModel)>()
+        let save = PublishSubject<DefaultColltionCellViewModel>()
+        let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
         let detail = input.selection.map { $0.viewModel.item }
-        let recommend = PublishSubject<HomeCellViewModel>()
+        let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
         
         
@@ -113,20 +115,19 @@ class HomeViewModel: ViewModel, ViewModelType {
         
         
         element.map { items -> [HomeSection] in
-            let sectionItems = items.list.map { item -> HomeSectionItem  in
-                let viewModel = HomeCellViewModel(item: item)
+            let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
+                let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
                 viewModel.reaction.map { ($0, viewModel) }.bind(to: reaction).disposed(by: self.rx.disposeBag)
                 viewModel.recommend.map { viewModel }.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.userDetail.map { viewModel.item.user }.bind(to: userDetail).disposed(by: self.rx.disposeBag)
-                let sectionItem = HomeSectionItem.recommendItem(viewModel: viewModel)
-                return sectionItem
+                return viewModel.makeItemType()
             }
-            let sections = [HomeSection.recommend(items: sectionItems)]
+            let sections = [HomeSection.single(items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
+        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             var params = [String : Any]()
             params["type"] = cellViewModel.item.type?.rawValue ?? -1
@@ -149,7 +150,7 @@ class HomeViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(HomeCellViewModel,Bool)>)> in
+        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             var params = [String : Any]()
             params["recommend"] = !cellViewModel.recommended.value
@@ -172,7 +173,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(HomeCellViewModel,ReactionType,Bool)>)> in
+        selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,ReactionType,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let recommendId = cellViewModel.item.recommendId
             return self.provider.reaction(recommendId: recommendId, type: type.rawValue)
@@ -221,6 +222,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       reaction: reaction.asObservable(),
                       detail: detail.asDriver(onErrorJustReturn: Home()),
-                      userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()))
+                      userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()),
+                      search: input.search)
     }
 }

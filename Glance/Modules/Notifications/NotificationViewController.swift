@@ -24,6 +24,12 @@ class NotificationViewController: TableViewController {
         tableView.register(nib: NotificationCell.nib, withCellClass: NotificationCell.self)
         tableView.rowHeight = 75 + 20
         
+        emptyDataViewDataSource.image.accept(R.image.icon_empty_notifications())
+        emptyDataViewDataSource.title.accept("No Notifications")
+        emptyDataViewDataSource.subTitle.accept("You can have a look around first")
+
+        
+        
         
     }
     override func bindViewModel() {

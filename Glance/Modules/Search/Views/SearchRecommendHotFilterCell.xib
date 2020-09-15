@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="ER2-5p-BO4" customClass="SearchRecommendHotFilterCell" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="83" height="28"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="83" height="28"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kPP-dm-f9P">
+                        <rect key="frame" x="0.0" y="0.0" width="41" height="28"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oX5-uS-Ldf">
+                                <rect key="frame" x="6" y="7" width="29" height="14"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
+                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="oX5-uS-Ldf" firstAttribute="leading" secondItem="kPP-dm-f9P" secondAttribute="leading" constant="6" id="Sf8-vD-TG5"/>
+                            <constraint firstAttribute="trailing" secondItem="oX5-uS-Ldf" secondAttribute="trailing" constant="6" id="sEC-zU-D6Y"/>
+                            <constraint firstItem="oX5-uS-Ldf" firstAttribute="centerY" secondItem="kPP-dm-f9P" secondAttribute="centerY" id="zfB-At-KFT"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="shadowRadius">
+                                <real key="value" value="5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="kPP-dm-f9P" firstAttribute="top" secondItem="ER2-5p-BO4" secondAttribute="top" id="fM4-d1-WBs"/>
+                <constraint firstAttribute="bottom" secondItem="kPP-dm-f9P" secondAttribute="bottom" id="iMr-Bv-whf"/>
+                <constraint firstItem="kPP-dm-f9P" firstAttribute="leading" secondItem="ER2-5p-BO4" secondAttribute="leading" id="prW-RY-2iV"/>
+                <constraint firstAttribute="trailing" secondItem="kPP-dm-f9P" secondAttribute="trailing" priority="250" id="qqc-wX-lhD"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="emB-Pl-Ush"/>
+            <size key="customSize" width="83" height="28"/>
+            <connections>
+                <outlet property="bgView" destination="kPP-dm-f9P" id="lYz-ET-4yE"/>
+                <outlet property="label" destination="oX5-uS-Ldf" id="bYc-Ek-pmG"/>
+            </connections>
+            <point key="canvasLocation" x="-1489.1304347826087" y="90.401785714285708"/>
+        </collectionViewCell>
+    </objects>
+</document>

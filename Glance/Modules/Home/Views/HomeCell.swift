@@ -9,7 +9,7 @@
 import UIKit
 import RxSwiftExt
 
-class HomeCell: CollectionViewCell {
+class XHomeCell: CollectionViewCell {
     
     @IBOutlet weak var userHeadImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -34,7 +34,7 @@ class HomeCell: CollectionViewCell {
         
     }
     
-    override func bind<T>(to viewModel: T) where T : HomeCellViewModel {
+    override func bind<T>(to viewModel: T) where T : DefaultColltionCellViewModel {
         super.bind(to: viewModel)
     
         imageView.backgroundColor = .lightGray

@@ -286,7 +286,7 @@
                 <outlet property="websiteButton" destination="KjO-TZ-HXS" id="WzG-4O-aZm"/>
                 <outlet property="websiteCell" destination="5S9-U0-Bbd" id="uWo-zl-U8G"/>
             </connections>
-            <point key="canvasLocation" x="-192.75362318840581" y="105.13392857142857"/>
+            <point key="canvasLocation" x="-770" y="108"/>
         </view>
     </objects>
     <resources>

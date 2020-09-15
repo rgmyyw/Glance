@@ -23,6 +23,7 @@ enum ApiError: Error {
 
 class RestApi: API {
     
+    
     func getHome(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
@@ -200,6 +201,17 @@ class RestApi: API {
     func reaction(recommendId: Int, type: Int) -> Single<Bool> {
         return requestObject(.reaction(recommendId: recommendId, type: type), type: MappableItem<Bool>.self,keyPath: nil).map { $0.code == 200 }
     }
+    func searchFacets(query: String) -> Single<[SearchFacet]> {
+        return requestArray(.searchFacets(query: query), type: SearchFacet.self)
+    }
+    
+    
+    func searchThemeClassify() -> Single<[ThemeClassify]> {
+        return requestArray(.searchThemeClassify, type: ThemeClassify.self)
+
+    }
+
+    
     
     let ibexProvider: IbexNetworking
     

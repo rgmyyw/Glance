@@ -26,9 +26,9 @@ class EmptyDataViewModel {
     let tap = PublishSubject<Void>()
     let enable =  BehaviorRelay<Bool>(value: true)
     
-    init(title : String? = R.string.localizable.commonNoResults(),
-         image : UIImage? = nil,
-         subTitle : String? = nil,
+    init(title : String? = "Empty",
+         image : UIImage? = R.image.icon_empty_default(),
+         subTitle : String? = "Hurry up and collect one",
          buttonTitle : String? = nil) {
         self.title.accept(title)
         self.subTitle.accept(subTitle)

@@ -15,9 +15,6 @@
 # 自动更新 fastlane
 # update_fastlane
 
-fastlane_version "2.150.0"
-
-
 default_platform(:ios)
 
 platform :ios do
@@ -60,21 +57,42 @@ platform :ios do
       output_directory:"build",
       clean: true  
     )
+    
   end
 
   desc "获取开发证书和配置文件"
   lane :getDevCert do
-    register_devices(devices_file: "./fastlane/multiple-device-upload-ios.txt")
-    sh "fastlane match nuke development -force"
+    #register_devices(devices_file: "./fastlane/multiple-device-upload-ios.txt")
+    # sh "fastlane match nuke development -force"
     match(
-      git_branch: "team1",
-      type: 'development'
+      git_branch: "glance",
+      type: 'appstore',
+      #readonly: 'true',
+      profile_name: 'Glance_test_appstore',
+      verbose: true
     )
   end
 
-  
 
 
+  desc "Push a new beta build to TestFlight"
+  lane :beta do
+    increment_build_number(xcodeproj: 'Glance.xcodeproj')
+    build_app(workspace: "Glance.xcworkspace",
+      clean: true ,
+      scheme: ENV['SCHEME_NAME'],
+      export_method:'app-store',
+      include_bitcode: false,
+      buildlog_path:"fastlanelog",
+      output_directory:"build",
+      export_options: {
+      provisioningProfiles: {
+        "com.belive.glance-p"=>"Glance_prerelease_appstore"
+      }
+    })
+    upload_to_testflight
+
+  end
 
 
 

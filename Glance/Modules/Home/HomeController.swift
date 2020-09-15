@@ -32,19 +32,13 @@ class HomeController: CollectionViewController {
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        collectionView.register(nibWithCellClass: HomeCell.self)
-        
-        
+        //collectionView.register(nibWithCellClass: HomeCell.self)
+            
+        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: HomeCellType.all)
 
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        collectionView.headRefreshControl.beginRefreshing()
-        collectionView.headRefreshControl.refreshHandler()
         
     }
+
 
     override func bindViewModel() {
         super.bindViewModel()
@@ -54,7 +48,7 @@ class HomeController: CollectionViewController {
         let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
         let input = HomeViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                        selection: collectionView.rx.modelSelected(HomeSectionItem.self).asObservable())
+                                        selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable(), search: customNavigationBar.searchView.rx.tap())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -95,7 +89,11 @@ class HomeController: CollectionViewController {
                 self?.navigator.show(segue: .savedCollectionClassify(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
-        
+        input.search.subscribe(onNext: {[weak self] () in
+            let viewModel = SearchRecommendViewModel(provider: viewModel.provider)
+            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)
+            
+        }).disposed(by: rx.disposeBag)
         
         
         NotificationCenter.default.rx
@@ -114,10 +112,36 @@ extension HomeController {
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<HomeSection> {
         return RxCollectionViewSectionedReloadDataSource<HomeSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             switch item {
-            case .recommendItem(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: HomeCell.self)
+            case .post(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostCell.self)
                 cell.bind(to: viewModel)
                 return cell
+            case .theme(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ThemeCell.self)
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .user(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserVerticalCell.self)
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .product(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .recommendPost(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostRecommendCell.self)
+                cell.bind(to: viewModel)
+                return cell
+                
+            case .recommendProduct(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductRecommendCell.self)
+                cell.bind(to: viewModel)
+                return cell
+            case .none:
+                fatalError()
             }
         })
     }
@@ -136,7 +160,7 @@ extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch dataSouce.sectionModels[section] {
-        case.recommend:
+        case.single:
             return .zero
         }
         
@@ -144,7 +168,7 @@ extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch dataSouce.sectionModels[section] {
-        case .recommend:
+        case .single:
             return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
         }
         
@@ -154,13 +178,12 @@ extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
         
         let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
         
-        return collectionView.ar_sizeForCell(withIdentifier: HomeCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
-            if case let .recommendItem(viewModel) = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? HomeCell
-                cell?.bind(to: viewModel)
-            }
+        let item = dataSouce.sectionModels[indexPath.section].items[indexPath.item]
+        return collectionView.ar_sizeForCell(withIdentifier: item.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
+            let cell = cell  as? DefaultColltionCell
+            cell?.bind(to: item.viewModel)
         }
-        
+
     }
 }
 

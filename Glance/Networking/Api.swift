@@ -50,6 +50,8 @@ protocol API {
     func deletePost(postId : Int) -> Single<Bool>
     func recommend(param : [String : Any]) -> Single<Bool>
     func reaction(recommendId : Int,type : Int) -> Single<Bool>
+    func searchFacets(query : String) -> Single<[SearchFacet]>
+    func searchThemeClassify() ->  Single<[ThemeClassify]>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

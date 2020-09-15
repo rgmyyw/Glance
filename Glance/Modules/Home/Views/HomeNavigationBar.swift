@@ -11,7 +11,8 @@ import UIKit
 class HomeNavigationBar: View {
 
     @IBOutlet weak var savedButton: UIButton!
-    
     @IBOutlet weak var shoppingCartButton: UIButton!
+    @IBOutlet weak var searchView: UIView!
+    
     
 }

@@ -96,6 +96,19 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        collectionView.setNeedsLayout()
+        collectionView.layoutIfNeeded()
+        emptyDataView.snp.makeConstraints { (make) in
+            make.size.equalTo(collectionView.frame.size)
+        }
+        emptyDataView.setNeedsLayout()
+        emptyDataView.layoutIfNeeded()
+        collectionView.reloadEmptyDataSet()
+    }
+        
+    
     override func bindViewModel() {
         super.bindViewModel()
         

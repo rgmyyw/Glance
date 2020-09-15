@@ -50,10 +50,9 @@ enum UserDetailMemuType {
     }
 }
 
-//struct UserModuleItem {
-//    var viewModel : ViewModel
-//}
-//
+
+
+
 enum UserModuleItem {
     
     case post(viewModel : UserPostViewModel)
@@ -129,6 +128,7 @@ class UserViewModel: ViewModel, ViewModelType {
         let followButtonBackground : Driver<UIColor>
         let followButtonImage : Driver<UIImage?>
         let followButtonTitleColor : Driver<UIColor>
+        let followButtonTitle : Driver<String>
         let memu : Driver<[UserDetailMemuItem]>
         let config : Driver<[UserModuleItem]>
     }
@@ -159,6 +159,9 @@ class UserViewModel: ViewModel, ViewModelType {
         let followButtonBackground = current.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
         let followButtonImage = current.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
         let followButtonTitleColor = current.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
+        let followButtonTitle = current.map { ($0?.isFollow ?? false) ? "Following" : " Follow" }.asDriver(onErrorJustReturn: "")
+
+        
         input.chat.map { () in Message("Features under development...")}
             .bind(to: message).disposed(by: rx.disposeBag)
 
@@ -313,6 +316,7 @@ class UserViewModel: ViewModel, ViewModelType {
                       followButtonBackground: followButtonBackground.asDriver(onErrorJustReturn: .white),
                       followButtonImage: followButtonImage.asDriver(onErrorJustReturn: nil),
                       followButtonTitleColor: followButtonTitleColor.asDriver(onErrorJustReturn: .white),
+                      followButtonTitle: followButtonTitle,
                       memu: popMemu,
                       config: config.asDriver(onErrorJustReturn: []) )
     }

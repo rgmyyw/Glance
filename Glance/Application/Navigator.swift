@@ -55,6 +55,13 @@ class Navigator {
         case user(viewModel : UserViewModel)
         case userPost(viewModel : UserPostViewModel)
         case userRecommend(viewModel : UserRecommViewModel)
+        case searchRecommend(viewModel : SearchRecommendViewModel)
+        case searchRecommendHot(viewModel : SearchRecommendHotViewModel)
+        case searchRecommendYouMayLike(viewModel : SearchRecommendYouMayLikeViewModel)
+        case searchRecommendNew(viewModel : SearchRecommendNewViewModel)
+        case search(viewModel : SearchViewModel)
+        case searchResult(viewModel : SearchResultViewModel)
+        case searchResultContent(viewModel : SearchResultContentViewModel)
 
     }
     
@@ -163,6 +170,27 @@ class Navigator {
             return vc
         case .userRecommend(let viewModel):
             let vc = UserRecommViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchRecommend(let viewModel):
+            let vc = SearchRecommendViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchRecommendHot(let viewModel):
+            let vc = SearchRecommendHotViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchRecommendYouMayLike(let viewModel):
+            let vc = SearchRecommendYouMayLikeViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchRecommendNew(let viewModel):
+            let vc = SearchRecommendNewViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .search(let viewModel):
+            let vc = SearchViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchResultContent(let viewModel):
+            let vc = SearchResultContentViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchResult(let viewModel):
+            let vc = SearchResultViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

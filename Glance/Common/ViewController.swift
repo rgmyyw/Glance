@@ -332,6 +332,7 @@ extension ViewController {
             HeroDebugPlugin.isEnabled = !HeroDebugPlugin.isEnabled
         }
     }
+    
 }
 
 
@@ -343,11 +344,6 @@ extension ViewController: DZNEmptyDataSetSource {
             emptyDataView.removeFromSuperview()
             return nil
         }
-        emptyDataView.snp.remakeConstraints { (make) in
-            make.height.equalTo(scrollView.height)
-        }
-        
-        emptyDataView.needsUpdateConstraints()
         return emptyDataView
     }
     
@@ -356,7 +352,7 @@ extension ViewController: DZNEmptyDataSetSource {
     }
     
     func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return emptyDataViewDataSource.verticalOffsetY.value
+        return 0
     }
     
     
