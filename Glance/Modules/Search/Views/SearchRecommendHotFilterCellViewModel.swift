@@ -12,14 +12,14 @@ import RxCocoa
 
 class SearchRecommendHotFilterCellViewModel: CellViewModelProtocol  {
 
-    let item : Home
+    let item : SearchThemeClassify
     let title = BehaviorRelay<String?>(value: nil)
     let selected = BehaviorRelay<Bool>(value: false)
     
     
-    required init(item : Home) {
+    required init(item : SearchThemeClassify) {
         self.item = item
-        title.accept(item.title)
+        title.accept(item.classifyName)
         
     }
     

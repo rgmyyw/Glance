@@ -310,3 +310,34 @@ extension String {
     }
 
 }
+
+extension Int {
+    
+    enum IntFormat {
+        case k
+        var value : CGFloat {
+            switch self {
+            case .k:
+                return 1000.0
+            }
+        }
+        
+        var format : String {
+            switch self {
+            case .k:
+                return "k"
+            }
+        }
+    }
+    
+    func format(f : IntFormat = .k) -> String {
+        let i = self.cgFloat
+        let n = i / f.value
+        if n > 0 {
+            return String(format: "%.2lf\(f.format)", n)
+        } else {
+            return self.string
+        }
+    }
+    
+}

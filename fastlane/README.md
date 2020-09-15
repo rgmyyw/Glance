@@ -40,7 +40,7 @@ fastlane ios getDevCert
 ```
 fastlane ios beta
 ```
-Glance-D: Push a new beta build to TestFlight
+Push a new beta build to TestFlight
 
 ----
 

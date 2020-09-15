@@ -36,13 +36,11 @@ class PostCell: DefaultColltionCell {
         imageViewHeight.constant = viewModel.imageHeight
         viewModel.userHeadImageURL.bind(to: userHeadImageButton.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.typeName.bind(to: typeLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userOnline.map { !$0}.bind(to: userOnlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommended.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
-        
         
         saveButton.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
         userHeadImageButton.rx.tap.bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)

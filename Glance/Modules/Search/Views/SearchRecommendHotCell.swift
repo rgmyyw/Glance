@@ -38,6 +38,7 @@ class SearchRecommendHotCell: TableViewCell {
         super.bind(to: viewModel)
         viewModel.title.bind(to: themeTitleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.post.bind(to: postNumberLabel.rx.text).disposed(by: cellDisposeBag)
+        
         viewModel.items.asDriver().drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: cellDisposeBag)
         viewModel.items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()

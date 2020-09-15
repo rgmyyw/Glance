@@ -78,6 +78,8 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
                 if let productId = self.item.value.productId {
                     return Home(productId: productId)
                 }
+            default:
+                fatalError()
             }
             return nil
         }.filterNil().bind(to: previewPost)

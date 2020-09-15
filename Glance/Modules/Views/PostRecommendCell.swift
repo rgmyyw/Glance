@@ -36,12 +36,10 @@ class PostRecommendCell: DefaultColltionCell {
         imageViewHeight.constant = viewModel.imageHeight
         viewModel.userHeadImageURL.bind(to: userHeadImageButton.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.typeName.bind(to: typeLabel.rx.text).disposed(by: cellDisposeBag)
-
+        
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userOnline.map { !$0}.bind(to: userOnlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
-        viewModel.emojiButtonHidden.bind(to: emojiButton.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.reactionImage.bind(to: emojiButton.rx.image(for: .normal)).disposed(by: cellDisposeBag)
         

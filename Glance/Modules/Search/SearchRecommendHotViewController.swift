@@ -28,8 +28,7 @@ class SearchRecommendHotViewController: TableViewController  {
         stackView.insertArrangedSubview(filterView, at: 0)
         tableView.register(nibWithCellClass: SearchRecommendHotCell.self)
         tableView.rowHeight = 170
-        tableView.headRefreshControl = nil
-        emptyDataViewDataSource.enable.accept(false)
+        //tableView.headRefreshControl = nil
         
     }
     
@@ -40,8 +39,7 @@ class SearchRecommendHotViewController: TableViewController  {
         guard let viewModel = viewModel as? SearchRecommendHotViewModel else { return }
         
         
-        
-        let refresh = Observable.just(())
+        let refresh = Observable.just(()).merge(with: headerRefreshTrigger)
         let input = SearchRecommendHotViewModel.Input(headerRefresh: refresh,
                                                       footerRefresh: footerRefreshTrigger.mapToVoid(),
                                                       filter: filterView.collectionView.rx.modelSelected(SearchRecommendHotFilterCellViewModel.self).asObservable())

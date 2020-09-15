@@ -48,7 +48,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.searchYouMaylike(page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -71,7 +71,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page += 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.searchYouMaylike(page: self.page)
                     .trackActivity(self.footerLoading)
                     .trackError(self.error)
                     .materialize()

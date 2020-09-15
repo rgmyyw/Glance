@@ -40,9 +40,9 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
         
         let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in
             if loggedIn {
-                return [.home, .category,.center, .cart, .mine]
+                return [.home, .notifications,.center, .chat, .mine]
             } else {
-                return [.home, .category,.center ,.cart, .mine]
+                return [.home, .notifications,.center ,.chat, .mine]
             }
         }.asDriver(onErrorJustReturn: [])
             
@@ -55,10 +55,10 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
         case .home:
             let viewModel = HomeViewModel(provider: provider)
             return viewModel
-        case .category:
+        case .notifications:
             let viewModel = NotificationViewModel(provider: provider)
             return viewModel
-        case .cart:
+        case .chat:
             let viewModel = DemoViewModel(provider: provider)
             return viewModel
         case .mine:

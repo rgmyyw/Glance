@@ -34,7 +34,7 @@ class HomeController: CollectionViewController {
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         //collectionView.register(nibWithCellClass: HomeCell.self)
             
-        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: HomeCellType.all)
+        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
 
         
     }
@@ -90,8 +90,9 @@ class HomeController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
 
         input.search.subscribe(onNext: {[weak self] () in
-            let viewModel = SearchRecommendViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)
+            
+//            let viewModel = SearchRecommendViewModel(provider: viewModel.provider)
+//            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)
             
         }).disposed(by: rx.disposeBag)
         

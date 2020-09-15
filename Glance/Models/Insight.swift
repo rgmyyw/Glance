@@ -18,16 +18,17 @@ struct Insight: Mappable {
     var reachCount: Int = 0
     var title: String?
     var created: Date?
-    var type : HomeCellType?
+    var type : DefaultColltionCellType?
     
     var id : Int? {
         guard let type = type else { return nil }
-        
         switch type {
         case .post,.recommendPost:
             return postId
         case .product, .recommendProduct:
             return recommendId
+        default:
+            return  nil
         }
     }
     

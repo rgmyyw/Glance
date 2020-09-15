@@ -17,25 +17,22 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let userName : BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let displayName = BehaviorRelay<String?>(value: nil)
     let userHeadImageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
-    let typeName = BehaviorRelay<String?>(value: nil)
     let time : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let recommended = BehaviorRelay<Bool>(value : false)
     let reactionImage = BehaviorRelay<UIImage?>(value : nil)
-    
-    
-    let userHidden = BehaviorRelay<Bool>(value: false)
     let userOnline = BehaviorRelay<Bool>(value: false)
-    let emojiButtonHidden = BehaviorRelay<Bool>(value: false)
-    let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
     let saved = BehaviorRelay<Bool>(value: false)
-
+    
+    let followed = BehaviorRelay<Bool>(value: false)
     
     
     let save = PublishSubject<Void>()
     let recommend = PublishSubject<Void>()
     let userDetail = PublishSubject<Void>()
     let reaction = PublishSubject<UIView>()
+    let images = BehaviorRelay<[Observable<URL?>]>(value:[])
         
     var image: String? {
         return item.image
@@ -57,15 +54,17 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
             return .recommendPost(viewModel: self)
         case .recommendProduct:
             return .recommendProduct(viewModel: self)
+        case .theme:
+            return .theme(viewModel: self)
+        case .user:
+            return .user(viewModel: self)
         }
     }
     
     
     required init(item : Home) {
         self.item = item
-        
-        guard let type = item.type else { return }
-        
+                
         userName.accept(item.user?.displayName)
         userHeadImageURL.accept(item.user?.userImage?.url)
         imageURL.accept(item.image?.url)
@@ -73,11 +72,9 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
         userOnline.accept(item.user?.loginStatus ?? false)
         recommended.accept(item.recommended)
         saved.accept(item.saved)
-        userHidden.accept(!type.userEnable)
-        emojiButtonHidden.accept(!type.emojiEnable)
-        recommendButtonHidden.accept(!type.recommendEnable)
-        typeName.accept(type.title)
         reactionImage.accept(item.reaction?.image)
-        
+        images.accept(item.images.map { Observable.just($0.url)})
+        followed.accept(item.user?.isFollow ?? false)
+        displayName.accept(item.user?.displayName)
     }
 }

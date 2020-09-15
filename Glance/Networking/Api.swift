@@ -51,7 +51,9 @@ protocol API {
     func recommend(param : [String : Any]) -> Single<Bool>
     func reaction(recommendId : Int,type : Int) -> Single<Bool>
     func searchFacets(query : String) -> Single<[SearchFacet]>
-    func searchThemeClassify() ->  Single<[ThemeClassify]>
+    func searchThemeClassify() ->  Single<[SearchThemeClassify]>
+    func searchThemeHot(classifyId : Int, page : Int) -> Single<PageMapable<SearchTheme>>
+    func searchYouMaylike(page : Int) -> Single<PageMapable<Home>>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }

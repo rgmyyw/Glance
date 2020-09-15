@@ -21,7 +21,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="163" height="198.5"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eeQ-Qr-Ecd">
-                                <rect key="frame" x="29" y="10" width="105" height="105"/>
+                                <rect key="frame" x="29" y="0.0" width="105" height="105"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="105" id="86J-Ga-UDe"/>
@@ -35,7 +35,7 @@
                                 </userDefinedRuntimeAttributes>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="UserName" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xbk-yF-F6t">
-                                <rect key="frame" x="10" y="127" width="143" height="15"/>
+                                <rect key="frame" x="10" y="117" width="143" height="15"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="15" id="H0s-4h-uI3"/>
                                 </constraints>
@@ -44,13 +44,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Emily Strong" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vc7-kz-7be">
-                                <rect key="frame" x="10" y="147" width="143" height="11.5"/>
+                                <rect key="frame" x="10" y="137" width="143" height="11.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="10"/>
                                 <color key="textColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nNG-WE-HUM">
-                                <rect key="frame" x="10" y="168.5" width="143" height="30"/>
+                                <rect key="frame" x="10" y="158.5" width="143" height="30"/>
                                 <color key="backgroundColor" red="1" green="0.50588235294117645" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="fdE-b5-gDF"/>
@@ -73,11 +73,11 @@
                             <constraint firstAttribute="trailing" secondItem="Xbk-yF-F6t" secondAttribute="trailing" constant="10" id="Pfi-9R-Ert"/>
                             <constraint firstItem="nNG-WE-HUM" firstAttribute="leading" secondItem="vc7-kz-7be" secondAttribute="leading" id="UHe-6c-xBZ"/>
                             <constraint firstItem="vc7-kz-7be" firstAttribute="leading" secondItem="Xbk-yF-F6t" secondAttribute="leading" id="VMW-pi-T8L"/>
-                            <constraint firstAttribute="bottom" secondItem="nNG-WE-HUM" secondAttribute="bottom" id="VNX-Gx-rUd"/>
+                            <constraint firstAttribute="bottom" secondItem="nNG-WE-HUM" secondAttribute="bottom" constant="10" id="VNX-Gx-rUd"/>
                             <constraint firstItem="vc7-kz-7be" firstAttribute="top" secondItem="Xbk-yF-F6t" secondAttribute="bottom" constant="5" id="aGJ-TC-MR2"/>
                             <constraint firstItem="eeQ-Qr-Ecd" firstAttribute="centerX" secondItem="DrL-W0-d5h" secondAttribute="centerX" id="ecp-ho-ljh"/>
                             <constraint firstItem="Xbk-yF-F6t" firstAttribute="top" secondItem="eeQ-Qr-Ecd" secondAttribute="bottom" constant="12" id="kri-5R-u6b"/>
-                            <constraint firstItem="eeQ-Qr-Ecd" firstAttribute="top" secondItem="DrL-W0-d5h" secondAttribute="top" constant="10" id="znq-qk-Xak"/>
+                            <constraint firstItem="eeQ-Qr-Ecd" firstAttribute="top" secondItem="DrL-W0-d5h" secondAttribute="top" id="znq-qk-Xak"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -93,10 +93,11 @@
             <size key="customSize" width="163" height="231"/>
             <connections>
                 <outlet property="followButton" destination="nNG-WE-HUM" id="6Ob-lY-dxx"/>
+                <outlet property="nickNameLabel" destination="vc7-kz-7be" id="Lb9-OT-23s"/>
                 <outlet property="userImageButton" destination="eeQ-Qr-Ecd" id="Jd5-AP-ji7"/>
                 <outlet property="userNameLabel" destination="Xbk-yF-F6t" id="0kH-ij-bmo"/>
             </connections>
-            <point key="canvasLocation" x="-294.92753623188406" y="7.03125"/>
+            <point key="canvasLocation" x="-534" y="-8"/>
         </collectionViewCell>
     </objects>
 </document>

@@ -33,7 +33,7 @@ class SearchRecommendYouMayLikeViewController: CollectionViewController {
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         
-        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: HomeCellType.all)
+        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
     }
     
     

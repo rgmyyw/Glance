@@ -61,9 +61,6 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         }.bind(to: elements)
             .disposed(by: rx.disposeBag)
 
-        (1...3).forEach { (_) in
-            SearchHistoryItem(text: String.random(ofLength: Int.random(in: 10...30))).save()
-        }
         
         eraseHistory.subscribe(onNext: { items in
                 SearchHistoryItem.remove(items: items)

@@ -126,6 +126,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                     return 0
                 case .post,.recommendPost:
                     return own ? 1 : 2
+                default:
+                    fatalError()
                 }
         }.asDriver(onErrorJustReturn: -1)
         
@@ -188,7 +190,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         saveOther.map { cellViewModel -> (AnyObject,[String : Any]) in
             var params = [String : Any]()
-            params["type"] = HomeCellType.product.rawValue
+            params["type"] = DefaultColltionCellType.product.rawValue
             params["updateSaved"] = !cellViewModel.saved.value
             params["productId"] = cellViewModel.item.productId
             return (cellViewModel,params)
@@ -214,6 +216,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .product,.recommendProduct:
                 //sections = [banner,price,title,tags,tool]
                 sections = [banner,price,title,tool]
+            default:
+                fatalError()
             }
             
             let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in
@@ -238,6 +242,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 sections.append(similar)
             case .product,.recommendProduct:
                 sections.append(similar)
+            default:
+                fatalError()
             }
             return sections
             

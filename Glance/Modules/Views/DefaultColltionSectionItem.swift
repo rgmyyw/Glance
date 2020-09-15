@@ -55,11 +55,11 @@ enum DefaultColltionSectionItem {
         case .recommendProduct(let viewModel):
             return viewModel
         case .none:
-            return DefaultColltionCellViewModel(item: Home())
+            fatalError()
         }
     }
     
-    static func register(collectionView : UICollectionView, kinds : [HomeCellType]) {
+    static func register(collectionView : UICollectionView, kinds : [DefaultColltionCellType]) {
         kinds.forEach { (type) in
             switch type {
             case .post:
@@ -70,6 +70,10 @@ enum DefaultColltionSectionItem {
                 collectionView.register(nibWithCellClass: PostRecommendCell.self)
             case .recommendProduct:
                 collectionView.register(nibWithCellClass: ProductRecommendCell.self)
+            case .theme:
+                collectionView.register(nibWithCellClass: ThemeCell.self)
+            case .user:
+                collectionView.register(nibWithCellClass: UserVerticalCell.self)
             }
         }
     }

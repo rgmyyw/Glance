@@ -83,9 +83,6 @@
 		5D2D0E502508701200E9FD8D /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E312508701100E9FD8D /* SearchType.swift */; };
 		5D2D0E512508701200E9FD8D /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E312508701100E9FD8D /* SearchType.swift */; };
 		5D2D0E522508701200E9FD8D /* SearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E312508701100E9FD8D /* SearchType.swift */; };
-		5D2D0E562508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
-		5D2D0E572508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
-		5D2D0E582508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
 		5D2D0E592508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E342508701100E9FD8D /* SearchRecommendYouMayLikeViewModel.swift */; };
 		5D2D0E5A2508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E342508701100E9FD8D /* SearchRecommendYouMayLikeViewModel.swift */; };
 		5D2D0E5B2508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E342508701100E9FD8D /* SearchRecommendYouMayLikeViewModel.swift */; };
@@ -385,9 +382,18 @@
 		5DCAC9382510676800172C05 /* SearchFacets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9372510676800172C05 /* SearchFacets.swift */; };
 		5DCAC9392510676800172C05 /* SearchFacets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9372510676800172C05 /* SearchFacets.swift */; };
 		5DCAC93A2510676800172C05 /* SearchFacets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9372510676800172C05 /* SearchFacets.swift */; };
-		5DCAC93C2510719D00172C05 /* ThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* ThemeClassify.swift */; };
-		5DCAC93D2510719D00172C05 /* ThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* ThemeClassify.swift */; };
-		5DCAC93E2510719D00172C05 /* ThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* ThemeClassify.swift */; };
+		5DCAC93C2510719D00172C05 /* SearchThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */; };
+		5DCAC93D2510719D00172C05 /* SearchThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */; };
+		5DCAC93E2510719D00172C05 /* SearchThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */; };
+		5DCAC94025107A2300172C05 /* SearchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93F25107A2300172C05 /* SearchTheme.swift */; };
+		5DCAC94125107A2300172C05 /* SearchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93F25107A2300172C05 /* SearchTheme.swift */; };
+		5DCAC94225107A2300172C05 /* SearchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93F25107A2300172C05 /* SearchTheme.swift */; };
+		5DCAC9442510A4A800172C05 /* DefaultColltionCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */; };
+		5DCAC9452510A4A800172C05 /* DefaultColltionCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */; };
+		5DCAC9462510A4A800172C05 /* DefaultColltionCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */; };
+		5DCAC9472510A89800172C05 /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
+		5DCAC9482510A89800172C05 /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
+		5DCAC9492510A89900172C05 /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
 		5DCC2CC224F34F04000AC40A /* VisualSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316324D2A3D40039D1B9 /* VisualSearchResultCell.swift */; };
 		5DCC2CC324F34F04000AC40A /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
 		5DCC2CC424F34F04000AC40A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
@@ -1501,7 +1507,9 @@
 		5DC669E024D005D900FF1092 /* VisualSearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchViewModel.swift; sourceTree = "<group>"; };
 		5DC669E224D0068600FF1092 /* ImagePickerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerManager.swift; sourceTree = "<group>"; };
 		5DCAC9372510676800172C05 /* SearchFacets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchFacets.swift; sourceTree = "<group>"; };
-		5DCAC93B2510719D00172C05 /* ThemeClassify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemeClassify.swift; sourceTree = "<group>"; };
+		5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeClassify.swift; sourceTree = "<group>"; };
+		5DCAC93F25107A2300172C05 /* SearchTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTheme.swift; sourceTree = "<group>"; };
+		5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColltionCellType.swift; sourceTree = "<group>"; };
 		5DCC2E1424F34F04000AC40A /* Glance-P.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glance-P.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCC2F6C24F34F2A000AC40A /* Glance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Glance.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DCC2F6E24F3521E000AC40A /* Glance-P-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-P-Info.plist"; sourceTree = "<group>"; };
@@ -1977,6 +1985,7 @@
 			children = (
 				5D7C38C9250B695D006D6CF7 /* DefaultColltionCellViewModel.swift */,
 				5D7BB535250B633800C8B902 /* DefaultColltionCell.swift */,
+				5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */,
 				5D7BB537250B633800C8B902 /* DefaultColltionSectionItem.swift */,
 				5D7BB53A250B633800C8B902 /* ProductRecommendCell.swift */,
 				5D7BB53E250B633800C8B902 /* ProductRecommendCell.xib */,
@@ -2289,7 +2298,8 @@
 				5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */,
 				5D2D0E802509CDDF00E9FD8D /* SearchRecommendHotCategory.swift */,
 				5DCAC9372510676800172C05 /* SearchFacets.swift */,
-				5DCAC93B2510719D00172C05 /* ThemeClassify.swift */,
+				5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */,
+				5DCAC93F25107A2300172C05 /* SearchTheme.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3262,6 +3272,7 @@
 				5DCC2CDB24F34F04000AC40A /* AddProductTitleReusableView.swift in Sources */,
 				5DCC2CDC24F34F04000AC40A /* BarButtonItem.swift in Sources */,
 				5DCC2CDD24F34F04000AC40A /* PostProductInputKeywordReusableView.swift in Sources */,
+				5DCAC9452510A4A800172C05 /* DefaultColltionCellType.swift in Sources */,
 				5D2D0E7B2509C9C800E9FD8D /* SearchRecommendHotFilterView.swift in Sources */,
 				5DCC2CDE24F34F04000AC40A /* SavedCollection.swift in Sources */,
 				5DCC2CDF24F34F04000AC40A /* VisualSearchProductHeadView.swift in Sources */,
@@ -3283,6 +3294,7 @@
 				5DCC2CEE24F34F04000AC40A /* UIScreen-Extension.swift in Sources */,
 				5DCC2CEF24F34F04000AC40A /* PostsDetailSection.swift in Sources */,
 				5DCC2CF024F34F04000AC40A /* InterestViewModel.swift in Sources */,
+				5DCAC9482510A89800172C05 /* SearchRecommendHotViewModel.swift in Sources */,
 				5DCC2CF124F34F04000AC40A /* SplitViewController.swift in Sources */,
 				5DCC2CF224F34F04000AC40A /* ShoppingCartViewModel.swift in Sources */,
 				5DCC2CF324F34F04000AC40A /* AddProductBrandReusableView.swift in Sources */,
@@ -3360,7 +3372,7 @@
 				5DCC2D2F24F34F04000AC40A /* UserRelationCell.swift in Sources */,
 				5DCC2D3124F34F04000AC40A /* ImageView.swift in Sources */,
 				5DCC2D3224F34F04000AC40A /* ShoppingCart.swift in Sources */,
-				5DCAC93D2510719D00172C05 /* ThemeClassify.swift in Sources */,
+				5DCAC93D2510719D00172C05 /* SearchThemeClassify.swift in Sources */,
 				5D2D0E5A2508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */,
 				5DCC2D3324F34F04000AC40A /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC9392510676800172C05 /* SearchFacets.swift in Sources */,
@@ -3368,6 +3380,7 @@
 				5DCC2D3524F34F04000AC40A /* DateTransform.swift in Sources */,
 				5DCC2D3624F34F04000AC40A /* CollectionView.swift in Sources */,
 				5D7BB555250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
+				5DCAC94125107A2300172C05 /* SearchTheme.swift in Sources */,
 				5DCC2D3724F34F04000AC40A /* PostProductSection.swift in Sources */,
 				5DCC2D3824F34F04000AC40A /* NotificationProfileViewController.swift in Sources */,
 				5DCC2D3924F34F04000AC40A /* UserRelationViewModel.swift in Sources */,
@@ -3479,7 +3492,6 @@
 				5DCC2D8A24F34F04000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2D8B24F34F04000AC40A /* SearchBar.swift in Sources */,
 				5DCC2D8C24F34F04000AC40A /* NotificationViewController.swift in Sources */,
-				5D2D0E572508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */,
 				5DCC2D8D24F34F04000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2D8E24F34F04000AC40A /* SignInViewController.swift in Sources */,
 				5D2D0E822509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
@@ -3567,6 +3579,7 @@
 				5DCC2E3324F34F2A000AC40A /* AddProductTitleReusableView.swift in Sources */,
 				5DCC2E3424F34F2A000AC40A /* BarButtonItem.swift in Sources */,
 				5DCC2E3524F34F2A000AC40A /* PostProductInputKeywordReusableView.swift in Sources */,
+				5DCAC9462510A4A800172C05 /* DefaultColltionCellType.swift in Sources */,
 				5D2D0E7C2509C9C800E9FD8D /* SearchRecommendHotFilterView.swift in Sources */,
 				5DCC2E3624F34F2A000AC40A /* SavedCollection.swift in Sources */,
 				5DCC2E3724F34F2A000AC40A /* VisualSearchProductHeadView.swift in Sources */,
@@ -3588,6 +3601,7 @@
 				5DCC2E4624F34F2A000AC40A /* UIScreen-Extension.swift in Sources */,
 				5DCC2E4724F34F2A000AC40A /* PostsDetailSection.swift in Sources */,
 				5DCC2E4824F34F2A000AC40A /* InterestViewModel.swift in Sources */,
+				5DCAC9492510A89900172C05 /* SearchRecommendHotViewModel.swift in Sources */,
 				5DCC2E4924F34F2A000AC40A /* SplitViewController.swift in Sources */,
 				5DCC2E4A24F34F2A000AC40A /* ShoppingCartViewModel.swift in Sources */,
 				5DCC2E4B24F34F2A000AC40A /* AddProductBrandReusableView.swift in Sources */,
@@ -3665,7 +3679,7 @@
 				5DCC2E8724F34F2A000AC40A /* UserRelationCell.swift in Sources */,
 				5DCC2E8924F34F2A000AC40A /* ImageView.swift in Sources */,
 				5DCC2E8A24F34F2A000AC40A /* ShoppingCart.swift in Sources */,
-				5DCAC93E2510719D00172C05 /* ThemeClassify.swift in Sources */,
+				5DCAC93E2510719D00172C05 /* SearchThemeClassify.swift in Sources */,
 				5D2D0E5B2508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */,
 				5DCC2E8B24F34F2A000AC40A /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC93A2510676800172C05 /* SearchFacets.swift in Sources */,
@@ -3673,6 +3687,7 @@
 				5DCC2E8D24F34F2A000AC40A /* DateTransform.swift in Sources */,
 				5DCC2E8E24F34F2A000AC40A /* CollectionView.swift in Sources */,
 				5D7BB556250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
+				5DCAC94225107A2300172C05 /* SearchTheme.swift in Sources */,
 				5DCC2E8F24F34F2A000AC40A /* PostProductSection.swift in Sources */,
 				5DCC2E9024F34F2A000AC40A /* NotificationProfileViewController.swift in Sources */,
 				5DCC2E9124F34F2A000AC40A /* UserRelationViewModel.swift in Sources */,
@@ -3784,7 +3799,6 @@
 				5DCC2EE224F34F2A000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2EE324F34F2A000AC40A /* SearchBar.swift in Sources */,
 				5DCC2EE424F34F2A000AC40A /* NotificationViewController.swift in Sources */,
-				5D2D0E582508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */,
 				5DCC2EE524F34F2A000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2EE624F34F2A000AC40A /* SignInViewController.swift in Sources */,
 				5D2D0E832509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
@@ -3872,6 +3886,7 @@
 				5DB6AC0724DA46BD00AD4B43 /* AddProductTitleReusableView.swift in Sources */,
 				5DEFF37424AEC2F9007A2FCD /* BarButtonItem.swift in Sources */,
 				5D6FEAA824DC03090062F90B /* PostProductInputKeywordReusableView.swift in Sources */,
+				5DCAC9442510A4A800172C05 /* DefaultColltionCellType.swift in Sources */,
 				5D2D0E7A2509C9C800E9FD8D /* SearchRecommendHotFilterView.swift in Sources */,
 				5D5B017F24C57C6F00832F05 /* SavedCollection.swift in Sources */,
 				5D6B4DC124D7A4280024924B /* VisualSearchProductHeadView.swift in Sources */,
@@ -3893,6 +3908,7 @@
 				5DEFF4F924AECB7A007A2FCD /* UIScreen-Extension.swift in Sources */,
 				5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */,
 				5DBC3AAC24C7DED4006B0032 /* InterestViewModel.swift in Sources */,
+				5DCAC9472510A89800172C05 /* SearchRecommendHotViewModel.swift in Sources */,
 				5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */,
 				5DB1C79C24C2DD490071A0E1 /* ShoppingCartViewModel.swift in Sources */,
 				5DB6ABF524D95A5100AD4B43 /* AddProductBrandReusableView.swift in Sources */,
@@ -3970,7 +3986,7 @@
 				5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */,
 				5DEFF37524AEC2F9007A2FCD /* ImageView.swift in Sources */,
 				5DB1C7A424C2EA8C0071A0E1 /* ShoppingCart.swift in Sources */,
-				5DCAC93C2510719D00172C05 /* ThemeClassify.swift in Sources */,
+				5DCAC93C2510719D00172C05 /* SearchThemeClassify.swift in Sources */,
 				5D2D0E592508701200E9FD8D /* SearchRecommendYouMayLikeViewModel.swift in Sources */,
 				5D6B4DBF24D7A2520024924B /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC9382510676800172C05 /* SearchFacets.swift in Sources */,
@@ -3978,6 +3994,7 @@
 				5D437DD524BEA04700AFBB1F /* DateTransform.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
 				5D7BB554250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
+				5DCAC94025107A2300172C05 /* SearchTheme.swift in Sources */,
 				5D6FEA6124DC019C0062F90B /* PostProductSection.swift in Sources */,
 				5D3E480424B5C32E0064E3BF /* NotificationProfileViewController.swift in Sources */,
 				5D13708D24B70EE2007B64BA /* UserRelationViewModel.swift in Sources */,
@@ -4089,7 +4106,6 @@
 				5DB6AC0124D96A0B00AD4B43 /* AddProductButtonReusableView.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
 				5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */,
-				5D2D0E562508701200E9FD8D /* SearchRecommendHotViewModel.swift in Sources */,
 				5D6B4DC624D7A61C0024924B /* VisualSearchProductCell.swift in Sources */,
 				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,
 				5D2D0E812509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
@@ -4179,7 +4195,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4204,7 +4220,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4391,7 +4407,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4416,7 +4432,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 10;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

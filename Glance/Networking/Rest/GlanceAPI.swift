@@ -68,6 +68,8 @@ enum GlanceAPI {
     case reaction(recommendId : Int,type : Int)
     case searchFacets(query : String)
     case searchThemeClassify
+    case searchThemeHot(classifyId : Int, page : Int)
+    case searchYouMaylike(page : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -187,7 +189,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/facets"
         case .searchThemeClassify:
             return "/api/search/theme/classify"
-
+        case .searchThemeHot(_,let page):
+            return "/api/search/theme/\(page)/\(10)"
+        case .searchYouMaylike(let page):
+            return "/api/search/maylike/\(page)/\(10)"
         }
     }
     
@@ -229,7 +234,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .isNewUser,
              .reactionAnalysis,
              .searchFacets,
-             .searchThemeClassify:
+             .searchThemeClassify,
+             .searchThemeHot,
+             .searchYouMaylike:
             return .get
         case .modifyProfile:
             return .put
@@ -340,6 +347,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["type"] = type
         case .searchFacets(let query):
             params["query"] = query
+        case .searchThemeHot(let classifyId, _):
+            params["classifyId"] = classifyId
+        case .searchYouMaylike:
+            break
         default:
             break
         }

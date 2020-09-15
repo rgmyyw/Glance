@@ -206,12 +206,18 @@ class RestApi: API {
     }
     
     
-    func searchThemeClassify() -> Single<[ThemeClassify]> {
-        return requestArray(.searchThemeClassify, type: ThemeClassify.self)
+    func searchThemeClassify() -> Single<[SearchThemeClassify]> {
+        return requestArray(.searchThemeClassify, type: SearchThemeClassify.self)
 
     }
 
+    func searchThemeHot(classifyId: Int, page: Int) -> Single<PageMapable<SearchTheme>> {
+        return requestObject(.searchThemeHot(classifyId: classifyId, page: page), type: PageMapable<SearchTheme>.self)
+    }
     
+    func searchYouMaylike(page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.searchYouMaylike(page: page), type: PageMapable<Home>.self)
+    }
     
     let ibexProvider: IbexNetworking
     

@@ -32,11 +32,11 @@ struct PostsDetail: Mappable {
     var brand : String?
     var productId : String?
     var image: String?
-    var price : Int = 0
+    var price : String?
     var inShoppingList: Bool = false
     var currency : String?
 
-    var type : HomeCellType?
+    var type : DefaultColltionCellType?
     
     var id : [String : Any] {
         guard let type = type else { return [:]}
@@ -45,6 +45,8 @@ struct PostsDetail: Mappable {
             return ["postId" : postId]
         case .product,.recommendProduct:
             return ["productId" : productId ?? ""]
+        default:
+            return [:]
         }
     }
 
@@ -58,7 +60,6 @@ struct PostsDetail: Mappable {
         liked   <- map["liked"]
         lastTimeOnline   <- map["lastTimeOnline"]
         saved   <- map["saved"]
-//        similarProducts   <- map["similarProducts"]
         shared   <- map["shared"]
         taggedProducts   <- map["taggedProducts"]
         postId   <- map["postId"]
