@@ -22,6 +22,8 @@ class SearchRecommendHotCellViewModel: CellViewModelProtocol  {
     let selection = PublishSubject<Void>()
     let items = BehaviorRelay<[SectionModel<Void, SearchRecommendHotColltionCellViewModel>]>(value: [])
     
+    let themeDetail = PublishSubject<Void>()
+    
     required init(item : SearchTheme) {
         self.item = item
         

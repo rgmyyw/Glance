@@ -50,6 +50,11 @@ class SearchRecommendHotViewController: TableViewController  {
             self?.tableView.reloadData()
         }).disposed(by: rx.disposeBag)
         
+        output.themeDetail
+            .drive(onNext: { [weak self](themeId) in
+                let viewModel = SearchThemeViewModel(provider: viewModel.provider, themeId: themeId)
+                self?.navigator.show(segue: .searchTheme(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
         output.filter.bind(to: filterView.items).disposed(by: rx.disposeBag)
 
         

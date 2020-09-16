@@ -1,8 +1,8 @@
 //
-//  HomeController.swift
+//  SearchResultContentViewController.swift
 //  Glance
 //
-//  Created by yanghai on 2020/7/3.
+//  Created by yanghai on 2020/9/14.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
@@ -12,18 +12,16 @@ import RxSwift
 import RxDataSources
 import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
-import Popover
 
-class HomeController: CollectionViewController {
+class SearchThemeContentViewController: CollectionViewController {
     
-    private lazy var customNavigationBar : HomeNavigationBar = HomeNavigationBar.loadFromNib(height: 44,width: self.view.width)
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<HomeSection> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection> = configureDataSouce()
 
 
     override func makeUI() {
         super.makeUI()
         
-        navigationBar.addSubview(customNavigationBar)
+        navigationBar.isHidden = true
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
@@ -32,10 +30,12 @@ class HomeController: CollectionViewController {
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        //collectionView.register(nibWithCellClass: HomeCell.self)
-            
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
-
+        collectionView.register(nibWithCellClass: UserHorizontalCell.self)
+        
+        emptyDataViewDataSource.image.accept(R.image.icon_empty_search())
+        emptyDataViewDataSource.title.accept("No search results yet")
+        emptyDataViewDataSource.subTitle.accept("Please research for other related words")
         
     }
 
@@ -43,12 +43,12 @@ class HomeController: CollectionViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? HomeViewModel else { return }
+        guard let viewModel = viewModel as? SearchThemeContentViewModel else { return }
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
-        let input = HomeViewModel.Input(headerRefresh: refresh,
+        let refresh = headerRefreshTrigger.asObservable()
+        let input = SearchThemeContentViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                        selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable(), search: customNavigationBar.searchView.rx.tap())
+                                        selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -76,42 +76,14 @@ class HomeController: CollectionViewController {
             }
         }).disposed(by: rx.disposeBag)
         
-
-        customNavigationBar.shoppingCartButton
-            .rx.tap.subscribe(onNext: { [weak self]() in
-                let viewModel = ShoppingCartViewModel(provider: viewModel.provider)
-                self?.navigator.show(segue: .shoppingCart(viewModel: viewModel), sender: self)
-        }).disposed(by: rx.disposeBag)
-        
-        customNavigationBar.savedButton
-            .rx.tap.subscribe(onNext: { [weak self]() in
-                let viewModel = SavedCollectionClassifyViewModel(provider: viewModel.provider)
-                self?.navigator.show(segue: .savedCollectionClassify(viewModel: viewModel), sender: self)
-        }).disposed(by: rx.disposeBag)
-
-        input.search.subscribe(onNext: {[weak self] () in
-            
-            let viewModel = SearchRecommendViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)
-            
-        }).disposed(by: rx.disposeBag)
-        
-        
-        NotificationCenter.default.rx
-            .notification(.kUpdateHomeData)
-            .map { $0.userInfo as? [String : String]}
-            .map { $0?["message"]}.filterNil()
-            .map { Message($0)}.bind(to: message)
-            .disposed(by: rx.disposeBag)
-        
-        
     }
 }
 
-extension HomeController {
+extension SearchThemeContentViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<HomeSection> {
-        return RxCollectionViewSectionedReloadDataSource<HomeSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection> {
+        return RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+                        
             switch item {
             case .post(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostCell.self)
@@ -122,10 +94,18 @@ extension HomeController {
                 cell.bind(to: viewModel)
                 return cell
                 
-            case .user(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserVerticalCell.self)
-                cell.bind(to: viewModel)
-                return cell
+            case .user(let viewModel) :
+                
+                switch dataSouce[indexPath.section]  {
+                case .single:
+                    let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserVerticalCell.self)
+                    cell.bind(to: viewModel)
+                    return cell
+                case .users:
+                    let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserHorizontalCell.self)
+                    cell.bind(to: viewModel)
+                    return cell
+                }
                 
             case .product(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
@@ -149,38 +129,60 @@ extension HomeController {
     
 }
 
-extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension SearchThemeContentViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
-        return 2
+        switch dataSouce[section] {
+        case .users:
+            return 1
+        default:
+            return 2
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if dataSouce.sectionModels.isEmpty { return .zero }
         switch dataSouce.sectionModels[section] {
         case.single:
+            return .zero
+        case .users:
             return .zero
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        
+        if dataSouce.sectionModels.isEmpty { return .zero }
         switch dataSouce.sectionModels[section] {
         case .single:
             return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+        case .users:
+            return .zero
         }
         
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if dataSouce.sectionModels.isEmpty { return .zero }
         
-        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+        let fixedWidth : CGFloat
+        let reuseIdentifier : String
         
         let item = dataSouce.sectionModels[indexPath.section].items[indexPath.item]
-        return collectionView.ar_sizeForCell(withIdentifier: item.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
+        switch dataSouce.sectionModels[indexPath.section] {
+        case .single:
+            fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+            reuseIdentifier = dataSouce.sectionModels[indexPath.section].items[indexPath.item].reuseIdentifier
+        default:
+            fixedWidth = collectionView.width
+            reuseIdentifier = UserHorizontalCell.reuseIdentifier
+        }
+        return collectionView.ar_sizeForCell(withIdentifier: reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
             let cell = cell  as? DefaultColltionCell
             cell?.bind(to: item.viewModel)
         }

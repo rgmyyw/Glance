@@ -19,6 +19,7 @@ class SearchRecommendHotCell: TableViewCell {
     @IBOutlet weak var collectionView: UICollectionView!
     lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SearchRecommendHotColltionCellViewModel>> = configureDataSouce()
 
+    @IBOutlet weak var themeDetailBgView: UIView!
     
     override func makeUI() {
         super.makeUI()
@@ -43,6 +44,8 @@ class SearchRecommendHotCell: TableViewCell {
         viewModel.items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: cellDisposeBag)
+        
+        themeDetailBgView.rx.tap().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
 
     }
 }

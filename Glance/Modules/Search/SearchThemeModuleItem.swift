@@ -1,14 +1,15 @@
 //
-//  SearchResultModuleItem.swift
+//  SearchThemeModuleItem.swift
 //  Glance
 //
-//  Created by yanghai on 2020/9/14.
+//  Created by yanghai on 2020/9/16.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
 import UIKit
 
-enum SearchResultContentType : Int {
+
+enum SearchThemeContentType : Int {
     case all = -1
     case product = 1
     case post = 0
@@ -17,14 +18,12 @@ enum SearchResultContentType : Int {
 }
 
 
-enum SearchResultModuleItem {
+enum SearchThemeModuleItem {
     
-    case all(viewModel : SearchResultContentViewModel)
-    case product(viewModel : SearchResultContentViewModel)
-    case post(viewModel : SearchResultContentViewModel)
-    case user(viewModel : SearchResultContentViewModel)
-    
-    
+    case all(viewModel : SearchThemeContentViewModel)
+    case product(viewModel : SearchThemeContentViewModel)
+    case post(viewModel : SearchThemeContentViewModel)
+    case user(viewModel : SearchThemeContentViewModel)
     
     var defaultTitle : String {
         switch self {
@@ -45,13 +44,13 @@ enum SearchResultModuleItem {
         }
         switch self {
         case .all(let viewModel):
-            return .searchResultContent(viewModel: viewModel)
+            return .searchThemeContent(viewModel: viewModel)
         case .post(let viewModel):
-            return .searchResultContent(viewModel: viewModel)
+            return .searchThemeContent(viewModel: viewModel)
         case .product(let viewModel):
-            return .searchResultContent(viewModel: viewModel)
+            return .searchThemeContent(viewModel: viewModel)
         case .user(let viewModel):
-            return .searchResultContent(viewModel: viewModel)
+            return .searchThemeContent(viewModel: viewModel)
         }
     }
 

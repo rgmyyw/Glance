@@ -106,7 +106,6 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         tableView.setNeedsLayout()
         tableView.layoutIfNeeded()
         emptyDataView.snp.makeConstraints { (make) in
@@ -115,6 +114,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         emptyDataView.setNeedsLayout()
         emptyDataView.layoutIfNeeded()
         tableView.reloadEmptyDataSet()
+        super.viewDidLayoutSubviews()
     }
 
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SearchType : Int {
+enum ProductSearchType : Int {
     case saved = 0
     case posted
     case inApp
@@ -23,4 +23,10 @@ enum SearchType : Int {
             return "Search in Glance app"
         }
     }
+}
+enum GlobalSearchType : Int {
+    case all = -1
+    case product = 1
+    case post = 0
+    case user = 4
 }

@@ -33,6 +33,7 @@ class InterestViewModel: ViewModel, ViewModelType {
         let selection = PublishSubject<InterestCellViewModel>()
         let commit = PublishSubject<String>()
         let tabbar = PublishSubject<Void>()
+        let loadUserDetail = PublishSubject<Void>()
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Interest]>)> in
@@ -89,18 +90,32 @@ class InterestViewModel: ViewModel, ViewModelType {
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .materialize()
-        }).subscribe(onNext: { [weak self] event in
+        }).subscribe(onNext: { event in
             switch event {
             case .next(let result):
                 if result {
-                    tabbar.onNext(())
+                    loadUserDetail.onNext(())
                 }
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
         
-        
+        loadUserDetail.flatMapLatest({ [weak self] (isNewUser) -> Observable<(RxSwift.Event<User>)> in
+                  guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                  return self.provider.userDetail(userId: "")
+                      .trackError(self.error)
+                      .trackActivity(self.loading)
+                      .materialize()
+              }).subscribe(onNext: {  event in
+                  switch event {
+                  case .next(let (user)):
+                      user.save()
+                      tabbar.onNext(())
+                  default:
+                      break
+                  }
+              }).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []), tabbar: tabbar.asDriver(onErrorJustReturn: ()))
     }

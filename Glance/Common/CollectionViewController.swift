@@ -97,7 +97,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
         collectionView.setNeedsLayout()
         collectionView.layoutIfNeeded()
         emptyDataView.snp.makeConstraints { (make) in
@@ -106,6 +105,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         emptyDataView.setNeedsLayout()
         emptyDataView.layoutIfNeeded()
         collectionView.reloadEmptyDataSet()
+        super.viewDidLayoutSubviews()
     }
         
     

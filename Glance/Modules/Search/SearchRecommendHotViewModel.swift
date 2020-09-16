@@ -22,6 +22,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[SectionModel<Void,SearchRecommendHotCellViewModel>]>
         let filter : Observable<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>
+        let themeDetail : Driver<Int>
     }
     
     let element : BehaviorRelay<PageMapable<SearchTheme>?> = BehaviorRelay(value: nil)
@@ -32,6 +33,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SectionModel<Void,SearchRecommendHotCellViewModel>]>(value: [])
         let filter = BehaviorRelay<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>(value: [])
         let themeClassifySelection = BehaviorRelay<SearchRecommendHotFilterCellViewModel?>(value: nil)
+        let themeDetail = PublishSubject<SearchRecommendHotCellViewModel>()
         input.filter.bind(to: themeClassifySelection).disposed(by: rx.disposeBag)
         
         themeClassifySelection.subscribe(onNext: { (cellViewModel) in
@@ -56,8 +58,13 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
         
-        Observable.combineLatest(input.headerRefresh, input.filter)
-            .flatMapLatest({ [weak self] (_,cellViewModel) -> Observable<(RxSwift.Event<PageMapable<SearchTheme>>)> in
+        
+        
+        
+        input.headerRefresh.map { themeClassifySelection.value }
+            .merge(with: themeClassifySelection.asObservable())
+            .filterNil()
+            .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<PageMapable<SearchTheme>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
@@ -109,6 +116,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         element.filterNil().map { element -> [SectionModel<Void,SearchRecommendHotCellViewModel>] in
             let sectionItems = element.list.map { item -> SearchRecommendHotCellViewModel  in
                 let viewModel = SearchRecommendHotCellViewModel(item: item)
+                viewModel.themeDetail.map { viewModel }.bind(to: themeDetail).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
             let sections = [SectionModel<Void,SearchRecommendHotCellViewModel>(model: (), items: sectionItems)]
@@ -130,7 +138,8 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         
     
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      filter: filter.asObservable())
+                      filter: filter.asObservable(),
+                      themeDetail: themeDetail.map { $0.item.themeId }.asDriver(onErrorJustReturn: 0))
         
     }
 }

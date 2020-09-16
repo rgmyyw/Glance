@@ -25,14 +25,16 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         let userDetail : Driver<User>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
     let type : BehaviorRelay<SearchResultContentType>
+    let textInput = BehaviorRelay<String?>(value: nil)
     
     
-    init(provider: API, type : SearchResultContentType) {
+    init(provider: API, type : SearchResultContentType, text : Observable<String>) {
         self.type = BehaviorRelay(value: type)
         super.init(provider: provider)
+        text.bind(to: textInput).disposed(by: rx.disposeBag)
     }
     
     func transform(input: Input) -> Output {
@@ -41,18 +43,21 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SearchResultContentViewSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
-        let detail = input.selection.map { $0.viewModel.item }
+        let detail = input.selection.filter { _ in self.type.value != .user }.map { $0.viewModel.item }
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
+        let follow = PublishSubject<DefaultColltionCellViewModel>()
+        input.selection.filter { _ in self.type.value == .user }
+            .map { $0.viewModel.item.user }.bind(to: userDetail).disposed(by: rx.disposeBag)
         
-        
-        input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+        textInput.filterNil().merge(with: input.headerRefresh.map { self.textInput.value ?? ""}).filterEmpty()
+            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.globalSearch(type: self.type.value, keywords: text, page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -70,12 +75,13 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                if !self.element.value.hasNext {
+                guard let self = self , let text = self.textInput.value
+                    else { return Observable.just(RxSwift.Event.completed) }
+                if !(self.element.value?.hasNext ?? false) {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page += 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.globalSearch(type: self.type.value, keywords: text, page: self.page)
                     .trackActivity(self.footerLoading)
                     .trackError(self.error)
                     .materialize()
@@ -84,7 +90,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     var temp = item
-                    temp.list = self.element.value.list + item.list
+                    temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
                     self.hasData.onNext(item.hasNext)
                 default:
@@ -93,7 +99,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        element.map { items -> [SearchResultContentViewSection] in
+        element.filterNil().map { items -> [SearchResultContentViewSection] in
             let section : SearchResultContentViewSection
             let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
@@ -101,6 +107,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 viewModel.reaction.map { ($0, viewModel) }.bind(to: reaction).disposed(by: self.rx.disposeBag)
                 viewModel.recommend.map { viewModel }.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.userDetail.map { viewModel.item.user }.bind(to: userDetail).disposed(by: self.rx.disposeBag)
+                viewModel.follow.map { viewModel }.bind(to: follow).disposed(by: self.rx.disposeBag)
                 return viewModel.makeItemType()
             }
             if self.type.value == .user {
@@ -156,6 +163,25 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
+        follow.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, DefaultColltionCellViewModel)>> in
+            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            let isFollow = cellViewModel.followed.value
+            let userId = cellViewModel.item.user?.userId ?? ""
+            let request = isFollow ? self.provider.undoFollow(userId: userId)
+                : self.provider.follow(userId: userId)
+            return request
+                .trackActivity(self.loading)
+                .trackError(self.error)
+                .map { ($0,cellViewModel)}
+                .materialize()
+        }).subscribe(onNext: { (event) in
+            switch event {
+            case .next(let (result, cellViewModel)):
+                cellViewModel.followed.accept(result)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
         
         selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,ReactionType,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -177,6 +203,9 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
+        
+        
         
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item ,trigger) in

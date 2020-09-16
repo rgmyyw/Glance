@@ -151,7 +151,7 @@ class RestApi: API {
         return requestObject(.visualSearch(params: params), type: VisualSearchPageMapable.self)
     }
     
-    func search(type: SearchType,keywords: String, page: Int) -> Single<PageMapable<Home>> {
+    func productSearch(type: ProductSearchType,keywords: String, page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.search(type: type, keywords: keywords, page: page), type: PageMapable<Home>.self)
     }
     
@@ -217,6 +217,24 @@ class RestApi: API {
     
     func searchYouMaylike(page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.searchYouMaylike(page: page), type: PageMapable<Home>.self)
+    }
+    
+    
+    func searchNew(page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.searchNew(page: page), type: PageMapable<Home>.self)
+    }
+    
+    func globalSearch(type: SearchResultContentType, keywords: String, page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.globalSearch(type: type, keywords: keywords, page: page), type: PageMapable<Home>.self)
+    }
+    
+    func searchThemeDetail(themeId: Int) -> Single<SearchThemeDetail> {
+        return requestObject(.searchThemeDetail(themeId: themeId), type: SearchThemeDetail.self)
+    }
+    
+    func searchThemeDetaiResource(type: SearchThemeContentType, themeId: Int, page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.searchThemeDetaiResource(type: type, themeId: themeId, page: page), type: PageMapable<Home>.self)
+
     }
     
     let ibexProvider: IbexNetworking

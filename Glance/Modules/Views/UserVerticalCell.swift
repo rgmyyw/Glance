@@ -32,6 +32,8 @@ class UserVerticalCell: DefaultColltionCell {
         viewModel.followed.map { $0 ? .white : UIColor.primary() }.bind(to: followButton.rx.backgroundColor).disposed(by: cellDisposeBag)
         viewModel.displayName.bind(to: nickNameLabel.rx.text).disposed(by: cellDisposeBag)
         
+        followButton.rx.tap.bind(to: viewModel.follow).disposed(by: cellDisposeBag)
+        
     }
     
 }

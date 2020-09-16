@@ -1,8 +1,8 @@
 //
-//  SearchRecommendYouMayLikeViewModel.swift
+//  SearchResultContentViewModel.swift
 //  Glance
 //
-//  Created by yanghai on 2020/9/8.
+//  Created by yanghai on 2020/9/14.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
@@ -10,46 +10,55 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
+class SearchThemeContentViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<DefaultColltionSectionItem>
-        
     }
     
     struct Output {
-        let items : Driver<[SearchRecommendYouMayLikeSection]>
+        let items : Driver<[SearchResultContentViewSection]>
         let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
         let detail : Driver<Home>
         let userDetail : Driver<User>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
-    
-    
+    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
+    let type : BehaviorRelay<SearchThemeContentType>
+    let themeId : BehaviorRelay<Int>
     
+    
+    init(provider: API, type : SearchThemeContentType, themeId : Int) {
+        self.type = BehaviorRelay(value: type)
+        self.themeId = BehaviorRelay(value: themeId)
+        super.init(provider: provider)
+    }
+
     func transform(input: Input) -> Output {
         
         
-        let elements = BehaviorRelay<[SearchRecommendYouMayLikeSection]>(value: [])
+        let elements = BehaviorRelay<[SearchResultContentViewSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
-        let detail = input.selection.map { $0.viewModel.item }
+        let detail = input.selection.filter { _ in self.type.value != .user }.map { $0.viewModel.item }
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
         let follow = PublishSubject<DefaultColltionCellViewModel>()
+        input.selection.filter { _ in self.type.value == .user }
+            .map { $0.viewModel.item.user }.bind(to: userDetail).disposed(by: rx.disposeBag)
         
         
-        input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+        themeId.asObservable().merge(with: input.headerRefresh.map { self.themeId.value})
+            .flatMapLatest({ [weak self] (themeId) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
+                let type = self.type.value
                 self.page = 1
-                return self.provider.searchYouMaylike(page: self.page)
+                return self.provider.searchThemeDetaiResource(type: type, themeId: themeId, page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -68,11 +77,13 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                if !self.element.value.hasNext {
+                if !(self.element.value?.hasNext ?? false) {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page += 1
-                return self.provider.searchYouMaylike(page: self.page)
+                let themeId = self.themeId.value
+                let type = self.type.value
+                return self.provider.searchThemeDetaiResource(type: type, themeId: themeId, page: self.page)
                     .trackActivity(self.footerLoading)
                     .trackError(self.error)
                     .materialize()
@@ -81,7 +92,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     var temp = item
-                    temp.list = self.element.value.list + item.list
+                    temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
                     self.hasData.onNext(item.hasNext)
                 default:
@@ -90,7 +101,8 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        element.map { items -> [SearchRecommendYouMayLikeSection] in
+        element.filterNil().map { items -> [SearchResultContentViewSection] in
+            let section : SearchResultContentViewSection
             let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
@@ -100,8 +112,12 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                 viewModel.follow.map { viewModel }.bind(to: follow).disposed(by: self.rx.disposeBag)
                 return viewModel.makeItemType()
             }
-            let sections = [SearchRecommendYouMayLikeSection.single(items: sectionItems)]
-            return sections
+            if self.type.value == .user {
+                section = SearchResultContentViewSection.users(items: sectionItems)
+            } else {
+                section = SearchResultContentViewSection.single(items: sectionItems)
+            }
+            return [section]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
@@ -149,8 +165,6 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        
-        
         follow.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, DefaultColltionCellViewModel)>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let isFollow = cellViewModel.followed.value
@@ -170,7 +184,6 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-              
         
         selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,ReactionType,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -192,6 +205,9 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
+        
+        
         
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item ,trigger) in

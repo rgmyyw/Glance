@@ -17,7 +17,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         let footerRefresh: Observable<Void>
         let selection : Observable<StyleBoardSearchSectionItem>
         let add : Observable<Void>
-        let currentType : BehaviorRelay<SearchType>
+        let currentType : BehaviorRelay<ProductSearchType>
         
     }
     
@@ -60,7 +60,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 }
                 elements.accept([])
                 self.page = 1
-                return self.provider.search(type: input.currentType.value,keywords: text, page: self.page)
+                return self.provider.productSearch(type: input.currentType.value,keywords: text, page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -84,7 +84,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             }
             self.page += 1
             let text = self.textInput.value
-            return self.provider.search(type: input.currentType.value,keywords: text, page: self.page)
+            return self.provider.productSearch(type: input.currentType.value,keywords: text, page: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()

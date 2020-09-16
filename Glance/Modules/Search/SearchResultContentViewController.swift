@@ -45,7 +45,7 @@ class SearchResultContentViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? SearchResultContentViewModel else { return }
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
+        let refresh = headerRefreshTrigger.asObservable()
         let input = SearchResultContentViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())

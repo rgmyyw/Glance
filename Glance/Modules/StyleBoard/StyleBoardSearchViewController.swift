@@ -22,7 +22,7 @@ class StyleBoardSearchViewController: CollectionViewController  {
     @IBOutlet var emptyView: UIView!
     @IBOutlet weak var uploadYourselfButton: UIButton!
         
-    private let current = BehaviorRelay<SearchType>(value: .saved)
+    private let current = BehaviorRelay<ProductSearchType>(value: .saved)
     
     private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<StyleBoardSearchSection> = configureDataSouce()
     
@@ -97,7 +97,7 @@ class StyleBoardSearchViewController: CollectionViewController  {
                 current?.setTitleColor(UIColor.text(), for: .normal)
                 current?.titleLabel?.font = UIFont.titleBoldFont(14)
                 self?.textField.text = nil
-                if let type = SearchType(rawValue: index) {
+                if let type = ProductSearchType(rawValue: index) {
                     self?.current.accept(type)
                 } else {
                     fatalError()

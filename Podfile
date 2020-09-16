@@ -72,7 +72,7 @@ abstract_target 'Glance' do
   pod 'XHWebImageAutoSize' , '~> 1.1.2'
   pod 'JXBanner'
   pod 'NewPopMenu', '~> 2.0'
-  
+  pod 'MJRefresh'
 
 
    

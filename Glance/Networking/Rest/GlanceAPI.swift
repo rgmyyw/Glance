@@ -54,7 +54,7 @@ enum GlanceAPI {
     case similarProduct(params : [String : Any],page : Int)
     case addShoppingCart(productId : String)
     case visualSearch(params : [String : Any])
-    case search(type : SearchType,keywords : String, page : Int)
+    case search(type : ProductSearchType,keywords : String, page : Int)
     case categories
     case addProduct(param : [String : Any])
     case postProduct(param : [String : Any])
@@ -70,6 +70,10 @@ enum GlanceAPI {
     case searchThemeClassify
     case searchThemeHot(classifyId : Int, page : Int)
     case searchYouMaylike(page : Int)
+    case searchNew(page : Int)
+    case globalSearch(type : SearchResultContentType,keywords : String, page : Int)
+    case searchThemeDetail(themeId : Int)
+    case searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -193,6 +197,14 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/theme/\(page)/\(10)"
         case .searchYouMaylike(let page):
             return "/api/search/maylike/\(page)/\(10)"
+        case .searchNew(let page):
+            return "/api/search/new/\(page)/\(10)"
+        case .globalSearch(_,_, let page):
+            return "/api/search/global/\(page)/\(10)"
+        case .searchThemeDetail(let themeId):
+            return "/api/search/theme/detail/\(themeId)"
+        case .searchThemeDetaiResource(_,let themeId, let page):
+            return "/api/search/theme/resources/\(themeId)/\(page)/\(10)"
         }
     }
     
@@ -236,7 +248,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .searchFacets,
              .searchThemeClassify,
              .searchThemeHot,
-             .searchYouMaylike:
+             .searchYouMaylike,
+             .searchNew,
+             .globalSearch,
+             .searchThemeDetail,
+             .searchThemeDetaiResource:
             return .get
         case .modifyProfile:
             return .put
@@ -349,8 +365,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["query"] = query
         case .searchThemeHot(let classifyId, _):
             params["classifyId"] = classifyId
-        case .searchYouMaylike:
-            break
+        case .globalSearch(let type, let keywords, _):
+            params["query"] = keywords
+            params["type"] = type.rawValue
+        case .searchThemeDetaiResource(let type,_,_):
+            params["type"] = type.rawValue
         default:
             break
         }

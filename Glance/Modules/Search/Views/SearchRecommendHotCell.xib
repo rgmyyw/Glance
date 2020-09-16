@@ -117,6 +117,7 @@
             <connections>
                 <outlet property="collectionView" destination="wqe-rT-7Y4" id="vP5-LO-R4V"/>
                 <outlet property="postNumberLabel" destination="hIg-Hc-bv4" id="zg1-gw-wDv"/>
+                <outlet property="themeDetailBgView" destination="3vJ-vD-b09" id="XVw-Sv-Dcw"/>
                 <outlet property="themeTitleLabel" destination="AZZ-UP-aMv" id="dcd-NH-l15"/>
             </connections>
             <point key="canvasLocation" x="-542.02898550724638" y="-32.477678571428569"/>

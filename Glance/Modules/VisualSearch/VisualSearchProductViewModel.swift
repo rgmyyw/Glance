@@ -60,7 +60,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             self.endEditing.onNext(())
             self.page = 1
             let text = self.textInput.value
-            return self.provider.search(type: .inApp, keywords: text, page: self.page)
+            return self.provider.productSearch(type: .inApp, keywords: text, page: self.page)
                 .trackError(self.error)
                 .trackActivity(self.headerLoading)
                 .materialize()
@@ -83,7 +83,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             }
             self.page += 1
             let text = self.textInput.value
-            return self.provider.search(type: .inApp, keywords: text, page: self.page)
+            return self.provider.productSearch(type: .inApp, keywords: text, page: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()

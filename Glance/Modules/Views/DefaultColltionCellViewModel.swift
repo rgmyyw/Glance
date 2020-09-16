@@ -24,15 +24,17 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let reactionImage = BehaviorRelay<UIImage?>(value : nil)
     let userOnline = BehaviorRelay<Bool>(value: false)
     let saved = BehaviorRelay<Bool>(value: false)
-    
+    let images = BehaviorRelay<[Observable<URL?>]>(value:[])
     let followed = BehaviorRelay<Bool>(value: false)
+    
     
     
     let save = PublishSubject<Void>()
     let recommend = PublishSubject<Void>()
     let userDetail = PublishSubject<Void>()
     let reaction = PublishSubject<UIView>()
-    let images = BehaviorRelay<[Observable<URL?>]>(value:[])
+    let follow = PublishSubject<Void>()
+    
         
     var image: String? {
         return item.image

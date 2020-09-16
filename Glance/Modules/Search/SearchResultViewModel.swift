@@ -33,11 +33,13 @@ class SearchResultViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
                 
         let config = Observable<[SearchResultModuleItem]>.create { (observer) -> Disposable in
-            let all = SearchResultContentViewModel(provider: self.provider, type: .all)
-            let product = SearchResultContentViewModel(provider: self.provider, type: .product)
-            let post = SearchResultContentViewModel(provider: self.provider, type: .post)
-            let user = SearchResultContentViewModel(provider: self.provider, type: .user)
+            let text = self.text.filterEmpty().asObservable()
+            let all = SearchResultContentViewModel(provider: self.provider, type: .all,text: text)
+            let product = SearchResultContentViewModel(provider: self.provider, type: .product,text: text)
+            let post = SearchResultContentViewModel(provider: self.provider, type: .post,text: text)
+            let user = SearchResultContentViewModel(provider: self.provider, type: .user,text: text)
             let items : [SearchResultModuleItem] = [.all(viewModel: all),.product(viewModel: product),.post(viewModel: post),.user(viewModel: user)]
+
             observer.onNext(items)
             observer.onCompleted()
             return Disposables.create { }

@@ -49,7 +49,7 @@ class SearchRecommendNewViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.searchNew(page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -72,7 +72,7 @@ class SearchRecommendNewViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page += 1
-                return self.provider.getHome(page: self.page)
+                return self.provider.searchNew(page: self.page)
                     .trackActivity(self.footerLoading)
                     .trackError(self.error)
                     .materialize()

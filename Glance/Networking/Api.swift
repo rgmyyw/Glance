@@ -38,7 +38,10 @@ protocol API {
     func similarProduct(params : [String : Any],page : Int) -> Single<PageMapable<Home>>
     func addShoppingCart(productId : String) -> Single<Bool>
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
-    func search(type : SearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
+    func productSearch(type : ProductSearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
+    func globalSearch(type : SearchResultContentType,keywords : String, page : Int) -> Single<PageMapable<Home>>
+    
+    
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
     func postProduct(param : [String : Any]) -> Single<Bool>
@@ -54,6 +57,9 @@ protocol API {
     func searchThemeClassify() ->  Single<[SearchThemeClassify]>
     func searchThemeHot(classifyId : Int, page : Int) -> Single<PageMapable<SearchTheme>>
     func searchYouMaylike(page : Int) -> Single<PageMapable<Home>>
+    func searchNew(page : Int) -> Single<PageMapable<Home>>
+    func searchThemeDetail(themeId : Int) -> Single<SearchThemeDetail>
+    func searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int) -> Single<PageMapable<Home>>
     //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
 
 }
