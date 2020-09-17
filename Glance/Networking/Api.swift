@@ -40,8 +40,6 @@ protocol API {
     func visualSearch(params : [String : Any]) -> Single<VisualSearchPageMapable>
     func productSearch(type : ProductSearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
     func globalSearch(type : SearchResultContentType,keywords : String, page : Int) -> Single<PageMapable<Home>>
-    
-    
     func categories()  -> Single<[Categories]>
     func addProduct(param : [String : Any]) -> Single<String>
     func postProduct(param : [String : Any]) -> Single<Bool>
@@ -60,8 +58,8 @@ protocol API {
     func searchNew(page : Int) -> Single<PageMapable<Home>>
     func searchThemeDetail(themeId : Int) -> Single<SearchThemeDetail>
     func searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int) -> Single<PageMapable<Home>>
-    //func recommend(id : Any, type : Int, state : Bool) -> Single<Bool>
-
+    func searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int) -> Single<PageMapable<Home>>
+    
 }
 
 

@@ -15,10 +15,10 @@ import WMZPageController
 class SearchThemeViewController: ViewController {
     
     private lazy var headView : SearchThemeLabelView = SearchThemeLabelView.loadFromNib()
-
-
+    
+    
     private lazy var pageController : WMZPageController = {
-            
+        
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
@@ -27,8 +27,8 @@ class SearchThemeViewController: ViewController {
         config.wMenuAnimalTitleGradient = true
         config.wMenuTitleColor = UIColor.textGray()
         config.wMenuTitleSelectColor = UIColor.text()
-        config.wMenuTitleUIFont = UIFont.titleBoldFont(16)
-        config.wMenuTitleSelectUIFont = UIFont.titleBoldFont(16)
+        config.wMenuTitleUIFont = UIFont.titleBoldFont(14)
+        config.wMenuTitleSelectUIFont = UIFont.titleBoldFont(14)
         config.wMenuIndicatorColor = UIColor.primary()
         config.wMenuIndicatorWidth = 20
         config.wMenuIndicatorHeight = 4
@@ -49,7 +49,7 @@ class SearchThemeViewController: ViewController {
         
         return controller
     }()
-
+    
     
     override func makeUI() {
         super.makeUI()
@@ -62,11 +62,14 @@ class SearchThemeViewController: ViewController {
         
         let refresh = Observable.just(())
         guard let viewModel = viewModel as? SearchThemeViewModel else { return }
-
+        
         let input = SearchThemeViewModel.Input(refresh: refresh,
-                                               updateHistory: rx.viewWillAppear.mapToVoid())
+                                               updateHistory: rx.viewWillAppear.mapToVoid(),
+                                               selection: headView.collectionView.rx.modelSelected(SearchThemeLabelCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
-
+        output.themePost.drive(headView.postCountLabel.rx.text).disposed(by: rx.disposeBag)
+        output.themeTitle.drive(headView.titleLabel.rx.text).disposed(by: rx.disposeBag)
+        output.labels.drive(headView.items).disposed(by: rx.disposeBag)
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
             controllers.forEach { self?.addChild($0)}
@@ -79,7 +82,7 @@ class SearchThemeViewController: ViewController {
                 line.backgroundColor = UIColor(hex: 0xF0F0F0)
                 self?.pageController.upSc.backgroundColor = .white
                 if let content = self?.pageController.upSc ,
-                   let mainView = self?.pageController.upSc.mainView {
+                    let mainView = self?.pageController.upSc.mainView {
                     content.addSubview(line)
                     line.snp.makeConstraints { (make) in
                         make.left.equalTo(mainView).offset(-20)
@@ -91,14 +94,30 @@ class SearchThemeViewController: ViewController {
             }
         }).disposed(by: rx.disposeBag)
         
+        output.laeblDetail.drive(onNext: { [weak self](item) in
+            let viewModel = SearchThemeLabelViewModel(provider: viewModel.provider, label: item)
+            self?.navigator.show(segue: .searchThemeLabel(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
         
-           
+        output.updateHeadLayout.drive(onNext: { [weak self]() in
+            guard let self = self else { return }
+            self.headView.layoutIfNeeded()
+            self.headView.snp.updateConstraints { (make) in
+                make.width.equalTo(self.view.width)
+                make.height.equalTo(self.headView.contentView.frame.maxY)
+            }
+            self.headView.setNeedsLayout()
+            self.headView.layoutIfNeeded()
+            self.pageController.updateHeadView()
+        }).disposed(by: rx.disposeBag)
+        
+        
     }
     
 }
 
 extension SearchThemeViewController {
-  
+    
     
     func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
         
@@ -110,6 +129,6 @@ extension SearchThemeViewController {
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
-
+    
 }
 

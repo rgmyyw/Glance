@@ -30,6 +30,7 @@ struct SearchThemeDetailLabel: Mappable {
     var labelId: Int = 0
 
     init?(map: Map) {}
+    init() {}
 
     mutating func mapping(map: Map) {
         name   <- map["name"]

@@ -64,6 +64,8 @@ class Navigator {
         case searchResultContent(viewModel : SearchResultContentViewModel)
         case searchTheme(viewModel : SearchThemeViewModel)
         case searchThemeContent(viewModel : SearchThemeContentViewModel)
+        case searchThemeLabel(viewModel : SearchThemeLabelViewModel)
+        case searchThemeLabelContent(viewModel : SearchThemeLabelContentViewModel)
 
     }
     
@@ -199,6 +201,12 @@ class Navigator {
             return vc
         case .searchThemeContent(let viewModel):
             let vc = SearchThemeContentViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchThemeLabel(let viewModel):
+            let vc = SearchThemeLabelViewController(viewModel: viewModel, navigator: self)
+            return vc
+        case .searchThemeLabelContent(let viewModel):
+            let vc = SearchThemeLabelContentViewController(viewModel: viewModel, navigator: self)
             return vc
         }
     }

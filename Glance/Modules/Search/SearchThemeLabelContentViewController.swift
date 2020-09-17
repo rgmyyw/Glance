@@ -15,9 +15,9 @@ import UICollectionView_ARDynamicHeightLayoutCell
 import WMZPageController
 
 
-class SearchThemeContentViewController: CollectionViewController {
+class SearchThemeLabelContentViewController: CollectionViewController {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> = configureDataSouce()
 
 
     override func makeUI() {
@@ -41,10 +41,10 @@ class SearchThemeContentViewController: CollectionViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? SearchThemeContentViewModel else { return }
+        guard let viewModel = viewModel as? SearchThemeLabelContentViewModel else { return }
         
         let refresh = headerRefreshTrigger.asObservable()
-        let input = SearchThemeContentViewModel.Input(headerRefresh: refresh,
+        let input = SearchThemeLabelContentViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
@@ -77,10 +77,10 @@ class SearchThemeContentViewController: CollectionViewController {
     }
 }
 
-extension SearchThemeContentViewController {
+extension SearchThemeLabelContentViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection> {
-        return RxCollectionViewSectionedReloadDataSource<SearchResultContentViewSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> {
+        return RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
                         
             switch item {
             case .post(let viewModel):
@@ -127,7 +127,7 @@ extension SearchThemeContentViewController {
     
 }
 
-extension SearchThemeContentViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
@@ -191,7 +191,7 @@ extension SearchThemeContentViewController : ZLCollectionViewBaseFlowLayoutDeleg
 
 
 
-extension SearchThemeContentViewController : WMZPageProtocol {
+extension SearchThemeLabelContentViewController : WMZPageProtocol {
     
     func getMyScrollView() -> UIScrollView {
         return collectionView

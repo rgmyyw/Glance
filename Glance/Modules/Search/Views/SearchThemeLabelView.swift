@@ -17,7 +17,12 @@ class SearchThemeLabelView: View {
 
     lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SearchThemeLabelCellViewModel>> = configureDataSouce()
 
+    @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var postCountLabel: UILabel!
+    
+    
     
     let items = BehaviorRelay<[SectionModel<Void,SearchThemeLabelCellViewModel>]>(value:[])
         
@@ -73,7 +78,7 @@ extension SearchThemeLabelView : ZLCollectionViewBaseFlowLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let viewModel =  dataSouce[indexPath.section].items[indexPath.item]
-        return collectionView.ar_sizeForCell(withIdentifier: SearchRecommendHistoryCell.reuseIdentifier, indexPath: indexPath, fixedHeight: 30) { (cell) in
+        return collectionView.ar_sizeForCell(withIdentifier: SearchThemeLabelCell.reuseIdentifier, indexPath: indexPath, fixedHeight: 30) { (cell) in
             let cell = cell  as? SearchThemeLabelCell
             cell?.bind(to: viewModel)
         }

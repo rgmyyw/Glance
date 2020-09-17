@@ -12,6 +12,7 @@ import RxSwift
 import RxDataSources
 import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
+import WMZPageController
 
 class SearchResultContentViewController: CollectionViewController {
     
@@ -191,3 +192,10 @@ extension SearchResultContentViewController : ZLCollectionViewBaseFlowLayoutDele
 }
 
 
+
+extension SearchResultContentViewController : WMZPageProtocol {
+    
+    func getMyScrollView() -> UIScrollView {
+        return collectionView
+    }
+}

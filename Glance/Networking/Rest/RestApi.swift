@@ -236,7 +236,10 @@ class RestApi: API {
         return requestObject(.searchThemeDetaiResource(type: type, themeId: themeId, page: page), type: PageMapable<Home>.self)
 
     }
-    
+    func searchThemeLabelDetaiResource(type: SearchThemeLabelContentType, labelId: Int, page: Int) -> Single<PageMapable<Home>> {
+        return requestObject(.searchThemeLabelDetaiResource(type: type, labelId: labelId, page: page), type: PageMapable<Home>.self)
+
+    }
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

@@ -17,11 +17,16 @@ class SearchThemeViewModel: ViewModel, ViewModelType {
     struct Input {
         let refresh : Observable<Void>
         let updateHistory : Observable<Void>
+        let selection : Observable<SearchThemeLabelCellViewModel>
     }
     
     struct Output {
         let config : Driver<[SearchThemeModuleItem]>
         let labels : Driver<[SectionModel<Void,SearchThemeLabelCellViewModel>]>
+        let updateHeadLayout : Driver<Void>
+        let themeTitle : Driver<String>
+        let themePost : Driver<String>
+        let laeblDetail : Driver<SearchThemeDetailLabel>
     }
     
     let element = BehaviorRelay<SearchThemeDetail?>(value: nil)
@@ -37,6 +42,10 @@ class SearchThemeViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[SectionModel<Void,SearchThemeLabelCellViewModel>]>(value: [])
+        let themeTitle = element.map { $0?.title ?? "" }.asDriver(onErrorJustReturn: "")
+        let themePost = element.map { "\($0?.postCount.format() ?? "0") Post" }.asDriver(onErrorJustReturn: "")
+        let laeblDetail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: SearchThemeDetailLabel())
+        let updateHeadLayout = PublishSubject<Void>()
         
         let config = elements.filterEmpty().mapToVoid().map { () -> [SearchThemeModuleItem] in
             let themeId = self.themeId.value
@@ -63,6 +72,7 @@ class SearchThemeViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 self?.element.accept(item)
+                updateHeadLayout.onNext(())
             default:
                 break
             }
@@ -71,7 +81,10 @@ class SearchThemeViewModel: ViewModel, ViewModelType {
         
         
         return Output(config: config.asDriver(onErrorJustReturn: []),
-                      labels: elements.asDriver(onErrorJustReturn: [])
+                      labels: elements.asDriver(onErrorJustReturn: []),
+                      updateHeadLayout: updateHeadLayout.asDriver(onErrorJustReturn: ()),
+                      themeTitle: themeTitle, themePost: themePost,
+                      laeblDetail: laeblDetail
         )
     }
 }

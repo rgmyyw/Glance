@@ -18,36 +18,30 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="drL-UV-fBC">
-                        <rect key="frame" x="0.0" y="0.0" width="68.5" height="31"/>
+                        <rect key="frame" x="0.0" y="0.0" width="53.5" height="31"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="None" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="krI-4W-Oi6">
-                                <rect key="frame" x="12.5" y="8" width="36" height="17.5"/>
+                                <rect key="frame" x="21" y="9" width="26.5" height="13"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="11"/>
+                                <color key="textColor" red="1" green="0.50588235294117645" blue="0.34901960784313724" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1SO-Tk-FAS">
-                                <rect key="frame" x="48.5" y="0.0" width="20" height="20"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="20" id="3r7-ex-Tcn"/>
-                                    <constraint firstAttribute="width" constant="20" id="Gmk-aK-JPq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
-                                <state key="normal" image="icon_button_delete_gray"/>
-                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_search_theme_label" translatesAutoresizingMaskIntoConstraints="NO" id="dPg-0k-MUh">
+                                <rect key="frame" x="6" y="10.5" width="10" height="10"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="0.96078431369999995" green="0.96078431369999995" blue="0.96078431369999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" red="1" green="0.94901960784313721" blue="0.93333333333333335" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="1SO-Tk-FAS" firstAttribute="leading" secondItem="krI-4W-Oi6" secondAttribute="trailing" id="09j-EG-4tV"/>
-                            <constraint firstAttribute="trailing" secondItem="1SO-Tk-FAS" secondAttribute="trailing" id="5si-Ac-bNZ"/>
-                            <constraint firstItem="krI-4W-Oi6" firstAttribute="leading" secondItem="drL-UV-fBC" secondAttribute="leading" constant="12.5" id="IWF-Yp-KlU"/>
-                            <constraint firstItem="krI-4W-Oi6" firstAttribute="top" secondItem="drL-UV-fBC" secondAttribute="top" constant="8" id="Tza-gO-AKC"/>
-                            <constraint firstItem="1SO-Tk-FAS" firstAttribute="top" secondItem="drL-UV-fBC" secondAttribute="top" id="gP6-6s-8N5"/>
+                            <constraint firstAttribute="trailing" secondItem="krI-4W-Oi6" secondAttribute="trailing" constant="6" id="I46-HX-wor"/>
+                            <constraint firstItem="dPg-0k-MUh" firstAttribute="leading" secondItem="drL-UV-fBC" secondAttribute="leading" constant="6" id="Le1-b0-Jfk"/>
+                            <constraint firstItem="krI-4W-Oi6" firstAttribute="centerY" secondItem="dPg-0k-MUh" secondAttribute="centerY" id="QOj-wB-lrY"/>
+                            <constraint firstItem="dPg-0k-MUh" firstAttribute="centerY" secondItem="drL-UV-fBC" secondAttribute="centerY" id="te7-oo-dZf"/>
+                            <constraint firstItem="krI-4W-Oi6" firstAttribute="leading" secondItem="dPg-0k-MUh" secondAttribute="trailing" constant="5" id="vSe-OS-t0X"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="6"/>
+                                <real key="value" value="10"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </view>
@@ -63,13 +57,12 @@
             <size key="customSize" width="117" height="31"/>
             <connections>
                 <outlet property="bgView" destination="drL-UV-fBC" id="Zap-y8-eb7"/>
-                <outlet property="deleteButton" destination="1SO-Tk-FAS" id="Zui-Yn-swh"/>
                 <outlet property="label" destination="krI-4W-Oi6" id="4jn-4a-lZv"/>
             </connections>
             <point key="canvasLocation" x="-1092.0289855072465" y="118.86160714285714"/>
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="icon_button_delete_gray" width="5.5" height="5.5"/>
+        <image name="icon_search_theme_label" width="10" height="10"/>
     </resources>
 </document>

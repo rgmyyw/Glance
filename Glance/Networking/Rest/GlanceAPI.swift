@@ -74,6 +74,7 @@ enum GlanceAPI {
     case globalSearch(type : SearchResultContentType,keywords : String, page : Int)
     case searchThemeDetail(themeId : Int)
     case searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int)
+    case searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -205,6 +206,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/theme/detail/\(themeId)"
         case .searchThemeDetaiResource(_,let themeId, let page):
             return "/api/search/theme/resources/\(themeId)/\(page)/\(10)"
+        case .searchThemeLabelDetaiResource(_, _, let page):
+            return "/api/search/label/\(page)/\(10)"
         }
     }
     
@@ -252,7 +255,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .searchNew,
              .globalSearch,
              .searchThemeDetail,
-             .searchThemeDetaiResource:
+             .searchThemeDetaiResource,
+             .searchThemeLabelDetaiResource:
             return .get
         case .modifyProfile:
             return .put
@@ -370,6 +374,9 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["type"] = type.rawValue
         case .searchThemeDetaiResource(let type,_,_):
             params["type"] = type.rawValue
+        case .searchThemeLabelDetaiResource(let type, let labelId, _):
+            params["type"] = type.rawValue
+            params["labelId"] = labelId
         default:
             break
         }
