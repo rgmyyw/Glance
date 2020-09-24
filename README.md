@@ -93,8 +93,8 @@ command + R
 
 ### Apple ID
 
-- 账号 :  ``
-- 密码:   ``
+- 账号 :  `yanghai@beesplay.cn`
+- 密码:   `Aa1234567890`
 
 ### Email 
 - 账号:  ``

@@ -38,22 +38,6 @@
 		5D13709F24B70FA2007B64BA /* UserRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* UserRelationCell.xib */; };
 		5D1370A124B7113F007B64BA /* UserRelationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */; };
 		5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
-		5D1D379B24C847CC00B2A1E2 /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378B24C847CC00B2A1E2 /* 8.jpg */; };
-		5D1D379C24C847CC00B2A1E2 /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378C24C847CC00B2A1E2 /* 9.jpg */; };
-		5D1D379D24C847CC00B2A1E2 /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378D24C847CC00B2A1E2 /* 14.jpg */; };
-		5D1D379E24C847CC00B2A1E2 /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378E24C847CC00B2A1E2 /* 15.jpg */; };
-		5D1D379F24C847CC00B2A1E2 /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
-		5D1D37A024C847CC00B2A1E2 /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379024C847CC00B2A1E2 /* 13.jpg */; };
-		5D1D37A124C847CC00B2A1E2 /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
-		5D1D37A224C847CC00B2A1E2 /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379224C847CC00B2A1E2 /* 10.jpg */; };
-		5D1D37A324C847CC00B2A1E2 /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379324C847CC00B2A1E2 /* 4.jpg */; };
-		5D1D37A424C847CC00B2A1E2 /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
-		5D1D37A524C847CC00B2A1E2 /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
-		5D1D37A624C847CC00B2A1E2 /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
-		5D1D37A724C847CC00B2A1E2 /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
-		5D1D37A824C847CC00B2A1E2 /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379824C847CC00B2A1E2 /* 3.jpg */; };
-		5D1D37A924C847CC00B2A1E2 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379924C847CC00B2A1E2 /* 1.jpg */; };
-		5D1D37AA24C847CC00B2A1E2 /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379A24C847CC00B2A1E2 /* 0.jpg */; };
 		5D1D5AF424BFF007008C0C82 /* PostsDetailTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */; };
 		5D1D5AF524BFF007008C0C82 /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
 		5D1D5AF824BFF0F9008C0C82 /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
@@ -230,7 +214,6 @@
 		5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
 		5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
 		5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
-		5D6B4DB724D4080E0024924B /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
 		5D6B4DB924D40C8B0024924B /* VisualSearchBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB824D40C8B0024924B /* VisualSearchBottomView.xib */; };
 		5D6B4DBB24D40C990024924B /* VisualSearchBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DBA24D40C990024924B /* VisualSearchBottomView.swift */; };
 		5D6B4DBD24D7A23D0024924B /* VisualSearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DBC24D7A23D0024924B /* VisualSearchProductViewController.swift */; };
@@ -641,8 +624,6 @@
 		5D99EDD9251843840008B45F /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5D99EDDA251843840008B45F /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
 		5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
-		5D99EDDF251843840008B45F /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
-		5D99EDE0251843840008B45F /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
 		5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B017924C570BE00832F05 /* SavedCollectionClassifyViewController.xib */; };
 		5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8E24DC03090062F90B /* PostProductTagCell.xib */; };
 		5D99EDE3251843840008B45F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
@@ -650,9 +631,7 @@
 		5D99EDE5251843840008B45F /* VisualSearchProductReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */; };
 		5D99EDE6251843840008B45F /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3F24B85ABD00280F9F /* UserPostCell.xib */; };
 		5D99EDE7251843840008B45F /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
-		5D99EDE8251843840008B45F /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378C24C847CC00B2A1E2 /* 9.jpg */; };
 		5D99EDE9251843840008B45F /* ReactionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523D24BEE59A007CE461 /* ReactionsCell.xib */; };
-		5D99EDEA251843840008B45F /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379924C847CC00B2A1E2 /* 1.jpg */; };
 		5D99EDEB251843840008B45F /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB541250B633800C8B902 /* ThemeCell.xib */; };
 		5D99EDEC251843840008B45F /* SelectStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196F22514569300C4D6BE /* SelectStoreCell.xib */; };
 		5D99EDED251843840008B45F /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
@@ -660,7 +639,6 @@
 		5D99EDEF251843840008B45F /* PostRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB53F250B633800C8B902 /* PostRecommendCell.xib */; };
 		5D99EDF0251843840008B45F /* InsightsLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */; };
 		5D99EDF1251843840008B45F /* PostProductCaptionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7C24DC03090062F90B /* PostProductCaptionReusableView.xib */; };
-		5D99EDF2251843840008B45F /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379324C847CC00B2A1E2 /* 4.jpg */; };
 		5D99EDF3251843840008B45F /* SearchNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFE1313250CAEDC00ABCE5E /* SearchNavigationBar.xib */; };
 		5D99EDF4251843840008B45F /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
 		5D99EDF5251843840008B45F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */; };
@@ -668,26 +646,22 @@
 		5D99EDF7251843840008B45F /* StyleBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3130C24E3DC3400CC3F89 /* StyleBoardViewController.xib */; };
 		5D99EDF8251843840008B45F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */; };
 		5D99EDF9251843840008B45F /* AddProductBrandReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF424D95A5100AD4B43 /* AddProductBrandReusableView.xib */; };
-		5D99EDFA251843840008B45F /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379824C847CC00B2A1E2 /* 3.jpg */; };
 		5D99EDFB251843840008B45F /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
 		5D99EDFC251843840008B45F /* SearchRecommendHotFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E792509C9C800E9FD8D /* SearchRecommendHotFilterView.xib */; };
 		5D99EDFD251843840008B45F /* UserHorizontalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDC05C725105AEC005D5299 /* UserHorizontalCell.xib */; };
 		5D99EDFE251843840008B45F /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
 		5D99EDFF251843840008B45F /* PostsDetailPriceReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C424C836DA003C3E00 /* PostsDetailPriceReusableView.xib */; };
 		5D99EE00251843840008B45F /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF18124AEC2F8007A2FCD /* EmptyDataView.xib */; };
-		5D99EE01251843840008B45F /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378B24C847CC00B2A1E2 /* 8.jpg */; };
 		5D99EE02251843840008B45F /* VisualSearchProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC524D7A61C0024924B /* VisualSearchProductCell.xib */; };
 		5D99EE03251843840008B45F /* SearchRecommendHotFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DECB83C250A0C4300294ECA /* SearchRecommendHotFilterCell.xib */; };
 		5D99EE04251843840008B45F /* SavedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */; };
 		5D99EE05251843840008B45F /* PostProductTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7F24DC03090062F90B /* PostProductTitleReusableView.xib */; };
 		5D99EE06251843840008B45F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5D99EE07251843840008B45F /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
-		5D99EE08251843840008B45F /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
 		5D99EE09251843840008B45F /* SearchRecommendHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E892509CF9100E9FD8D /* SearchRecommendHotCell.xib */; };
 		5D99EE0A251843840008B45F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5D99EE0B251843840008B45F /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
 		5D99EE0C251843840008B45F /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
-		5D99EE0D251843840008B45F /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379224C847CC00B2A1E2 /* 10.jpg */; };
 		5D99EE0E251843840008B45F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */; };
 		5D99EE0F251843840008B45F /* ProductRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB53E250B633800C8B902 /* ProductRecommendCell.xib */; };
 		5D99EE10251843840008B45F /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
@@ -705,7 +679,6 @@
 		5D99EE1C251843840008B45F /* UserRecommCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7D49AF24B8648500F919EB /* UserRecommCell.xib */; };
 		5D99EE1D251843840008B45F /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
 		5D99EE1E251843840008B45F /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFE1318250CB14300ABCE5E /* SearchCell.xib */; };
-		5D99EE1F251843840008B45F /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379A24C847CC00B2A1E2 /* 0.jpg */; };
 		5D99EE20251843840008B45F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5D99EE21251843840008B45F /* ReactionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB542250B633800C8B902 /* ReactionPopView.xib */; };
 		5D99EE22251843840008B45F /* SearchRecommendHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E382508701100E9FD8D /* SearchRecommendHistoryCell.xib */; };
@@ -717,31 +690,24 @@
 		5D99EE28251843840008B45F /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
 		5D99EE29251843840008B45F /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5D99EE2A251843840008B45F /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
-		5D99EE2B251843840008B45F /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379024C847CC00B2A1E2 /* 13.jpg */; };
 		5D99EE2C251843840008B45F /* InsightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DC924BD92F800AFBB1F /* InsightsCell.xib */; };
 		5D99EE2D251843840008B45F /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5D99EE30251843840008B45F /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378E24C847CC00B2A1E2 /* 15.jpg */; };
 		5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5D99EE32251843840008B45F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB540250B633800C8B902 /* ProductCell.xib */; };
 		5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */; };
 		5D99EE34251843840008B45F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5D99EE36251843840008B45F /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378D24C847CC00B2A1E2 /* 14.jpg */; };
 		5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
 		5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E362508701100E9FD8D /* SearchRecommendHistoryView.xib */; };
-		5D99EE3C251843840008B45F /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
-		5D99EE3D251843840008B45F /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
 		5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
 		5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
 		5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
-		5D99EE42251843840008B45F /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
 		5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E952509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib */; };
-		5D99EE44251843840008B45F /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
 		5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
 		5D99EE47251843840008B45F /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1140,42 +1106,33 @@
 		5DCC2DB224F34F04000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5DCC2DB324F34F04000AC40A /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
 		5DCC2DB724F34F04000AC40A /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
-		5DCC2DB824F34F04000AC40A /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
-		5DCC2DB924F34F04000AC40A /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
 		5DCC2DBA24F34F04000AC40A /* SavedCollectionClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B017924C570BE00832F05 /* SavedCollectionClassifyViewController.xib */; };
 		5DCC2DBB24F34F04000AC40A /* PostProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8E24DC03090062F90B /* PostProductTagCell.xib */; };
 		5DCC2DBC24F34F04000AC40A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
 		5DCC2DBD24F34F04000AC40A /* PostProductInputKeywordReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA9024DC03090062F90B /* PostProductInputKeywordReusableView.xib */; };
 		5DCC2DBE24F34F04000AC40A /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3F24B85ABD00280F9F /* UserPostCell.xib */; };
 		5DCC2DBF24F34F04000AC40A /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
-		5DCC2DC024F34F04000AC40A /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378C24C847CC00B2A1E2 /* 9.jpg */; };
 		5DCC2DC124F34F04000AC40A /* ReactionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523D24BEE59A007CE461 /* ReactionsCell.xib */; };
-		5DCC2DC224F34F04000AC40A /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379924C847CC00B2A1E2 /* 1.jpg */; };
 		5DCC2DC324F34F04000AC40A /* StyleBoardImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3131324E3E89500CC3F89 /* StyleBoardImageCell.xib */; };
 		5DCC2DC424F34F04000AC40A /* PostProductCaptionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7C24DC03090062F90B /* PostProductCaptionReusableView.xib */; };
-		5DCC2DC524F34F04000AC40A /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379324C847CC00B2A1E2 /* 4.jpg */; };
 		5DCC2DC624F34F04000AC40A /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
 		5DCC2DC724F34F04000AC40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */; };
 		5DCC2DC824F34F04000AC40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */; };
 		5DCC2DC924F34F04000AC40A /* StyleBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3130C24E3DC3400CC3F89 /* StyleBoardViewController.xib */; };
 		5DCC2DCA24F34F04000AC40A /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */; };
 		5DCC2DCB24F34F04000AC40A /* AddProductBrandReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF424D95A5100AD4B43 /* AddProductBrandReusableView.xib */; };
-		5DCC2DCC24F34F04000AC40A /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379824C847CC00B2A1E2 /* 3.jpg */; };
 		5DCC2DCE24F34F04000AC40A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
 		5DCC2DCF24F34F04000AC40A /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
 		5DCC2DD024F34F04000AC40A /* PostsDetailPriceReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C424C836DA003C3E00 /* PostsDetailPriceReusableView.xib */; };
 		5DCC2DD124F34F04000AC40A /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF18124AEC2F8007A2FCD /* EmptyDataView.xib */; };
-		5DCC2DD224F34F04000AC40A /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378B24C847CC00B2A1E2 /* 8.jpg */; };
 		5DCC2DD324F34F04000AC40A /* VisualSearchProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC524D7A61C0024924B /* VisualSearchProductCell.xib */; };
 		5DCC2DD424F34F04000AC40A /* SavedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */; };
 		5DCC2DD524F34F04000AC40A /* PostProductTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7F24DC03090062F90B /* PostProductTitleReusableView.xib */; };
 		5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
-		5DCC2DD824F34F04000AC40A /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
 		5DCC2DDA24F34F04000AC40A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DCC2DDB24F34F04000AC40A /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
 		5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
-		5DCC2DDD24F34F04000AC40A /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379224C847CC00B2A1E2 /* 10.jpg */; };
 		5DCC2DDE24F34F04000AC40A /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */; };
 		5DCC2DDF24F34F04000AC40A /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
 		5DCC2DE024F34F04000AC40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C824AEC2F9007A2FCD /* LaunchScreen.storyboard */; };
@@ -1189,7 +1146,6 @@
 		5DCC2DE824F34F04000AC40A /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
 		5DCC2DE924F34F04000AC40A /* UserRecommCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7D49AF24B8648500F919EB /* UserRecommCell.xib */; };
 		5DCC2DEA24F34F04000AC40A /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
-		5DCC2DEB24F34F04000AC40A /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379A24C847CC00B2A1E2 /* 0.jpg */; };
 		5DCC2DEC24F34F04000AC40A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5DCC2DED24F34F04000AC40A /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
 		5DCC2DEE24F34F04000AC40A /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
@@ -1197,26 +1153,19 @@
 		5DCC2DF024F34F04000AC40A /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
 		5DCC2DF124F34F04000AC40A /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5DCC2DF224F34F04000AC40A /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
-		5DCC2DF324F34F04000AC40A /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379024C847CC00B2A1E2 /* 13.jpg */; };
 		5DCC2DF424F34F04000AC40A /* InsightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DC924BD92F800AFBB1F /* InsightsCell.xib */; };
 		5DCC2DF524F34F04000AC40A /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5DCC2DF624F34F04000AC40A /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5DCC2DF724F34F04000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5DCC2DF824F34F04000AC40A /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378E24C847CC00B2A1E2 /* 15.jpg */; };
 		5DCC2DF924F34F04000AC40A /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5DCC2DFC24F34F04000AC40A /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378D24C847CC00B2A1E2 /* 14.jpg */; };
 		5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2E0024F34F04000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
-		5DCC2E0124F34F04000AC40A /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
-		5DCC2E0224F34F04000AC40A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
 		5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
 		5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
-		5DCC2E0624F34F04000AC40A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
-		5DCC2E0724F34F04000AC40A /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
 		5DCC2E0824F34F04000AC40A /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5DCC2E0924F34F04000AC40A /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
 		5DCC2E0A24F34F04000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1459,42 +1408,33 @@
 		5DCC2F0A24F34F2A000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5DCC2F0B24F34F2A000AC40A /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
 		5DCC2F0F24F34F2A000AC40A /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
-		5DCC2F1024F34F2A000AC40A /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
-		5DCC2F1124F34F2A000AC40A /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
 		5DCC2F1224F34F2A000AC40A /* SavedCollectionClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B017924C570BE00832F05 /* SavedCollectionClassifyViewController.xib */; };
 		5DCC2F1324F34F2A000AC40A /* PostProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8E24DC03090062F90B /* PostProductTagCell.xib */; };
 		5DCC2F1424F34F2A000AC40A /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
 		5DCC2F1524F34F2A000AC40A /* PostProductInputKeywordReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA9024DC03090062F90B /* PostProductInputKeywordReusableView.xib */; };
 		5DCC2F1624F34F2A000AC40A /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3F24B85ABD00280F9F /* UserPostCell.xib */; };
 		5DCC2F1724F34F2A000AC40A /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
-		5DCC2F1824F34F2A000AC40A /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378C24C847CC00B2A1E2 /* 9.jpg */; };
 		5DCC2F1924F34F2A000AC40A /* ReactionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523D24BEE59A007CE461 /* ReactionsCell.xib */; };
-		5DCC2F1A24F34F2A000AC40A /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379924C847CC00B2A1E2 /* 1.jpg */; };
 		5DCC2F1B24F34F2A000AC40A /* StyleBoardImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3131324E3E89500CC3F89 /* StyleBoardImageCell.xib */; };
 		5DCC2F1C24F34F2A000AC40A /* PostProductCaptionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7C24DC03090062F90B /* PostProductCaptionReusableView.xib */; };
-		5DCC2F1D24F34F2A000AC40A /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379324C847CC00B2A1E2 /* 4.jpg */; };
 		5DCC2F1E24F34F2A000AC40A /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
 		5DCC2F1F24F34F2A000AC40A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */; };
 		5DCC2F2024F34F2A000AC40A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */; };
 		5DCC2F2124F34F2A000AC40A /* StyleBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3130C24E3DC3400CC3F89 /* StyleBoardViewController.xib */; };
 		5DCC2F2224F34F2A000AC40A /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */; };
 		5DCC2F2324F34F2A000AC40A /* AddProductBrandReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF424D95A5100AD4B43 /* AddProductBrandReusableView.xib */; };
-		5DCC2F2424F34F2A000AC40A /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379824C847CC00B2A1E2 /* 3.jpg */; };
 		5DCC2F2624F34F2A000AC40A /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
 		5DCC2F2724F34F2A000AC40A /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
 		5DCC2F2824F34F2A000AC40A /* PostsDetailPriceReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C424C836DA003C3E00 /* PostsDetailPriceReusableView.xib */; };
 		5DCC2F2924F34F2A000AC40A /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF18124AEC2F8007A2FCD /* EmptyDataView.xib */; };
-		5DCC2F2A24F34F2A000AC40A /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378B24C847CC00B2A1E2 /* 8.jpg */; };
 		5DCC2F2B24F34F2A000AC40A /* VisualSearchProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC524D7A61C0024924B /* VisualSearchProductCell.xib */; };
 		5DCC2F2C24F34F2A000AC40A /* SavedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */; };
 		5DCC2F2D24F34F2A000AC40A /* PostProductTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7F24DC03090062F90B /* PostProductTitleReusableView.xib */; };
 		5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
-		5DCC2F3024F34F2A000AC40A /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
 		5DCC2F3224F34F2A000AC40A /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DCC2F3324F34F2A000AC40A /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
 		5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
-		5DCC2F3524F34F2A000AC40A /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379224C847CC00B2A1E2 /* 10.jpg */; };
 		5DCC2F3624F34F2A000AC40A /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */; };
 		5DCC2F3724F34F2A000AC40A /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
 		5DCC2F3824F34F2A000AC40A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C824AEC2F9007A2FCD /* LaunchScreen.storyboard */; };
@@ -1508,7 +1448,6 @@
 		5DCC2F4024F34F2A000AC40A /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
 		5DCC2F4124F34F2A000AC40A /* UserRecommCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7D49AF24B8648500F919EB /* UserRecommCell.xib */; };
 		5DCC2F4224F34F2A000AC40A /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
-		5DCC2F4324F34F2A000AC40A /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379A24C847CC00B2A1E2 /* 0.jpg */; };
 		5DCC2F4424F34F2A000AC40A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5DCC2F4524F34F2A000AC40A /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
 		5DCC2F4624F34F2A000AC40A /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
@@ -1516,26 +1455,19 @@
 		5DCC2F4824F34F2A000AC40A /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
 		5DCC2F4924F34F2A000AC40A /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
 		5DCC2F4A24F34F2A000AC40A /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
-		5DCC2F4B24F34F2A000AC40A /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379024C847CC00B2A1E2 /* 13.jpg */; };
 		5DCC2F4C24F34F2A000AC40A /* InsightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DC924BD92F800AFBB1F /* InsightsCell.xib */; };
 		5DCC2F4D24F34F2A000AC40A /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5DCC2F4E24F34F2A000AC40A /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5DCC2F4F24F34F2A000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5DCC2F5024F34F2A000AC40A /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378E24C847CC00B2A1E2 /* 15.jpg */; };
 		5DCC2F5124F34F2A000AC40A /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5DCC2F5424F34F2A000AC40A /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378D24C847CC00B2A1E2 /* 14.jpg */; };
 		5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2F5824F34F2A000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
-		5DCC2F5924F34F2A000AC40A /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
-		5DCC2F5A24F34F2A000AC40A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
 		5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
 		5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
-		5DCC2F5E24F34F2A000AC40A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
-		5DCC2F5F24F34F2A000AC40A /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
 		5DCC2F6024F34F2A000AC40A /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5DCC2F6124F34F2A000AC40A /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
 		5DCC2F6224F34F2A000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1766,22 +1698,6 @@
 		5D13709D24B70FA2007B64BA /* UserRelationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserRelationCell.xib; sourceTree = "<group>"; };
 		5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRelationCellViewModel.swift; sourceTree = "<group>"; };
 		5D16BB3924C15C4F003B5633 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
-		5D1D378B24C847CC00B2A1E2 /* 8.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 8.jpg; sourceTree = "<group>"; };
-		5D1D378C24C847CC00B2A1E2 /* 9.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 9.jpg; sourceTree = "<group>"; };
-		5D1D378D24C847CC00B2A1E2 /* 14.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 14.jpg; sourceTree = "<group>"; };
-		5D1D378E24C847CC00B2A1E2 /* 15.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 15.jpg; sourceTree = "<group>"; };
-		5D1D378F24C847CC00B2A1E2 /* 12.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 12.jpg; sourceTree = "<group>"; };
-		5D1D379024C847CC00B2A1E2 /* 13.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 13.jpg; sourceTree = "<group>"; };
-		5D1D379124C847CC00B2A1E2 /* 11.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 11.jpg; sourceTree = "<group>"; };
-		5D1D379224C847CC00B2A1E2 /* 10.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 10.jpg; sourceTree = "<group>"; };
-		5D1D379324C847CC00B2A1E2 /* 4.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 4.jpg; sourceTree = "<group>"; };
-		5D1D379424C847CC00B2A1E2 /* 5.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 5.jpg; sourceTree = "<group>"; };
-		5D1D379524C847CC00B2A1E2 /* 7.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 7.jpg; sourceTree = "<group>"; };
-		5D1D379624C847CC00B2A1E2 /* 6.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 6.jpg; sourceTree = "<group>"; };
-		5D1D379724C847CC00B2A1E2 /* 2.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 2.jpg; sourceTree = "<group>"; };
-		5D1D379824C847CC00B2A1E2 /* 3.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 3.jpg; sourceTree = "<group>"; };
-		5D1D379924C847CC00B2A1E2 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
-		5D1D379A24C847CC00B2A1E2 /* 0.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 0.jpg; sourceTree = "<group>"; };
 		5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailTitleReusableView.swift; sourceTree = "<group>"; };
 		5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailTitleReusableView.xib; sourceTree = "<group>"; };
 		5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCell.swift; sourceTree = "<group>"; };
@@ -1877,7 +1793,6 @@
 		5D630AAD24B31B4000F0CC45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		5D630AAF24B3205F00F0CC45 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
-		5D6B4DB624D4080E0024924B /* 66.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 66.png; sourceTree = "<group>"; };
 		5D6B4DB824D40C8B0024924B /* VisualSearchBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchBottomView.xib; sourceTree = "<group>"; };
 		5D6B4DBA24D40C990024924B /* VisualSearchBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchBottomView.swift; sourceTree = "<group>"; };
 		5D6B4DBC24D7A23D0024924B /* VisualSearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductViewController.swift; sourceTree = "<group>"; };
@@ -2282,30 +2197,6 @@
 				5D13709424B70F4B007B64BA /* NotificationCell.xib */,
 			);
 			path = Views;
-			sourceTree = "<group>";
-		};
-		5D1D378A24C847CC00B2A1E2 /* images */ = {
-			isa = PBXGroup;
-			children = (
-				5D1D378B24C847CC00B2A1E2 /* 8.jpg */,
-				5D1D378C24C847CC00B2A1E2 /* 9.jpg */,
-				5D1D378D24C847CC00B2A1E2 /* 14.jpg */,
-				5D1D378E24C847CC00B2A1E2 /* 15.jpg */,
-				5D1D378F24C847CC00B2A1E2 /* 12.jpg */,
-				5D1D379124C847CC00B2A1E2 /* 11.jpg */,
-				5D6B4DB624D4080E0024924B /* 66.png */,
-				5D1D379024C847CC00B2A1E2 /* 13.jpg */,
-				5D1D379224C847CC00B2A1E2 /* 10.jpg */,
-				5D1D379324C847CC00B2A1E2 /* 4.jpg */,
-				5D1D379424C847CC00B2A1E2 /* 5.jpg */,
-				5D1D379524C847CC00B2A1E2 /* 7.jpg */,
-				5D1D379624C847CC00B2A1E2 /* 6.jpg */,
-				5D1D379724C847CC00B2A1E2 /* 2.jpg */,
-				5D1D379824C847CC00B2A1E2 /* 3.jpg */,
-				5D1D379924C847CC00B2A1E2 /* 1.jpg */,
-				5D1D379A24C847CC00B2A1E2 /* 0.jpg */,
-			);
-			path = images;
 			sourceTree = "<group>";
 		};
 		5D2D0E2125086F1A00E9FD8D /* Recovered References */ = {
@@ -2784,7 +2675,6 @@
 		5DEFF10024AEC2F8007A2FCD /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				5D1D378A24C847CC00B2A1E2 /* images */,
 				5DEFF10124AEC2F8007A2FCD /* Localizable.strings */,
 				5DEFF10324AEC2F8007A2FCD /* Glance-Bridging-Header.h */,
 				5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */,
@@ -3299,9 +3189,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */,
-				5D99EDDF251843840008B45F /* 11.jpg in Resources */,
 				5D9C47D3251C35D9007D3A42 /* Glance-Q-Info.plist in Resources */,
-				5D99EDE0251843840008B45F /* 66.png in Resources */,
 				5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */,
 				5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */,
 				5D99EDE3251843840008B45F /* Roboto-Medium.ttf in Resources */,
@@ -3309,9 +3197,7 @@
 				5D99EDE5251843840008B45F /* VisualSearchProductReusableView.xib in Resources */,
 				5D99EDE6251843840008B45F /* UserPostCell.xib in Resources */,
 				5D99EDE7251843840008B45F /* PostsDetailBannerCell.xib in Resources */,
-				5D99EDE8251843840008B45F /* 9.jpg in Resources */,
 				5D99EDE9251843840008B45F /* ReactionsCell.xib in Resources */,
-				5D99EDEA251843840008B45F /* 1.jpg in Resources */,
 				5D99EDEB251843840008B45F /* ThemeCell.xib in Resources */,
 				5D99EDEC251843840008B45F /* SelectStoreCell.xib in Resources */,
 				5D99EDED251843840008B45F /* SearchResultNavigationBar.xib in Resources */,
@@ -3319,7 +3205,6 @@
 				5D99EDEF251843840008B45F /* PostRecommendCell.xib in Resources */,
 				5D99EDF0251843840008B45F /* InsightsLikeCell.xib in Resources */,
 				5D99EDF1251843840008B45F /* PostProductCaptionReusableView.xib in Resources */,
-				5D99EDF2251843840008B45F /* 4.jpg in Resources */,
 				5D99EDF3251843840008B45F /* SearchNavigationBar.xib in Resources */,
 				5D99EDF4251843840008B45F /* PostsDetailTagsReusableView.xib in Resources */,
 				5D99EDF5251843840008B45F /* Main.storyboard in Resources */,
@@ -3327,26 +3212,22 @@
 				5D99EDF7251843840008B45F /* StyleBoardViewController.xib in Resources */,
 				5D99EDF8251843840008B45F /* Roboto-Black.ttf in Resources */,
 				5D99EDF9251843840008B45F /* AddProductBrandReusableView.xib in Resources */,
-				5D99EDFA251843840008B45F /* 3.jpg in Resources */,
 				5D99EDFB251843840008B45F /* NotificationCell.xib in Resources */,
 				5D99EDFC251843840008B45F /* SearchRecommendHotFilterView.xib in Resources */,
 				5D99EDFD251843840008B45F /* UserHorizontalCell.xib in Resources */,
 				5D99EDFE251843840008B45F /* PublishPopView.xib in Resources */,
 				5D99EDFF251843840008B45F /* PostsDetailPriceReusableView.xib in Resources */,
 				5D99EE00251843840008B45F /* EmptyDataView.xib in Resources */,
-				5D99EE01251843840008B45F /* 8.jpg in Resources */,
 				5D99EE02251843840008B45F /* VisualSearchProductCell.xib in Resources */,
 				5D99EE03251843840008B45F /* SearchRecommendHotFilterCell.xib in Resources */,
 				5D99EE04251843840008B45F /* SavedCollectionCell.xib in Resources */,
 				5D99EE05251843840008B45F /* PostProductTitleReusableView.xib in Resources */,
 				5D99EE06251843840008B45F /* Roboto-Regular.ttf in Resources */,
 				5D99EE07251843840008B45F /* AddProductWebsiteReusableView.xib in Resources */,
-				5D99EE08251843840008B45F /* 5.jpg in Resources */,
 				5D99EE09251843840008B45F /* SearchRecommendHotCell.xib in Resources */,
 				5D99EE0A251843840008B45F /* Roboto-Bold.ttf in Resources */,
 				5D99EE0B251843840008B45F /* InterestCell.xib in Resources */,
 				5D99EE0C251843840008B45F /* PostsDetailNavigationBar.xib in Resources */,
-				5D99EE0D251843840008B45F /* 10.jpg in Resources */,
 				5D99EE0E251843840008B45F /* Roboto-Light.ttf in Resources */,
 				5D99EE0F251843840008B45F /* ProductRecommendCell.xib in Resources */,
 				5D99EE10251843840008B45F /* StyleBoardSearchCell.xib in Resources */,
@@ -3364,7 +3245,6 @@
 				5D99EE1C251843840008B45F /* UserRecommCell.xib in Resources */,
 				5D99EE1D251843840008B45F /* Icons.xcassets in Resources */,
 				5D99EE1E251843840008B45F /* SearchCell.xib in Resources */,
-				5D99EE1F251843840008B45F /* 0.jpg in Resources */,
 				5D99EE20251843840008B45F /* Localizable.strings in Resources */,
 				5D99EE21251843840008B45F /* ReactionPopView.xib in Resources */,
 				5D99EE22251843840008B45F /* SearchRecommendHistoryCell.xib in Resources */,
@@ -3376,31 +3256,24 @@
 				5D99EE28251843840008B45F /* PostsDetailToolBarReusableView.xib in Resources */,
 				5D99EE29251843840008B45F /* HomeNavigationBar.xib in Resources */,
 				5D99EE2A251843840008B45F /* UserHeadView.xib in Resources */,
-				5D99EE2B251843840008B45F /* 13.jpg in Resources */,
 				5D99EE2C251843840008B45F /* InsightsCell.xib in Resources */,
 				5D99EE2D251843840008B45F /* AddProductTagCell.xib in Resources */,
 				5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */,
 				5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */,
-				5D99EE30251843840008B45F /* 15.jpg in Resources */,
 				5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */,
 				5D99EE32251843840008B45F /* ProductCell.xib in Resources */,
 				5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */,
 				5D99EE34251843840008B45F /* SignInViewController.xib in Resources */,
 				5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */,
-				5D99EE36251843840008B45F /* 14.jpg in Resources */,
 				5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */,
 				5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */,
 				5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */,
 				5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */,
 				5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */,
-				5D99EE3C251843840008B45F /* 2.jpg in Resources */,
-				5D99EE3D251843840008B45F /* 6.jpg in Resources */,
 				5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */,
 				5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */,
 				5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */,
-				5D99EE42251843840008B45F /* 7.jpg in Resources */,
 				5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */,
-				5D99EE44251843840008B45F /* 12.jpg in Resources */,
 				5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */,
 				5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */,
 				5D99EE47251843840008B45F /* PostsDetailSectionTitleReusableView.xib in Resources */,
@@ -3417,8 +3290,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCC2DB724F34F04000AC40A /* VisualSearchProductHeadView.xib in Resources */,
-				5DCC2DB824F34F04000AC40A /* 11.jpg in Resources */,
-				5DCC2DB924F34F04000AC40A /* 66.png in Resources */,
 				5DCC2DBA24F34F04000AC40A /* SavedCollectionClassifyViewController.xib in Resources */,
 				5DCC2DBB24F34F04000AC40A /* PostProductTagCell.xib in Resources */,
 				5DCC2DBC24F34F04000AC40A /* Roboto-Medium.ttf in Resources */,
@@ -3426,9 +3297,7 @@
 				5D3AA29C24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DCC2DBE24F34F04000AC40A /* UserPostCell.xib in Resources */,
 				5DCC2DBF24F34F04000AC40A /* PostsDetailBannerCell.xib in Resources */,
-				5DCC2DC024F34F04000AC40A /* 9.jpg in Resources */,
 				5DCC2DC124F34F04000AC40A /* ReactionsCell.xib in Resources */,
-				5DCC2DC224F34F04000AC40A /* 1.jpg in Resources */,
 				5D7BB56A250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F72514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
@@ -3436,7 +3305,6 @@
 				5D7BB564250B633900C8B902 /* PostRecommendCell.xib in Resources */,
 				5DCC2F8724F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5DCC2DC424F34F04000AC40A /* PostProductCaptionReusableView.xib in Resources */,
-				5DCC2DC524F34F04000AC40A /* 4.jpg in Resources */,
 				5DFE1315250CAEDC00ABCE5E /* SearchNavigationBar.xib in Resources */,
 				5DCC2DC624F34F04000AC40A /* PostsDetailTagsReusableView.xib in Resources */,
 				5DCC2DC724F34F04000AC40A /* Main.storyboard in Resources */,
@@ -3444,26 +3312,22 @@
 				5DCC2DC924F34F04000AC40A /* StyleBoardViewController.xib in Resources */,
 				5DCC2DCA24F34F04000AC40A /* Roboto-Black.ttf in Resources */,
 				5DCC2DCB24F34F04000AC40A /* AddProductBrandReusableView.xib in Resources */,
-				5DCC2DCC24F34F04000AC40A /* 3.jpg in Resources */,
 				5DCC2DCE24F34F04000AC40A /* NotificationCell.xib in Resources */,
 				5D2D0E7E2509C9C800E9FD8D /* SearchRecommendHotFilterView.xib in Resources */,
 				5DDC05CA25105AED005D5299 /* UserHorizontalCell.xib in Resources */,
 				5DCC2DCF24F34F04000AC40A /* PublishPopView.xib in Resources */,
 				5DCC2DD024F34F04000AC40A /* PostsDetailPriceReusableView.xib in Resources */,
 				5DCC2DD124F34F04000AC40A /* EmptyDataView.xib in Resources */,
-				5DCC2DD224F34F04000AC40A /* 8.jpg in Resources */,
 				5DCC2DD324F34F04000AC40A /* VisualSearchProductCell.xib in Resources */,
 				5DECB841250A0C4300294ECA /* SearchRecommendHotFilterCell.xib in Resources */,
 				5DCC2DD424F34F04000AC40A /* SavedCollectionCell.xib in Resources */,
 				5DCC2DD524F34F04000AC40A /* PostProductTitleReusableView.xib in Resources */,
 				5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
-				5DCC2DD824F34F04000AC40A /* 5.jpg in Resources */,
 				5D2D0E8E2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DCC2DDA24F34F04000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2DDB24F34F04000AC40A /* InterestCell.xib in Resources */,
 				5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */,
-				5DCC2DDD24F34F04000AC40A /* 10.jpg in Resources */,
 				5DCC2DDE24F34F04000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB561250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5DCC2DDF24F34F04000AC40A /* StyleBoardSearchCell.xib in Resources */,
@@ -3481,7 +3345,6 @@
 				5DCC2DE924F34F04000AC40A /* UserRecommCell.xib in Resources */,
 				5DCC2DEA24F34F04000AC40A /* Icons.xcassets in Resources */,
 				5DFE131D250CB14300ABCE5E /* SearchCell.xib in Resources */,
-				5DCC2DEB24F34F04000AC40A /* 0.jpg in Resources */,
 				5DCC2DEC24F34F04000AC40A /* Localizable.strings in Resources */,
 				5D7BB56D250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E632508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
@@ -3493,31 +3356,24 @@
 				5DCC2DF024F34F04000AC40A /* PostsDetailToolBarReusableView.xib in Resources */,
 				5DCC2DF124F34F04000AC40A /* HomeNavigationBar.xib in Resources */,
 				5DCC2DF224F34F04000AC40A /* UserHeadView.xib in Resources */,
-				5DCC2DF324F34F04000AC40A /* 13.jpg in Resources */,
 				5DCC2DF424F34F04000AC40A /* InsightsCell.xib in Resources */,
 				5DCC2DF524F34F04000AC40A /* AddProductTagCell.xib in Resources */,
 				5DCC2DF624F34F04000AC40A /* Roboto-Thin.ttf in Resources */,
 				5DCC2DF724F34F04000AC40A /* AddProductImageCell.xib in Resources */,
-				5DCC2DF824F34F04000AC40A /* 15.jpg in Resources */,
 				5DCC2DF924F34F04000AC40A /* PostsDetailCell.xib in Resources */,
 				5D7BB567250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97025120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */,
 				5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */,
-				5DCC2DFC24F34F04000AC40A /* 14.jpg in Resources */,
 				5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */,
 				5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */,
 				5DCC2E0024F34F04000AC40A /* NotificationProfileViewController.xib in Resources */,
 				5D2D0E5D2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
-				5DCC2E0124F34F04000AC40A /* 2.jpg in Resources */,
-				5DCC2E0224F34F04000AC40A /* 6.jpg in Resources */,
 				5D3196E72514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */,
 				5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */,
-				5DCC2E0624F34F04000AC40A /* 7.jpg in Resources */,
 				5D2D0E9A2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
-				5DCC2E0724F34F04000AC40A /* 12.jpg in Resources */,
 				5DCC2E0824F34F04000AC40A /* AddProductButtonReusableView.xib in Resources */,
 				5DCC2E0924F34F04000AC40A /* InterestReusableView.xib in Resources */,
 				5DCC2E0A24F34F04000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */,
@@ -3534,8 +3390,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5DCC2F0F24F34F2A000AC40A /* VisualSearchProductHeadView.xib in Resources */,
-				5DCC2F1024F34F2A000AC40A /* 11.jpg in Resources */,
-				5DCC2F1124F34F2A000AC40A /* 66.png in Resources */,
 				5DCC2F1224F34F2A000AC40A /* SavedCollectionClassifyViewController.xib in Resources */,
 				5DCC2F1324F34F2A000AC40A /* PostProductTagCell.xib in Resources */,
 				5DCC2F1424F34F2A000AC40A /* Roboto-Medium.ttf in Resources */,
@@ -3543,9 +3397,7 @@
 				5D3AA29D24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DCC2F1624F34F2A000AC40A /* UserPostCell.xib in Resources */,
 				5DCC2F1724F34F2A000AC40A /* PostsDetailBannerCell.xib in Resources */,
-				5DCC2F1824F34F2A000AC40A /* 9.jpg in Resources */,
 				5DCC2F1924F34F2A000AC40A /* ReactionsCell.xib in Resources */,
-				5DCC2F1A24F34F2A000AC40A /* 1.jpg in Resources */,
 				5D7BB56B250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F82514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
@@ -3553,7 +3405,6 @@
 				5D7BB565250B633900C8B902 /* PostRecommendCell.xib in Resources */,
 				5DCC2F8824F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5DCC2F1C24F34F2A000AC40A /* PostProductCaptionReusableView.xib in Resources */,
-				5DCC2F1D24F34F2A000AC40A /* 4.jpg in Resources */,
 				5DFE1316250CAEDC00ABCE5E /* SearchNavigationBar.xib in Resources */,
 				5DCC2F1E24F34F2A000AC40A /* PostsDetailTagsReusableView.xib in Resources */,
 				5DCC2F1F24F34F2A000AC40A /* Main.storyboard in Resources */,
@@ -3561,26 +3412,22 @@
 				5DCC2F2124F34F2A000AC40A /* StyleBoardViewController.xib in Resources */,
 				5DCC2F2224F34F2A000AC40A /* Roboto-Black.ttf in Resources */,
 				5DCC2F2324F34F2A000AC40A /* AddProductBrandReusableView.xib in Resources */,
-				5DCC2F2424F34F2A000AC40A /* 3.jpg in Resources */,
 				5DCC2F2624F34F2A000AC40A /* NotificationCell.xib in Resources */,
 				5D2D0E7F2509C9C800E9FD8D /* SearchRecommendHotFilterView.xib in Resources */,
 				5DDC05CB25105AED005D5299 /* UserHorizontalCell.xib in Resources */,
 				5DCC2F2724F34F2A000AC40A /* PublishPopView.xib in Resources */,
 				5DCC2F2824F34F2A000AC40A /* PostsDetailPriceReusableView.xib in Resources */,
 				5DCC2F2924F34F2A000AC40A /* EmptyDataView.xib in Resources */,
-				5DCC2F2A24F34F2A000AC40A /* 8.jpg in Resources */,
 				5DCC2F2B24F34F2A000AC40A /* VisualSearchProductCell.xib in Resources */,
 				5DECB842250A0C4300294ECA /* SearchRecommendHotFilterCell.xib in Resources */,
 				5DCC2F2C24F34F2A000AC40A /* SavedCollectionCell.xib in Resources */,
 				5DCC2F2D24F34F2A000AC40A /* PostProductTitleReusableView.xib in Resources */,
 				5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
-				5DCC2F3024F34F2A000AC40A /* 5.jpg in Resources */,
 				5D2D0E8F2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DCC2F3224F34F2A000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2F3324F34F2A000AC40A /* InterestCell.xib in Resources */,
 				5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */,
-				5DCC2F3524F34F2A000AC40A /* 10.jpg in Resources */,
 				5DCC2F3624F34F2A000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB562250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5DCC2F3724F34F2A000AC40A /* StyleBoardSearchCell.xib in Resources */,
@@ -3598,7 +3445,6 @@
 				5DCC2F4124F34F2A000AC40A /* UserRecommCell.xib in Resources */,
 				5DCC2F4224F34F2A000AC40A /* Icons.xcassets in Resources */,
 				5DFE131E250CB14300ABCE5E /* SearchCell.xib in Resources */,
-				5DCC2F4324F34F2A000AC40A /* 0.jpg in Resources */,
 				5DCC2F4424F34F2A000AC40A /* Localizable.strings in Resources */,
 				5D7BB56E250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E642508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
@@ -3610,31 +3456,24 @@
 				5DCC2F4824F34F2A000AC40A /* PostsDetailToolBarReusableView.xib in Resources */,
 				5DCC2F4924F34F2A000AC40A /* HomeNavigationBar.xib in Resources */,
 				5DCC2F4A24F34F2A000AC40A /* UserHeadView.xib in Resources */,
-				5DCC2F4B24F34F2A000AC40A /* 13.jpg in Resources */,
 				5DCC2F4C24F34F2A000AC40A /* InsightsCell.xib in Resources */,
 				5DCC2F4D24F34F2A000AC40A /* AddProductTagCell.xib in Resources */,
 				5DCC2F4E24F34F2A000AC40A /* Roboto-Thin.ttf in Resources */,
 				5DCC2F4F24F34F2A000AC40A /* AddProductImageCell.xib in Resources */,
-				5DCC2F5024F34F2A000AC40A /* 15.jpg in Resources */,
 				5DCC2F5124F34F2A000AC40A /* PostsDetailCell.xib in Resources */,
 				5D7BB568250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97125120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */,
 				5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */,
-				5DCC2F5424F34F2A000AC40A /* 14.jpg in Resources */,
 				5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */,
 				5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */,
 				5DCC2F5824F34F2A000AC40A /* NotificationProfileViewController.xib in Resources */,
 				5D2D0E5E2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
-				5DCC2F5924F34F2A000AC40A /* 2.jpg in Resources */,
-				5DCC2F5A24F34F2A000AC40A /* 6.jpg in Resources */,
 				5D3196E82514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */,
 				5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */,
-				5DCC2F5E24F34F2A000AC40A /* 7.jpg in Resources */,
 				5D2D0E9B2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
-				5DCC2F5F24F34F2A000AC40A /* 12.jpg in Resources */,
 				5DCC2F6024F34F2A000AC40A /* AddProductButtonReusableView.xib in Resources */,
 				5DCC2F6124F34F2A000AC40A /* InterestReusableView.xib in Resources */,
 				5DCC2F6224F34F2A000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */,
@@ -3651,8 +3490,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D6B4DC324D7A4340024924B /* VisualSearchProductHeadView.xib in Resources */,
-				5D1D37A124C847CC00B2A1E2 /* 11.jpg in Resources */,
-				5D6B4DB724D4080E0024924B /* 66.png in Resources */,
 				5D5B017B24C570BE00832F05 /* SavedCollectionClassifyViewController.xib in Resources */,
 				5D6FEAA524DC03090062F90B /* PostProductTagCell.xib in Resources */,
 				5DEFF50A24AED804007A2FCD /* Roboto-Medium.ttf in Resources */,
@@ -3660,9 +3497,7 @@
 				5D3AA29B24F3B83900CBCE76 /* VisualSearchProductReusableView.xib in Resources */,
 				5DB8FE4124B85ABD00280F9F /* UserPostCell.xib in Resources */,
 				5DC669D724CFDC7300FF1092 /* PostsDetailBannerCell.xib in Resources */,
-				5D1D379C24C847CC00B2A1E2 /* 9.jpg in Resources */,
 				5D06523F24BEE59A007CE461 /* ReactionsCell.xib in Resources */,
-				5D1D37A924C847CC00B2A1E2 /* 1.jpg in Resources */,
 				5D7BB569250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F62514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F27250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
@@ -3670,7 +3505,6 @@
 				5D7BB563250B633900C8B902 /* PostRecommendCell.xib in Resources */,
 				5DCC2F8624F36528000AC40A /* InsightsLikeCell.xib in Resources */,
 				5D6FEA9324DC03090062F90B /* PostProductCaptionReusableView.xib in Resources */,
-				5D1D37A324C847CC00B2A1E2 /* 4.jpg in Resources */,
 				5DFE1314250CAEDC00ABCE5E /* SearchNavigationBar.xib in Resources */,
 				5DAB29CA24C83705003C3E00 /* PostsDetailTagsReusableView.xib in Resources */,
 				5DEFF4A324AEC2FA007A2FCD /* Main.storyboard in Resources */,
@@ -3678,26 +3512,22 @@
 				5DC3130D24E3DC3400CC3F89 /* StyleBoardViewController.xib in Resources */,
 				5DEFF50924AED804007A2FCD /* Roboto-Black.ttf in Resources */,
 				5DB6ABF624D95A5100AD4B43 /* AddProductBrandReusableView.xib in Resources */,
-				5D1D37A824C847CC00B2A1E2 /* 3.jpg in Resources */,
 				5D13709A24B70F4B007B64BA /* NotificationCell.xib in Resources */,
 				5D2D0E7D2509C9C800E9FD8D /* SearchRecommendHotFilterView.xib in Resources */,
 				5DDC05C925105AED005D5299 /* UserHorizontalCell.xib in Resources */,
 				5DB1C79624C298F30071A0E1 /* PublishPopView.xib in Resources */,
 				5DAB29C624C836DA003C3E00 /* PostsDetailPriceReusableView.xib in Resources */,
 				5DEFF37324AEC2F9007A2FCD /* EmptyDataView.xib in Resources */,
-				5D1D379B24C847CC00B2A1E2 /* 8.jpg in Resources */,
 				5D6B4DC724D7A61C0024924B /* VisualSearchProductCell.xib in Resources */,
 				5DECB840250A0C4300294ECA /* SearchRecommendHotFilterCell.xib in Resources */,
 				5D5B018724C587AD00832F05 /* SavedCollectionCell.xib in Resources */,
 				5D6FEA9624DC03090062F90B /* PostProductTitleReusableView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DB6ABFA24D95A8900AD4B43 /* AddProductWebsiteReusableView.xib in Resources */,
-				5D1D37A424C847CC00B2A1E2 /* 5.jpg in Resources */,
 				5D2D0E8D2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
 				5DBC3AAA24C7DA43006B0032 /* InterestCell.xib in Resources */,
 				5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */,
-				5D1D37A224C847CC00B2A1E2 /* 10.jpg in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5D7BB560250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5DC3132324E3F5C700CC3F89 /* StyleBoardSearchCell.xib in Resources */,
@@ -3715,7 +3545,6 @@
 				5D7D49B124B8648500F919EB /* UserRecommCell.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
 				5DFE131C250CB14300ABCE5E /* SearchCell.xib in Resources */,
-				5D1D37AA24C847CC00B2A1E2 /* 0.jpg in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
 				5D7BB56C250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E622508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
@@ -3727,31 +3556,24 @@
 				5DAB29CE24C83717003C3E00 /* PostsDetailToolBarReusableView.xib in Resources */,
 				5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */,
 				5DDBC09E24B5CE6B0077DBE5 /* UserHeadView.xib in Resources */,
-				5D1D37A024C847CC00B2A1E2 /* 13.jpg in Resources */,
 				5D437DCB24BD92F800AFBB1F /* InsightsCell.xib in Resources */,
 				5DB6ABE124D957BB00AD4B43 /* AddProductTagCell.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5DB6ABFE24D964E000AD4B43 /* AddProductImageCell.xib in Resources */,
-				5D1D379E24C847CC00B2A1E2 /* 15.jpg in Resources */,
 				5DC669D324CFCA2000FF1092 /* PostsDetailCell.xib in Resources */,
 				5D7BB566250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC96F25120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
-				5D1D379D24C847CC00B2A1E2 /* 14.jpg in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 				5DBC3AB824C7F3BA006B0032 /* InterestNavigationBar.xib in Resources */,
 				5D06523924BEE308007CE461 /* ReactionsViewController.xib in Resources */,
 				5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */,
 				5D2D0E5C2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
-				5D1D37A724C847CC00B2A1E2 /* 2.jpg in Resources */,
-				5D1D37A624C847CC00B2A1E2 /* 6.jpg in Resources */,
 				5D3196E62514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DB6ABEA24D9580E00AD4B43 /* AddProductNameReusableView.xib in Resources */,
 				5DC3132524E4D31C00CC3F89 /* StyleBoardSearchViewController.xib in Resources */,
-				5D1D37A524C847CC00B2A1E2 /* 7.jpg in Resources */,
 				5D2D0E992509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
-				5D1D379F24C847CC00B2A1E2 /* 12.jpg in Resources */,
 				5DB6AC0224D96A0B00AD4B43 /* AddProductButtonReusableView.xib in Resources */,
 				5DBC3AB424C7EFF9006B0032 /* InterestReusableView.xib in Resources */,
 				5DC669DA24CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib in Resources */,
