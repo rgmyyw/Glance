@@ -758,6 +758,7 @@
 		5D99EE5A251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
 		5D99EE5B251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
 		5D99EE5C251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
+		5D9C47D3251C35D9007D3A42 /* Glance-Q-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C47D2251C35D9007D3A42 /* Glance-Q-Info.plist */; };
 		5DA483C8251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483C9251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483CA251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
@@ -1933,9 +1934,9 @@
 		5D7E855F250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendYouMayLikeSection.swift; sourceTree = "<group>"; };
 		5D8D1C8224EB66C1009A7B53 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
 		5D99EE51251843840008B45F /* Glance-Q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glance-Q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		5D99EE52251843840008B45F /* Glance-Q-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glance-Q-Info.plist"; path = "/Users/yanghai/Desktop/Glance/Glance-Q-Info.plist"; sourceTree = "<absolute>"; };
 		5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDefaultmModalStyle.swift; sourceTree = "<group>"; };
 		5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStoreCellViewModel.swift; sourceTree = "<group>"; };
+		5D9C47D2251C35D9007D3A42 /* Glance-Q-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "Glance-Q-Info.plist"; sourceTree = "<group>"; };
 		5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelViewController.swift; sourceTree = "<group>"; };
 		5DA483C3251316C100A80194 /* SearchThemeLabelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelViewModel.swift; sourceTree = "<group>"; };
 		5DA483C4251316C100A80194 /* SearchThemeLabelContentSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelContentSection.swift; sourceTree = "<group>"; };
@@ -2744,7 +2745,7 @@
 				5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */,
 				5DCC2F6F24F3521E000AC40A /* Glance-D-Info.plist */,
 				5DCC2F6E24F3521E000AC40A /* Glance-P-Info.plist */,
-				5D99EE52251843840008B45F /* Glance-Q-Info.plist */,
+				5D9C47D2251C35D9007D3A42 /* Glance-Q-Info.plist */,
 				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
 				5DEFF18B24AEC2F8007A2FCD /* Application */,
 				5DEFF18F24AEC2F8007A2FCD /* Modules */,
@@ -3299,6 +3300,7 @@
 			files = (
 				5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */,
 				5D99EDDF251843840008B45F /* 11.jpg in Resources */,
+				5D9C47D3251C35D9007D3A42 /* Glance-Q-Info.plist in Resources */,
 				5D99EDE0251843840008B45F /* 66.png in Resources */,
 				5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */,
 				5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */,
@@ -5346,7 +5348,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
-				INFOPLIST_FILE = "Glance-Q-Info.plist";
+				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5371,7 +5373,7 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
-				INFOPLIST_FILE = "Glance-Q-Info.plist";
+				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
