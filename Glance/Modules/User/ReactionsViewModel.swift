@@ -78,8 +78,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                     .trackError(self.error)
                     .trackActivity(self.loading)
                     .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
+            }).subscribe(onNext: {  event in
                 switch event {
                 case .next(let item):
                     haha.onNext(item.haha.string)

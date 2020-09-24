@@ -230,7 +230,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             let banner = PostsDetailSection.banner(viewModel: viewModel)
             let price = PostsDetailSection.price(viewModel: viewModel)
             let title = PostsDetailSection.title(viewModel: viewModel)
-            let tags = PostsDetailSection.tags(viewModel: viewModel)
+            //let tags = PostsDetailSection.tags(viewModel: viewModel)
             let tool = PostsDetailSection.tool(viewModel: viewModel)
             
             switch type {

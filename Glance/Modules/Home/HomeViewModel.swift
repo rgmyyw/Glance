@@ -67,9 +67,9 @@ class HomeViewModel: ViewModel, ViewModelType {
         let userDetail = PublishSubject<User?>()
         let more = PublishSubject<DefaultColltionCellViewModel>()
         let like = PublishSubject<DefaultColltionCellViewModel>()
-        let share = PublishSubject<DefaultColltionCellViewModel>()
-        let delete = PublishSubject<DefaultColltionCellViewModel>()
-        let report = PublishSubject<DefaultColltionCellViewModel>()
+        //let share = PublishSubject<DefaultColltionCellViewModel>()
+        //let delete = PublishSubject<DefaultColltionCellViewModel>()
+        //let report = PublishSubject<DefaultColltionCellViewModel>()
         
         more.subscribe(onNext: { (cellViewModel) in
             cellViewModel.memuHidden.accept(!cellViewModel.memuHidden.value)
@@ -212,8 +212,7 @@ class HomeViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .map { (cellViewModel,type,$0)}
                 .materialize()
-        }).subscribe(onNext: { [weak self] event in
-            guard let self = self else { return }
+        }).subscribe(onNext: {  event in
             switch event {
             case .next(let (cellViewModel, type, result)):
                 if result {

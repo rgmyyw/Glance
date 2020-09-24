@@ -180,8 +180,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .map { (cellViewModel,type,$0)}
                 .materialize()
-        }).subscribe(onNext: { [weak self] event in
-            guard let self = self else { return }
+        }).subscribe(onNext: {  event in
             switch event {
             case .next(let (cellViewModel, type, result)):
                 if result {

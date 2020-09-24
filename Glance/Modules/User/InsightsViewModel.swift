@@ -68,19 +68,19 @@ class InsightsViewModel: ViewModel, ViewModelType {
         //                }
         //            }).disposed(by: rx.disposeBag)
         
-        let userHeadImageURL = user.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
-        let displayName = user.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
-        let countryName = user.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
-        let instagram = user.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
-        let website = user.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
-        let bio = user.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
-        
-        let titles = user.filterNil().map { user -> [String] in
-            return ["\(user.postCount)\nPost",
-                "\(user.recommendCount)\nRecomm",
-                "\(user.followerCount)\nFollowers",
-                "\(user.followingCount)\nFollowing"]
-        }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
+//        let userHeadImageURL = user.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
+//        let displayName = user.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
+//        let countryName = user.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
+//        let instagram = user.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
+//        let website = user.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
+//        let bio = user.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
+//
+//        let titles = user.filterNil().map { user -> [String] in
+//            return ["\(user.postCount)\nPost",
+//                "\(user.recommendCount)\nRecomm",
+//                "\(user.followerCount)\nFollowers",
+//                "\(user.followingCount)\nFollowing"]
+//        }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
         
         
         return Output()

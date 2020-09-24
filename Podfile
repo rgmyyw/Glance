@@ -56,8 +56,6 @@ abstract_target 'Glance' do
   pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
   pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.8'
   
-#  pod 'UICollectionView-ARDynamicHeightLayoutCell'
-
   pod 'FDFullscreenPopGesture' , '~> 1.1'
   pod 'FSPagerView' , '~> 0.8.3'
   pod 'SDCAlertView' , '~> 11.1.2'
@@ -69,7 +67,6 @@ abstract_target 'Glance' do
   pod 'CountryPickerView' , '~> 3.1.2'
   pod 'ZLPhotoBrowser' , '~> 3.2.0'
   pod 'SwipeCellKit' , '~> 2.7.1'
-  pod 'XHWebImageAutoSize' , '~> 1.1.2'
   pod 'JXBanner'
   pod 'NewPopMenu', '~> 2.0'
   pod 'MJRefresh'

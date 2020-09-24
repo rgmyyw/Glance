@@ -13,7 +13,6 @@ import RxDataSources
 import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
 import Popover
-import XHWebImageAutoSize
 import Kingfisher
 
 class SavedCollectionViewController: CollectionViewController  {

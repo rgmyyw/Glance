@@ -56,7 +56,6 @@ class AddProductViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? AddProductViewModel else { return }
         
-        let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
         let input = AddProductViewModel.Input(selection: collectionView.rx.modelSelected(AddProductSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         dataSouce.configureSupplementaryView = configureSupplementaryView()

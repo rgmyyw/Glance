@@ -80,7 +80,7 @@ final class Application: NSObject {
     
     
     func presentTestScreen(in window: UIWindow?) {
-        guard let window = window, let provider = provider else { return }
+        //guard let window = window, let provider = provider else { return }
     }
     
     func presentDemoScreen(in window: UIWindow?) {

@@ -33,7 +33,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
 
 
     func transform(input: Input) -> Output {
-        ShoppingCart
+        
         let elements = BehaviorRelay<[ShoppingCartCellViewModel]>(value: [])
         let delete = PublishSubject<ShoppingCartCellViewModel>()
         let comparePrice = PublishSubject<String>()
@@ -126,10 +126,15 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
             }).subscribe(onNext: { [weak self] event in
                 switch event {
                 case .next(let (cellViewModel, result)):
-                    var items = elements.value
-                    items.removeFirst(where: { $0.item == cellViewModel.item})
-                    elements.accept(items)
-                    self?.message.onNext(.init("Product has been removed"))
+                    if result {
+                        var items = elements.value
+                        items.removeFirst(where: { $0.item == cellViewModel.item})
+                        elements.accept(items)
+                        self?.message.onNext(.init("Product has been removed"))
+                    } else {
+                        self?.exceptionError.onNext(.general("product not remove"))
+                    }
+                    
                 default:
                     break
                 }
