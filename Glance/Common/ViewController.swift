@@ -252,6 +252,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
                 title = response.message ?? ""
                 description = response.detail()
             }
+            self?.stopAnimating()
             self?.view.makeToast(description, position: self?.exceptionToastPosition ?? .bottom, title: title)
         }).disposed(by: rx.disposeBag)
         

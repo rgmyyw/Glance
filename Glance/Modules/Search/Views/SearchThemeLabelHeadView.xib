@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dH-4L-F6j" customClass="SearchThemeLabelHeadView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="315" height="72"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="#August home furniture August home furniture" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFf-0V-GcX">
+                    <rect key="frame" x="20" y="0.0" width="275" height="41.5"/>
+                    <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
+                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="bFf-0V-GcX" firstAttribute="leading" secondItem="jye-15-eqP" secondAttribute="leading" constant="20" id="7kf-Nt-igV"/>
+                <constraint firstItem="jye-15-eqP" firstAttribute="trailing" secondItem="bFf-0V-GcX" secondAttribute="trailing" constant="20" id="Cw8-qW-pZ6"/>
+                <constraint firstItem="bFf-0V-GcX" firstAttribute="top" secondItem="1dH-4L-F6j" secondAttribute="top" id="PyD-xs-mBv"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="jye-15-eqP"/>
+            <connections>
+                <outlet property="titleLabel" destination="bFf-0V-GcX" id="UdV-dY-rMR"/>
+            </connections>
+            <point key="canvasLocation" x="-70.28985507246378" y="42.857142857142854"/>
+        </view>
+    </objects>
+</document>

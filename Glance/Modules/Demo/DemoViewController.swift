@@ -8,17 +8,23 @@
 
 import UIKit
 import PopupDialog
+import FloatingPanel
 
-
-class DemoViewController: ViewController {    
+class DemoViewController: ViewController , FloatingPanelControllerDelegate {
+    
+    
     
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
         
-        
         guard let provider = self.viewModel?.provider else {
             return
         }
+
+
+        let viewModel = SelectStoreViewModel(provider: provider, productId: "")
+        self.navigator.show(segue: .selectStore(viewModel: viewModel), sender: self,transition: .panel(style: .default))
+
         
 //        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: Home())
 //        self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
@@ -42,7 +48,7 @@ class DemoViewController: ViewController {
     override func makeUI() {
         super.makeUI()
         
-        navigationBar.title = "Chat Inbox"
+        navigationBar.title = ""
         stackView.addArrangedSubview(containerView)
     }
 

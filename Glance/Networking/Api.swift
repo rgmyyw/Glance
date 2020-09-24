@@ -59,7 +59,7 @@ protocol API {
     func searchThemeDetail(themeId : Int) -> Single<SearchThemeDetail>
     func searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int) -> Single<PageMapable<Home>>
     func searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int) -> Single<PageMapable<Home>>
-    
+    func compareOffers(productId : String) -> Single<[SelectStore]>
 }
 
 

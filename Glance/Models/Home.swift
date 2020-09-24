@@ -24,6 +24,7 @@ struct Home: Mappable, Equatable {
     var saved: Bool = false
     var themeId : Int = 0
     var images : [String] = []
+    var own : Bool = false
     
     var id : [String : Any] {
         guard let type = type  else { return [:] }
@@ -71,6 +72,7 @@ struct Home: Mappable, Equatable {
         reaction <- map["reactionType"]
         themeId <- map["themeId"]
         images <- map["images"]
+        own <- map["own"]
     }
     
     static func == (lhs: Home, rhs: Home) -> Bool {

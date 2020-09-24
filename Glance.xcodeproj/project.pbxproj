@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		47055B0A98AD1FED50893922 /* Pods_Glance_Glance_P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */; };
+		4E14FCDD980E02BA5A51FA51 /* Pods_Glance_Glance_Q.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */; };
 		5D06523324BEAF9A007CE461 /* InsightsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */; };
 		5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5D06523724BEE2AB007CE461 /* ReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */; };
@@ -143,6 +144,24 @@
 		5D2D0EA12509FEF800E9FD8D /* Random-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0EA02509FEF800E9FD8D /* Random-Extension.swift */; };
 		5D2D0EA22509FEF800E9FD8D /* Random-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0EA02509FEF800E9FD8D /* Random-Extension.swift */; };
 		5D2D0EA32509FEF800E9FD8D /* Random-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0EA02509FEF800E9FD8D /* Random-Extension.swift */; };
+		5D3196E22514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */; };
+		5D3196E32514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */; };
+		5D3196E42514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */; };
+		5D3196E62514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
+		5D3196E72514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
+		5D3196E82514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
+		5D3196EB251455E100C4D6BE /* SelectStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */; };
+		5D3196EC251455E100C4D6BE /* SelectStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */; };
+		5D3196ED251455E100C4D6BE /* SelectStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */; };
+		5D3196F32514569300C4D6BE /* SelectStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F12514569300C4D6BE /* SelectStoreCell.swift */; };
+		5D3196F42514569300C4D6BE /* SelectStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F12514569300C4D6BE /* SelectStoreCell.swift */; };
+		5D3196F52514569300C4D6BE /* SelectStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F12514569300C4D6BE /* SelectStoreCell.swift */; };
+		5D3196F62514569300C4D6BE /* SelectStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196F22514569300C4D6BE /* SelectStoreCell.xib */; };
+		5D3196F72514569300C4D6BE /* SelectStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196F22514569300C4D6BE /* SelectStoreCell.xib */; };
+		5D3196F82514569300C4D6BE /* SelectStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196F22514569300C4D6BE /* SelectStoreCell.xib */; };
+		5D3196FA2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */; };
+		5D3196FB2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */; };
+		5D3196FC2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */; };
 		5D34C8852501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
 		5D34C8862501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
 		5D34C8872501EC4C0051F7C1 /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
@@ -187,6 +206,10 @@
 		5D437DD524BEA04700AFBB1F /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD424BEA04700AFBB1F /* DateTransform.swift */; };
 		5D437DD824BEA67600AFBB1F /* InsightsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */; };
 		5D437DD924BEA67600AFBB1F /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
+		5D47C7F82519ABF900B883EA /* SelectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47C7F72519ABF900B883EA /* SelectStore.swift */; };
+		5D47C7F92519ABF900B883EA /* SelectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47C7F72519ABF900B883EA /* SelectStore.swift */; };
+		5D47C7FA2519ABF900B883EA /* SelectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47C7F72519ABF900B883EA /* SelectStore.swift */; };
+		5D47C7FB2519ABF900B883EA /* SelectStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D47C7F72519ABF900B883EA /* SelectStore.swift */; };
 		5D4B59D02507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
 		5D4B59D12507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
 		5D4B59D22507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
@@ -301,6 +324,440 @@
 		5D7E8561250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7E855F250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift */; };
 		5D7E8562250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7E855F250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift */; };
 		5D8D1C8324EB66C1009A7B53 /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D1C8224EB66C1009A7B53 /* Box.swift */; };
+		5D99EC9B251843840008B45F /* VisualSearchResultCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316324D2A3D40039D1B9 /* VisualSearchResultCell.swift */; };
+		5D99EC9C251843840008B45F /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
+		5D99EC9D251843840008B45F /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
+		5D99EC9E251843840008B45F /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18724AEC2F8007A2FCD /* CollectionViewController.swift */; };
+		5D99EC9F251843840008B45F /* SearchThemeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC94E2512056600172C05 /* SearchThemeViewModel.swift */; };
+		5D99ECA0251843840008B45F /* StyleBoardSearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131C24E3F2F700CC3F89 /* StyleBoardSearchSection.swift */; };
+		5D99ECA1251843840008B45F /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
+		5D99ECA2251843840008B45F /* DefaultColltionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7C38C9250B695D006D6CF7 /* DefaultColltionCellViewModel.swift */; };
+		5D99ECA3251843840008B45F /* SavedCollectionClassifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017824C570BE00832F05 /* SavedCollectionClassifyViewController.swift */; };
+		5D99ECA4251843840008B45F /* ReactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523A24BEE549007CE461 /* ReactionsViewModel.swift */; };
+		5D99ECA5251843840008B45F /* AddProductCategaryReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABEB24D9593600AD4B43 /* AddProductCategaryReusableView.swift */; };
+		5D99ECA6251843840008B45F /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B4424B4A46B00CFC188 /* SettingViewController.swift */; };
+		5D99ECA7251843840008B45F /* SearchRecommendNewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2C2508701100E9FD8D /* SearchRecommendNewViewController.swift */; };
+		5D99ECA8251843840008B45F /* PublishPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79324C290690071A0E1 /* PublishPopView.swift */; };
+		5D99ECA9251843840008B45F /* SearchResultNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F22250F27C40052ED40 /* SearchResultNavigationBar.swift */; };
+		5D99ECAA251843840008B45F /* SavedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018424C587AD00832F05 /* SavedCollectionCell.swift */; };
+		5D99ECAB251843840008B45F /* UIImageView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14524AEC2F8007A2FCD /* UIImageView-Extension.swift */; };
+		5D99ECAC251843840008B45F /* PageViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF10E24AEC2F8007A2FCD /* PageViewManager.swift */; };
+		5D99ECAD251843840008B45F /* OriginalPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */; };
+		5D99ECAE251843840008B45F /* InsightsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */; };
+		5D99ECAF251843840008B45F /* HomeTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C724AEC2F9007A2FCD /* HomeTabBarViewModel.swift */; };
+		5D99ECB0251843840008B45F /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17F24AEC2F8007A2FCD /* DefaultTableViewCellViewModel.swift */; };
+		5D99ECB1251843840008B45F /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
+		5D99ECB2251843840008B45F /* PostsDetailBannerReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29BF24C836A5003C3E00 /* PostsDetailBannerReusableView.swift */; };
+		5D99ECB3251843840008B45F /* SearchThemeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC94A2512050600172C05 /* SearchThemeViewController.swift */; };
+		5D99ECB4251843840008B45F /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD024D957BB00AD4B43 /* AddProductViewModel.swift */; };
+		5D99ECB5251843840008B45F /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
+		5D99ECB6251843840008B45F /* AuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11524AEC2F8007A2FCD /* AuthManager.swift */; };
+		5D99ECB7251843840008B45F /* VisualSearchProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DBC24D7A23D0024924B /* VisualSearchProductViewController.swift */; };
+		5D99ECB8251843840008B45F /* UIAlertController-Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14824AEC2F8007A2FCD /* UIAlertController-Extensions.swift */; };
+		5D99ECB9251843840008B45F /* AddProductTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0524DA46BC00AD4B43 /* AddProductTitleReusableView.swift */; };
+		5D99ECBA251843840008B45F /* BarButtonItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18224AEC2F8007A2FCD /* BarButtonItem.swift */; };
+		5D99ECBB251843840008B45F /* PostProductInputKeywordReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA9124DC03090062F90B /* PostProductInputKeywordReusableView.swift */; };
+		5D99ECBC251843840008B45F /* DefaultColltionCellType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */; };
+		5D99ECBD251843840008B45F /* SearchRecommendHotFilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E782509C9C800E9FD8D /* SearchRecommendHotFilterView.swift */; };
+		5D99ECBE251843840008B45F /* SavedCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017E24C57C6F00832F05 /* SavedCollection.swift */; };
+		5D99ECBF251843840008B45F /* VisualSearchProductHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC024D7A4280024924B /* VisualSearchProductHeadView.swift */; };
+		5D99ECC0251843840008B45F /* SearchThemeContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC952251205D300172C05 /* SearchThemeContentViewModel.swift */; };
+		5D99ECC1251843840008B45F /* DefaultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18024AEC2F8007A2FCD /* DefaultTableViewCell.swift */; };
+		5D99ECC2251843840008B45F /* PostsDetailTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */; };
+		5D99ECC3251843840008B45F /* UIView-Borders.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4EE24AECB7A007A2FCD /* UIView-Borders.swift */; };
+		5D99ECC4251843840008B45F /* ErrorResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FF24AEC2F8007A2FCD /* ErrorResponse.swift */; };
+		5D99ECC5251843840008B45F /* AddProductTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD524D957BB00AD4B43 /* AddProductTagCell.swift */; };
+		5D99ECC6251843840008B45F /* InterestNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB524C7F3B2006B0032 /* InterestNavigationBar.swift */; };
+		5D99ECC7251843840008B45F /* PostsDetailTagsReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29C724C83705003C3E00 /* PostsDetailTagsReusableView.swift */; };
+		5D99ECC8251843840008B45F /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
+		5D99ECC9251843840008B45F /* RestApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FE24AEC2F8007A2FCD /* RestApi.swift */; };
+		5D99ECCA251843840008B45F /* UserRecommViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49AA24B861FA00F919EB /* UserRecommViewModel.swift */; };
+		5D99ECCB251843840008B45F /* PostProductTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8624DC03090062F90B /* PostProductTagCell.swift */; };
+		5D99ECCC251843840008B45F /* UserPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09F24B6BE700077DBE5 /* UserPostViewController.swift */; };
+		5D99ECCD251843840008B45F /* SearchRecommendNewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E742508D93400E9FD8D /* SearchRecommendNewViewModel.swift */; };
+		5D99ECCE251843840008B45F /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF30124AEC2F9007A2FCD /* ActivityIndicator.swift */; };
+		5D99ECCF251843840008B45F /* NavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16C24AEC2F8007A2FCD /* NavigationBar.swift */; };
+		5D99ECD0251843840008B45F /* VisualSearchGridLayar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263224D179CA00A825BB /* VisualSearchGridLayar.swift */; };
+		5D99ECD1251843840008B45F /* UIScreen-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F224AECB7A007A2FCD /* UIScreen-Extension.swift */; };
+		5D99ECD2251843840008B45F /* PostsDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */; };
+		5D99ECD3251843840008B45F /* InterestViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAB24C7DED4006B0032 /* InterestViewModel.swift */; };
+		5D99ECD4251843840008B45F /* SearchRecommendHotViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E332508701100E9FD8D /* SearchRecommendHotViewModel.swift */; };
+		5D99ECD5251843840008B45F /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */; };
+		5D99ECD6251843840008B45F /* ShoppingCartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */; };
+		5D99ECD7251843840008B45F /* AddProductBrandReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF324D95A5100AD4B43 /* AddProductBrandReusableView.swift */; };
+		5D99ECD8251843840008B45F /* PostsDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */; };
+		5D99ECD9251843840008B45F /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
+		5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
+		5D99ECDB251843840008B45F /* UserRelationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1370A024B7113F007B64BA /* UserRelationCellViewModel.swift */; };
+		5D99ECDC251843840008B45F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
+		5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
+		5D99ECDE251843840008B45F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
+		5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
+		5D99ECE1251843840008B45F /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCE24BD9D2C00AFBB1F /* Insight.swift */; };
+		5D99ECE2251843840008B45F /* PostProductTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8524DC03090062F90B /* PostProductTitleReusableView.swift */; };
+		5D99ECE3251843840008B45F /* ExceptionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17624AEC2F8007A2FCD /* ExceptionError.swift */; };
+		5D99ECE4251843840008B45F /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CC24AEC2F9007A2FCD /* HomeTabBarController.swift */; };
+		5D99ECE5251843840008B45F /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
+		5D99ECE6251843840008B45F /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14024AEC2F8007A2FCD /* Token.swift */; };
+		5D99ECE8251843840008B45F /* SearchRecommendHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E302508701100E9FD8D /* SearchRecommendHotViewController.swift */; };
+		5D99ECE9251843840008B45F /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */; };
+		5D99ECEA251843840008B45F /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */; };
+		5D99ECEB251843840008B45F /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F0E250F05320052ED40 /* SearchResultViewModel.swift */; };
+		5D99ECEC251843840008B45F /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11624AEC2F8007A2FCD /* LogManager.swift */; };
+		5D99ECED251843840008B45F /* UIView-Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15124AEC2F8007A2FCD /* UIView-Rx.swift */; };
+		5D99ECEE251843840008B45F /* UploadImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D34C8842501EC4C0051F7C1 /* UploadImage.swift */; };
+		5D99ECEF251843840008B45F /* SearchResultContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F16250F062A0052ED40 /* SearchResultContentViewModel.swift */; };
+		5D99ECF0251843840008B45F /* ReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */; };
+		5D99ECF1251843840008B45F /* SearchRecommendHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E3C2508701100E9FD8D /* SearchRecommendHistoryView.swift */; };
+		5D99ECF2251843840008B45F /* InsightsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCC24BD989B00AFBB1F /* InsightsCellViewModel.swift */; };
+		5D99ECF3251843840008B45F /* SearchRecommendHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E3B2508701100E9FD8D /* SearchRecommendHistoryCell.swift */; };
+		5D99ECF4251843840008B45F /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
+		5D99ECF5251843840008B45F /* InsightsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */; };
+		5D99ECF6251843840008B45F /* EmptyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17324AEC2F8007A2FCD /* EmptyDataView.swift */; };
+		5D99ECF7251843840008B45F /* VisualSearchResultSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DD124D816F60024924B /* VisualSearchResultSection.swift */; };
+		5D99ECF8251843840008B45F /* KafkaRefresh-Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15424AEC2F8007A2FCD /* KafkaRefresh-Rx.swift */; };
+		5D99ECF9251843840008B45F /* CALayer-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F324AECB7A007A2FCD /* CALayer-Extension.swift */; };
+		5D99ECFA251843840008B45F /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17A24AEC2F8007A2FCD /* TextField.swift */; };
+		5D99ECFB251843840008B45F /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA724C7DA43006B0032 /* InterestCell.swift */; };
+		5D99ECFD251843840008B45F /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3C24B85A0A00280F9F /* UserPostCellViewModel.swift */; };
+		5D99ECFE251843840008B45F /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16524AEC2F8007A2FCD /* Label.swift */; };
+		5D99ECFF251843840008B45F /* InterestReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB124C7EFF9006B0032 /* InterestReusableView.swift */; };
+		5D99ED00251843840008B45F /* AddProductTagCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD424D957BB00AD4B43 /* AddProductTagCellViewModel.swift */; };
+		5D99ED01251843840008B45F /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
+		5D99ED02251843840008B45F /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524524BEFD3F007CE461 /* PostsDetailViewController.swift */; };
+		5D99ED03251843840008B45F /* VisualSearchClippingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263324D179CA00A825BB /* VisualSearchClippingCircle.swift */; };
+		5D99ED04251843840008B45F /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */; };
+		5D99ED05251843840008B45F /* SearchResultModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F1E250F08810052ED40 /* SearchResultModuleItem.swift */; };
+		5D99ED06251843840008B45F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF12524AEC2F8007A2FCD /* Gender.swift */; };
+		5D99ED07251843840008B45F /* SearchRecommendModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2B2508701100E9FD8D /* SearchRecommendModuleItem.swift */; };
+		5D99ED08251843840008B45F /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14B24AEC2F8007A2FCD /* UIColor-Extension.swift */; };
+		5D99ED09251843840008B45F /* VisualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669DE24CFFD5000FF1092 /* VisualSearchViewController.swift */; };
+		5D99ED0A251843840008B45F /* ReactionsCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524024BEE69C007CE461 /* ReactionsCellViewModel.swift */; };
+		5D99ED0B251843840008B45F /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3D24B4682500CFC188 /* UserViewController.swift */; };
+		5D99ED0C251843840008B45F /* InsightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC624BD8AB300AFBB1F /* InsightsViewModel.swift */; };
+		5D99ED0D251843840008B45F /* VisualSearchResultCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316724D2A4550039D1B9 /* VisualSearchResultCellViewModel.swift */; };
+		5D99ED0E251843840008B45F /* SearchThemeContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC954251205D300172C05 /* SearchThemeContentSection.swift */; };
+		5D99ED0F251843840008B45F /* VisualSearchProductSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DCD24D7E4940024924B /* VisualSearchProductSection.swift */; };
+		5D99ED10251843840008B45F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF13324AEC2F8007A2FCD /* User.swift */; };
+		5D99ED11251843840008B45F /* Api.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FA24AEC2F8007A2FCD /* Api.swift */; };
+		5D99ED12251843840008B45F /* UIKit-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4EF24AECB7A007A2FCD /* UIKit-Extension.swift */; };
+		5D99ED13251843840008B45F /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
+		5D99ED14251843840008B45F /* AddProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABDB24D957BB00AD4B43 /* AddProductViewController.swift */; };
+		5D99ED15251843840008B45F /* InterestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA424C7D91E006B0032 /* InterestViewController.swift */; };
+		5D99ED16251843840008B45F /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17C24AEC2F8007A2FCD /* ViewModelType.swift */; };
+		5D99ED17251843840008B45F /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17E24AEC2F8007A2FCD /* TableViewCell.swift */; };
+		5D99ED18251843840008B45F /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE1323250CB4B400ABCE5E /* SearchViewModel.swift */; };
+		5D99ED19251843840008B45F /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F0A250F04B60052ED40 /* SearchResultViewController.swift */; };
+		5D99ED1A251843840008B45F /* Observable-Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15224AEC2F8007A2FCD /* Observable-Operators.swift */; };
+		5D99ED1B251843840008B45F /* Reusable-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16224AEC2F8007A2FCD /* Reusable-Extension.swift */; };
+		5D99ED1C251843840008B45F /* AddProductInputKeywordReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABEF24D959E000AD4B43 /* AddProductInputKeywordReusableView.swift */; };
+		5D99ED1D251843840008B45F /* OAuthManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA124C6A32C006B0032 /* OAuthManager.swift */; };
+		5D99ED1E251843840008B45F /* SearchRecommendHistorySection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E372508701100E9FD8D /* SearchRecommendHistorySection.swift */; };
+		5D99ED1F251843840008B45F /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB544250B633800C8B902 /* PostCell.swift */; };
+		5D99ED20251843840008B45F /* UserRelationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709C24B70FA2007B64BA /* UserRelationCell.swift */; };
+		5D99ED21251843840008B45F /* SearchThemeLabelModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C7251316C200A80194 /* SearchThemeLabelModuleItem.swift */; };
+		5D99ED22251843840008B45F /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18324AEC2F8007A2FCD /* ImageView.swift */; };
+		5D99ED23251843840008B45F /* ShoppingCart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C7A324C2EA8C0071A0E1 /* ShoppingCart.swift */; };
+		5D99ED24251843840008B45F /* SearchThemeClassify.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */; };
+		5D99ED25251843840008B45F /* SearchRecommendYouMayLikeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E342508701100E9FD8D /* SearchRecommendYouMayLikeViewModel.swift */; };
+		5D99ED26251843840008B45F /* VisualSearchProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DBE24D7A2520024924B /* VisualSearchProductViewModel.swift */; };
+		5D99ED27251843840008B45F /* SearchFacets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9372510676800172C05 /* SearchFacets.swift */; };
+		5D99ED28251843840008B45F /* PickerViewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14924AEC2F8007A2FCD /* PickerViewViewController.swift */; };
+		5D99ED29251843840008B45F /* DateTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD424BEA04700AFBB1F /* DateTransform.swift */; };
+		5D99ED2A251843840008B45F /* CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16924AEC2F8007A2FCD /* CollectionView.swift */; };
+		5D99ED2B251843840008B45F /* ProductRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB53A250B633800C8B902 /* ProductRecommendCell.swift */; };
+		5D99ED2C251843840008B45F /* SearchTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC93F25107A2300172C05 /* SearchTheme.swift */; };
+		5D99ED2D251843840008B45F /* SearchThemeModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9762512138800172C05 /* SearchThemeModuleItem.swift */; };
+		5D99ED2E251843840008B45F /* PostProductSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA4624DC019C0062F90B /* PostProductSection.swift */; };
+		5D99ED2F251843840008B45F /* NotificationProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480224B5C32E0064E3BF /* NotificationProfileViewController.swift */; };
+		5D99ED30251843840008B45F /* UserRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708C24B70EE2007B64BA /* UserRelationViewModel.swift */; };
+		5D99ED31251843840008B45F /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18D24AEC2F8007A2FCD /* Application.swift */; };
+		5D99ED32251843840008B45F /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */; };
+		5D99ED33251843840008B45F /* UserRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DB324BC133400AFBB1F /* UserRelation.swift */; };
+		5D99ED34251843840008B45F /* SearchThemeLabelCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC96A25120DDE00172C05 /* SearchThemeLabelCell.swift */; };
+		5D99ED35251843840008B45F /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAF24C7E08D006B0032 /* Interest.swift */; };
+		5D99ED36251843840008B45F /* UserViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721F24B5670000EA3028 /* UserViewModel.swift */; };
+		5D99ED37251843840008B45F /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
+		5D99ED38251843840008B45F /* PostRecommendCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB539250B633800C8B902 /* PostRecommendCell.swift */; };
+		5D99ED39251843840008B45F /* SearchThemeLabelContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C5251316C200A80194 /* SearchThemeLabelContentViewModel.swift */; };
+		5D99ED3A251843840008B45F /* InterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAD24C7DF07006B0032 /* InterestCellViewModel.swift */; };
+		5D99ED3B251843840008B45F /* PostsDetailSectionTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D924CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.swift */; };
+		5D99ED3C251843840008B45F /* VisualSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */; };
+		5D99ED3D251843840008B45F /* Configs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18A24AEC2F8007A2FCD /* Configs.swift */; };
+		5D99ED3E251843840008B45F /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17924AEC2F8007A2FCD /* Switch.swift */; };
+		5D99ED3F251843840008B45F /* CustomRAMBounceAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CD24AEC2F9007A2FCD /* CustomRAMBounceAnimation.swift */; };
+		5D99ED40251843840008B45F /* SearchRecommendHotCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E902509CFA000E9FD8D /* SearchRecommendHotCellViewModel.swift */; };
+		5D99ED41251843840008B45F /* SearchRecommendHotCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E882509CF9100E9FD8D /* SearchRecommendHotCell.swift */; };
+		5D99ED42251843840008B45F /* SearchRecommendYouMayLikeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7E855F250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift */; };
+		5D99ED43251843840008B45F /* NotificationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */; };
+		5D99ED44251843840008B45F /* SlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */; };
+		5D99ED45251843840008B45F /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17524AEC2F8007A2FCD /* TableView.swift */; };
+		5D99ED46251843840008B45F /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16E24AEC2F8007A2FCD /* Message.swift */; };
+		5D99ED47251843840008B45F /* StyleBoardImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131624E3E8A400CC3F89 /* StyleBoardImageCellViewModel.swift */; };
+		5D99ED48251843840008B45F /* SearchRecommendHotFilterCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E842509CE7B00E9FD8D /* SearchRecommendHotFilterCellViewModel.swift */; };
+		5D99ED49251843840008B45F /* SelectStoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */; };
+		5D99ED4A251843840008B45F /* SearchRecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2F2508701100E9FD8D /* SearchRecommendViewController.swift */; };
+		5D99ED4B251843840008B45F /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18424AEC2F8007A2FCD /* Button.swift */; };
+		5D99ED4C251843840008B45F /* SettingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721D24B565C200EA3028 /* SettingViewModel.swift */; };
+		5D99ED4D251843840008B45F /* UserPostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3A24B8502600280F9F /* UserPostViewModel.swift */; };
+		5D99ED4E251843840008B45F /* Kingfisher-Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15524AEC2F8007A2FCD /* Kingfisher-Rx.swift */; };
+		5D99ED4F251843840008B45F /* AddProductImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFB24D964E000AD4B43 /* AddProductImageCell.swift */; };
+		5D99ED50251843840008B45F /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18E24AEC2F8007A2FCD /* Navigator.swift */; };
+		5D99ED51251843840008B45F /* NumberButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16A24AEC2F8007A2FCD /* NumberButton.swift */; };
+		5D99ED52251843840008B45F /* Random-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0EA02509FEF800E9FD8D /* Random-Extension.swift */; };
+		5D99ED53251843840008B45F /* PostProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA5F24DC019C0062F90B /* PostProductViewController.swift */; };
+		5D99ED54251843840008B45F /* StyleBoardSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131824E3F1F900CC3F89 /* StyleBoardSearchViewController.swift */; };
+		5D99ED55251843840008B45F /* StyleBoardSearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131E24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift */; };
+		5D99ED56251843840008B45F /* VisualSearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316124D2A1810039D1B9 /* VisualSearchResultViewModel.swift */; };
+		5D99ED57251843840008B45F /* AddProductSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD124D957BB00AD4B43 /* AddProductSection.swift */; };
+		5D99ED58251843840008B45F /* DefaultColltionSectionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB537250B633800C8B902 /* DefaultColltionSectionItem.swift */; };
+		5D99ED59251843840008B45F /* InsightsChildViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD024BDA17300AFBB1F /* InsightsChildViewModel.swift */; };
+		5D99ED5A251843840008B45F /* VisualSearchBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DBA24D40C990024924B /* VisualSearchBottomView.swift */; };
+		5D99ED5B251843840008B45F /* ModifyProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */; };
+		5D99ED5C251843840008B45F /* Observable-Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15324AEC2F8007A2FCD /* Observable-Logging.swift */; };
+		5D99ED5D251843840008B45F /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11224AEC2F8007A2FCD /* Reachability.swift */; };
+		5D99ED5E251843840008B45F /* SearchRecommendHotCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E942509E07800E9FD8D /* SearchRecommendHotCollectionCell.swift */; };
+		5D99ED5F251843840008B45F /* Toolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16424AEC2F8007A2FCD /* Toolbar.swift */; };
+		5D99ED60251843840008B45F /* AddProductImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD924D957BB00AD4B43 /* AddProductImageCellViewModel.swift */; };
+		5D99ED61251843840008B45F /* PostsDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */; };
+		5D99ED62251843840008B45F /* StyleBoardImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131224E3E89500CC3F89 /* StyleBoardImageCell.swift */; };
+		5D99ED63251843840008B45F /* SavedCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018224C5857300832F05 /* SavedCollectionViewModel.swift */; };
+		5D99ED64251843840008B45F /* InsightsChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD224BDA19C00AFBB1F /* InsightsChildViewController.swift */; };
+		5D99ED65251843840008B45F /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
+		5D99ED66251843840008B45F /* SearchThemeLabelContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C4251316C100A80194 /* SearchThemeLabelContentSection.swift */; };
+		5D99ED67251843840008B45F /* NavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18524AEC2F8007A2FCD /* NavigationController.swift */; };
+		5D99ED68251843840008B45F /* PostsDetailPriceReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29C324C836DA003C3E00 /* PostsDetailPriceReusableView.swift */; };
+		5D99ED69251843840008B45F /* UserRecommViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49AB24B861FA00F919EB /* UserRecommViewController.swift */; };
+		5D99ED6A251843840008B45F /* UserRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC224BC3CE800AFBB1F /* UserRelationViewController.swift */; };
+		5D99ED6B251843840008B45F /* PopMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D20EC7E24F8BD8E002738C8 /* PopMenu.swift */; };
+		5D99ED6C251843840008B45F /* InsightsRelationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */; };
+		5D99ED6D251843840008B45F /* DefaultColltionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB535250B633800C8B902 /* DefaultColltionCell.swift */; };
+		5D99ED6E251843840008B45F /* SearchThemeLabelViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C3251316C100A80194 /* SearchThemeLabelViewModel.swift */; };
+		5D99ED6F251843840008B45F /* BoxTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B429424EA7964005AF1F6 /* BoxTransform.swift */; };
+		5D99ED70251843840008B45F /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */; };
+		5D99ED71251843840008B45F /* SelectStoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196F12514569300C4D6BE /* SelectStoreCell.swift */; };
+		5D99ED72251843840008B45F /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
+		5D99ED73251843840008B45F /* VisualSearchProductReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */; };
+		5D99ED74251843840008B45F /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11124AEC2F8007A2FCD /* ThemeManager.swift */; };
+		5D99ED75251843840008B45F /* SearchResultContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F12250F05CA0052ED40 /* SearchResultContentViewController.swift */; };
+		5D99ED76251843840008B45F /* SearchThemeDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC9722512108700172C05 /* SearchThemeDetail.swift */; };
+		5D99ED77251843840008B45F /* VisualSearchCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263424D179CA00A825BB /* VisualSearchCropView.swift */; };
+		5D99ED79251843840008B45F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16624AEC2F8007A2FCD /* ViewController.swift */; };
+		5D99ED7A251843840008B45F /* StyleBoardSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131A24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift */; };
+		5D99ED7B251843840008B45F /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
+		5D99ED7C251843840008B45F /* VisualSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E024D005D900FF1092 /* VisualSearchViewModel.swift */; };
+		5D99ED7D251843840008B45F /* PrivacyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708624B708BB007B64BA /* PrivacyViewModel.swift */; };
+		5D99ED7E251843840008B45F /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */; };
+		5D99ED7F251843840008B45F /* ProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB538250B633800C8B902 /* ProductCell.swift */; };
+		5D99ED80251843840008B45F /* StyleBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130A24E3D87C00CC3F89 /* StyleBoardViewController.swift */; };
+		5D99ED81251843840008B45F /* SearchThemeLabelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */; };
+		5D99ED82251843840008B45F /* UserVerticalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB53C250B633800C8B902 /* UserVerticalCell.swift */; };
+		5D99ED83251843840008B45F /* LibsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11024AEC2F8007A2FCD /* LibsManager.swift */; };
+		5D99ED84251843840008B45F /* StyleBoardSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */; };
+		5D99ED85251843840008B45F /* PostProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7D24DC03090062F90B /* PostProductCell.swift */; };
+		5D99ED86251843840008B45F /* PostsDetailToolBarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29CB24C83717003C3E00 /* PostsDetailToolBarReusableView.swift */; };
+		5D99ED87251843840008B45F /* SearchNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE130F250CAECB00ABCE5E /* SearchNavigationBar.swift */; };
+		5D99ED88251843840008B45F /* AddProductNameReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE724D9580E00AD4B43 /* AddProductNameReusableView.swift */; };
+		5D99ED89251843840008B45F /* SearchThemeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */; };
+		5D99ED8A251843840008B45F /* UIView-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F024AECB7A007A2FCD /* UIView-Extension.swift */; };
+		5D99ED8B251843840008B45F /* SearchResultContentViewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F1A250F07300052ED40 /* SearchResultContentViewSection.swift */; };
+		5D99ED8C251843840008B45F /* Box.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D8D1C8224EB66C1009A7B53 /* Box.swift */; };
+		5D99ED8D251843840008B45F /* SearchThemeLabelContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C6251316C200A80194 /* SearchThemeLabelContentViewController.swift */; };
+		5D99ED8E251843840008B45F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18C24AEC2F8007A2FCD /* AppDelegate.swift */; };
+		5D99ED8F251843840008B45F /* SelectStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */; };
+		5D99ED90251843840008B45F /* Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FB24AED04D007A2FCD /* Base.swift */; };
+		5D99ED91251843840008B45F /* ReactionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523C24BEE59A007CE461 /* ReactionsCell.swift */; };
+		5D99ED92251843840008B45F /* InsightsRelationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */; };
+		5D99ED93251843840008B45F /* Localizable-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F124AECB7A007A2FCD /* Localizable-Extension.swift */; };
+		5D99ED94251843840008B45F /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3E24B85ABD00280F9F /* UserPostCell.swift */; };
+		5D99ED95251843840008B45F /* ProductSearchType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E312508701100E9FD8D /* ProductSearchType.swift */; };
+		5D99ED96251843840008B45F /* SavedCollectionClassifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017C24C573E500832F05 /* SavedCollectionClassifyViewModel.swift */; };
+		5D99ED97251843840008B45F /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15D24AEC2F8007A2FCD /* SelfAware.swift */; };
+		5D99ED98251843840008B45F /* SearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE1317250CB14300ABCE5E /* SearchCell.swift */; };
+		5D99ED99251843840008B45F /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16724AEC2F8007A2FCD /* View.swift */; };
+		5D99ED9A251843840008B45F /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
+		5D99ED9B251843840008B45F /* StyleBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */; };
+		5D99ED9C251843840008B45F /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E224D0068600FF1092 /* ImagePickerManager.swift */; };
+		5D99ED9D251843840008B45F /* ReactionAnalysis.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3BD51024F65C4600563010 /* ReactionAnalysis.swift */; };
+		5D99ED9E251843840008B45F /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
+		5D99ED9F251843840008B45F /* Reaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524224BEE879007CE461 /* Reaction.swift */; };
+		5D99EDA0251843840008B45F /* UserRecommCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49AE24B8648500F919EB /* UserRecommCell.swift */; };
+		5D99EDA1251843840008B45F /* SearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE131F250CB47800ABCE5E /* SearchCellViewModel.swift */; };
+		5D99EDA2251843840008B45F /* InsightsLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */; };
+		5D99EDA3251843840008B45F /* AppearanceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11424AEC2F8007A2FCD /* AppearanceManager.swift */; };
+		5D99EDA4251843840008B45F /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
+		5D99EDA5251843840008B45F /* AddProductButtonReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFF24D96A0B00AD4B43 /* AddProductButtonReusableView.swift */; };
+		5D99EDA6251843840008B45F /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */; };
+		5D99EDA7251843840008B45F /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NotificationViewController.swift */; };
+		5D99EDA8251843840008B45F /* VisualSearchProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC424D7A61C0024924B /* VisualSearchProductCell.swift */; };
+		5D99EDA9251843840008B45F /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
+		5D99EDAA251843840008B45F /* SearchRecommendHotCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E802509CDDF00E9FD8D /* SearchRecommendHotCategory.swift */; };
+		5D99EDAB251843840008B45F /* ThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB536250B633800C8B902 /* ThemeCell.swift */; };
+		5D99EDAC251843840008B45F /* SearchRecommendNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E3D2508701100E9FD8D /* SearchRecommendNavigationBar.swift */; };
+		5D99EDAD251843840008B45F /* AddProductSectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0924DA491000AD4B43 /* AddProductSectionCellViewModel.swift */; };
+		5D99EDAE251843840008B45F /* ShoppingCartCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */; };
+		5D99EDAF251843840008B45F /* SearchThemeLabelHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */; };
+		5D99EDB0251843840008B45F /* SearchRecommendYouMayLikeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2D2508701100E9FD8D /* SearchRecommendYouMayLikeViewController.swift */; };
+		5D99EDB1251843840008B45F /* InsightsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC824BD92F800AFBB1F /* InsightsCell.swift */; };
+		5D99EDB2251843840008B45F /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */; };
+		5D99EDB3251843840008B45F /* PickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16824AEC2F8007A2FCD /* PickerView.swift */; };
+		5D99EDB4251843840008B45F /* Version.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF12C24AEC2F8007A2FCD /* Version.swift */; };
+		5D99EDB5251843840008B45F /* Foundation-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15F24AEC2F8007A2FCD /* Foundation-Extension.swift */; };
+		5D99EDB6251843840008B45F /* SearchRecommendNewSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7C38CD250B6BC3006D6CF7 /* SearchRecommendNewSection.swift */; };
+		5D99EDB7251843840008B45F /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18624AEC2F8007A2FCD /* CollectionReusableView.swift */; };
+		5D99EDB8251843840008B45F /* UIImage-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14624AEC2F8007A2FCD /* UIImage-Extension.swift */; };
+		5D99EDB9251843840008B45F /* PostProductTagCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8F24DC03090062F90B /* PostProductTagCellViewModel.swift */; };
+		5D99EDBA251843840008B45F /* PostProductSectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8024DC03090062F90B /* PostProductSectionCellViewModel.swift */; };
+		5D99EDBB251843840008B45F /* PostProductCaptionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8824DC03090062F90B /* PostProductCaptionReusableView.swift */; };
+		5D99EDBC251843840008B45F /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */; };
+		5D99EDBD251843840008B45F /* SignInViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3AA29E24F4AECB00CBCE76 /* SignInViewModel.swift */; };
+		5D99EDBE251843840008B45F /* ReactionPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7BB53D250B633800C8B902 /* ReactionPopView.swift */; };
+		5D99EDBF251843840008B45F /* SearchThemeContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC953251205D300172C05 /* SearchThemeContentViewController.swift */; };
+		5D99EDC0251843840008B45F /* SearchHistoryCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E392508701100E9FD8D /* SearchHistoryCellViewModel.swift */; };
+		5D99EDC1251843840008B45F /* PostProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6FEA4524DC019C0062F90B /* PostProductViewModel.swift */; };
+		5D99EDC2251843840008B45F /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
+		5D99EDC3251843840008B45F /* CountDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18824AEC2F8007A2FCD /* CountDownButton.swift */; };
+		5D99EDC4251843840008B45F /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
+		5D99EDC5251843840008B45F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
+		5D99EDC6251843840008B45F /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
+		5D99EDC7251843840008B45F /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
+		5D99EDC8251843840008B45F /* GetVerifiationCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */; };
+		5D99EDC9251843840008B45F /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
+		5D99EDCA251843840008B45F /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
+		5D99EDCB251843840008B45F /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
+		5D99EDCC251843840008B45F /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2FF24AEC2F9007A2FCD /* ErrorTracker.swift */; };
+		5D99EDCE251843840008B45F /* StyleBoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */; };
+		5D99EDCF251843840008B45F /* SearchRecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2E2508701100E9FD8D /* SearchRecommendViewModel.swift */; };
+		5D99EDD0251843840008B45F /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
+		5D99EDD1251843840008B45F /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE130B250CADBB00ABCE5E /* SearchViewController.swift */; };
+		5D99EDD2251843840008B45F /* UIFont-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15724AEC2F8007A2FCD /* UIFont-Extension.swift */; };
+		5D99EDD3251843840008B45F /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16B24AEC2F8007A2FCD /* StackView.swift */; };
+		5D99EDD4251843840008B45F /* AddProductWebsiteReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF724D95A8900AD4B43 /* AddProductWebsiteReusableView.swift */; };
+		5D99EDD5251843840008B45F /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
+		5D99EDD6251843840008B45F /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */; };
+		5D99EDD7251843840008B45F /* UserHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09B24B5CE580077DBE5 /* UserHeadView.swift */; };
+		5D99EDD8251843840008B45F /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
+		5D99EDD9251843840008B45F /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
+		5D99EDDA251843840008B45F /* StyleBoardSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */; };
+		5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC224D7A4340024924B /* VisualSearchProductHeadView.xib */; };
+		5D99EDDF251843840008B45F /* 11.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379124C847CC00B2A1E2 /* 11.jpg */; };
+		5D99EDE0251843840008B45F /* 66.png in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB624D4080E0024924B /* 66.png */; };
+		5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B017924C570BE00832F05 /* SavedCollectionClassifyViewController.xib */; };
+		5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8E24DC03090062F90B /* PostProductTagCell.xib */; };
+		5D99EDE3251843840008B45F /* Roboto-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50424AED804007A2FCD /* Roboto-Medium.ttf */; };
+		5D99EDE4251843840008B45F /* PostProductInputKeywordReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA9024DC03090062F90B /* PostProductInputKeywordReusableView.xib */; };
+		5D99EDE5251843840008B45F /* VisualSearchProductReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */; };
+		5D99EDE6251843840008B45F /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3F24B85ABD00280F9F /* UserPostCell.xib */; };
+		5D99EDE7251843840008B45F /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
+		5D99EDE8251843840008B45F /* 9.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378C24C847CC00B2A1E2 /* 9.jpg */; };
+		5D99EDE9251843840008B45F /* ReactionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523D24BEE59A007CE461 /* ReactionsCell.xib */; };
+		5D99EDEA251843840008B45F /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379924C847CC00B2A1E2 /* 1.jpg */; };
+		5D99EDEB251843840008B45F /* ThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB541250B633800C8B902 /* ThemeCell.xib */; };
+		5D99EDEC251843840008B45F /* SelectStoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196F22514569300C4D6BE /* SelectStoreCell.xib */; };
+		5D99EDED251843840008B45F /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
+		5D99EDEE251843840008B45F /* StyleBoardImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3131324E3E89500CC3F89 /* StyleBoardImageCell.xib */; };
+		5D99EDEF251843840008B45F /* PostRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB53F250B633800C8B902 /* PostRecommendCell.xib */; };
+		5D99EDF0251843840008B45F /* InsightsLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */; };
+		5D99EDF1251843840008B45F /* PostProductCaptionReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7C24DC03090062F90B /* PostProductCaptionReusableView.xib */; };
+		5D99EDF2251843840008B45F /* 4.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379324C847CC00B2A1E2 /* 4.jpg */; };
+		5D99EDF3251843840008B45F /* SearchNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFE1313250CAEDC00ABCE5E /* SearchNavigationBar.xib */; };
+		5D99EDF4251843840008B45F /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
+		5D99EDF5251843840008B45F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */; };
+		5D99EDF6251843840008B45F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10424AEC2F8007A2FCD /* Assets.xcassets */; };
+		5D99EDF7251843840008B45F /* StyleBoardViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3130C24E3DC3400CC3F89 /* StyleBoardViewController.xib */; };
+		5D99EDF8251843840008B45F /* Roboto-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50324AED804007A2FCD /* Roboto-Black.ttf */; };
+		5D99EDF9251843840008B45F /* AddProductBrandReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF424D95A5100AD4B43 /* AddProductBrandReusableView.xib */; };
+		5D99EDFA251843840008B45F /* 3.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379824C847CC00B2A1E2 /* 3.jpg */; };
+		5D99EDFB251843840008B45F /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
+		5D99EDFC251843840008B45F /* SearchRecommendHotFilterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E792509C9C800E9FD8D /* SearchRecommendHotFilterView.xib */; };
+		5D99EDFD251843840008B45F /* UserHorizontalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDC05C725105AEC005D5299 /* UserHorizontalCell.xib */; };
+		5D99EDFE251843840008B45F /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
+		5D99EDFF251843840008B45F /* PostsDetailPriceReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C424C836DA003C3E00 /* PostsDetailPriceReusableView.xib */; };
+		5D99EE00251843840008B45F /* EmptyDataView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF18124AEC2F8007A2FCD /* EmptyDataView.xib */; };
+		5D99EE01251843840008B45F /* 8.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378B24C847CC00B2A1E2 /* 8.jpg */; };
+		5D99EE02251843840008B45F /* VisualSearchProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC524D7A61C0024924B /* VisualSearchProductCell.xib */; };
+		5D99EE03251843840008B45F /* SearchRecommendHotFilterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DECB83C250A0C4300294ECA /* SearchRecommendHotFilterCell.xib */; };
+		5D99EE04251843840008B45F /* SavedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */; };
+		5D99EE05251843840008B45F /* PostProductTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA7F24DC03090062F90B /* PostProductTitleReusableView.xib */; };
+		5D99EE06251843840008B45F /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
+		5D99EE07251843840008B45F /* AddProductWebsiteReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF824D95A8900AD4B43 /* AddProductWebsiteReusableView.xib */; };
+		5D99EE08251843840008B45F /* 5.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379424C847CC00B2A1E2 /* 5.jpg */; };
+		5D99EE09251843840008B45F /* SearchRecommendHotCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E892509CF9100E9FD8D /* SearchRecommendHotCell.xib */; };
+		5D99EE0A251843840008B45F /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
+		5D99EE0B251843840008B45F /* InterestCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA824C7DA43006B0032 /* InterestCell.xib */; };
+		5D99EE0C251843840008B45F /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
+		5D99EE0D251843840008B45F /* 10.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379224C847CC00B2A1E2 /* 10.jpg */; };
+		5D99EE0E251843840008B45F /* Roboto-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50224AED804007A2FCD /* Roboto-Light.ttf */; };
+		5D99EE0F251843840008B45F /* ProductRecommendCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB53E250B633800C8B902 /* ProductRecommendCell.xib */; };
+		5D99EE10251843840008B45F /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
+		5D99EE11251843840008B45F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C824AEC2F9007A2FCD /* LaunchScreen.storyboard */; };
+		5D99EE12251843840008B45F /* SearchRecommendNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E3A2508701100E9FD8D /* SearchRecommendNavigationBar.xib */; };
+		5D99EE13251843840008B45F /* VisualSearchBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB824D40C8B0024924B /* VisualSearchBottomView.xib */; };
+		5D99EE14251843840008B45F /* SearchThemeHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */; };
+		5D99EE15251843840008B45F /* PostsDetailBannerReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C024C836A5003C3E00 /* PostsDetailBannerReusableView.xib */; };
+		5D99EE16251843840008B45F /* AddProductCategaryReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABEC24D9593600AD4B43 /* AddProductCategaryReusableView.xib */; };
+		5D99EE17251843840008B45F /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B4524B4A46B00CFC188 /* SettingViewController.xib */; };
+		5D99EE18251843840008B45F /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
+		5D99EE19251843840008B45F /* VisualSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3B316424D2A3D40039D1B9 /* VisualSearchResultCell.xib */; };
+		5D99EE1A251843840008B45F /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
+		5D99EE1B251843840008B45F /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
+		5D99EE1C251843840008B45F /* UserRecommCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7D49AF24B8648500F919EB /* UserRecommCell.xib */; };
+		5D99EE1D251843840008B45F /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
+		5D99EE1E251843840008B45F /* SearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFE1318250CB14300ABCE5E /* SearchCell.xib */; };
+		5D99EE1F251843840008B45F /* 0.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379A24C847CC00B2A1E2 /* 0.jpg */; };
+		5D99EE20251843840008B45F /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
+		5D99EE21251843840008B45F /* ReactionPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB542250B633800C8B902 /* ReactionPopView.xib */; };
+		5D99EE22251843840008B45F /* SearchRecommendHistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E382508701100E9FD8D /* SearchRecommendHistoryCell.xib */; };
+		5D99EE23251843840008B45F /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
+		5D99EE24251843840008B45F /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
+		5D99EE25251843840008B45F /* UserVerticalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB53B250B633800C8B902 /* UserVerticalCell.xib */; };
+		5D99EE26251843840008B45F /* PostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB543250B633800C8B902 /* PostCell.xib */; };
+		5D99EE27251843840008B45F /* ShoppingCartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */; };
+		5D99EE28251843840008B45F /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
+		5D99EE29251843840008B45F /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
+		5D99EE2A251843840008B45F /* UserHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDBC09D24B5CE6B0077DBE5 /* UserHeadView.xib */; };
+		5D99EE2B251843840008B45F /* 13.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379024C847CC00B2A1E2 /* 13.jpg */; };
+		5D99EE2C251843840008B45F /* InsightsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DC924BD92F800AFBB1F /* InsightsCell.xib */; };
+		5D99EE2D251843840008B45F /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
+		5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
+		5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
+		5D99EE30251843840008B45F /* 15.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378E24C847CC00B2A1E2 /* 15.jpg */; };
+		5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
+		5D99EE32251843840008B45F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB540250B633800C8B902 /* ProductCell.xib */; };
+		5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */; };
+		5D99EE34251843840008B45F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
+		5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
+		5D99EE36251843840008B45F /* 14.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378D24C847CC00B2A1E2 /* 14.jpg */; };
+		5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
+		5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
+		5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
+		5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
+		5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E362508701100E9FD8D /* SearchRecommendHistoryView.xib */; };
+		5D99EE3C251843840008B45F /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
+		5D99EE3D251843840008B45F /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
+		5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
+		5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
+		5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
+		5D99EE42251843840008B45F /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
+		5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E952509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib */; };
+		5D99EE44251843840008B45F /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
+		5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
+		5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
+		5D99EE47251843840008B45F /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
+		5D99EE48251843840008B45F /* PostProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6FEA8724DC03090062F90B /* PostProductCell.xib */; };
+		5D99EE49251843840008B45F /* AddProductTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0624DA46BD00AD4B43 /* AddProductTitleReusableView.xib */; };
+		5D99EE4A251843840008B45F /* AddProductInputKeywordReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF024D959E000AD4B43 /* AddProductInputKeywordReusableView.xib */; };
+		5D99EE4B251843840008B45F /* UserRelationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709D24B70FA2007B64BA /* UserRelationCell.xib */; };
+		5D99EE4C251843840008B45F /* PostsDetailBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */; };
+		5D99EE54251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */; };
+		5D99EE55251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */; };
+		5D99EE56251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */; };
+		5D99EE57251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */; };
+		5D99EE59251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
+		5D99EE5A251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
+		5D99EE5B251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
+		5D99EE5C251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
 		5DA483C8251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483C9251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483CA251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
@@ -427,12 +884,12 @@
 		5DCAC95B251205D300172C05 /* SearchThemeContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC954251205D300172C05 /* SearchThemeContentSection.swift */; };
 		5DCAC95C251205D300172C05 /* SearchThemeContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC954251205D300172C05 /* SearchThemeContentSection.swift */; };
 		5DCAC95D251205D300172C05 /* SearchThemeContentSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC954251205D300172C05 /* SearchThemeContentSection.swift */; };
-		5DCAC95F2512088600172C05 /* SearchThemeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeLabelView.swift */; };
-		5DCAC9602512088600172C05 /* SearchThemeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeLabelView.swift */; };
-		5DCAC9612512088600172C05 /* SearchThemeLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeLabelView.swift */; };
-		5DCAC9632512088D00172C05 /* SearchThemeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeLabelView.xib */; };
-		5DCAC9642512088D00172C05 /* SearchThemeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeLabelView.xib */; };
-		5DCAC9652512088D00172C05 /* SearchThemeLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeLabelView.xib */; };
+		5DCAC95F2512088600172C05 /* SearchThemeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */; };
+		5DCAC9602512088600172C05 /* SearchThemeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */; };
+		5DCAC9612512088600172C05 /* SearchThemeHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */; };
+		5DCAC9632512088D00172C05 /* SearchThemeHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */; };
+		5DCAC9642512088D00172C05 /* SearchThemeHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */; };
+		5DCAC9652512088D00172C05 /* SearchThemeHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */; };
 		5DCAC96725120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */; };
 		5DCAC96825120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */; };
 		5DCAC96925120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */; };
@@ -513,7 +970,6 @@
 		5DCC2D0024F34F04000AC40A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CC24AEC2F9007A2FCD /* HomeTabBarController.swift */; };
 		5DCC2D0124F34F04000AC40A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
 		5DCC2D0224F34F04000AC40A /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14024AEC2F8007A2FCD /* Token.swift */; };
-		5DCC2D0324F34F04000AC40A /* ComparePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */; };
 		5DCC2D0424F34F04000AC40A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */; };
 		5DCC2D0524F34F04000AC40A /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */; };
 		5DCC2D0624F34F04000AC40A /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11624AEC2F8007A2FCD /* LogManager.swift */; };
@@ -527,7 +983,6 @@
 		5DCC2D0F24F34F04000AC40A /* CALayer-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F324AECB7A007A2FCD /* CALayer-Extension.swift */; };
 		5DCC2D1024F34F04000AC40A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17A24AEC2F8007A2FCD /* TextField.swift */; };
 		5DCC2D1124F34F04000AC40A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA724C7DA43006B0032 /* InterestCell.swift */; };
-		5DCC2D1224F34F04000AC40A /* ComparePriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */; };
 		5DCC2D1324F34F04000AC40A /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3C24B85A0A00280F9F /* UserPostCellViewModel.swift */; };
 		5DCC2D1424F34F04000AC40A /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16524AEC2F8007A2FCD /* Label.swift */; };
 		5DCC2D1524F34F04000AC40A /* InterestReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB124C7EFF9006B0032 /* InterestReusableView.swift */; };
@@ -613,7 +1068,6 @@
 		5DCC2D6724F34F04000AC40A /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */; };
 		5DCC2D6824F34F04000AC40A /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11124AEC2F8007A2FCD /* ThemeManager.swift */; };
 		5DCC2D6924F34F04000AC40A /* VisualSearchCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263424D179CA00A825BB /* VisualSearchCropView.swift */; };
-		5DCC2D6A24F34F04000AC40A /* ComparePriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */; };
 		5DCC2D6B24F34F04000AC40A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16624AEC2F8007A2FCD /* ViewController.swift */; };
 		5DCC2D6C24F34F04000AC40A /* StyleBoardSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131A24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift */; };
 		5DCC2D6D24F34F04000AC40A /* VisualSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E024D005D900FF1092 /* VisualSearchViewModel.swift */; };
@@ -673,7 +1127,6 @@
 		5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
 		5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
 		5DCC2DA724F34F04000AC40A /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2FF24AEC2F9007A2FCD /* ErrorTracker.swift */; };
-		5DCC2DA824F34F04000AC40A /* ComparePriceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */; };
 		5DCC2DA924F34F04000AC40A /* StyleBoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */; };
 		5DCC2DAA24F34F04000AC40A /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
 		5DCC2DAB24F34F04000AC40A /* UIFont-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15724AEC2F8007A2FCD /* UIFont-Extension.swift */; };
@@ -760,7 +1213,6 @@
 		5DCC2E0124F34F04000AC40A /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
 		5DCC2E0224F34F04000AC40A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
 		5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
-		5DCC2E0424F34F04000AC40A /* ComparePriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */; };
 		5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5DCC2E0624F34F04000AC40A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
 		5DCC2E0724F34F04000AC40A /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
@@ -837,7 +1289,6 @@
 		5DCC2E5824F34F2A000AC40A /* HomeTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CC24AEC2F9007A2FCD /* HomeTabBarController.swift */; };
 		5DCC2E5924F34F2A000AC40A /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FD24AEC2F8007A2FCD /* Networking.swift */; };
 		5DCC2E5A24F34F2A000AC40A /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14024AEC2F8007A2FCD /* Token.swift */; };
-		5DCC2E5B24F34F2A000AC40A /* ComparePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */; };
 		5DCC2E5C24F34F2A000AC40A /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */; };
 		5DCC2E5D24F34F2A000AC40A /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */; };
 		5DCC2E5E24F34F2A000AC40A /* LogManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11624AEC2F8007A2FCD /* LogManager.swift */; };
@@ -851,7 +1302,6 @@
 		5DCC2E6724F34F2A000AC40A /* CALayer-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4F324AECB7A007A2FCD /* CALayer-Extension.swift */; };
 		5DCC2E6824F34F2A000AC40A /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17A24AEC2F8007A2FCD /* TextField.swift */; };
 		5DCC2E6924F34F2A000AC40A /* InterestCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AA724C7DA43006B0032 /* InterestCell.swift */; };
-		5DCC2E6A24F34F2A000AC40A /* ComparePriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */; };
 		5DCC2E6B24F34F2A000AC40A /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB8FE3C24B85A0A00280F9F /* UserPostCellViewModel.swift */; };
 		5DCC2E6C24F34F2A000AC40A /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16524AEC2F8007A2FCD /* Label.swift */; };
 		5DCC2E6D24F34F2A000AC40A /* InterestReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB124C7EFF9006B0032 /* InterestReusableView.swift */; };
@@ -937,7 +1387,6 @@
 		5DCC2EBF24F34F2A000AC40A /* ShoppingCartCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */; };
 		5DCC2EC024F34F2A000AC40A /* ThemeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF11124AEC2F8007A2FCD /* ThemeManager.swift */; };
 		5DCC2EC124F34F2A000AC40A /* VisualSearchCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263424D179CA00A825BB /* VisualSearchCropView.swift */; };
-		5DCC2EC224F34F2A000AC40A /* ComparePriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */; };
 		5DCC2EC324F34F2A000AC40A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16624AEC2F8007A2FCD /* ViewController.swift */; };
 		5DCC2EC424F34F2A000AC40A /* StyleBoardSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131A24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift */; };
 		5DCC2EC524F34F2A000AC40A /* VisualSearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E024D005D900FF1092 /* VisualSearchViewModel.swift */; };
@@ -997,7 +1446,6 @@
 		5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
 		5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
 		5DCC2EFF24F34F2A000AC40A /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2FF24AEC2F9007A2FCD /* ErrorTracker.swift */; };
-		5DCC2F0024F34F2A000AC40A /* ComparePriceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */; };
 		5DCC2F0124F34F2A000AC40A /* StyleBoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */; };
 		5DCC2F0224F34F2A000AC40A /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
 		5DCC2F0324F34F2A000AC40A /* UIFont-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15724AEC2F8007A2FCD /* UIFont-Extension.swift */; };
@@ -1084,7 +1532,6 @@
 		5DCC2F5924F34F2A000AC40A /* 2.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379724C847CC00B2A1E2 /* 2.jpg */; };
 		5DCC2F5A24F34F2A000AC40A /* 6.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379624C847CC00B2A1E2 /* 6.jpg */; };
 		5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
-		5DCC2F5C24F34F2A000AC40A /* ComparePriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */; };
 		5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5DCC2F5E24F34F2A000AC40A /* 7.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D379524C847CC00B2A1E2 /* 7.jpg */; };
 		5DCC2F5F24F34F2A000AC40A /* 12.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D378F24C847CC00B2A1E2 /* 12.jpg */; };
@@ -1126,11 +1573,6 @@
 		5DDC05CC25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
 		5DDC05CD25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
 		5DDC05CE25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
-		5DDF02D924C5308B00E55D0F /* ComparePriceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */; };
-		5DDF02DB24C530D300E55D0F /* ComparePriceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */; };
-		5DDF02DE24C5331600E55D0F /* ComparePriceCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */; };
-		5DDF02DF24C5331600E55D0F /* ComparePriceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */; };
-		5DDF02E124C534DF00E55D0F /* ComparePriceCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */; };
 		5DECB83D250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83E250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83F250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
@@ -1284,6 +1726,7 @@
 		5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */; };
+		C669A34A4DAB95D2C521F82E /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
 		D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
 /* End PBXBuildFile section */
 
@@ -1292,6 +1735,7 @@
 		1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.release.xcconfig"; sourceTree = "<group>"; };
 		2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.debug.xcconfig"; sourceTree = "<group>"; };
+		4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
 		5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetailViewModel.swift; sourceTree = "<group>"; };
 		5D06523424BEB37C007CE461 /* InsightsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetail.swift; sourceTree = "<group>"; };
 		5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsViewController.swift; sourceTree = "<group>"; };
@@ -1372,6 +1816,12 @@
 		5D2D0E942509E07800E9FD8D /* SearchRecommendHotCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendHotCollectionCell.swift; sourceTree = "<group>"; };
 		5D2D0E952509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRecommendHotCollectionCell.xib; sourceTree = "<group>"; };
 		5D2D0EA02509FEF800E9FD8D /* Random-Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Random-Extension.swift"; sourceTree = "<group>"; };
+		5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelHeadView.swift; sourceTree = "<group>"; };
+		5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchThemeLabelHeadView.xib; sourceTree = "<group>"; };
+		5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStoreViewController.swift; sourceTree = "<group>"; };
+		5D3196F12514569300C4D6BE /* SelectStoreCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStoreCell.swift; sourceTree = "<group>"; };
+		5D3196F22514569300C4D6BE /* SelectStoreCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectStoreCell.xib; sourceTree = "<group>"; };
+		5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStoreViewModel.swift; sourceTree = "<group>"; };
 		5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Glance-R-Info.plist"; sourceTree = "<group>"; };
 		5D34C8842501EC4C0051F7C1 /* UploadImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImage.swift; sourceTree = "<group>"; };
 		5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductReusableView.swift; sourceTree = "<group>"; };
@@ -1407,6 +1857,7 @@
 		5D437DD424BEA04700AFBB1F /* DateTransform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateTransform.swift; sourceTree = "<group>"; };
 		5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetailViewController.swift; sourceTree = "<group>"; };
 		5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsightsDetailViewController.xib; sourceTree = "<group>"; };
+		5D47C7F72519ABF900B883EA /* SelectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStore.swift; sourceTree = "<group>"; };
 		5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryItem.swift; sourceTree = "<group>"; };
 		5D579B3D24B4682500CFC188 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 		5D579B4424B4A46B00CFC188 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
@@ -1481,6 +1932,10 @@
 		5D7D49B224B864A700F919EB /* UserRecommCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecommCellViewModel.swift; sourceTree = "<group>"; };
 		5D7E855F250B273800D6F1A9 /* SearchRecommendYouMayLikeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendYouMayLikeSection.swift; sourceTree = "<group>"; };
 		5D8D1C8224EB66C1009A7B53 /* Box.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Box.swift; sourceTree = "<group>"; };
+		5D99EE51251843840008B45F /* Glance-Q.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glance-Q.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D99EE52251843840008B45F /* Glance-Q-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "Glance-Q-Info.plist"; path = "/Users/yanghai/Desktop/Glance/Glance-Q-Info.plist"; sourceTree = "<absolute>"; };
+		5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PanelDefaultmModalStyle.swift; sourceTree = "<group>"; };
+		5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStoreCellViewModel.swift; sourceTree = "<group>"; };
 		5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelViewController.swift; sourceTree = "<group>"; };
 		5DA483C3251316C100A80194 /* SearchThemeLabelViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelViewModel.swift; sourceTree = "<group>"; };
 		5DA483C4251316C100A80194 /* SearchThemeLabelContentSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelContentSection.swift; sourceTree = "<group>"; };
@@ -1575,8 +2030,8 @@
 		5DCAC952251205D300172C05 /* SearchThemeContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeContentViewModel.swift; sourceTree = "<group>"; };
 		5DCAC953251205D300172C05 /* SearchThemeContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeContentViewController.swift; sourceTree = "<group>"; };
 		5DCAC954251205D300172C05 /* SearchThemeContentSection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeContentSection.swift; sourceTree = "<group>"; };
-		5DCAC95E2512088600172C05 /* SearchThemeLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelView.swift; sourceTree = "<group>"; };
-		5DCAC9622512088D00172C05 /* SearchThemeLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchThemeLabelView.xib; sourceTree = "<group>"; };
+		5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeHeadView.swift; sourceTree = "<group>"; };
+		5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchThemeHeadView.xib; sourceTree = "<group>"; };
 		5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelCellViewModel.swift; sourceTree = "<group>"; };
 		5DCAC96A25120DDE00172C05 /* SearchThemeLabelCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelCell.swift; sourceTree = "<group>"; };
 		5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchThemeLabelCell.xib; sourceTree = "<group>"; };
@@ -1600,11 +2055,6 @@
 		5DDBC09F24B6BE700077DBE5 /* UserPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPostViewController.swift; sourceTree = "<group>"; };
 		5DDC05C725105AEC005D5299 /* UserHorizontalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHorizontalCell.xib; sourceTree = "<group>"; };
 		5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHorizontalCell.swift; sourceTree = "<group>"; };
-		5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceViewController.swift; sourceTree = "<group>"; };
-		5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceViewModel.swift; sourceTree = "<group>"; };
-		5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceCell.swift; sourceTree = "<group>"; };
-		5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComparePriceCell.xib; sourceTree = "<group>"; };
-		5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComparePriceCellViewModel.swift; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance-D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glance-D.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendHotFilterCell.swift; sourceTree = "<group>"; };
 		5DECB83C250A0C4300294ECA /* SearchRecommendHotFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRecommendHotFilterCell.xib; sourceTree = "<group>"; };
@@ -1726,16 +2176,26 @@
 		5DFF3F1E250F08810052ED40 /* SearchResultModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModuleItem.swift; sourceTree = "<group>"; };
 		5DFF3F22250F27C40052ED40 /* SearchResultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultNavigationBar.swift; sourceTree = "<group>"; };
 		5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultNavigationBar.xib; sourceTree = "<group>"; };
-		9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
+		7B237AE3A03897BD10DC25B7 /* Pods-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
 		A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.release.xcconfig"; sourceTree = "<group>"; };
+		BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-Q.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q.release.xcconfig"; sourceTree = "<group>"; };
 		BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.debug.xcconfig"; sourceTree = "<group>"; };
 		C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-Q.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q.debug.xcconfig"; sourceTree = "<group>"; };
+		DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_Q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance.release.xcconfig"; path = "Target Support Files/Pods-Glance/Pods-Glance.release.xcconfig"; sourceTree = "<group>"; };
-		EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D99EDDB251843840008B45F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E14FCDD980E02BA5A51FA51 /* Pods_Glance_Glance_Q.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC2DB424F34F04000AC40A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1757,6 +2217,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */,
+				C669A34A4DAB95D2C521F82E /* Pods_Glance_Glance_D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1922,11 +2383,13 @@
 				5DFE131F250CB47800ABCE5E /* SearchCellViewModel.swift */,
 				5DFF3F22250F27C40052ED40 /* SearchResultNavigationBar.swift */,
 				5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */,
-				5DCAC95E2512088600172C05 /* SearchThemeLabelView.swift */,
-				5DCAC9622512088D00172C05 /* SearchThemeLabelView.xib */,
+				5DCAC95E2512088600172C05 /* SearchThemeHeadView.swift */,
+				5DCAC9622512088D00172C05 /* SearchThemeHeadView.xib */,
 				5DCAC96625120D3D00172C05 /* SearchThemeLabelCellViewModel.swift */,
 				5DCAC96A25120DDE00172C05 /* SearchThemeLabelCell.swift */,
 				5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */,
+				5D3196E12514499200C4D6BE /* SearchThemeLabelHeadView.swift */,
+				5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2102,8 +2565,8 @@
 				5DB1C79824C2DCE00071A0E1 /* Views */,
 				5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */,
 				5DB1C79B24C2DD490071A0E1 /* ShoppingCartViewModel.swift */,
-				5DDF02D824C5308B00E55D0F /* ComparePriceViewController.swift */,
-				5DDF02DA24C530D300E55D0F /* ComparePriceViewModel.swift */,
+				5D3196E9251455E100C4D6BE /* SelectStoreViewController.swift */,
+				5D3196F92514BF2600C4D6BE /* SelectStoreViewModel.swift */,
 			);
 			path = ShoppingCart;
 			sourceTree = "<group>";
@@ -2114,9 +2577,9 @@
 				5DB1C79D24C2DD7C0071A0E1 /* ShoppingCartCell.swift */,
 				5DB1C79E24C2DD7C0071A0E1 /* ShoppingCartCell.xib */,
 				5DB1C7A124C2E3580071A0E1 /* ShoppingCartCellViewModel.swift */,
-				5DDF02DC24C5331600E55D0F /* ComparePriceCell.swift */,
-				5DDF02DD24C5331600E55D0F /* ComparePriceCell.xib */,
-				5DDF02E024C534DF00E55D0F /* ComparePriceCellViewModel.swift */,
+				5D3196F12514569300C4D6BE /* SelectStoreCell.swift */,
+				5D3196F22514569300C4D6BE /* SelectStoreCell.xib */,
+				5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2269,6 +2732,7 @@
 				5DE6388A24AD769D002F6F6B /* Glance-D.app */,
 				5DCC2E1424F34F04000AC40A /* Glance-P.app */,
 				5DCC2F6C24F34F2A000AC40A /* Glance.app */,
+				5D99EE51251843840008B45F /* Glance-Q.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2280,6 +2744,7 @@
 				5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */,
 				5DCC2F6F24F3521E000AC40A /* Glance-D-Info.plist */,
 				5DCC2F6E24F3521E000AC40A /* Glance-P-Info.plist */,
+				5D99EE52251843840008B45F /* Glance-Q-Info.plist */,
 				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
 				5DEFF18B24AEC2F8007A2FCD /* Application */,
 				5DEFF18F24AEC2F8007A2FCD /* Modules */,
@@ -2353,6 +2818,7 @@
 				5DEFF11624AEC2F8007A2FCD /* LogManager.swift */,
 				5DBC3AA124C6A32C006B0032 /* OAuthManager.swift */,
 				5DC669E224D0068600FF1092 /* ImagePickerManager.swift */,
+				5D99EE53251859CA0008B45F /* PanelDefaultmModalStyle.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2390,6 +2856,7 @@
 				5DCAC93B2510719D00172C05 /* SearchThemeClassify.swift */,
 				5DCAC93F25107A2300172C05 /* SearchTheme.swift */,
 				5DCAC9722512108700172C05 /* SearchThemeDetail.swift */,
+				5D47C7F72519ABF900B883EA /* SelectStore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2561,6 +3028,7 @@
 		5DEFF18F24AEC2F8007A2FCD /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				5DEFF19024AEC2F8007A2FCD /* Demo */,
 				5D7BB534250B633800C8B902 /* Views */,
 				5D2D0E2A2508701100E9FD8D /* Search */,
 				5DC3130824E3D86500CC3F89 /* StyleBoard */,
@@ -2574,7 +3042,6 @@
 				5D13708E24B70F4B007B64BA /* Notifications */,
 				5D579B4224B4A44E00CFC188 /* Setting */,
 				5D579B3C24B4680300CFC188 /* User */,
-				5DEFF19024AEC2F8007A2FCD /* Demo */,
 				5DEFF50D24AEE73D007A2FCD /* Home */,
 				5DEFF2C624AEC2F9007A2FCD /* Main */,
 				5DEFF2ED24AEC2F9007A2FCD /* Login */,
@@ -2682,12 +3149,14 @@
 			children = (
 				18A3C50415CA36BEF18A833C /* Pods-Glance.debug.xcconfig */,
 				DEFB5B35CD55BB239C0A80AF /* Pods-Glance.release.xcconfig */,
-				9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */,
-				EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */,
 				2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */,
 				A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */,
 				BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */,
 				2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */,
+				7B237AE3A03897BD10DC25B7 /* Pods-Glance-Glance-D.debug.xcconfig */,
+				4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */,
+				CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */,
+				BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -2698,6 +3167,7 @@
 				BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */,
 				1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */,
 				C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */,
+				DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2705,6 +3175,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5D99EC97251843840008B45F /* Glance-Q */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D99EE4E251843840008B45F /* Build configuration list for PBXNativeTarget "Glance-Q" */;
+			buildPhases = (
+				0BB2BA63669B77B58703EE5A /* [CP] Check Pods Manifest.lock */,
+				5D99EC99251843840008B45F /* R.Swift */,
+				5D99EC9A251843840008B45F /* Sources */,
+				5D99EDDB251843840008B45F /* Frameworks */,
+				5D99EDDD251843840008B45F /* Resources */,
+				E45F6A68AEAB08C164D69834 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Glance-Q";
+			productName = Glance;
+			productReference = 5D99EE51251843840008B45F /* Glance-Q.app */;
+			productType = "com.apple.product-type.application";
+		};
 		5DCC2CBE24F34F04000AC40A /* Glance-P */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5DCC2E1124F34F04000AC40A /* Build configuration list for PBXNativeTarget "Glance-P" */;
@@ -2797,11 +3287,129 @@
 				5DE6388924AD769D002F6F6B /* Glance-D */,
 				5DCC2CBE24F34F04000AC40A /* Glance-P */,
 				5DCC2E1624F34F2A000AC40A /* Glance-R */,
+				5D99EC97251843840008B45F /* Glance-Q */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5D99EDDD251843840008B45F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */,
+				5D99EDDF251843840008B45F /* 11.jpg in Resources */,
+				5D99EDE0251843840008B45F /* 66.png in Resources */,
+				5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */,
+				5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */,
+				5D99EDE3251843840008B45F /* Roboto-Medium.ttf in Resources */,
+				5D99EDE4251843840008B45F /* PostProductInputKeywordReusableView.xib in Resources */,
+				5D99EDE5251843840008B45F /* VisualSearchProductReusableView.xib in Resources */,
+				5D99EDE6251843840008B45F /* UserPostCell.xib in Resources */,
+				5D99EDE7251843840008B45F /* PostsDetailBannerCell.xib in Resources */,
+				5D99EDE8251843840008B45F /* 9.jpg in Resources */,
+				5D99EDE9251843840008B45F /* ReactionsCell.xib in Resources */,
+				5D99EDEA251843840008B45F /* 1.jpg in Resources */,
+				5D99EDEB251843840008B45F /* ThemeCell.xib in Resources */,
+				5D99EDEC251843840008B45F /* SelectStoreCell.xib in Resources */,
+				5D99EDED251843840008B45F /* SearchResultNavigationBar.xib in Resources */,
+				5D99EDEE251843840008B45F /* StyleBoardImageCell.xib in Resources */,
+				5D99EDEF251843840008B45F /* PostRecommendCell.xib in Resources */,
+				5D99EDF0251843840008B45F /* InsightsLikeCell.xib in Resources */,
+				5D99EDF1251843840008B45F /* PostProductCaptionReusableView.xib in Resources */,
+				5D99EDF2251843840008B45F /* 4.jpg in Resources */,
+				5D99EDF3251843840008B45F /* SearchNavigationBar.xib in Resources */,
+				5D99EDF4251843840008B45F /* PostsDetailTagsReusableView.xib in Resources */,
+				5D99EDF5251843840008B45F /* Main.storyboard in Resources */,
+				5D99EDF6251843840008B45F /* Assets.xcassets in Resources */,
+				5D99EDF7251843840008B45F /* StyleBoardViewController.xib in Resources */,
+				5D99EDF8251843840008B45F /* Roboto-Black.ttf in Resources */,
+				5D99EDF9251843840008B45F /* AddProductBrandReusableView.xib in Resources */,
+				5D99EDFA251843840008B45F /* 3.jpg in Resources */,
+				5D99EDFB251843840008B45F /* NotificationCell.xib in Resources */,
+				5D99EDFC251843840008B45F /* SearchRecommendHotFilterView.xib in Resources */,
+				5D99EDFD251843840008B45F /* UserHorizontalCell.xib in Resources */,
+				5D99EDFE251843840008B45F /* PublishPopView.xib in Resources */,
+				5D99EDFF251843840008B45F /* PostsDetailPriceReusableView.xib in Resources */,
+				5D99EE00251843840008B45F /* EmptyDataView.xib in Resources */,
+				5D99EE01251843840008B45F /* 8.jpg in Resources */,
+				5D99EE02251843840008B45F /* VisualSearchProductCell.xib in Resources */,
+				5D99EE03251843840008B45F /* SearchRecommendHotFilterCell.xib in Resources */,
+				5D99EE04251843840008B45F /* SavedCollectionCell.xib in Resources */,
+				5D99EE05251843840008B45F /* PostProductTitleReusableView.xib in Resources */,
+				5D99EE06251843840008B45F /* Roboto-Regular.ttf in Resources */,
+				5D99EE07251843840008B45F /* AddProductWebsiteReusableView.xib in Resources */,
+				5D99EE08251843840008B45F /* 5.jpg in Resources */,
+				5D99EE09251843840008B45F /* SearchRecommendHotCell.xib in Resources */,
+				5D99EE0A251843840008B45F /* Roboto-Bold.ttf in Resources */,
+				5D99EE0B251843840008B45F /* InterestCell.xib in Resources */,
+				5D99EE0C251843840008B45F /* PostsDetailNavigationBar.xib in Resources */,
+				5D99EE0D251843840008B45F /* 10.jpg in Resources */,
+				5D99EE0E251843840008B45F /* Roboto-Light.ttf in Resources */,
+				5D99EE0F251843840008B45F /* ProductRecommendCell.xib in Resources */,
+				5D99EE10251843840008B45F /* StyleBoardSearchCell.xib in Resources */,
+				5D99EE11251843840008B45F /* LaunchScreen.storyboard in Resources */,
+				5D99EE12251843840008B45F /* SearchRecommendNavigationBar.xib in Resources */,
+				5D99EE13251843840008B45F /* VisualSearchBottomView.xib in Resources */,
+				5D99EE14251843840008B45F /* SearchThemeHeadView.xib in Resources */,
+				5D99EE15251843840008B45F /* PostsDetailBannerReusableView.xib in Resources */,
+				5D99EE16251843840008B45F /* AddProductCategaryReusableView.xib in Resources */,
+				5D99EE17251843840008B45F /* SettingViewController.xib in Resources */,
+				5D99EE18251843840008B45F /* OriginalPhotosViewController.xib in Resources */,
+				5D99EE19251843840008B45F /* VisualSearchResultCell.xib in Resources */,
+				5D99EE1A251843840008B45F /* ModifyProfileViewController.xib in Resources */,
+				5D99EE1B251843840008B45F /* DemoViewController.xib in Resources */,
+				5D99EE1C251843840008B45F /* UserRecommCell.xib in Resources */,
+				5D99EE1D251843840008B45F /* Icons.xcassets in Resources */,
+				5D99EE1E251843840008B45F /* SearchCell.xib in Resources */,
+				5D99EE1F251843840008B45F /* 0.jpg in Resources */,
+				5D99EE20251843840008B45F /* Localizable.strings in Resources */,
+				5D99EE21251843840008B45F /* ReactionPopView.xib in Resources */,
+				5D99EE22251843840008B45F /* SearchRecommendHistoryCell.xib in Resources */,
+				5D99EE23251843840008B45F /* InsightsDetailViewController.xib in Resources */,
+				5D99EE24251843840008B45F /* PostsDetailTitleReusableView.xib in Resources */,
+				5D99EE25251843840008B45F /* UserVerticalCell.xib in Resources */,
+				5D99EE26251843840008B45F /* PostCell.xib in Resources */,
+				5D99EE27251843840008B45F /* ShoppingCartCell.xib in Resources */,
+				5D99EE28251843840008B45F /* PostsDetailToolBarReusableView.xib in Resources */,
+				5D99EE29251843840008B45F /* HomeNavigationBar.xib in Resources */,
+				5D99EE2A251843840008B45F /* UserHeadView.xib in Resources */,
+				5D99EE2B251843840008B45F /* 13.jpg in Resources */,
+				5D99EE2C251843840008B45F /* InsightsCell.xib in Resources */,
+				5D99EE2D251843840008B45F /* AddProductTagCell.xib in Resources */,
+				5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */,
+				5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */,
+				5D99EE30251843840008B45F /* 15.jpg in Resources */,
+				5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */,
+				5D99EE32251843840008B45F /* ProductCell.xib in Resources */,
+				5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */,
+				5D99EE34251843840008B45F /* SignInViewController.xib in Resources */,
+				5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */,
+				5D99EE36251843840008B45F /* 14.jpg in Resources */,
+				5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */,
+				5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */,
+				5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */,
+				5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */,
+				5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */,
+				5D99EE3C251843840008B45F /* 2.jpg in Resources */,
+				5D99EE3D251843840008B45F /* 6.jpg in Resources */,
+				5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */,
+				5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */,
+				5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */,
+				5D99EE42251843840008B45F /* 7.jpg in Resources */,
+				5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */,
+				5D99EE44251843840008B45F /* 12.jpg in Resources */,
+				5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */,
+				5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */,
+				5D99EE47251843840008B45F /* PostsDetailSectionTitleReusableView.xib in Resources */,
+				5D99EE48251843840008B45F /* PostProductCell.xib in Resources */,
+				5D99EE49251843840008B45F /* AddProductTitleReusableView.xib in Resources */,
+				5D99EE4A251843840008B45F /* AddProductInputKeywordReusableView.xib in Resources */,
+				5D99EE4B251843840008B45F /* UserRelationCell.xib in Resources */,
+				5D99EE4C251843840008B45F /* PostsDetailBottomBar.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC2DB624F34F04000AC40A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2820,6 +3428,7 @@
 				5DCC2DC124F34F04000AC40A /* ReactionsCell.xib in Resources */,
 				5DCC2DC224F34F04000AC40A /* 1.jpg in Resources */,
 				5D7BB56A250B633900C8B902 /* ThemeCell.xib in Resources */,
+				5D3196F72514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
 				5DCC2DC324F34F04000AC40A /* StyleBoardImageCell.xib in Resources */,
 				5D7BB564250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -2859,7 +3468,7 @@
 				5DCC2DE024F34F04000AC40A /* LaunchScreen.storyboard in Resources */,
 				5D2D0E692508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
 				5DCC2DE124F34F04000AC40A /* VisualSearchBottomView.xib in Resources */,
-				5DCAC9642512088D00172C05 /* SearchThemeLabelView.xib in Resources */,
+				5DCAC9642512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DCC2DE224F34F04000AC40A /* PostsDetailBannerReusableView.xib in Resources */,
 				5DCC2DE324F34F04000AC40A /* AddProductCategaryReusableView.xib in Resources */,
 				5DCC2DE424F34F04000AC40A /* SettingViewController.xib in Resources */,
@@ -2901,8 +3510,8 @@
 				5D2D0E5D2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5DCC2E0124F34F04000AC40A /* 2.jpg in Resources */,
 				5DCC2E0224F34F04000AC40A /* 6.jpg in Resources */,
+				5D3196E72514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */,
-				5DCC2E0424F34F04000AC40A /* ComparePriceCell.xib in Resources */,
 				5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */,
 				5DCC2E0624F34F04000AC40A /* 7.jpg in Resources */,
 				5D2D0E9A2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
@@ -2936,6 +3545,7 @@
 				5DCC2F1924F34F2A000AC40A /* ReactionsCell.xib in Resources */,
 				5DCC2F1A24F34F2A000AC40A /* 1.jpg in Resources */,
 				5D7BB56B250B633900C8B902 /* ThemeCell.xib in Resources */,
+				5D3196F82514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
 				5DCC2F1B24F34F2A000AC40A /* StyleBoardImageCell.xib in Resources */,
 				5D7BB565250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -2975,7 +3585,7 @@
 				5DCC2F3824F34F2A000AC40A /* LaunchScreen.storyboard in Resources */,
 				5D2D0E6A2508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
 				5DCC2F3924F34F2A000AC40A /* VisualSearchBottomView.xib in Resources */,
-				5DCAC9652512088D00172C05 /* SearchThemeLabelView.xib in Resources */,
+				5DCAC9652512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DCC2F3A24F34F2A000AC40A /* PostsDetailBannerReusableView.xib in Resources */,
 				5DCC2F3B24F34F2A000AC40A /* AddProductCategaryReusableView.xib in Resources */,
 				5DCC2F3C24F34F2A000AC40A /* SettingViewController.xib in Resources */,
@@ -3017,8 +3627,8 @@
 				5D2D0E5E2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5DCC2F5924F34F2A000AC40A /* 2.jpg in Resources */,
 				5DCC2F5A24F34F2A000AC40A /* 6.jpg in Resources */,
+				5D3196E82514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */,
-				5DCC2F5C24F34F2A000AC40A /* ComparePriceCell.xib in Resources */,
 				5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */,
 				5DCC2F5E24F34F2A000AC40A /* 7.jpg in Resources */,
 				5D2D0E9B2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
@@ -3052,6 +3662,7 @@
 				5D06523F24BEE59A007CE461 /* ReactionsCell.xib in Resources */,
 				5D1D37A924C847CC00B2A1E2 /* 1.jpg in Resources */,
 				5D7BB569250B633900C8B902 /* ThemeCell.xib in Resources */,
+				5D3196F62514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F27250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
 				5DC3131524E3E89500CC3F89 /* StyleBoardImageCell.xib in Resources */,
 				5D7BB563250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -3091,7 +3702,7 @@
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
 				5D2D0E682508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
 				5D6B4DB924D40C8B0024924B /* VisualSearchBottomView.xib in Resources */,
-				5DCAC9632512088D00172C05 /* SearchThemeLabelView.xib in Resources */,
+				5DCAC9632512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DAB29C224C836A5003C3E00 /* PostsDetailBannerReusableView.xib in Resources */,
 				5DB6ABEE24D9593600AD4B43 /* AddProductCategaryReusableView.xib in Resources */,
 				5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */,
@@ -3133,8 +3744,8 @@
 				5D2D0E5C2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5D1D37A724C847CC00B2A1E2 /* 2.jpg in Resources */,
 				5D1D37A624C847CC00B2A1E2 /* 6.jpg in Resources */,
+				5D3196E62514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DB6ABEA24D9580E00AD4B43 /* AddProductNameReusableView.xib in Resources */,
-				5DDF02DF24C5331600E55D0F /* ComparePriceCell.xib in Resources */,
 				5DC3132524E4D31C00CC3F89 /* StyleBoardSearchViewController.xib in Resources */,
 				5D1D37A524C847CC00B2A1E2 /* 7.jpg in Resources */,
 				5D2D0E992509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
@@ -3153,6 +3764,48 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		0BB2BA63669B77B58703EE5A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-Q-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5D99EC99251843840008B45F /* R.Swift */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$TEMP_DIR/rswift-lastrun",
+			);
+			name = R.Swift;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				$SRCROOT/R.generated.swift,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n\n";
+		};
 		5DCC2CBF24F34F04000AC40A /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3291,6 +3944,23 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n\n";
 		};
+		E45F6A68AEAB08C164D69834 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		F27B27AC92E46EA4FE3BA0A0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3333,6 +4003,332 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5D99EC9A251843840008B45F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D99EC9B251843840008B45F /* VisualSearchResultCell.swift in Sources */,
+				5D99EC9C251843840008B45F /* HomeController.swift in Sources */,
+				5D99EC9D251843840008B45F /* HomeViewModel.swift in Sources */,
+				5D99EC9E251843840008B45F /* CollectionViewController.swift in Sources */,
+				5D99EC9F251843840008B45F /* SearchThemeViewModel.swift in Sources */,
+				5D99ECA0251843840008B45F /* StyleBoardSearchSection.swift in Sources */,
+				5D99ECA1251843840008B45F /* NotificationViewModel.swift in Sources */,
+				5D99ECA2251843840008B45F /* DefaultColltionCellViewModel.swift in Sources */,
+				5D99ECA3251843840008B45F /* SavedCollectionClassifyViewController.swift in Sources */,
+				5D99ECA4251843840008B45F /* ReactionsViewModel.swift in Sources */,
+				5D99ECA5251843840008B45F /* AddProductCategaryReusableView.swift in Sources */,
+				5D99ECA6251843840008B45F /* SettingViewController.swift in Sources */,
+				5D99ECA7251843840008B45F /* SearchRecommendNewViewController.swift in Sources */,
+				5D99ECA8251843840008B45F /* PublishPopView.swift in Sources */,
+				5D99ECA9251843840008B45F /* SearchResultNavigationBar.swift in Sources */,
+				5D99ECAA251843840008B45F /* SavedCollectionCell.swift in Sources */,
+				5D99ECAB251843840008B45F /* UIImageView-Extension.swift in Sources */,
+				5D99ECAC251843840008B45F /* PageViewManager.swift in Sources */,
+				5D99ECAD251843840008B45F /* OriginalPhotosViewController.swift in Sources */,
+				5D99ECAE251843840008B45F /* InsightsDetailViewController.swift in Sources */,
+				5D99ECAF251843840008B45F /* HomeTabBarViewModel.swift in Sources */,
+				5D99ECB0251843840008B45F /* DefaultTableViewCellViewModel.swift in Sources */,
+				5D99ECB1251843840008B45F /* Notification.swift in Sources */,
+				5D99ECB2251843840008B45F /* PostsDetailBannerReusableView.swift in Sources */,
+				5D99ECB3251843840008B45F /* SearchThemeViewController.swift in Sources */,
+				5D99ECB4251843840008B45F /* AddProductViewModel.swift in Sources */,
+				5D99ECB5251843840008B45F /* ModifyProfileViewController.swift in Sources */,
+				5D99ECB6251843840008B45F /* AuthManager.swift in Sources */,
+				5D99ECB7251843840008B45F /* VisualSearchProductViewController.swift in Sources */,
+				5D99ECB8251843840008B45F /* UIAlertController-Extensions.swift in Sources */,
+				5D99ECB9251843840008B45F /* AddProductTitleReusableView.swift in Sources */,
+				5D99ECBA251843840008B45F /* BarButtonItem.swift in Sources */,
+				5D99ECBB251843840008B45F /* PostProductInputKeywordReusableView.swift in Sources */,
+				5D99ECBC251843840008B45F /* DefaultColltionCellType.swift in Sources */,
+				5D99ECBD251843840008B45F /* SearchRecommendHotFilterView.swift in Sources */,
+				5D99ECBE251843840008B45F /* SavedCollection.swift in Sources */,
+				5D99ECBF251843840008B45F /* VisualSearchProductHeadView.swift in Sources */,
+				5D99ECC0251843840008B45F /* SearchThemeContentViewModel.swift in Sources */,
+				5D99ECC1251843840008B45F /* DefaultTableViewCell.swift in Sources */,
+				5D99ECC2251843840008B45F /* PostsDetailTitleReusableView.swift in Sources */,
+				5D99ECC3251843840008B45F /* UIView-Borders.swift in Sources */,
+				5D99ECC4251843840008B45F /* ErrorResponse.swift in Sources */,
+				5D99ECC5251843840008B45F /* AddProductTagCell.swift in Sources */,
+				5D99ECC6251843840008B45F /* InterestNavigationBar.swift in Sources */,
+				5D99ECC7251843840008B45F /* PostsDetailTagsReusableView.swift in Sources */,
+				5D99ECC8251843840008B45F /* SearchThemeLabelViewController.swift in Sources */,
+				5D99ECC9251843840008B45F /* RestApi.swift in Sources */,
+				5D99ECCA251843840008B45F /* UserRecommViewModel.swift in Sources */,
+				5D99ECCB251843840008B45F /* PostProductTagCell.swift in Sources */,
+				5D99ECCC251843840008B45F /* UserPostViewController.swift in Sources */,
+				5D99ECCD251843840008B45F /* SearchRecommendNewViewModel.swift in Sources */,
+				5D99ECCE251843840008B45F /* ActivityIndicator.swift in Sources */,
+				5D99ECCF251843840008B45F /* NavigationBar.swift in Sources */,
+				5D99ECD0251843840008B45F /* VisualSearchGridLayar.swift in Sources */,
+				5D99ECD1251843840008B45F /* UIScreen-Extension.swift in Sources */,
+				5D99ECD2251843840008B45F /* PostsDetailSection.swift in Sources */,
+				5D99ECD3251843840008B45F /* InterestViewModel.swift in Sources */,
+				5D99ECD4251843840008B45F /* SearchRecommendHotViewModel.swift in Sources */,
+				5D99ECD5251843840008B45F /* SplitViewController.swift in Sources */,
+				5D99ECD6251843840008B45F /* ShoppingCartViewModel.swift in Sources */,
+				5D99ECD7251843840008B45F /* AddProductBrandReusableView.swift in Sources */,
+				5D99ECD8251843840008B45F /* PostsDetailCellViewModel.swift in Sources */,
+				5D99ECD9251843840008B45F /* OriginalPhotosViewModel.swift in Sources */,
+				5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */,
+				5D99ECDB251843840008B45F /* UserRelationCellViewModel.swift in Sources */,
+				5D99ECDC251843840008B45F /* Categories.swift in Sources */,
+				5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */,
+				5D99ECDE251843840008B45F /* Home.swift in Sources */,
+				5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */,
+				5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */,
+				5D99ECE1251843840008B45F /* Insight.swift in Sources */,
+				5D99ECE2251843840008B45F /* PostProductTitleReusableView.swift in Sources */,
+				5D99ECE3251843840008B45F /* ExceptionError.swift in Sources */,
+				5D99ECE4251843840008B45F /* HomeTabBarController.swift in Sources */,
+				5D99ECE5251843840008B45F /* Networking.swift in Sources */,
+				5D99ECE6251843840008B45F /* Token.swift in Sources */,
+				5D99ECE8251843840008B45F /* SearchRecommendHotViewController.swift in Sources */,
+				5D99ECE9251843840008B45F /* TableViewController.swift in Sources */,
+				5D99ECEA251843840008B45F /* UserRecommCellViewModel.swift in Sources */,
+				5D99ECEB251843840008B45F /* SearchResultViewModel.swift in Sources */,
+				5D99ECEC251843840008B45F /* LogManager.swift in Sources */,
+				5D99ECED251843840008B45F /* UIView-Rx.swift in Sources */,
+				5D99ECEE251843840008B45F /* UploadImage.swift in Sources */,
+				5D99ECEF251843840008B45F /* SearchResultContentViewModel.swift in Sources */,
+				5D99ECF0251843840008B45F /* ReactionsViewController.swift in Sources */,
+				5D99ECF1251843840008B45F /* SearchRecommendHistoryView.swift in Sources */,
+				5D99ECF2251843840008B45F /* InsightsCellViewModel.swift in Sources */,
+				5D99ECF3251843840008B45F /* SearchRecommendHistoryCell.swift in Sources */,
+				5D99ECF4251843840008B45F /* SearchHistoryItem.swift in Sources */,
+				5D99ECF5251843840008B45F /* InsightsDetailViewModel.swift in Sources */,
+				5D99ECF6251843840008B45F /* EmptyDataView.swift in Sources */,
+				5D99ECF7251843840008B45F /* VisualSearchResultSection.swift in Sources */,
+				5D99ECF8251843840008B45F /* KafkaRefresh-Rx.swift in Sources */,
+				5D99ECF9251843840008B45F /* CALayer-Extension.swift in Sources */,
+				5D99ECFA251843840008B45F /* TextField.swift in Sources */,
+				5D99ECFB251843840008B45F /* InterestCell.swift in Sources */,
+				5D99ECFD251843840008B45F /* UserPostCellViewModel.swift in Sources */,
+				5D99ECFE251843840008B45F /* Label.swift in Sources */,
+				5D99ECFF251843840008B45F /* InterestReusableView.swift in Sources */,
+				5D99ED00251843840008B45F /* AddProductTagCellViewModel.swift in Sources */,
+				5D99ED01251843840008B45F /* GlanceAPI.swift in Sources */,
+				5D99ED02251843840008B45F /* PostsDetailViewController.swift in Sources */,
+				5D99ED03251843840008B45F /* VisualSearchClippingCircle.swift in Sources */,
+				5D99ED04251843840008B45F /* Demo2ViewController.swift in Sources */,
+				5D99ED05251843840008B45F /* SearchResultModuleItem.swift in Sources */,
+				5D99ED06251843840008B45F /* Gender.swift in Sources */,
+				5D99ED07251843840008B45F /* SearchRecommendModuleItem.swift in Sources */,
+				5D99ED08251843840008B45F /* UIColor-Extension.swift in Sources */,
+				5D99ED09251843840008B45F /* VisualSearchViewController.swift in Sources */,
+				5D99ED0A251843840008B45F /* ReactionsCellViewModel.swift in Sources */,
+				5D99ED0B251843840008B45F /* UserViewController.swift in Sources */,
+				5D99ED0C251843840008B45F /* InsightsViewModel.swift in Sources */,
+				5D99ED0D251843840008B45F /* VisualSearchResultCellViewModel.swift in Sources */,
+				5D99ED0E251843840008B45F /* SearchThemeContentSection.swift in Sources */,
+				5D99ED0F251843840008B45F /* VisualSearchProductSection.swift in Sources */,
+				5D99ED10251843840008B45F /* User.swift in Sources */,
+				5D99ED11251843840008B45F /* Api.swift in Sources */,
+				5D99ED12251843840008B45F /* UIKit-Extension.swift in Sources */,
+				5D99ED13251843840008B45F /* SearchRecommendHotFilterCell.swift in Sources */,
+				5D99ED14251843840008B45F /* AddProductViewController.swift in Sources */,
+				5D99ED15251843840008B45F /* InterestViewController.swift in Sources */,
+				5D99ED16251843840008B45F /* ViewModelType.swift in Sources */,
+				5D47C7FB2519ABF900B883EA /* SelectStore.swift in Sources */,
+				5D99ED17251843840008B45F /* TableViewCell.swift in Sources */,
+				5D99ED18251843840008B45F /* SearchViewModel.swift in Sources */,
+				5D99ED19251843840008B45F /* SearchResultViewController.swift in Sources */,
+				5D99ED1A251843840008B45F /* Observable-Operators.swift in Sources */,
+				5D99ED1B251843840008B45F /* Reusable-Extension.swift in Sources */,
+				5D99ED1C251843840008B45F /* AddProductInputKeywordReusableView.swift in Sources */,
+				5D99ED1D251843840008B45F /* OAuthManager.swift in Sources */,
+				5D99ED1E251843840008B45F /* SearchRecommendHistorySection.swift in Sources */,
+				5D99ED1F251843840008B45F /* PostCell.swift in Sources */,
+				5D99ED20251843840008B45F /* UserRelationCell.swift in Sources */,
+				5D99ED21251843840008B45F /* SearchThemeLabelModuleItem.swift in Sources */,
+				5D99ED22251843840008B45F /* ImageView.swift in Sources */,
+				5D99ED23251843840008B45F /* ShoppingCart.swift in Sources */,
+				5D99ED24251843840008B45F /* SearchThemeClassify.swift in Sources */,
+				5D99ED25251843840008B45F /* SearchRecommendYouMayLikeViewModel.swift in Sources */,
+				5D99ED26251843840008B45F /* VisualSearchProductViewModel.swift in Sources */,
+				5D99ED27251843840008B45F /* SearchFacets.swift in Sources */,
+				5D99ED28251843840008B45F /* PickerViewViewController.swift in Sources */,
+				5D99ED29251843840008B45F /* DateTransform.swift in Sources */,
+				5D99ED2A251843840008B45F /* CollectionView.swift in Sources */,
+				5D99ED2B251843840008B45F /* ProductRecommendCell.swift in Sources */,
+				5D99ED2C251843840008B45F /* SearchTheme.swift in Sources */,
+				5D99ED2D251843840008B45F /* SearchThemeModuleItem.swift in Sources */,
+				5D99ED2E251843840008B45F /* PostProductSection.swift in Sources */,
+				5D99ED2F251843840008B45F /* NotificationProfileViewController.swift in Sources */,
+				5D99ED30251843840008B45F /* UserRelationViewModel.swift in Sources */,
+				5D99ED31251843840008B45F /* Application.swift in Sources */,
+				5D99ED32251843840008B45F /* ScrollView.swift in Sources */,
+				5D99ED33251843840008B45F /* UserRelation.swift in Sources */,
+				5D99ED34251843840008B45F /* SearchThemeLabelCell.swift in Sources */,
+				5D99ED35251843840008B45F /* Interest.swift in Sources */,
+				5D99ED36251843840008B45F /* UserViewModel.swift in Sources */,
+				5D99ED37251843840008B45F /* DemoViewModel.swift in Sources */,
+				5D99ED38251843840008B45F /* PostRecommendCell.swift in Sources */,
+				5D99ED39251843840008B45F /* SearchThemeLabelContentViewModel.swift in Sources */,
+				5D99ED3A251843840008B45F /* InterestCellViewModel.swift in Sources */,
+				5D99ED3B251843840008B45F /* PostsDetailSectionTitleReusableView.swift in Sources */,
+				5D99ED3C251843840008B45F /* VisualSearch.swift in Sources */,
+				5D99ED3D251843840008B45F /* Configs.swift in Sources */,
+				5D99ED3E251843840008B45F /* Switch.swift in Sources */,
+				5D99ED3F251843840008B45F /* CustomRAMBounceAnimation.swift in Sources */,
+				5D99ED40251843840008B45F /* SearchRecommendHotCellViewModel.swift in Sources */,
+				5D99ED41251843840008B45F /* SearchRecommendHotCell.swift in Sources */,
+				5D99ED42251843840008B45F /* SearchRecommendYouMayLikeSection.swift in Sources */,
+				5D99ED43251843840008B45F /* NotificationProfileViewModel.swift in Sources */,
+				5D99ED44251843840008B45F /* SlideImageView.swift in Sources */,
+				5D99ED45251843840008B45F /* TableView.swift in Sources */,
+				5D99ED46251843840008B45F /* Message.swift in Sources */,
+				5D99ED47251843840008B45F /* StyleBoardImageCellViewModel.swift in Sources */,
+				5D99ED48251843840008B45F /* SearchRecommendHotFilterCellViewModel.swift in Sources */,
+				5D99ED49251843840008B45F /* SelectStoreViewModel.swift in Sources */,
+				5D99ED4A251843840008B45F /* SearchRecommendViewController.swift in Sources */,
+				5D99ED4B251843840008B45F /* Button.swift in Sources */,
+				5D99ED4C251843840008B45F /* SettingViewModel.swift in Sources */,
+				5D99ED4D251843840008B45F /* UserPostViewModel.swift in Sources */,
+				5D99ED4E251843840008B45F /* Kingfisher-Rx.swift in Sources */,
+				5D99ED4F251843840008B45F /* AddProductImageCell.swift in Sources */,
+				5D99ED50251843840008B45F /* Navigator.swift in Sources */,
+				5D99ED51251843840008B45F /* NumberButton.swift in Sources */,
+				5D99ED52251843840008B45F /* Random-Extension.swift in Sources */,
+				5D99ED53251843840008B45F /* PostProductViewController.swift in Sources */,
+				5D99ED54251843840008B45F /* StyleBoardSearchViewController.swift in Sources */,
+				5D99ED55251843840008B45F /* StyleBoardSearchCellViewModel.swift in Sources */,
+				5D99ED56251843840008B45F /* VisualSearchResultViewModel.swift in Sources */,
+				5D99ED57251843840008B45F /* AddProductSection.swift in Sources */,
+				5D99ED58251843840008B45F /* DefaultColltionSectionItem.swift in Sources */,
+				5D99ED59251843840008B45F /* InsightsChildViewModel.swift in Sources */,
+				5D99ED5A251843840008B45F /* VisualSearchBottomView.swift in Sources */,
+				5D99ED5B251843840008B45F /* ModifyProfileViewModel.swift in Sources */,
+				5D99ED5C251843840008B45F /* Observable-Logging.swift in Sources */,
+				5D99ED5D251843840008B45F /* Reachability.swift in Sources */,
+				5D99ED5E251843840008B45F /* SearchRecommendHotCollectionCell.swift in Sources */,
+				5D99ED5F251843840008B45F /* Toolbar.swift in Sources */,
+				5D99ED60251843840008B45F /* AddProductImageCellViewModel.swift in Sources */,
+				5D99ED61251843840008B45F /* PostsDetailNavigationBar.swift in Sources */,
+				5D99ED62251843840008B45F /* StyleBoardImageCell.swift in Sources */,
+				5D99ED63251843840008B45F /* SavedCollectionViewModel.swift in Sources */,
+				5D99ED64251843840008B45F /* InsightsChildViewController.swift in Sources */,
+				5D99ED65251843840008B45F /* InsightsRelation.swift in Sources */,
+				5D99ED66251843840008B45F /* SearchThemeLabelContentSection.swift in Sources */,
+				5D99ED67251843840008B45F /* NavigationController.swift in Sources */,
+				5D99ED68251843840008B45F /* PostsDetailPriceReusableView.swift in Sources */,
+				5D99ED69251843840008B45F /* UserRecommViewController.swift in Sources */,
+				5D99ED6A251843840008B45F /* UserRelationViewController.swift in Sources */,
+				5D99ED6B251843840008B45F /* PopMenu.swift in Sources */,
+				5D99ED6C251843840008B45F /* InsightsRelationViewModel.swift in Sources */,
+				5D99EE5C251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */,
+				5D99ED6D251843840008B45F /* DefaultColltionCell.swift in Sources */,
+				5D99ED6E251843840008B45F /* SearchThemeLabelViewModel.swift in Sources */,
+				5D99ED6F251843840008B45F /* BoxTransform.swift in Sources */,
+				5D99ED70251843840008B45F /* ShoppingCartCell.swift in Sources */,
+				5D99ED71251843840008B45F /* SelectStoreCell.swift in Sources */,
+				5D99ED72251843840008B45F /* InsightsLikeCellViewModel.swift in Sources */,
+				5D99ED73251843840008B45F /* VisualSearchProductReusableView.swift in Sources */,
+				5D99ED74251843840008B45F /* ThemeManager.swift in Sources */,
+				5D99ED75251843840008B45F /* SearchResultContentViewController.swift in Sources */,
+				5D99ED76251843840008B45F /* SearchThemeDetail.swift in Sources */,
+				5D99ED77251843840008B45F /* VisualSearchCropView.swift in Sources */,
+				5D99ED79251843840008B45F /* ViewController.swift in Sources */,
+				5D99ED7A251843840008B45F /* StyleBoardSearchViewModel.swift in Sources */,
+				5D99ED7B251843840008B45F /* UserHorizontalCell.swift in Sources */,
+				5D99ED7C251843840008B45F /* VisualSearchViewModel.swift in Sources */,
+				5D99ED7D251843840008B45F /* PrivacyViewModel.swift in Sources */,
+				5D99ED7E251843840008B45F /* HomeNavigationBar.swift in Sources */,
+				5D99ED7F251843840008B45F /* ProductCell.swift in Sources */,
+				5D99ED80251843840008B45F /* StyleBoardViewController.swift in Sources */,
+				5D99ED81251843840008B45F /* SearchThemeLabelCellViewModel.swift in Sources */,
+				5D99ED82251843840008B45F /* UserVerticalCell.swift in Sources */,
+				5D99ED83251843840008B45F /* LibsManager.swift in Sources */,
+				5D99ED84251843840008B45F /* StyleBoardSearchCell.swift in Sources */,
+				5D99ED85251843840008B45F /* PostProductCell.swift in Sources */,
+				5D99ED86251843840008B45F /* PostsDetailToolBarReusableView.swift in Sources */,
+				5D99ED87251843840008B45F /* SearchNavigationBar.swift in Sources */,
+				5D99ED88251843840008B45F /* AddProductNameReusableView.swift in Sources */,
+				5D99ED89251843840008B45F /* SearchThemeHeadView.swift in Sources */,
+				5D99ED8A251843840008B45F /* UIView-Extension.swift in Sources */,
+				5D99ED8B251843840008B45F /* SearchResultContentViewSection.swift in Sources */,
+				5D99ED8C251843840008B45F /* Box.swift in Sources */,
+				5D99EE57251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */,
+				5D99ED8D251843840008B45F /* SearchThemeLabelContentViewController.swift in Sources */,
+				5D99ED8E251843840008B45F /* AppDelegate.swift in Sources */,
+				5D99ED8F251843840008B45F /* SelectStoreViewController.swift in Sources */,
+				5D99ED90251843840008B45F /* Base.swift in Sources */,
+				5D99ED91251843840008B45F /* ReactionsCell.swift in Sources */,
+				5D99ED92251843840008B45F /* InsightsRelationViewController.swift in Sources */,
+				5D99ED93251843840008B45F /* Localizable-Extension.swift in Sources */,
+				5D99ED94251843840008B45F /* UserPostCell.swift in Sources */,
+				5D99ED95251843840008B45F /* ProductSearchType.swift in Sources */,
+				5D99ED96251843840008B45F /* SavedCollectionClassifyViewModel.swift in Sources */,
+				5D99ED97251843840008B45F /* SelfAware.swift in Sources */,
+				5D99ED98251843840008B45F /* SearchCell.swift in Sources */,
+				5D99ED99251843840008B45F /* View.swift in Sources */,
+				5D99ED9A251843840008B45F /* DemoViewController.swift in Sources */,
+				5D99ED9B251843840008B45F /* StyleBoardViewModel.swift in Sources */,
+				5D99ED9C251843840008B45F /* ImagePickerManager.swift in Sources */,
+				5D99ED9D251843840008B45F /* ReactionAnalysis.swift in Sources */,
+				5D99ED9E251843840008B45F /* PostsDetailBannerCell.swift in Sources */,
+				5D99ED9F251843840008B45F /* Reaction.swift in Sources */,
+				5D99EDA0251843840008B45F /* UserRecommCell.swift in Sources */,
+				5D99EDA1251843840008B45F /* SearchCellViewModel.swift in Sources */,
+				5D99EDA2251843840008B45F /* InsightsLikeCell.swift in Sources */,
+				5D99EDA3251843840008B45F /* AppearanceManager.swift in Sources */,
+				5D99EDA4251843840008B45F /* HomeSection.swift in Sources */,
+				5D99EDA5251843840008B45F /* AddProductButtonReusableView.swift in Sources */,
+				5D99EDA6251843840008B45F /* SearchBar.swift in Sources */,
+				5D99EDA7251843840008B45F /* NotificationViewController.swift in Sources */,
+				5D99EDA8251843840008B45F /* VisualSearchProductCell.swift in Sources */,
+				5D99EDA9251843840008B45F /* SignInViewController.swift in Sources */,
+				5D99EDAA251843840008B45F /* SearchRecommendHotCategory.swift in Sources */,
+				5D99EDAB251843840008B45F /* ThemeCell.swift in Sources */,
+				5D99EDAC251843840008B45F /* SearchRecommendNavigationBar.swift in Sources */,
+				5D99EDAD251843840008B45F /* AddProductSectionCellViewModel.swift in Sources */,
+				5D99EDAE251843840008B45F /* ShoppingCartCellViewModel.swift in Sources */,
+				5D99EDAF251843840008B45F /* SearchThemeLabelHeadView.swift in Sources */,
+				5D99EDB0251843840008B45F /* SearchRecommendYouMayLikeViewController.swift in Sources */,
+				5D99EDB1251843840008B45F /* InsightsCell.swift in Sources */,
+				5D99EDB2251843840008B45F /* R.generated.swift in Sources */,
+				5D99EDB3251843840008B45F /* PickerView.swift in Sources */,
+				5D99EDB4251843840008B45F /* Version.swift in Sources */,
+				5D99EDB5251843840008B45F /* Foundation-Extension.swift in Sources */,
+				5D99EDB6251843840008B45F /* SearchRecommendNewSection.swift in Sources */,
+				5D99EDB7251843840008B45F /* CollectionReusableView.swift in Sources */,
+				5D99EDB8251843840008B45F /* UIImage-Extension.swift in Sources */,
+				5D99EDB9251843840008B45F /* PostProductTagCellViewModel.swift in Sources */,
+				5D99EDBA251843840008B45F /* PostProductSectionCellViewModel.swift in Sources */,
+				5D99EDBB251843840008B45F /* PostProductCaptionReusableView.swift in Sources */,
+				5D99EDBC251843840008B45F /* ShoppingCartViewController.swift in Sources */,
+				5D99EDBD251843840008B45F /* SignInViewModel.swift in Sources */,
+				5D99EDBE251843840008B45F /* ReactionPopView.swift in Sources */,
+				5D99EDBF251843840008B45F /* SearchThemeContentViewController.swift in Sources */,
+				5D99EDC0251843840008B45F /* SearchHistoryCellViewModel.swift in Sources */,
+				5D99EDC1251843840008B45F /* PostProductViewModel.swift in Sources */,
+				5D99EDC2251843840008B45F /* PostsDetailViewModel.swift in Sources */,
+				5D99EDC3251843840008B45F /* CountDownButton.swift in Sources */,
+				5D99EDC4251843840008B45F /* SavedCollectionCellViewModel.swift in Sources */,
+				5D99EDC5251843840008B45F /* CollectionViewCell.swift in Sources */,
+				5D99EDC6251843840008B45F /* InsightsDetail.swift in Sources */,
+				5D99EDC7251843840008B45F /* VisualSearchResultViewController.swift in Sources */,
+				5D99EDC8251843840008B45F /* GetVerifiationCodeButton.swift in Sources */,
+				5D99EDC9251843840008B45F /* PrivacyViewController.swift in Sources */,
+				5D99EDCA251843840008B45F /* SavedCollectionViewController.swift in Sources */,
+				5D99EDCB251843840008B45F /* NotificationCellViewModel.swift in Sources */,
+				5D99EDCC251843840008B45F /* ErrorTracker.swift in Sources */,
+				5D99EDCE251843840008B45F /* StyleBoardEditView.swift in Sources */,
+				5D99EDCF251843840008B45F /* SearchRecommendViewModel.swift in Sources */,
+				5D99EDD0251843840008B45F /* PostsDetail.swift in Sources */,
+				5D99EDD1251843840008B45F /* SearchViewController.swift in Sources */,
+				5D99EDD2251843840008B45F /* UIFont-Extension.swift in Sources */,
+				5D99EDD3251843840008B45F /* StackView.swift in Sources */,
+				5D99EDD4251843840008B45F /* AddProductWebsiteReusableView.swift in Sources */,
+				5D99EDD5251843840008B45F /* NotificationCell.swift in Sources */,
+				5D99EDD6251843840008B45F /* WebViewController.swift in Sources */,
+				5D99EDD7251843840008B45F /* UserHeadView.swift in Sources */,
+				5D99EDD8251843840008B45F /* PostsDetailBottomBar.swift in Sources */,
+				5D99EDD9251843840008B45F /* InsightsViewController.swift in Sources */,
+				5D99EDDA251843840008B45F /* StyleBoardSection.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5DCC2CC124F34F04000AC40A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3413,7 +4409,6 @@
 				5DCC2D0024F34F04000AC40A /* HomeTabBarController.swift in Sources */,
 				5DCC2D0124F34F04000AC40A /* Networking.swift in Sources */,
 				5DCC2D0224F34F04000AC40A /* Token.swift in Sources */,
-				5DCC2D0324F34F04000AC40A /* ComparePriceCell.swift in Sources */,
 				5D2D0E4E2508701200E9FD8D /* SearchRecommendHotViewController.swift in Sources */,
 				5DCC2D0424F34F04000AC40A /* TableViewController.swift in Sources */,
 				5DCC2D0524F34F04000AC40A /* UserRecommCellViewModel.swift in Sources */,
@@ -3434,7 +4429,6 @@
 				5DCC2D0F24F34F04000AC40A /* CALayer-Extension.swift in Sources */,
 				5DCC2D1024F34F04000AC40A /* TextField.swift in Sources */,
 				5DCC2D1124F34F04000AC40A /* InterestCell.swift in Sources */,
-				5DCC2D1224F34F04000AC40A /* ComparePriceViewModel.swift in Sources */,
 				5DCC2D1324F34F04000AC40A /* UserPostCellViewModel.swift in Sources */,
 				5DCC2D1424F34F04000AC40A /* Label.swift in Sources */,
 				5DCC2D1524F34F04000AC40A /* InterestReusableView.swift in Sources */,
@@ -3461,6 +4455,7 @@
 				5DCC2D2624F34F04000AC40A /* AddProductViewController.swift in Sources */,
 				5DCC2D2724F34F04000AC40A /* InterestViewController.swift in Sources */,
 				5DCC2D2824F34F04000AC40A /* ViewModelType.swift in Sources */,
+				5D47C7F92519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DCC2D2A24F34F04000AC40A /* TableViewCell.swift in Sources */,
 				5DFE1325250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
 				5DFF3F0C250F04B60052ED40 /* SearchResultViewController.swift in Sources */,
@@ -3511,6 +4506,7 @@
 				5DCC2D4924F34F04000AC40A /* Message.swift in Sources */,
 				5DCC2D4A24F34F04000AC40A /* StyleBoardImageCellViewModel.swift in Sources */,
 				5D2D0E862509CE7B00E9FD8D /* SearchRecommendHotFilterCellViewModel.swift in Sources */,
+				5D3196FB2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */,
 				5D2D0E4B2508701200E9FD8D /* SearchRecommendViewController.swift in Sources */,
 				5DCC2D4B24F34F04000AC40A /* Button.swift in Sources */,
 				5DCC2D4C24F34F04000AC40A /* SettingViewModel.swift in Sources */,
@@ -3546,17 +4542,18 @@
 				5DCC2D6524F34F04000AC40A /* UserRelationViewController.swift in Sources */,
 				5D20EC8024F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7624F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
+				5D99EE5A251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */,
 				5D7BB546250B633900C8B902 /* DefaultColltionCell.swift in Sources */,
 				5DA483CC251316C200A80194 /* SearchThemeLabelViewModel.swift in Sources */,
 				5DCC2D6624F34F04000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2D6724F34F04000AC40A /* ShoppingCartCell.swift in Sources */,
+				5D3196F42514569300C4D6BE /* SelectStoreCell.swift in Sources */,
 				5DCC2F8E24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
 				5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2D6824F34F04000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F14250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9742512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5DCC2D6924F34F04000AC40A /* VisualSearchCropView.swift in Sources */,
-				5DCC2D6A24F34F04000AC40A /* ComparePriceViewController.swift in Sources */,
 				5DCC2D6B24F34F04000AC40A /* ViewController.swift in Sources */,
 				5DCC2D6C24F34F04000AC40A /* StyleBoardSearchViewModel.swift in Sources */,
 				5DDC05CD25105AED005D5299 /* UserHorizontalCell.swift in Sources */,
@@ -3573,12 +4570,14 @@
 				5DCC2D7424F34F04000AC40A /* PostsDetailToolBarReusableView.swift in Sources */,
 				5DFE1311250CAECB00ABCE5E /* SearchNavigationBar.swift in Sources */,
 				5DCC2D7524F34F04000AC40A /* AddProductNameReusableView.swift in Sources */,
-				5DCAC9602512088600172C05 /* SearchThemeLabelView.swift in Sources */,
+				5DCAC9602512088600172C05 /* SearchThemeHeadView.swift in Sources */,
 				5DCC2D7624F34F04000AC40A /* UIView-Extension.swift in Sources */,
 				5DFF3F1C250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5DCC2D7724F34F04000AC40A /* Box.swift in Sources */,
+				5D99EE55251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */,
 				5DA483D5251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DCC2D7924F34F04000AC40A /* AppDelegate.swift in Sources */,
+				5D3196EC251455E100C4D6BE /* SelectStoreViewController.swift in Sources */,
 				5DCC2D7A24F34F04000AC40A /* Base.swift in Sources */,
 				5DCC2D7B24F34F04000AC40A /* ReactionsCell.swift in Sources */,
 				5DCC2F7224F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
@@ -3610,6 +4609,7 @@
 				5D2D0E722508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DCC2D8F24F34F04000AC40A /* AddProductSectionCellViewModel.swift in Sources */,
 				5DCC2D9024F34F04000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
+				5D3196E32514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E452508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
 				5DCC2D9124F34F04000AC40A /* InsightsCell.swift in Sources */,
 				5DCC2D9224F34F04000AC40A /* R.generated.swift in Sources */,
@@ -3639,7 +4639,6 @@
 				5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */,
 				5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */,
 				5DCC2DA724F34F04000AC40A /* ErrorTracker.swift in Sources */,
-				5DCC2DA824F34F04000AC40A /* ComparePriceCellViewModel.swift in Sources */,
 				5DCC2DA924F34F04000AC40A /* StyleBoardEditView.swift in Sources */,
 				5D2D0E482508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
 				5DCC2DAA24F34F04000AC40A /* PostsDetail.swift in Sources */,
@@ -3736,7 +4735,6 @@
 				5DCC2E5824F34F2A000AC40A /* HomeTabBarController.swift in Sources */,
 				5DCC2E5924F34F2A000AC40A /* Networking.swift in Sources */,
 				5DCC2E5A24F34F2A000AC40A /* Token.swift in Sources */,
-				5DCC2E5B24F34F2A000AC40A /* ComparePriceCell.swift in Sources */,
 				5D2D0E4F2508701200E9FD8D /* SearchRecommendHotViewController.swift in Sources */,
 				5DCC2E5C24F34F2A000AC40A /* TableViewController.swift in Sources */,
 				5DCC2E5D24F34F2A000AC40A /* UserRecommCellViewModel.swift in Sources */,
@@ -3757,7 +4755,6 @@
 				5DCC2E6724F34F2A000AC40A /* CALayer-Extension.swift in Sources */,
 				5DCC2E6824F34F2A000AC40A /* TextField.swift in Sources */,
 				5DCC2E6924F34F2A000AC40A /* InterestCell.swift in Sources */,
-				5DCC2E6A24F34F2A000AC40A /* ComparePriceViewModel.swift in Sources */,
 				5DCC2E6B24F34F2A000AC40A /* UserPostCellViewModel.swift in Sources */,
 				5DCC2E6C24F34F2A000AC40A /* Label.swift in Sources */,
 				5DCC2E6D24F34F2A000AC40A /* InterestReusableView.swift in Sources */,
@@ -3784,6 +4781,7 @@
 				5DCC2E7E24F34F2A000AC40A /* AddProductViewController.swift in Sources */,
 				5DCC2E7F24F34F2A000AC40A /* InterestViewController.swift in Sources */,
 				5DCC2E8024F34F2A000AC40A /* ViewModelType.swift in Sources */,
+				5D47C7FA2519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DCC2E8224F34F2A000AC40A /* TableViewCell.swift in Sources */,
 				5DFE1326250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
 				5DFF3F0D250F04B60052ED40 /* SearchResultViewController.swift in Sources */,
@@ -3834,6 +4832,7 @@
 				5DCC2EA124F34F2A000AC40A /* Message.swift in Sources */,
 				5DCC2EA224F34F2A000AC40A /* StyleBoardImageCellViewModel.swift in Sources */,
 				5D2D0E872509CE7B00E9FD8D /* SearchRecommendHotFilterCellViewModel.swift in Sources */,
+				5D3196FC2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */,
 				5D2D0E4C2508701200E9FD8D /* SearchRecommendViewController.swift in Sources */,
 				5DCC2EA324F34F2A000AC40A /* Button.swift in Sources */,
 				5DCC2EA424F34F2A000AC40A /* SettingViewModel.swift in Sources */,
@@ -3869,17 +4868,18 @@
 				5DCC2EBD24F34F2A000AC40A /* UserRelationViewController.swift in Sources */,
 				5D20EC8124F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7724F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
+				5D99EE5B251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */,
 				5D7BB547250B633900C8B902 /* DefaultColltionCell.swift in Sources */,
 				5DA483CD251316C200A80194 /* SearchThemeLabelViewModel.swift in Sources */,
 				5DCC2EBE24F34F2A000AC40A /* BoxTransform.swift in Sources */,
 				5DCC2EBF24F34F2A000AC40A /* ShoppingCartCell.swift in Sources */,
+				5D3196F52514569300C4D6BE /* SelectStoreCell.swift in Sources */,
 				5DCC2F8F24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
 				5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2EC024F34F2A000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F15250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9752512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5DCC2EC124F34F2A000AC40A /* VisualSearchCropView.swift in Sources */,
-				5DCC2EC224F34F2A000AC40A /* ComparePriceViewController.swift in Sources */,
 				5DCC2EC324F34F2A000AC40A /* ViewController.swift in Sources */,
 				5DCC2EC424F34F2A000AC40A /* StyleBoardSearchViewModel.swift in Sources */,
 				5DDC05CE25105AED005D5299 /* UserHorizontalCell.swift in Sources */,
@@ -3896,12 +4896,14 @@
 				5DCC2ECC24F34F2A000AC40A /* PostsDetailToolBarReusableView.swift in Sources */,
 				5DFE1312250CAECB00ABCE5E /* SearchNavigationBar.swift in Sources */,
 				5DCC2ECD24F34F2A000AC40A /* AddProductNameReusableView.swift in Sources */,
-				5DCAC9612512088600172C05 /* SearchThemeLabelView.swift in Sources */,
+				5DCAC9612512088600172C05 /* SearchThemeHeadView.swift in Sources */,
 				5DCC2ECE24F34F2A000AC40A /* UIView-Extension.swift in Sources */,
 				5DFF3F1D250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5DCC2ECF24F34F2A000AC40A /* Box.swift in Sources */,
+				5D99EE56251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */,
 				5DA483D6251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DCC2ED124F34F2A000AC40A /* AppDelegate.swift in Sources */,
+				5D3196ED251455E100C4D6BE /* SelectStoreViewController.swift in Sources */,
 				5DCC2ED224F34F2A000AC40A /* Base.swift in Sources */,
 				5DCC2ED324F34F2A000AC40A /* ReactionsCell.swift in Sources */,
 				5DCC2F7324F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
@@ -3933,6 +4935,7 @@
 				5D2D0E732508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DCC2EE724F34F2A000AC40A /* AddProductSectionCellViewModel.swift in Sources */,
 				5DCC2EE824F34F2A000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
+				5D3196E42514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E462508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
 				5DCC2EE924F34F2A000AC40A /* InsightsCell.swift in Sources */,
 				5DCC2EEA24F34F2A000AC40A /* R.generated.swift in Sources */,
@@ -3962,7 +4965,6 @@
 				5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */,
 				5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */,
 				5DCC2EFF24F34F2A000AC40A /* ErrorTracker.swift in Sources */,
-				5DCC2F0024F34F2A000AC40A /* ComparePriceCellViewModel.swift in Sources */,
 				5DCC2F0124F34F2A000AC40A /* StyleBoardEditView.swift in Sources */,
 				5D2D0E492508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
 				5DCC2F0224F34F2A000AC40A /* PostsDetail.swift in Sources */,
@@ -4059,7 +5061,6 @@
 				5DEFF4A424AEC2FA007A2FCD /* HomeTabBarController.swift in Sources */,
 				5DEFF30524AEC2F9007A2FCD /* Networking.swift in Sources */,
 				5DEFF33F24AEC2F9007A2FCD /* Token.swift in Sources */,
-				5DDF02DE24C5331600E55D0F /* ComparePriceCell.swift in Sources */,
 				5D2D0E4D2508701200E9FD8D /* SearchRecommendHotViewController.swift in Sources */,
 				5DEFF36824AEC2F9007A2FCD /* TableViewController.swift in Sources */,
 				5D7D49B324B864A700F919EB /* UserRecommCellViewModel.swift in Sources */,
@@ -4080,7 +5081,6 @@
 				5DEFF4FA24AECB7A007A2FCD /* CALayer-Extension.swift in Sources */,
 				5DEFF36D24AEC2F9007A2FCD /* TextField.swift in Sources */,
 				5DBC3AA924C7DA43006B0032 /* InterestCell.swift in Sources */,
-				5DDF02DB24C530D300E55D0F /* ComparePriceViewModel.swift in Sources */,
 				5DB8FE3D24B85A0A00280F9F /* UserPostCellViewModel.swift in Sources */,
 				5DEFF35924AEC2F9007A2FCD /* Label.swift in Sources */,
 				5DBC3AB324C7EFF9006B0032 /* InterestReusableView.swift in Sources */,
@@ -4107,6 +5107,7 @@
 				5DB6ABE624D957BC00AD4B43 /* AddProductViewController.swift in Sources */,
 				5DBC3AA524C7D91E006B0032 /* InterestViewController.swift in Sources */,
 				5DEFF36F24AEC2F9007A2FCD /* ViewModelType.swift in Sources */,
+				5D47C7F82519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DEFF37024AEC2F9007A2FCD /* TableViewCell.swift in Sources */,
 				5DFE1324250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
 				5DFF3F0B250F04B60052ED40 /* SearchResultViewController.swift in Sources */,
@@ -4157,6 +5158,7 @@
 				5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */,
 				5DC3131724E3E8A400CC3F89 /* StyleBoardImageCellViewModel.swift in Sources */,
 				5D2D0E852509CE7B00E9FD8D /* SearchRecommendHotFilterCellViewModel.swift in Sources */,
+				5D3196FA2514BF2600C4D6BE /* SelectStoreViewModel.swift in Sources */,
 				5D2D0E4A2508701200E9FD8D /* SearchRecommendViewController.swift in Sources */,
 				5DEFF37624AEC2F9007A2FCD /* Button.swift in Sources */,
 				5D6C721E24B565C200EA3028 /* SettingViewModel.swift in Sources */,
@@ -4192,17 +5194,18 @@
 				5D437DC324BC3CE800AFBB1F /* UserRelationViewController.swift in Sources */,
 				5D20EC7F24F8BD8E002738C8 /* PopMenu.swift in Sources */,
 				5DCC2F7524F360EF000AC40A /* InsightsRelationViewModel.swift in Sources */,
+				5D99EE59251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */,
 				5D7BB545250B633900C8B902 /* DefaultColltionCell.swift in Sources */,
 				5DA483CB251316C200A80194 /* SearchThemeLabelViewModel.swift in Sources */,
 				5D7B429524EA7964005AF1F6 /* BoxTransform.swift in Sources */,
 				5DB1C79F24C2DD7C0071A0E1 /* ShoppingCartCell.swift in Sources */,
+				5D3196F32514569300C4D6BE /* SelectStoreCell.swift in Sources */,
 				5DCC2F8D24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */,
 				5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DFF3F13250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9732512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5D3F263724D179CA00A825BB /* VisualSearchCropView.swift in Sources */,
-				5DDF02D924C5308B00E55D0F /* ComparePriceViewController.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
 				5DC3131B24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift in Sources */,
 				5DDC05CC25105AED005D5299 /* UserHorizontalCell.swift in Sources */,
@@ -4219,12 +5222,14 @@
 				5DAB29CD24C83717003C3E00 /* PostsDetailToolBarReusableView.swift in Sources */,
 				5DFE1310250CAECB00ABCE5E /* SearchNavigationBar.swift in Sources */,
 				5DB6ABE924D9580E00AD4B43 /* AddProductNameReusableView.swift in Sources */,
-				5DCAC95F2512088600172C05 /* SearchThemeLabelView.swift in Sources */,
+				5DCAC95F2512088600172C05 /* SearchThemeHeadView.swift in Sources */,
 				5DEFF4F724AECB7A007A2FCD /* UIView-Extension.swift in Sources */,
 				5DFF3F1B250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5D8D1C8324EB66C1009A7B53 /* Box.swift in Sources */,
+				5D99EE54251859CA0008B45F /* PanelDefaultmModalStyle.swift in Sources */,
 				5DA483D4251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DEFF37C24AEC2F9007A2FCD /* AppDelegate.swift in Sources */,
+				5D3196EB251455E100C4D6BE /* SelectStoreViewController.swift in Sources */,
 				5DEFF4FC24AED04D007A2FCD /* Base.swift in Sources */,
 				5D06523E24BEE59A007CE461 /* ReactionsCell.swift in Sources */,
 				5DCC2F7124F35FE5000AC40A /* InsightsRelationViewController.swift in Sources */,
@@ -4256,6 +5261,7 @@
 				5D2D0E712508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DB6AC0A24DA491000AD4B43 /* AddProductSectionCellViewModel.swift in Sources */,
 				5DB1C7A224C2E3580071A0E1 /* ShoppingCartCellViewModel.swift in Sources */,
+				5D3196E22514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E442508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
 				5D437DCA24BD92F800AFBB1F /* InsightsCell.swift in Sources */,
 				5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */,
@@ -4285,7 +5291,6 @@
 				5D5B018124C5851C00832F05 /* SavedCollectionViewController.swift in Sources */,
 				5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */,
 				5DEFF4D224AEC2FA007A2FCD /* ErrorTracker.swift in Sources */,
-				5DDF02E124C534DF00E55D0F /* ComparePriceCellViewModel.swift in Sources */,
 				5D7B18A024E5314200D021EA /* StyleBoardEditView.swift in Sources */,
 				5D2D0E472508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
 				5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */,
@@ -4332,6 +5337,56 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5D99EE4F251843840008B45F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 13;
+				DEVELOPMENT_TEAM = F345KXCVNH;
+				INFOPLIST_FILE = "Glance-Q-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-D FAST_TEST $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = Glance_test_developement;
+				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D99EE50251843840008B45F /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 13;
+				DEVELOPMENT_TEAM = F345KXCVNH;
+				INFOPLIST_FILE = "Glance-Q-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				OTHER_SWIFT_FLAGS = "-D FAST_TEST $(inherited) -D COCOAPODS";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = Glance_test_appstore;
+				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5DCC2E1224F34F04000AC40A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */;
@@ -4339,7 +5394,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4364,7 +5419,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4395,6 +5450,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.belive.glance;
 				PRODUCT_NAME = Glance;
@@ -4418,6 +5474,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.belive.glance;
 				PRODUCT_NAME = Glance;
@@ -4546,12 +5603,12 @@
 		};
 		5DE6389F24AD769F002F6F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9AEE1CC94613B2EBA1C34511 /* Pods-Glance-Glance-D.debug.xcconfig */;
+			baseConfigurationReference = 7B237AE3A03897BD10DC25B7 /* Pods-Glance-Glance-D.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4571,12 +5628,12 @@
 		};
 		5DE638A024AD769F002F6F6B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = EF0F4A4582E39FFBEE07887B /* Pods-Glance-Glance-D.release.xcconfig */;
+			baseConfigurationReference = 4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 12;
+				CURRENT_PROJECT_VERSION = 13;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -4597,6 +5654,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D99EE4E251843840008B45F /* Build configuration list for PBXNativeTarget "Glance-Q" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D99EE4F251843840008B45F /* Debug */,
+				5D99EE50251843840008B45F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5DCC2E1124F34F04000AC40A /* Build configuration list for PBXNativeTarget "Glance-P" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -56,11 +56,13 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     
     let currency = BehaviorRelay<String?>(value: nil)
     let price = BehaviorRelay<String?>(value: nil)
-
+    let storeName = BehaviorRelay<String?>(value: nil)
     
     let save = PublishSubject<Void>()
     let like = PublishSubject<Void>()
-    let recommend = PublishSubject<Void>()    
+    let recommend = PublishSubject<Void>()
+    
+    let selectStore = PublishSubject<Void>()
     
     
     required init(item : PostsDetail) {
@@ -78,8 +80,8 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
 
         
         postTitle.accept(item.title)
-        price.accept("\(item.currency ?? "currency is nil") \(item.price)")
-        
+        price.accept("\(item.currency ?? "") \(item.price ?? "")")
+        storeName.accept(item.providerName)
         saved.accept(item.saved)
         liked.accept(item.liked)
         recommended.accept(item.recommended)

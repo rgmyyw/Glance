@@ -20,7 +20,7 @@ or alternatively using `brew install fastlane`
 ```
 fastlane ios release_apple
 ```
-发布 指定版本 到 苹果商店
+发布到应用商店苹果商店
 ### ios export_IPA
 ```
 fastlane ios export_IPA

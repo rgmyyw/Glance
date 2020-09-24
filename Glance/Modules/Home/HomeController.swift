@@ -90,10 +90,8 @@ class HomeController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
 
         input.search.subscribe(onNext: {[weak self] () in
-            
             let viewModel = SearchRecommendViewModel(provider: viewModel.provider)
-            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)
-            
+            self?.navigator.show(segue: .searchRecommend(viewModel: viewModel), sender: self)            
         }).disposed(by: rx.disposeBag)
         
         

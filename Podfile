@@ -98,6 +98,7 @@ abstract_target 'Glance' do
   target 'Glance-D'
   target 'Glance-P'
   target 'Glance-R'
+  target 'Glance-Q'
  
 end
 

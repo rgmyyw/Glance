@@ -11,7 +11,8 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-class ShoppingCartViewController: TableViewController {
+
+class ShoppingCartViewController: TableViewController  {
     
     
     override func makeUI() {
@@ -22,7 +23,7 @@ class ShoppingCartViewController: TableViewController {
         }).disposed(by: rx.disposeBag)
         
         tableView.register(nib: ShoppingCartCell.nib, withCellClass: ShoppingCartCell.self)
-        tableView.rowHeight = 75 + 20
+        tableView.rowHeight = 70 + 20
         
         
     }
@@ -42,6 +43,14 @@ class ShoppingCartViewController: TableViewController {
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
                 
+        
+        output.openURL.drive(onNext: { [weak self] (url) in
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                self?.exceptionError.onNext(.general("not open the url:\(url.absoluteString)"))
+            }
+        }).disposed(by: rx.disposeBag)
 
         output.delete.subscribe(onNext: { [weak self]cellViewModel in
             guard let self = self else { return }
@@ -54,14 +63,26 @@ class ShoppingCartViewController: TableViewController {
             }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
-        output.comparePrice
-            .subscribe(onNext: { [weak self](item) in
-                let viewModel = ComparePriceViewModel(provider: viewModel.provider)
-                self?.navigator.show(segue: .comparePrice(viewModel: viewModel), sender: self)
+        output.detail
+            .drive(onNext: { (item) in
+                let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+                self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+
+        output.openURL.drive(onNext: { [weak self] (url) in
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                self?.exceptionError.onNext(.general("not open the url:\(url.absoluteString)"))
+            }
+        }).disposed(by: rx.disposeBag)
+
+        output.comparePrice.drive(onNext: { [weak self] (productId) in
+            guard let self = self else { return }
+            let selectStore = SelectStoreViewModel(provider: viewModel.provider, productId: productId)
+            selectStore.action.bind(to: viewModel.selectStoreActions).disposed(by: self.rx.disposeBag)
+            self.navigator.show(segue: .selectStore(viewModel: selectStore), sender: self,transition: .panel(style: .default))
+        }).disposed(by: rx.disposeBag)
 
     }
     

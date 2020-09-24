@@ -17,8 +17,12 @@ struct ShoppingCart: Mappable,Equatable {
     var price: String?
     var productTitle: String?
     var currency : String?
+    var providerName : String?
+    var productUrl : String?
+    
 
     init?(map: Map) {}
+    init() {}
 
     mutating func mapping(map: Map) {
         productId   <- map["productId"]
@@ -28,6 +32,8 @@ struct ShoppingCart: Mappable,Equatable {
         price   <- map["price"]
         productTitle   <- map["productTitle"]
         currency <- map["currency"]
+        providerName <- map["providerName"]
+        productUrl <- map["productUrl"]
     }
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.productId == rhs.productId

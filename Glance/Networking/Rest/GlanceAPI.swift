@@ -75,6 +75,7 @@ enum GlanceAPI {
     case searchThemeDetail(themeId : Int)
     case searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int)
     case searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int)
+    case compareOffers(productId : String)
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -208,6 +209,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/theme/resources/\(themeId)/\(page)/\(10)"
         case .searchThemeLabelDetaiResource(_, _, let page):
             return "/api/search/label/\(page)/\(10)"
+        case .compareOffers:
+            return "/api/products/offers"
         }
     }
     
@@ -256,7 +259,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .globalSearch,
              .searchThemeDetail,
              .searchThemeDetaiResource,
-             .searchThemeLabelDetaiResource:
+             .searchThemeLabelDetaiResource,
+             .compareOffers:
             return .get
         case .modifyProfile:
             return .put
@@ -377,6 +381,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .searchThemeLabelDetaiResource(let type, let labelId, _):
             params["type"] = type.rawValue
             params["labelId"] = labelId
+        case .compareOffers(let productId):
+            params["productId"] = productId
         default:
             break
         }

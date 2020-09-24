@@ -65,6 +65,36 @@ class HomeViewModel: ViewModel, ViewModelType {
         let detail = input.selection.map { $0.viewModel.item }
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
+        let more = PublishSubject<DefaultColltionCellViewModel>()
+        let like = PublishSubject<DefaultColltionCellViewModel>()
+        let share = PublishSubject<DefaultColltionCellViewModel>()
+        let delete = PublishSubject<DefaultColltionCellViewModel>()
+        let report = PublishSubject<DefaultColltionCellViewModel>()
+        
+        more.subscribe(onNext: { (cellViewModel) in
+            cellViewModel.memuHidden.accept(!cellViewModel.memuHidden.value)
+        }).disposed(by: rx.disposeBag)
+        
+        
+        like.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
+                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+                var params = [String : Any]()
+                params["type"] = cellViewModel.item.type?.isProduct.int ?? 0
+                params["updateLiked"] = !cellViewModel.liked.value
+                params.merge(dict: cellViewModel.item.id)
+                return self.provider.like(param: params)
+                    .trackError(self.error)
+                    .trackActivity(self.loading)
+                    .map { (cellViewModel, $0)}
+                    .materialize()
+            }).subscribe(onNext: { event in
+                switch event {
+                case .next(let (cellViewModel, result)):
+                    cellViewModel.liked.accept(result)
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
         
         
         input.headerRefresh
@@ -121,6 +151,7 @@ class HomeViewModel: ViewModel, ViewModelType {
                 viewModel.reaction.map { ($0, viewModel) }.bind(to: reaction).disposed(by: self.rx.disposeBag)
                 viewModel.recommend.map { viewModel }.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.userDetail.map { viewModel.item.user }.bind(to: userDetail).disposed(by: self.rx.disposeBag)
+                viewModel.more.map { viewModel }.bind(to: more).disposed(by: self.rx.disposeBag)
                 return viewModel.makeItemType()
             }
             let sections = [HomeSection.single(items: sectionItems)]
@@ -193,6 +224,7 @@ class HomeViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
         
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item ,trigger) in

@@ -18,13 +18,12 @@
 default_platform(:ios)
 
 platform :ios do
-
-  # 所有lane执行之前，可以做如执行cocoapods的pod install
+  
   before_all do
-	#cocoapods
+    #cocoapods
   end
 
-  desc "发布 指定版本 到 苹果商店"
+  desc "发布到应用商店苹果商店"
   lane :release_apple do
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
@@ -46,6 +45,8 @@ platform :ios do
       output_directory:"build",
       clean: true 
     )
+
+
   end
 
   desc "导出开发环境iPA"

@@ -10,6 +10,18 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
+
+enum DefaultColltionMemu : Int  {
+    case like = 0
+    case share = 1
+    case delete = 2
+    case report = 3
+    
+    static var own : [DefaultColltionMemu] = [.like,.share,.delete]
+    static var other : [DefaultColltionMemu] = [.like,.share,.report]
+}
+
 class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
         
     
@@ -26,14 +38,21 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let saved = BehaviorRelay<Bool>(value: false)
     let images = BehaviorRelay<[Observable<URL?>]>(value:[])
     let followed = BehaviorRelay<Bool>(value: false)
+    let memu = BehaviorRelay<[DefaultColltionMemu]>(value : [])
+    let memuHidden = BehaviorRelay<Bool>(value: true)
+    let liked = BehaviorRelay<Bool>(value: false)
     
-    
-    
+    let more = PublishSubject<Void>()
     let save = PublishSubject<Void>()
     let recommend = PublishSubject<Void>()
     let userDetail = PublishSubject<Void>()
     let reaction = PublishSubject<UIView>()
     let follow = PublishSubject<Void>()
+    
+    let like = PublishSubject<Void>()
+    let share = PublishSubject<Void>()
+    let delete = PublishSubject<Void>()
+    let report = PublishSubject<Void>()
     
         
     var image: String? {
@@ -46,6 +65,7 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     
     
     func makeItemType() -> DefaultColltionSectionItem {
+        
         guard let type = item.type else { return .none }
         switch type {
         case .post:
@@ -78,5 +98,6 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
         images.accept(item.images.map { Observable.just($0.url)})
         followed.accept(item.user?.isFollow ?? false)
         displayName.accept(item.user?.displayName)
+        memu.accept(item.own ? DefaultColltionMemu.own : DefaultColltionMemu.other)
     }
 }

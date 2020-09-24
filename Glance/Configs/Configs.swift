@@ -23,7 +23,7 @@ enum Keys {
 struct Configs {
     
     struct App {
-        #if DEVELOP
+        #if DEVELOP || FAST_TEST
         static let url = "http://glance:glance@192.168.1.218:8090"
         #elseif PREVIEW
         static let url = "http://18.139.208.252:8099"

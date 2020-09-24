@@ -38,14 +38,15 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in
+        let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in            
             if loggedIn {
                 return [.home, .notifications,.center, .chat, .mine]
             } else {
                 return [.home, .notifications,.center ,.chat, .mine]
             }
-        }.asDriver(onErrorJustReturn: [])
             
+        }.asDriver(onErrorJustReturn: [])
+        
         
         return Output(tabBarItems: tabBarItems, signUp: needSignUp.asDriver(onErrorJustReturn: ()))
     }
@@ -72,42 +73,42 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
 }
 
 extension HomeTabBarViewModel {
-
-//    func loadState(_ isForce: Bool = false) {
-//        guard let data = UserDefaults.standard.object(forKey: "kAppAuthStateKey") as? Data else {
-//            return
-//        }
-//
-//        if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
-//            self.setAuthState(authState)
-//
-//            if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
-//                if isForce {
-//                    refreshToken(authState)
-//                } else {
-//                    let dateNow = Date()
-//                    if dateNow >= dateEnd {
-//                        refreshToken(authState)
-//                    }
-//                }
-//            }
-//        }
-//    }
-//
-//    func refreshToken(_ authState: OIDAuthState) {
-//        authState.performAction { (accessToken, idToken, error) in
-//            if let err = error {
-//                print(err.localizedDescription)
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
-//                return;
-//            }
-//
-//            if let accessToken = accessToken {
-//                print(accessToken)
-//                //UserAccountManager.shared.handleAccount(accessToken: accessToken, isLogin: false)
-//            } else {
-//                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
-//            }
-//        }
-//    }
+    
+    //    func loadState(_ isForce: Bool = false) {
+    //        guard let data = UserDefaults.standard.object(forKey: "kAppAuthStateKey") as? Data else {
+    //            return
+    //        }
+    //
+    //        if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
+    //            self.setAuthState(authState)
+    //
+    //            if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
+    //                if isForce {
+    //                    refreshToken(authState)
+    //                } else {
+    //                    let dateNow = Date()
+    //                    if dateNow >= dateEnd {
+    //                        refreshToken(authState)
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
+    //
+    //    func refreshToken(_ authState: OIDAuthState) {
+    //        authState.performAction { (accessToken, idToken, error) in
+    //            if let err = error {
+    //                print(err.localizedDescription)
+    //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
+    //                return;
+    //            }
+    //
+    //            if let accessToken = accessToken {
+    //                print(accessToken)
+    //                //UserAccountManager.shared.handleAccount(accessToken: accessToken, isLogin: false)
+    //            } else {
+    //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
+    //            }
+    //        }
+    //    }
 }

@@ -238,8 +238,13 @@ class RestApi: API {
     }
     func searchThemeLabelDetaiResource(type: SearchThemeLabelContentType, labelId: Int, page: Int) -> Single<PageMapable<Home>> {
         return requestObject(.searchThemeLabelDetaiResource(type: type, labelId: labelId, page: page), type: PageMapable<Home>.self)
-
     }
+    
+    
+    func compareOffers(productId: String) -> Single<[SelectStore]> {
+        return requestArray(.compareOffers(productId: productId), type: SelectStore.self)
+    }
+    
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

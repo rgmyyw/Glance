@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import FloatingPanel
 
-class Demo2ViewController: UIViewController  {
-
+class Demo2ViewController: UIViewController ,FloatingPanelControllerDelegate  {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -19,10 +19,12 @@ protocol CellViewModelProtocol {
 }
 
 
-class CellViewModel<T>:  CellViewModelProtocol {
+class CellViewModel<T>:  CellViewModelProtocol  {
     
     typealias Item = T
     var item: T
+    
+    
     
     required init(item: T) {
         self.item = item

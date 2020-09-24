@@ -14,7 +14,7 @@ import WMZPageController
 
 class SearchThemeViewController: ViewController {
     
-    private lazy var headView : SearchThemeLabelView = SearchThemeLabelView.loadFromNib()
+    private lazy var headView : SearchThemeHeadView = SearchThemeHeadView.loadFromNib()
     
     
     private lazy var pageController : WMZPageController = {
@@ -97,6 +97,7 @@ class SearchThemeViewController: ViewController {
         output.laeblDetail.drive(onNext: { [weak self](item) in
             let viewModel = SearchThemeLabelViewModel(provider: viewModel.provider, label: item)
             self?.navigator.show(segue: .searchThemeLabel(viewModel: viewModel), sender: self)
+            
         }).disposed(by: rx.disposeBag)
         
         output.updateHeadLayout.drive(onNext: { [weak self]() in

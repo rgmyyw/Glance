@@ -22,19 +22,41 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[ShoppingCartCellViewModel]>
         let delete : Observable<ShoppingCartCellViewModel>
-        let comparePrice : Observable<ShoppingCart>
+        let comparePrice : Driver<String>
+        let openURL : Driver<URL>
+        let detail :  Driver<Home>
     }
     
     let element : BehaviorRelay<PageMapable<ShoppingCart>> = BehaviorRelay(value: PageMapable<ShoppingCart>())
     let confirmDelete = PublishSubject<ShoppingCartCellViewModel>()
-    
+    let selectStoreActions = PublishSubject<(action : SelectStoreAction, item : SelectStore)>()
+
 
     func transform(input: Input) -> Output {
-        
+        ShoppingCart
         let elements = BehaviorRelay<[ShoppingCartCellViewModel]>(value: [])
         let delete = PublishSubject<ShoppingCartCellViewModel>()
-        let comparePrice = PublishSubject<ShoppingCart>()
+        let comparePrice = PublishSubject<String>()
+        let buy = PublishSubject<ShoppingCartCellViewModel>()
+        let openURL = PublishSubject<URL>()
+        let detail = PublishSubject<Home>()
         
+        
+        
+        input.selection.map { Home(productId: $0.item.productId ?? "")}
+            .bind(to: detail).disposed(by: rx.disposeBag)
+        buy.map { $0.item.productUrl?.url}.filterNil()
+            .bind(to: openURL).disposed(by: rx.disposeBag)
+        selectStoreActions.filter { $0.action == .buy }
+            .map { $0.item.productUrl?.url }.filterNil()
+            .bind(to: openURL).disposed(by: rx.disposeBag)
+        
+        selectStoreActions.filter { $0.action == .jump }
+            .map { Home(productId: $0.item.productId ?? "")}
+            .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(to: detail).disposed(by: rx.disposeBag)
+        
+
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<ShoppingCart>>)> in
                 guard let self = self else {
@@ -85,7 +107,9 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
             return items.list.map { item -> ShoppingCartCellViewModel  in
                 let viewModel = ShoppingCartCellViewModel(item: item)
                 viewModel.delete.map { viewModel}.bind(to: delete).disposed(by: self.rx.disposeBag)
-                viewModel.comparePrice.map { viewModel.item }.bind(to: comparePrice).disposed(by: self.rx.disposeBag)
+                viewModel.comparePrice.map { viewModel.item.productId }.filterNil().bind(to: comparePrice).disposed(by: self.rx.disposeBag)
+                viewModel.buy.map { viewModel}.bind(to: buy).disposed(by: self.rx.disposeBag)
+
                 return viewModel
             }
         }.bind(to: elements).disposed(by: rx.disposeBag)
@@ -111,13 +135,11 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
 
-        
-//        input.selection.subscribe(onNext: { item in
-//            elements.value.forEach { (i) in i.selected.accept(false) }
-//            item.selected.accept(true)
-//            saved.onNext(())
-//        }).disposed(by: rx.disposeBag)
                 
-        return Output(items: elements.asDriver(onErrorJustReturn: []), delete: delete.asObservable(), comparePrice: comparePrice.asObservable())
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
+                      delete: delete.asObservable(),
+                      comparePrice: comparePrice.asDriverOnErrorJustComplete(),
+                      openURL: openURL.asDriverOnErrorJustComplete(),
+                      detail: detail.asDriverOnErrorJustComplete())
     }
 }

@@ -100,21 +100,104 @@
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="200" id="iSI-pw-06P"/>
                                                 </constraints>
-                                                <userDefinedRuntimeAttributes>
-                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                        <real key="value" value="10"/>
-                                                    </userDefinedRuntimeAttribute>
-                                                </userDefinedRuntimeAttributes>
                                             </imageView>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E4w-1C-lBo">
                                                 <rect key="frame" x="160.5" y="0.0" width="35.5" height="35.5"/>
                                                 <state key="normal" image="icon_cell_triangle_red"/>
                                                 <state key="selected" image="icon_cell_triangle_gary"/>
                                             </button>
+                                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tas-yg-jVh">
+                                                <rect key="frame" x="0.0" y="0.0" width="196" height="200"/>
+                                                <subviews>
+                                                    <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="txB-Uy-lL5">
+                                                        <rect key="frame" x="0.0" y="0.0" width="196" height="200"/>
+                                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                    </view>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="RXQ-Az-sfM">
+                                                        <rect key="frame" x="20" y="140" width="156" height="40"/>
+                                                        <subviews>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5lB-Kg-Biu">
+                                                                <rect key="frame" x="0.0" y="0.0" width="39" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OsB-f9-XEg">
+                                                                        <rect key="frame" x="7" y="7.5" width="25" height="25"/>
+                                                                        <state key="normal" image="icon_button_like_white_normal"/>
+                                                                        <state key="selected" image="icon_button_like_selected"/>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="OsB-f9-XEg" firstAttribute="centerX" secondItem="5lB-Kg-Biu" secondAttribute="centerX" id="NXa-VF-Ufk"/>
+                                                                    <constraint firstItem="OsB-f9-XEg" firstAttribute="centerY" secondItem="5lB-Kg-Biu" secondAttribute="centerY" id="pDX-mC-HLr"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PSJ-hc-bIt">
+                                                                <rect key="frame" x="39" y="0.0" width="39" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lQv-Ow-V6L">
+                                                                        <rect key="frame" x="7" y="7.5" width="25" height="25"/>
+                                                                        <state key="normal" image="icon_button_share_white"/>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="lQv-Ow-V6L" firstAttribute="centerY" secondItem="PSJ-hc-bIt" secondAttribute="centerY" id="7zK-PD-F9B"/>
+                                                                    <constraint firstItem="lQv-Ow-V6L" firstAttribute="centerX" secondItem="PSJ-hc-bIt" secondAttribute="centerX" id="goN-0X-ySv"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uhE-0t-j1N">
+                                                                <rect key="frame" x="78" y="0.0" width="39" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lyt-FU-qd8">
+                                                                        <rect key="frame" x="7" y="7.5" width="25" height="25"/>
+                                                                        <state key="normal" image="icon_button_trash_white"/>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="lyt-FU-qd8" firstAttribute="centerX" secondItem="uhE-0t-j1N" secondAttribute="centerX" id="Z6x-yy-C3n"/>
+                                                                    <constraint firstItem="lyt-FU-qd8" firstAttribute="centerY" secondItem="uhE-0t-j1N" secondAttribute="centerY" id="sIO-Az-gqF"/>
+                                                                </constraints>
+                                                            </view>
+                                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5HF-3W-9em">
+                                                                <rect key="frame" x="117" y="0.0" width="39" height="40"/>
+                                                                <subviews>
+                                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VBF-T3-APX">
+                                                                        <rect key="frame" x="7" y="7.5" width="25" height="25"/>
+                                                                        <state key="normal" image="icon_button_report_white"/>
+                                                                    </button>
+                                                                </subviews>
+                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                <constraints>
+                                                                    <constraint firstItem="VBF-T3-APX" firstAttribute="centerY" secondItem="5HF-3W-9em" secondAttribute="centerY" id="ASh-64-VwK"/>
+                                                                    <constraint firstItem="VBF-T3-APX" firstAttribute="centerX" secondItem="5HF-3W-9em" secondAttribute="centerX" id="QPt-Ni-NHy"/>
+                                                                </constraints>
+                                                            </view>
+                                                        </subviews>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="WlT-zY-nUS"/>
+                                                        </constraints>
+                                                    </stackView>
+                                                </subviews>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="txB-Uy-lL5" secondAttribute="trailing" id="88H-Tz-ejn"/>
+                                                    <constraint firstAttribute="bottom" secondItem="RXQ-Az-sfM" secondAttribute="bottom" constant="20" id="9LP-JJ-oVe"/>
+                                                    <constraint firstItem="RXQ-Az-sfM" firstAttribute="leading" secondItem="tas-yg-jVh" secondAttribute="leading" constant="20" id="CRH-k4-miT"/>
+                                                    <constraint firstAttribute="trailing" secondItem="RXQ-Az-sfM" secondAttribute="trailing" constant="20" id="CWW-R4-ejI"/>
+                                                    <constraint firstAttribute="bottom" secondItem="txB-Uy-lL5" secondAttribute="bottom" id="GfV-it-cmm"/>
+                                                    <constraint firstItem="txB-Uy-lL5" firstAttribute="leading" secondItem="tas-yg-jVh" secondAttribute="leading" id="Pdm-MF-hd5"/>
+                                                    <constraint firstItem="txB-Uy-lL5" firstAttribute="top" secondItem="tas-yg-jVh" secondAttribute="top" id="iXI-4Q-mKa"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="tas-yg-jVh" secondAttribute="trailing" id="1Ui-o9-lL4"/>
                                             <constraint firstAttribute="bottom" secondItem="lf6-rJ-iGZ" secondAttribute="bottom" id="5T7-qK-92c"/>
+                                            <constraint firstItem="tas-yg-jVh" firstAttribute="leading" secondItem="L82-ic-kaO" secondAttribute="leading" id="KEG-0E-RQD"/>
+                                            <constraint firstAttribute="bottom" secondItem="tas-yg-jVh" secondAttribute="bottom" id="LgM-lc-FTc"/>
+                                            <constraint firstItem="tas-yg-jVh" firstAttribute="top" secondItem="L82-ic-kaO" secondAttribute="top" id="Oya-yj-Bt4"/>
                                             <constraint firstItem="lf6-rJ-iGZ" firstAttribute="top" secondItem="L82-ic-kaO" secondAttribute="top" id="bhp-kD-Am9"/>
                                             <constraint firstItem="E4w-1C-lBo" firstAttribute="top" secondItem="L82-ic-kaO" secondAttribute="top" id="cfb-3p-unq"/>
                                             <constraint firstAttribute="trailing" secondItem="lf6-rJ-iGZ" secondAttribute="trailing" id="jHI-cR-VvP"/>
@@ -199,22 +282,36 @@
             <viewLayoutGuide key="safeArea" id="i2V-T2-Row"/>
             <size key="customSize" width="196" height="272"/>
             <connections>
+                <outlet property="deleteButton" destination="lyt-FU-qd8" id="CPJ-1n-Lxp"/>
                 <outlet property="emojiButton" destination="gWn-y1-zHA" id="Ovy-TK-Yln"/>
                 <outlet property="imageView" destination="lf6-rJ-iGZ" id="CpQ-WY-h5e"/>
                 <outlet property="imageViewHeight" destination="iSI-pw-06P" id="ZcH-0l-FFx"/>
+                <outlet property="likeButton" destination="OsB-f9-XEg" id="CtM-Q3-Lug"/>
+                <outlet property="memuView" destination="tas-yg-jVh" id="9E4-ji-c8b"/>
                 <outlet property="moreButton" destination="7Y0-yF-IvM" id="4uJ-TB-i9K"/>
+                <outlet property="reportButton" destination="VBF-T3-APX" id="SEG-fA-hur"/>
                 <outlet property="saveButton" destination="E4w-1C-lBo" id="Yb4-BG-LOK"/>
+                <outlet property="shareButton" destination="lQv-Ow-V6L" id="yAR-sb-3Nm"/>
                 <outlet property="timeLabel" destination="q44-8T-R2h" id="Ozv-QE-9OE"/>
                 <outlet property="titleLabel" destination="MgL-sQ-ohW" id="4rb-N4-Agx"/>
                 <outlet property="typeLabel" destination="IeP-ax-YJa" id="phF-yn-ebx"/>
                 <outlet property="userHeadImageButton" destination="HGK-ak-Y0O" id="FDZ-7b-lI5"/>
                 <outlet property="userNameLabel" destination="7B2-VP-2we" id="lvm-Jn-jNx"/>
                 <outlet property="userOnlineImageView" destination="2E4-7Z-bg8" id="uef-cR-fp1"/>
+                <outletCollection property="memuItems" destination="5lB-Kg-Biu" collectionClass="NSMutableArray" id="USv-qi-pYD"/>
+                <outletCollection property="memuItems" destination="PSJ-hc-bIt" collectionClass="NSMutableArray" id="qc4-HK-lg7"/>
+                <outletCollection property="memuItems" destination="uhE-0t-j1N" collectionClass="NSMutableArray" id="msE-gE-3RT"/>
+                <outletCollection property="memuItems" destination="5HF-3W-9em" collectionClass="NSMutableArray" id="duw-Hc-XQe"/>
             </connections>
             <point key="canvasLocation" x="-1214" y="-62"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="icon_button_like_selected" width="21" height="19"/>
+        <image name="icon_button_like_white_normal" width="25" height="25"/>
+        <image name="icon_button_report_white" width="25" height="25"/>
+        <image name="icon_button_share_white" width="25" height="25"/>
+        <image name="icon_button_trash_white" width="25" height="25"/>
         <image name="icon_cell_more" width="16" height="3"/>
         <image name="icon_cell_triangle_gary" width="36" height="37"/>
         <image name="icon_cell_triangle_red" width="35.5" height="35.5"/>

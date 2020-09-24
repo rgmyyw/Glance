@@ -41,6 +41,9 @@ final class Application: NSObject {
         updateProvider()
         guard let window = window, let provider = provider else { return }
         self.window = window
+        #if FAST_TEST
+        presentDemoScreen(in: window)
+        #else
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if loggedIn.value {
                 self.showTabbar(provider: provider, window: window)
@@ -48,6 +51,8 @@ final class Application: NSObject {
                 self.showSignIn(provider: provider, window: window)
             }
         }
+        #endif
+        
     }
     
     func showSignIn(provider : API, window : UIWindow) {

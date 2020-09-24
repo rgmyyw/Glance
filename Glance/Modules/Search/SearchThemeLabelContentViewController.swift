@@ -24,12 +24,12 @@ class SearchThemeLabelContentViewController: CollectionViewController {
         super.makeUI()
         
         navigationBar.isHidden = true
-        
+
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        
+
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
@@ -78,10 +78,10 @@ class SearchThemeLabelContentViewController: CollectionViewController {
 }
 
 extension SearchThemeLabelContentViewController {
-    
+
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> {
         return RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-                        
+
             switch item {
             case .post(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostCell.self)
@@ -91,9 +91,9 @@ extension SearchThemeLabelContentViewController {
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ThemeCell.self)
                 cell.bind(to: viewModel)
                 return cell
-                
+
             case .user(let viewModel) :
-                
+
                 switch dataSouce[indexPath.section]  {
                 case .single:
                     let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserVerticalCell.self)
@@ -104,17 +104,17 @@ extension SearchThemeLabelContentViewController {
                     cell.bind(to: viewModel)
                     return cell
                 }
-                
+
             case .product(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
                 cell.bind(to: viewModel)
                 return cell
-                
+
             case .recommendPost(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostRecommendCell.self)
                 cell.bind(to: viewModel)
                 return cell
-                
+
             case .recommendProduct(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductRecommendCell.self)
                 cell.bind(to: viewModel)
@@ -124,15 +124,15 @@ extension SearchThemeLabelContentViewController {
             }
         })
     }
-    
+
 }
 
 extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayoutDelegate {
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
         switch dataSouce[section] {
         case .users:
@@ -141,7 +141,7 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
             return 2
         }
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if dataSouce.sectionModels.isEmpty { return .zero }
         switch dataSouce.sectionModels[section] {
@@ -150,11 +150,11 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
         case .users:
             return .zero
         }
-        
+
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        
+
         if dataSouce.sectionModels.isEmpty { return .zero }
         switch dataSouce.sectionModels[section] {
         case .single:
@@ -162,15 +162,15 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
         case .users:
             return .zero
         }
-        
+
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if dataSouce.sectionModels.isEmpty { return .zero }
-        
+
         let fixedWidth : CGFloat
         let reuseIdentifier : String
-        
+
         let item = dataSouce.sectionModels[indexPath.section].items[indexPath.item]
         switch dataSouce.sectionModels[indexPath.section] {
         case .single:
@@ -192,7 +192,7 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
 
 
 extension SearchThemeLabelContentViewController : WMZPageProtocol {
-    
+
     func getMyScrollView() -> UIScrollView {
         return collectionView
     }

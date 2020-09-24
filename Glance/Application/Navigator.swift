@@ -15,6 +15,7 @@ import AcknowList
 import MessageUI
 import Hero
 import PopupDialog
+import FloatingPanel
 
 protocol Navigatable {
     var navigator: Navigator! { get set }
@@ -41,7 +42,6 @@ class Navigator {
         case reactions(viewModel : ReactionsViewModel)
         case dynamicDetail(viewModel : PostsDetailViewModel)
         case shoppingCart(viewModel : ShoppingCartViewModel)
-        case comparePrice(viewModel : ComparePriceViewModel)
         case savedCollectionClassify(viewModel : SavedCollectionClassifyViewModel)
         case savedCollection(viewModel : SavedCollectionViewModel)
         case interest(viewModel : InterestViewModel)
@@ -66,6 +66,7 @@ class Navigator {
         case searchThemeContent(viewModel : SearchThemeContentViewModel)
         case searchThemeLabel(viewModel : SearchThemeLabelViewModel)
         case searchThemeLabelContent(viewModel : SearchThemeLabelContentViewModel)
+        case selectStore(viewModel : SelectStoreViewModel)
 
     }
     
@@ -78,6 +79,7 @@ class Navigator {
         case alert
         case custom
         case popDialog
+        case panel(style : PanelDefaultmModalStyle)
     }
     
     // MARK: - get a single VC
@@ -131,9 +133,6 @@ class Navigator {
             return vc
         case .shoppingCart(let viewModel):
             let vc = ShoppingCartViewController(viewModel: viewModel, navigator: self)
-            return vc
-        case .comparePrice(let viewModel):
-            let vc = ComparePriceViewController(viewModel: viewModel, navigator: self)
             return vc
         case .savedCollectionClassify(let viewModel):
             let vc = SavedCollectionClassifyViewController(viewModel: viewModel, navigator: self)
@@ -208,6 +207,9 @@ class Navigator {
         case .searchThemeLabelContent(let viewModel):
             let vc = SearchThemeLabelContentViewController(viewModel: viewModel, navigator: self)
             return vc
+        case .selectStore(let viewModel):
+            let vc = SelectStoreViewController(viewModel: viewModel, navigator: self)
+            return vc
         }
     }
     
@@ -234,8 +236,11 @@ class Navigator {
         
         if let sender = sender, sender.isKind(of: NavigationController.self) {
             sender.dismiss(animated: animated, completion: nil)
-        } else  {
-            sender?.navigationController?.dismiss(animated: animated, completion: nil)
+        } else if let navigationController = sender?.navigationController  {
+            navigationController.dismiss(animated: animated, completion: nil)
+        } else {
+            sender?.dismiss(animated: animated, completion: nil)
+
         }
     }
     
@@ -301,6 +306,29 @@ class Navigator {
                 let popup = PopupDialog(viewController: target, buttonAlignment: .horizontal, transitionStyle: .fadeIn, tapGestureDismissal: true, panGestureDismissal: false)
                 sender.present(popup, animated: animated, completion: nil)
             }
+        case .panel(let style):
+            
+            var delegate : (UIViewController & FloatingPanelControllerDelegate)!
+            if target.isKind(of: UINavigationController.self) {
+                delegate = (target as! UINavigationController).viewControllers.first as? (UIViewController & FloatingPanelControllerDelegate)
+            } else if target.isKind(of: UIViewController.self) {
+                delegate = target as? (UIViewController & FloatingPanelControllerDelegate)
+            } else if target.isKind(of: UITabBarController.self) {
+                fatalError("Does not support")
+            }
+            guard delegate != nil else {
+                fatalError("target not conforms FloatingPanelControllerDelegate")
+            }
+            let fpc = FloatingPanelController()
+            fpc.set(contentViewController: target)
+            fpc.surfaceView.setValue(style.cornerRadius, forKey: "cornerRadius")
+            fpc.surfaceView.setValue(style.borderWidth, forKey: "borderWidth")
+            fpc.surfaceView.setValue(style.borderColor, forKey: "borderColor")
+            fpc.surfaceView.shadowHidden = style.shadowHidden
+            fpc.isRemovalInteractionEnabled = style.isRemovalInteractionEnabled
+            fpc.delegate = delegate
+            sender.present(fpc, animated: animated, completion: nil)
+            
         default: break
         }
     }
@@ -314,3 +342,5 @@ class Navigator {
     
     
 }
+
+

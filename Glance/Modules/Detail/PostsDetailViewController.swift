@@ -145,6 +145,21 @@ class PostsDetailViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
         
+        output.openURL.drive(onNext: { [weak self] (url) in
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler:nil)
+            } else {
+                self?.exceptionError.onNext(.general("not open the url:\(url.absoluteString)"))
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        output.selectStore.drive(onNext: { [weak self] (productId) in
+            guard let self = self else { return }
+            let selectStore = SelectStoreViewModel(provider: viewModel.provider, productId: productId)
+            selectStore.action.bind(to: viewModel.selectStoreActions).disposed(by: self.rx.disposeBag)
+            self.navigator.show(segue: .selectStore(viewModel: selectStore), sender: self,transition: .panel(style: .default))
+        }).disposed(by: rx.disposeBag)
+        
     }
 }
 

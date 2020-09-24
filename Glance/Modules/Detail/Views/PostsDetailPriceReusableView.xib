@@ -23,18 +23,18 @@
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right_orange" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-In-5vO">
-                            <rect key="frame" x="251" y="28" width="6" height="10"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gucci" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WRg-Jj-fmW">
                             <rect key="frame" x="208.5" y="24.5" width="36" height="17"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                             <color key="textColor" red="1" green="0.50588235294117645" blue="0.3529411764705882" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Store" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-2a-7qO">
-                            <rect key="frame" x="132.5" y="26" width="66" height="14"/>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_arrow_right_orange" translatesAutoresizingMaskIntoConstraints="NO" id="xp6-In-5vO">
+                            <rect key="frame" x="251" y="28" width="6" height="10"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Store:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Atm-2a-7qO">
+                            <rect key="frame" x="134.5" y="26" width="69" height="14"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                             <color key="textColor" red="0.20392156862745098" green="0.20392156862745098" blue="0.20392156862745098" alpha="1" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -47,7 +47,7 @@
                         <constraint firstItem="xp6-In-5vO" firstAttribute="centerY" secondItem="bcK-bq-j5G" secondAttribute="centerY" id="Hmn-XH-Cmj"/>
                         <constraint firstItem="xp6-In-5vO" firstAttribute="leading" secondItem="WRg-Jj-fmW" secondAttribute="trailing" constant="6.5" id="IsX-is-ib8"/>
                         <constraint firstItem="bcK-bq-j5G" firstAttribute="leading" secondItem="CAM-C2-SFM" secondAttribute="leading" constant="20" id="eHf-K8-gqV"/>
-                        <constraint firstItem="WRg-Jj-fmW" firstAttribute="leading" secondItem="Atm-2a-7qO" secondAttribute="trailing" constant="10" id="i8g-78-1VN"/>
+                        <constraint firstItem="WRg-Jj-fmW" firstAttribute="leading" secondItem="Atm-2a-7qO" secondAttribute="trailing" constant="5" id="i8g-78-1VN"/>
                         <constraint firstItem="WRg-Jj-fmW" firstAttribute="centerY" secondItem="xp6-In-5vO" secondAttribute="centerY" id="j9d-BT-XFC"/>
                         <constraint firstAttribute="bottom" secondItem="bcK-bq-j5G" secondAttribute="bottom" id="nbP-vJ-Ytt"/>
                     </constraints>
@@ -63,8 +63,9 @@
             <connections>
                 <outlet property="bgView" destination="CAM-C2-SFM" id="JNg-go-9N6"/>
                 <outlet property="priceLabel" destination="bcK-bq-j5G" id="dPQ-hJ-Qs5"/>
+                <outlet property="storeNameLabel" destination="WRg-Jj-fmW" id="7xy-sw-ADz"/>
             </connections>
-            <point key="canvasLocation" x="-178" y="-37"/>
+            <point key="canvasLocation" x="-22" y="-6"/>
         </collectionReusableView>
     </objects>
     <resources>

@@ -137,3 +137,49 @@ extension UIView {
         layer.rasterizationScale = UIScreen.main.scale
     }
 }
+
+extension UIControl {
+    
+    private enum UIControlRuntimeKey {
+        static var enlargeValidTouchAreaKey = "enlargeValidTouchAreaKey"
+    }
+    
+    @IBInspectable
+    var enlargeValidTouch : CGFloat {
+        set {
+            enlargeValidTouchArea = UIEdgeInsets(top: newValue, left: newValue, bottom: newValue, right: newValue)
+        }
+        get {
+            return enlargeValidTouchArea.top
+        }
+    }
+    
+    var enlargeValidTouchArea : UIEdgeInsets {
+        set {
+            objc_setAssociatedObject(self, &UIControlRuntimeKey.enlargeValidTouchAreaKey, NSValue(uiEdgeInsets: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
+        get {
+            guard let value = objc_getAssociatedObject(self, &UIControlRuntimeKey.enlargeValidTouchAreaKey) as? NSValue else { return .zero}
+            return  value.uiEdgeInsetsValue
+        }
+    }
+    
+    private var enlargeRect : CGRect {
+        let inset = enlargeValidTouchArea
+        return CGRect(x: bounds.minX - inset.left,
+                      y: bounds.minY - inset.top,
+                      width: bounds.width + inset.left + inset.right,
+                      height: bounds.height + inset.top + inset.bottom)
+    }
+    
+    open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        if isHidden || alpha == 0 {
+            return false
+        }
+        let largeRect = enlargeRect
+        if largeRect.equalTo(bounds) {
+            return super.point(inside: point, with: event)
+        }
+        return largeRect.contains(point)
+    }
+}

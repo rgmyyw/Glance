@@ -58,12 +58,15 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let popMemu : Driver<[PostsDetailMemuItem]>
         let delete : Driver<Void>
         let back : Driver<Void>
+        let selectStore : Driver<String>
+        let openURL : Driver<URL>
     }
     
     
     let item : BehaviorRelay<Home>
     let memuSelection = PublishSubject<PostsDetailMemuItem>()
     let deletePost = PublishSubject<Void>()
+    let selectStoreActions = PublishSubject<(action : SelectStoreAction, item : SelectStore)>()
     
     
     init(provider: API,item : Home) {
@@ -87,13 +90,10 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
-        let detail = input.selection.map { Home(productId: $0.viewModel.item.productId ?? "") }.asDriver(onErrorJustReturn: Home())
+        let detail = PublishSubject<Home>()
         let popMemu = input.memu.map { [PostsDetailMemuItem(type: .edit),PostsDetailMemuItem(type: .delete)] }.asDriver(onErrorJustReturn: [])
         let delete = input.memuSelection.filter { $0 == 1}.mapToVoid().asDriver(onErrorJustReturn: ())
-        
-        
-        
-        /// 底部添加购物车按钮
+        let openURL = PublishSubject<URL>()
         let isProduct = item.map { !($0.type?.isProduct ?? false) }
         let bottomBarHidden = Observable.combineLatest(elements.filterEmpty(), isProduct).map { $1}.asDriver(onErrorJustReturn: true)
         let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
@@ -103,7 +103,29 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
-        /// 添加收藏
+        input.selection.map { Home(productId: $0.viewModel.item.productId ?? "") }.bind(to: detail).disposed(by: rx.disposeBag)
+        
+        selectStoreActions.filter { $0.action == .buy }
+            .map { $0.item.productUrl?.url }.filterNil()
+            .bind(to: openURL).disposed(by: rx.disposeBag)
+        
+        selectStoreActions.subscribe(onNext: { item in
+            print(item)
+        }).disposed(by: rx.disposeBag)
+        
+        selectStoreActions.filter { $0.action == .jump }
+            .map { Home(productId: $0.item.productId ?? "")}
+            .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(to: detail).disposed(by: rx.disposeBag)
+        
+        selectStoreActions.filter { $0.action == .add }
+            .filter { $0.item.productId == self.item.value.productId }.map { _ in true }
+            .bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
+        
+        // 选择平台比价
+        let selectStore = PublishSubject<PostsDetailSectionCellViewModel>()
+        
+        // 添加收藏
         let saveCurrent = PublishSubject<PostsDetailSectionCellViewModel>()
         let saveOther = PublishSubject<PostsDetailCellViewModel>()
         let save = PublishSubject<(AnyObject, [String : Any])>()
@@ -162,9 +184,9 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .trackError(self.error)
                 .materialize() : request
-                .trackActivity(self.footerLoading)
-                .trackError(self.error)
-                .materialize()
+                    .trackActivity(self.footerLoading)
+                    .trackError(self.error)
+                    .materialize()
         }).subscribe(onNext: { [weak self](event) in
             guard let self = self else { return }
             switch event {
@@ -202,6 +224,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             viewModel.save.map { viewModel}.bind(to: saveCurrent).disposed(by: self.rx.disposeBag)
             viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
             viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
+            viewModel.selectStore.map { viewModel}.bind(to: selectStore).disposed(by: self.rx.disposeBag)
             
             var sections : [PostsDetailSection]
             let banner = PostsDetailSection.banner(viewModel: viewModel)
@@ -404,9 +427,12 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       bottomBarAddButtonHidden:bottomBarAddButtonHidden,
                       bottomBarBackgroundColor: bottomBarBackgroundColor,
                       shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()),
-                      detail: detail, popMemu: popMemu,
+                      detail: detail.asDriver(onErrorJustReturn: Home()),
+                      popMemu: popMemu,
                       delete: delete.asDriver(onErrorJustReturn: ()),
-                      back: back.asDriver(onErrorJustReturn: ()))
+                      back: back.asDriver(onErrorJustReturn: ()),
+                      selectStore: selectStore.map { $0.item.productId}.filterNil().asDriver(onErrorJustReturn: ""),
+                      openURL: openURL.asDriverOnErrorJustComplete())
     }
 }
 
