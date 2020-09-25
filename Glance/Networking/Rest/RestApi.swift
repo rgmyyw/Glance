@@ -28,7 +28,7 @@ class RestApi: API {
         return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
     }
     
-    func userDetail(userId: String = "") -> Single<User> {
+    func userDetail(userId: String?) -> Single<User> {
         return requestObject(.userDetail(userId: userId), type: User.self)
     }
     

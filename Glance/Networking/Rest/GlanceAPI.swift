@@ -25,7 +25,7 @@ private let assetDir: URL = {
 enum GlanceAPI {
     case download(url: URL, fileName: String?)
     case getHome(page : Int)
-    case userDetail(userId : String)
+    case userDetail(userId : String?)
     case modifyProfile(data : [String : Any])
     case uploadImage(type: Int, size : CGSize, data : Data)
     case userPost(userId : String, pageNum : Int)
@@ -315,7 +315,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
                 params["otherUserId"] = userId
             }
         case .userDetail(let userId):
-            if userId.isNotEmpty {
+            if let userId = userId , userId.isNotEmpty {
                 params["otherUserId"] = userId
             }
         case .follow(let userId):

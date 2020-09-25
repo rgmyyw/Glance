@@ -60,10 +60,10 @@ class UserViewController: ViewController {
         let dd_width : CGFloat = 100
         view.dd_width = dd_width
         view.bottomOffset = CGPoint(x: -(dd_width - 15), y: more.height + 5)
-
+        
         return view
     }()
-
+    
     
     lazy var navigationItems = [backButton,share,more,insight, setting]
     
@@ -125,7 +125,7 @@ class UserViewController: ViewController {
                                         memu: more.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         
-
+        
         output.displayName.drive(userHeadView.displayNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.countryName.drive(userHeadView.countryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.displayName.drive(userHeadView.otherUserDisplayNameLabel.rx.text).disposed(by: rx.disposeBag)
@@ -143,7 +143,7 @@ class UserViewController: ViewController {
         output.followButtonBackground.drive(userHeadView.followButton.rx.backgroundColor).disposed(by: rx.disposeBag)
         output.followButtonTitleColor.drive(userHeadView.followButton.rx.titleColor(for: .normal)).disposed(by: rx.disposeBag)
         output.followButtonTitle.drive(userHeadView.followButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
-
+        
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
             controllers.forEach { self?.addChild($0)}
@@ -152,9 +152,9 @@ class UserViewController: ViewController {
             self?.pageController.param.wControllers = controllers
             self?.pageController.param.wTitleArr = titles
         }).disposed(by: rx.disposeBag)
-                
         
-
+        
+        
         output.setting.drive(onNext: { [weak self] () in
             guard let self = self else { return }
             let settingViewModel = SettingViewModel(provider: viewModel.provider)
@@ -166,9 +166,9 @@ class UserViewController: ViewController {
             config?.showAnimDuration = 0.25
             self.cw_showDrawerViewController(setting, animationType: .mask, configuration: config)
         }).disposed(by: rx.disposeBag)
-
-
-
+        
+        
+        
         output.navigationBarAvailable
             .subscribe(onNext: { [weak self](left,right) in
                 let leftItems = left.compactMap { self?.navigationItems[$0.rawValue] }
@@ -176,7 +176,7 @@ class UserViewController: ViewController {
                 let rightItems = right.compactMap { self?.navigationItems[$0.rawValue] }
                 self?.navigationBar.rightBarButtonItems = rightItems
             }).disposed(by: rx.disposeBag)
-
+        
         
         output.updateHeadLayout.drive(onNext: { [weak self]() in
             guard let self = self else { return }
@@ -190,51 +190,53 @@ class UserViewController: ViewController {
             self.pageController.updateHeadView()
         }).disposed(by: rx.disposeBag)
         
-
+        
         output.titles.drive(onNext: {[weak self] (titles) in
             self?.pageController.param.wTitleArr = titles
-            self?.pageController.updateMenuData()
+            let items = self?.pageController.upSc.btnArr as? [Any] ?? []
+            self?.pageController.param.wCustomMenuTitle(items)
+                
         }).disposed(by: rx.disposeBag)
-
-
+        
+        
         output.modifyProfile.subscribe(onNext: { [weak self]() in
             let viewModel = ModifyProfileViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .modifyProfile(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
-
+        
+        
         output.notifications.subscribe(onNext: { [weak self]() in
             let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.originalPhotos.subscribe(onNext: { [weak self]() in
             let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.privacy.subscribe(onNext: { [weak self]() in
             let viewModel = PrivacyViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
         output.signIn.subscribe(onNext: { () in
             guard let window = Application.shared.window else { return }
             Application.shared.showSignIn(provider: viewModel.provider, window: window)
         }).disposed(by: rx.disposeBag)
-
+        
         output.insight.drive(onNext: { [weak self]() in
             let viewModel = InsightsViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-
-
+        
+        
         output.memu.drive(onNext: { [weak self](items) in
             guard let self = self else { return }
             self.memu.dataSource = items.map { "  \($0.title)"}
             self.memu.show()
         }).disposed(by: rx.disposeBag)
-
+        
     }
     
     
@@ -244,11 +246,12 @@ class UserViewController: ViewController {
 
 
 extension UserViewController {
-  
+    
     
     func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
         
-        let title = button.titleLabel?.text ?? ""
+        guard let titles = config.wTitleArr as? [String] else { return }
+        let title = titles[button.tag]
         let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleFont(12)]
         let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleFont(12)]
         let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
@@ -259,6 +262,6 @@ extension UserViewController {
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
-
+    
 }
 

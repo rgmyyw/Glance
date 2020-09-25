@@ -30,7 +30,10 @@ class ShoppingCartViewController: TableViewController  {
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? ShoppingCartViewModel else { return }
+            
+       
         
+            
         
         let refresh = Observable.just(()).merge(with: headerRefreshTrigger.asObservable())
         let input = ShoppingCartViewModel.Input(headerRefresh: refresh,

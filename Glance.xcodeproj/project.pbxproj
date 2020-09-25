@@ -724,7 +724,6 @@
 		5D99EE5A251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
 		5D99EE5B251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
 		5D99EE5C251893DF0008B45F /* SelectStoreCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D99EE58251893DF0008B45F /* SelectStoreCellViewModel.swift */; };
-		5D9C47D3251C35D9007D3A42 /* Glance-Q-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5D9C47D2251C35D9007D3A42 /* Glance-Q-Info.plist */; };
 		5DA483C8251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483C9251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
 		5DA483CA251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DA483C2251316C100A80194 /* SearchThemeLabelViewController.swift */; };
@@ -1494,6 +1493,18 @@
 		5DCC2F8D24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
 		5DCC2F8E24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
 		5DCC2F8F24F36542000AC40A /* InsightsLikeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */; };
+		5DD0A370251D88AF005DFA02 /* UserModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */; };
+		5DD0A371251D88AF005DFA02 /* UserModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */; };
+		5DD0A372251D88AF005DFA02 /* UserModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */; };
+		5DD0A373251D88AF005DFA02 /* UserModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */; };
+		5DD0A375251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */; };
+		5DD0A376251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */; };
+		5DD0A377251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */; };
+		5DD0A378251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */; };
+		5DD0A37A251D88F1005DFA02 /* UserNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */; };
+		5DD0A37B251D88F1005DFA02 /* UserNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */; };
+		5DD0A37C251D88F1005DFA02 /* UserNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */; };
+		5DD0A37D251D88F1005DFA02 /* UserNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */; };
 		5DD8513724CED72A00278361 /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DD8513924CED72F00278361 /* PostsDetailBottomBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */; };
 		5DDBC09A24B5C5670077DBE5 /* NotificationProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */; };
@@ -1659,7 +1670,6 @@
 		5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */; };
-		C669A34A4DAB95D2C521F82E /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
 		D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
 /* End PBXBuildFile section */
 
@@ -1858,7 +1868,6 @@
 		5DA483C5251316C200A80194 /* SearchThemeLabelContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelContentViewModel.swift; sourceTree = "<group>"; };
 		5DA483C6251316C200A80194 /* SearchThemeLabelContentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelContentViewController.swift; sourceTree = "<group>"; };
 		5DA483C7251316C200A80194 /* SearchThemeLabelModuleItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchThemeLabelModuleItem.swift; sourceTree = "<group>"; };
-		5DAB29BB24C82628003C3E00 /* SearchRecommendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendViewController.swift; sourceTree = "<group>"; };
 		5DAB29BF24C836A5003C3E00 /* PostsDetailBannerReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBannerReusableView.swift; sourceTree = "<group>"; };
 		5DAB29C024C836A5003C3E00 /* PostsDetailBannerReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBannerReusableView.xib; sourceTree = "<group>"; };
 		5DAB29C324C836DA003C3E00 /* PostsDetailPriceReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailPriceReusableView.swift; sourceTree = "<group>"; };
@@ -1963,6 +1972,9 @@
 		5DCC2F8024F36528000AC40A /* InsightsLikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsightsLikeCell.swift; path = Glance/Modules/User/InsightsLikeCell.swift; sourceTree = SOURCE_ROOT; };
 		5DCC2F8124F36528000AC40A /* InsightsLikeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InsightsLikeCell.xib; path = Glance/Modules/User/InsightsLikeCell.xib; sourceTree = SOURCE_ROOT; };
 		5DCC2F8C24F36542000AC40A /* InsightsLikeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InsightsLikeCellViewModel.swift; path = Glance/Modules/User/InsightsLikeCellViewModel.swift; sourceTree = SOURCE_ROOT; };
+		5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModuleItem.swift; sourceTree = "<group>"; };
+		5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailMemuItem.swift; sourceTree = "<group>"; };
+		5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNavigationAction.swift; sourceTree = "<group>"; };
 		5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBottomBar.swift; sourceTree = "<group>"; };
 		5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBottomBar.xib; sourceTree = "<group>"; };
 		5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileViewModel.swift; sourceTree = "<group>"; };
@@ -2133,7 +2145,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */,
-				C669A34A4DAB95D2C521F82E /* Pods_Glance_Glance_D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2202,7 +2213,6 @@
 		5D2D0E2125086F1A00E9FD8D /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				5DAB29BB24C82628003C3E00 /* SearchRecommendViewController.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -2292,6 +2302,9 @@
 				5D579B3F24B4683300CFC188 /* Views */,
 				5D579B3D24B4682500CFC188 /* UserViewController.swift */,
 				5D6C721F24B5670000EA3028 /* UserViewModel.swift */,
+				5DD0A36F251D88AF005DFA02 /* UserModuleItem.swift */,
+				5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */,
+				5DD0A379251D88F1005DFA02 /* UserNavigationAction.swift */,
 				5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */,
 				5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */,
 				5D3E480024B579820064E3BF /* ModifyProfileViewModel.swift */,
@@ -3189,7 +3202,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5D99EDDE251843840008B45F /* VisualSearchProductHeadView.xib in Resources */,
-				5D9C47D3251C35D9007D3A42 /* Glance-Q-Info.plist in Resources */,
 				5D99EDE1251843840008B45F /* SavedCollectionClassifyViewController.xib in Resources */,
 				5D99EDE2251843840008B45F /* PostProductTagCell.xib in Resources */,
 				5D99EDE3251843840008B45F /* Roboto-Medium.ttf in Resources */,
@@ -3962,6 +3974,7 @@
 				5D99ED1C251843840008B45F /* AddProductInputKeywordReusableView.swift in Sources */,
 				5D99ED1D251843840008B45F /* OAuthManager.swift in Sources */,
 				5D99ED1E251843840008B45F /* SearchRecommendHistorySection.swift in Sources */,
+				5DD0A373251D88AF005DFA02 /* UserModuleItem.swift in Sources */,
 				5D99ED1F251843840008B45F /* PostCell.swift in Sources */,
 				5D99ED20251843840008B45F /* UserRelationCell.swift in Sources */,
 				5D99ED21251843840008B45F /* SearchThemeLabelModuleItem.swift in Sources */,
@@ -4092,6 +4105,7 @@
 				5D99ED9D251843840008B45F /* ReactionAnalysis.swift in Sources */,
 				5D99ED9E251843840008B45F /* PostsDetailBannerCell.swift in Sources */,
 				5D99ED9F251843840008B45F /* Reaction.swift in Sources */,
+				5DD0A37D251D88F1005DFA02 /* UserNavigationAction.swift in Sources */,
 				5D99EDA0251843840008B45F /* UserRecommCell.swift in Sources */,
 				5D99EDA1251843840008B45F /* SearchCellViewModel.swift in Sources */,
 				5D99EDA2251843840008B45F /* InsightsLikeCell.swift in Sources */,
@@ -4145,6 +4159,7 @@
 				5D99EDD3251843840008B45F /* StackView.swift in Sources */,
 				5D99EDD4251843840008B45F /* AddProductWebsiteReusableView.swift in Sources */,
 				5D99EDD5251843840008B45F /* NotificationCell.swift in Sources */,
+				5DD0A378251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5D99EDD6251843840008B45F /* WebViewController.swift in Sources */,
 				5D99EDD7251843840008B45F /* UserHeadView.swift in Sources */,
 				5D99EDD8251843840008B45F /* PostsDetailBottomBar.swift in Sources */,
@@ -4288,6 +4303,7 @@
 				5DCC2D2D24F34F04000AC40A /* AddProductInputKeywordReusableView.swift in Sources */,
 				5DCC2D2E24F34F04000AC40A /* OAuthManager.swift in Sources */,
 				5D2D0E602508701200E9FD8D /* SearchRecommendHistorySection.swift in Sources */,
+				5DD0A371251D88AF005DFA02 /* UserModuleItem.swift in Sources */,
 				5D7BB573250B633900C8B902 /* PostCell.swift in Sources */,
 				5DCC2D2F24F34F04000AC40A /* UserRelationCell.swift in Sources */,
 				5DA483D8251316C200A80194 /* SearchThemeLabelModuleItem.swift in Sources */,
@@ -4418,6 +4434,7 @@
 				5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2D8624F34F04000AC40A /* Reaction.swift in Sources */,
+				5DD0A37B251D88F1005DFA02 /* UserNavigationAction.swift in Sources */,
 				5DCC2D8724F34F04000AC40A /* UserRecommCell.swift in Sources */,
 				5DFE1321250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DCC2F8424F36528000AC40A /* InsightsLikeCell.swift in Sources */,
@@ -4471,6 +4488,7 @@
 				5DCC2DAC24F34F04000AC40A /* StackView.swift in Sources */,
 				5DCC2DAD24F34F04000AC40A /* AddProductWebsiteReusableView.swift in Sources */,
 				5DCC2DAE24F34F04000AC40A /* NotificationCell.swift in Sources */,
+				5DD0A376251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DCC2DAF24F34F04000AC40A /* WebViewController.swift in Sources */,
 				5DCC2DB024F34F04000AC40A /* UserHeadView.swift in Sources */,
 				5DCC2DB124F34F04000AC40A /* PostsDetailBottomBar.swift in Sources */,
@@ -4614,6 +4632,7 @@
 				5DCC2E8524F34F2A000AC40A /* AddProductInputKeywordReusableView.swift in Sources */,
 				5DCC2E8624F34F2A000AC40A /* OAuthManager.swift in Sources */,
 				5D2D0E612508701200E9FD8D /* SearchRecommendHistorySection.swift in Sources */,
+				5DD0A372251D88AF005DFA02 /* UserModuleItem.swift in Sources */,
 				5D7BB574250B633900C8B902 /* PostCell.swift in Sources */,
 				5DCC2E8724F34F2A000AC40A /* UserRelationCell.swift in Sources */,
 				5DA483D9251316C200A80194 /* SearchThemeLabelModuleItem.swift in Sources */,
@@ -4744,6 +4763,7 @@
 				5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2EDE24F34F2A000AC40A /* Reaction.swift in Sources */,
+				5DD0A37C251D88F1005DFA02 /* UserNavigationAction.swift in Sources */,
 				5DCC2EDF24F34F2A000AC40A /* UserRecommCell.swift in Sources */,
 				5DFE1322250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DCC2F8524F36528000AC40A /* InsightsLikeCell.swift in Sources */,
@@ -4797,6 +4817,7 @@
 				5DCC2F0424F34F2A000AC40A /* StackView.swift in Sources */,
 				5DCC2F0524F34F2A000AC40A /* AddProductWebsiteReusableView.swift in Sources */,
 				5DCC2F0624F34F2A000AC40A /* NotificationCell.swift in Sources */,
+				5DD0A377251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DCC2F0724F34F2A000AC40A /* WebViewController.swift in Sources */,
 				5DCC2F0824F34F2A000AC40A /* UserHeadView.swift in Sources */,
 				5DCC2F0924F34F2A000AC40A /* PostsDetailBottomBar.swift in Sources */,
@@ -4940,6 +4961,7 @@
 				5DB6ABF124D959E000AD4B43 /* AddProductInputKeywordReusableView.swift in Sources */,
 				5DBC3AA224C6A32C006B0032 /* OAuthManager.swift in Sources */,
 				5D2D0E5F2508701200E9FD8D /* SearchRecommendHistorySection.swift in Sources */,
+				5DD0A370251D88AF005DFA02 /* UserModuleItem.swift in Sources */,
 				5D7BB572250B633900C8B902 /* PostCell.swift in Sources */,
 				5D13709E24B70FA2007B64BA /* UserRelationCell.swift in Sources */,
 				5DA483D7251316C200A80194 /* SearchThemeLabelModuleItem.swift in Sources */,
@@ -5070,6 +5092,7 @@
 				5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */,
 				5D06524324BEE879007CE461 /* Reaction.swift in Sources */,
+				5DD0A37A251D88F1005DFA02 /* UserNavigationAction.swift in Sources */,
 				5D7D49B024B8648500F919EB /* UserRecommCell.swift in Sources */,
 				5DFE1320250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DCC2F8324F36528000AC40A /* InsightsLikeCell.swift in Sources */,
@@ -5123,6 +5146,7 @@
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,
 				5DB6ABF924D95A8900AD4B43 /* AddProductWebsiteReusableView.swift in Sources */,
 				5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */,
+				5DD0A375251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DEFF36E24AEC2F9007A2FCD /* WebViewController.swift in Sources */,
 				5DDBC09C24B5CE580077DBE5 /* UserHeadView.swift in Sources */,
 				5DD8513724CED72A00278361 /* PostsDetailBottomBar.swift in Sources */,
@@ -5168,7 +5192,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5193,7 +5217,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5218,9 +5242,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
-				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
+				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5243,9 +5267,9 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
-				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
+				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5432,7 +5456,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5457,7 +5481,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 13;
+				CURRENT_PROJECT_VERSION = 15;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -34,6 +34,8 @@ class UserRecommViewController: CollectionViewController  {
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: UserRecommCell.self)
         
+        
+        
     }
     
     
@@ -54,7 +56,7 @@ class UserRecommViewController: CollectionViewController  {
         
         output.detail.drive(onNext: { [weak self](item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
-            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController())
         }).disposed(by: rx.disposeBag)    
         
     }

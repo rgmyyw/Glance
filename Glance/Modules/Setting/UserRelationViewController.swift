@@ -28,8 +28,9 @@ class UserRelationViewController: TableViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? UserRelationViewModel else { return }
         
+        let refresh = headerRefreshTrigger.asObservable().merge(with: Observable.just(()))
         let input = UserRelationViewModel.Input(selection: tableView.rx.modelSelected(UserRelationCellViewModel.self).asObservable(),
-                                                headerRefresh : headerRefreshTrigger.asObservable(),
+                                                headerRefresh : refresh,
                                                 footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
 

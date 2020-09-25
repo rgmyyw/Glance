@@ -10,86 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum UserNavigationAction : Int {
-    case back = 0
-    case share = 1
-    case more = 2
-    case insight = 3
-    case setting = 4
+
+enum UserMode {
+    case current
+    case other
     
 }
-
-
-
-struct UserDetailMemuItem {
-    var type : UserDetailMemuType
-    var title : String {
-        return type.title
-    }
-}
-
-enum UserDetailMemuType {
-    case report
-    case block
-    
-    var title : String {
-        switch self {
-        case .report:
-            return "Report user"
-        case .block:
-            return "Block user"
-        }
-    }
-    var image : UIImage? {
-        switch self {
-        case .report:
-            return R.image.icon_button_report()
-        case .block:
-            return R.image.icon_button_report()
-        }
-    }
-}
-
-
-
-
-enum UserModuleItem {
-    
-    case post(viewModel : UserPostViewModel)
-    case recommend(viewModel : UserRecommViewModel)
-    case followers(viewModel : UserRelationViewModel)
-    case following(viewModel : UserRelationViewModel)
-    
-    var defaultTitle : String {
-        switch self {
-        case .post:
-            return "0\nPosts"
-        case .recommend:
-            return "0\nRecomm"
-        case .followers:
-            return "0\nFollowers"
-        case .following:
-            return "0\nFollowing"
-        }
-    }
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
-        guard navigator != nil else {
-            return nil
-        }
-        switch self {
-        case .post(let viewModel):
-            return .userPost(viewModel: viewModel)
-        case .recommend(let viewModel):
-            return .userRecommend(viewModel: viewModel)
-        case .followers(let viewModel):
-            return .userRelation(viewModel: viewModel)
-        case .following(let viewModel):
-            return .userRelation(viewModel: viewModel)
-        }
-    }
-}
-
 
 class UserViewModel: ViewModel, ViewModelType {
     
@@ -133,15 +59,20 @@ class UserViewModel: ViewModel, ViewModelType {
         let config : Driver<[UserModuleItem]>
     }
     
-    let current : BehaviorRelay<User?>
+    
+    let otherUser = BehaviorRelay<User?>(value: nil)
+    let element : BehaviorRelay<User?>
+    let userMode : BehaviorRelay<UserMode>
+    
     
     init(provider: API, otherUser : User? = nil) {
-        if let otherUser = otherUser , otherUser.userId != user.value?.userId{
-            current = BehaviorRelay(value: otherUser)
+        if let otherUser = otherUser {
+            element = BehaviorRelay(value: otherUser)
+            userMode = BehaviorRelay(value: .other)
         } else{
-            current = user
+            element = BehaviorRelay(value: user.value)
+            userMode = BehaviorRelay(value: .current)
         }
-
         super.init(provider: provider)
     }
     
@@ -149,46 +80,23 @@ class UserViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let otherUserBgViewHidden = current.map { $0 == user.value }.asDriver(onErrorJustReturn: true)
-        let userHeadImageURL = current.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
-        let displayName = current.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
-        let countryName = current.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
-        let instagram = current.map { $0?.instagram ?? ""}.asDriver(onErrorJustReturn: "")
-        let website = current.map { $0?.website ?? ""}.asDriver(onErrorJustReturn: "")
-        let bio = current.map { $0?.bio ?? ""}.asDriver(onErrorJustReturn: "")
-        let followButtonBackground = current.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
-        let followButtonImage = current.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
-        let followButtonTitleColor = current.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
-        let followButtonTitle = current.map { ($0?.isFollow ?? false) ? "Following" : " Follow" }.asDriver(onErrorJustReturn: "")
-
-        
-        input.chat.map { () in Message("Features under development...")}
-            .bind(to: message).disposed(by: rx.disposeBag)
-
-        
-        let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
-            let user = self.current.value
-            let post = UserPostViewModel(provider: self.provider, otherUser: user)
-            let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
-            let followers = UserRelationViewModel(provider: self.provider, type: .followers, otherUser: user)
-            let following = UserRelationViewModel(provider: self.provider, type: .following, otherUser: user)
-            let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
-                                           .followers(viewModel: followers),.following(viewModel: following)]
-            followers.parsedError.bind(to: self.parsedError).disposed(by: self.rx.disposeBag)
-            following.parsedError.bind(to: self.parsedError).disposed(by: self.rx.disposeBag)
-
-            observer.onNext(items)
-            observer.onCompleted()
-            return Disposables.create { }
-        }
-        
+        let otherUserBgViewHidden = userMode.map { $0 == .current }.asDriver(onErrorJustReturn: true)
+        let userHeadImageURL = element.map { $0?.userImage?.url }
+        let displayName = element.map { $0?.displayName ?? ""}
+        let countryName = element.map { $0?.countryName ?? ""}
+        let instagram = element.map { $0?.instagram ?? ""}
+        let website = element.map { $0?.website ?? ""}
+        let bio = element.map { $0?.bio ?? ""}
+        let followButtonBackground = element.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }
+        let followButtonImage = element.map { ($0?.isFollow ?? false) ? nil : R.image.icon_button_add_noborder_white() }
+        let followButtonTitleColor = element.map { ($0?.isFollow ?? false) ? UIColor.primary() : UIColor.white }
+        let followButtonTitle = element.map { ($0?.isFollow ?? false) ? "Following" : " Follow" }
         let insight = input.insight.asDriver(onErrorJustReturn: ())
         let setting = input.setting.asDriver(onErrorJustReturn: ())
-        let updateHeadLayout = current.mapToVoid().asDriver(onErrorJustReturn: ())
+        let updateHeadLayout = element.mapToVoid().asDriver(onErrorJustReturn: ())
         let refresh = PublishSubject<Void>()
         let signIn = PublishSubject<Void>()
-        let popMemu = input.memu.map { [UserDetailMemuItem(type: .report),UserDetailMemuItem(type: .block)] }.asDriver(onErrorJustReturn: [])
-
+        let popMemu = input.memu.map { [UserDetailMemuItem(type: .report),UserDetailMemuItem(type: .block)] }
         let about = settingSelectedItem.filter { $0 == .about }.mapToVoid()
         let help = settingSelectedItem.filter { $0 == .help }.mapToVoid()
         let logout = settingSelectedItem.filter { $0 == .logout }.mapToVoid()
@@ -199,16 +107,38 @@ class UserViewModel: ViewModel, ViewModelType {
         let postsYourLiked = settingSelectedItem.filter { $0 == .postsYourLiked }.mapToVoid()
         let syncInstagram = settingSelectedItem.filter { $0 == .syncInstagram }.mapToVoid()
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
-        let navigationBarAvailable = current.map { $0?.userId == user.value?.userId }
-            .map { current -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
-                if current {
+        
+        let titles = element.filterNil().map {
+            ["\($0.postCount)\nPosts",
+            "\($0.recommendCount)\nRecomm",
+            "\($0.followerCount)\nFollowers",
+            "\($0.followingCount)\nFollowing"]
+        }
+        
+        
+        let navigationBarAvailable = userMode
+            .map { mode -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
+                if mode == .current {
                     return ([.insight], [.setting,.share])
                 } else {
                     return ([.back], [.more,.share])
                 }
         }
-        
-        
+
+                
+        let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
+            let user = self.element.value
+            let post = UserPostViewModel(provider: self.provider, otherUser: user)
+            let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
+            let followers = UserRelationViewModel(provider: self.provider, type: .followers, otherUser: user)
+            let following = UserRelationViewModel(provider: self.provider, type: .following, otherUser: user)
+            let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
+                                            .followers(viewModel: followers),.following(viewModel: following)]
+            observer.onNext(items)
+            observer.onCompleted()
+            return Disposables.create { }
+        }
+                
         logout.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.logout()
@@ -232,16 +162,17 @@ class UserViewModel: ViewModel, ViewModelType {
         
         
         input.refresh.merge(with: refresh).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
-            
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            return self.provider.userDetail(userId: self.current.value?.userId ?? "")
+            let current = self.userMode.value == .current
+            let userId = current ? nil : self.otherUser.value?.userId
+            return self.provider.userDetail(userId: userId)
                 .trackError(self.error)
                 .trackActivity(self.loading)
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
             switch event {
             case .next(let item):
-                self?.current.accept(item)
+                self?.element.accept(item)
                 if user.value == nil {
                     item.save()
                 }
@@ -250,11 +181,11 @@ class UserViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-    
+        
         input.follow.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<Bool>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            let isFollow = self.current.value?.isFollow ?? false
-            let userId = self.current.value?.userId ?? ""
+            let isFollow = self.element.value?.isFollow ?? false
+            let userId = self.element.value?.userId ?? ""
             let request = isFollow ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId)
             return request
                 .trackActivity(self.loading)
@@ -263,23 +194,18 @@ class UserViewModel: ViewModel, ViewModelType {
         }).subscribe(onNext: { [weak self](event) in
             switch event {
             case .next(let result):
-                var current = self?.current.value
-                current?.isFollow = result
-                self?.current.accept(current)
+                var element = self?.element.value
+                element?.isFollow = result
+                self?.element.accept(element)
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
+        
+        input.chat.map { () in Message("Features under development...")}
+            .bind(to: message).disposed(by: rx.disposeBag)
 
-        
-        
-        let titles = current.filterNil().map { user -> [String] in
-            return ["\(user.postCount)\nPosts",
-                "\(user.recommendCount)\nRecomm",
-                "\(user.followerCount)\nFollowers",
-                "\(user.followingCount)\nFollowing"]
-        }.asDriver(onErrorJustReturn: ["0\nPosts","0\nRecomm","0\nFollowers","0\nFollowing"])
-        
         
         kUpdateItem.subscribe(onNext: { (state, item,trigger) in
             switch state {
@@ -289,15 +215,15 @@ class UserViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-
         
-        return Output(userHeadImageURL: userHeadImageURL,
-                      displayName: displayName,
-                      countryName: countryName,
-                      instagram: instagram,
-                      website: website,
-                      bio: bio,
-                      titles: titles,
+        
+        return Output(userHeadImageURL: userHeadImageURL.asDriver(onErrorJustReturn: nil),
+                      displayName: displayName.asDriver(onErrorJustReturn: ""),
+                      countryName: countryName.asDriver(onErrorJustReturn: ""),
+                      instagram: instagram.asDriver(onErrorJustReturn: ""),
+                      website: website.asDriver(onErrorJustReturn: ""),
+                      bio: bio.asDriver(onErrorJustReturn: ""),
+                      titles: titles.asDriver(onErrorJustReturn: []),
                       updateHeadLayout: updateHeadLayout.asDriver(onErrorJustReturn: ()),
                       insight: insight ,
                       setting: setting,
@@ -316,12 +242,12 @@ class UserViewModel: ViewModel, ViewModelType {
                       followButtonBackground: followButtonBackground.asDriver(onErrorJustReturn: .white),
                       followButtonImage: followButtonImage.asDriver(onErrorJustReturn: nil),
                       followButtonTitleColor: followButtonTitleColor.asDriver(onErrorJustReturn: .white),
-                      followButtonTitle: followButtonTitle,
-                      memu: popMemu,
+                      followButtonTitle: followButtonTitle.asDriver(onErrorJustReturn: ""),
+                      memu: popMemu.asDriver(onErrorJustReturn: []),
                       config: config.asDriver(onErrorJustReturn: []) )
     }
     
- 
+    
     
 }
 

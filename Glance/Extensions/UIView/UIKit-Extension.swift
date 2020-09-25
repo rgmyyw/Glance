@@ -11,11 +11,10 @@ import RxSwift
 import RxCocoa
 
 
-// MARK: - UIApplication
-extension UIApplication {
+// MARK: - UIViewController
+extension UIViewController {
     
-    class func topViewController(_ base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        
+    func topViewController(_ base: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
         if let nav = base as? UINavigationController {
             return topViewController(nav.visibleViewController)
         }

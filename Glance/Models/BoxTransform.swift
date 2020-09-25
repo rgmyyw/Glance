@@ -9,6 +9,9 @@
 import UIKit
 import ObjectMapper
 
+
+
+
 class BoxTransform: TransformType {
     
     func transformFromJSON(_ value: Any?) -> Box? {

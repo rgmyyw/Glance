@@ -77,10 +77,6 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     public let languageChanged = BehaviorRelay<Void>(value: ())
     public let motionShakeEvent = PublishSubject<Void>()
     
-    var topViewController : UIViewController? {
-        return UIApplication.topViewController()
-    }
-    
     private(set) lazy var navigationBar : NavigationBar = NavigationBar(height: 44)
     
     private(set) lazy var contentView: View = {
@@ -236,11 +232,15 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
         
         
         message.subscribe(onNext: {[weak self] message in
-            self?.view.makeToast(message.subTitle,position: self?.messageToastPosition ?? .bottom, title: message.title,style: message.style )
+            let view = self?.topViewController()?.view
+            let position = self?.messageToastPosition ?? .bottom
+            view?.makeToast(message.subTitle,position: position, title: message.title,style: message.style )
         }).disposed(by: rx.disposeBag)
         
         exceptionError.filterNil().subscribe(onNext: { [weak self] error in
-            self?.view.makeToast(error.description,position: self?.exceptionToastPosition ?? .bottom)
+            let view = self?.topViewController()?.view
+            let position = self?.exceptionToastPosition ?? .bottom
+            view?.makeToast(error.description,position: position)
         }).disposed(by: rx.disposeBag)
         
         
@@ -253,7 +253,9 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
                 description = response.detail()
             }
             self?.stopAnimating()
-            self?.view.makeToast(description, position: self?.exceptionToastPosition ?? .bottom, title: title)
+            let view = self?.topViewController()?.view
+            let position = self?.exceptionToastPosition ?? .bottom
+            view?.makeToast(description, position: position, title: title)
         }).disposed(by: rx.disposeBag)
         
     }

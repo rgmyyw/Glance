@@ -9,7 +9,7 @@ protocol API {
     func downloadString(url: URL) -> Single<String>
     func downloadFile(url: URL, fileName: String?) -> Single<Void>
     func getHome(page : Int) -> Single<PageMapable<Home>>
-    func userDetail(userId : String) -> Single<User>
+    func userDetail(userId : String?) -> Single<User>
     func modifyProfile(data : [String : Any]) -> Single<User>
     func uploadImage(type: Int, size : CGSize, data : Data) -> Single<String>
     func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
