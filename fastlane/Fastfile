@@ -91,7 +91,8 @@ platform :ios do
         "com.belive.glance-p"=>"Glance_prerelease_appstore"
       }
     })
-    upload_to_testflight
+    upload_to_testflight(
+      skip_waiting_for_build_processing: false)
 
   end
 

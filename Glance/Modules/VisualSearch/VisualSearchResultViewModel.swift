@@ -193,6 +193,23 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
+        NotificationCenter.default.rx
+            .notification(.kAddProduct)
+            .subscribe(onNext: { [weak self] noti in
+                guard let (box, home) = noti.object as? (Box, Home) else { return }
+                let boxes = self?.element.value?.boxes ?? []
+                if let boxIndex = boxes.firstIndex(where:  { $0 == box}) , var boxProduct = self?.element.value?.boxProducts[boxIndex] {
+                    boxProduct.productList.insert(home, at: 0)
+                    var element = self?.element.value
+                    element?.boxProducts[boxIndex] = boxProduct
+                    self?.element.accept(element)
+                    self?.message.onNext(.init("add product successfully"))
+                } else {
+                    print("not found box")
+                }
+        }).disposed(by: rx.disposeBag)
+        
+        
         element.map { $0?.boxes }.map { $0?.firstIndex { $0 == self.currentBox.value } }.filterNil().map { (boxIndex) -> [VisualSearchResultSection] in
             
             guard let boxProducts = self.element.value?.boxProducts , boxIndex < boxProducts.count  else { return [] }

@@ -17,6 +17,8 @@ class SearchRecommendHotFilterCellViewModel: CellViewModelProtocol  {
     let selected = BehaviorRelay<Bool>(value: false)
     
     
+    
+    
     required init(item : SearchThemeClassify) {
         self.item = item
         title.accept(item.classifyName)

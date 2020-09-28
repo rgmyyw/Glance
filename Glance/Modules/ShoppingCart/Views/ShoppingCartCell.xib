@@ -122,7 +122,7 @@
                                                 <state key="normal" backgroundImage="icon_tag"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="enlargeValidTouch">
-                                                        <real key="value" value="10"/>
+                                                        <real key="value" value="20"/>
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </button>

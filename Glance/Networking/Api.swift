@@ -41,7 +41,7 @@ protocol API {
     func productSearch(type : ProductSearchType,keywords : String, page : Int) -> Single<PageMapable<Home>>
     func globalSearch(type : SearchResultContentType,keywords : String, page : Int) -> Single<PageMapable<Home>>
     func categories()  -> Single<[Categories]>
-    func addProduct(param : [String : Any]) -> Single<String>
+    func addProduct(param : [String : Any]) -> Single<Home>
     func postProduct(param : [String : Any]) -> Single<Bool>
     func insightsLiked(postId: Int,pageNum : Int) ->  Single<PageMapable<InsightsRelation>>
     func insightsRecommend(postId: Int,pageNum : Int) ->  Single<PageMapable<InsightsRelation>>

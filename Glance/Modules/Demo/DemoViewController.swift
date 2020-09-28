@@ -20,7 +20,8 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         guard let provider = self.viewModel?.provider else {
             return
         }
-
+        
+        //
 
         let viewModel = SelectStoreViewModel(provider: provider, productId: "")
         self.navigator.show(segue: .selectStore(viewModel: viewModel), sender: self,transition: .panel(style: .default))

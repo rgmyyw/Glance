@@ -18,6 +18,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let clearAll : Observable<Void>
         let updateHistory : Observable<Void>
         let search : Observable<Void>
+        let historySelection : Observable<SearchRecommendHistorySectionItem>
     }
     
     struct Output {
@@ -25,6 +26,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let history : Driver<[SearchRecommendHistorySection]>
         let headHidden : Driver<Bool>
         let search : Driver<Void>
+        let searchResult : Driver<String>
     }
     
 
@@ -34,6 +36,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let eraseHistory = PublishSubject<[SearchHistoryItem]>()
         let elements = BehaviorRelay<[SearchRecommendHistorySection]>(value:[])
         let headHidden = BehaviorRelay<Bool>(value: true)
+        let searchResult = input.historySelection.map { $0.viewModel.item.text }.asDriverOnErrorJustComplete()
         
         input.updateHistory.map { searchHistory.value }.bind(to: history).disposed(by: rx.disposeBag)
         input.clearAll.map { searchHistory.value } .bind(to: eraseHistory).disposed(by: rx.disposeBag)
@@ -80,7 +83,8 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         return Output(config: config.asDriver(onErrorJustReturn: []),
                       history: elements.asDriver(onErrorJustReturn: []),
                       headHidden: headHidden.asDriver(),
-                      search: input.search.asDriver(onErrorJustReturn: ()))
+                      search: input.search.asDriver(onErrorJustReturn: ()),
+                      searchResult: searchResult)
     }
 }
 

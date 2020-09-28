@@ -23,6 +23,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         let items : Driver<[SectionModel<Void,SearchRecommendHotCellViewModel>]>
         let filter : Observable<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>
         let themeDetail : Driver<Int>
+        let detail : Driver<Home>
     }
     
     let element : BehaviorRelay<PageMapable<SearchTheme>?> = BehaviorRelay(value: nil)
@@ -34,6 +35,9 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         let filter = BehaviorRelay<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>(value: [])
         let themeClassifySelection = BehaviorRelay<SearchRecommendHotFilterCellViewModel?>(value: nil)
         let themeDetail = PublishSubject<SearchRecommendHotCellViewModel>()
+        let itemSelected = PublishSubject<SearchRecommendHotColltionCellViewModel>()
+        
+        
         input.filter.bind(to: themeClassifySelection).disposed(by: rx.disposeBag)
         
         themeClassifySelection.subscribe(onNext: { (cellViewModel) in
@@ -117,6 +121,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
             let sectionItems = element.list.map { item -> SearchRecommendHotCellViewModel  in
                 let viewModel = SearchRecommendHotCellViewModel(item: item)
                 viewModel.themeDetail.map { viewModel }.bind(to: themeDetail).disposed(by: self.rx.disposeBag)
+                viewModel.selection.bind(to: itemSelected).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
             let sections = [SectionModel<Void,SearchRecommendHotCellViewModel>(model: (), items: sectionItems)]
@@ -134,12 +139,20 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         }.bind(to: filter).disposed(by: rx.disposeBag)
     
         
+        let detail = itemSelected.map { cellViewModel -> Home in
+            if let productId = cellViewModel.item.productId {
+                return Home(productId: productId)
+            } else {
+                return Home(postId: cellViewModel.item.postId)
+            }
+        }
         
         
     
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       filter: filter.asObservable(),
-                      themeDetail: themeDetail.map { $0.item.themeId }.asDriver(onErrorJustReturn: 0))
+                      themeDetail: themeDetail.map { $0.item.themeId }.asDriver(onErrorJustReturn: 0),
+                      detail: detail.asDriverOnErrorJustComplete())
         
     }
 }

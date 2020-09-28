@@ -13,6 +13,19 @@ import WZLBadge
 import PopMenu
 
 
+
+
+extension Reactive where Base: UILabel {
+    
+    var textAlignment : Binder<NSTextAlignment> {
+        return Binder(self.base) { (label, textAlignment) in
+            label.textAlignment = textAlignment
+        }
+    }
+}
+
+
+
 extension Reactive where Base: UITextField {
     
     var placeholder : Binder<String> {
@@ -36,6 +49,9 @@ extension Reactive where Base: UIView {
     }
 
 }
+
+
+
 
 extension Reactive where Base: UIView {
     

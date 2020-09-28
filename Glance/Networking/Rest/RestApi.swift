@@ -161,9 +161,8 @@ class RestApi: API {
     }
     
     
-    func addProduct(param: [String : Any]) -> Single<String> {
-        return requestObject(.addProduct(param: param), type: MappableItem<[String : String]>.self,keyPath: nil).map { $0.data?["productId"] ?? ""}
-        
+    func addProduct(param: [String : Any]) -> Single<Home> {
+        return requestObject(.addProduct(param: param), type: Home.self)
     }
     
     func postProduct(param: [String : Any]) -> Single<Bool> {

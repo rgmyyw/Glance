@@ -20,7 +20,7 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="076-i4-G8i">
                         <rect key="frame" x="0.0" y="0.0" width="91" height="116"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQV-WI-Yog">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aQV-WI-Yog">
                                 <rect key="frame" x="0.0" y="0.0" width="91" height="80"/>
                                 <color key="backgroundColor" red="0.96862745098039216" green="0.96862745098039216" blue="0.96862745098039216" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -33,7 +33,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@username" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d3o-TW-y7N">
-                                <rect key="frame" x="4" y="89.5" width="66" height="14"/>
+                                <rect key="frame" x="4" y="89.5" width="82" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -41,6 +41,7 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="d3o-TW-y7N" secondAttribute="trailing" constant="5" id="6KG-1P-7r0"/>
                             <constraint firstItem="d3o-TW-y7N" firstAttribute="leading" secondItem="aQV-WI-Yog" secondAttribute="leading" constant="4" id="L8Y-VT-MLb"/>
                             <constraint firstItem="aQV-WI-Yog" firstAttribute="top" secondItem="076-i4-G8i" secondAttribute="top" id="Pk7-fr-sgT"/>
                             <constraint firstAttribute="trailing" secondItem="aQV-WI-Yog" secondAttribute="trailing" id="duc-jW-FE5"/>

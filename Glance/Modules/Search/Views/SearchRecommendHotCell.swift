@@ -45,6 +45,8 @@ class SearchRecommendHotCell: TableViewCell {
             self?.collectionView.reloadData()
         }).disposed(by: cellDisposeBag)
         
+        collectionView.rx.modelSelected(SearchRecommendHotColltionCellViewModel.self).asObservable()
+            .bind(to: viewModel.selection).disposed(by: cellDisposeBag)
         themeDetailBgView.rx.tap().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
 
     }

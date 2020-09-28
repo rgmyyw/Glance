@@ -22,5 +22,6 @@ class SearchRecommendHotCollectionCell: CollectionViewCell {
         super.bind(to: viewModel)
         viewModel.image.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
+        viewModel.textAlignment.bind(to: userNameLabel.rx.textAlignment).disposed(by: cellDisposeBag)
     }
 }

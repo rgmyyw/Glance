@@ -226,7 +226,8 @@ extension NSNotification.Name {
  
     public static let kUpdateHomeData : NSNotification.Name = NSNotification.Name("kUpdateHomeData")
     public static let kRemovePostItem : NSNotification.Name = NSNotification.Name("kRemovePostItem")
-    
+    public static let kAddProduct : NSNotification.Name = NSNotification.Name("kAddProduct")
+
 }
 
 extension String {
@@ -333,7 +334,7 @@ extension Int {
     func format(f : IntFormat = .k) -> String {
         let i = self.cgFloat
         let n = i / f.value
-        if n > 0 {
+        if n > 999 {
             return String(format: "%.2lf\(f.format)", n)
         } else {
             return self.string

@@ -69,9 +69,12 @@ class UserViewModel: ViewModel, ViewModelType {
         if let otherUser = otherUser {
             element = BehaviorRelay(value: otherUser)
             userMode = BehaviorRelay(value: .other)
+            self.otherUser.accept(otherUser)
         } else{
+            
             element = BehaviorRelay(value: user.value)
             userMode = BehaviorRelay(value: .current)
+            self.otherUser.accept(nil)
         }
         super.init(provider: provider)
     }
@@ -127,7 +130,7 @@ class UserViewModel: ViewModel, ViewModelType {
 
                 
         let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
-            let user = self.element.value
+            let user = self.otherUser.value.value
             let post = UserPostViewModel(provider: self.provider, otherUser: user)
             let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
             let followers = UserRelationViewModel(provider: self.provider, type: .followers, otherUser: user)
@@ -173,7 +176,7 @@ class UserViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 self?.element.accept(item)
-                if user.value == nil {
+                if self?.userMode.value == .current {
                     item.save()
                 }
             default:

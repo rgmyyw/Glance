@@ -28,8 +28,8 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
     }
     
     
-    let textInput = BehaviorRelay<String>(value: "k")
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let textInput = BehaviorRelay<String>(value: "")
+    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     let selection = PublishSubject<[Home]>()
     
     
@@ -38,6 +38,12 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[StyleBoardSearchSection]>(value: [])
         let placeholder = input.currentType.map { $0.placeholder }.asDriver(onErrorJustReturn: "")
         let addButtonEnable = BehaviorRelay<Bool>(value: false)
+                
+        input.currentType.mapToVoid()
+            .subscribe(onNext: {[weak self]() in
+                self?.element.accept(nil)
+                elements.accept([])
+        }).disposed(by: rx.disposeBag)
         
         input.add.flatMapLatest { () -> Observable<[Home]> in
             let elements = elements.value.flatMap { $0.items.filter { $0.viewModel.selected.value } }
@@ -52,8 +58,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        textInput.filterEmpty()
-            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+        textInput.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
@@ -79,7 +84,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
+            if !(self.element.value?.hasNext ?? false) {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
@@ -93,7 +98,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? [] ) + item.list
                 self.element.accept(temp)
                 self.hasData.onNext(item.hasNext)
             default:
@@ -102,9 +107,8 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        element.map { element -> [StyleBoardSearchSection] in
+        element.filterNil().map { element -> [StyleBoardSearchSection] in
             if element.list.isEmpty { return [] }
-            
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> StyleBoardSearchSectionItem in
                 let cellViewModel = StyleBoardSearchCellViewModel(item: item)
                 let sectionItem = StyleBoardSearchSectionItem(item: indexPath, viewModel: cellViewModel)

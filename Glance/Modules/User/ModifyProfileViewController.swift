@@ -70,7 +70,8 @@ class ModifyProfileViewController: ViewController {
         let output = viewModel.transform(input: input)
         
         
-        output.userHeadImageURL.drive(userHeadImageView.rx.imageURL).disposed(by: rx.disposeBag)
+        output.userHeadImageURL.drive(userHeadImageView.rx
+            .imageURL(withPlaceholder:R.image.icon_empty_default())).disposed(by: rx.disposeBag)
         output.countryName.drive(countryLabel.rx.text).disposed(by: rx.disposeBag)
         (displayNameTextField.rx.textInput <-> viewModel.displayName).disposed(by: rx.disposeBag)
         (userNameTextField.rx.textInput <-> viewModel.userName).disposed(by: rx.disposeBag)

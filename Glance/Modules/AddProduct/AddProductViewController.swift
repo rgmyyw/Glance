@@ -27,16 +27,16 @@ class AddProductViewController: CollectionViewController {
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-
+        
         collectionView.headRefreshControl = nil
         collectionView.footRefreshControl = nil
         
-
+        
         navigationTitle = "Add Product"
         
         collectionView.register(AddProductTagCell.nib, forCellWithReuseIdentifier: AddProductTagCell.reuseIdentifier)
         collectionView.register(AddProductImageCell.nib, forCellWithReuseIdentifier: AddProductImageCell.reuseIdentifier)
-
+        
         
         collectionView.register(nib: AddProductNameReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductNameReusableView.self)
         collectionView.register(nib: AddProductCategaryReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductCategaryReusableView.self)
@@ -45,11 +45,11 @@ class AddProductViewController: CollectionViewController {
         collectionView.register(nib: AddProductWebsiteReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductWebsiteReusableView.self)
         collectionView.register(nib: AddProductButtonReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductButtonReusableView.self)
         collectionView.register(nib: AddProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductTitleReusableView.self)
-
+        
         emptyDataViewDataSource.enable.accept(false)
         
     }
-
+    
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -59,8 +59,6 @@ class AddProductViewController: CollectionViewController {
         let input = AddProductViewModel.Input(selection: collectionView.rx.modelSelected(AddProductSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         dataSouce.configureSupplementaryView = configureSupplementaryView()
-
-        
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
@@ -74,21 +72,22 @@ class AddProductViewController: CollectionViewController {
                 Alert.showActionSheet(message: "", optionTitles: titles)
                     .subscribe(onNext: { (index) in
                         viewModel.selectedCategory.onNext(items[index])
-                }).disposed(by: self.rx.disposeBag)
+                    }).disposed(by: self.rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
+        
+        output.post.subscribe(onNext: { [weak self](box,home) in
+            
+            NotificationCenter.default.post(name: .kAddProduct, object: (box,home))
+            self?.navigator.pop(sender: self, toRoot: true)
+            /// let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [(box,home)])
+            /// self.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
-        output.post.subscribe(onNext: { [weak self](image,box,home) in
-            self?.navigationController?.popToRootViewController(animated: false)
-            let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [(box,home)])
-            self?.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
-            
-        }).disposed(by: rx.disposeBag)
-
     }
 }
 
 extension AddProductViewController {
-
+    
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<AddProductSection> {
         return RxCollectionViewSectionedAnimatedDataSource<AddProductSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             
@@ -104,36 +103,36 @@ extension AddProductViewController {
             }
         })
     }
-
-
+    
+    
     fileprivate func configureSupplementaryView() -> (CollectionViewSectionedDataSource<AddProductSection>, UICollectionView, String, IndexPath) -> UICollectionReusableView {
         return {  (dataSouce, collectionView, kind, indexPath) -> UICollectionReusableView in
-
+            
             switch dataSouce.sectionModels[indexPath.section] {
             case .brand(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductBrandReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
                 return view
-
+                
             case .categary(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductCategaryReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
                 return view
-
+                
             case .productName(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductNameReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
                 return view
-
+                
             case .tagRelatedKeywords(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductInputKeywordReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
                 return view
-
+                
             case .thumbnail:
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductTitleReusableView.self, for: indexPath)
                 return view
-
+                
             case .website(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: AddProductWebsiteReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
@@ -145,16 +144,16 @@ extension AddProductViewController {
             default:
                 fatalError()
             }
-
+            
         }
     }
-
-
+    
+    
 }
 
 
 extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         switch self.dataSouce[section] {
         case .tags:
@@ -165,7 +164,7 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return ClosedLayout
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
         switch self.dataSouce[section] {
         case .thumbnail:
@@ -174,7 +173,7 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return 0
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         switch dataSouce.sectionModels[section] {
         case .tagRelatedKeywords:
@@ -189,7 +188,7 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return .zero
         }
     }
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch dataSouce.sectionModels[section] {
         case .tags,.thumbnail:
@@ -198,9 +197,9 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return .zero
         }
     }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
         let item =  dataSouce[indexPath.section].items[indexPath.item]
         switch item {
         case .tag(_,let viewModel):
@@ -213,7 +212,7 @@ extension AddProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return CGSize(width: 100, height: 100)
         }
     }
-
+    
 }
 
 

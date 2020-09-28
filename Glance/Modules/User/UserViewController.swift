@@ -130,7 +130,7 @@ class UserViewController: ViewController {
         output.countryName.drive(userHeadView.countryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.displayName.drive(userHeadView.otherUserDisplayNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.countryName.drive(userHeadView.otherUserCountryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
-        output.userHeadImageURL.drive(userHeadView.userHeadImageView.rx.imageURL).disposed(by: rx.disposeBag)
+        output.userHeadImageURL.drive(userHeadView.userHeadImageView.rx.imageURL(withPlaceholder:R.image.icon_empty_default())).disposed(by: rx.disposeBag)
         output.instagram.drive(userHeadView.instagramButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.website.drive(userHeadView.websiteButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.bio.drive(userHeadView.bioLabel.rx.text).disposed(by: rx.disposeBag)

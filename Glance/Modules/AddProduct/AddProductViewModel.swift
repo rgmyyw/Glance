@@ -19,7 +19,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[AddProductSection]>
         let selectionCategory : Driver<[Categories]>
-        let post : Observable<(UIImage,Box,Home)>
+        let post : Observable<(Box,Home)>
     }
     
     let selectedCategory = PublishSubject<Categories>()
@@ -45,7 +45,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         let uploadImage = PublishSubject<(UIImage, [String : Any])>()
         let commit = PublishSubject<[String : Any]>()
         let edit = PublishSubject<AddProductImageCellViewModel>()
-        let post = PublishSubject<(UIImage,Box,Home)>()
+        let post = PublishSubject<(Box,Home)>()
         
         
         Observable.just(()).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Categories]>)> in
@@ -64,7 +64,7 @@ class AddProductViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
 
         
-        commit.flatMapLatest({ [weak self] (param) -> Observable<(RxSwift.Event<String>)> in
+        commit.flatMapLatest({ [weak self] (param) -> Observable<(RxSwift.Event<Home>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.addProduct(param: param)
                 .trackError(self.error)
@@ -73,9 +73,8 @@ class AddProductViewModel: ViewModel, ViewModelType {
         }).subscribe(onNext: {[weak self] event in
             guard let self = self else { return }
             switch event {
-            case .next(let productId):
-                let home = Home(productId: productId)
-                post.onNext((self.image.value,self.box.value,home))
+            case .next(let home):
+                post.onNext((self.box.value,home))
             default:
                 break
             }

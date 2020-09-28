@@ -66,7 +66,7 @@ class SearchRecommendViewController: ViewController {
         let input = SearchRecommendViewModel.Input(refresh: refresh,
                                                    clearAll: headView.clearButton.rx.tap.asObservable(),
                                                    updateHistory: rx.viewWillAppear.mapToVoid(),
-                                                   search: customNavigationBar.searchView.rx.tap().asObservable())
+                                                   search: customNavigationBar.searchView.rx.tap().asObservable(),historySelection: headView.collectionView.rx.modelSelected(SearchRecommendHistorySectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.history.drive(headView.items).disposed(by: rx.disposeBag)
 
@@ -103,8 +103,13 @@ class SearchRecommendViewController: ViewController {
             }
             self?.pageController.updateHeadView()
         }).disposed(by: rx.disposeBag)
+                
+        output.searchResult.drive(onNext: { [weak self](text) in
+            let viewModel = SearchResultViewModel(provider: viewModel.provider, text: text)
+            self?.navigator.show(segue: .searchResult(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
         
-            
         output.search.drive(onNext: { [weak self]() in
             let viewModel = SearchViewModel(provider: viewModel.provider, text: "")
             self?.navigator.show(segue: .search(viewModel: viewModel), sender: self,transition: .modal)
