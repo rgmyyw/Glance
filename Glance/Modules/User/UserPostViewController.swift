@@ -44,7 +44,7 @@ class UserPostViewController: CollectionViewController  {
         
         
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
+        let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
         let input = UserPostViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
                                             selection: collectionView.rx.modelSelected(UserPostCellViewModel.self).asObservable())

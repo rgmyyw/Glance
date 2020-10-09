@@ -42,7 +42,8 @@ class ProductCell: DefaultColltionCell {
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommended.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
-        
+        viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
+
         recommendButton.rx.tap.bind(to: viewModel.recommend).disposed(by: cellDisposeBag)
         saveButton.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
         moreButton.rx.tap.bind(to: viewModel.more).disposed(by: cellDisposeBag)

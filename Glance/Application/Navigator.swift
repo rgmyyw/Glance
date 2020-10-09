@@ -36,7 +36,7 @@ class Navigator {
         case notificationProfile(viewModel : NotificationProfileViewModel)
         case originalPhotos(viewModel : OriginalPhotosViewModel)
         case privacy(viewModel : PrivacyViewModel)
-        case userRelation(viewModel : UserRelationViewModel)
+        case users(viewModel : UsersViewModel)
         case insights(viewModel : InsightsViewModel)
         case insightsDetail(viewModel : InsightsDetailViewModel)
         case reactions(viewModel : ReactionsViewModel)
@@ -116,8 +116,8 @@ class Navigator {
         case .privacy(let viewModel):
             let vc = PrivacyViewController(viewModel: viewModel, navigator: self)
             return vc
-        case .userRelation(let viewModel):
-            let vc = UserRelationViewController(viewModel: viewModel, navigator: self,tableView: .grouped)
+        case .users(let viewModel):
+            let vc = UsersViewController(viewModel: viewModel, navigator: self,tableView: .grouped)
             return vc
         case .insights(let viewModel):
             let vc = InsightsViewController(viewModel: viewModel, navigator: self)

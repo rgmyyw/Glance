@@ -67,6 +67,8 @@ class UserViewController: ViewController {
     
     lazy var navigationItems = [backButton,share,more,insight, setting]
     
+    var lastIndex : Int = 0
+    
     private lazy var pageController : WMZPageController = {
         
         let config = PageParam()
@@ -96,7 +98,6 @@ class UserViewController: ViewController {
         
         return controller
     }()
-    
     
     
     
@@ -236,6 +237,8 @@ class UserViewController: ViewController {
             self.memu.dataSource = items.map { "  \($0.title)"}
             self.memu.show()
         }).disposed(by: rx.disposeBag)
+        
+        
         
     }
     

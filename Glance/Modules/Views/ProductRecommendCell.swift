@@ -51,6 +51,7 @@ class ProductRecommendCell: DefaultColltionCell {
         deleteButton.rx.tap.bind(to: viewModel.delete).disposed(by: cellDisposeBag)
         reportButton.rx.tap.bind(to: viewModel.report).disposed(by: cellDisposeBag)
         
+        
         viewModel.memu.subscribe(onNext: { [weak self](items) in
             self?.memuItems.forEach { $0.isHidden = true }
             items.forEach { self?.memuItems[$0.rawValue].isHidden = false }

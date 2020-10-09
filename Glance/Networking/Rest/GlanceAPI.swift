@@ -30,7 +30,7 @@ enum GlanceAPI {
     case uploadImage(type: Int, size : CGSize, data : Data)
     case userPost(userId : String, pageNum : Int)
     case userRecommend(userId : String, pageNum : Int)
-    case userRelation(type : UserRelationType, userId : String, pageNum : Int)
+    case users(type : UsersType, userId : String, pageNum : Int)
     case follow(userId : String)
     case undoFollow(userId : String)
     case block(userId : String)
@@ -106,7 +106,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/posts/user/\(pageNum)/\(10)"
         case .userRecommend(_, let pageNum):
             return "/api/recommends/user/\(pageNum)/\(10)"
-        case .userRelation(let type,_, let pageNum):
+        case .users(let type,_, let pageNum):
             switch type {
             case .following:
                 return "/api/follow/following/\(pageNum)/\(10)"
@@ -232,7 +232,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return .post
         case .userDetail,.userPost,
              .userRecommend,
-             .userRelation,
+             .users,
              .insightPost,
              .insightRecommend,
              .insightsPostDetail,
@@ -310,7 +310,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params.merge(dict: param)
         case .userPost(let userId, _),
              .userRecommend(let userId, _),
-             .userRelation(_, let userId, _):
+             .users(_, let userId, _):
             if userId.isNotEmpty {
                 params["otherUserId"] = userId
             }

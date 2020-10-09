@@ -1,11 +1,3 @@
-//
-//  XXXX.swift
-//  
-//
-//  Created by 杨海 on 2020/5/15.
-//  Copyright © 2020 fwan. All rights reserved.
-//
-
 import RAMAnimatedTabBarController
 import UIKit
 

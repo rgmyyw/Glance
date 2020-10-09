@@ -49,8 +49,8 @@ class RestApi: API {
         return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Home>.self)
     }
     
-    func userRelation(type: UserRelationType, userId: String = "", pageNum: Int) -> Single<PageMapable<UserRelation>> {
-        return requestObject(.userRelation(type: type, userId: userId, pageNum: pageNum), type: PageMapable<UserRelation>.self)
+    func users(type: UsersType, userId: String = "", pageNum: Int) -> Single<PageMapable<UserRelation>> {
+        return requestObject(.users(type: type, userId: userId, pageNum: pageNum), type: PageMapable<UserRelation>.self)
     }
     
     func follow(userId: String) -> Single<Bool> {

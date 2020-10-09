@@ -110,15 +110,35 @@ class UserViewModel: ViewModel, ViewModelType {
         let postsYourLiked = settingSelectedItem.filter { $0 == .postsYourLiked }.mapToVoid()
         let syncInstagram = settingSelectedItem.filter { $0 == .syncInstagram }.mapToVoid()
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
-        
-        let titles = element.filterNil().map {
+        let titles = PublishSubject<[String]>()
+        let updateTitle = PublishSubject<[UserUpdateTitle]>()
+                
+        updateTitle.subscribe(onNext: { [weak self] (items) in
+            var t = self?.element.value
+            items.forEach { (i) in
+                switch i {
+                case .post(let count):
+                    t?.postCount = count
+                case .recommend(let count):
+                    t?.recommendCount = count
+                case .followers(let count):
+                    t?.followerCount = count
+                case .following(let count):
+                    t?.followingCount = count
+                }
+            }
+            self?.element.accept(t)
+        }).disposed(by: rx.disposeBag)
+
+        element.filterNil().map {
             ["\($0.postCount)\nPosts",
             "\($0.recommendCount)\nRecomm",
             "\($0.followerCount)\nFollowers",
             "\($0.followingCount)\nFollowing"]
-        }
+        }.bind(to: titles)
+            .disposed(by: rx.disposeBag)
         
-        
+
         let navigationBarAvailable = userMode
             .map { mode -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
                 if mode == .current {
@@ -131,12 +151,27 @@ class UserViewModel: ViewModel, ViewModelType {
                 
         let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
             let user = self.otherUser.value.value
+            
             let post = UserPostViewModel(provider: self.provider, otherUser: user)
             let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
-            let followers = UserRelationViewModel(provider: self.provider, type: .followers, otherUser: user)
-            let following = UserRelationViewModel(provider: self.provider, type: .following, otherUser: user)
+            let followers = UsersViewModel(provider: self.provider, type: .followers, otherUser: user)
+            let following = UsersViewModel(provider: self.provider, type: .following, otherUser: user)
             let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
                                             .followers(viewModel: followers),.following(viewModel: following)]
+            recommend.needUpdateTitle.map {
+                let count = self.element.value?.recommendCount ?? 0
+                let item = UserUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
+                return [item]
+            }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
+            
+            
+            followers.needUpdateTitle.merge(with: following.needUpdateTitle).map {
+                let count = self.element.value?.followingCount ?? 0
+                let item = UserUpdateTitle.following(count: $0 ? count + 1 : count - 1)
+                return [item]
+            }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
+
+                        
             observer.onNext(items)
             observer.onCompleted()
             return Disposables.create { }

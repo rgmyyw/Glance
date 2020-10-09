@@ -54,6 +54,8 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let delete = PublishSubject<Void>()
     let report = PublishSubject<Void>()
     
+    
+    let recommendButtonHidden = BehaviorRelay<Bool>(value: false)
         
     var image: String? {
         return item.image

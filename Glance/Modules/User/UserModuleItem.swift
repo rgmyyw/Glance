@@ -8,12 +8,20 @@
 
 import UIKit
 
+enum UserUpdateTitle {
+    case post(count : Int)
+    case recommend(count : Int)
+    case followers(count : Int)
+    case following(count : Int)
+}
+
+
 enum UserModuleItem {
     
     case post(viewModel : UserPostViewModel)
     case recommend(viewModel : UserRecommViewModel)
-    case followers(viewModel : UserRelationViewModel)
-    case following(viewModel : UserRelationViewModel)
+    case followers(viewModel : UsersViewModel)
+    case following(viewModel : UsersViewModel)
     
     var defaultTitle : String {
         switch self {
@@ -38,9 +46,9 @@ enum UserModuleItem {
         case .recommend(let viewModel):
             return .userRecommend(viewModel: viewModel)
         case .followers(let viewModel):
-            return .userRelation(viewModel: viewModel)
+            return .users(viewModel: viewModel)
         case .following(let viewModel):
-            return .userRelation(viewModel: viewModel)
+            return .users(viewModel: viewModel)
         }
     }
 }

@@ -14,7 +14,7 @@ protocol API {
     func uploadImage(type: Int, size : CGSize, data : Data) -> Single<String>
     func userPost(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
     func userRecommend(userId : String, pageNum : Int) -> Single<PageMapable<Home>>
-    func userRelation(type :  UserRelationType, userId : String, pageNum : Int) -> Single<PageMapable<UserRelation>>
+    func users(type :  UsersType, userId : String, pageNum : Int) -> Single<PageMapable<UserRelation>>
     func follow(userId : String) -> Single<Bool>
     func undoFollow(userId : String) -> Single<Bool>
     func block(userId : String) -> Single<Bool>

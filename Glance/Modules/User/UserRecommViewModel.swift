@@ -16,20 +16,20 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<UserRecommCellViewModel>
+        let selection : Observable<DefaultColltionSectionItem>
         
     }
     
     struct Output {
-        let items : Driver<[SectionModel<Void,UserRecommCellViewModel>]>
+        let items : Driver<[UserRecommSection]>
         let detail : Driver<Home>
     }
     
     let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
-    
+    let needUpdateTitle = PublishSubject<Bool>()
     let current = BehaviorRelay<User?>(value: nil)
     
-    init(provider: API,otherUser : User? = nil) {
+    init(provider: API, otherUser : User? = nil) {
         super.init(provider: provider)
         current.accept(otherUser)
     }
@@ -37,11 +37,13 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     
     func transform(input: Input) -> Output {
         
-        let elements = BehaviorRelay<[SectionModel<Void,UserRecommCellViewModel>]>(value: [])
-        let save = PublishSubject<UserRecommCellViewModel>()
-        let detail = input.selection.map { $0.item }.asDriver(onErrorJustReturn: Home())
-        let recommend = PublishSubject<UserRecommCellViewModel>()
-
+        let elements = BehaviorRelay<[UserRecommSection]>(value: [])
+        let save = PublishSubject<DefaultColltionCellViewModel>()
+        let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
+        let detail = input.selection.map { $0.viewModel.item }
+        let recommend = PublishSubject<DefaultColltionCellViewModel>()
+        let more = PublishSubject<DefaultColltionCellViewModel>()
+        
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
@@ -89,19 +91,24 @@ class UserRecommViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        element.filterNil().map { items -> [SectionModel<Void,UserRecommCellViewModel>] in
-            let sectionItems = items.list.map { item -> UserRecommCellViewModel  in
-                let viewModel = UserRecommCellViewModel(item: item)
+        element.filterNil().map { items -> [UserRecommSection] in
+            let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
+                let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
-                viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
+                viewModel.reaction.map { ($0, viewModel) }.bind(to: reaction).disposed(by: self.rx.disposeBag)
+                viewModel.recommend.map { viewModel }.bind(to: recommend).disposed(by: self.rx.disposeBag)
+                viewModel.more.map { viewModel }.bind(to: more).disposed(by: self.rx.disposeBag)
                 viewModel.recommendButtonHidden.accept(((self.current.value != nil) ? self.current.value != user.value : false))
-                return viewModel
+                return viewModel.makeItemType()
             }
-            let sections = [SectionModel<Void,UserRecommCellViewModel>(model: (), items: sectionItems)]
+            
+            let sections = [UserRecommSection.single(items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
+
         
-        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(UserRecommCellViewModel,Bool)>)> in
+        
+        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             var params = [String : Any]()
             params["type"] = cellViewModel.item.type?.rawValue ?? -1
@@ -112,9 +119,9 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .map { (cellViewModel, $0)}
                 .materialize()
-        }).subscribe(onNext: { event in
+        }).subscribe(onNext: { [weak self] event in
             switch event {
-            case .next(let (cellViewModel, result)):
+            case .next(let (cellViewModel,result)):
                 cellViewModel.saved.accept(result)
                 var item = cellViewModel.item
                 item.recommended = result
@@ -124,8 +131,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-
-        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(UserRecommCellViewModel,Bool)>)> in
+        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             var params = [String : Any]()
             params["recommend"] = !cellViewModel.recommended.value
@@ -142,18 +148,21 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 var item = cellViewModel.item
                 item.recommended = result
                 kUpdateItem.onNext((.recommend,item,self))
+                self?.needUpdateTitle.onNext(result)
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
 
-        
+        more.subscribe(onNext: { (cellViewModel) in
+            cellViewModel.memuHidden.accept(!cellViewModel.memuHidden.value)
+        }).disposed(by: rx.disposeBag)
+
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
             guard trigger != self else { return }
             guard var t = self?.element.value else { return }
             let items =  elements.value.first?.items
-
             switch state {
             case .delete:
                 var list = t.list
@@ -165,7 +174,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
             case .like:
                 break
             case .saved:
-                items?.forEach { $0.saved.accept(item.saved)}
+                items?.forEach { $0.viewModel.saved.accept(item.saved)}
             case .recommend:
                 var element = self?.element.value
                 if item.recommended == false {
@@ -181,6 +190,6 @@ class UserRecommViewModel: ViewModel, ViewModelType {
 
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      detail: detail)
+                      detail: detail.asDriverOnErrorJustComplete())
     }
 }

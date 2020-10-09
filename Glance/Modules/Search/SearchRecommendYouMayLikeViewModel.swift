@@ -37,11 +37,22 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SearchRecommendYouMayLikeSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
-        let detail = input.selection.map { $0.viewModel.item }
+        let detail = PublishSubject<Home>()
+        
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
         let follow = PublishSubject<DefaultColltionCellViewModel>()
+                
         
+        input.selection.subscribe(onNext: { (item) in
+            guard let type = item.viewModel.item.type else { return }
+            switch type {
+            case .user:
+                userDetail.onNext(item.viewModel.item.user)
+            default:
+                detail.onNext(item.viewModel.item)
+            }
+        }).disposed(by: rx.disposeBag)
         
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in

@@ -205,9 +205,7 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
         }).disposed(by: rx.disposeBag)
         
         output.signUp.drive(onNext: {[weak self] () in
-            //            self?.navigator.show(segue: .signIn, sender: self, transition: .popDialog)
             OAuthManager.shared.instagramOAuth(presenting: self)
-            
         }).disposed(by: rx.disposeBag)
         
         
@@ -223,7 +221,6 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
         
         switch item {
         case 0:
-            
             ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
                 config.maxSelectCount = 1
                 config.editAfterSelectThumbnailImage = true

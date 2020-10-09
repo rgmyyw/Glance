@@ -71,7 +71,9 @@ class AddProductViewController: CollectionViewController {
                 let titles = items.compactMap { $0.name }
                 Alert.showActionSheet(message: "", optionTitles: titles)
                     .subscribe(onNext: { (index) in
-                        viewModel.selectedCategory.onNext(items[index])
+                        if index >= 0 {
+                            viewModel.selectedCategory.onNext(items[index])
+                        }
                     }).disposed(by: self.rx.disposeBag)
             }).disposed(by: rx.disposeBag)
         

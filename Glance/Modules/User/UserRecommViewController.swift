@@ -17,7 +17,7 @@ import WMZPageController
 
 class UserRecommViewController: CollectionViewController  {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<UserRecommSection> = configureDataSouce()
     
     override func makeUI() {
         super.makeUI()
@@ -32,10 +32,8 @@ class UserRecommViewController: CollectionViewController  {
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        collectionView.register(nibWithCellClass: UserRecommCell.self)
-        
-        
-        
+        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
+
     }
     
     
@@ -44,10 +42,10 @@ class UserRecommViewController: CollectionViewController  {
         
         guard let viewModel = viewModel as? UserRecommViewModel else { return }
                 
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
+        let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
         let input = UserRecommViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                            selection: collectionView.rx.modelSelected(UserRecommCellViewModel.self).asObservable())
+                                            selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -64,11 +62,20 @@ class UserRecommViewController: CollectionViewController  {
 // MARK: - DataSouce
 extension UserRecommViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserRecommCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserRecommCell.self)
-            cell.bind(to: item)
-            return cell
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<UserRecommSection> {
+        return RxCollectionViewSectionedReloadDataSource<UserRecommSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+            switch item {
+            case .recommendPost(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
+                cell.bind(to: viewModel)
+                return cell
+            case .recommendProduct(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
+                cell.bind(to: viewModel)
+                return cell
+            default:
+                fatalError()
+            }
         })
     }
     
@@ -95,9 +102,10 @@ extension UserRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
-        return collectionView.ar_sizeForCell(withIdentifier: UserRecommCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
-            if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? UserRecommCell
+        return collectionView.ar_sizeForCell(withIdentifier: ProductCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
+            
+            if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item].viewModel {
+                let cell = cell  as? DefaultColltionCell
                 cell?.bind(to: viewModel)
             }
         }

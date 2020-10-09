@@ -46,7 +46,7 @@ abstract_target 'Glance' do
   pod 'Localize-Swift', '~> 3.0'
   pod 'RAMAnimatedTabBarController', '~> 5.0'
   pod 'AcknowList', '~> 1.8'
-  pod 'KafkaRefresh', '~> 1.0'
+  pod 'KafkaRefresh', '~> 1.4.8'
   pod 'Highlightr', '~> 2.0'
   pod 'DropDown', :git => 'https://github.com/rgmyyw/DropDown.git', :tag => '2.3.18'
   pod 'Toast-Swift', '~> 5.0'

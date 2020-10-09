@@ -50,6 +50,7 @@ class PostCell: DefaultColltionCell {
         viewModel.userOnline.map { !$0}.bind(to: userOnlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.recommended.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
         
         saveButton.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
         userHeadImageButton.rx.tap.bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)

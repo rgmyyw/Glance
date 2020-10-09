@@ -1,5 +1,5 @@
 //
-//  ReactionsCell.swift
+//  UsersCell.swift
 //  Glance
 //
 //  Created by yanghai on 2020/7/9.
@@ -7,10 +7,8 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
-class ReactionsCell: TableViewCell {
+class UsersCell: TableViewCell {
 
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!

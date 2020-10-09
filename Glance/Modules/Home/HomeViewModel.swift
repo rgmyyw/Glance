@@ -218,7 +218,6 @@ class HomeViewModel: ViewModel, ViewModelType {
                 if result {
                     cellViewModel.reactionImage.accept(type.image)
                 }
-                
             default:
                 break
             }
