@@ -16,7 +16,6 @@ class SearchRecommendViewController: ViewController {
     private lazy var customNavigationBar : SearchRecommendNavigationBar = SearchRecommendNavigationBar.loadFromNib(height: 44,width: self.view.width)
     private lazy var headView : SearchRecommendHistoryView = SearchRecommendHistoryView.loadFromNib()
 
-
     private lazy var pageController : WMZPageController = {
             
         let config = PageParam()
@@ -65,7 +64,6 @@ class SearchRecommendViewController: ViewController {
 
         let input = SearchRecommendViewModel.Input(refresh: refresh,
                                                    clearAll: headView.clearButton.rx.tap.asObservable(),
-                                                   updateHistory: rx.viewWillAppear.mapToVoid(),
                                                    search: customNavigationBar.searchView.rx.tap().asObservable(),historySelection: headView.collectionView.rx.modelSelected(SearchRecommendHistorySectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.history.drive(headView.items).disposed(by: rx.disposeBag)
@@ -86,7 +84,7 @@ class SearchRecommendViewController: ViewController {
                     content.addSubview(line)
                     line.snp.makeConstraints { (make) in
                         make.left.equalTo(mainView).offset(-20)
-                        make.bottom.equalTo(mainView).offset(-4)
+                        make.bottom.equalTo(mainView).offset(-5)
                         make.right.equalTo(mainView)
                         make.height.equalTo(0.5)
                     }
@@ -96,7 +94,7 @@ class SearchRecommendViewController: ViewController {
         
         output.headHidden.drive(onNext: { [weak self](hidden) in
             self?.pageController.param.wMenuHeadView = {
-                self?.headView.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.width, height: hidden ? 0.1 : 100))
+                self?.headView.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.width, height: hidden ? 0.1 : 90))
                 self?.headView.setNeedsLayout()
                 self?.headView.layoutIfNeeded()
                 return self?.headView

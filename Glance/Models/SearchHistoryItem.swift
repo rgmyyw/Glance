@@ -17,9 +17,7 @@ private let searchHistoryKey = "AllSearchHistory"
 private let keychain = Keychain(service: Configs.App.bundleIdentifier)
 let searchHistory = BehaviorRelay<[SearchHistoryItem]>(value: [])
 
-
 struct SearchHistoryItem : Mappable {
-    
     var text : String
     init?(map: Map) {
         text = ""
@@ -37,12 +35,10 @@ struct SearchHistoryItem : Mappable {
 extension SearchHistoryItem {
 
     func save() {
-        
         var items = searchHistory.value
         items.insert(self, at: 0)
         items.removeDuplicates()
         searchHistory.accept(items)
-        
         if let json = items.toJSONString() {
             keychain[searchHistoryKey] = json
         } else {

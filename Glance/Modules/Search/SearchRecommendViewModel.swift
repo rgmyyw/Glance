@@ -16,7 +16,6 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
     struct Input {
         let refresh : Observable<Void>
         let clearAll : Observable<Void>
-        let updateHistory : Observable<Void>
         let search : Observable<Void>
         let historySelection : Observable<SearchRecommendHistorySectionItem>
     }
@@ -32,15 +31,13 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
 
     func transform(input: Input) -> Output {
         
-        let history = BehaviorRelay<[SearchHistoryItem]>(value: [])
         let eraseHistory = PublishSubject<[SearchHistoryItem]>()
         let elements = BehaviorRelay<[SearchRecommendHistorySection]>(value:[])
         let headHidden = BehaviorRelay<Bool>(value: true)
         let searchResult = input.historySelection.map { $0.viewModel.item.text }.asDriverOnErrorJustComplete()
         
-        input.updateHistory.map { searchHistory.value }.bind(to: history).disposed(by: rx.disposeBag)
         input.clearAll.map { searchHistory.value } .bind(to: eraseHistory).disposed(by: rx.disposeBag)
-        history.map { $0.isEmpty }.bind(to: headHidden).disposed(by: rx.disposeBag)
+        searchHistory.map { $0.isEmpty }.bind(to: headHidden).disposed(by: rx.disposeBag)
         
         let config = Observable<[SearchRecommendModuleItem]>.create { (observer) -> Disposable in
             let hot = SearchRecommendHotViewModel(provider: self.provider)
@@ -51,9 +48,8 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
             observer.onCompleted()
             return Disposables.create { }
         }
-    
         
-        history.map { items -> [SearchRecommendHistorySection] in
+        searchHistory.map { items -> [SearchRecommendHistorySection] in
             let section = 0
             return [SearchRecommendHistorySection(section: "section:\(section)", elements: items.enumerated().map { (index, item) -> SearchRecommendHistorySectionItem in
                 let viewModel = SearchHistoryCellViewModel(item: item)
