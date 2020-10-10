@@ -73,6 +73,7 @@ extension UserDetailPostViewController {
             case .post(let viewModel),.recommendPost(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
                 cell.bind(to: viewModel)
+                cell.recommendButton.isHidden = true
                 return cell
             default:
                 fatalError()

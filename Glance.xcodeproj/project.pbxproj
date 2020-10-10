@@ -736,22 +736,6 @@
 		5DAB29CA24C83705003C3E00 /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
 		5DAB29CD24C83717003C3E00 /* PostsDetailToolBarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29CB24C83717003C3E00 /* PostsDetailToolBarReusableView.swift */; };
 		5DAB29CE24C83717003C3E00 /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
-		5DB1760D2531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */; };
-		5DB1760E2531A0C90091B9CD /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EC253198D900A42A16 /* UserPostCell.swift */; };
-		5DB1760F2531A0C90091B9CD /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD370EF253198D900A42A16 /* UserPostCell.xib */; };
-		5DB176102531A0C90091B9CD /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */; };
-		5DB176112531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */; };
-		5DB176122531A0C90091B9CD /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EC253198D900A42A16 /* UserPostCell.swift */; };
-		5DB176132531A0C90091B9CD /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD370EF253198D900A42A16 /* UserPostCell.xib */; };
-		5DB176142531A0C90091B9CD /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */; };
-		5DB176152531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */; };
-		5DB176162531A0CA0091B9CD /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EC253198D900A42A16 /* UserPostCell.swift */; };
-		5DB176172531A0CA0091B9CD /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD370EF253198D900A42A16 /* UserPostCell.xib */; };
-		5DB176182531A0CA0091B9CD /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */; };
-		5DB176192531A0CA0091B9CD /* UserRecommCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */; };
-		5DB1761A2531A0CA0091B9CD /* UserPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EC253198D900A42A16 /* UserPostCell.swift */; };
-		5DB1761B2531A0CA0091B9CD /* UserPostCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DD370EF253198D900A42A16 /* UserPostCell.xib */; };
-		5DB1761C2531A0CA0091B9CD /* UserPostCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */; };
 		5DB1C79424C290690071A0E1 /* PublishPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79324C290690071A0E1 /* PublishPopView.swift */; };
 		5DB1C79624C298F30071A0E1 /* PublishPopView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB1C79524C298F30071A0E1 /* PublishPopView.xib */; };
 		5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB1C79924C2DCED0071A0E1 /* ShoppingCartViewController.swift */; };
@@ -1978,10 +1962,6 @@
 		5DD370B12531983900A42A16 /* InsightsLikeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightsLikeCell.swift; sourceTree = "<group>"; };
 		5DD370B22531983900A42A16 /* InsightsCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightsCellViewModel.swift; sourceTree = "<group>"; };
 		5DD370B32531983900A42A16 /* UserDetailHeadView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserDetailHeadView.xib; sourceTree = "<group>"; };
-		5DD370EC253198D900A42A16 /* UserPostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostCell.swift; sourceTree = "<group>"; };
-		5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecommCellViewModel.swift; sourceTree = "<group>"; };
-		5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserPostCellViewModel.swift; sourceTree = "<group>"; };
-		5DD370EF253198D900A42A16 /* UserPostCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserPostCell.xib; sourceTree = "<group>"; };
 		5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBottomBar.swift; sourceTree = "<group>"; };
 		5DD8513824CED72F00278361 /* PostsDetailBottomBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBottomBar.xib; sourceTree = "<group>"; };
 		5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationProfileViewModel.swift; sourceTree = "<group>"; };
@@ -2612,10 +2592,6 @@
 				5DD370AF2531983900A42A16 /* InsightsCell.swift */,
 				5DD370AB2531983900A42A16 /* InsightsCell.xib */,
 				5DD370B22531983900A42A16 /* InsightsCellViewModel.swift */,
-				5DD370EC253198D900A42A16 /* UserPostCell.swift */,
-				5DD370EF253198D900A42A16 /* UserPostCell.xib */,
-				5DD370EE253198D900A42A16 /* UserPostCellViewModel.swift */,
-				5DD370ED253198D900A42A16 /* UserRecommCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3261,7 +3237,6 @@
 				5D99EE23251843840008B45F /* InsightsDetailViewController.xib in Resources */,
 				5D99EE24251843840008B45F /* PostsDetailTitleReusableView.xib in Resources */,
 				5D99EE25251843840008B45F /* UserVerticalCell.xib in Resources */,
-				5DB1761B2531A0CA0091B9CD /* UserPostCell.xib in Resources */,
 				5D99EE26251843840008B45F /* PostCell.xib in Resources */,
 				5D99EE27251843840008B45F /* ShoppingCartCell.xib in Resources */,
 				5D99EE28251843840008B45F /* PostsDetailToolBarReusableView.xib in Resources */,
@@ -3360,7 +3335,6 @@
 				5DCC2DED24F34F04000AC40A /* InsightsDetailViewController.xib in Resources */,
 				5DCC2DEE24F34F04000AC40A /* PostsDetailTitleReusableView.xib in Resources */,
 				5D7BB558250B633900C8B902 /* UserVerticalCell.xib in Resources */,
-				5DB1760F2531A0C90091B9CD /* UserPostCell.xib in Resources */,
 				5D7BB570250B633900C8B902 /* PostCell.xib in Resources */,
 				5DCC2DEF24F34F04000AC40A /* ShoppingCartCell.xib in Resources */,
 				5DCC2DF024F34F04000AC40A /* PostsDetailToolBarReusableView.xib in Resources */,
@@ -3459,7 +3433,6 @@
 				5DCC2F4524F34F2A000AC40A /* InsightsDetailViewController.xib in Resources */,
 				5DCC2F4624F34F2A000AC40A /* PostsDetailTitleReusableView.xib in Resources */,
 				5D7BB559250B633900C8B902 /* UserVerticalCell.xib in Resources */,
-				5DB176172531A0CA0091B9CD /* UserPostCell.xib in Resources */,
 				5D7BB571250B633900C8B902 /* PostCell.xib in Resources */,
 				5DCC2F4724F34F2A000AC40A /* ShoppingCartCell.xib in Resources */,
 				5DCC2F4824F34F2A000AC40A /* PostsDetailToolBarReusableView.xib in Resources */,
@@ -3558,7 +3531,6 @@
 				5D437DD924BEA67600AFBB1F /* InsightsDetailViewController.xib in Resources */,
 				5D1D5AF524BFF007008C0C82 /* PostsDetailTitleReusableView.xib in Resources */,
 				5D7BB557250B633900C8B902 /* UserVerticalCell.xib in Resources */,
-				5DB176132531A0C90091B9CD /* UserPostCell.xib in Resources */,
 				5D7BB56F250B633900C8B902 /* PostCell.xib in Resources */,
 				5DB1C7A024C2DD7C0071A0E1 /* ShoppingCartCell.xib in Resources */,
 				5DAB29CE24C83717003C3E00 /* PostsDetailToolBarReusableView.xib in Resources */,
@@ -3896,7 +3868,6 @@
 				5D99ECCE251843840008B45F /* ActivityIndicator.swift in Sources */,
 				5D99ECCF251843840008B45F /* NavigationBar.swift in Sources */,
 				5D99ECD0251843840008B45F /* VisualSearchGridLayar.swift in Sources */,
-				5DB1761A2531A0CA0091B9CD /* UserPostCell.swift in Sources */,
 				5D99ECD1251843840008B45F /* UIScreen-Extension.swift in Sources */,
 				5D99ECD2251843840008B45F /* PostsDetailSection.swift in Sources */,
 				5D99ECD3251843840008B45F /* InterestViewModel.swift in Sources */,
@@ -4040,7 +4011,6 @@
 				5D99ED61251843840008B45F /* PostsDetailNavigationBar.swift in Sources */,
 				5D99ED62251843840008B45F /* StyleBoardImageCell.swift in Sources */,
 				5D99ED63251843840008B45F /* SavedCollectionViewModel.swift in Sources */,
-				5DB1761C2531A0CA0091B9CD /* UserPostCellViewModel.swift in Sources */,
 				5D99ED64251843840008B45F /* InsightsChildViewController.swift in Sources */,
 				5D99ED65251843840008B45F /* InsightsRelation.swift in Sources */,
 				5D99ED66251843840008B45F /* SearchThemeLabelContentSection.swift in Sources */,
@@ -4071,7 +4041,6 @@
 				5D99ED7F251843840008B45F /* ProductCell.swift in Sources */,
 				5D99ED80251843840008B45F /* StyleBoardViewController.swift in Sources */,
 				5D99ED81251843840008B45F /* SearchThemeLabelCellViewModel.swift in Sources */,
-				5DB176192531A0CA0091B9CD /* UserRecommCellViewModel.swift in Sources */,
 				5D99ED82251843840008B45F /* UserVerticalCell.swift in Sources */,
 				5D99ED83251843840008B45F /* LibsManager.swift in Sources */,
 				5D99ED84251843840008B45F /* StyleBoardSearchCell.swift in Sources */,
@@ -4227,7 +4196,6 @@
 				5DCC2CEB24F34F04000AC40A /* ActivityIndicator.swift in Sources */,
 				5DCC2CEC24F34F04000AC40A /* NavigationBar.swift in Sources */,
 				5DCC2CED24F34F04000AC40A /* VisualSearchGridLayar.swift in Sources */,
-				5DB1760E2531A0C90091B9CD /* UserPostCell.swift in Sources */,
 				5DCC2CEE24F34F04000AC40A /* UIScreen-Extension.swift in Sources */,
 				5DCC2CEF24F34F04000AC40A /* PostsDetailSection.swift in Sources */,
 				5DCC2CF024F34F04000AC40A /* InterestViewModel.swift in Sources */,
@@ -4371,7 +4339,6 @@
 				5DCC2D5E24F34F04000AC40A /* PostsDetailNavigationBar.swift in Sources */,
 				5DCC2D5F24F34F04000AC40A /* StyleBoardImageCell.swift in Sources */,
 				5DCC2D6024F34F04000AC40A /* SavedCollectionViewModel.swift in Sources */,
-				5DB176102531A0C90091B9CD /* UserPostCellViewModel.swift in Sources */,
 				5DCC2D6124F34F04000AC40A /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7A24F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DA483CF251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
@@ -4402,7 +4369,6 @@
 				5D7BB54F250B633900C8B902 /* ProductCell.swift in Sources */,
 				5DCC2D7024F34F04000AC40A /* StyleBoardViewController.swift in Sources */,
 				5DCAC96825120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */,
-				5DB1760D2531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */,
 				5D7BB55B250B633900C8B902 /* UserVerticalCell.swift in Sources */,
 				5DCC2D7124F34F04000AC40A /* LibsManager.swift in Sources */,
 				5DCC2D7224F34F04000AC40A /* StyleBoardSearchCell.swift in Sources */,
@@ -4558,7 +4524,6 @@
 				5DCC2E4324F34F2A000AC40A /* ActivityIndicator.swift in Sources */,
 				5DCC2E4424F34F2A000AC40A /* NavigationBar.swift in Sources */,
 				5DCC2E4524F34F2A000AC40A /* VisualSearchGridLayar.swift in Sources */,
-				5DB176162531A0CA0091B9CD /* UserPostCell.swift in Sources */,
 				5DCC2E4624F34F2A000AC40A /* UIScreen-Extension.swift in Sources */,
 				5DCC2E4724F34F2A000AC40A /* PostsDetailSection.swift in Sources */,
 				5DCC2E4824F34F2A000AC40A /* InterestViewModel.swift in Sources */,
@@ -4702,7 +4667,6 @@
 				5DCC2EB624F34F2A000AC40A /* PostsDetailNavigationBar.swift in Sources */,
 				5DCC2EB724F34F2A000AC40A /* StyleBoardImageCell.swift in Sources */,
 				5DCC2EB824F34F2A000AC40A /* SavedCollectionViewModel.swift in Sources */,
-				5DB176182531A0CA0091B9CD /* UserPostCellViewModel.swift in Sources */,
 				5DCC2EB924F34F2A000AC40A /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7B24F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DA483D0251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
@@ -4733,7 +4697,6 @@
 				5D7BB550250B633900C8B902 /* ProductCell.swift in Sources */,
 				5DCC2EC824F34F2A000AC40A /* StyleBoardViewController.swift in Sources */,
 				5DCAC96925120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */,
-				5DB176152531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */,
 				5D7BB55C250B633900C8B902 /* UserVerticalCell.swift in Sources */,
 				5DCC2EC924F34F2A000AC40A /* LibsManager.swift in Sources */,
 				5DCC2ECA24F34F2A000AC40A /* StyleBoardSearchCell.swift in Sources */,
@@ -4889,7 +4852,6 @@
 				5DEFF4D324AEC2FA007A2FCD /* ActivityIndicator.swift in Sources */,
 				5DEFF36024AEC2F9007A2FCD /* NavigationBar.swift in Sources */,
 				5D3F263524D179CA00A825BB /* VisualSearchGridLayar.swift in Sources */,
-				5DB176122531A0C90091B9CD /* UserPostCell.swift in Sources */,
 				5DEFF4F924AECB7A007A2FCD /* UIScreen-Extension.swift in Sources */,
 				5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */,
 				5DBC3AAC24C7DED4006B0032 /* InterestViewModel.swift in Sources */,
@@ -5033,7 +4995,6 @@
 				5D06524D24BEFF51007CE461 /* PostsDetailNavigationBar.swift in Sources */,
 				5DC3131424E3E89500CC3F89 /* StyleBoardImageCell.swift in Sources */,
 				5D5B018324C5857300832F05 /* SavedCollectionViewModel.swift in Sources */,
-				5DB176142531A0C90091B9CD /* UserPostCellViewModel.swift in Sources */,
 				5D437DD324BDA19C00AFBB1F /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7924F362E0000AC40A /* InsightsRelation.swift in Sources */,
 				5DA483CE251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
@@ -5064,7 +5025,6 @@
 				5D7BB54E250B633900C8B902 /* ProductCell.swift in Sources */,
 				5DC3130B24E3D87C00CC3F89 /* StyleBoardViewController.swift in Sources */,
 				5DCAC96725120D3D00172C05 /* SearchThemeLabelCellViewModel.swift in Sources */,
-				5DB176112531A0C90091B9CD /* UserRecommCellViewModel.swift in Sources */,
 				5D7BB55A250B633900C8B902 /* UserVerticalCell.swift in Sources */,
 				5DEFF31324AEC2F9007A2FCD /* LibsManager.swift in Sources */,
 				5DC3132224E3F5C700CC3F89 /* StyleBoardSearchCell.swift in Sources */,
