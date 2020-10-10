@@ -8,7 +8,7 @@
 
 import UIKit
 
-class UserHeadView: View {
+class UserDetailHeadView: View {
 
     @IBOutlet weak var userHeadImageView: UIImageView!
     @IBOutlet weak var displayNameLabel: UILabel!

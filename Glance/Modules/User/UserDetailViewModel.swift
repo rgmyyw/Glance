@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class UserViewModel: ViewModel, ViewModelType {
+class UserDetailViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let refresh: Observable<Void>
@@ -42,7 +42,7 @@ class UserViewModel: ViewModel, ViewModelType {
         let postsYourLiked : Observable<Void>
         let syncInstagram : Observable<Void>
         let privacy : Observable<Void>
-        let navigationBarAvailable :  Observable<(left: [UserNavigationAction], right: [UserNavigationAction])>
+        let navigationBarAvailable :  Observable<(left: [UserDetailNavigationAction], right: [UserDetailNavigationAction])>
         let otherUserBgViewHidden : Driver<Bool>
         let followButtonBackground : Driver<UIColor>
         let followButtonImage : Driver<UIImage?>
@@ -55,7 +55,7 @@ class UserViewModel: ViewModel, ViewModelType {
     
     let otherUser = BehaviorRelay<User?>(value: nil)
     let element : BehaviorRelay<User?>
-    let userMode : BehaviorRelay<UserMode>
+    let userMode : BehaviorRelay<UserDetailMode>
     
     
     init(provider: API, otherUser : User? = nil) {
@@ -104,7 +104,7 @@ class UserViewModel: ViewModel, ViewModelType {
         let syncInstagram = settingSelectedItem.filter { $0 == .syncInstagram }.mapToVoid()
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
         let titles = PublishSubject<[String]>()
-        let updateTitle = PublishSubject<[UserUpdateTitle]>()
+        let updateTitle = PublishSubject<[UserDetailUpdateTitle]>()
         
         updateTitle.subscribe(onNext: { [weak self] (items) in
             var t = self?.element.value
@@ -133,7 +133,7 @@ class UserViewModel: ViewModel, ViewModelType {
         
         
         let navigationBarAvailable = userMode
-            .map { mode -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
+            .map { mode -> (left : [UserDetailNavigationAction], right : [UserDetailNavigationAction] ) in
                 if mode == .current {
                     return ([.insight], [.setting,.share])
                 } else {
@@ -145,8 +145,8 @@ class UserViewModel: ViewModel, ViewModelType {
         let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
             let user = self.otherUser.value.value
             
-            let post = UserPostViewModel(provider: self.provider, otherUser: user)
-            let recommend = UserRecommViewModel(provider: self.provider, otherUser: user)
+            let post = UserDetailPostViewModel(provider: self.provider, otherUser: user)
+            let recommend = UserDetailRecommViewModel(provider: self.provider, otherUser: user)
             let followers = UsersViewModel(provider: self.provider, type: .followers, otherUser: user)
             let following = UsersViewModel(provider: self.provider, type: .following, otherUser: user)
             let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
@@ -155,13 +155,13 @@ class UserViewModel: ViewModel, ViewModelType {
             if self.userMode.value == .current {
                 recommend.needUpdateTitle.map {
                     let count = self.element.value?.recommendCount ?? 0
-                    let item = UserUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
+                    let item = UserDetailUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
                     return [item]
                 }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
                 
                 followers.needUpdateTitle.merge(with: following.needUpdateTitle).map {
                     let count = self.element.value?.followingCount ?? 0
-                    let item = UserUpdateTitle.following(count: $0 ? count + 1 : count - 1)
+                    let item = UserDetailUpdateTitle.following(count: $0 ? count + 1 : count - 1)
                     return [item]
                 }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
             }

@@ -27,7 +27,7 @@ enum HomeTabBarItem: Int {
             let vc = NotificationViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .mine:
-            let vc = UserViewController(viewModel: viewModel, navigator: navigator)
+            let vc = UserDetailViewController(viewModel: viewModel, navigator: navigator)
             return NavigationController(rootViewController: vc)
         case .center:
             return DemoViewController.init(viewModel: viewModel, navigator: navigator)

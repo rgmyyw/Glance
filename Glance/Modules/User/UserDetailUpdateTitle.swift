@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum UserUpdateTitle {
+enum UserDetailUpdateTitle {
     case post(count : Int)
     case recommend(count : Int)
     case followers(count : Int)
@@ -18,8 +18,8 @@ enum UserUpdateTitle {
 
 enum UserModuleItem {
     
-    case post(viewModel : UserPostViewModel)
-    case recommend(viewModel : UserRecommViewModel)
+    case post(viewModel : UserDetailPostViewModel)
+    case recommend(viewModel : UserDetailRecommViewModel)
     case followers(viewModel : UsersViewModel)
     case following(viewModel : UsersViewModel)
     

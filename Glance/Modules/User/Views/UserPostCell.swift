@@ -10,16 +10,14 @@ import UIKit
 import RxSwiftExt
 
 class UserPostCell: CollectionViewCell {
+    
     @IBOutlet weak var recommendButton: UIButton!
-
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var favorite: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    
-
-    
+        
     override func makeUI() {
         super.makeUI()
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]

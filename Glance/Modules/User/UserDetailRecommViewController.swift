@@ -15,9 +15,9 @@ import UICollectionView_ARDynamicHeightLayoutCell
 import Popover
 import WMZPageController
 
-class UserRecommViewController: CollectionViewController  {
+class UserDetailRecommViewController: CollectionViewController  {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<UserRecommSection> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<UserDetailRecommSection> = configureDataSouce()
     
     override func makeUI() {
         super.makeUI()
@@ -40,10 +40,10 @@ class UserRecommViewController: CollectionViewController  {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? UserRecommViewModel else { return }
+        guard let viewModel = viewModel as? UserDetailRecommViewModel else { return }
                 
         let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
-        let input = UserRecommViewModel.Input(headerRefresh: refresh,
+        let input = UserDetailRecommViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
                                             selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
@@ -60,10 +60,10 @@ class UserRecommViewController: CollectionViewController  {
     }
 }
 // MARK: - DataSouce
-extension UserRecommViewController {
+extension UserDetailRecommViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<UserRecommSection> {
-        return RxCollectionViewSectionedReloadDataSource<UserRecommSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<UserDetailRecommSection> {
+        return RxCollectionViewSectionedReloadDataSource<UserDetailRecommSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             switch item {
             case .recommendPost(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
@@ -81,7 +81,7 @@ extension UserRecommViewController {
     
 }
 
-extension UserRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension UserDetailRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
@@ -115,7 +115,7 @@ extension UserRecommViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
 
 
-extension UserRecommViewController : WMZPageProtocol {
+extension UserDetailRecommViewController : WMZPageProtocol {
     
     func getMyScrollView() -> UIScrollView {
         return collectionView

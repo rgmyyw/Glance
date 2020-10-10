@@ -1,5 +1,5 @@
 //
-//  UserMode.swift
+//  UserDetailMode.swift
 //  Glance
 //
 //  Created by yanghai on 2020/10/9.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum UserMode {
+enum UserDetailMode {
     case current
     case other
 }

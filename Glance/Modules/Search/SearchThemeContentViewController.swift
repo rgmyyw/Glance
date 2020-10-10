@@ -69,8 +69,8 @@ class SearchThemeContentViewController: CollectionViewController {
                 let tabbar = UIApplication.shared.keyWindow?.rootViewController as? HomeTabBarController
                 tabbar?.setSelectIndex(from: tabbar?.selectedIndex ?? 0, to: 4)
             } else {
-                let viewModel = UserViewModel(provider: viewModel.provider, otherUser: current)
-                self?.navigator.show(segue: .user(viewModel: viewModel), sender: self)
+                let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: current)
+                self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
             }
         }).disposed(by: rx.disposeBag)
         

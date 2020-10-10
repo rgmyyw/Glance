@@ -15,7 +15,7 @@ import UICollectionView_ARDynamicHeightLayoutCell
 import Popover
 import WMZPageController
 
-class UserPostViewController: CollectionViewController  {
+class UserDetailPostViewController: CollectionViewController  {
     
     private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> = configureDataSouce()
     
@@ -40,12 +40,12 @@ class UserPostViewController: CollectionViewController  {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? UserPostViewModel else { return }
+        guard let viewModel = viewModel as? UserDetailPostViewModel else { return }
         
         
         
         let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
-        let input = UserPostViewModel.Input(headerRefresh: refresh,
+        let input = UserDetailPostViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
                                             selection: collectionView.rx.modelSelected(UserPostCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
@@ -64,7 +64,7 @@ class UserPostViewController: CollectionViewController  {
     }
 }
 // MARK: - DataSouce
-extension UserPostViewController {
+extension UserDetailPostViewController {
     
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> {
         return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
@@ -76,7 +76,7 @@ extension UserPostViewController {
     
 }
 
-extension UserPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension UserDetailPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
@@ -109,7 +109,7 @@ extension UserPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
 
 
-extension UserPostViewController : WMZPageProtocol {
+extension UserDetailPostViewController : WMZPageProtocol {
     
     func getMyScrollView() -> UIScrollView {
         return collectionView

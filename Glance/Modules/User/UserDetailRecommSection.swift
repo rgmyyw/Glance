@@ -11,12 +11,12 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
-enum UserRecommSection {
+enum UserDetailRecommSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
 
-extension UserRecommSection: SectionModelType {
+extension UserDetailRecommSection: SectionModelType {
     
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
@@ -26,7 +26,7 @@ extension UserRecommSection: SectionModelType {
         }
     }
     
-    init(original: UserRecommSection, items: [Item]) {
+    init(original: UserDetailRecommSection, items: [Item]) {
         switch original {
         case .single(let items):
             self = .single(items: items)

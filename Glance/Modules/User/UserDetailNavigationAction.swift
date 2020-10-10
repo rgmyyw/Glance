@@ -1,5 +1,5 @@
 //
-//  UserNavigationAction.swift
+//  UserDetailNavigationAction.swift
 //  Glance
 //
 //  Created by yanghai on 2020/9/25.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum UserNavigationAction : Int {
+enum UserDetailNavigationAction : Int {
     case back = 0
     case share = 1
     case more = 2

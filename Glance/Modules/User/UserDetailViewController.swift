@@ -12,11 +12,11 @@ import CWLateralSlide
 import RxSwift
 import RxCocoa
 
-class UserViewController: ViewController {
+class UserDetailViewController: ViewController {
     
     private let headerRefreshTrigger = PublishSubject<Void>()
     private let isHeaderLoading = PublishSubject<Bool>()
-    private lazy var userHeadView : UserHeadView = UserHeadView.loadFromNib(height: 200, width: self.view.width)
+    private lazy var userHeadView : UserDetailHeadView = UserDetailHeadView.loadFromNib(height: 200, width: self.view.width)
     
     
     private lazy var insight : UIButton = {
@@ -114,11 +114,11 @@ class UserViewController: ViewController {
         super.bindViewModel()
         
         let refresh = rx.viewWillAppear.mapToVoid().merge(with: headerRefreshTrigger.asObservable())
-        guard let viewModel = viewModel as? UserViewModel else { return }
+        guard let viewModel = viewModel as? UserDetailViewModel else { return }
         
         
         // 提前配置
-        let input = UserViewModel.Input(refresh: refresh,
+        let input = UserDetailViewModel.Input(refresh: refresh,
                                         insight: insight.rx.tap.asObservable(),
                                         setting: setting.rx.tap.asObservable(),
                                         follow: userHeadView.followButton.rx.tap.asObservable(),
@@ -248,7 +248,7 @@ class UserViewController: ViewController {
 }
 
 
-extension UserViewController {
+extension UserDetailViewController {
     
     
     func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {

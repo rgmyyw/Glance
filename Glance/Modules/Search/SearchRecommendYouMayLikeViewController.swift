@@ -64,8 +64,8 @@ class SearchRecommendYouMayLikeViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
         output.userDetail.drive(onNext: { [weak self](current) in
-            let viewModel = UserViewModel(provider: viewModel.provider, otherUser: current)
-            self?.navigator.show(segue: .user(viewModel: viewModel), sender: self)
+            let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: current)
+            self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
     }

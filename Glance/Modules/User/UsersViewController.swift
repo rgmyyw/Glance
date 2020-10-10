@@ -37,8 +37,8 @@ class UsersViewController: TableViewController {
         }.disposed(by: rx.disposeBag)
         
         output.userDetail.drive(onNext: { [weak self](user) in
-            let viewModel = UserViewModel(provider: viewModel.provider, otherUser: user)
-            self?.navigator.show(segue: .user(viewModel: viewModel), sender: self)
+            let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: user)
+            self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
         output.navigationTitle.drive(navigationBar.rx.title).disposed(by: rx.disposeBag)
