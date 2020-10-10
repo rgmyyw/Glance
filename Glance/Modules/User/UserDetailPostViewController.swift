@@ -17,7 +17,7 @@ import WMZPageController
 
 class UserDetailPostViewController: CollectionViewController  {
     
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> = configureDataSouce()
+    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<UserDetailPostSection> = configureDataSouce()
     
     override func makeUI() {
         super.makeUI()
@@ -31,8 +31,8 @@ class UserDetailPostViewController: CollectionViewController  {
         
         collectionView.collectionViewLayout = layout
         collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        collectionView.register(nibWithCellClass: UserPostCell.self)
-        
+        DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
+
         
     }
     
@@ -40,14 +40,15 @@ class UserDetailPostViewController: CollectionViewController  {
     override func bindViewModel() {
         super.bindViewModel()
         
-        guard let viewModel = viewModel as? UserDetailPostViewModel else { return }
-        
-        
+        guard let viewModel = viewModel as? UserDetailPostViewModel else {
+            return
+            
+        }
         
         let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
         let input = UserDetailPostViewModel.Input(headerRefresh: refresh,
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                            selection: collectionView.rx.modelSelected(UserPostCellViewModel.self).asObservable())
+                                            selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
 
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
@@ -60,20 +61,25 @@ class UserDetailPostViewController: CollectionViewController  {
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
             self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController())
         }).disposed(by: rx.disposeBag)
-        
+//        
     }
 }
 // MARK: - DataSouce
 extension UserDetailPostViewController {
     
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,UserPostCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserPostCell.self)
-            cell.bind(to: item)
-            return cell
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<UserDetailPostSection> {
+        return RxCollectionViewSectionedReloadDataSource<UserDetailPostSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+            switch item {
+            case .post(let viewModel),.recommendPost(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
+                cell.bind(to: viewModel)
+                return cell
+            default:
+                fatalError()
+            }
         })
     }
-    
+
 }
 
 extension UserDetailPostViewController : ZLCollectionViewBaseFlowLayoutDelegate {
@@ -97,9 +103,9 @@ extension UserDetailPostViewController : ZLCollectionViewBaseFlowLayoutDelegate 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
-        return collectionView.ar_sizeForCell(withIdentifier: UserPostCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
-            if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? UserPostCell
+        return collectionView.ar_sizeForCell(withIdentifier: ProductCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
+            if let viewModel = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item].viewModel {
+                let cell = cell  as? ProductCell
                 cell?.bind(to: viewModel)
             }
         }
