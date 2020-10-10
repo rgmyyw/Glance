@@ -78,8 +78,8 @@ class ModifyProfileViewController: ViewController {
         (instagramTextField.rx.textInput <-> viewModel.instagram).disposed(by: rx.disposeBag)
         (websiteTextField.rx.textInput <-> viewModel.website).disposed(by: rx.disposeBag)
         (bioTextView.rx.textInput <-> viewModel.bio).disposed(by: rx.disposeBag)
-        userNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: userNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
-        displayNameTextField.rx.text.map { $0?.count ?? 0}.map { "\($0)/20"}.bind(to: displayNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
+        userNameTextField.rx.text.map { $0?.count ?? 0}.filter { $0 <= 20}.map { "\($0)/20"}.bind(to: userNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
+        displayNameTextField.rx.text.map { $0?.count ?? 0}.filter { $0 <= 20}.map { "\($0)/20"}.bind(to: displayNameCharactersCountLabel.rx.text).disposed(by: rx.disposeBag)
         
         
         

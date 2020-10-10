@@ -10,17 +10,16 @@ import UIKit
 import FloatingPanel
 
 
-struct PanelDefaultmModalStyle {
+struct PanelDefaultModalStyle {
     var cornerRadius : CGFloat = 10
     var borderWidth : CGFloat = 1
     var borderColor : UIColor = UIColor.black.withAlphaComponent(0.2)
     var shadowHidden : Bool = false
     var isRemovalInteractionEnabled : Bool = true
     
-    static var `default` : PanelDefaultmModalStyle {
-        return PanelDefaultmModalStyle()
+    static var `default` : PanelDefaultModalStyle {
+        return PanelDefaultModalStyle()
     }
-    init() {}
 }
 
 

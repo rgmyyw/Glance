@@ -8,7 +8,6 @@
 
 import UIKit
 
-
 struct UserDetailMemuItem {
     var type : UserDetailMemuType
     var title : String {

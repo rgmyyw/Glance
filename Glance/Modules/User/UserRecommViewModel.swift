@@ -27,11 +27,12 @@ class UserRecommViewModel: ViewModel, ViewModelType {
     
     let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     let needUpdateTitle = PublishSubject<Bool>()
-    let current = BehaviorRelay<User?>(value: nil)
+    let otherUser : BehaviorRelay<User?>
     
     init(provider: API, otherUser : User? = nil) {
+        self.otherUser = BehaviorRelay(value : otherUser)
         super.init(provider: provider)
-        current.accept(otherUser)
+        
     }
 
     
@@ -50,7 +51,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.userRecommend(userId: self.current.value?.userId ?? "",pageNum: self.page)
+                return self.provider.userRecommend(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -73,7 +74,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.userRecommend(userId: self.current.value?.userId ?? "",pageNum: self.page)
+            return self.provider.userRecommend(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -98,7 +99,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
                 viewModel.reaction.map { ($0, viewModel) }.bind(to: reaction).disposed(by: self.rx.disposeBag)
                 viewModel.recommend.map { viewModel }.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.more.map { viewModel }.bind(to: more).disposed(by: self.rx.disposeBag)
-                viewModel.recommendButtonHidden.accept(((self.current.value != nil) ? self.current.value != user.value : false))
+                viewModel.recommendButtonHidden.accept(((self.otherUser.value != nil) ? self.otherUser.value != user.value : false))
                 return viewModel.makeItemType()
             }
             
@@ -160,7 +161,7 @@ class UserRecommViewModel: ViewModel, ViewModelType {
 
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
-            guard trigger != self else { return }
+            guard trigger != self , self?.otherUser.value == nil else { return }
             guard var t = self?.element.value else { return }
             let items =  elements.value.first?.items
             switch state {

@@ -25,11 +25,11 @@ class UserPostViewModel: ViewModel, ViewModelType {
         let detail : Driver<Home>
     }
     
-    let current = BehaviorRelay<User?>(value: nil)
-    
+    let otherUser : BehaviorRelay<User?>
+
     init(provider: API,otherUser : User?) {
+        self.otherUser = BehaviorRelay(value : otherUser)
         super.init(provider: provider)
-        current.accept(otherUser)
     }
     
     
@@ -49,7 +49,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
                     return Observable.just(RxSwift.Event.completed)
                 }
                 self.page = 1
-                return self.provider.userPost(userId: self.current.value?.userId ?? "",pageNum: self.page)
+                return self.provider.userPost(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -72,7 +72,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
                 return Observable.just(RxSwift.Event.completed)
             }
             self.page += 1
-            return self.provider.userPost(userId: self.current.value?.userId ?? "",pageNum: self.page)
+            return self.provider.userPost(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -92,10 +92,9 @@ class UserPostViewModel: ViewModel, ViewModelType {
 
         
         element.map { items -> [SectionModel<Void,UserPostCellViewModel>] in
-            
             let sectionItems = items.list.map { item -> UserPostCellViewModel  in
                 let viewModel = UserPostCellViewModel(item: item)
-                viewModel.recommendButtonHidden.accept((self.current.value != nil) ? self.current.value == user.value : true)
+                viewModel.recommendButtonHidden.accept((self.otherUser.value != nil) ? self.otherUser.value == user.value : true)
                 viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
                 return viewModel
@@ -153,7 +152,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
 
         
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
-            guard trigger != self else { return }
+            guard trigger != self , self?.otherUser.value == nil else { return }
             guard var t = self?.element.value else { return }
             let items = elements.value.flatMap { $0.items }.filter { $0.item == item}
             switch state {
@@ -171,9 +170,7 @@ class UserPostViewModel: ViewModel, ViewModelType {
             case .recommend:
                 items.forEach { $0.recommended.accept(item.recommended)}
             }
-                
         }).disposed(by: rx.disposeBag)
-
     
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       detail: detail)

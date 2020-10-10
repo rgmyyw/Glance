@@ -35,6 +35,9 @@ struct User: Mappable {
     var userImage: String?
     var reaction: ReactionType?
     
+    var isBlocked: Bool = false
+    var igHandler: String?
+    
     init?(map: Map) {}
     init() {}
 
@@ -54,6 +57,8 @@ struct User: Mappable {
         bio   <- map["bio"]
         userImage   <- map["userImage"]
         reaction   <- map["reaction"]
+        igHandler <- map["igHandler"]
+        isBlocked <- map["isBlocked"]
     }
 }
 

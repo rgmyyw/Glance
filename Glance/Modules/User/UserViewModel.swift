@@ -10,13 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
-enum UserMode {
-    case current
-    case other
-    
-}
-
 class UserViewModel: ViewModel, ViewModelType {
     
     struct Input {
@@ -112,7 +105,7 @@ class UserViewModel: ViewModel, ViewModelType {
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
         let titles = PublishSubject<[String]>()
         let updateTitle = PublishSubject<[UserUpdateTitle]>()
-                
+        
         updateTitle.subscribe(onNext: { [weak self] (items) in
             var t = self?.element.value
             items.forEach { (i) in
@@ -129,16 +122,16 @@ class UserViewModel: ViewModel, ViewModelType {
             }
             self?.element.accept(t)
         }).disposed(by: rx.disposeBag)
-
+        
         element.filterNil().map {
             ["\($0.postCount)\nPosts",
-            "\($0.recommendCount)\nRecomm",
-            "\($0.followerCount)\nFollowers",
-            "\($0.followingCount)\nFollowing"]
+                "\($0.recommendCount)\nRecomm",
+                "\($0.followerCount)\nFollowers",
+                "\($0.followingCount)\nFollowing"]
         }.bind(to: titles)
             .disposed(by: rx.disposeBag)
         
-
+        
         let navigationBarAvailable = userMode
             .map { mode -> (left : [UserNavigationAction], right : [UserNavigationAction] ) in
                 if mode == .current {
@@ -147,8 +140,8 @@ class UserViewModel: ViewModel, ViewModelType {
                     return ([.back], [.more,.share])
                 }
         }
-
-                
+        
+        
         let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
             let user = self.otherUser.value.value
             
@@ -158,25 +151,26 @@ class UserViewModel: ViewModel, ViewModelType {
             let following = UsersViewModel(provider: self.provider, type: .following, otherUser: user)
             let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
                                             .followers(viewModel: followers),.following(viewModel: following)]
-            recommend.needUpdateTitle.map {
-                let count = self.element.value?.recommendCount ?? 0
-                let item = UserUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
-                return [item]
-            }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
             
+            if self.userMode.value == .current {
+                recommend.needUpdateTitle.map {
+                    let count = self.element.value?.recommendCount ?? 0
+                    let item = UserUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
+                    return [item]
+                }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
+                
+                followers.needUpdateTitle.merge(with: following.needUpdateTitle).map {
+                    let count = self.element.value?.followingCount ?? 0
+                    let item = UserUpdateTitle.following(count: $0 ? count + 1 : count - 1)
+                    return [item]
+                }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
+            }
             
-            followers.needUpdateTitle.merge(with: following.needUpdateTitle).map {
-                let count = self.element.value?.followingCount ?? 0
-                let item = UserUpdateTitle.following(count: $0 ? count + 1 : count - 1)
-                return [item]
-            }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
-
-                        
             observer.onNext(items)
             observer.onCompleted()
             return Disposables.create { }
         }
-                
+        
         logout.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.logout()
@@ -232,8 +226,10 @@ class UserViewModel: ViewModel, ViewModelType {
         }).subscribe(onNext: { [weak self](event) in
             switch event {
             case .next(let result):
+                let count = self?.element.value?.followerCount ?? 0
                 var element = self?.element.value
                 element?.isFollow = result
+                element?.followerCount = result ? count + 1 : count - 1
                 self?.element.accept(element)
             default:
                 break
@@ -243,16 +239,16 @@ class UserViewModel: ViewModel, ViewModelType {
         
         input.chat.map { () in Message("Features under development...")}
             .bind(to: message).disposed(by: rx.disposeBag)
-
         
-        kUpdateItem.subscribe(onNext: { (state, item,trigger) in
-            switch state {
-            case .delete:
-                refresh.onNext(())
-            default:
-                break
-            }
-        }).disposed(by: rx.disposeBag)
+        
+//        kUpdateItem.subscribe(onNext: { (state, item,trigger) in
+//            switch state {
+//            case .delete:
+//                refresh.onNext(())
+//            default:
+//                break
+//            }
+//        }).disposed(by: rx.disposeBag)
         
         
         return Output(userHeadImageURL: userHeadImageURL.asDriver(onErrorJustReturn: nil),

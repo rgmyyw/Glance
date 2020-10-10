@@ -12,7 +12,7 @@ import RxCocoa
 
 class UsersCellViewModel: CellViewModelProtocol {
 
-    let item : (type : UsersType, model : UserRelation)
+    let item : (type : UsersType, model : User)
     let userName = BehaviorRelay<String?>(value: nil)
     let userImageURL = BehaviorRelay<URL?>(value: nil)
     let ighandle = BehaviorRelay<String?>(value: nil)
@@ -21,13 +21,16 @@ class UsersCellViewModel: CellViewModelProtocol {
     let buttonSelectedTitle = BehaviorRelay<String?>(value: "")
     let buttonSelected = BehaviorRelay<Bool>(value: false)
     let buttonTap = PublishSubject<Void>()
+    let buttonHidden = BehaviorRelay<Bool>(value: false)
     
-    required init(item : (type : UsersType, model : UserRelation)) {
+    required init(item : (type : UsersType, model : User)) {
         
         self.item = item
         self.userName.accept(item.model.displayName)
-        self.userImageURL.accept(item.model.image?.url)
+        self.userImageURL.accept(item.model.userImage?.url)
         self.ighandle.accept(item.model.igHandler)
+        self.buttonHidden.accept(item.model.userId == user.value?.userId)
+        
         switch item.type {
         case .blocked:
             self.buttonSelected.accept(item.model.isBlocked)

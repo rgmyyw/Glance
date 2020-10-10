@@ -79,7 +79,7 @@ class Navigator {
         case alert
         case custom
         case popDialog
-        case panel(style : PanelDefaultmModalStyle)
+        case panel(style : PanelDefaultModalStyle)
     }
     
     // MARK: - get a single VC

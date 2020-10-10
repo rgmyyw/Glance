@@ -19,9 +19,7 @@ class UsersViewController: TableViewController {
         tableView.register(nib: UsersCell.nib, withCellClass: UsersCell.self)
         tableView.rowHeight = 70
     }
-    
-
-    
+        
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -37,6 +35,11 @@ class UsersViewController: TableViewController {
             .drive(tableView.rx.items(cellIdentifier: UsersCell.reuseIdentifier, cellType: UsersCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
+        
+        output.userDetail.drive(onNext: { [weak self](user) in
+            let viewModel = UserViewModel(provider: viewModel.provider, otherUser: user)
+            self?.navigator.show(segue: .user(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
 
         output.navigationTitle.drive(navigationBar.rx.title).disposed(by: rx.disposeBag)
         output.navigationTitle.map { $0.isEmpty}.drive(navigationBar.rx.isHidden).disposed(by: rx.disposeBag)
@@ -66,8 +69,7 @@ class UsersViewController: TableViewController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 0.1
-//        return (viewModel as? UsersViewModel)?.tableViewHeadHidden.value ?? true ? 0 : 80
+        return (viewModel as? UsersViewModel)?.tableViewHeadHidden.value ?? true ? 0 : 80
     }
 
 

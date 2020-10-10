@@ -31,6 +31,7 @@ class UsersCell: TableViewCell {
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.ighandle.bind(to: ighandleLabel.rx.text).disposed(by: cellDisposeBag)
+        viewModel.buttonHidden.bind(to: operationButton.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.buttonSelected.bind(to: operationButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.buttonNormalTitle.bind(to: operationButton.rx.title(for: .normal)).disposed(by: cellDisposeBag)
         viewModel.buttonSelectedTitle.bind(to: operationButton.rx.title(for: .selected)).disposed(by: cellDisposeBag)

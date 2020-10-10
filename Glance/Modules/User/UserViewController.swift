@@ -137,7 +137,7 @@ class UserViewController: ViewController {
         output.bio.drive(userHeadView.bioLabel.rx.text).disposed(by: rx.disposeBag)
         output.instagram.map { $0.isEmpty }.drive(userHeadView.instagramCell.rx.isHidden).disposed(by: rx.disposeBag)
         output.website.map { $0.isEmpty }.drive(userHeadView.websiteCell.rx.isHidden).disposed(by: rx.disposeBag)
-        output.bio.map { $0.isEmpty }.drive(userHeadView.bioCell.rx.isHidden).disposed(by: rx.disposeBag)
+        output.bio.map { $0.isEmpty }.drive(userHeadView.bioLabel.rx.isHidden).disposed(by: rx.disposeBag)
         output.otherUserBgViewHidden.drive(userHeadView.otherUserBgView.rx.isHidden).disposed(by: rx.disposeBag)
         output.otherUserBgViewHidden.map { !$0}.drive(userHeadView.ownUserBgView.rx.isHidden).disposed(by: rx.disposeBag)
         output.followButtonImage.drive(userHeadView.followButton.rx.image(for: .normal)).disposed(by: rx.disposeBag)
@@ -184,7 +184,7 @@ class UserViewController: ViewController {
             self.userHeadView.layoutIfNeeded()
             self.userHeadView.snp.updateConstraints { (make) in
                 make.width.equalTo(self.view.width)
-                make.height.equalTo(self.userHeadView.contentView.frame.maxY + 20)
+                make.height.equalTo(self.userHeadView.contentView.frame.maxY)
             }
             self.userHeadView.setNeedsLayout()
             self.userHeadView.layoutIfNeeded()

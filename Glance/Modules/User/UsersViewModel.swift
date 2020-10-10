@@ -21,9 +21,11 @@ class UsersViewModel : ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[UsersCellViewModel]>
         let navigationTitle : Driver<String>
+        let userDetail : Driver<User>
     }
     
     private let type : BehaviorRelay<UsersType>
+    
     
     let current : BehaviorRelay<User?>
     let needUpdateTitle = PublishSubject<Bool>()
@@ -37,17 +39,20 @@ class UsersViewModel : ViewModel, ViewModelType {
     }
         
     let tableViewHeadHidden = BehaviorRelay(value: true)
-    let element : BehaviorRelay<PageMapable<UserRelation>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
         let navigationTitle = type.map { $0.navigationTitle ?? "" }
         let elements : BehaviorRelay<[UsersCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<UsersCellViewModel>()
+        let userDetail = input.selection.map { $0.item.model }.filter { $0 != user.value}
+        
+        
         type.map { $0 != .blocked }.bind(to: tableViewHeadHidden).disposed(by: rx.disposeBag)
 
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<UserRelation>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<User>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
@@ -68,7 +73,7 @@ class UsersViewModel : ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<UserRelation>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<User>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !(self.element.value?.hasNext ?? false) {
                 return Observable.just(RxSwift.Event.completed)
@@ -127,7 +132,8 @@ class UsersViewModel : ViewModel, ViewModelType {
             }}.bind(to: elements).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      navigationTitle: navigationTitle.asDriverOnErrorJustComplete())
+                      navigationTitle: navigationTitle.asDriverOnErrorJustComplete(),
+                      userDetail: userDetail.asDriverOnErrorJustComplete())
     }
 }
 

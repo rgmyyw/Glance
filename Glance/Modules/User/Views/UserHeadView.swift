@@ -19,7 +19,6 @@ class UserHeadView: View {
         
     @IBOutlet weak var instagramCell: UIView!
     @IBOutlet weak var websiteCell: UIView!
-    @IBOutlet weak var bioCell: UIView!
     @IBOutlet weak var contentView: UIView!
     
     
