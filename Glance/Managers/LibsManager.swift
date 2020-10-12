@@ -115,8 +115,9 @@ class LibsManager: NSObject {
 
     func setupKafkaRefresh() {
         if let defaults = KafkaRefreshDefaults.standard() {
-            defaults.headDefaultStyle = .animatableArrow
-            defaults.footDefaultStyle = .animatableArrow
+            defaults.headDefaultStyle = .native
+            defaults.footDefaultStyle = .native
+            defaults.themeColor = UIColor.primary()
             defaults.backgroundColor = .clear
             defaults.themeColor = .textGray()
         }

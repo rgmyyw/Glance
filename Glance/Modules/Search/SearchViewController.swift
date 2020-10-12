@@ -57,7 +57,7 @@ class SearchViewController: TableViewController , UITextFieldDelegate  {
         }).disposed(by: rx.disposeBag)
         
         output.close.drive(onNext: { [weak self]() in
-            self?.navigator.dismiss(sender: self)
+            self?.navigator.dismiss(sender: self) 
         }).disposed(by: rx.disposeBag)
 
         

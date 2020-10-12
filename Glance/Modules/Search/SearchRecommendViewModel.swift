@@ -28,7 +28,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let searchResult : Driver<String>
     }
     
-
+    
     func transform(input: Input) -> Output {
         
         let eraseHistory = PublishSubject<[SearchHistoryItem]>()
@@ -49,30 +49,30 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
             return Disposables.create { }
         }
         
-        searchHistory.map { items -> [SearchRecommendHistorySection] in
-            let section = 0
-            return [SearchRecommendHistorySection(section: "section:\(section)", elements: items.enumerated().map { (index, item) -> SearchRecommendHistorySectionItem in
+        searchHistory.filterEmpty().map { (items) -> [SearchRecommendHistorySection] in
+            if elements.value.count != items.count { elements.accept([]) }
+            return [SearchRecommendHistorySection(section: "section:\(0)", elements: items.enumerated().map { (index, item) -> SearchRecommendHistorySectionItem in
                 let viewModel = SearchHistoryCellViewModel(item: item)
                 viewModel.delete.map { [item]}.bind(to: eraseHistory).disposed(by: self.rx.disposeBag)
-                let item = SearchRecommendHistorySectionItem(item: "section:\(section)item:\(index)", viewModel: viewModel)
+                let item = SearchRecommendHistorySectionItem(item: "section:\(0)item:\(index)", viewModel: viewModel)
                 return item
             })]
         }.bind(to: elements)
             .disposed(by: rx.disposeBag)
-
+        
         
         eraseHistory.subscribe(onNext: { items in
-                SearchHistoryItem.remove(items: items)
-                guard let section = elements.value.first else { return }
-                var all = section.items
-                items.forEach { item in
-                    if let index = all.firstIndex(where: { $0.viewModel.item == item}) {
-                        all.remove(at: index)
-                    }
+            SearchHistoryItem.remove(items: items)
+            guard let section = elements.value.first else { return }
+            var all = section.items
+            items.forEach { item in
+                if let index = all.firstIndex(where: { $0.viewModel.item == item}) {
+                    all.remove(at: index)
                 }
-                let sections = [SearchRecommendHistorySection(original: section, items: all)]
-                headHidden.accept(all.isEmpty)
-                elements.accept(all.isEmpty ? [] : sections)
+            }
+            let sections = [SearchRecommendHistorySection(original: section, items: all)]
+            headHidden.accept(all.isEmpty)
+            elements.accept(all.isEmpty ? [] : sections)
         }).disposed(by: rx.disposeBag)
         
         

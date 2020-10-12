@@ -232,14 +232,14 @@ class Navigator {
     
     
     
-    func dismiss(sender: UIViewController?, animated : Bool = true ) {
+    func dismiss(sender: UIViewController?, animated : Bool = true , completion : (()->())? = nil) {
         
         if let sender = sender, sender.isKind(of: NavigationController.self) {
-            sender.dismiss(animated: animated, completion: nil)
+            sender.dismiss(animated: animated, completion: completion)
         } else if let navigationController = sender?.navigationController  {
-            navigationController.dismiss(animated: animated, completion: nil)
+            navigationController.dismiss(animated: animated, completion: completion)
         } else {
-            sender?.dismiss(animated: animated, completion: nil)
+            sender?.dismiss(animated: animated, completion: completion)
 
         }
     }

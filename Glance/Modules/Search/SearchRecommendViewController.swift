@@ -55,11 +55,13 @@ class SearchRecommendViewController: ViewController {
         customNavigationBar.backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
         navigationBar.addSubview(customNavigationBar)
     }
+    
+    
+    
     override func bindViewModel() {
         super.bindViewModel()
         
-        
-        let refresh = Observable.just(())
+        let refresh = rx.viewWillAppear.mapToVoid()
         guard let viewModel = viewModel as? SearchRecommendViewModel else { return }
 
         let input = SearchRecommendViewModel.Input(refresh: refresh,
