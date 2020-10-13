@@ -70,10 +70,11 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
             .filterNil()
             .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<PageMapable<SearchTheme>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
-                return self.provider.searchThemeHot(classifyId: cellViewModel.item.classifyId, page: self.page)
+                let classifyId = cellViewModel.item.classifyId
+                return self.provider.searchThemeHot(classifyId: classifyId, page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -82,8 +83,12 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }                    
                 default:
                     break
                 }
@@ -109,7 +114,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+                self.noMoreData.onNext(())
                 
             default:
                 break

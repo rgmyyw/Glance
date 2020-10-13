@@ -48,7 +48,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.userPost(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
@@ -60,8 +60,13 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
+                
                 default:
                     break
                 }
@@ -69,9 +74,12 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !(self.element.value?.hasNext ?? false) {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
             return self.provider.userPost(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
@@ -85,8 +93,14 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
-                
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
             default:
                 break
             }
@@ -103,7 +117,6 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
                 viewModel.recommendButtonHidden.accept(((self.otherUser.value != nil) ? self.otherUser.value != user.value : false))
                 return viewModel.makeItemType()
             }
-            
             let sections = [UserDetailPostSection.single(items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
@@ -155,7 +168,10 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-        
+        more.subscribe(onNext: { (cellViewModel) in
+            cellViewModel.memuHidden.accept(!cellViewModel.memuHidden.value)
+        }).disposed(by: rx.disposeBag)
+
         kUpdateItem.subscribe(onNext: { [weak self](state, item,trigger) in
             guard trigger != self , self?.otherUser.value == nil else { return }
             guard var t = self?.element.value else { return }

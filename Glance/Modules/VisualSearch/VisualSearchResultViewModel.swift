@@ -123,8 +123,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 Observable.just(box) : Observable.just(box)
                     .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
         }.flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<(Bool,Box ,VisualSearchPageMapable, VisualSearchPageMapable)>)> in
-            
-            guard let self = self , let element = self.element.value else { return Observable.just(RxSwift.Event.completed) }
+            guard let self = self , let element = self.element.value else {
+                return Observable.just(.error(ExceptionError.unknown))
+            }
             if let index = element.boxes.firstIndex(where: { $0 == box })   {
                 let item = VisualSearchPageMapable(boxProduct: element.boxProducts[index])
                 let event = RxSwift.Event.next((true,box, element, item))
@@ -149,11 +150,17 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                     self.element.accept(element)
                     return
                 }
-                
                 var element = element
                 element.boxProducts.append(result.boxProducts[0])
                 self.element.accept(element)
-                self.hasData.onNext(result.boxProducts[0].hasNext)
+                
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    logError(error.debugDescription)
+                }
+                
             default:
                 break
             }
@@ -162,10 +169,13 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<(Int, VisualSearchPageMapable)>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            
             guard let index = self.element.value?.boxes.firstIndex(where: { $0 == self.currentBox.value }) ,
                 let element =  self.element.value?.boxProducts[index] ,element.hasNext  else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.noMore))
             }
             
             self.page += 1
@@ -186,6 +196,14 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 var element = self.element.value
                 element?.boxProducts[index].productList.append(contentsOf: item.boxProducts[0].productList)
                 self.element.accept(element)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
                 
             default:
                 break

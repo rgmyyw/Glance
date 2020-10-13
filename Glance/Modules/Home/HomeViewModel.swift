@@ -51,13 +51,12 @@ class HomeViewModel: ViewModel, ViewModelType {
         let search : Observable<Void>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
+    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
     
     
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
     
     func transform(input: Input) -> Output {
-        
         
         let elements = BehaviorRelay<[HomeSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
@@ -67,6 +66,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         let userDetail = PublishSubject<User?>()
         let more = PublishSubject<DefaultColltionCellViewModel>()
         let like = PublishSubject<DefaultColltionCellViewModel>()
+        
         //let share = PublishSubject<DefaultColltionCellViewModel>()
         //let delete = PublishSubject<DefaultColltionCellViewModel>()
         //let report = PublishSubject<DefaultColltionCellViewModel>()
@@ -100,7 +100,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.getHome(page: self.page)
@@ -112,7 +112,12 @@ class HomeViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
@@ -121,10 +126,14 @@ class HomeViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                if !self.element.value.hasNext {
-                    return Observable.just(RxSwift.Event.completed)
+                guard let self = self,
+                    self.element.value?.list.isNotEmpty ?? false else {
+                    return Observable.just(.error(ExceptionError.empty))
                 }
+                guard (self.element.value?.hasNext ?? false) else {
+                    return Observable.just(.error(ExceptionError.noMore))
+                }
+                
                 self.page += 1
                 return self.provider.getHome(page: self.page)
                     .trackActivity(self.footerLoading)
@@ -135,16 +144,23 @@ class HomeViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     var temp = item
-                    temp.list = self.element.value.list + item.list
+                    temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
-                    self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    case .noMore:
+                        self.noMoreData.onNext(())
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
             }).disposed(by: rx.disposeBag)
         
         
-        element.map { items -> [HomeSection] in
+        element.filterNil().map { items -> [HomeSection] in
             let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)

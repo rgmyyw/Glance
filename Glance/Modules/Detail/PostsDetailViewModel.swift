@@ -154,7 +154,12 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         }.asDriver(onErrorJustReturn: -1)
         
         item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
-            guard let self = self ,let type = item.type else { return Observable.just(RxSwift.Event.completed) }
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
+            }
+            guard let type = item.type else {
+                return Observable.just(.error(ExceptionError.general("type is empty")))
+            }
             let request = type.isProduct ? self.provider.productDetail(productId: item.productId ?? "") :
                 self.provider.postDetail(postId: item.postId)
             return request
@@ -166,6 +171,13 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             case .next(var item):
                 item.type = self?.item.value.type
                 element.accept(item)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }
@@ -173,13 +185,16 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !(self.similar.value?.hasNext ?? true) {
-                return Observable.just(RxSwift.Event.next(PageMapable(hasNext: false)))
-                    .trackActivity(self.footerLoading)
+            guard let self = self,
+                self.similar.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.similar.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
-            let request = self.provider.similarProduct(params: self.item.value.id, page: self.page)
+            let id = self.item.value.id
+            let request = self.provider.similarProduct(params: id, page: self.page)
             return self.page == 1 ? request
                 .trackActivity(self.loading)
                 .trackError(self.error)
@@ -194,8 +209,14 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 var newResult = result
                 newResult.list = (self.similar.value?.list ?? []) + result.list
                 self.similar.accept(newResult)
-                self.hasData.onNext(result.hasNext)
-                
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }                
             default:
                 break
             }

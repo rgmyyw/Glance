@@ -67,7 +67,7 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    self.hasData.onNext(item.hasNext)
+                    self.noMoreData.onNext(())
                 default:
                     break
                 }
@@ -94,7 +94,7 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
                     var temp = item
                     temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
-                    self.hasData.onNext(item.hasNext)
+                    self.noMoreData.onNext(())
                 default:
                     break
                 }

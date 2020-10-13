@@ -25,7 +25,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
 //        let saved : Driver<Void>
     }
     
-    let element : BehaviorRelay<PageMapable<Notification>> = BehaviorRelay(value: PageMapable<Notification>())
+    let element : BehaviorRelay<PageMapable<Notification>?> = BehaviorRelay(value: nil)
 
     func transform(input: Input) -> Output {
         
@@ -35,7 +35,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Notification>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.notifications(pageNum: self.page)
@@ -47,8 +47,12 @@ class NotificationViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
@@ -56,9 +60,12 @@ class NotificationViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Notification>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
             return self.provider.notifications(pageNum: self.page)
@@ -70,35 +77,29 @@ class NotificationViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
 
-        element.map { items -> [NotificationCellViewModel] in
+        element.filterNil().map { items -> [NotificationCellViewModel] in
             return items.list.map { item -> NotificationCellViewModel  in
                 let viewModel = NotificationCellViewModel(item: item)
                 return viewModel
             }
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-//        let items = (0...20).map { (_) -> NotificationCellViewModel  in
-//            let viewModel = NotificationCellViewModel(item: Notification())
-//            return viewModel
-//        }
-//
-//        elements.accept(items)
-
-        
-//        input.selection.subscribe(onNext: { item in
-//            elements.value.forEach { (i) in i.selected.accept(false) }
-//            item.selected.accept(true)
-//            saved.onNext(())
-//        }).disposed(by: rx.disposeBag)
-                
         return Output(items: elements.asDriver(onErrorJustReturn: []))
     }
 }

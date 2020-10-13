@@ -34,9 +34,9 @@ struct PostsDetail: Mappable {
     var image: String?
     var price : String?
     var inShoppingList: Bool = false
-    var currency : String?
     var providerName : String?
     var type : DefaultColltionCellType?
+    var description : String?
     
     var id : [String : Any] {
         guard let type = type else { return [:]}
@@ -74,7 +74,7 @@ struct PostsDetail: Mappable {
         productId <- map["productId"]
         image <- map["image"]
         inShoppingList <- map["inShoppingList"]
-        currency <- map["currency"]
         providerName <- map["providerName"]
+        description <- map["description"]
     }
 }

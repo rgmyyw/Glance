@@ -50,7 +50,9 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         }
         
         searchHistory.filterEmpty().map { (items) -> [SearchRecommendHistorySection] in
-            if elements.value.count != items.count { elements.accept([]) }
+//            if elements.value.count != items.count {
+                elements.accept([])
+//            }
             return [SearchRecommendHistorySection(section: "section:\(0)", elements: items.enumerated().map { (index, item) -> SearchRecommendHistorySectionItem in
                 let viewModel = SearchHistoryCellViewModel(item: item)
                 viewModel.delete.map { [item]}.bind(to: eraseHistory).disposed(by: self.rx.disposeBag)

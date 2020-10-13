@@ -1785,6 +1785,38 @@
 		5D630AAD24B31B4000F0CC45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
 		5D630AAF24B3205F00F0CC45 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		5D6B289E25342F0A004F16DE /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
+		5D6B289F25342F0A004F16DE /* Appfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Appfile; sourceTree = "<group>"; };
+		5D6B28A025342F0A004F16DE /* multiple-device-upload-ios.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "multiple-device-upload-ios.txt"; sourceTree = "<group>"; };
+		5D6B28A125342F0A004F16DE /* Deliverfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Deliverfile; sourceTree = "<group>"; };
+		5D6B28A225342F0A004F16DE /* Fastfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Fastfile; sourceTree = "<group>"; };
+		5D6B28A325342F0A004F16DE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		5D6B28A425342F0A004F16DE /* Matchfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Matchfile; sourceTree = "<group>"; };
+		5D6B28A625342F0A004F16DE /* copyright.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = copyright.txt; sourceTree = "<group>"; };
+		5D6B28A725342F0A004F16DE /* secondary_first_sub_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = secondary_first_sub_category.txt; sourceTree = "<group>"; };
+		5D6B28A825342F0A004F16DE /* secondary_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = secondary_category.txt; sourceTree = "<group>"; };
+		5D6B28A925342F0A004F16DE /* secondary_second_sub_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = secondary_second_sub_category.txt; sourceTree = "<group>"; };
+		5D6B28AA25342F0A004F16DE /* primary_second_sub_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = primary_second_sub_category.txt; sourceTree = "<group>"; };
+		5D6B28AC25342F0A004F16DE /* phone_number.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = phone_number.txt; sourceTree = "<group>"; };
+		5D6B28AD25342F0A004F16DE /* demo_user.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_user.txt; sourceTree = "<group>"; };
+		5D6B28AE25342F0A004F16DE /* notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = notes.txt; sourceTree = "<group>"; };
+		5D6B28AF25342F0A004F16DE /* email_address.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = email_address.txt; sourceTree = "<group>"; };
+		5D6B28B025342F0A004F16DE /* last_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = last_name.txt; sourceTree = "<group>"; };
+		5D6B28B125342F0A004F16DE /* first_name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = first_name.txt; sourceTree = "<group>"; };
+		5D6B28B225342F0A004F16DE /* demo_password.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = demo_password.txt; sourceTree = "<group>"; };
+		5D6B28B325342F0A004F16DE /* primary_first_sub_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = primary_first_sub_category.txt; sourceTree = "<group>"; };
+		5D6B28B525342F0A004F16DE /* privacy_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = privacy_url.txt; sourceTree = "<group>"; };
+		5D6B28B625342F0A004F16DE /* subtitle.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = subtitle.txt; sourceTree = "<group>"; };
+		5D6B28B725342F0A004F16DE /* support_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = support_url.txt; sourceTree = "<group>"; };
+		5D6B28B825342F0A004F16DE /* keywords.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = keywords.txt; sourceTree = "<group>"; };
+		5D6B28B925342F0A004F16DE /* apple_tv_privacy_policy.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = apple_tv_privacy_policy.txt; sourceTree = "<group>"; };
+		5D6B28BA25342F0A004F16DE /* promotional_text.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = promotional_text.txt; sourceTree = "<group>"; };
+		5D6B28BB25342F0A004F16DE /* release_notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = release_notes.txt; sourceTree = "<group>"; };
+		5D6B28BC25342F0A004F16DE /* name.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = name.txt; sourceTree = "<group>"; };
+		5D6B28BD25342F0A004F16DE /* marketing_url.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = marketing_url.txt; sourceTree = "<group>"; };
+		5D6B28BE25342F0A004F16DE /* description.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = description.txt; sourceTree = "<group>"; };
+		5D6B28BF25342F0A004F16DE /* primary_category.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = primary_category.txt; sourceTree = "<group>"; };
+		5D6B28C025342F0A004F16DE /* report.xml */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = report.xml; sourceTree = "<group>"; };
 		5D6B4DB824D40C8B0024924B /* VisualSearchBottomView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VisualSearchBottomView.xib; sourceTree = "<group>"; };
 		5D6B4DBA24D40C990024924B /* VisualSearchBottomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchBottomView.swift; sourceTree = "<group>"; };
 		5D6B4DBC24D7A23D0024924B /* VisualSearchProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchProductViewController.swift; sourceTree = "<group>"; };
@@ -2362,6 +2394,77 @@
 			path = Views;
 			sourceTree = "<group>";
 		};
+		5D6B289C25342F0A004F16DE /* fastlane */ = {
+			isa = PBXGroup;
+			children = (
+				5D6B289D25342F0A004F16DE /* screenshots */,
+				5D6B289F25342F0A004F16DE /* Appfile */,
+				5D6B28A025342F0A004F16DE /* multiple-device-upload-ios.txt */,
+				5D6B28A125342F0A004F16DE /* Deliverfile */,
+				5D6B28A225342F0A004F16DE /* Fastfile */,
+				5D6B28A325342F0A004F16DE /* README.md */,
+				5D6B28A425342F0A004F16DE /* Matchfile */,
+				5D6B28A525342F0A004F16DE /* metadata */,
+				5D6B28C025342F0A004F16DE /* report.xml */,
+			);
+			path = fastlane;
+			sourceTree = "<group>";
+		};
+		5D6B289D25342F0A004F16DE /* screenshots */ = {
+			isa = PBXGroup;
+			children = (
+				5D6B289E25342F0A004F16DE /* README.txt */,
+			);
+			path = screenshots;
+			sourceTree = "<group>";
+		};
+		5D6B28A525342F0A004F16DE /* metadata */ = {
+			isa = PBXGroup;
+			children = (
+				5D6B28A625342F0A004F16DE /* copyright.txt */,
+				5D6B28A725342F0A004F16DE /* secondary_first_sub_category.txt */,
+				5D6B28A825342F0A004F16DE /* secondary_category.txt */,
+				5D6B28A925342F0A004F16DE /* secondary_second_sub_category.txt */,
+				5D6B28AA25342F0A004F16DE /* primary_second_sub_category.txt */,
+				5D6B28AB25342F0A004F16DE /* review_information */,
+				5D6B28B325342F0A004F16DE /* primary_first_sub_category.txt */,
+				5D6B28B425342F0A004F16DE /* en-US */,
+				5D6B28BF25342F0A004F16DE /* primary_category.txt */,
+			);
+			path = metadata;
+			sourceTree = "<group>";
+		};
+		5D6B28AB25342F0A004F16DE /* review_information */ = {
+			isa = PBXGroup;
+			children = (
+				5D6B28AC25342F0A004F16DE /* phone_number.txt */,
+				5D6B28AD25342F0A004F16DE /* demo_user.txt */,
+				5D6B28AE25342F0A004F16DE /* notes.txt */,
+				5D6B28AF25342F0A004F16DE /* email_address.txt */,
+				5D6B28B025342F0A004F16DE /* last_name.txt */,
+				5D6B28B125342F0A004F16DE /* first_name.txt */,
+				5D6B28B225342F0A004F16DE /* demo_password.txt */,
+			);
+			path = review_information;
+			sourceTree = "<group>";
+		};
+		5D6B28B425342F0A004F16DE /* en-US */ = {
+			isa = PBXGroup;
+			children = (
+				5D6B28B525342F0A004F16DE /* privacy_url.txt */,
+				5D6B28B625342F0A004F16DE /* subtitle.txt */,
+				5D6B28B725342F0A004F16DE /* support_url.txt */,
+				5D6B28B825342F0A004F16DE /* keywords.txt */,
+				5D6B28B925342F0A004F16DE /* apple_tv_privacy_policy.txt */,
+				5D6B28BA25342F0A004F16DE /* promotional_text.txt */,
+				5D6B28BB25342F0A004F16DE /* release_notes.txt */,
+				5D6B28BC25342F0A004F16DE /* name.txt */,
+				5D6B28BD25342F0A004F16DE /* marketing_url.txt */,
+				5D6B28BE25342F0A004F16DE /* description.txt */,
+			);
+			path = "en-US";
+			sourceTree = "<group>";
+		};
 		5D6FEA4424DC019C0062F90B /* Post */ = {
 			isa = PBXGroup;
 			children = (
@@ -2599,6 +2702,7 @@
 		5DE6388124AD769D002F6F6B = {
 			isa = PBXGroup;
 			children = (
+				5D6B289C25342F0A004F16DE /* fastlane */,
 				5DEFF0F824AEC2F8007A2FCD /* Glance */,
 				5DE6388B24AD769D002F6F6B /* Products */,
 				C0722F36693E71B7F21A33CA /* Pods */,
@@ -5154,7 +5258,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5179,7 +5283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5204,7 +5308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5229,7 +5333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5418,7 +5522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5443,7 +5547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 19;
+				CURRENT_PROJECT_VERSION = 28;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -19,7 +19,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     
-    let hasData = PublishSubject<Bool>()
+    let noMoreData = PublishSubject<Void>()
     
     
     lazy var collectionView: CollectionView = {
@@ -28,7 +28,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         view.emptyDataSetDelegate = self
         view.alwaysBounceVertical = true
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
         return view
     }()
     
@@ -55,7 +54,11 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         stackView.insertArrangedSubview(collectionView, at: 0)
         
         collectionView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
-            self?.headerRefreshTrigger.onNext(())
+            UIView.animate(withDuration: 0.25, animations: {
+                self?.collectionView.footRefreshControl.resumeRefreshAvailable()
+            }) { (_) in
+                self?.headerRefreshTrigger.onNext(())
+            }
         })
         
         collectionView.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
@@ -66,18 +69,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         collectionView.footRefreshControl.autoRefreshOnFoot = true
     
         
-        hasData.subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] (hasData) in
+        noMoreData.subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] () in
                 guard let footRefreshControl = self?.collectionView.footRefreshControl  else { return }
-                if !hasData {
-                    if self?.collectionView.isEmptyDataSetVisible == false {
-                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
-                    } else {
-                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: nil)
-                    }
-                } else {
-                    footRefreshControl.resumeRefreshAvailable()
-                }
+                footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "- No more update -")
             }).disposed(by: rx.disposeBag)
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
@@ -112,15 +107,15 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     override func bindViewModel() {
         super.bindViewModel()
         
-        viewModel?.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
+        viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         
         if collectionView.headRefreshControl != nil {
-            isHeaderLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: collectionView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+            isHeaderLoading.bind(to: collectionView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
         if collectionView.footRefreshControl != nil {
-            isFooterLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: collectionView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+            isFooterLoading.bind(to: collectionView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
         }
     }
     

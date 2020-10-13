@@ -8,17 +8,15 @@
 
 import UIKit
 
-enum ExceptionError: Error , CustomStringConvertible{
+enum ExceptionError: Error , CustomDebugStringConvertible,CustomStringConvertible {
     
     case general(_ message: String)
-    
-    
-    var description: String {
-        switch self {
-        case .general(let message):
-            return message
-        }
-    }
+    case unknown
+    case argumentOutOfRange
+    case timeout
+    case empty
+    case jsonMap
+    case noMore
     
     var asError: Error? {
         return self as Error
@@ -30,5 +28,30 @@ extension Error {
     var asExceptionError: ExceptionError? {
         return self as? ExceptionError
     }
+}
+extension ExceptionError {
+    
+    public var description: String {
+        switch self {
+        case .unknown:
+            return "Unknown error occurred."
+        case .argumentOutOfRange:
+            return "Argument out of range."
+        case .timeout:
+            return "timeout."
+        case .empty:
+            return "no result"
+        case .jsonMap:
+            return "JSON parsing fails"
+        case .general(let text):
+            return "Error: \(text)"
+        case .noMore:
+            return "no more update!"
+        }
 
+    }
+    
+    public var debugDescription: String {
+        return description
+    }
 }

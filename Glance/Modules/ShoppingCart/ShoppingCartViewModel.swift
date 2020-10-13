@@ -27,7 +27,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         let detail :  Driver<Home>
     }
     
-    let element : BehaviorRelay<PageMapable<ShoppingCart>> = BehaviorRelay(value: PageMapable<ShoppingCart>())
+    let element : BehaviorRelay<PageMapable<ShoppingCart>?> = BehaviorRelay(value: nil)
     let confirmDelete = PublishSubject<ShoppingCartCellViewModel>()
     let selectStoreActions = PublishSubject<(action : SelectStoreAction, item : SelectStore)>()
 
@@ -60,7 +60,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<ShoppingCart>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.shoppingCart(pageNum: self.page)
@@ -72,8 +72,12 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
@@ -81,9 +85,12 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<ShoppingCart>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
             return self.provider.shoppingCart(pageNum: self.page)
@@ -95,15 +102,23 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
 
-        element.map { items -> [ShoppingCartCellViewModel] in
+        element.filterNil().map { items -> [ShoppingCartCellViewModel] in
             return items.list.map { item -> ShoppingCartCellViewModel  in
                 let viewModel = ShoppingCartCellViewModel(item: item)
                 viewModel.delete.map { viewModel}.bind(to: delete).disposed(by: self.rx.disposeBag)

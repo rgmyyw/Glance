@@ -48,7 +48,7 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.userRecommend(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
@@ -60,8 +60,12 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                    self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }                
                 default:
                     break
                 }
@@ -69,12 +73,16 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !(self.element.value?.hasNext ?? false) {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
-            return self.provider.userRecommend(userId: self.otherUser.value?.userId ?? "",pageNum: self.page)
+            let userId = self.otherUser.value?.userId ?? ""
+            return self.provider.userRecommend(userId: userId ,pageNum: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -85,7 +93,15 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }

@@ -68,10 +68,11 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                 data["countryCode"] = country.code
             }
             if let website = self?.website.value {
-                if website.isValidHttpUrl || website.isValidHttpsUrl {
+                if website.isValidUrl {
                     data["website"] = website
                 } else {
                     self?.exceptionError.onNext(.general("not a valid website"))
+                    return
                 }
             }
             if let bio = self?.bio.value{

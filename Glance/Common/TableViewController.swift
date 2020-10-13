@@ -21,7 +21,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     
-    let hasData = PublishSubject<Bool>()
+    let noMoreData = PublishSubject<Void>()
     
     private let style : UITableView.Style
     
@@ -63,6 +63,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         stackView.insertArrangedSubview(tableView, at: 0)
         
         tableView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
+            self?.tableView.footRefreshControl.resumeRefreshAvailable()
             self?.headerRefreshTrigger.onNext(())
         })
         
@@ -75,20 +76,13 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         tableView.footRefreshControl.autoRefreshOnFoot = true
         
         
-        hasData.subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] (hasData) in
+        noMoreData.subscribeOn(MainScheduler.instance)
+            .subscribe(onNext: {[weak self] () in
                 guard let footRefreshControl = self?.tableView.footRefreshControl  else { return }
-                if !hasData {
-                    if self?.tableView.isEmptyDataSetVisible == false {
-                        footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "No more ...")
-                    }
-                } else {
-                    footRefreshControl.resumeRefreshAvailable()
-                }
+                footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "- No more update -")
             }).disposed(by: rx.disposeBag)
         
         
-        tableView.footRefreshControl.autoRefreshOnFoot = true
         
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
@@ -121,7 +115,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     override func bindViewModel() {
         super.bindViewModel()
 
-        viewModel?.hasData.bind(to: hasData).disposed(by: rx.disposeBag)
+        viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
                 

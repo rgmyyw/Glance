@@ -51,7 +51,7 @@ class SelectStoreViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[SelectStore]>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 let productId = self.productId.value
                 return self.provider.compareOffers(productId: productId)
@@ -63,6 +63,14 @@ class SelectStoreViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let items):
                     self.element.accept(items)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
+
+                    
                 default:
                     break
                 }

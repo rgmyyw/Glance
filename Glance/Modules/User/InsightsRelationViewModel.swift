@@ -57,7 +57,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
         
         input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<InsightsRelation>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 let postId = self.item.value.postId ?? 0
@@ -71,7 +71,13 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
+
                 default:
                     break
                 }
@@ -79,9 +85,12 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<InsightsRelation>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if let hasNext = self.element.value?.hasNext ,!hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
             let postId = self.item.value.postId ?? 0
@@ -98,7 +107,15 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                 let items = self.element.value?.list ?? []
                 temp.list = items + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }

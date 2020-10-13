@@ -35,7 +35,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
         super.init(provider: provider)
     }
     
-    let element : BehaviorRelay<PageMapable<Insight>> = BehaviorRelay(value: PageMapable<Insight>())
+    let element : BehaviorRelay<PageMapable<Insight>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
@@ -44,7 +44,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Insight>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 let request : Single<PageMapable<Insight>> = self.type.value == .post ?
@@ -59,8 +59,12 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.hasData.onNext(item.hasNext)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
@@ -68,9 +72,12 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Insight>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self,
+                self.element.value?.list.isNotEmpty ?? false else {
+                return Observable.just(.error(ExceptionError.empty))
+            }
+            guard (self.element.value?.hasNext ?? false) else {
+                return Observable.just(.error(ExceptionError.noMore))
             }
             self.page += 1
             let request : Single<PageMapable<Insight>> = self.type.value == .post ?
@@ -85,16 +92,23 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                case .noMore:
+                    self.noMoreData.onNext(())
+                default:
+                    logError(error.debugDescription)
+                }
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
         
         
-        element.map { items -> [InsightsCellViewModel] in
+        element.filterNil().map { items -> [InsightsCellViewModel] in
             return items.list.map { item -> InsightsCellViewModel  in
                 let viewModel = InsightsCellViewModel(item: item)
                 return viewModel

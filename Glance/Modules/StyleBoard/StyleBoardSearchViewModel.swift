@@ -58,7 +58,8 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        textInput.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+        textInput.filterEmpty()
+            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
@@ -74,8 +75,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                    self.hasData.onNext(item.hasNext)
+                    self.noMoreData.onNext(())
                 default:
                     break
                 }
@@ -100,7 +100,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? [] ) + item.list
                 self.element.accept(temp)
-                self.hasData.onNext(item.hasNext)
+                self.noMoreData.onNext(())
             default:
                 break
             }
