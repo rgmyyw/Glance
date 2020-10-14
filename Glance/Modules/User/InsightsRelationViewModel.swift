@@ -75,6 +75,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
 
@@ -113,6 +114,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
 

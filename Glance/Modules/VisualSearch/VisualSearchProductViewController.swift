@@ -17,7 +17,7 @@ import WMZPageController
 
 class VisualSearchProductViewController: CollectionViewController {
     
-    private lazy var headVaiew : VisualSearchProductHeadView = VisualSearchProductHeadView.loadFromNib(height: 64)
+    private lazy var headVaiew : VisualSearchProductHeadView = VisualSearchProductHeadView.loadFromNib(height: 64,width: UIScreen.width)
     private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<VisualSearchProductSection> = configureDataSouce()
     private let add = PublishSubject<Void>()
     
@@ -57,25 +57,21 @@ class VisualSearchProductViewController: CollectionViewController {
     
     override func makeUI() {
         super.makeUI()
-        
-        
-        
+                
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationTitle = "Search Product"
+        refreshComponent.accept(.footer)
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         layout.minimumLineSpacing = 20
         
-        collectionView.headRefreshControl = nil
+        
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: VisualSearchProductCell.self)
         collectionView.register(nib: VisualSearchProductReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionFooter, withClass: VisualSearchProductReusableView.self)
-
-        stackView.insertArrangedSubview(headVaiew, at: 0)        
+        stackView.insertArrangedSubview(headVaiew, at: 0)
         
     }
     
@@ -173,7 +169,7 @@ extension VisualSearchProductViewController : ZLCollectionViewBaseFlowLayoutDele
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+        return UIEdgeInsets(top: inset, left: inset, bottom: 0, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

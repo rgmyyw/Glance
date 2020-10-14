@@ -39,7 +39,6 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
 
     func transform(input: Input) -> Output {
         
-        
         let elements = BehaviorRelay<[SearchResultContentViewSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
@@ -51,12 +50,13 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
             .map { $0.viewModel.item.user }.bind(to: userDetail).disposed(by: rx.disposeBag)
         
         
-        themeId.asObservable().merge(with: input.headerRefresh.map { self.themeId.value})
-            .flatMapLatest({ [weak self] (themeId) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+        input.headerRefresh
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 let type = self.type.value
+                let themeId = self.themeId.value
                 self.page = 1
                 return self.provider.searchThemeDetaiResource(type: type, themeId: themeId, page: self.page)
                     .trackError(self.error)
@@ -67,7 +67,14 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    self.noMoreData.onNext(())
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        self.endLoading.onNext(())
+                        logError(error.debugDescription)
+                    }
+
                 default:
                     break
                 }
@@ -76,9 +83,12 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                if !(self.element.value?.hasNext ?? false) {
-                    return Observable.just(RxSwift.Event.completed)
+                guard let self = self,
+                    self.element.value?.list.isNotEmpty ?? false else {
+                    return Observable.just(.error(ExceptionError.empty))
+                }
+                guard (self.element.value?.hasNext ?? false) else {
+                    return Observable.just(.error(ExceptionError.noMore))
                 }
                 self.page += 1
                 let themeId = self.themeId.value
@@ -94,7 +104,16 @@ class SearchThemeContentViewModel: ViewModel, ViewModelType {
                     var temp = item
                     temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
-                    self.noMoreData.onNext(())
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    case .noMore:
+                        self.noMoreData.onNext(())
+                    default:
+                        self.endLoading.onNext(())
+                        logError(error.debugDescription)
+                    }
+
                 default:
                     break
                 }

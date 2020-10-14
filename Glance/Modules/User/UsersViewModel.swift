@@ -22,6 +22,7 @@ class UsersViewModel : ViewModel, ViewModelType {
         let items : Driver<[UsersCellViewModel]>
         let navigationTitle : Driver<String>
         let userDetail : Driver<User>
+        
     }
     
     private let type : BehaviorRelay<UsersType>
@@ -70,6 +71,7 @@ class UsersViewModel : ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -106,6 +108,7 @@ class UsersViewModel : ViewModel, ViewModelType {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
             default:

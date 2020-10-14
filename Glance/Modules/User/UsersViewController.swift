@@ -16,6 +16,7 @@ class UsersViewController: TableViewController {
     override func makeUI() {
         super.makeUI()
         
+        viewDidLoadBeginRefresh = false
         tableView.register(nib: UsersCell.nib, withCellClass: UsersCell.self)
         tableView.rowHeight = 70
     }
@@ -69,7 +70,7 @@ class UsersViewController: TableViewController {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (viewModel as? UsersViewModel)?.tableViewHeadHidden.value ?? true ? 0 : 80
+        return (viewModel as? UsersViewModel)?.tableViewHeadHidden.value ?? true ? 0.1 : 80
     }
 
 

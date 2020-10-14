@@ -52,7 +52,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                     self.provider.insightRecommend(userId: "", pageNum: self.page)
                 return request
                     .trackError(self.error)
-                    .trackActivity(self.loading)
+                    .trackActivity(self.headerLoading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
@@ -63,6 +63,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -100,6 +101,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
             default:

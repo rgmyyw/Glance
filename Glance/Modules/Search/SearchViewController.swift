@@ -23,8 +23,7 @@ class SearchViewController: TableViewController , UITextFieldDelegate  {
         navigationBar.addSubview(customNavigationBar)
 
         tableView.register(nib: SearchCell.nib, withCellClass: SearchCell.self)
-        tableView.headRefreshControl = nil
-        tableView.footRefreshControl = nil
+        tableView.mj_header = nil
         tableView.rowHeight = 44
         
         customNavigationBar.textField.delegate = self

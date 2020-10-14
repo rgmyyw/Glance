@@ -31,7 +31,6 @@ class SearchThemeLabelContentViewController: CollectionViewController {
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
 
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
         collectionView.register(nibWithCellClass: UserHorizontalCell.self)
                 
@@ -43,9 +42,9 @@ class SearchThemeLabelContentViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? SearchThemeLabelContentViewModel else { return }
         
-        let refresh = headerRefreshTrigger.asObservable()
-        let input = SearchThemeLabelContentViewModel.Input(headerRefresh: refresh,
-                                        footerRefresh: footerRefreshTrigger.mapToVoid(),
+
+        let input = SearchThemeLabelContentViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+                                        footerRefresh: footerRefreshTrigger.asObservable(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)

@@ -22,7 +22,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
 
     struct Output {
         let items : Driver<[NotificationCellViewModel]>
-//        let saved : Driver<Void>
+
     }
     
     let element : BehaviorRelay<PageMapable<Notification>?> = BehaviorRelay(value: nil)
@@ -51,6 +51,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -85,9 +86,9 @@ class NotificationViewModel: ViewModel, ViewModelType {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
-
             default:
                 break
             }

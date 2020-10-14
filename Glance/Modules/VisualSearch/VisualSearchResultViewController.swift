@@ -22,9 +22,7 @@ class VisualSearchResultViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
         
-        
-        
-        
+            
         // titleLabel
         let navigationTitleLabel = UILabel()
         navigationTitleLabel.text = "Visual Search"
@@ -68,11 +66,11 @@ class VisualSearchResultViewController: CollectionViewController  {
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         layout.minimumLineSpacing = 20
         
-        collectionView.headRefreshControl = nil
+        
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: VisualSearchResultCell.self)
         exceptionToastPosition = .center
+        refreshComponent.accept(.footer)
     }
     
     override func navigationBack() {
@@ -83,10 +81,8 @@ class VisualSearchResultViewController: CollectionViewController  {
         super.bindViewModel()
         
         guard let viewModel = viewModel as? VisualSearchResultViewModel else { return }
-        
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
-        let input = VisualSearchResultViewModel.Input(headerRefresh: refresh,
-                                                      footerRefresh: footerRefreshTrigger.mapToVoid(),
+
+        let input = VisualSearchResultViewModel.Input(footerRefresh: footerRefreshTrigger.mapToVoid(),
                                                       selection: collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable(),
                                                       search: (navigationBar.rightBarButtonItem as! UIButton).rx.tap.asObservable())
         let output = viewModel.transform(input: input)
@@ -101,9 +97,6 @@ class VisualSearchResultViewController: CollectionViewController  {
             search.selected.bind(to: viewModel.searchSelection).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .visualSearchProduct(viewModel: search), sender: self)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
     }
 }
 // MARK: - DataSouce
@@ -134,7 +127,7 @@ extension VisualSearchResultViewController : ZLCollectionViewBaseFlowLayoutDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

@@ -10,11 +10,18 @@ import UIKit
 
 class ProductRecommendCell: DefaultColltionCell {
     
+    @IBOutlet weak var userHeadImageButton: UIButton!
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var emojiButton: UIButton!
+    @IBOutlet weak var userOnlineImageView: UIImageView!
+
     
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var moreButton: UIButton!
-    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
     
     @IBOutlet weak var memuView: UIView!
@@ -23,7 +30,7 @@ class ProductRecommendCell: DefaultColltionCell {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
-    
+
     
     
     override func makeUI() {
@@ -38,11 +45,18 @@ class ProductRecommendCell: DefaultColltionCell {
         
         imageView.backgroundColor = .lightGray
         imageViewHeight.constant = viewModel.imageHeight
+        viewModel.userHeadImageURL.bind(to: userHeadImageButton.rx.imageURL).disposed(by: cellDisposeBag)
+        viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
+        
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
+        viewModel.userOnline.map { !$0}.bind(to: userOnlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.saved.bind(to: saveButton.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.reactionImage.bind(to: emojiButton.rx.image(for: .normal)).disposed(by: cellDisposeBag)
         
         saveButton.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
+        emojiButton.rx.tap.map { self.emojiButton }.bind(to: viewModel.reaction).disposed(by: cellDisposeBag)
+        userHeadImageButton.rx.tap.bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
         moreButton.rx.tap.bind(to: viewModel.more).disposed(by: cellDisposeBag)
         
         

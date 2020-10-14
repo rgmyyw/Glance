@@ -34,8 +34,6 @@ class ReactionsViewController: TableViewController {
         lineView.layer.shadowColor = UIColor(hex: 0x828282)!.withAlphaComponent(0.2).cgColor
         lineView.layer.shadowOpacity = 1
         lineView.clipsToBounds = false
-//        lineView.layer.shadowPath = UIBezierPath.
-//        lineView.addShadow(ofColor: <#T##UIColor#>, radius: <#T##CGFloat#>, offset: <#T##CGSize#>, opacity: <#T##Float#>)
         
     }
     

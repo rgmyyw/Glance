@@ -29,8 +29,8 @@ class SearchRecommendHotCell: TableViewCell {
         layout.itemSize = CGSize(width: 80, height: 120)
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
+        
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = .zero
         collectionView.register(nibWithCellClass: SearchRecommendHotCollectionCell.self)
     }
     

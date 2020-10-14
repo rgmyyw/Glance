@@ -17,25 +17,23 @@ class SelectStoreViewController: TableViewController, FloatingPanelControllerDel
     override func makeUI() {
         super.makeUI()
         
-        
+        viewDidLoadBeginRefresh = false
         automaticallyAdjustsLeftBarButtonItem = false
+        refreshComponent.accept(.none)
+        navigationBar.rightBarButtonItem = closeButton
         
-        tableView.headRefreshControl = nil
-        tableView.footRefreshControl = nil
         tableView.register(nib: SelectStoreCell.nib, withCellClass: SelectStoreCell.self)
         tableView.rowHeight = 90
         navigationBar.title = "Select Store"
         navigationBar.snp.updateConstraints { (make) in
             make.height.equalTo(58)
         }
-        navigationBar.rightBarButtonItem = closeButton
     }
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? SelectStoreViewModel else { return }
         
-        let refresh = Observable.just(())
-        let input = SelectStoreViewModel.Input(headerRefresh: refresh,
+        let input = SelectStoreViewModel.Input(headerRefresh: Observable.just(()),
                                                 footerRefresh: footerRefreshTrigger.asObservable(),
                                                 selection: tableView.rx.modelSelected(SelectStoreCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)

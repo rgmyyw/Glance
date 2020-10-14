@@ -10,6 +10,8 @@ import Foundation
 import RxCocoa
 import RxSwift
 import KafkaRefresh
+import MJRefresh
+
 
 extension Reactive where Base: KafkaRefreshControl {
 
@@ -17,6 +19,18 @@ extension Reactive where Base: KafkaRefreshControl {
         return Binder(self.base) { refreshControl, active in
             if active {
 //                refreshControl.beginRefreshing()
+            } else {
+                refreshControl.endRefreshing()
+            }
+        }
+    }
+}
+extension Reactive where Base: MJRefreshComponent {
+
+    public var isAnimating: Binder<Bool> {
+        return Binder(self.base) { refreshControl, active in
+            if active {
+                
             } else {
                 refreshControl.endRefreshing()
             }

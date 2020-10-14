@@ -25,15 +25,15 @@ class TableView: UITableView {
     }
 
     func makeUI() {
-        rowHeight = UITableView.automaticDimension
-        estimatedRowHeight = 50
-        sectionHeaderHeight = 40
+        
+        sectionHeaderHeight = 0
+        sectionFooterHeight = 0
         backgroundColor = .clear
         cellLayoutMarginsFollowReadableWidth = false
         keyboardDismissMode = .onDrag
         separatorColor = .clear
-        separatorInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: 0)
-        tableHeaderView = View(height: 1)
-        tableFooterView = UIView()
+        separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+//        tableHeaderView = UIView()
+//        tableFooterView = UIView()
     }
 }

@@ -18,9 +18,7 @@ import WMZPageController
 class SearchRecommendHotViewController: TableViewController  {
     
     private lazy var dataSouce : RxTableViewSectionedReloadDataSource<SectionModel<Void,SearchRecommendHotCellViewModel>> = configureDataSouce()
-    private lazy var filterView : SearchRecommendHotFilterView = SearchRecommendHotFilterView.loadFromNib(height: 60, width: UIScreen.width)
-
-    
+    private lazy var filterView : SearchRecommendHotFilterView = SearchRecommendHotFilterView.loadFromNib(height: 60, width: UIScreen.width)    
     override func makeUI() {
         super.makeUI()
         
@@ -28,7 +26,9 @@ class SearchRecommendHotViewController: TableViewController  {
         stackView.insertArrangedSubview(filterView, at: 0)
         tableView.register(nibWithCellClass: SearchRecommendHotCell.self)
         tableView.rowHeight = 170
-        //tableView.headRefreshControl = nil
+        
+        
+        //tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
         
     }
     
@@ -38,10 +38,8 @@ class SearchRecommendHotViewController: TableViewController  {
         
         guard let viewModel = viewModel as? SearchRecommendHotViewModel else { return }
         
-        
-        let refresh = Observable.just(()).merge(with: headerRefreshTrigger)
-        let input = SearchRecommendHotViewModel.Input(headerRefresh: refresh,
-                                                      footerRefresh: footerRefreshTrigger.mapToVoid(),
+        let input = SearchRecommendHotViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+                                                      footerRefresh: footerRefreshTrigger.asObservable(),
                                                       filter: filterView.collectionView.rx.modelSelected(SearchRecommendHotFilterCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
 

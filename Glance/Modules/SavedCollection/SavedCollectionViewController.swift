@@ -38,7 +38,6 @@ class SavedCollectionViewController: CollectionViewController  {
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: SavedCollectionCell.self)
         
         navigationBar.rightBarButtonItem = edit
@@ -60,8 +59,8 @@ class SavedCollectionViewController: CollectionViewController  {
         
         guard let viewModel = viewModel as? SavedCollectionViewModel else { return }
                 
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
-        let input = SavedCollectionViewModel.Input(headerRefresh: refresh,
+        
+        let input = SavedCollectionViewModel.Input(headerRefresh: headerRefreshTrigger.mapToVoid(),
                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
                                             selection: collectionView.rx.modelSelected(SavedCollectionCellViewModel.self).asObservable(),
                                             edit: edit.rx.tap.map { self.edit.isSelected } ,

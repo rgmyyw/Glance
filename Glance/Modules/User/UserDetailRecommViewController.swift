@@ -23,6 +23,7 @@ class UserDetailRecommViewController: CollectionViewController  {
         super.makeUI()
         
         navigationBar.isHidden = true
+        viewDidLoadBeginRefresh = false
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
@@ -31,7 +32,6 @@ class UserDetailRecommViewController: CollectionViewController  {
         layout.minimumLineSpacing = 20
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
 
     }

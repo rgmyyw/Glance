@@ -39,7 +39,7 @@ class StyleBoardSearchViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
                 
-        // 返回按钮
+        refreshComponent.accept(.footer)
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationTitle = "Add Products"
         navigationBar.rightBarButtonItem = addButton
@@ -50,12 +50,9 @@ class StyleBoardSearchViewController: CollectionViewController  {
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         layout.minimumLineSpacing = 20
         
-        collectionView.headRefreshControl = nil
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: StyleBoardSearchCell.self)
         
     }
@@ -174,7 +171,7 @@ extension StyleBoardSearchViewController : ZLCollectionViewBaseFlowLayoutDelegat
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

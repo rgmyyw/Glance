@@ -76,6 +76,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -110,6 +111,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
 

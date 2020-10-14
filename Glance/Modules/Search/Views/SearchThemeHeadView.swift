@@ -34,7 +34,6 @@ class SearchThemeHeadView: View {
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = .zero
         collectionView.register(nibWithCellClass: SearchThemeLabelCell.self)
         items.asDriver().drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in

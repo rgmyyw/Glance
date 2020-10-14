@@ -18,7 +18,6 @@ class InsightsChildViewController: TableViewController {
         super.makeUI()
         
         navigationBar.isHidden = true
-        tableView.headRefreshControl = nil
         tableView.register(nibWithCellClass: InsightsCell.self)
         tableView.rowHeight = 95
     }
@@ -28,17 +27,14 @@ class InsightsChildViewController: TableViewController {
         
         guard let viewModel = viewModel as? InsightsChildViewModel else { return }
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger)
-        let input = InsightsChildViewModel.Input(headerRefresh: refresh,
-                                        footerRefresh: footerRefreshTrigger.mapToVoid(),
+        
+        let input = InsightsChildViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+                                        footerRefresh: footerRefreshTrigger.asObservable(),
                                         selection: tableView.rx.modelSelected(InsightsCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(tableView.rx.items(cellIdentifier: InsightsCell.reuseIdentifier, cellType: InsightsCell.self)) { tableView, item, cell in
             cell.bind(to: item)
         }.disposed(by: rx.disposeBag)
-
-        
-        
 
     }
 

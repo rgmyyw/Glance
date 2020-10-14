@@ -68,7 +68,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                 self.page = 1
                 return self.provider.savedCollection(pageNum: self.page)
                     .trackError(self.error)
-                    .trackActivity(self.loading)
+                    .trackActivity(self.headerLoading)
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 guard let self = self else { return }
@@ -79,6 +79,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 
@@ -109,11 +110,13 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
             case .error(let error):
+                
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
 

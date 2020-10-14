@@ -11,7 +11,15 @@ import RxSwift
 import RxCocoa
 import KafkaRefresh
 import Toast_Swift
+import MJRefresh
 
+
+enum RefreshComponent {
+    case `default`
+    case header
+    case footer
+    case none
+}
 
 class TableViewController: ViewController, UIScrollViewDelegate {
     
@@ -22,6 +30,10 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     let isFooterLoading = BehaviorRelay(value: false)
     
     let noMoreData = PublishSubject<Void>()
+    let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
+    
+    var viewDidLoadBeginRefresh : Bool = true
+    
     
     private let style : UITableView.Style
     
@@ -29,14 +41,14 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         let view = TableView(frame: .zero, style: style)
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
-        view.estimatedRowHeight = UITableView.automaticDimension
-        //        view.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
+      
         return view
     }()
     
     init(viewModel: ViewModel?, navigator: Navigator, tableView style : UITableView.Style = .plain) {
         self.style = style
+        
         super.init(viewModel: viewModel, navigator: navigator)
     }
     
@@ -55,6 +67,10 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+    }
     
     override func makeUI() {
         super.makeUI()
@@ -62,28 +78,37 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         stackView.spacing = 0
         stackView.insertArrangedSubview(tableView, at: 0)
         
-        tableView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
-            self?.tableView.footRefreshControl.resumeRefreshAvailable()
-            self?.headerRefreshTrigger.onNext(())
-        })
-        
-        tableView.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
-            self?.footerRefreshTrigger.onNext(())
-        })
-        
-        
-        tableView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
-        tableView.footRefreshControl.autoRefreshOnFoot = true
-        
-        
         noMoreData.subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] () in
-                guard let footRefreshControl = self?.tableView.footRefreshControl  else { return }
-                footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "- No more update -")
+                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
             }).disposed(by: rx.disposeBag)
         
+        refreshComponent.subscribe(onNext: { [weak self] (component) in
+            switch component {
+            case .default:
+                self?.setupHeaderRefresh()
+                self?.setupFooterRefresh()
+                //self?.tableView.mj_footer?.isHidden = true
+            case .header:
+                self?.setupHeaderRefresh()
+                self?.tableView.mj_footer = nil
+            case .footer:
+                self?.setupFooterRefresh()
+                self?.tableView.mj_header = nil
+            case .none:
+                self?.tableView.mj_header = nil
+                self?.tableView.mj_footer = nil
+            }
+            
+        }).disposed(by: rx.disposeBag)
         
-        
+        Observable.zip(rx.viewDidAppear,Observable.just(()))
+            .mapToVoid().delay(RxTimeInterval.microseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self]() in
+                if self?.viewDidLoadBeginRefresh == true {
+                    self?.tableView.mj_header?.beginRefreshing()
+                }
+        }).disposed(by: rx.disposeBag)
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
                                                emptyDataViewDataSource.enable.mapToVoid(),
@@ -96,10 +121,30 @@ class TableViewController: ViewController, UIScrollViewDelegate {
             self?.tableView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
         
-        
+
+
     }
     
+    func setupHeaderRefresh() {
+        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            if let footer = self?.tableView.mj_footer as? MJRefreshAutoNormalFooter {
+                footer.stateLabel?.isHidden = true
+                footer.resetNoMoreData()
+                footer.isHidden = false
+            }
+            self?.headerRefreshTrigger.onNext(())
+        })
+    }
+    func setupFooterRefresh() {
+        tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
+            self?.footerRefreshTrigger.onNext(())
+            (self?.tableView.mj_footer as? MJRefreshAutoNormalFooter)?.stateLabel?.isHidden = false
+        })
+    }
+
+    
     override func viewDidLayoutSubviews() {
+        tableView.contentInset = .zero
         tableView.setNeedsLayout()
         tableView.layoutIfNeeded()
         emptyDataView.snp.makeConstraints { (make) in
@@ -114,16 +159,22 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     
     override func bindViewModel() {
         super.bindViewModel()
-
+        
         viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-                
-        if tableView.headRefreshControl != nil {
-            isHeaderLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: tableView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        viewModel?.endLoading.subscribe(onNext: { [weak self]() in
+            self?.tableView.mj_header?.endRefreshing()
+            self?.tableView.mj_footer?.endRefreshing()
+            self?.isLoading.accept(false)
+        }).disposed(by: rx.disposeBag)
+
+        
+        if let header = tableView.mj_header {
+            isHeaderLoading.bind(to: header.rx.isAnimating).disposed(by: rx.disposeBag)
         }
-        if tableView.footRefreshControl != nil {
-            isFooterLoading.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance).bind(to: tableView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        if let footer = tableView.mj_footer  {
+            isFooterLoading.bind(to: footer.rx.isAnimating).disposed(by: rx.disposeBag)
         }
 
     }

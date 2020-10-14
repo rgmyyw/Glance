@@ -28,7 +28,6 @@ class SearchRecommendHotFilterView: View {
         layout.minimumLineSpacing = 15
         layout.minimumInteritemSpacing = 15
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         collectionView.register(nibWithCellClass: SearchRecommendHotFilterCell.self)
         items.asDriver().drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -67,7 +66,7 @@ extension SearchRecommendHotFilterView : ZLCollectionViewBaseFlowLayoutDelegate 
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return .zero
+        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {

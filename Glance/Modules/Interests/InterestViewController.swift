@@ -21,20 +21,18 @@ class InterestViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
         
-        //        navigationBar.isHidden = true
         navigationBar.addSubview(customNavigationBar)
+        refreshComponent.accept(.none)
         
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         layout.minimumLineSpacing = 20
         
-        collectionView.headRefreshControl = nil
-        collectionView.footRefreshControl = nil
+        
+        collectionView.mj_header = nil
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
         collectionView.register(nibWithCellClass: InterestCell.self)
         collectionView.register(nib: InterestReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: InterestReusableView.self)
         

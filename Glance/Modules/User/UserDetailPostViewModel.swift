@@ -64,6 +64,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 
@@ -94,11 +95,14 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
             case .error(let error):
+                    
+                    
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
             default:

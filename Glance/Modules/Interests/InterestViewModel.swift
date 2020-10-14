@@ -49,7 +49,9 @@ class InterestViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let items):
                     self.element.accept(items)
-                case .error(let error):
+                                case .error(let error):
+                    self.endLoading.onNext(())
+                    
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:

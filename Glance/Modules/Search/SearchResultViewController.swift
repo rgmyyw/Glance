@@ -53,6 +53,7 @@ class SearchResultViewController: ViewController {
         super.makeUI()
         customNavigationBar.backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
         navigationBar.addSubview(customNavigationBar)
+        
     }
     override func bindViewModel() {
         super.bindViewModel()

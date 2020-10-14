@@ -23,14 +23,14 @@ class SearchResultContentViewController: CollectionViewController {
         super.makeUI()
         
         navigationBar.isHidden = true
+        viewDidLoadBeginRefresh = false
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
+
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
         collectionView.register(nibWithCellClass: UserHorizontalCell.self)
         
@@ -46,8 +46,7 @@ class SearchResultContentViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? SearchResultContentViewModel else { return }
         
-        let refresh = headerRefreshTrigger.asObservable()
-        let input = SearchResultContentViewModel.Input(headerRefresh: refresh,
+        let input = SearchResultContentViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
@@ -161,7 +160,7 @@ extension SearchResultContentViewController : ZLCollectionViewBaseFlowLayoutDele
         if dataSouce.sectionModels.isEmpty { return .zero }
         switch dataSouce.sectionModels[section] {
         case .single:
-            return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+            return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         case .users:
             return .zero
         }

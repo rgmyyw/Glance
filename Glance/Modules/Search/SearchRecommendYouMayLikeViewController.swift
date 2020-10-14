@@ -24,15 +24,12 @@ class SearchRecommendYouMayLikeViewController: CollectionViewController {
         super.makeUI()
         
         self.navigationBar.isHidden = true
-        
+
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
     }
     
@@ -42,9 +39,8 @@ class SearchRecommendYouMayLikeViewController: CollectionViewController {
         
         guard let viewModel = viewModel as? SearchRecommendYouMayLikeViewModel else { return }
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
-        let input = SearchRecommendYouMayLikeViewModel.Input(headerRefresh: refresh,
-                                                             footerRefresh: footerRefreshTrigger.mapToVoid(),
+        let input = SearchRecommendYouMayLikeViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+                                                             footerRefresh: footerRefreshTrigger.asObservable(),
                                                              selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
@@ -137,7 +133,7 @@ extension SearchRecommendYouMayLikeViewController : ZLCollectionViewBaseFlowLayo
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch dataSouce.sectionModels[section] {
         case .single:
-            return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+            return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         }
         
     }

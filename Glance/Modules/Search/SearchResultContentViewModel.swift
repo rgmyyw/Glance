@@ -70,6 +70,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -106,6 +107,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     case .noMore:
                         self.noMoreData.onNext(())
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
 

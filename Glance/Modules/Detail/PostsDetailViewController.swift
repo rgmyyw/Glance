@@ -42,6 +42,7 @@ class PostsDetailViewController: CollectionViewController {
         
         navigationBar.addSubview(customNavigationBar)
         stackView.addArrangedSubview(bottomBar)
+        refreshComponent.accept(.footer)
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.delegate = self
@@ -49,9 +50,9 @@ class PostsDetailViewController: CollectionViewController {
         layout.minimumInteritemSpacing = 15
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
 
-        collectionView.headRefreshControl = nil
+        
+        
 
         collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: PostsDetailCell.reuseIdentifier)
         collectionView.register(nib: PostsDetailBannerReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailBannerReusableView.self)
@@ -270,8 +271,6 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
     }
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-
         switch dataSouce.sectionModels[section] {
         case .similar,.tagged:
             return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)

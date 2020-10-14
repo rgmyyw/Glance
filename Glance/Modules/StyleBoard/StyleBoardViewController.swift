@@ -98,10 +98,11 @@ class StyleBoardViewController: ViewController {
         layout.scrollDirection = .horizontal
         layout.sectionInset = .zero
         layout.itemSize = CGSize(width: collectionView.height, height: collectionView.height)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
         
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationBar.rightBarButtonItem = nextButton

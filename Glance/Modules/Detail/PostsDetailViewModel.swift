@@ -167,14 +167,16 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 .trackActivity(self.loading)
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
             switch event {
             case .next(var item):
-                item.type = self?.item.value.type
+                item.type = self.item.value.type
                 element.accept(item)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
 
@@ -183,14 +185,10 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-            guard let self = self,
-                self.similar.value?.list.isNotEmpty ?? false else {
-                return Observable.just(.error(ExceptionError.empty))
-            }
-            guard (self.similar.value?.hasNext ?? false) else {
-                return Observable.just(.error(ExceptionError.noMore))
+        input.footerRefresh
+            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let id = self.item.value.id
@@ -209,12 +207,17 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 var newResult = result
                 newResult.list = (self.similar.value?.list ?? []) + result.list
                 self.similar.accept(newResult)
+                if !result.hasNext {
+                    self.noMoreData.onNext(())
+                }
+                
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }                
             default:

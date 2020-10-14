@@ -31,12 +31,7 @@ class ShoppingCartViewController: TableViewController  {
         super.bindViewModel()
         guard let viewModel = viewModel as? ShoppingCartViewModel else { return }
             
-       
-        
-            
-        
-        let refresh = Observable.just(()).merge(with: headerRefreshTrigger.asObservable())
-        let input = ShoppingCartViewModel.Input(headerRefresh: refresh,
+        let input = ShoppingCartViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                                 footerRefresh: footerRefreshTrigger.asObservable(),
                                                 selection: tableView.rx.modelSelected(ShoppingCartCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)

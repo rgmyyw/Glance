@@ -23,6 +23,7 @@ class UserDetailPostViewController: CollectionViewController  {
         super.makeUI()
         
         navigationBar.isHidden = true
+        viewDidLoadBeginRefresh = false
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
@@ -30,10 +31,8 @@ class UserDetailPostViewController: CollectionViewController  {
         layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
 
-        
     }
     
     

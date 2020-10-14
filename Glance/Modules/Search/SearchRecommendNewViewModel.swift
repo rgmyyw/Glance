@@ -62,6 +62,7 @@ class SearchRecommendNewViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:
@@ -74,7 +75,7 @@ class SearchRecommendNewViewModel: ViewModel, ViewModelType {
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
                 guard let self = self,
                     self.element.value?.list.isNotEmpty ?? false else {
-                    return Observable.just(.error(ExceptionError.empty))
+                        return Observable.just(.error(ExceptionError.empty))
                 }
                 guard (self.element.value?.hasNext ?? false) else {
                     return Observable.just(.error(ExceptionError.noMore))
@@ -97,6 +98,7 @@ class SearchRecommendNewViewModel: ViewModel, ViewModelType {
                     case .noMore:
                         self.noMoreData.onNext(())
                     default:
+                        self.endLoading.onNext(())
                         logError(error.debugDescription)
                     }
                 default:

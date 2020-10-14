@@ -37,6 +37,8 @@ class PostProductViewController: CollectionViewController {
         super.makeUI()
         
         
+        refreshComponent.accept(.none)
+        
         let layout = ZLCollectionViewVerticalLayout()
         layout.delegate = self
         layout.minimumLineSpacing = 0
@@ -45,13 +47,7 @@ class PostProductViewController: CollectionViewController {
         let spec = View(height: 35)
         stackView.insertArrangedSubview(spec, at: 0)
         
-        
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-
-        collectionView.headRefreshControl = nil
-        collectionView.footRefreshControl = nil
-        
         collectionView.register(PostProductTagCell.nib, forCellWithReuseIdentifier: PostProductTagCell.reuseIdentifier)
         collectionView.register(PostProductCell.nib, forCellWithReuseIdentifier: PostProductCell.reuseIdentifier)
 

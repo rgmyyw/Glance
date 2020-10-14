@@ -19,21 +19,18 @@ class AddProductViewController: CollectionViewController {
     override func makeUI() {
         super.makeUI()
         
+        refreshComponent.accept(.none)
+        emptyDataViewDataSource.enable.accept(false)
+        navigationTitle = "Add Product"
+        
+        
         
         let layout = ZLCollectionViewVerticalLayout()
         layout.delegate = self
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
-        
+
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: inset, right: 0)
-        
-        collectionView.headRefreshControl = nil
-        collectionView.footRefreshControl = nil
-        
-        
-        navigationTitle = "Add Product"
-        
         collectionView.register(AddProductTagCell.nib, forCellWithReuseIdentifier: AddProductTagCell.reuseIdentifier)
         collectionView.register(AddProductImageCell.nib, forCellWithReuseIdentifier: AddProductImageCell.reuseIdentifier)
         
@@ -46,7 +43,6 @@ class AddProductViewController: CollectionViewController {
         collectionView.register(nib: AddProductButtonReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductButtonReusableView.self)
         collectionView.register(nib: AddProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: AddProductTitleReusableView.self)
         
-        emptyDataViewDataSource.enable.accept(false)
         
     }
     

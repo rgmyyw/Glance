@@ -28,12 +28,8 @@ class HomeController: CollectionViewController {
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
-        layout.sectionInset = UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
-        
+
         collectionView.collectionViewLayout = layout
-        collectionView.contentInset = UIEdgeInsets(top: inset, left: 0, bottom: inset, right: 0)
-        //collectionView.register(nibWithCellClass: HomeCell.self)
-            
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
 
         
@@ -45,7 +41,7 @@ class HomeController: CollectionViewController {
         
         guard let viewModel = viewModel as? HomeViewModel else { return }
         
-        let refresh = Observable<Void>.merge(Observable.just(()), headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
+        let refresh = Observable<Void>.merge( headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
         let input = HomeViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable(), search: customNavigationBar.searchView.rx.tap())

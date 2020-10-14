@@ -26,13 +26,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="284" height="70"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="@dayton" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="blp-Jd-vwp">
-                                <rect key="frame" x="75" y="54" width="40" height="12"/>
+                                <rect key="frame" x="75" y="39" width="40" height="12"/>
                                 <fontDescription key="fontDescription" name="Roboto-Regular" family="Roboto" pointSize="10"/>
                                 <color key="textColor" red="0.64313725489999995" green="0.69803921570000005" blue="0.68235294120000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="l39-di-Ggl">
-                                <rect key="frame" x="20" y="30" width="40" height="40"/>
+                                <rect key="frame" x="20" y="15" width="40" height="40"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="DZ4-sU-FQx"/>
                                     <constraint firstAttribute="width" constant="40" id="eia-OR-4ZA"/>
@@ -44,13 +44,13 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alex Walker" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YXQ-Nj-bKE">
-                                <rect key="frame" x="75" y="30" width="74.5" height="16.5"/>
+                                <rect key="frame" x="75" y="15" width="74.5" height="16.5"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="56o-C6-JYh">
-                                <rect key="frame" x="204" y="38" width="60" height="24"/>
+                                <rect key="frame" x="204" y="23" width="60" height="24"/>
                                 <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="60" id="Qqa-pW-wLY"/>
@@ -75,7 +75,7 @@
                             <constraint firstItem="blp-Jd-vwp" firstAttribute="bottom" secondItem="l39-di-Ggl" secondAttribute="bottom" constant="-4" id="SLP-gc-b3n"/>
                             <constraint firstItem="56o-C6-JYh" firstAttribute="centerY" secondItem="l39-di-Ggl" secondAttribute="centerY" id="SeF-Jh-zzV"/>
                             <constraint firstItem="l39-di-Ggl" firstAttribute="leading" secondItem="aqg-9s-1dI" secondAttribute="leading" constant="20" id="hFD-4h-5Q9"/>
-                            <constraint firstItem="l39-di-Ggl" firstAttribute="top" secondItem="aqg-9s-1dI" secondAttribute="top" constant="30" id="ixi-oY-pJc"/>
+                            <constraint firstItem="l39-di-Ggl" firstAttribute="top" secondItem="aqg-9s-1dI" secondAttribute="top" constant="15" id="ixi-oY-pJc"/>
                             <constraint firstItem="blp-Jd-vwp" firstAttribute="leading" secondItem="YXQ-Nj-bKE" secondAttribute="leading" id="nXv-Bz-dlf"/>
                         </constraints>
                     </view>

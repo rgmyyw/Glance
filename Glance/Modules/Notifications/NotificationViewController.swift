@@ -27,17 +27,13 @@ class NotificationViewController: TableViewController {
         emptyDataViewDataSource.image.accept(R.image.icon_empty_notifications())
         emptyDataViewDataSource.title.accept("No Notifications")
         emptyDataViewDataSource.subTitle.accept("You can have a look around first")
-
-        
-        
         
     }
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? NotificationViewModel else { return }
         
-        let refresh = Observable.just(()).merge(with: headerRefreshTrigger.asObservable())
-        let input = NotificationViewModel.Input(headerRefresh: refresh,
+        let input = NotificationViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                                 footerRefresh: footerRefreshTrigger.asObservable(),
                                                 selection: tableView.rx.modelSelected(NotificationCellViewModel.self).asObservable())
         let output = viewModel.transform(input: input)

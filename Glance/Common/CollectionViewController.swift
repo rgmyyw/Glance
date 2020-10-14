@@ -9,7 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import KafkaRefresh
+import MJRefresh
 
 class CollectionViewController: ViewController, UIScrollViewDelegate {
     
@@ -20,19 +20,24 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     let isFooterLoading = BehaviorRelay(value: false)
     
     let noMoreData = PublishSubject<Void>()
+    let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
     
+
+    var viewDidLoadBeginRefresh : Bool = true
     
     lazy var collectionView: CollectionView = {
         let view = CollectionView()
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
         view.alwaysBounceVertical = true
+        view.contentInset = .zero
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
         return view
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -52,28 +57,45 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         
         stackView.spacing = 0        
         stackView.insertArrangedSubview(collectionView, at: 0)
-        
-        collectionView.bindGlobalStyle(forHeadRefreshHandler: { [weak self] in
-            UIView.animate(withDuration: 0.25, animations: {
-                self?.collectionView.footRefreshControl.resumeRefreshAvailable()
-            }) { (_) in
-                self?.headerRefreshTrigger.onNext(())
+                
+        refreshComponent.subscribe(onNext: { [weak self] (component) in
+            switch component {
+            case .default:
+                self?.setupHeaderRefresh()
+                self?.setupFooterRefresh()
+                //self?.collectionView.mj_footer?.isHidden = true
+            case .header:
+                self?.setupHeaderRefresh()
+                self?.collectionView.mj_footer = nil
+            case .footer:
+                self?.setupFooterRefresh()
+                self?.collectionView.mj_header = nil
+            case .none:
+                self?.collectionView.mj_header = nil
+                self?.collectionView.mj_footer = nil
             }
-        })
-        
-        collectionView.bindGlobalStyle(forFootRefreshHandler: { [weak self] in
-            self?.footerRefreshTrigger.onNext(())
-        })
-        
-        collectionView.footRefreshControl.setAlertBackgroundColor(view.backgroundColor)
-        collectionView.footRefreshControl.autoRefreshOnFoot = true
-    
-        
+            
+        }).disposed(by: rx.disposeBag)
+
+        Observable.zip(rx.viewDidAppear,Observable.just(()))
+            .mapToVoid().delay(RxTimeInterval.microseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self]() in
+                if self?.viewDidLoadBeginRefresh == true {
+                    UIView.performWithoutAnimation {
+                        self?.collectionView.mj_header?.beginRefreshing()
+                    }
+                }
+        }).disposed(by: rx.disposeBag)
+
         noMoreData.subscribeOn(MainScheduler.instance)
             .subscribe(onNext: {[weak self] () in
-                guard let footRefreshControl = self?.collectionView.footRefreshControl  else { return }
-                footRefreshControl.endRefreshingAndNoLongerRefreshing(withAlertText: "- No more update -")
+                self?.collectionView.mj_footer?.endRefreshingWithNoMoreData()
             }).disposed(by: rx.disposeBag)
+        
+        
+        
+        
+
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
                                                emptyDataViewDataSource.title.filterNil().mapToVoid(),
@@ -86,10 +108,27 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
             self?.collectionView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
         
-
-        
         
     }
+    
+    
+    func setupHeaderRefresh() {
+        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+            if let footer = self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter {
+                footer.stateLabel?.isHidden = true
+                footer.resetNoMoreData()
+                footer.isHidden = false
+            }
+            self?.headerRefreshTrigger.onNext(())
+        })
+    }
+    func setupFooterRefresh() {
+        collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
+            self?.footerRefreshTrigger.onNext(())
+            (self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter)?.stateLabel?.isHidden = false
+        })
+    }
+
     
     override func viewDidLayoutSubviews() {
         collectionView.setNeedsLayout()
@@ -110,12 +149,17 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
+        viewModel?.endLoading.subscribe(onNext: { [weak self]() in
+            self?.collectionView.mj_header?.endRefreshing()
+            self?.collectionView.mj_footer?.endRefreshing()
+            self?.isLoading.accept(false)
+        }).disposed(by: rx.disposeBag)
         
-        if collectionView.headRefreshControl != nil {
-            isHeaderLoading.bind(to: collectionView.headRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        if let header = collectionView.mj_header {
+            isHeaderLoading.bind(to: header.rx.isAnimating).disposed(by: rx.disposeBag)
         }
-        if collectionView.footRefreshControl != nil {
-            isFooterLoading.bind(to: collectionView.footRefreshControl.rx.isAnimating).disposed(by: rx.disposeBag)
+        if let footer = collectionView.mj_footer  {
+            isFooterLoading.bind(to: footer.rx.isAnimating).disposed(by: rx.disposeBag)
         }
     }
     

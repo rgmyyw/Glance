@@ -37,6 +37,7 @@ class ViewModel: NSObject  {
     let message = PublishSubject<Message>()
     
     let endEditing = PublishSubject<Void>()
+    let endLoading = PublishSubject<Void>()
     
     
     init(provider: API) {

@@ -15,7 +15,6 @@ import RxDataSources
 class VisualSearchResultViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<VisualSearchResultSectionItem>
         let search : Observable<Void>
@@ -155,9 +154,11 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 self.element.accept(element)
                 
             case .error(let error):
+                
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
                 
@@ -196,12 +197,13 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 var element = self.element.value
                 element?.boxProducts[index].productList.append(contentsOf: item.boxProducts[0].productList)
                 self.element.accept(element)
-            case .error(let error):
+            case .error(let error):                
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 case .noMore:
                     self.noMoreData.onNext(())
                 default:
+                    self.endLoading.onNext(())
                     logError(error.debugDescription)
                 }
                 
