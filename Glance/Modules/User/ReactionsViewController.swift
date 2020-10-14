@@ -29,6 +29,7 @@ class ReactionsViewController: TableViewController {
         stackView.insertArrangedSubview(headView, at: 0)
         navigationTitle = "Reactions"
         headView.clipsToBounds = false
+        refreshComponent.accept(.footer)
         
         lineView.layer.shadowOffset = CGSize(width: 0, height: 1)
         lineView.layer.shadowColor = UIColor(hex: 0x828282)!.withAlphaComponent(0.2).cgColor

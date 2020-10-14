@@ -67,9 +67,9 @@ class SelectStoreViewModel: ViewModel, ViewModelType {
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
-                        self.endLoading.onNext(())
+                        self.refreshState.onNext(.end)
                         logError(error.debugDescription)
-                    }                    
+                    }
                 default:
                     break
                 }

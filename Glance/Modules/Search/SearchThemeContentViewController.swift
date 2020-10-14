@@ -41,9 +41,7 @@ class SearchThemeContentViewController: CollectionViewController {
         super.bindViewModel()
         
         guard let viewModel = viewModel as? SearchThemeContentViewModel else { return }
-        
-        let refresh = headerRefreshTrigger.asObservable()
-        let input = SearchThemeContentViewModel.Input(headerRefresh: refresh,
+        let input = SearchThemeContentViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
                                         selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable())
         let output = viewModel.transform(input: input)

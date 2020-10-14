@@ -43,17 +43,19 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SearchResultContentViewSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
-        let detail = input.selection.filter { _ in self.type.value != .user }.map { $0.viewModel.item }
+        let detail = input.selection.filter { $0.viewModel.item.type != .user }.map { $0.viewModel.item }
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
         let follow = PublishSubject<DefaultColltionCellViewModel>()
-        input.selection.filter { _ in self.type.value == .user }
+        input.selection.filter { $0.viewModel.item.type == .user }
             .map { $0.viewModel.item.user }.bind(to: userDetail).disposed(by: rx.disposeBag)
         
-        textInput.filterNil().merge(with: input.headerRefresh.map { self.textInput.value ?? ""}).filterEmpty()
-            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
+        textInput.filterNil().mapToVoid().map { RefreshState.begin }
+            .bind(to: refreshState).disposed(by: rx.disposeBag)
+        
+        input.headerRefresh
             .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
-                guard let self = self else {
+                guard let self = self , let text = self.textInput.value else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
@@ -66,11 +68,12 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
+                    self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
-                        self.endLoading.onNext(())
+                        self.refreshState.onNext(.end)
                         logError(error.debugDescription)
                     }
                 default:
@@ -81,13 +84,8 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
-                guard let self = self,
-                    self.element.value?.list.isNotEmpty ?? false ,
-                    let text = self.textInput.value else {
-                    return Observable.just(.error(ExceptionError.empty))
-                }
-                guard (self.element.value?.hasNext ?? false) else {
-                    return Observable.just(.error(ExceptionError.noMore))
+                guard let self = self ,let text = self.textInput.value else {
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page += 1
                 return self.provider.globalSearch(type: self.type.value, keywords: text, page: self.page)
@@ -101,13 +99,13 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     var temp = item
                     temp.list = (self.element.value?.list ?? []) + item.list
                     self.element.accept(temp)
+                    self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
                     switch error  {
-                    case .noMore:
-                        self.noMoreData.onNext(())
                     default:
-                        self.endLoading.onNext(())
+                        self.page -= 1
+                        self.refreshState.onNext(.end)
                         logError(error.debugDescription)
                     }
 

@@ -23,8 +23,7 @@ class SearchResultContentViewController: CollectionViewController {
         super.makeUI()
         
         navigationBar.isHidden = true
-        viewDidLoadBeginRefresh = false
-        
+
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self

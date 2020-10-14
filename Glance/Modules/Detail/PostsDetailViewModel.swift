@@ -176,7 +176,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 default:
-                    self.endLoading.onNext(())
+                    self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
 
@@ -207,19 +207,15 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 var newResult = result
                 newResult.list = (self.similar.value?.list ?? []) + result.list
                 self.similar.accept(newResult)
-                if !result.hasNext {
-                    self.noMoreData.onNext(())
-                }
-                
+                self.refreshState.onNext(result.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
-                case .noMore:
-                    self.noMoreData.onNext(())
                 default:
-                    self.endLoading.onNext(())
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
                     logError(error.debugDescription)
-                }                
+                }
             default:
                 break
             }

@@ -11,7 +11,7 @@ import Moya
 import RxSwift
 import Alamofire
 import Toast_Swift
-import ObjectMapper
+import Moya_ObjectMapper
 
 
 class OnlineProvider<Target> where Target: Moya.TargetType {
@@ -40,8 +40,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                     .do(onNext: { (response) in
                         do {
                             let object = try response.mapObject(MappableItem<Void>.self)
-                            if object.code == 200 {
-                            } else {
+                            if object.code != 200 {
                                 throw MoyaError.jsonMapping(response)
                             }
                         }

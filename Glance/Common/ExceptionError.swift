@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Moya
 
 enum ExceptionError: Error , CustomDebugStringConvertible,CustomStringConvertible {
     
@@ -15,8 +16,8 @@ enum ExceptionError: Error , CustomDebugStringConvertible,CustomStringConvertibl
     case argumentOutOfRange
     case timeout
     case empty
-    case jsonMap
-    case noMore
+    case jsonMapping(response : Response)
+//    case noMore
     
     var asError: Error? {
         return self as Error
@@ -41,12 +42,12 @@ extension ExceptionError {
             return "timeout."
         case .empty:
             return "no result"
-        case .jsonMap:
-            return "JSON parsing fails"
+        case .jsonMapping:
+            return "JSON Mapping error"
         case .general(let text):
             return "Error: \(text)"
-        case .noMore:
-            return "no more update!"
+//        case .noMore:
+//            return "no more update!"
         }
 
     }

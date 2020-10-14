@@ -84,13 +84,14 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
+                    self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
                     switch error  {
                     default:
-                        self.endLoading.onNext(())
+                        self.refreshState.onNext(.end)
                         logError(error.debugDescription)
-                    }                    
+                    }
                 default:
                     break
                 }
@@ -99,12 +100,8 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<PageMapable<SearchTheme>>> in
-            guard let self = self,
-                self.element.value?.list.isNotEmpty ?? false else {
-                return Observable.just(.error(ExceptionError.empty))
-            }
-            guard (self.element.value?.hasNext ?? false) else {
-                return Observable.just(.error(ExceptionError.noMore))
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let classifyId = themeClassifySelection.value?.item.classifyId ?? 0
@@ -119,15 +116,16 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
+                self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
-                case .noMore:
-                    self.noMoreData.onNext(())
                 default:
-                    self.endLoading.onNext(())
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
+
             default:
                 break
             }

@@ -147,21 +147,21 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             case .next(let (exists , _, element, result)):
                 guard !exists  else {
                     self.element.accept(element)
+                    self.refreshState.onNext(element.boxProducts[0].refreshState)
                     return
                 }
                 var element = element
                 element.boxProducts.append(result.boxProducts[0])
                 self.element.accept(element)
-                
+                self.refreshState.onNext(result.boxProducts[0].refreshState)
             case .error(let error):
-                
                 guard let error = error.asExceptionError else { return }
                 switch error  {
                 default:
-                    self.endLoading.onNext(())
+                    self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
-                
+
             default:
                 break
             }
@@ -171,14 +171,13 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<(Int, VisualSearchPageMapable)>> in
             guard let self = self else {
-                return Observable.just(.error(ExceptionError.empty))
+                return Observable.just(.error(ExceptionError.unknown))
             }
             
-            guard let index = self.element.value?.boxes.firstIndex(where: { $0 == self.currentBox.value }) ,
-                let element =  self.element.value?.boxProducts[index] ,element.hasNext  else {
-                    return Observable.just(.error(ExceptionError.noMore))
+            guard let index = self.element.value?.boxes.firstIndex(where: { $0 == self.currentBox.value }) else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
-            
+
             self.page += 1
             var param = [String : Any]()
             param["page"] = self.page
@@ -197,16 +196,15 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 var element = self.element.value
                 element?.boxProducts[index].productList.append(contentsOf: item.boxProducts[0].productList)
                 self.element.accept(element)
-            case .error(let error):                
+                self.refreshState.onNext(item.boxProducts[0].refreshState)
+            case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
-                case .noMore:
-                    self.noMoreData.onNext(())
                 default:
-                    self.endLoading.onNext(())
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
-                
             default:
                 break
             }

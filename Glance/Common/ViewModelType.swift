@@ -19,6 +19,16 @@ protocol ViewModelType {
 }
 
 
+enum RefreshState {
+    case enable
+    case disable
+    case noMoreData
+    case end
+    case begin 
+}
+
+
+
 class ViewModel: NSObject  {
 
     let provider: API
@@ -37,7 +47,7 @@ class ViewModel: NSObject  {
     let message = PublishSubject<Message>()
     
     let endEditing = PublishSubject<Void>()
-    let endLoading = PublishSubject<Void>()
+    let refreshState = PublishSubject<RefreshState>()
     
     
     init(provider: API) {

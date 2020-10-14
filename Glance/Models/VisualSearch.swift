@@ -54,7 +54,23 @@ struct BoxProducts: Mappable {
     var selected : Home?
     var system : Bool = false
     
-
+    var refreshState : RefreshState {
+        if pageNum == 1 {
+            if productList.isEmpty {
+                return .disable
+            } else if hasNext {
+                return .enable
+            } else {
+                return .noMoreData
+            }
+        } else {
+            if hasNext {
+                return .enable
+            } else {
+                return .noMoreData
+            }
+        }
+    }
     
     init?(map: Map) {}
 

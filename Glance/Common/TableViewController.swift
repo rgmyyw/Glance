@@ -88,14 +88,15 @@ class TableViewController: ViewController, UIScrollViewDelegate {
             case .default:
                 self?.setupHeaderRefresh()
                 self?.setupFooterRefresh()
-                //self?.tableView.mj_footer?.isHidden = true
             case .header:
                 self?.setupHeaderRefresh()
                 self?.tableView.mj_footer = nil
             case .footer:
+                self?.viewDidLoadBeginRefresh = false
                 self?.setupFooterRefresh()
                 self?.tableView.mj_header = nil
             case .none:
+                self?.viewDidLoadBeginRefresh = false
                 self?.tableView.mj_header = nil
                 self?.tableView.mj_footer = nil
             }
@@ -128,9 +129,8 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     func setupHeaderRefresh() {
         tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.tableView.mj_footer as? MJRefreshAutoNormalFooter {
-                footer.stateLabel?.isHidden = true
+                footer.isHidden = true
                 footer.resetNoMoreData()
-                footer.isHidden = false
             }
             self?.headerRefreshTrigger.onNext(())
         })
@@ -138,8 +138,8 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     func setupFooterRefresh() {
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
             self?.footerRefreshTrigger.onNext(())
-            (self?.tableView.mj_footer as? MJRefreshAutoNormalFooter)?.stateLabel?.isHidden = false
         })
+        tableView.mj_footer?.isHidden = true
     }
 
     
@@ -163,10 +163,26 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel?.endLoading.subscribe(onNext: { [weak self]() in
-            self?.tableView.mj_header?.endRefreshing()
-            self?.tableView.mj_footer?.endRefreshing()
-            self?.isLoading.accept(false)
+        viewModel?.refreshState
+            .subscribe(onNext: { [weak self](state) in
+            switch state {
+            case .enable:
+                self?.tableView.mj_footer?.isHidden = false
+            case .disable:
+                self?.tableView.mj_footer?.isHidden = true
+            case .end:
+                self?.tableView.mj_header?.endRefreshing()
+                self?.tableView.mj_footer?.endRefreshing()
+            case .noMoreData:
+                self?.tableView.mj_footer?.isHidden = false
+                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
+            case .begin:
+                if self?.tableView.mj_header?.isRefreshing == true {
+                    self?.tableView.mj_header?.endRefreshing()
+                }
+                self?.tableView.mj_header?.beginRefreshing()
+
+            }
         }).disposed(by: rx.disposeBag)
 
         

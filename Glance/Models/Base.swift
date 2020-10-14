@@ -37,6 +37,23 @@ struct PageMapable<Item : Mappable> : Mappable {
     var hasNext: Bool = true
     var pageSize: Int = 0
     var hasPrevious: Bool = false
+    var refreshState : RefreshState {        
+        if pageNum == 1 {
+            if list.isEmpty {
+                return .disable
+            } else if hasNext {
+                return .enable
+            } else {
+                return .noMoreData
+            }
+        } else {
+            if hasNext {
+                return .enable
+            } else {
+                return .noMoreData
+            }
+        }
+    }
 
     init?(map: Map) {}
     init(hasNext : Bool = true) {

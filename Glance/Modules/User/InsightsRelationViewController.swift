@@ -24,7 +24,7 @@ class InsightsRelationViewController: TableViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? InsightsRelationViewModel else { return }
         
-        let input = InsightsRelationViewModel.Input(selection: tableView.rx.modelSelected(InsightsLikeCellViewModel.self).asObservable(), headerRefresh: Observable.just(()).merge(with: headerRefreshTrigger.asObservable()),footerRefresh: footerRefreshTrigger.asObservable())
+        let input = InsightsRelationViewModel.Input(selection: tableView.rx.modelSelected(InsightsLikeCellViewModel.self).asObservable(), headerRefresh: headerRefreshTrigger.asObservable(),footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
 
         output.items

@@ -33,7 +33,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         super.init(provider: provider)
     }
     
-    let element : BehaviorRelay<PageMapable<Reaction>> = BehaviorRelay(value: PageMapable<Reaction>())
+    let element : BehaviorRelay<PageMapable<Reaction>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
@@ -48,7 +48,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         item.map { $0.recommendId }.filterNil()
             .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<Reaction>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.reactions(recommendId: id, pageNum: self.page)
@@ -60,8 +60,15 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    
-                self.noMoreData.onNext(())
+                    self.refreshState.onNext(item.refreshState)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        self.refreshState.onNext(.end)
+                        logError(error.debugDescription)
+                    }
+
                 default:
                     break
                 }
@@ -71,7 +78,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         item.map { $0.recommendId }.filterNil()
             .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<ReactionAnalysis>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
                 return self.provider.reactionAnalysis(recommendId: id)
@@ -85,6 +92,13 @@ class ReactionsViewModel: ViewModel, ViewModelType {
                     heart.onNext(item.heart.string)
                     wow.onNext(item.wow.string)
                     sad.onNext(item.sad.string)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        logError(error.debugDescription)
+                    }
+
                 default:
                     break
                 }
@@ -92,9 +106,8 @@ class ReactionsViewModel: ViewModel, ViewModelType {
 
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Reaction>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let id = self.item.value.recommendId ?? 0
@@ -107,9 +120,19 @@ class ReactionsViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.noMoreData.onNext(())
+                self.refreshState.onNext(item.refreshState)
+
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }
@@ -134,7 +157,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        element.map { $0.list.map { item -> ReactionsCellViewModel in
+        element.filterNil().map { $0.list.map { item -> ReactionsCellViewModel in
             let cellViewModel =  ReactionsCellViewModel(item: item)
             cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
             return cellViewModel

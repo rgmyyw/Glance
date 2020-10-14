@@ -63,14 +63,15 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
             case .default:
                 self?.setupHeaderRefresh()
                 self?.setupFooterRefresh()
-                //self?.collectionView.mj_footer?.isHidden = true
             case .header:
                 self?.setupHeaderRefresh()
                 self?.collectionView.mj_footer = nil
             case .footer:
+                self?.viewDidLoadBeginRefresh = false
                 self?.setupFooterRefresh()
                 self?.collectionView.mj_header = nil
             case .none:
+                self?.viewDidLoadBeginRefresh = false
                 self?.collectionView.mj_header = nil
                 self?.collectionView.mj_footer = nil
             }
@@ -115,9 +116,8 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     func setupHeaderRefresh() {
         collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter {
-                footer.stateLabel?.isHidden = true
+                footer.isHidden = true
                 footer.resetNoMoreData()
-                footer.isHidden = false
             }
             self?.headerRefreshTrigger.onNext(())
         })
@@ -125,8 +125,8 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     func setupFooterRefresh() {
         collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
             self?.footerRefreshTrigger.onNext(())
-            (self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter)?.stateLabel?.isHidden = false
         })
+        collectionView.mj_footer?.isHidden = true
     }
 
     
@@ -149,10 +149,25 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel?.endLoading.subscribe(onNext: { [weak self]() in
-            self?.collectionView.mj_header?.endRefreshing()
-            self?.collectionView.mj_footer?.endRefreshing()
-            self?.isLoading.accept(false)
+        viewModel?.refreshState.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
+            .subscribe(onNext: { [weak self](state) in
+            switch state {
+            case .enable:
+                self?.collectionView.mj_footer?.isHidden = false
+            case .disable:
+                self?.collectionView.mj_footer?.isHidden = true
+            case .end:
+                self?.collectionView.mj_header?.endRefreshing()
+                self?.collectionView.mj_footer?.endRefreshing()
+            case .noMoreData:
+                self?.collectionView.mj_footer?.isHidden = false
+                self?.collectionView.mj_footer?.endRefreshingWithNoMoreData()
+            case .begin:
+                if self?.collectionView.mj_header?.isRefreshing == true {
+                    self?.collectionView.mj_header?.endRefreshing()
+                }
+                self?.collectionView.mj_header?.beginRefreshing()
+            }
         }).disposed(by: rx.disposeBag)
         
         if let header = collectionView.mj_header {
