@@ -22,7 +22,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[UserDetailPostSection]>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
     }
     
     let otherUser : BehaviorRelay<User?>
@@ -33,7 +33,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
     }
     
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
@@ -46,7 +46,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
         let more = PublishSubject<DefaultColltionCellViewModel>()
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -75,7 +75,7 @@ class UserDetailPostViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }

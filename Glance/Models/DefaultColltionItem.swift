@@ -1,5 +1,5 @@
 //
-//  Home.swift
+//  DefaultColltionItem.swift
 //  Glance
 //
 //  Created by yanghai on 2020/7/6.
@@ -9,7 +9,7 @@
 import UIKit
 import ObjectMapper
 
-struct Home: Mappable, Equatable {
+struct DefaultColltionItem: Mappable, Equatable {
     
     var title: String?
     var type: DefaultColltionCellType?
@@ -75,7 +75,7 @@ struct Home: Mappable, Equatable {
         own <- map["own"]
     }
     
-    static func == (lhs: Home, rhs: Home) -> Bool {
+    static func == (lhs: DefaultColltionItem, rhs: DefaultColltionItem) -> Bool {
         guard let ltype = lhs.type ,let rtype = rhs.type else { return  false }
         if ltype != rtype { return false }
         switch ltype {

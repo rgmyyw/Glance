@@ -114,6 +114,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
                 return "/api/follow/followers/\(pageNum)/\(10)"
             case .blocked:
                 return "/api/blocked/users/\(pageNum)/\(10)"
+            case .reactions:
+                return "/api/users/insights/recommended/reactions/users/\(pageNum)/\(10)"
             }
         case .follow:
             return "/api/follow"

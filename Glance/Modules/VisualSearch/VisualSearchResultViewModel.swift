@@ -31,9 +31,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     
     let imageURI = BehaviorRelay<String?>(value: nil)
     let currentBox : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
-    let selected : BehaviorRelay<[(box : Box, item : Home)]> = BehaviorRelay(value: [])
+    let selected : BehaviorRelay<[(box : Box, item : DefaultColltionItem)]> = BehaviorRelay(value: [])
     let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
-    let searchSelection = PublishSubject<(box : Box, item : Home)>()
+    let searchSelection = PublishSubject<(box : Box, item : DefaultColltionItem)>()
     let updateBox = PublishSubject<[(Bool,Box)]>()
     
     
@@ -47,7 +47,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
-        let selected = BehaviorRelay<[(box : Box, item : Home)]>(value:[])
+        let selected = BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>(value:[])
         let search = input.search.map { (box : self.currentBox.value ,image : self.image.value ) }
         selected.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
         selected.bind(to: self.selected).disposed(by: rx.disposeBag)
@@ -214,7 +214,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         NotificationCenter.default.rx
             .notification(.kAddProduct)
             .subscribe(onNext: { [weak self] noti in
-                guard let (box, home) = noti.object as? (Box, Home) else { return }
+                guard let (box, home) = noti.object as? (Box, DefaultColltionItem) else { return }
                 let boxes = self?.element.value?.boxes ?? []
                 if let boxIndex = boxes.firstIndex(where:  { $0 == box}) , var boxProduct = self?.element.value?.boxProducts[boxIndex] {
                     boxProduct.productList.insert(home, at: 0)

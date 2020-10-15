@@ -79,8 +79,8 @@ class UserDetailViewModel: ViewModel, ViewModelType {
         let otherUserBgViewHidden = userMode.map { $0 == .current }.asDriver(onErrorJustReturn: true)
         let userHeadImageURL = element.map { $0?.userImage?.url }
         let displayName = element.map { $0?.displayName ?? ""}
-        let countryName = element.map { $0?.countryName ?? ""}
-        let instagram = element.map { $0?.instagram ?? ""}
+        let countryName = element.map { "  \($0?.countryName ?? "")"}
+        let instagram = element.map { $0?.igHandler ?? ""}
         let website = element.map { $0?.website ?? ""}
         let bio = element.map { $0?.bio ?? ""}
         let followButtonBackground = element.map { ($0?.isFollow ?? false) ? UIColor.white : UIColor.primary() }

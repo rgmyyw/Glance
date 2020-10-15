@@ -8,21 +8,21 @@
 
 import ObjectMapper
 
-struct InsightsRelation: Mappable {
-    var igHandler: String?
-    var image: String?
-    var isFollow: Bool = false
-    var displayName: String?
-    var userId: String?
-
-    init?(map: Map) {}
-
-    mutating func mapping(map: Map) {
-        igHandler   <- map["igHandler"]
-        image   <- map["image"]
-        isFollow   <- map["isFollow"]
-        displayName   <- map["displayName"]
-        userId   <- map["userId"]
-
-    }
-}
+//struct InsightsRelation: Mappable {
+//    var igHandler: String?
+//    var image: String?
+//    var isFollow: Bool = false
+//    var displayName: String?
+//    var userId: String?
+//
+//    init?(map: Map) {}
+//
+//    mutating func mapping(map: Map) {
+//        igHandler   <- map["igHandler"]
+//        image   <- map["image"]
+//        isFollow   <- map["isFollow"]
+//        displayName   <- map["displayName"]
+//        userId   <- map["userId"]
+//
+//    }
+//}

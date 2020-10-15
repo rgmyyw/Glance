@@ -79,7 +79,7 @@ struct Box : Equatable {
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        let offset : CGFloat = 25
+        let offset : CGFloat = 10
         //        switch lhs.x1 - rhs.x1 {
         //        case (-offset)...offset:
         //            break

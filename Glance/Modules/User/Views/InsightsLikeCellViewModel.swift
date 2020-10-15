@@ -12,7 +12,7 @@ import RxCocoa
 
 class InsightsLikeCellViewModel: CellViewModelProtocol {
 
-    let item : InsightsRelation
+    let item : User
     let userName = BehaviorRelay<String?>(value: nil)
     let userImageURL = BehaviorRelay<URL?>(value: nil)
     let ighandle = BehaviorRelay<String?>(value: nil)
@@ -22,11 +22,11 @@ class InsightsLikeCellViewModel: CellViewModelProtocol {
     let isFollow = BehaviorRelay<Bool>(value: false)
     let buttonTap = PublishSubject<Void>()
     
-    required init(item : InsightsRelation) {
+    required init(item : User) {
 
         self.item = item
         self.userName.accept(item.displayName)
-        self.userImageURL.accept(item.image?.url)
+        self.userImageURL.accept(item.userImage?.url)
         self.ighandle.accept(item.igHandler)
         self.isFollow.accept(item.isFollow)
     }

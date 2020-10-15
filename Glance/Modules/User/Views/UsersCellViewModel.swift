@@ -30,12 +30,15 @@ class UsersCellViewModel: CellViewModelProtocol {
         self.userImageURL.accept(item.model.userImage?.url)
         self.ighandle.accept(item.model.igHandler)
         self.buttonHidden.accept(item.model.userId == user.value?.userId)
+        self.buttonNormalTitle.accept(item.type.cellButtonNormalTitle)
+        self.buttonSelectedTitle.accept(item.type.cellButtonSelectedTitle)
         
         switch item.type {
         case .blocked:
             self.buttonSelected.accept(item.model.isBlocked)
-        case .followers,.following:
+        case .followers,.following,.reactions:
             self.buttonSelected.accept(item.model.isFollow)
+        
         }
     }
 

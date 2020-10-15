@@ -24,13 +24,13 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let complete : Driver<Void>
     }
     
-    let items : BehaviorRelay<[(box : Box, item : Home)]>
+    let items : BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>
     
     let currentImage : BehaviorRelay<UIImage?>
-    let edit = PublishSubject<(box : Box, item : Home )>()
+    let edit = PublishSubject<(box : Box, item : DefaultColltionItem )>()
     
     
-    init(provider: API, image : UIImage?, taggedItems : [(Box,Home)] ) {
+    init(provider: API, image : UIImage?, taggedItems : [(Box,DefaultColltionItem)] ) {
         self.currentImage = BehaviorRelay(value: image)
         self.items = BehaviorRelay(value: taggedItems)
         super.init(provider: provider)

@@ -114,13 +114,15 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     
     
     func setupHeaderRefresh() {
-        collectionView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+        let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter {
                 footer.isHidden = true
                 footer.resetNoMoreData()
             }
             self?.headerRefreshTrigger.onNext(())
         })
+        normalHeader.lastUpdatedTimeLabel?.isHidden = true
+        collectionView.mj_header = normalHeader        
     }
     func setupFooterRefresh() {
         collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in

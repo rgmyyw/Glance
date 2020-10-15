@@ -127,13 +127,17 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     }
     
     func setupHeaderRefresh() {
-        tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
+        
+        let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.tableView.mj_footer as? MJRefreshAutoNormalFooter {
                 footer.isHidden = true
                 footer.resetNoMoreData()
             }
             self?.headerRefreshTrigger.onNext(())
         })
+        normalHeader.lastUpdatedTimeLabel?.isHidden = true
+        
+        tableView.mj_header = normalHeader
     }
     func setupFooterRefresh() {
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in

@@ -20,17 +20,17 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     struct Output {
         let imageURI : Driver<String>
         let currentBox : Driver<Box>
-        let post : Observable<(image : UIImage, items : [(box : Box, item : Home)])>
+        let post : Observable<(image : UIImage, items : [(box : Box, item : DefaultColltionItem)])>
         let updateBox : Observable<[(Bool,Box)]>
         let selectionBox : Observable<Box>
     }
     
     let image : BehaviorRelay<UIImage>
     
-    let selected = BehaviorRelay<[(box : Box, item : Home)]>(value: [])
+    let selected = BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>(value: [])
     let boxes = PublishSubject<[Box]>()
     let updateBox = PublishSubject<[(Bool,Box)]>()
-    let selectionBox = PublishSubject<(box : Box, item : Home)>()
+    let selectionBox = PublishSubject<(box : Box, item : DefaultColltionItem)>()
     
     
     init(provider: API, image : UIImage) {

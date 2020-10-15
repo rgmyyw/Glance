@@ -30,10 +30,10 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         let editButtonTitle : Driver<String?>
         let back : Driver<Void>
         let delete : Observable<SavedCollectionCellViewModel>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let confirmDelete = PublishSubject<SavedCollectionCellViewModel>()
     
     func transform(input: Input) -> Output {
@@ -47,7 +47,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         let backButtonImage = isEdit.map { $0 ? R.image.icon_navigation_close() : R.image.icon_navigation_back_black() }.asDriver(onErrorJustReturn: nil)
         let editButtonImage = isEdit.map { $0 ? nil : R.image.icon_navigation_edit() }.asDriver(onErrorJustReturn: nil)
         let editButtonTitle = isEdit.map { $0 ? "DONE" : nil }.asDriver(onErrorJustReturn: "")
-        let detail = input.selection.filter { _ in !isEdit.value }.map { $0.item }.asDriver(onErrorJustReturn: Home())
+        let detail = input.selection.filter { _ in !isEdit.value }.map { $0.item }.asDriver(onErrorJustReturn: DefaultColltionItem())
         
         
         input.edit.map { !$0 }.bind(to: isEdit).disposed(by: rx.disposeBag)
@@ -60,7 +60,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -90,7 +90,7 @@ class SavedCollectionViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }

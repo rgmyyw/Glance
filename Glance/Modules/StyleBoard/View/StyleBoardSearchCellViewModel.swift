@@ -17,7 +17,7 @@ class StyleBoardSearchCellViewModel : CellViewModelProtocol, CollectionCellImage
     }
     
     
-    let item : Home
+    let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let selected = BehaviorRelay<Bool>(value: false)
@@ -30,7 +30,7 @@ class StyleBoardSearchCellViewModel : CellViewModelProtocol, CollectionCellImage
     }
         
     
-    required init(item : Home) {
+    required init(item : DefaultColltionItem) {
         self.item = item
         
         imageURL.accept(item.image?.url)

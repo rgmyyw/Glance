@@ -22,11 +22,11 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[SearchRecommendYouMayLikeSection]>
         let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
         let userDetail : Driver<User>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     
     
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
@@ -37,7 +37,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[SearchRecommendYouMayLikeSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
-        let detail = PublishSubject<Home>()
+        let detail = PublishSubject<DefaultColltionItem>()
         
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
@@ -55,7 +55,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -84,7 +84,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -245,7 +245,7 @@ class SearchRecommendYouMayLikeViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       reaction: reaction.asObservable(),
-                      detail: detail.asDriver(onErrorJustReturn: Home()),
+                      detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
                       userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()))
     }
 }

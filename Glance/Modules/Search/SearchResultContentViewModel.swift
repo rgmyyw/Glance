@@ -21,11 +21,11 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[SearchResultContentViewSection]>
         let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
         let userDetail : Driver<User>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
     let type : BehaviorRelay<SearchResultContentType>
     let textInput = BehaviorRelay<String?>(value: nil)
@@ -54,7 +54,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             .bind(to: refreshState).disposed(by: rx.disposeBag)
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self , let text = self.textInput.value else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -83,7 +83,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
                 guard let self = self ,let text = self.textInput.value else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -249,7 +249,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       reaction: reaction.asObservable(),
-                      detail: detail.asDriver(onErrorJustReturn: Home()),
+                      detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
                       userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()))
     }
 }

@@ -19,7 +19,7 @@ struct PostsDetail: Mappable {
     var saved: Bool = false
 
     var shared: Bool = false
-    var taggedProducts = [Home]()
+    var taggedProducts = [DefaultColltionItem]()
     var postId: Int = 0
     var userImage: String?
     var title: String?

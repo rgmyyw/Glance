@@ -27,8 +27,8 @@ enum UpdateUserDataType {
 
 
 
-let kUpdateItem = PublishSubject<(state : UpdateItemState, item : Home, trigger : ViewModel? )>()
-let kUpdateUserData = PublishSubject<(type : UpdateUserDataType, item : Home, trigger : ViewModel? )>()
+let kUpdateItem = PublishSubject<(state : UpdateItemState, item : DefaultColltionItem, trigger : ViewModel? )>()
+let kUpdateUserData = PublishSubject<(type : UpdateUserDataType, item : DefaultColltionItem, trigger : ViewModel? )>()
 
 
 
@@ -45,12 +45,12 @@ class HomeViewModel: ViewModel, ViewModelType {
     struct Output {
         let items : Driver<[HomeSection]>
         let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
         let userDetail : Driver<User>
         let search : Observable<Void>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     
     
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
@@ -97,7 +97,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -126,7 +126,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -264,7 +264,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       reaction: reaction.asObservable(),
-                      detail: detail.asDriver(onErrorJustReturn: Home()),
+                      detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
                       userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()),
                       search: input.search)
     }

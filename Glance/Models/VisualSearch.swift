@@ -43,7 +43,7 @@ struct VisualSearchPageMapable: Mappable {
 
 struct BoxProducts: Mappable {
     var score: Int = 0
-    var productList = [Home]()
+    var productList = [DefaultColltionItem]()
     var box : Box?
     var type: String?
     var total: Int = 0
@@ -51,7 +51,7 @@ struct BoxProducts: Mappable {
     var hasNext : Bool = true
     
     
-    var selected : Home?
+    var selected : DefaultColltionItem?
     var system : Bool = false
     
     var refreshState : RefreshState {

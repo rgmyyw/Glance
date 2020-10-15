@@ -54,7 +54,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let bottomBarAddButtonHidden : Driver<Bool>
         let bottomBarBackgroundColor : Driver<UIColor?>
         let shoppingCart : Driver<Void>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
         let popMemu : Driver<[PostsDetailMemuItem]>
         let delete : Driver<Void>
         let back : Driver<Void>
@@ -63,20 +63,20 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     }
     
     
-    let item : BehaviorRelay<Home>
+    let item : BehaviorRelay<DefaultColltionItem>
     let memuSelection = PublishSubject<PostsDetailMemuItem>()
     let deletePost = PublishSubject<Void>()
     let selectStoreActions = PublishSubject<(action : SelectStoreAction, item : SelectStore)>()
     
     
-    init(provider: API,item : Home) {
+    init(provider: API,item : DefaultColltionItem) {
         self.item = BehaviorRelay(value: item)
         super.init(provider: provider)
         self.page = 0
         
     }
     
-    let similar = BehaviorRelay<PageMapable<Home>?>(value: nil)
+    let similar = BehaviorRelay<PageMapable<DefaultColltionItem>?>(value: nil)
     
     func transform(input: Input) -> Output {
         
@@ -90,7 +90,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
-        let detail = PublishSubject<Home>()
+        let detail = PublishSubject<DefaultColltionItem>()
         let popMemu = input.memu.map { [PostsDetailMemuItem(type: .edit),PostsDetailMemuItem(type: .delete)] }.asDriver(onErrorJustReturn: [])
         let delete = input.memuSelection.filter { $0 == 1}.mapToVoid().asDriver(onErrorJustReturn: ())
         let openURL = PublishSubject<URL>()
@@ -103,7 +103,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
-        input.selection.map { Home(productId: $0.viewModel.item.productId ?? "") }.bind(to: detail).disposed(by: rx.disposeBag)
+        input.selection.map { DefaultColltionItem(productId: $0.viewModel.item.productId ?? "") }.bind(to: detail).disposed(by: rx.disposeBag)
         
         selectStoreActions.filter { $0.action == .buy }
             .map { $0.item.productUrl?.url }.filterNil()
@@ -114,7 +114,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         selectStoreActions.filter { $0.action == .jump }
-            .map { Home(productId: $0.item.productId ?? "")}
+            .map { DefaultColltionItem(productId: $0.item.productId ?? "")}
             .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: detail).disposed(by: rx.disposeBag)
         
@@ -186,7 +186,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         input.footerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+            .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
@@ -373,7 +373,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                     self?.message.onNext(.init("Your post has been removed"))
                     back.onNext(())
                     if result {
-                        let item = Home(postId: id)
+                        let item = DefaultColltionItem(postId: id)
                         kUpdateItem.onNext((.delete,item,self))
                     }
                 default:
@@ -447,7 +447,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       bottomBarAddButtonHidden:bottomBarAddButtonHidden,
                       bottomBarBackgroundColor: bottomBarBackgroundColor,
                       shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()),
-                      detail: detail.asDriver(onErrorJustReturn: Home()),
+                      detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
                       popMemu: popMemu,
                       delete: delete.asDriver(onErrorJustReturn: ()),
                       back: back.asDriver(onErrorJustReturn: ()),

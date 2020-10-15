@@ -223,7 +223,7 @@
 		5D5B018924C5888500832F05 /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
 		5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
 		5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
-		5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5D630AAE24B31B4000F0CC45 /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
 		5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5D6B4DB924D40C8B0024924B /* VisualSearchBottomView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D6B4DB824D40C8B0024924B /* VisualSearchBottomView.xib */; };
@@ -382,7 +382,7 @@
 		5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5D99ECDC251843840008B45F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
 		5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
-		5D99ECDE251843840008B45F /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5D99ECDE251843840008B45F /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
 		5D99ECE1251843840008B45F /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCE24BD9D2C00AFBB1F /* Insight.swift */; };
@@ -909,7 +909,7 @@
 		5DCC2CF624F34F04000AC40A /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5DCC2CF824F34F04000AC40A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
 		5DCC2CF924F34F04000AC40A /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
-		5DCC2CFA24F34F04000AC40A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5DCC2CFA24F34F04000AC40A /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5DCC2CFB24F34F04000AC40A /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5DCC2CFC24F34F04000AC40A /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
 		5DCC2CFD24F34F04000AC40A /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCE24BD9D2C00AFBB1F /* Insight.swift */; };
@@ -1191,7 +1191,7 @@
 		5DCC2E4E24F34F2A000AC40A /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5DCC2E5024F34F2A000AC40A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
 		5DCC2E5124F34F2A000AC40A /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
-		5DCC2E5224F34F2A000AC40A /* Home.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* Home.swift */; };
+		5DCC2E5224F34F2A000AC40A /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5DCC2E5324F34F2A000AC40A /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5DCC2E5424F34F2A000AC40A /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
 		5DCC2E5524F34F2A000AC40A /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCE24BD9D2C00AFBB1F /* Insight.swift */; };
@@ -1782,7 +1782,7 @@
 		5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCollectionCellViewModel.swift; sourceTree = "<group>"; };
 		5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
-		5D630AAD24B31B4000F0CC45 /* Home.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Home.swift; sourceTree = "<group>"; };
+		5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColltionItem.swift; sourceTree = "<group>"; };
 		5D630AAF24B3205F00F0CC45 /* HomeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeSection.swift; sourceTree = "<group>"; };
 		5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		5D6B289E25342F0A004F16DE /* README.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.txt; sourceTree = "<group>"; };
@@ -2683,8 +2683,8 @@
 			children = (
 				5DD370A72531983900A42A16 /* UserDetailHeadView.swift */,
 				5DD370B32531983900A42A16 /* UserDetailHeadView.xib */,
-				5DD370AC2531983900A42A16 /* UsersCell.xib */,
 				5DD370A82531983900A42A16 /* UsersCell.swift */,
+				5DD370AC2531983900A42A16 /* UsersCell.xib */,
 				5DD370A62531983900A42A16 /* UsersCellViewModel.swift */,
 				5DD370AE2531983900A42A16 /* ReactionsCell.swift */,
 				5DD370B02531983900A42A16 /* ReactionsCell.xib */,
@@ -2811,12 +2811,12 @@
 			children = (
 				5D437DD424BEA04700AFBB1F /* DateTransform.swift */,
 				5D7B429424EA7964005AF1F6 /* BoxTransform.swift */,
+				5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */,
 				5DEFF4FB24AED04D007A2FCD /* Base.swift */,
 				5DEFF12524AEC2F8007A2FCD /* Gender.swift */,
 				5DEFF12C24AEC2F8007A2FCD /* Version.swift */,
 				5DEFF13324AEC2F8007A2FCD /* User.swift */,
 				5DEFF14024AEC2F8007A2FCD /* Token.swift */,
-				5D630AAD24B31B4000F0CC45 /* Home.swift */,
 				5D437DCE24BD9D2C00AFBB1F /* Insight.swift */,
 				5D06523424BEB37C007CE461 /* InsightsDetail.swift */,
 				5D06524224BEE879007CE461 /* Reaction.swift */,
@@ -3986,7 +3986,7 @@
 				5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */,
 				5D99ECDC251843840008B45F /* Categories.swift in Sources */,
 				5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */,
-				5D99ECDE251843840008B45F /* Home.swift in Sources */,
+				5D99ECDE251843840008B45F /* DefaultColltionItem.swift in Sources */,
 				5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */,
 				5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */,
 				5D99ECE1251843840008B45F /* Insight.swift in Sources */,
@@ -4314,7 +4314,7 @@
 				5DCC2CF624F34F04000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2CF824F34F04000AC40A /* Categories.swift in Sources */,
 				5DCC2CF924F34F04000AC40A /* PostsDetailCell.swift in Sources */,
-				5DCC2CFA24F34F04000AC40A /* Home.swift in Sources */,
+				5DCC2CFA24F34F04000AC40A /* DefaultColltionItem.swift in Sources */,
 				5DCC2CFB24F34F04000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2CFC24F34F04000AC40A /* AlertController-Extension.swift in Sources */,
 				5DCC2CFD24F34F04000AC40A /* Insight.swift in Sources */,
@@ -4642,7 +4642,7 @@
 				5DCC2E4E24F34F2A000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2E5024F34F2A000AC40A /* Categories.swift in Sources */,
 				5DCC2E5124F34F2A000AC40A /* PostsDetailCell.swift in Sources */,
-				5DCC2E5224F34F2A000AC40A /* Home.swift in Sources */,
+				5DCC2E5224F34F2A000AC40A /* DefaultColltionItem.swift in Sources */,
 				5DCC2E5324F34F2A000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2E5424F34F2A000AC40A /* AlertController-Extension.swift in Sources */,
 				5DCC2E5524F34F2A000AC40A /* Insight.swift in Sources */,
@@ -4970,7 +4970,7 @@
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
 				5DB6AC0424D96D7100AD4B43 /* Categories.swift in Sources */,
 				5D1D5AF824BFF0F9008C0C82 /* PostsDetailCell.swift in Sources */,
-				5D630AAE24B31B4000F0CC45 /* Home.swift in Sources */,
+				5D630AAE24B31B4000F0CC45 /* DefaultColltionItem.swift in Sources */,
 				5D6B4DC924D7A71E0024924B /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
 				5D437DCF24BD9D2C00AFBB1F /* Insight.swift in Sources */,
@@ -5258,7 +5258,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5283,7 +5283,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5308,7 +5308,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5333,7 +5333,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5522,7 +5522,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5547,7 +5547,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 28;
+				CURRENT_PROJECT_VERSION = 30;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

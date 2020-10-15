@@ -25,7 +25,7 @@ enum DefaultColltionMemu : Int  {
 class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
         
     
-    let item : Home
+    let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let userName : BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -86,7 +86,7 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     }
     
     
-    required init(item : Home) {
+    required init(item : DefaultColltionItem) {
         self.item = item
                 
         userName.accept(item.user?.displayName)

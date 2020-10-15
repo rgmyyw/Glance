@@ -164,7 +164,7 @@ extension HomeController : ZLCollectionViewBaseFlowLayoutDelegate {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch dataSouce.sectionModels[section] {
         case .single:
-            return UIEdgeInsets(top: 0, left: inset, bottom: inset, right: inset)
+            return UIEdgeInsets(top: inset, left: inset, bottom: inset, right: inset)
         }
         
     }

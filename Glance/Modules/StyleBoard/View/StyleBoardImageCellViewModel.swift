@@ -13,7 +13,7 @@ import Kingfisher
 
 class StyleBoardImageCellViewModel: CellViewModelProtocol  {
 
-    let item : Home
+    let item : DefaultColltionItem
     
     let image = BehaviorRelay<URL?>(value: nil)
     let empty = BehaviorRelay<Bool>(value : true)
@@ -45,7 +45,7 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
     }
     
     
-    required init(item : Home) {
+    required init(item : DefaultColltionItem) {
         self.item = item
         self.image.accept(item.image?.url)
         self.empty.accept(item.productId != nil && item.productId == "-1")

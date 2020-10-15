@@ -29,8 +29,8 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
     
     
     let textInput = BehaviorRelay<String>(value: "")
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
-    let selection = PublishSubject<[Home]>()
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
+    let selection = PublishSubject<[DefaultColltionItem]>()
     
     
     func transform(input: Input) -> Output {
@@ -45,7 +45,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 elements.accept([])
         }).disposed(by: rx.disposeBag)
         
-        input.add.flatMapLatest { () -> Observable<[Home]> in
+        input.add.flatMapLatest { () -> Observable<[DefaultColltionItem]> in
             let elements = elements.value.flatMap { $0.items.filter { $0.viewModel.selected.value } }
             let items = elements.map { $0.viewModel.item }
             return Observable.just(items)
@@ -60,7 +60,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         
         textInput.filterEmpty()
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(RxSwift.Event.completed)
                 }
@@ -82,7 +82,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !(self.element.value?.hasNext ?? false) {
                 return Observable.just(RxSwift.Event.completed)

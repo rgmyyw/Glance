@@ -26,7 +26,7 @@ class PostProductSectionCellViewModel: CellViewModelProtocol  {
 }
 class PostProductCellViewModel: CellViewModelProtocol  {
 
-    let item : (box : Box, item : Home)
+    let item : (box : Box, item : DefaultColltionItem)
     
     let title = BehaviorRelay<String?>(value: nil)
     let imageURL = BehaviorRelay<URL?>(value: nil)
@@ -36,7 +36,7 @@ class PostProductCellViewModel: CellViewModelProtocol  {
     
 
 
-    required init(item : (box: Box, item : Home)) {
+    required init(item : (box: Box, item : DefaultColltionItem)) {
         self.item = item
         
         imageURL.accept(item.item.image?.url)

@@ -27,7 +27,7 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         self.navigator.show(segue: .selectStore(viewModel: viewModel), sender: self,transition: .panel(style: .default))
 
         
-//        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: Home())
+//        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: DefaultColltionItem())
 //        self.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         //needSignUp.onNext(())
         

@@ -24,8 +24,8 @@ enum ApiError: Error {
 class RestApi: API {
     
     
-    func getHome(page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.getHome(page: page), type: PageMapable<Home>.self)
+    func getHome(page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.getHome(page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     func userDetail(userId: String?) -> Single<User> {
@@ -41,12 +41,12 @@ class RestApi: API {
             .map { $0.imageUri ?? ""}
     }
     
-    func userPost(userId: String, pageNum: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.userPost(userId: userId, pageNum: pageNum), type: PageMapable<Home>.self)
+    func userPost(userId: String, pageNum: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.userPost(userId: userId, pageNum: pageNum), type: PageMapable<DefaultColltionItem>.self)
     }
     
-    func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<Home>.self)
+    func userRecommend(userId: String = "", pageNum: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.userRecommend(userId: userId, pageNum: pageNum), type: PageMapable<DefaultColltionItem>.self)
     }
     
     func users(type: UsersType, userId: String = "", pageNum: Int) -> Single<PageMapable<User>> {
@@ -85,8 +85,8 @@ class RestApi: API {
         return requestObject(.insightsRecommendDetail(recommendId: recommendId), type: InsightsDetail.self)
     }
     
-    func reactions(recommendId: Int, pageNum: Int) -> Single<PageMapable<Reaction>> {
-        return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<Reaction>.self)
+    func reactions(recommendId: Int, pageNum: Int) -> Single<PageMapable<User>> {
+        return requestObject(.reactions(recommendId: recommendId, pageNum: pageNum), type: PageMapable<User>.self)
     }
     
     func postDetail(postId: Int) -> Single<PostsDetail> {
@@ -118,8 +118,8 @@ class RestApi: API {
         return requestObject(.savedCllectionClassify, type: SavedCollection.self)
     }
     
-    func savedCollection(pageNum: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.savedCollection(pageNum: pageNum), type: PageMapable<Home>.self)
+    func savedCollection(pageNum: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.savedCollection(pageNum: pageNum), type: PageMapable<DefaultColltionItem>.self)
     }
     
     /// 收藏 : 返回值，是对这个id 操作最终的结果，取消还是进行收藏
@@ -139,8 +139,8 @@ class RestApi: API {
         return requestObject(.updateUserInterest(ids: ids), type: MappableItem<Void>.self,keyPath: nil).map { $0.code == 200}
     }
     
-    func similarProduct(params: [String : Any], page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.similarProduct(params: params, page: page), type: PageMapable<Home>.self)
+    func similarProduct(params: [String : Any], page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.similarProduct(params: params, page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     func addShoppingCart(productId: String) -> Single<Bool> {
@@ -151,8 +151,8 @@ class RestApi: API {
         return requestObject(.visualSearch(params: params), type: VisualSearchPageMapable.self)
     }
     
-    func productSearch(type: ProductSearchType,keywords: String, page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.search(type: type, keywords: keywords, page: page), type: PageMapable<Home>.self)
+    func productSearch(type: ProductSearchType,keywords: String, page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.search(type: type, keywords: keywords, page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     
@@ -161,19 +161,20 @@ class RestApi: API {
     }
     
     
-    func addProduct(param: [String : Any]) -> Single<Home> {
-        return requestObject(.addProduct(param: param), type: Home.self)
+    func addProduct(param: [String : Any]) -> Single<DefaultColltionItem> {
+        return requestObject(.addProduct(param: param), type: DefaultColltionItem.self)
     }
     
     func postProduct(param: [String : Any]) -> Single<Bool> {
         return requestObject(.postProduct(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.code == 200 }
     }
     
-    func insightsLiked(postId: Int, pageNum: Int) -> Single<PageMapable<InsightsRelation>> {
-        return requestObject(.insightsLiked(postId: postId, pageNum: pageNum), type: PageMapable<InsightsRelation>.self)
+    func insightsLiked(postId: Int, pageNum: Int) -> Single<PageMapable<User>> {
+        return requestObject(.insightsLiked(postId: postId, pageNum: pageNum), type: PageMapable<User>.self)
     }
-    func insightsRecommend(postId : Int, pageNum: Int) -> Single<PageMapable<InsightsRelation>> {
-        return requestObject(.insightsRecommend(postId: postId, pageNum: pageNum), type: PageMapable<InsightsRelation>.self)
+    
+    func insightsRecommend(postId : Int, pageNum: Int) -> Single<PageMapable<User>> {
+        return requestObject(.insightsRecommend(postId: postId, pageNum: pageNum), type: PageMapable<User>.self)
         
     }
     
@@ -214,29 +215,29 @@ class RestApi: API {
         return requestObject(.searchThemeHot(classifyId: classifyId, page: page), type: PageMapable<SearchTheme>.self)
     }
     
-    func searchYouMaylike(page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.searchYouMaylike(page: page), type: PageMapable<Home>.self)
+    func searchYouMaylike(page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.searchYouMaylike(page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     
-    func searchNew(page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.searchNew(page: page), type: PageMapable<Home>.self)
+    func searchNew(page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.searchNew(page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
-    func globalSearch(type: SearchResultContentType, keywords: String, page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.globalSearch(type: type, keywords: keywords, page: page), type: PageMapable<Home>.self)
+    func globalSearch(type: SearchResultContentType, keywords: String, page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.globalSearch(type: type, keywords: keywords, page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     func searchThemeDetail(themeId: Int) -> Single<SearchThemeDetail> {
         return requestObject(.searchThemeDetail(themeId: themeId), type: SearchThemeDetail.self)
     }
     
-    func searchThemeDetaiResource(type: SearchThemeContentType, themeId: Int, page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.searchThemeDetaiResource(type: type, themeId: themeId, page: page), type: PageMapable<Home>.self)
+    func searchThemeDetaiResource(type: SearchThemeContentType, themeId: Int, page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.searchThemeDetaiResource(type: type, themeId: themeId, page: page), type: PageMapable<DefaultColltionItem>.self)
 
     }
-    func searchThemeLabelDetaiResource(type: SearchThemeLabelContentType, labelId: Int, page: Int) -> Single<PageMapable<Home>> {
-        return requestObject(.searchThemeLabelDetaiResource(type: type, labelId: labelId, page: page), type: PageMapable<Home>.self)
+    func searchThemeLabelDetaiResource(type: SearchThemeLabelContentType, labelId: Int, page: Int) -> Single<PageMapable<DefaultColltionItem>> {
+        return requestObject(.searchThemeLabelDetaiResource(type: type, labelId: labelId, page: page), type: PageMapable<DefaultColltionItem>.self)
     }
     
     

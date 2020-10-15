@@ -28,8 +28,8 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     
     
     let textInput = BehaviorRelay<String>(value: "")
-    let element : BehaviorRelay<PageMapable<Home>> = BehaviorRelay(value: PageMapable<Home>())
-    let selected = PublishSubject<(box : Box, item : Home)>()
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>> = BehaviorRelay(value: PageMapable<DefaultColltionItem>())
+    let selected = PublishSubject<(box : Box, item : DefaultColltionItem)>()
     
     let image : BehaviorRelay<UIImage>
     let currentBox : BehaviorRelay<Box>
@@ -48,7 +48,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         input.add.bind(to: add).disposed(by: rx.disposeBag)
         let addAction = add.map { (box : self.currentBox.value,image : self.image.value)}
         
-        input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+        input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
             guard let self = self else {
                 return Observable.just(RxSwift.Event.completed)
             }
@@ -76,7 +76,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             if !self.element.value.hasNext {
                 return Observable.just(RxSwift.Event.completed)

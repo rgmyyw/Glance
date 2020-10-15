@@ -42,7 +42,7 @@ class ReactionsViewController: TableViewController {
         super.bindViewModel()
         guard let viewModel = viewModel as? ReactionsViewModel else { return }
         
-        let input = ReactionsViewModel.Input(selection: tableView.rx.modelSelected(ReactionsCellViewModel.self).asObservable(),
+        let input = ReactionsViewModel.Input(selection: tableView.rx.modelSelected(UsersCellViewModel.self).asObservable(),
                                              footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
         

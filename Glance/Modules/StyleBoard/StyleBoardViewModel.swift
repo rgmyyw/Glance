@@ -23,8 +23,8 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         let nextButtonEnable : Driver<Bool>
     }
     
-    let selection = PublishSubject<[Home]>()
-    let selected : BehaviorRelay<[Home]> = BehaviorRelay(value: [])
+    let selection = PublishSubject<[DefaultColltionItem]>()
+    let selected : BehaviorRelay<[DefaultColltionItem]> = BehaviorRelay(value: [])
     
     
     func transform(input: Input) -> Output {
@@ -47,7 +47,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
                 let item = StyleBoardSectionItem.image(identity: viewModel.item.productId!, viewModel: viewModel)
                 return item
             }
-            let emptyViewModel = StyleBoardImageCellViewModel(item: Home(productId: "-1"))
+            let emptyViewModel = StyleBoardImageCellViewModel(item: DefaultColltionItem(productId: "-1"))
             let empty = StyleBoardSectionItem.image(identity: "-1", viewModel: emptyViewModel)
             emptyViewModel.add.bind(to: add).disposed(by: self.rx.disposeBag)
             elements.append(empty)

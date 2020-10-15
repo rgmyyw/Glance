@@ -38,11 +38,6 @@
                                                 <state key="normal" image="icon_button_recommend_black_normal"/>
                                                 <state key="selected" image="icon_button_recommend_selected"/>
                                             </button>
-                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-Fm-99L">
-                                                <rect key="frame" x="142.5" y="0.0" width="35.5" height="35.5"/>
-                                                <state key="normal" image="icon_cell_triangle_red"/>
-                                                <state key="selected" image="icon_cell_triangle_gary"/>
-                                            </button>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FuE-Mu-iwf">
                                                 <rect key="frame" x="0.0" y="0.0" width="178" height="200"/>
                                                 <subviews>
@@ -127,6 +122,11 @@
                                                     <constraint firstItem="lTt-81-th4" firstAttribute="top" secondItem="FuE-Mu-iwf" secondAttribute="top" id="hDg-O2-oP9"/>
                                                 </constraints>
                                             </view>
+                                            <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3GO-Fm-99L">
+                                                <rect key="frame" x="142.5" y="0.0" width="35.5" height="35.5"/>
+                                                <state key="normal" image="icon_cell_triangle_red"/>
+                                                <state key="selected" image="icon_cell_triangle_gary"/>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>

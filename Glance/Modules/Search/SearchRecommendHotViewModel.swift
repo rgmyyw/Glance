@@ -23,7 +23,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         let items : Driver<[SectionModel<Void,SearchRecommendHotCellViewModel>]>
         let filter : Observable<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>
         let themeDetail : Driver<Int>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
     }
     
     let element : BehaviorRelay<PageMapable<SearchTheme>?> = BehaviorRelay(value: nil)
@@ -154,11 +154,11 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
         }.bind(to: filter).disposed(by: rx.disposeBag)
     
         
-        let detail = itemSelected.map { cellViewModel -> Home in
+        let detail = itemSelected.map { cellViewModel -> DefaultColltionItem in
             if let productId = cellViewModel.item.productId {
-                return Home(productId: productId)
+                return DefaultColltionItem(productId: productId)
             } else {
-                return Home(postId: cellViewModel.item.postId)
+                return DefaultColltionItem(postId: cellViewModel.item.postId)
             }
         }        
     

@@ -13,12 +13,12 @@ import RxCocoa
 class ReactionsViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let selection: Observable<ReactionsCellViewModel>
+        let selection: Observable<UsersCellViewModel>
         let footerRefresh: Observable<Void>
     }
     
     struct Output {
-        let items : Driver<[ReactionsCellViewModel]>
+        let items : Driver<[UsersCellViewModel]>
         let heart : Driver<String>
         let haha : Driver<String>
         let wow : Driver<String>
@@ -33,12 +33,12 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         super.init(provider: provider)
     }
     
-    let element : BehaviorRelay<PageMapable<Reaction>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
-        let elements : BehaviorRelay<[ReactionsCellViewModel]> = BehaviorRelay(value: [])
-        let buttonTap = PublishSubject<ReactionsCellViewModel>()
+        let elements : BehaviorRelay<[UsersCellViewModel]> = BehaviorRelay(value: [])
+        let buttonTap = PublishSubject<UsersCellViewModel>()
         let heart = PublishSubject<String>()
         let haha = PublishSubject<String>()
         let wow = PublishSubject<String>()
@@ -46,7 +46,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
 
         
         item.map { $0.recommendId }.filterNil()
-            .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<Reaction>>)> in
+            .flatMapLatest({ [weak self] (id) -> Observable<(RxSwift.Event<PageMapable<User>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -105,7 +105,7 @@ class ReactionsViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
 
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Reaction>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<User>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
@@ -138,10 +138,10 @@ class ReactionsViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        buttonTap.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(ReactionsCellViewModel, Bool)>> in
+        buttonTap.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(UsersCellViewModel, Bool)>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            let userId = cellViewModel.item.userId ?? ""
-            let request = cellViewModel.isFollow.value ? self.provider.undoFollow(userId: userId) :
+            let userId = cellViewModel.item.model.userId ?? ""
+            let request = cellViewModel.buttonSelected.value ? self.provider.undoFollow(userId: userId) :
                 self.provider.follow(userId: userId)
             return request.trackActivity(self.loading)
                     .trackError(self.error)
@@ -150,15 +150,15 @@ class ReactionsViewModel: ViewModel, ViewModelType {
         }).subscribe(onNext: { (event) in
             switch event {
             case .next(let (cellViewModel, result)):
-                cellViewModel.isFollow.accept(result)
+                cellViewModel.buttonSelected.accept(result)
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
         
         
-        element.filterNil().map { $0.list.map { item -> ReactionsCellViewModel in
-            let cellViewModel =  ReactionsCellViewModel(item: item)
+        element.filterNil().map { $0.list.map { item -> UsersCellViewModel in
+            let cellViewModel =  UsersCellViewModel(item: (.reactions,item))
             cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
             return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)

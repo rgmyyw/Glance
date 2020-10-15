@@ -46,7 +46,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
         super.init(provider: provider)
     }
     
-    let element : BehaviorRelay<PageMapable<InsightsRelation>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
     
     func transform(input: Input) -> Output {
         
@@ -55,7 +55,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
         let buttonTap = PublishSubject<InsightsLikeCellViewModel>()
         
         
-        input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<InsightsRelation>>)> in
+        input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<User>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -86,7 +86,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<InsightsRelation>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<User>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }

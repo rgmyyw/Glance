@@ -22,10 +22,10 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
     
     struct Output {
         let items : Driver<[UserDetailRecommSection]>
-        let detail : Driver<Home>
+        let detail : Driver<DefaultColltionItem>
     }
     
-    let element : BehaviorRelay<PageMapable<Home>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let needUpdateTitle = PublishSubject<Bool>()
     let otherUser : BehaviorRelay<User?>
     
@@ -46,7 +46,7 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
         let more = PublishSubject<DefaultColltionCellViewModel>()
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Home>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -74,7 +74,7 @@ class UserDetailRecommViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Home>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }

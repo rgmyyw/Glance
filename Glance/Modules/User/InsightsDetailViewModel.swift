@@ -36,7 +36,7 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
         let reaction : Observable<Insight>
         let recommend : Observable<Insight>
         let likes : Observable<Insight>
-        let previewPost : Driver<Home>
+        let previewPost : Driver<DefaultColltionItem>
         
     }
     
@@ -58,13 +58,13 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
         let available = type.map { $0 == .post ? [0,2,3,4] : [1]}
         let previewButtonTitle = type.map { $0.previewButtonTitle }.asDriver(onErrorJustReturn: "")
         let navigationTitle = type.map { $0.detailNavigationTitle }.asDriver(onErrorJustReturn: "")
-        let previewPost = PublishSubject<Home>()
+        let previewPost = PublishSubject<DefaultColltionItem>()
         
         let reaction = input.selection.filter { $0 == 1}.map { _ in self.item.value }
         let recommend = input.selection.filter { $0 == 2}.map { _ in self.item.value }
         let likes = input.selection.filter { $0 == 3}.map { _ in self.item.value }
         
-        input.previewPost.map { _ -> Home? in
+        input.previewPost.map { _ -> DefaultColltionItem? in
             guard let type = self.item.value.type else {
                 self.exceptionError.onNext(.general("type is nil"))
                 return nil
@@ -72,11 +72,11 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
             switch type {
             case .post,.recommendPost:
                 if let postId = self.item.value.postId {
-                    return Home(postId: postId)
+                    return DefaultColltionItem(postId: postId)
                 }
             case .product,.recommendProduct:
                 if let productId = self.item.value.productId {
-                    return Home(productId: productId)
+                    return DefaultColltionItem(productId: productId)
                 }
             default:
                 fatalError()
@@ -138,7 +138,7 @@ class InsightsDetailViewModel: ViewModel, ViewModelType {
         
         
         
-        return Output(imageURL: imageURL, title: title, time: time, reachedCount: reachedCount, interactionsCount: interactionsCount, saveCount: saveCount, recommendsCount: recommendsCount, likesCount: likesCount, sharesCount: sharesCount, reactionsCount: reactionsCount, available: available, previewButtonTitle: previewButtonTitle,navigationTitle : navigationTitle, reaction: reaction, recommend: recommend, likes: likes, previewPost: previewPost.asDriver(onErrorJustReturn: Home()))
+        return Output(imageURL: imageURL, title: title, time: time, reachedCount: reachedCount, interactionsCount: interactionsCount, saveCount: saveCount, recommendsCount: recommendsCount, likesCount: likesCount, sharesCount: sharesCount, reactionsCount: reactionsCount, available: available, previewButtonTitle: previewButtonTitle,navigationTitle : navigationTitle, reaction: reaction, recommend: recommend, likes: likes, previewPost: previewPost.asDriver(onErrorJustReturn: DefaultColltionItem()))
         
     }
 }

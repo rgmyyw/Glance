@@ -58,12 +58,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sAr-jW-2J9">
-                                                            <rect key="frame" x="0.0" y="26" width="60" height="12"/>
+                                                            <rect key="frame" x="0.0" y="26" width="73" height="12"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="12" id="SIa-Hb-Egs"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                            <state key="normal" title="Singapore">
+                                                            <state key="normal" title=" Singapore" image="person_location_icon">
                                                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
                                                         </button>
@@ -140,12 +140,12 @@
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cEq-Lf-Nhs">
-                                                            <rect key="frame" x="0.0" y="41" width="60" height="12"/>
+                                                            <rect key="frame" x="0.0" y="41" width="73" height="12"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="height" constant="12" id="kpu-fM-hGT"/>
                                                             </constraints>
                                                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="13"/>
-                                                            <state key="normal" title="Singapore">
+                                                            <state key="normal" title=" Singapore" image="person_location_icon">
                                                                 <color key="titleColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
                                                             </state>
                                                         </button>
@@ -176,10 +176,10 @@
                                     <rect key="frame" x="0.0" y="112" width="257" height="15"/>
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_button_Instagram" translatesAutoresizingMaskIntoConstraints="NO" id="sdh-cn-75n">
-                                            <rect key="frame" x="0.0" y="0.0" width="27" height="27"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="13.5" height="13.5"/>
                                         </imageView>
                                         <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QjK-87-Vhp">
-                                            <rect key="frame" x="33" y="7.5" width="224" height="12"/>
+                                            <rect key="frame" x="19.5" y="1" width="237.5" height="12"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="12" id="aaz-aT-wqb"/>
                                             </constraints>
@@ -276,11 +276,12 @@
                 <outlet property="websiteButton" destination="KjO-TZ-HXS" id="WzG-4O-aZm"/>
                 <outlet property="websiteCell" destination="5S9-U0-Bbd" id="uWo-zl-U8G"/>
             </connections>
-            <point key="canvasLocation" x="-559" y="81"/>
+            <point key="canvasLocation" x="-221" y="90"/>
         </view>
     </objects>
     <resources>
         <image name="icon_button_Instagram" width="13.5" height="13.5"/>
         <image name="icon_button_message" width="10" height="9"/>
+        <image name="person_location_icon" width="10" height="12"/>
     </resources>
 </document>

@@ -90,7 +90,7 @@ class PostProductViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
         output.detail.drive(onNext: { [weak self](productId) in
-            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: Home(productId: productId))
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: DefaultColltionItem(productId: productId))
             self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         

@@ -20,14 +20,14 @@ class SavedCollectionCellViewModel : CellViewModelProtocol,CollectionCellImageHe
     }
 
     
-    let item : Home
+    let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let deleteButtonHidden = BehaviorRelay<Bool>(value: true)
     let delete = PublishSubject<Void>()
     
     
-    required init(item : Home) {
+    required init(item : DefaultColltionItem) {
         self.item = item
         
         title.accept(item.title)

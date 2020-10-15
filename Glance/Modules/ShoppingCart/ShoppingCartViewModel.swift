@@ -24,7 +24,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         let delete : Observable<ShoppingCartCellViewModel>
         let comparePrice : Driver<String>
         let openURL : Driver<URL>
-        let detail :  Driver<Home>
+        let detail :  Driver<DefaultColltionItem>
     }
     
     let element : BehaviorRelay<PageMapable<ShoppingCart>?> = BehaviorRelay(value: nil)
@@ -39,11 +39,11 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         let comparePrice = PublishSubject<String>()
         let buy = PublishSubject<ShoppingCartCellViewModel>()
         let openURL = PublishSubject<URL>()
-        let detail = PublishSubject<Home>()
+        let detail = PublishSubject<DefaultColltionItem>()
         
         
         
-        input.selection.map { Home(productId: $0.item.productId ?? "")}
+        input.selection.map { DefaultColltionItem(productId: $0.item.productId ?? "")}
             .bind(to: detail).disposed(by: rx.disposeBag)
         buy.map { $0.item.productUrl?.url}.filterNil()
             .bind(to: openURL).disposed(by: rx.disposeBag)
@@ -52,7 +52,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
             .bind(to: openURL).disposed(by: rx.disposeBag)
         
         selectStoreActions.filter { $0.action == .jump }
-            .map { Home(productId: $0.item.productId ?? "")}
+            .map { DefaultColltionItem(productId: $0.item.productId ?? "")}
             .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: detail).disposed(by: rx.disposeBag)
         

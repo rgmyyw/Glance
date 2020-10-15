@@ -117,7 +117,7 @@ class UsersViewModel : ViewModel, ViewModelType {
         buttonTap.map { (cellViewModel) -> (UsersCellViewModel, Single<Bool>) in
             let userId = cellViewModel.item.model.userId ?? ""
             switch self.type.value {
-            case .following,.followers:
+            case .following,.followers,.reactions:
                 return (cellViewModel,cellViewModel.buttonSelected.value ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId))
             case .blocked:
                 return (cellViewModel,cellViewModel.buttonSelected.value ? self.provider.undoBlocked(userId: userId) : self.provider.block(userId: userId))
@@ -142,9 +142,6 @@ class UsersViewModel : ViewModel, ViewModelType {
         element.filterNil().map { $0.list.map { item -> UsersCellViewModel in
             let cellViewModel =  UsersCellViewModel(item: (self.type.value,item))
             cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
-            self.type.map { $0.cellButtonNormalTitle }.bind(to: cellViewModel.buttonNormalTitle).disposed(by: self.rx.disposeBag)
-            self.type.map { $0.cellButtonSelectedTitle }.bind(to: cellViewModel.buttonSelectedTitle).disposed(by: self.rx.disposeBag)
-            
             return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)
         
