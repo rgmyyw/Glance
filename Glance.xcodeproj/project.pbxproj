@@ -209,6 +209,14 @@
 		5D4B59D02507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
 		5D4B59D12507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
 		5D4B59D22507ACA70035AB9E /* SearchHistoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */; };
+		5D5365BE2537F99400BD9C33 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */; };
+		5D5365BF2537F99400BD9C33 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */; };
+		5D5365C02537F99400BD9C33 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */; };
+		5D5365C12537F99400BD9C33 /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */; };
+		5D5365C22537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */; };
+		5D5365C32537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */; };
+		5D5365C42537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */; };
+		5D5365C52537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */; };
 		5D579B3E24B4682500CFC188 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B3D24B4682500CFC188 /* UserDetailViewController.swift */; };
 		5D579B4624B4A46B00CFC188 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D579B4424B4A46B00CFC188 /* SettingViewController.swift */; };
 		5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D579B4524B4A46B00CFC188 /* SettingViewController.xib */; };
@@ -596,10 +604,8 @@
 		5D99EDC2251843840008B45F /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
 		5D99EDC3251843840008B45F /* CountDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18824AEC2F8007A2FCD /* CountDownButton.swift */; };
 		5D99EDC4251843840008B45F /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
-		5D99EDC5251843840008B45F /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
 		5D99EDC6251843840008B45F /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5D99EDC7251843840008B45F /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
-		5D99EDC8251843840008B45F /* GetVerifiationCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */; };
 		5D99EDC9251843840008B45F /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5D99EDCA251843840008B45F /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
 		5D99EDCB251843840008B45F /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
@@ -1055,10 +1061,8 @@
 		5DCC2D9D24F34F04000AC40A /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
 		5DCC2D9E24F34F04000AC40A /* CountDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18824AEC2F8007A2FCD /* CountDownButton.swift */; };
 		5DCC2D9F24F34F04000AC40A /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
-		5DCC2DA024F34F04000AC40A /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
 		5DCC2DA124F34F04000AC40A /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5DCC2DA224F34F04000AC40A /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
-		5DCC2DA324F34F04000AC40A /* GetVerifiationCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */; };
 		5DCC2DA424F34F04000AC40A /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
 		5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
@@ -1337,10 +1341,8 @@
 		5DCC2EF524F34F2A000AC40A /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
 		5DCC2EF624F34F2A000AC40A /* CountDownButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18824AEC2F8007A2FCD /* CountDownButton.swift */; };
 		5DCC2EF724F34F2A000AC40A /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
-		5DCC2EF824F34F2A000AC40A /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
 		5DCC2EF924F34F2A000AC40A /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5DCC2EFA24F34F2A000AC40A /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
-		5DCC2EFB24F34F2A000AC40A /* GetVerifiationCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */; };
 		5DCC2EFC24F34F2A000AC40A /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
 		5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
@@ -1557,13 +1559,11 @@
 		5DEFF36124AEC2F9007A2FCD /* SplitViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */; };
 		5DEFF36224AEC2F9007A2FCD /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16E24AEC2F8007A2FCD /* Message.swift */; };
 		5DEFF36424AEC2F9007A2FCD /* SlideImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */; };
-		5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */; };
 		5DEFF36624AEC2F9007A2FCD /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */; };
 		5DEFF36724AEC2F9007A2FCD /* EmptyDataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17324AEC2F8007A2FCD /* EmptyDataView.swift */; };
 		5DEFF36824AEC2F9007A2FCD /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */; };
 		5DEFF36924AEC2F9007A2FCD /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17524AEC2F8007A2FCD /* TableView.swift */; };
 		5DEFF36A24AEC2F9007A2FCD /* ExceptionError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17624AEC2F8007A2FCD /* ExceptionError.swift */; };
-		5DEFF36B24AEC2F9007A2FCD /* GetVerifiationCodeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */; };
 		5DEFF36C24AEC2F9007A2FCD /* Switch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17924AEC2F8007A2FCD /* Switch.swift */; };
 		5DEFF36D24AEC2F9007A2FCD /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17A24AEC2F8007A2FCD /* TextField.swift */; };
 		5DEFF36E24AEC2F9007A2FCD /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */; };
@@ -1768,6 +1768,8 @@
 		5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InsightsDetailViewController.xib; sourceTree = "<group>"; };
 		5D47C7F72519ABF900B883EA /* SelectStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectStore.swift; sourceTree = "<group>"; };
 		5D4B59CF2507ACA70035AB9E /* SearchHistoryItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistoryItem.swift; sourceTree = "<group>"; };
+		5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
+		5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionCellViewModel.swift; sourceTree = "<group>"; };
 		5D579B3D24B4682500CFC188 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
 		5D579B4424B4A46B00CFC188 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		5D579B4524B4A46B00CFC188 /* SettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingViewController.xib; sourceTree = "<group>"; };
@@ -2051,13 +2053,11 @@
 		5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplitViewController.swift; sourceTree = "<group>"; };
 		5DEFF16E24AEC2F8007A2FCD /* Message.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SlideImageView.swift; sourceTree = "<group>"; };
-		5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewCell.swift; sourceTree = "<group>"; };
 		5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScrollView.swift; sourceTree = "<group>"; };
 		5DEFF17324AEC2F8007A2FCD /* EmptyDataView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyDataView.swift; sourceTree = "<group>"; };
 		5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		5DEFF17524AEC2F8007A2FCD /* TableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		5DEFF17624AEC2F8007A2FCD /* ExceptionError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExceptionError.swift; sourceTree = "<group>"; };
-		5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GetVerifiationCodeButton.swift; sourceTree = "<group>"; };
 		5DEFF17924AEC2F8007A2FCD /* Switch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Switch.swift; sourceTree = "<group>"; };
 		5DEFF17A24AEC2F8007A2FCD /* TextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
@@ -2304,6 +2304,15 @@
 				5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5D5365BB2537F99300BD9C33 /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				5D5365BC2537F99300BD9C33 /* CollectionViewCell.swift */,
+				5D5365BD2537F99300BD9C33 /* CollectionCellViewModel.swift */,
+			);
+			path = "Collection View Cells";
 			sourceTree = "<group>";
 		};
 		5D579B3C24B4680300CFC188 /* User */ = {
@@ -2934,6 +2943,8 @@
 		5DEFF16324AEC2F8007A2FCD /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				5D5365BB2537F99300BD9C33 /* Collection View Cells */,
+				5DEFF17D24AEC2F8007A2FCD /* Table View Cells */,
 				5DEFF16424AEC2F8007A2FCD /* Toolbar.swift */,
 				5DEFF16524AEC2F8007A2FCD /* Label.swift */,
 				5DEFF16624AEC2F8007A2FCD /* ViewController.swift */,
@@ -2946,19 +2957,16 @@
 				5DEFF16D24AEC2F8007A2FCD /* SplitViewController.swift */,
 				5DEFF16E24AEC2F8007A2FCD /* Message.swift */,
 				5DEFF17024AEC2F8007A2FCD /* SlideImageView.swift */,
-				5DEFF17124AEC2F8007A2FCD /* CollectionViewCell.swift */,
 				5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */,
 				5DEFF17324AEC2F8007A2FCD /* EmptyDataView.swift */,
 				5DEFF17424AEC2F8007A2FCD /* TableViewController.swift */,
 				5DEFF17524AEC2F8007A2FCD /* TableView.swift */,
 				5DEFF17624AEC2F8007A2FCD /* ExceptionError.swift */,
 				5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */,
-				5DEFF17724AEC2F8007A2FCD /* Button */,
 				5DEFF17924AEC2F8007A2FCD /* Switch.swift */,
 				5DEFF17A24AEC2F8007A2FCD /* TextField.swift */,
 				5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */,
 				5DEFF17C24AEC2F8007A2FCD /* ViewModelType.swift */,
-				5DEFF17D24AEC2F8007A2FCD /* Table View Cells */,
 				5DEFF18124AEC2F8007A2FCD /* EmptyDataView.xib */,
 				5DEFF18224AEC2F8007A2FCD /* BarButtonItem.swift */,
 				5DEFF18324AEC2F8007A2FCD /* ImageView.swift */,
@@ -2969,14 +2977,6 @@
 				5DEFF18824AEC2F8007A2FCD /* CountDownButton.swift */,
 			);
 			path = Common;
-			sourceTree = "<group>";
-		};
-		5DEFF17724AEC2F8007A2FCD /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				5DEFF17824AEC2F8007A2FCD /* GetVerifiationCodeButton.swift */,
-			);
-			path = Button;
 			sourceTree = "<group>";
 		};
 		5DEFF17D24AEC2F8007A2FCD /* Table View Cells */ = {
@@ -4157,6 +4157,7 @@
 				5D1C0A9925304E0C0082903F /* UsersType.swift in Sources */,
 				5D99ED8B251843840008B45F /* SearchResultContentViewSection.swift in Sources */,
 				5D99ED8C251843840008B45F /* Box.swift in Sources */,
+				5D5365C52537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */,
 				5D99EE57251859CA0008B45F /* PanelDefaultModalStyle.swift in Sources */,
 				5D99ED8D251843840008B45F /* SearchThemeLabelContentViewController.swift in Sources */,
 				5D99ED8E251843840008B45F /* AppDelegate.swift in Sources */,
@@ -4191,6 +4192,7 @@
 				5D99EDAE251843840008B45F /* ShoppingCartCellViewModel.swift in Sources */,
 				5D99EDAF251843840008B45F /* SearchThemeLabelHeadView.swift in Sources */,
 				5D99EDB0251843840008B45F /* SearchRecommendYouMayLikeViewController.swift in Sources */,
+				5D5365C12537F99400BD9C33 /* CollectionViewCell.swift in Sources */,
 				5D99EDB2251843840008B45F /* R.generated.swift in Sources */,
 				5D99EDB3251843840008B45F /* PickerView.swift in Sources */,
 				5D99EDB4251843840008B45F /* Version.swift in Sources */,
@@ -4213,10 +4215,8 @@
 				5D1C0A50253015C70082903F /* UserDetailRecommSection.swift in Sources */,
 				5D99EDC3251843840008B45F /* CountDownButton.swift in Sources */,
 				5D99EDC4251843840008B45F /* SavedCollectionCellViewModel.swift in Sources */,
-				5D99EDC5251843840008B45F /* CollectionViewCell.swift in Sources */,
 				5D99EDC6251843840008B45F /* InsightsDetail.swift in Sources */,
 				5D99EDC7251843840008B45F /* VisualSearchResultViewController.swift in Sources */,
-				5D99EDC8251843840008B45F /* GetVerifiationCodeButton.swift in Sources */,
 				5D99EDC9251843840008B45F /* PrivacyViewController.swift in Sources */,
 				5D99EDCA251843840008B45F /* SavedCollectionViewController.swift in Sources */,
 				5D99EDCB251843840008B45F /* NotificationCellViewModel.swift in Sources */,
@@ -4485,6 +4485,7 @@
 				5D1C0A9725304E0C0082903F /* UsersType.swift in Sources */,
 				5DFF3F1C250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5DCC2D7724F34F04000AC40A /* Box.swift in Sources */,
+				5D5365C32537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */,
 				5D99EE55251859CA0008B45F /* PanelDefaultModalStyle.swift in Sources */,
 				5DA483D5251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DCC2D7924F34F04000AC40A /* AppDelegate.swift in Sources */,
@@ -4519,6 +4520,7 @@
 				5DCC2D9024F34F04000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
 				5D3196E32514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E452508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
+				5D5365BF2537F99400BD9C33 /* CollectionViewCell.swift in Sources */,
 				5DCC2D9224F34F04000AC40A /* R.generated.swift in Sources */,
 				5DCC2D9324F34F04000AC40A /* PickerView.swift in Sources */,
 				5DCC2D9424F34F04000AC40A /* Version.swift in Sources */,
@@ -4541,10 +4543,8 @@
 				5D1C0A4E253015C60082903F /* UserDetailRecommSection.swift in Sources */,
 				5DCC2D9E24F34F04000AC40A /* CountDownButton.swift in Sources */,
 				5DCC2D9F24F34F04000AC40A /* SavedCollectionCellViewModel.swift in Sources */,
-				5DCC2DA024F34F04000AC40A /* CollectionViewCell.swift in Sources */,
 				5DCC2DA124F34F04000AC40A /* InsightsDetail.swift in Sources */,
 				5DCC2DA224F34F04000AC40A /* VisualSearchResultViewController.swift in Sources */,
-				5DCC2DA324F34F04000AC40A /* GetVerifiationCodeButton.swift in Sources */,
 				5DCC2DA424F34F04000AC40A /* PrivacyViewController.swift in Sources */,
 				5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */,
 				5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */,
@@ -4813,6 +4813,7 @@
 				5D1C0A9825304E0C0082903F /* UsersType.swift in Sources */,
 				5DFF3F1D250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5DCC2ECF24F34F2A000AC40A /* Box.swift in Sources */,
+				5D5365C42537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */,
 				5D99EE56251859CA0008B45F /* PanelDefaultModalStyle.swift in Sources */,
 				5DA483D6251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DCC2ED124F34F2A000AC40A /* AppDelegate.swift in Sources */,
@@ -4847,6 +4848,7 @@
 				5DCC2EE824F34F2A000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
 				5D3196E42514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E462508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
+				5D5365C02537F99400BD9C33 /* CollectionViewCell.swift in Sources */,
 				5DCC2EEA24F34F2A000AC40A /* R.generated.swift in Sources */,
 				5DCC2EEB24F34F2A000AC40A /* PickerView.swift in Sources */,
 				5DCC2EEC24F34F2A000AC40A /* Version.swift in Sources */,
@@ -4869,10 +4871,8 @@
 				5D1C0A4F253015C70082903F /* UserDetailRecommSection.swift in Sources */,
 				5DCC2EF624F34F2A000AC40A /* CountDownButton.swift in Sources */,
 				5DCC2EF724F34F2A000AC40A /* SavedCollectionCellViewModel.swift in Sources */,
-				5DCC2EF824F34F2A000AC40A /* CollectionViewCell.swift in Sources */,
 				5DCC2EF924F34F2A000AC40A /* InsightsDetail.swift in Sources */,
 				5DCC2EFA24F34F2A000AC40A /* VisualSearchResultViewController.swift in Sources */,
-				5DCC2EFB24F34F2A000AC40A /* GetVerifiationCodeButton.swift in Sources */,
 				5DCC2EFC24F34F2A000AC40A /* PrivacyViewController.swift in Sources */,
 				5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */,
 				5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */,
@@ -5141,6 +5141,7 @@
 				5D1C0A9625304E0C0082903F /* UsersType.swift in Sources */,
 				5DFF3F1B250F07310052ED40 /* SearchResultContentViewSection.swift in Sources */,
 				5D8D1C8324EB66C1009A7B53 /* Box.swift in Sources */,
+				5D5365C22537F99400BD9C33 /* CollectionCellViewModel.swift in Sources */,
 				5D99EE54251859CA0008B45F /* PanelDefaultModalStyle.swift in Sources */,
 				5DA483D4251316C200A80194 /* SearchThemeLabelContentViewController.swift in Sources */,
 				5DEFF37C24AEC2F9007A2FCD /* AppDelegate.swift in Sources */,
@@ -5175,6 +5176,7 @@
 				5DB1C7A224C2E3580071A0E1 /* ShoppingCartCellViewModel.swift in Sources */,
 				5D3196E22514499200C4D6BE /* SearchThemeLabelHeadView.swift in Sources */,
 				5D2D0E442508701200E9FD8D /* SearchRecommendYouMayLikeViewController.swift in Sources */,
+				5D5365BE2537F99400BD9C33 /* CollectionViewCell.swift in Sources */,
 				5DEFF50024AED2C4007A2FCD /* R.generated.swift in Sources */,
 				5DEFF35C24AEC2F9007A2FCD /* PickerView.swift in Sources */,
 				5DEFF32B24AEC2F9007A2FCD /* Version.swift in Sources */,
@@ -5197,10 +5199,8 @@
 				5D1C0A4D253015C30082903F /* UserDetailRecommSection.swift in Sources */,
 				5DEFF37A24AEC2F9007A2FCD /* CountDownButton.swift in Sources */,
 				5D5B018924C5888500832F05 /* SavedCollectionCellViewModel.swift in Sources */,
-				5DEFF36524AEC2F9007A2FCD /* CollectionViewCell.swift in Sources */,
 				5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */,
 				5D3B316024D2A0280039D1B9 /* VisualSearchResultViewController.swift in Sources */,
-				5DEFF36B24AEC2F9007A2FCD /* GetVerifiationCodeButton.swift in Sources */,
 				5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */,
 				5D5B018124C5851C00832F05 /* SavedCollectionViewController.swift in Sources */,
 				5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */,
@@ -5306,10 +5306,10 @@
 			baseConfigurationReference = 2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 30;
-				DEVELOPMENT_TEAM = F345KXCVNH;
+				DEVELOPMENT_TEAM = DH49J443V3;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -5317,9 +5317,9 @@
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p";
+				PRODUCT_BUNDLE_IDENTIFIER = com.beliasdasd.asdasdkh123;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Glance_prerelease_developement;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

@@ -117,11 +117,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
         
         
         
-        currentBox.filter { $0 != .zero }.flatMap { box -> Observable<Box> in
-            selected.value.contains(where: { $0.box == box}) ?
-                Observable.just(box) : Observable.just(box)
-                    .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-        }.flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<(Bool,Box ,VisualSearchPageMapable, VisualSearchPageMapable)>)> in
+        currentBox.filter { $0 != .zero }.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance).flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<(Bool,Box ,VisualSearchPageMapable, VisualSearchPageMapable)>)> in
             guard let self = self , let element = self.element.value else {
                 return Observable.just(.error(ExceptionError.unknown))
             }

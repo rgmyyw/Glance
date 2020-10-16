@@ -84,6 +84,18 @@
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rRO-6Y-x0L">
                                         <rect key="frame" x="0.0" y="32" width="221" height="200"/>
                                         <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dmE-ke-cWr">
+                                                <rect key="frame" x="0.0" y="0.0" width="221" height="200"/>
+                                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="200" id="2GS-7I-DQi"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmo-NI-MUZ">
+                                                <rect key="frame" x="6" y="172" width="22" height="22"/>
+                                                <state key="normal" image="icon_button_recommend_black_normal"/>
+                                                <state key="selected" image="icon_button_recommend_selected"/>
+                                            </button>
                                             <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bAU-WX-rVJ">
                                                 <rect key="frame" x="0.0" y="0.0" width="221" height="200"/>
                                                 <subviews>
@@ -168,18 +180,6 @@
                                                     <constraint firstAttribute="trailing" secondItem="aOm-hP-VjD" secondAttribute="trailing" constant="20" id="xYe-f6-FVO"/>
                                                 </constraints>
                                             </view>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cmo-NI-MUZ">
-                                                <rect key="frame" x="6" y="172" width="22" height="22"/>
-                                                <state key="normal" image="icon_button_recommend_black_normal"/>
-                                                <state key="selected" image="icon_button_recommend_selected"/>
-                                            </button>
-                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dmE-ke-cWr">
-                                                <rect key="frame" x="0.0" y="0.0" width="221" height="200"/>
-                                                <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="200" id="2GS-7I-DQi"/>
-                                                </constraints>
-                                            </imageView>
                                             <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EWu-DY-gSv">
                                                 <rect key="frame" x="185.33333333333334" y="0.0" width="35.666666666666657" height="35.666666666666664"/>
                                                 <state key="normal" image="icon_cell_triangle_red"/>

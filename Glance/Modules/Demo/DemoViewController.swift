@@ -11,8 +11,7 @@ import PopupDialog
 import FloatingPanel
 
 class DemoViewController: ViewController , FloatingPanelControllerDelegate {
-    
-    
+
     
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
@@ -20,6 +19,7 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         guard let provider = self.viewModel?.provider else {
             return
         }
+        
         
         //
 
