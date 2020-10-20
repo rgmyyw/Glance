@@ -19,12 +19,15 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         guard let provider = self.viewModel?.provider else {
             return
         }
-        
+                
+        let viewModel = VisualSearchViewModel(provider: provider, image: UIImage(named: "timg.jpeg")!)
+        self.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+
         
         //
 
-        let viewModel = SelectStoreViewModel(provider: provider, productId: "")
-        self.navigator.show(segue: .selectStore(viewModel: viewModel), sender: self,transition: .panel(style: .default))
+//        let viewModel = SelectStoreViewModel(provider: provider, productId: "")
+//        self.navigator.show(segue: .selectStore(viewModel: viewModel), sender: self,transition: .panel(style: .default))
 
         
 //        let viewModel = PostsDetailViewModel(provider: self.viewModel!.provider, item: DefaultColltionItem())

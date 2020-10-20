@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class VisualSearchResultViewModel: ViewModel, ViewModelType {
     
     struct Input {
+        let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let selection : Observable<VisualSearchResultSectionItem>
         let search : Observable<Void>
@@ -30,126 +30,79 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     private let element : BehaviorRelay<VisualSearchPageMapable?> = BehaviorRelay(value: nil)
     
     let imageURI = BehaviorRelay<String?>(value: nil)
-    let currentBox : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
-    let selected : BehaviorRelay<[(box : Box, item : DefaultColltionItem)]> = BehaviorRelay(value: [])
-    let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: false)
+    let current : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
+    let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     let searchSelection = PublishSubject<(box : Box, item : DefaultColltionItem)>()
-    let updateBox = PublishSubject<[(Bool,Box)]>()
-    
-    
+    let dots = BehaviorRelay<[VisualSearchDot]>(value: [])
     
     init(provider: API, image : UIImage) {
         self.image = BehaviorRelay(value: image)
         super.init(provider: provider)
     }
     
-    
     func transform(input: Input) -> Output {
-        
+
+        let imageId : BehaviorRelay<String?> = BehaviorRelay(value: nil)
         let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
-        let selected = BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>(value:[])
-        let search = input.search.map { (box : self.currentBox.value ,image : self.image.value ) }
-        selected.map { $0.isEmpty }.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
-        selected.bind(to: self.selected).disposed(by: rx.disposeBag)
+        let search = input.search.map { (box : self.current.value ,image : self.image.value ) }
         
+        dots.map { $0.compactMap { $0.selected }}.map { $0.isEmpty}.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
         
-        func makeBoxAction() -> [(Bool,Box)] {
-            guard let boxes = self.element.value?.boxProducts else { return [] }
-            return boxes.compactMap { item -> (Bool, Box)? in
-                guard let box = item.box else { return nil }
-                if item.system {
-                    //print("当前是系统 box :\(box)")
-                    if selected.value.contains(where: { $0.box == box } ) {
-                        //print("并且包含在选中的数组中")
-                        return (true, box)
-                    } else {
-                        //print("并且没有在选中的数组中")
-                        return (false, box)
-                    }
-                } else {
-                    //print("当前不是系统 box :\(box)")
-                    if selected.value.contains(where: { $0.box == box }) {
-                        //print("并且包含在选中的数组中")
-                        return (true, box)
-                    } else {
-                        //print("并且没有在选中的数组中，移出当前...")
-                        return nil
-                    }
-                }
-            }
-            
-        }
-        
-        
-        element.filterNil().mapToVoid().map { makeBoxAction() }.bind(to: updateBox).disposed(by: rx.disposeBag)
-        
-        imageURI.filterNil().delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
-            .flatMapLatest({ [weak self] (uri) -> Observable<(RxSwift.Event<VisualSearchPageMapable>)> in
-                guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
-                }
-                elements.accept([])
-                self.page = 1
-                var param = [String : Any]()
-                param["page"] = self.page
-                param["limit"] = 10
-                param["imUri"] = uri
-                return self.provider.visualSearch(params: param)
-                    .trackError(self.error)
-                    .trackActivity(self.loading)
-                    .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
-                switch event {
-                case .next(let item):
-                    var item = item
-                    item.boxProducts = item.boxProducts
-                        .map { item -> BoxProducts in
-                            var item = item
-                            item.system = true
-                            return item
-                    }
-                    self.element.accept(item)
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
-        
-        
-        
-        currentBox.filter { $0 != .zero }.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance).flatMapLatest({ [weak self] (box) -> Observable<(RxSwift.Event<(Bool,Box ,VisualSearchPageMapable, VisualSearchPageMapable)>)> in
-            guard let self = self , let element = self.element.value else {
-                return Observable.just(.error(ExceptionError.unknown))
-            }
-            if let index = element.boxes.firstIndex(where: { $0 == box })   {
-                let item = VisualSearchPageMapable(boxProduct: element.boxProducts[index])
-                let event = RxSwift.Event.next((true,box, element, item))
-                return Observable.just(event)
-            }
-            
-            self.page = 1
+        imageURI.filterNil().flatMapLatest({ [weak self] (uri) -> Observable<(RxSwift.Event<VisualSearchPageMapable>)> in
+            guard let self = self else { return .error(ExceptionError.unknown) }
             var param = [String : Any]()
-            param["page"] = self.page
-            param["limit"] = 10
-            param["imId"] = element.imId ?? ""
-            param["box"] = box.toIntArray()
+            param["page"] = 1
+            param["limit"] = 1
+            param["imUri"] = uri
             return self.provider.visualSearch(params: param)
                 .trackError(self.error)
-                .map { (false,box, element, $0)}
+                .trackActivity(self.loading)
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
             guard let self = self else { return }
             switch event {
-            case .next(let (exists , _, element, result)):
-                guard !exists  else {
-                    self.element.accept(element)
-                    self.refreshState.onNext(element.boxProducts[0].refreshState)
-                    return
-                }
-                var element = element
-                element.boxProducts.append(result.boxProducts[0])
-                self.element.accept(element)
-                self.refreshState.onNext(result.boxProducts[0].refreshState)
+            case .next(let item):
+                imageId.accept(item.imId)
+                let items = item.boxes.map { VisualSearchDot(box: $0,image: self.image.value)}
+                items.first?.current = items.first?.box
+                self.dots.accept(items)
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        let refresh = current.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)//.merge(with: input.headerRefresh.map { self.current.value})
+                        
+        Observable.combineLatest(refresh, imageId.filterNil())
+            .flatMapLatest({ [weak self] (box, imageId) -> Observable<(Event<VisualSearchPageMapable>)> in
+            guard let self = self  else {
+                return Observable.just(.error(ExceptionError.unknown))
+            }
+            guard box != .zero else {
+                return .error(ExceptionError.general("box is zero"))
+            }
+            guard self.element.value?.boxProducts.first?.box != box  else {
+                return Observable.just(.error(ExceptionError.general("Repeat operation")))
+            }
+            elements.accept([])
+            self.refreshState.onNext(.begin)
+            self.page = 1
+            var param = [String : Any]()
+            param["page"] = self.page
+            param["limit"] = 10
+            param["box"] = box.intArray
+            param["imId"] = imageId
+            return self.provider.visualSearch(params: param)
+                .trackActivity(self.headerLoading)
+                .trackError(self.error)
+                .materialize()
+        }).subscribe(onNext: { [weak self] event in
+            guard let self = self else { return }
+            switch event {
+            case .next(let item):
+                elements.accept([])
+                self.element.accept(item)
+                self.refreshState.onNext(item.boxProducts[0].refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
@@ -157,42 +110,36 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
-
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
-        
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<(Int, VisualSearchPageMapable)>> in
+                        
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<Event<VisualSearchPageMapable>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
-            
-            guard let index = self.element.value?.boxes.firstIndex(where: { $0 == self.currentBox.value }) else {
-                return Observable.just(.error(ExceptionError.unknown))
-            }
-
             self.page += 1
+            let box = self.current.value.intArray
             var param = [String : Any]()
             param["page"] = self.page
             param["limit"] = 10
-            param["imId"] = self.element.value?.imId ?? ""
-            
+            param["box"] = box
+            param["imId"] = imageId.value
             return self.provider.visualSearch(params: param)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
-                .map { (index,$0)}
                 .materialize()
         }).subscribe(onNext: { [weak self](event) in
             guard let self = self else { return }
             switch event {
-            case .next(let (index, item)):
-                var element = self.element.value
-                element?.boxProducts[index].productList.append(contentsOf: item.boxProducts[0].productList)
-                self.element.accept(element)
+            case .next(let item):
+                var temp = self.element.value
+                let items = (temp?.boxProducts[0].productList ?? []) + item.boxProducts[0].productList
+                temp?.boxProducts[0].productList = items
+                self.element.accept(temp)
                 self.refreshState.onNext(item.boxProducts[0].refreshState)
+                                
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
                 switch error  {
@@ -205,7 +152,6 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
         
         NotificationCenter.default.rx
             .notification(.kAddProduct)
@@ -221,46 +167,29 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 } else {
                     print("not found box")
                 }
-        }).disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         
         
-        element.map { $0?.boxes }.map { $0?.firstIndex { $0 == self.currentBox.value } }.filterNil().map { (boxIndex) -> [VisualSearchResultSection] in
-            
-            guard let boxProducts = self.element.value?.boxProducts , boxIndex < boxProducts.count  else { return [] }
-            
-            let element = boxProducts[boxIndex]
-            let box = element.box
-            var items = element.productList
-            
-            /// 如果当前已选中的数组中 包含当前的box, 进行更新选中状态
-            let exist = selected.value.map { $0.box }.contains(where:  { $0 == box})
+        
+        element.filterNil().map { (element) -> [VisualSearchResultSection] in
+            guard var items = element.boxProducts.first?.productList else { return [] }
             
             /// 过滤已经选中的商品
-            var x = selected.value
-            x.removeAll(where: { $0.box == box})
-            items.removeAll(where: { x.map { $0.item.productId }.contains($0.productId)})
-            
-            
-            let sectionId = box?.string ?? ""
+            /// 除了当前点，选中的商品，全部剔除
+            let dots = self.dots.value
+            let current = self.current.value
+            let selected = dots.filter { $0.box == current }.first?.selected
+            let other = dots.filter { $0.box != current }.compactMap { $0.selected }
+            items.removeAll(where: { other.map { $0.productId }.contains($0.productId)})
             
             /// 生成cell
             let sectionItems = items.enumerated().map { (offset, item) -> VisualSearchResultSectionItem  in
                 let viewModel = VisualSearchResultCellViewModel(item: item)
-                let item = VisualSearchResultSectionItem(item: "\(sectionId)-\(offset)-\((item.productId ?? offset.string))", viewModel: viewModel)
-                return item
+                let sectionItem = VisualSearchResultSectionItem(item: item.productId ?? "", viewModel: viewModel)
+                viewModel.selected.accept(item == selected)
+                return sectionItem
             }
-            
-            /// 存在的, 取出对应的box , 更新选中状态
-            if exist , let index = selected.value.firstIndex(where: { $0.box == box}){
-                for current in sectionItems {
-                    if current.viewModel.item == selected.value[index].item {
-                        current.viewModel.selected.accept(true)
-                        break
-                    }
-                }
-            }
-            
-            return [VisualSearchResultSection(section: sectionId, elements: sectionItems)]
+            return [VisualSearchResultSection(section: current.string, elements: sectionItems)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         searchSelection.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
@@ -275,39 +204,28 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 element?.boxProducts[boxIndex] = item
                 elements.accept([])
                 self.element.accept(element)
-            
-        }).disposed(by: rx.disposeBag)
+                
+            }).disposed(by: rx.disposeBag)
         
-  
         
         input.selection.subscribe(onNext: { [weak self] selection in
             guard let self = self else { return }
-            guard let boxes = self.element.value?.boxProducts else { return  }
-            guard let boxIndex = boxes.firstIndex(where: { $0.box == self.currentBox.value}) , let box = boxes[boxIndex].box else { return }
+            let current = self.current.value
+            let viewModels = elements.value.map { $0.items }.flatMap { $0 }.map { $0.viewModel }
+            let selected = !selection.viewModel.selected.value
+            let item = selection.viewModel.item
+            var dots = self.dots.value
             
-            let items = elements.value.map { $0.items }.flatMap { $0 }
-            let viewModels = items.map { $0.viewModel }
-            
-            if selection.viewModel.selected.value ,let index = selected.value.firstIndex(where: { $0.box == box } )  {
-                
-                selection.viewModel.selected.accept(false)
-                var values = selected.value
-                values.remove(at: index)
-                selected.accept(values)
-                
-            } else {
-                
-                viewModels.forEach { $0.selected.accept(false)}
-                selection.viewModel.selected.accept(true)
-                var values = selected.value
-                if let index = selected.value.firstIndex(where: { $0.box == box } ) {
-                    values.remove(at: index)
-                }
-                selected.accept(values + [(box, selection.viewModel.item)])
+            viewModels.forEach { $0.selected.accept(false)}
+            selection.viewModel.selected.accept(selected)
+            var dot = self.dots.value.filter { $0.box == current }.first
+            if dot == nil {
+                dot = VisualSearchDot(box: current, image: self.image.value)
+                dot?.current = current
+                dots.append(dot!)
             }
-            
-            self.updateBox.onNext(makeBoxAction())
-            
+            dot?.selected = selected ? item : nil
+            self.dots.accept(dots)
         }).disposed(by: rx.disposeBag)
         
         

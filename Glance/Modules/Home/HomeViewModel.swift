@@ -39,7 +39,7 @@ class HomeViewModel: ViewModel, ViewModelType {
         let footerRefresh: Observable<Void>
         let selection : Observable<DefaultColltionSectionItem>
         let search : Observable<Void>
-        
+        let camera : Observable<Void>
     }
     
     struct Output {
@@ -48,11 +48,11 @@ class HomeViewModel: ViewModel, ViewModelType {
         let detail : Driver<DefaultColltionItem>
         let userDetail : Driver<User>
         let search : Observable<Void>
+        let imagePicker : Driver<Void>
+        
     }
     
     let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
-    
-    
     let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
     
     func transform(input: Input) -> Output {
@@ -266,6 +266,6 @@ class HomeViewModel: ViewModel, ViewModelType {
                       reaction: reaction.asObservable(),
                       detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
                       userDetail: userDetail.filterNil().asDriver(onErrorJustReturn: User()),
-                      search: input.search)
+                      search: input.search, imagePicker: input.camera.asDriverOnErrorJustComplete())
     }
 }

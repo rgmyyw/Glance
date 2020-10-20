@@ -24,15 +24,15 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let complete : Driver<Void>
     }
     
-    let items : BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>
+    let element : BehaviorRelay<[VisualSearchDot]>
     
-    let currentImage : BehaviorRelay<UIImage?>
-    let edit = PublishSubject<(box : Box, item : DefaultColltionItem )>()
+    let image : BehaviorRelay<UIImage?>
+    let edit = PublishSubject<VisualSearchDot>()
     
     
-    init(provider: API, image : UIImage?, taggedItems : [(Box,DefaultColltionItem)] ) {
-        self.currentImage = BehaviorRelay(value: image)
-        self.items = BehaviorRelay(value: taggedItems)
+    init(provider: API, image : UIImage?, taggedItems : [VisualSearchDot] ) {
+        self.image = BehaviorRelay(value: image)
+        self.element = BehaviorRelay(value: taggedItems)
         super.init(provider: provider)
     }
     
@@ -45,12 +45,10 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let commit = PublishSubject<[String : Any]>()
         let detail = PublishSubject<String>()
         let tagAction = PublishSubject<(PostProductSectionItem , PostProductTagStyle.PostProductTagStyleAction)>()
-        let navigationImage = currentImage.asDriver(onErrorJustReturn: nil)
+        let navigationImage = image.asDriver(onErrorJustReturn: nil)
         let complete = PublishSubject<Void>()
-        
-        
-        
-        Observable.just(()).map { () ->  [PostProductSection] in
+                
+        element.map { (items) ->  [PostProductSection] in
             
             let viewModel = PostProductSectionCellViewModel(item: ())
             viewModel.addTag.bind(to: addTag).disposed(by: self.rx.disposeBag)
@@ -73,7 +71,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
 //                return item
 //            }
             
-            let taggedItem = self.items.value.enumerated().map { (offset, item) ->  PostProductSectionItem in
+            let taggedItem = items.enumerated().map { (offset, item) ->  PostProductSectionItem in
                 let viewModel = PostProductCellViewModel(item: item)
                 viewModel.edit.map { viewModel.item }.bind(to: self.edit).disposed(by: self.rx.disposeBag)
                 let item = PostProductSectionItem.product(identity: "section3-item\(offset)", viewModel: viewModel)
@@ -163,7 +161,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
                 
-        Observable.combineLatest(input.commit, currentImage.filterNil())
+        Observable.combineLatest(input.commit, image.filterNil())
             .subscribe(onNext: { [weak self] (_, image) in
                 self?.endEditing.onNext(())
                 let viewModel = elements.value.first?.viewModel
@@ -191,7 +189,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
                     return
                 }
                 
-                let productIds = tagged.compactMap { $0.item.item.productId }.joined(separator: ",")
+                let productIds = tagged.compactMap { $0.item.selected?.productId }.joined(separator: ",")
                 //let tags = (custom + system).compactMap { $0.item }.joined(separator: ",")
                 var param = [String : Any]()
                 param["title"] = caption
@@ -203,7 +201,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        items.filter {_ in elements.value.isNotEmpty }
+        element.filter { _ in elements.value.isNotEmpty }
             .map { items -> [PostProductSectionItem] in
                 return items.enumerated().map { (offset, model) ->  PostProductSectionItem in
                     let viewModel = PostProductCellViewModel(item: model)

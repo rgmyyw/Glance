@@ -19,7 +19,7 @@ class Demo2ViewController: UIViewController ,FloatingPanelControllerDelegate  {
 
     @IBAction func close() {
            dismiss(animated: true, completion: nil)
-       }
+    }
        
     deinit {
         print(self)

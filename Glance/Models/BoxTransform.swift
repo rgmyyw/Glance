@@ -21,7 +21,7 @@ class BoxTransform: TransformType {
     
     func transformToJSON(_ value: Box?) -> [Int]? {
         if let i = value {
-            return i.toIntArray()
+            return i.intArray
         }
         return nil
 

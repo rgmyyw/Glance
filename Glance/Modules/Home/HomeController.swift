@@ -41,10 +41,19 @@ class HomeController: CollectionViewController {
         
         guard let viewModel = viewModel as? HomeViewModel else { return }
         
+        
+        
+        
         let refresh = Observable<Void>.merge( headerRefreshTrigger,NotificationCenter.default.rx.notification(.kUpdateHomeData).mapToVoid())
+        let selection = collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable()
+        let search = customNavigationBar.searchView.rx.tap()
+        let camera = customNavigationBar.cameraButton.rx.tap.asObservable()
+
         let input = HomeViewModel.Input(headerRefresh: refresh,
                                         footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                        selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable(), search: customNavigationBar.searchView.rx.tap())
+                                        selection: selection,
+                                        search: search,
+                                        camera: camera)
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
@@ -72,6 +81,18 @@ class HomeController: CollectionViewController {
             }
         }).disposed(by: rx.disposeBag)
         
+        output.imagePicker.drive(onNext: { [weak self]() in
+            ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
+                config.maxSelectCount = 1
+                config.editAfterSelectThumbnailImage = true
+                config.saveNewImageAfterEdit = false
+            }) { [weak self] (images, assets, isOriginal) in
+                guard let image = images?.first else { return }
+                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+            }
+        }).disposed(by: rx.disposeBag)
+
 
         customNavigationBar.shoppingCartButton
             .rx.tap.subscribe(onNext: { [weak self]() in

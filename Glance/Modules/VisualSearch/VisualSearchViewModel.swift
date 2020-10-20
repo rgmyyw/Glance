@@ -19,23 +19,21 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     }
     struct Output {
         let imageURI : Driver<String>
-        let currentBox : Driver<Box>
-        let post : Observable<(image : UIImage, items : [(box : Box, item : DefaultColltionItem)])>
-        let updateBox : Observable<[(Bool,Box)]>
-        let selectionBox : Observable<Box>
+        let current : Driver<Box>
+        let post : Observable<(image : UIImage, items : [VisualSearchDot])>
+        let dots : Driver<[VisualSearchDot]>
+        let selection : Driver<VisualSearchDot>
     }
     
     let image : BehaviorRelay<UIImage>
-    
-    let selected = BehaviorRelay<[(box : Box, item : DefaultColltionItem)]>(value: [])
-    let boxes = PublishSubject<[Box]>()
-    let updateBox = PublishSubject<[(Bool,Box)]>()
-    let selectionBox = PublishSubject<(box : Box, item : DefaultColltionItem)>()
+    let selection = PublishSubject<VisualSearchDot>()
+    let dots = BehaviorRelay<[VisualSearchDot]>(value:[])
     
     
     init(provider: API, image : UIImage) {
         self.image = BehaviorRelay(value: image)
         super.init(provider: provider)
+        
     }
     
     
@@ -43,13 +41,18 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
         let imageURI = PublishSubject<String>()
         let currentBox = PublishSubject<Box>()
-        let post = input.commit.map { (image : self.image.value, items : self.selected.value)}
-
+        let post = input.commit.map { () -> (image : UIImage, items : [VisualSearchDot]) in
+            let image = self.image.value
+            let items = self.dots.value.filter { $0.selected != nil}
+            return (image : image, items : items)
+        }
         
         image.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in
-                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-                guard let data = image.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
+                guard let self = self else { return .error(ExceptionError.unknown) }
+                guard let data = image.jpegData(compressionQuality: 0.1) else {
+                    return  .error(ExceptionError.general("image compression error"))
+                }
                 return self.provider.uploadImage(type: UploadImageType.visualSearch.rawValue, size: image.size, data: data)
                     .trackActivity(self.loading)
                     .trackError(self.error)
@@ -59,18 +62,22 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
                 case .next(let (url)):
                     imageURI.onNext(url)
                     input.currentBox.bind(to: currentBox).disposed(by: self.rx.disposeBag)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error {
+                    default:
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
             }).disposed(by: rx.disposeBag)
         
         
-        
-        
         return Output(imageURI: imageURI.asDriver(onErrorJustReturn: ""),
-                      currentBox: currentBox.asDriver(onErrorJustReturn: .zero),
+                      current: currentBox.asDriver(onErrorJustReturn: .zero),
                       post: post,
-                      updateBox: updateBox.asObservable(),
-                      selectionBox: selectionBox.map { $0.box}.asObservable())
+                      dots: dots.asDriver(onErrorJustReturn: []),
+                      selection: selection.asDriverOnErrorJustComplete())
     }
 }

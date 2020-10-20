@@ -15,8 +15,6 @@ class VisualSearchCropView: UIView {
     fileprivate var dragging: Bool = false
     fileprivate var initialRect: CGRect = .zero
     
-    
-    private(set) public var originSize : CGSize = .zero
     private lazy var ltView : VisualSearchClippingCircle = makeClippingCircleView(with: 0)
     private lazy var lbView : VisualSearchClippingCircle = makeClippingCircleView(with: 1)
     private lazy var rtView : VisualSearchClippingCircle = makeClippingCircleView(with: 2)
@@ -24,19 +22,19 @@ class VisualSearchCropView: UIView {
     
     private var clippingRect : CGRect = .zero
     private var isInitialize : Bool = false
-    private let imageViewInset : CGFloat = 10
-    private var selectedBox : UIButton?
-    
+    private let imageViewInset : CGFloat = 20
+    private let topInset = UIApplication.shared.statusBarFrame.height
     
     public let current = BehaviorRelay<Box>(value: .zero)
-    public let boxes = BehaviorRelay<[(box : Box,  view : UIButton)]>(value: [])
+    public let elements = BehaviorRelay<[VisualSearchDotButton]>(value: [])
     
+    private(set) public var originSize : CGSize = .zero
     public var image : UIImage? {
         set {
-            originSize = newValue?.size ?? .zero
-            imageView.image = newValue
+            guard let image = newValue else { return }
+            originSize = image.size
+            imageView.image = image
             isInitialize = true
-            
             setNeedsLayout()
             sendSubviewToBack(imageView)
         }
@@ -55,7 +53,6 @@ class VisualSearchCropView: UIView {
         view.addGestureRecognizer(pan)
         return view
     }()
-    
     
     private lazy var gridLayer : VisualSearchGridLayar = {
         let gridLayer = VisualSearchGridLayar()
@@ -80,7 +77,7 @@ class VisualSearchCropView: UIView {
         
         updateImageViewFrame()
         
-        let rect = CGRect(x: imageViewInset, y: UIApplication.shared.statusBarFrame.height, width: imageView.bounds.width - imageViewInset * 2, height: imageView.bounds.height - UIApplication.shared.statusBarFrame.height - imageViewInset)
+        let rect = CGRect(x: imageViewInset, y: topInset, width: imageView.bounds.width - imageViewInset * 2, height: imageView.bounds.height - topInset - imageViewInset)
         gridLayer.frame = imageView.bounds
         updateGridView(rect: rect, animated: true)
         
@@ -111,92 +108,67 @@ class VisualSearchCropView: UIView {
     
     }
     
-    public func selectionBox(box : Box) {
-        
-        if let index = boxes.value.firstIndex(where: { $0.box == box}) {
-            let item = boxes.value[index]
-            if item.box != current.value {
-                let rect = item.box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
-                animate(view: item.view, rect: rect)
+    public func selection(dot : VisualSearchDot) {
+        if let index = elements.value.firstIndex(where: { $0.dot.box == dot.box}) {
+            let item = elements.value[index]
+            if item.dot.box != current.value {
+                let rect = item.dot.box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
+                updateGridView(rect: rect, animated: true)
             }
         }
     }
     
-    fileprivate func animate(view : UIButton, rect : CGRect) {
-        UIView.animate(withDuration: 0.25, animations: {
-            self.selectedBox?.alpha = 1
-            view.alpha = 0
-            self.selectedBox = view
-        }) { (_) in
-            self.updateGridView(rect: rect, animated: true)
-        }
-    }
+    public func updateDots(dots : [VisualSearchDot])  {
 
-
-    public func updateBox(actions : [(Bool, Box)])  {
-        
-        print(actions)
-        
-        actions.enumerated().map { ($0,$1.0,$1.1)}.forEach { (tag,state, box) in
-            
-            let rect = box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
-            if let index = self.boxes.value.firstIndex(where: { $0.box == box }) {
+        dots.forEach { (dot) in
+            var element = elements.value.filter { $0.dot.box == dot.box }.first
+            if element == nil {
+                print("---------------------------------")
+                let rect = dot.box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
+                print("begin create dot")
+                print("current px: \(dot.box.string)")
+                print("px -> pt: \(rect.debugDescription)")
+                print("pt -> px: \(Box.init(rect: rect).transformPx(originSize: originSize, referenceSize: imageView.size).string)")
                 
-                print("当前已存在box: \(box) index of : \(index)")
-                boxes.value[index].view.isSelected = state
-                
-                if current.value == box  {
-                    print("当前box 为选中状态: \(state) 透明度改成0 ")
-                    boxes.value[index].view.alpha = 0
-                } else {
-                    print("当前box 不是选中状态: \(state) 透明度改成1 ")
-                    boxes.value[index].view.alpha = 1
+                element = VisualSearchDotButton(center: rect.center, dot: dot)
+                element?.rx.tap.subscribe({ [weak self] _ in
+                    self?.updateGridView(rect: rect, animated: true)
+                }).disposed(by: rx.disposeBag)
+                current.subscribe(onNext: { (box) in
+                    element?.dot.current = box
+                }).disposed(by: rx.disposeBag)
+                imageView.addSubview(element!)
+                elements.accept(elements.value + [element!])
+                if imageView.subviews.count == 1 {
+                    updateGridView(rect: rect, animated: true)
                 }
-                return
+                print("end create dot")
+                print("---------------------------------")
             }
             
-            
-            print("不存在box: \(box) 开始创建....")
-            let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: 21, height: 21)))
-            button.setBackgroundImage(UIImage(color: .white), for: .normal)
-            button.setBackgroundImage(UIImage(color: UIColor.primary()), for: .selected)
-            button.center = rect.center
-            button.adjustsImageWhenDisabled = false
-            button.adjustsImageWhenHighlighted = false
-            button.layer.cornerRadius = button.height / 2
-            button.layer.masksToBounds = true
-            button.tag = tag
-            button.rx.tap.subscribe({ [weak self] _ in
-                self?.animate(view: button, rect: rect)
-            }).disposed(by: rx.disposeBag)
-            
-            // 默认选中第一个
-            if tag == 0 , imageView.subviews.isEmpty {
-                animate(view: button, rect: rect)
-            }
-            
-            // 是当前 && 非系统的，默认先透明度为0
-            if current.value == box {
-                button.alpha = 0
-            }
+            print("---------------------------------")
+            //element?.view.isSelected = dot.state == .selected
+            print("default : \(dot.box.default)")
+            print("current state : \(dot.state.value)")
+            print("current box : \(dot.box.string)")
+            print("selected box: \(dot.current?.string ?? "")")
+            print("is current : \(dot.box == dot.current)")
+            print("selected product: \(dot.selected?.productId ?? "")")
+            print("---------------------------------")
+        }
 
-            
-            imageView.addSubview(button)
-            boxes.accept(boxes.value + [(box, button)])
-        }
-        
-        // 剔除已经不存在的点...
-        var value = boxes.value
-        value.removeAll { (box, view) -> Bool in
-            let contains = actions.contains(where: { $0.1 == box})
-            if !contains {
-                view.removeFromSuperview()
-                return true
-            } else {
-                return false
-            }
-        }
-        boxes.accept(value)
+//        // 剔除已经不存在的点...
+//        var value = self.dots.value
+//        value.removeAll { (box, view) -> Bool in
+//            let contains = actions.contains(where: { $0.1 == box})
+//            if !contains {
+//                view.removeFromSuperview()
+//                return true
+//            } else {
+//                return false
+//            }
+//        }
+//        boxes.accept(value)
     }
     
     
@@ -208,7 +180,7 @@ extension VisualSearchCropView {
         
         guard image != nil else { return }
         var w = UIScreen.main.bounds.width
-        let maxH : CGFloat = bounds.height //- UIApplication.shared.statusBarFrame.height
+        let maxH : CGFloat = bounds.height 
         let maxW : CGFloat = bounds.width
         
         let imageWidth = originSize.width
@@ -246,7 +218,7 @@ extension VisualSearchCropView {
         if rect.origin.x < minX {
             rect.origin.x = minX
         }
-        let minY : CGFloat = UIApplication.shared.statusBarFrame.height
+        let minY : CGFloat = topInset
         if rect.origin.y < minY {
             rect.origin.y = minY
         }
@@ -299,13 +271,11 @@ extension VisualSearchCropView {
         rbView.frame.origin = rb
         
         if animated {
-            
             let animation = CABasicAnimation(keyPath: "clippingRect")
             animation.duration = 0.25;
             animation.fromValue = NSValue(cgRect: .zero)
             animation.toValue = NSValue(cgRect: rect)
             gridLayer.add(animation, forKey: nil)
-            
         }
         
         UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
@@ -358,11 +328,7 @@ extension VisualSearchCropView {
     }
     
     @objc func panGridView(_ sender: UIPanGestureRecognizer) {
-        
-        UIView.animate(withDuration: 0.25) {
-            self.selectedBox?.alpha = 1
-        }
-        
+ 
         if sender.state == .began {
             let point :  CGPoint = sender.location(in: imageView)
             dragging = clippingRect.contains(point)
@@ -388,10 +354,6 @@ extension VisualSearchCropView {
     // MARK: - 拖动
     @objc func panCircleView(_ sender: UIPanGestureRecognizer) {
         
-        UIView.animate(withDuration: 0.25) {
-            self.selectedBox?.alpha = 1
-        }
-        
         let tag = sender.view?.tag ?? -1
         var point: CGPoint = sender.location(in: imageView)
         let dp: CGPoint = sender.translation(in: imageView)
@@ -409,7 +371,6 @@ extension VisualSearchCropView {
         
         switch tag {
         case 0:
-            
             // upper left
             maxX = CGFloat.maximum((rct.origin.x + rct.size.width) - 0.1 * W, 0.1 * W)
             maxY = CGFloat.maximum((rct.origin.y + rct.size.height) - 0.1 * H, 0.1 * H)

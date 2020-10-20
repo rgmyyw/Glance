@@ -22,6 +22,7 @@ class VisualSearchResultViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
         
+        viewDidLoadBeginRefresh = false
             
         // titleLabel
         let navigationTitleLabel = UILabel()
@@ -57,9 +58,7 @@ class VisualSearchResultViewController: CollectionViewController  {
             make.left.equalTo(20)
             make.top.equalTo(20)
         }
-        
-        
-        
+                
         let layout = ZLCollectionViewVerticalLayout()
         layout.columnCount = 2
         layout.delegate = self
@@ -68,9 +67,10 @@ class VisualSearchResultViewController: CollectionViewController  {
         
         
         collectionView.collectionViewLayout = layout
+        //collectionView.mj_header?.isUserInteractionEnabled = false
         collectionView.register(nibWithCellClass: VisualSearchResultCell.self)
         exceptionToastPosition = .center
-        refreshComponent.accept(.footer)
+        
     }
     
     override func navigationBack() {
@@ -82,9 +82,12 @@ class VisualSearchResultViewController: CollectionViewController  {
         
         guard let viewModel = viewModel as? VisualSearchResultViewModel else { return }
 
-        let input = VisualSearchResultViewModel.Input(footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                      selection: collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable(),
-                                                      search: (navigationBar.rightBarButtonItem as! UIButton).rx.tap.asObservable())
+        let modelSelected = collectionView.rx.modelSelected(VisualSearchResultSectionItem.self).asObservable()
+        let search = (navigationBar.rightBarButtonItem as! UIButton).rx.tap.asObservable()
+        let input = VisualSearchResultViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+                                                      footerRefresh: footerRefreshTrigger.mapToVoid(),
+                                                      selection: modelSelected,
+                                                      search: search)
         let output = viewModel.transform(input: input)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in

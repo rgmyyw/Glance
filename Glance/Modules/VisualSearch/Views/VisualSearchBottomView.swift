@@ -14,7 +14,7 @@ class VisualSearchBottomView: View {
     
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let point = convert(point, to: button)
-        if button.point(inside: point, with: event) {
+        if button.point(inside: point, with: event) , button.isUserInteractionEnabled, button.isEnabled, button.alpha > 0 {
             return button
         } else {
             return nil
