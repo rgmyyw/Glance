@@ -18,6 +18,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let clearAll : Observable<Void>
         let search : Observable<Void>
         let historySelection : Observable<SearchRecommendHistorySectionItem>
+        let camera : Observable<Void>
     }
     
     struct Output {
@@ -26,6 +27,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         let headHidden : Driver<Bool>
         let search : Driver<Void>
         let searchResult : Driver<String>
+        let viSearch : Driver<Void>
     }
     
     
@@ -78,11 +80,13 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
+        
         return Output(config: config.asDriver(onErrorJustReturn: []),
                       history: elements.asDriver(onErrorJustReturn: []),
                       headHidden: headHidden.asDriver(),
                       search: input.search.asDriver(onErrorJustReturn: ()),
-                      searchResult: searchResult)
+                      searchResult: searchResult,
+                      viSearch: input.camera.asDriverOnErrorJustComplete())
     }
 }
 

@@ -18,12 +18,15 @@ class SearchViewModel: ViewModel, ViewModelType {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
         let textFieldReturn : Observable<Void>
+        let camera : Observable<Void>
+
     }
     
     struct Output {
         let items : Driver<[SearchCellViewModel]>
         let search : Driver<String>
         let close : Driver<Void>
+        let viSearch : Driver<Void>
     }
     
     public let selection = PublishSubject<String>()
@@ -92,7 +95,8 @@ class SearchViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       search: search.asDriver(onErrorJustReturn: ""),
-                      close: close.mapToVoid().asDriver(onErrorJustReturn: ()))
+                      close: close.mapToVoid().asDriver(onErrorJustReturn: ()),
+                      viSearch: input.camera.asDriverOnErrorJustComplete())
     }
 }
 

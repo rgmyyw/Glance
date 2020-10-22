@@ -64,9 +64,16 @@ class SearchRecommendViewController: ViewController {
         let refresh = rx.viewWillAppear.mapToVoid()
         guard let viewModel = viewModel as? SearchRecommendViewModel else { return }
 
+        let clearAll = headView.clearButton.rx.tap.asObservable()
+        let search = customNavigationBar.searchView.rx.tap().asObservable()
+        let historySelection = headView.collectionView.rx.modelSelected(SearchRecommendHistorySectionItem.self).asObservable()
+        let camera = customNavigationBar.cameraButton.rx.tap.asObservable()
+        
         let input = SearchRecommendViewModel.Input(refresh: refresh,
-                                                   clearAll: headView.clearButton.rx.tap.asObservable(),
-                                                   search: customNavigationBar.searchView.rx.tap().asObservable(),historySelection: headView.collectionView.rx.modelSelected(SearchRecommendHistorySectionItem.self).asObservable())
+                                                   clearAll: clearAll,
+                                                   search: search,
+                                                   historySelection: historySelection,
+                                                   camera: camera)
         let output = viewModel.transform(input: input)
         output.history.drive(headView.items).disposed(by: rx.disposeBag)
 
@@ -93,6 +100,20 @@ class SearchRecommendViewController: ViewController {
                 }
             }
         }).disposed(by: rx.disposeBag)
+        
+        output.viSearch.drive(onNext: { [weak self]() in
+            ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
+                config.maxSelectCount = 1
+                config.editAfterSelectThumbnailImage = true
+                config.saveNewImageAfterEdit = false
+                config.allowEditImage = false
+            }) { [weak self] (images, assets, isOriginal) in
+                guard let image = images?.first else { return }
+                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+            }
+        }).disposed(by: rx.disposeBag)
+
         
         output.headHidden.drive(onNext: { [weak self](hidden) in
             self?.pageController.param.wMenuHeadView = {

@@ -37,11 +37,17 @@ class SearchViewController: TableViewController , UITextFieldDelegate  {
         super.bindViewModel()
         guard let viewModel = viewModel as? SearchViewModel else { return }
         
-        let input = SearchViewModel.Input(cancel: customNavigationBar.cancelButton
-            .rx.tap.asObservable(),selection: tableView.rx.modelSelected(SearchCellViewModel.self).asObservable(),
-                                                headerRefresh : headerRefreshTrigger.asObservable(),
-                                                footerRefresh: footerRefreshTrigger.asObservable(),
-                                                textFieldReturn: textFieldReturn.asObservable())
+        
+        let cancel = customNavigationBar.cancelButton.rx.tap.asObservable()
+        let selection = tableView.rx.modelSelected(SearchCellViewModel.self).asObservable()
+
+        
+        let input = SearchViewModel.Input(cancel: cancel,
+                                          selection: selection,
+                                          headerRefresh : headerRefreshTrigger.asObservable(),
+                                          footerRefresh: footerRefreshTrigger.asObservable(),
+                                          textFieldReturn: textFieldReturn.asObservable(),
+                                          camera: customNavigationBar.cameraButton.rx.tap())
         let output = viewModel.transform(input: input)
 
         (customNavigationBar.textField.rx.textInput <-> viewModel.text).disposed(by: rx.disposeBag)
@@ -57,6 +63,19 @@ class SearchViewController: TableViewController , UITextFieldDelegate  {
         
         output.close.drive(onNext: { [weak self]() in
             self?.navigator.dismiss(sender: self) 
+        }).disposed(by: rx.disposeBag)
+        
+        output.viSearch.drive(onNext: { [weak self]() in
+            ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
+                config.maxSelectCount = 1
+                config.editAfterSelectThumbnailImage = true
+                config.saveNewImageAfterEdit = false
+                config.allowEditImage = false
+            }) { [weak self] (images, assets, isOriginal) in
+                guard let image = images?.first else { return }
+                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+            }
         }).disposed(by: rx.disposeBag)
 
         

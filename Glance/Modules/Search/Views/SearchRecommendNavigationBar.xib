@@ -59,22 +59,28 @@
                                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_camera" translatesAutoresizingMaskIntoConstraints="NO" id="AC5-2L-ljh">
-                                            <rect key="frame" x="218" y="10" width="16" height="16"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xl0-V0-7de">
+                                            <rect key="frame" x="218" y="7" width="16" height="22"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="16" id="tPe-Cd-URi"/>
-                                                <constraint firstAttribute="width" constant="16" id="wnh-5L-uUN"/>
+                                                <constraint firstAttribute="width" constant="16" id="Ovk-Ze-hSc"/>
+                                                <constraint firstAttribute="height" constant="22" id="pty-sU-gck"/>
                                             </constraints>
-                                        </imageView>
+                                            <state key="normal" image="icon_camera"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="enlargeValidTouch">
+                                                    <real key="value" value="10"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstItem="AC5-2L-ljh" firstAttribute="leading" secondItem="ftB-ud-fY9" secondAttribute="trailing" constant="10" id="7Iw-uX-kKD"/>
-                                        <constraint firstAttribute="trailing" secondItem="AC5-2L-ljh" secondAttribute="trailing" constant="10" id="CS5-ti-Hvz"/>
+                                        <constraint firstItem="Xl0-V0-7de" firstAttribute="leading" secondItem="ftB-ud-fY9" secondAttribute="trailing" constant="10" id="Aa1-DW-VQM"/>
                                         <constraint firstItem="DlV-Uu-aB9" firstAttribute="leading" secondItem="gJI-vd-ZXl" secondAttribute="leading" constant="10" id="Hoh-np-ZDH"/>
+                                        <constraint firstItem="Xl0-V0-7de" firstAttribute="centerY" secondItem="ftB-ud-fY9" secondAttribute="centerY" id="Iau-um-D8p"/>
                                         <constraint firstItem="ftB-ud-fY9" firstAttribute="centerY" secondItem="DlV-Uu-aB9" secondAttribute="centerY" id="Ijg-Hs-vjL"/>
-                                        <constraint firstItem="AC5-2L-ljh" firstAttribute="centerY" secondItem="gJI-vd-ZXl" secondAttribute="centerY" id="KrN-Y6-gr3"/>
                                         <constraint firstItem="DlV-Uu-aB9" firstAttribute="centerY" secondItem="gJI-vd-ZXl" secondAttribute="centerY" id="L23-sJ-pf7"/>
+                                        <constraint firstAttribute="trailing" secondItem="Xl0-V0-7de" secondAttribute="trailing" constant="10" id="ptk-aA-7W0"/>
                                         <constraint firstItem="ftB-ud-fY9" firstAttribute="leading" secondItem="DlV-Uu-aB9" secondAttribute="trailing" constant="8" id="tML-6B-WWl"/>
                                     </constraints>
                                     <userDefinedRuntimeAttributes>
@@ -110,10 +116,10 @@
             <viewLayoutGuide key="safeArea" id="raq-kf-MDQ"/>
             <connections>
                 <outlet property="backButton" destination="kWe-4e-ovu" id="0rg-f4-p1C"/>
-                <outlet property="cameraButton" destination="AC5-2L-ljh" id="wlO-ri-9HE"/>
+                <outlet property="cameraButton" destination="Xl0-V0-7de" id="evh-b3-Ssl"/>
                 <outlet property="searchView" destination="gJI-vd-ZXl" id="WGN-Ta-Whh"/>
             </connections>
-            <point key="canvasLocation" x="48" y="9"/>
+            <point key="canvasLocation" x="47.826086956521742" y="8.7053571428571423"/>
         </view>
     </objects>
     <resources>
