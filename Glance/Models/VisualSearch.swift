@@ -15,8 +15,6 @@ struct VisualSearchPageMapable: Mappable {
     var imId: String?
     var pageSize: Int = 0
     
-
-    
     var boxes : [Box] {
         return boxProducts.compactMap { $0.box}
     }

@@ -36,12 +36,12 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>NSCameraUsageDescription</key>
-	<string>To take photos and videos</string>
-	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>To save photos</string>
-	<key>NSPhotoLibraryUsageDescription</key>
-	<string>To save or use photos</string>
+    <key>NSCameraUsageDescription</key>
+    <string>Glacne Would Like to Access the Camera</string>
+    <key>NSPhotoLibraryAddUsageDescription</key>
+    <string>Allow this device to saved photos and videos?</string>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Allow this device to access photos and videos?</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>

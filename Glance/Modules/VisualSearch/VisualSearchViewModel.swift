@@ -11,6 +11,32 @@ import RxSwift
 import RxCocoa
 
 
+enum VisualSearchMode {
+    
+    case post
+    case preview
+    
+    var searchHidden : Bool {
+        switch self {
+        case .preview:
+            return true
+        case .post:
+            return false
+        }
+    }
+    
+    var descriptionTitle : String {
+        switch self {
+        case .preview:
+            return "Similar Styles"
+        case .post:
+            return "Suggested Products"
+        }
+    }
+    
+}
+
+
 class VisualSearchViewModel: ViewModel, ViewModelType {
     
     struct Input {
@@ -26,12 +52,13 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     }
     
     let image : BehaviorRelay<UIImage>
+    let mode : BehaviorRelay<VisualSearchMode>
     let selection = PublishSubject<VisualSearchDot>()
     let dots = BehaviorRelay<[VisualSearchDot]>(value:[])
     
-    
-    init(provider: API, image : UIImage) {
+    init(provider: API, image : UIImage, mode : VisualSearchMode = .preview) {
         self.image = BehaviorRelay(value: image)
+        self.mode = BehaviorRelay(value: mode)
         super.init(provider: provider)
         
     }
@@ -45,7 +72,7 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
             let image = self.image.value
             let items = self.dots.value.filter { $0.selected != nil}
             return (image : image, items : items)
-        }
+        }        
         
         image.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in

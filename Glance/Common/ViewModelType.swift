@@ -38,16 +38,14 @@ class ViewModel: NSObject  {
     let loading = ActivityIndicator()
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()
-    let noMoreData = PublishSubject<Void>()
-
+    let refreshState = PublishSubject<RefreshState>()
+    
     
     let error = ErrorTracker()
     let parsedError = PublishSubject<ApiError>()
     let exceptionError = PublishSubject<ExceptionError?>()
     let message = PublishSubject<Message>()
-    
     let endEditing = PublishSubject<Void>()
-    let refreshState = PublishSubject<RefreshState>()
     
     
     init(provider: API) {

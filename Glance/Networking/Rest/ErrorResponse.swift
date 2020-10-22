@@ -25,7 +25,7 @@ struct ErrorResponse: Mappable {
 
     func detail() -> String {
         return errors.map { $0.message ?? "" }
-            .joined(separator: "\n")
+        .joined(separator: errors.count > 1 ? "\n" : "")
     }
 }
 

@@ -41,6 +41,8 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let memu = BehaviorRelay<[DefaultColltionMemu]>(value : [])
     let memuHidden = BehaviorRelay<Bool>(value: true)
     let liked = BehaviorRelay<Bool>(value: false)
+    let selected = BehaviorRelay<Bool>(value: false)
+    
     
     let more = PublishSubject<Void>()
     let save = PublishSubject<Void>()

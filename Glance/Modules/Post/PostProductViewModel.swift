@@ -161,14 +161,20 @@ class PostProductViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
                 
-        Observable.combineLatest(input.commit, image.filterNil())
-            .subscribe(onNext: { [weak self] (_, image) in
+        
+        
+        input.commit.subscribe(onNext: { [weak self] () in
                 self?.endEditing.onNext(())
                 let viewModel = elements.value.first?.viewModel
                 
 //                let customTags = elements.value[2].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
 //                let systemTags = elements.value[3].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
                 let taggedItems = elements.value.last?.items.map { $0.viewModel(PostProductCellViewModel.self)}
+                guard let image = self?.image.value else {
+                    self?.exceptionError.onNext(.general("image is empty"))
+                    return
+                }
+            
                 guard let caption = viewModel?.caption.value, caption.isNotEmpty else {
                     self?.exceptionError.onNext(.general("caption is empty"))
                     return

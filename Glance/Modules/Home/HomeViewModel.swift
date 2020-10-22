@@ -217,6 +217,12 @@ class HomeViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
+        let list = [[1],[1],[1],[1]]
+        list.flatMap { $0}.enumerated().forEach { (offset,item) in
+            print(offset,item)
+        }
+        
+        
         selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,ReactionType,Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let recommendId = cellViewModel.item.recommendId

@@ -28,7 +28,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
     
     
     let textInput = BehaviorRelay<String>(value: "")
-    let element : BehaviorRelay<PageMapable<DefaultColltionItem>> = BehaviorRelay(value: PageMapable<DefaultColltionItem>())
+    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let selected = PublishSubject<(box : Box, item : DefaultColltionItem)>()
     
     let image : BehaviorRelay<UIImage>
@@ -50,12 +50,13 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         
         input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
             guard let self = self else {
-                return Observable.just(RxSwift.Event.completed)
+                return Observable.just(.error(ExceptionError.unknown))
             }
             guard self.textInput.value.isNotEmpty else {
                 self.exceptionError.onNext(.general("Please enter the search keyword"))
-                return Observable.just(RxSwift.Event.completed)
+                return Observable.just(.error(ExceptionError.unknown))
             }
+            
             elements.accept([])
             self.endEditing.onNext(())
             self.page = 1
@@ -69,7 +70,14 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 self.element.accept(item)
-                self.noMoreData.onNext(())
+                self.refreshState.onNext(item.refreshState)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    self.refreshState.onNext(.end)
+                    logError(error.debugDescription)
+                }
             default:
                 break
             }
@@ -77,9 +85,8 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !self.element.value.hasNext {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let text = self.textInput.value
@@ -92,24 +99,30 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 var temp = item
-                temp.list = self.element.value.list + item.list
+                temp.list = (self.element.value?.list ?? []) + item.list
                 self.element.accept(temp)
-                self.noMoreData.onNext(())
+                self.refreshState.onNext(item.refreshState)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
         
         
-        element.map { element -> [VisualSearchProductSection] in
-            if element.list.isEmpty { return [] }
-            
+        element.filterNil().map { element -> [VisualSearchProductSection] in
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> VisualSearchProductSectionItem in
                 let cellViewModel = VisualSearchProductCellViewModel(item: item)
                 let sectionItem = VisualSearchProductSectionItem(item: indexPath, viewModel: cellViewModel)
                 return sectionItem
             }
-            
             let empty = VisualSearchProductEmptyCellModel(item: ())
             empty.add.bind(to: add).disposed(by: self.rx.disposeBag)
             let section = VisualSearchProductSection(section: 0, elements: sectionItems, viewModel: empty)

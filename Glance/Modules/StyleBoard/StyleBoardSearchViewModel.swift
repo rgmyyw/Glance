@@ -62,7 +62,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
                 guard let self = self else {
-                    return Observable.just(RxSwift.Event.completed)
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
                 elements.accept([])
                 self.page = 1
@@ -75,7 +75,13 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 switch event {
                 case .next(let item):
                     self.element.accept(item)
-                    self.noMoreData.onNext(())
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        self.refreshState.onNext(.end)
+                        logError(error.debugDescription)
+                    }
                 default:
                     break
                 }
@@ -83,9 +89,8 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
         
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
-            guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            if !(self.element.value?.hasNext ?? false) {
-                return Observable.just(RxSwift.Event.completed)
+            guard let self = self else {
+                return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let text = self.textInput.value
@@ -100,7 +105,16 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
                 var temp = item
                 temp.list = (self.element.value?.list ?? [] ) + item.list
                 self.element.accept(temp)
-                self.noMoreData.onNext(())
+                self.refreshState.onNext(item.refreshState)
+            case .error(let error):
+                guard let error = error.asExceptionError else { return }
+                switch error  {
+                default:
+                    self.page -= 1
+                    self.refreshState.onNext(.end)
+                    logError(error.debugDescription)
+                }
+
             default:
                 break
             }

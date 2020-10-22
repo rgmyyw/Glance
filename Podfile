@@ -55,7 +55,7 @@ abstract_target 'Glance' do
   pod 'DNSPageView' , '~> 1.5.0'
   pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
   pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.8'
-  
+  pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon', :branch => 'swift5'
   pod 'FDFullscreenPopGesture' , '~> 1.1'
   pod 'FSPagerView' , '~> 0.8.3'
   pod 'SDCAlertView' , '~> 11.1.2'

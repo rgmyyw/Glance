@@ -13,7 +13,7 @@ class BoxTransform: TransformType {
     
     func transformFromJSON(_ value: Any?) -> Box? {
         if let i = value as? [Int] , i.count == 4 {
-            return Box(json: i)
+            return Box(json: i,isDefault: true)
         }
         return nil
 
@@ -26,13 +26,8 @@ class BoxTransform: TransformType {
         return nil
 
     }
-    
-    
     typealias Object = Box
     typealias JSON = [Int]
-
-    
-
     public init() {}
 }
 

@@ -23,6 +23,20 @@
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Zjy-6n-UCt">
                             <rect key="frame" x="0.0" y="0.0" width="297" height="216"/>
                         </imageView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mMc-hi-0Vn">
+                            <rect key="frame" x="247" y="166" width="30" height="30"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="30" id="G5D-Fe-Unj"/>
+                                <constraint firstAttribute="width" constant="30" id="VhQ-V1-o0h"/>
+                            </constraints>
+                            <state key="normal" image="icon_button_visearch"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                    <real key="value" value="8"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     <constraints>
@@ -32,7 +46,9 @@
                         <constraint firstItem="Zjy-6n-UCt" firstAttribute="top" secondItem="gzF-mF-P3Y" secondAttribute="top" id="ARg-El-5rY"/>
                         <constraint firstItem="GgR-xL-0fP" firstAttribute="top" secondItem="gzF-mF-P3Y" secondAttribute="top" id="HDm-EQ-HGJ"/>
                         <constraint firstItem="Zjy-6n-UCt" firstAttribute="leading" secondItem="gzF-mF-P3Y" secondAttribute="leading" id="KfA-Wv-ZBm"/>
+                        <constraint firstAttribute="trailing" secondItem="mMc-hi-0Vn" secondAttribute="trailing" constant="20" id="Udu-cg-NpV"/>
                         <constraint firstAttribute="bottom" secondItem="Zjy-6n-UCt" secondAttribute="bottom" id="bqL-dX-CXB"/>
+                        <constraint firstAttribute="bottom" secondItem="mMc-hi-0Vn" secondAttribute="bottom" constant="20" id="ioL-kX-5Sc"/>
                         <constraint firstItem="GgR-xL-0fP" firstAttribute="leading" secondItem="gzF-mF-P3Y" secondAttribute="leading" id="ptb-yH-YMa"/>
                     </constraints>
                 </view>
@@ -47,8 +63,12 @@
             <connections>
                 <outlet property="banner" destination="GgR-xL-0fP" id="KHi-d1-Izk"/>
                 <outlet property="imageView" destination="Zjy-6n-UCt" id="Frd-te-Z0I"/>
+                <outlet property="visearchButton" destination="mMc-hi-0Vn" id="w2U-OW-YXb"/>
             </connections>
-            <point key="canvasLocation" x="-497.82608695652181" y="-285.26785714285711"/>
+            <point key="canvasLocation" x="-1612" y="-408"/>
         </collectionReusableView>
     </objects>
+    <resources>
+        <image name="icon_button_visearch" width="18" height="18"/>
+    </resources>
 </document>

@@ -62,7 +62,7 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let save = PublishSubject<Void>()
     let like = PublishSubject<Void>()
     let recommend = PublishSubject<Void>()
-    
+    let viSearch = PublishSubject<UIImage?>()
     let selectStore = PublishSubject<Void>()
     
     

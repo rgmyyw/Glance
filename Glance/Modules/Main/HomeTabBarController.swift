@@ -225,11 +225,11 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
                 config.maxSelectCount = 1
                 config.editAfterSelectThumbnailImage = true
                 config.saveNewImageAfterEdit = false
-                
+                config.allowEditImage = false
             }) { [weak self] (images, assets, isOriginal) in
                 
                 guard let image = images?.first else { return }
-                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+                let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image,mode: .post)
                 self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
             }
             

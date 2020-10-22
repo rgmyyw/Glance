@@ -86,6 +86,7 @@ class HomeController: CollectionViewController {
                 config.maxSelectCount = 1
                 config.editAfterSelectThumbnailImage = true
                 config.saveNewImageAfterEdit = false
+                config.allowEditImage = false
             }) { [weak self] (images, assets, isOriginal) in
                 guard let image = images?.first else { return }
                 let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)

@@ -18,8 +18,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
-    
-    let noMoreData = PublishSubject<Void>()
     let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
     
 
@@ -88,16 +86,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                 }
         }).disposed(by: rx.disposeBag)
 
-        noMoreData.subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] () in
-                self?.collectionView.mj_footer?.endRefreshingWithNoMoreData()
-            }).disposed(by: rx.disposeBag)
-        
-        
-        
-        
-
-        
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
                                                emptyDataViewDataSource.title.filterNil().mapToVoid(),
                                                emptyDataViewDataSource.subTitle.filterNil().mapToVoid(),
@@ -148,7 +136,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     override func bindViewModel() {
         super.bindViewModel()
         
-        viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel?.refreshState.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
@@ -166,9 +153,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                 self?.collectionView.mj_footer?.endRefreshingWithNoMoreData()
             case .begin:
                 if self?.collectionView.mj_header?.isRefreshing == true {
-                    self?.collectionView.mj_header?.endRefreshing()
+                    //self?.collectionView.mj_header?.endRefreshing()
+                } else {
+                    self?.collectionView.mj_header?.beginRefreshing()
                 }
-                self?.collectionView.mj_header?.beginRefreshing()
             }
         }).disposed(by: rx.disposeBag)
         

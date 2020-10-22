@@ -145,6 +145,11 @@ class PostsDetailViewController: CollectionViewController {
             self?.navigator.pop(sender: self)
         }).disposed(by: rx.disposeBag)
         
+        output.viSearch.drive(onNext: { [weak self](image) in
+            let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
+            self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+        }).disposed(by: rx.disposeBag)
+        
         
         output.openURL.drive(onNext: { [weak self] (url) in
             if UIApplication.shared.canOpenURL(url) {

@@ -85,7 +85,7 @@ class VisualSearchViewController: ViewController {
         output.dots.drive(cropView.rx.dots).disposed(by: rx.disposeBag)
         output.selection.drive(cropView.rx.selection).disposed(by: rx.disposeBag)
                 
-        let result = VisualSearchResultViewModel(provider: viewModel.provider, image: viewModel.image.value)
+        let result = VisualSearchResultViewModel(provider: viewModel.provider, image: viewModel.image.value, mode: viewModel.mode.value)
         result.dots.bind(to: viewModel.dots).disposed(by: rx.disposeBag)
         result.bottomViewHidden.subscribe(onNext: { [weak self] (hidden) in
             self?.bottomView.button.isUserInteractionEnabled = !hidden

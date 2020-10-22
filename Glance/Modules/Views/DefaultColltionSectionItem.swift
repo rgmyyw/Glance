@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import RxDataSources
+import Differentiator
 
 
 enum DefaultColltionSectionItem {
@@ -23,7 +25,7 @@ enum DefaultColltionSectionItem {
     var reuseIdentifier : String {
         switch self {
         case .none:
-            return ""
+            fatalError()
         case .post:
             return PostCell.reuseIdentifier
         case .product:
@@ -76,5 +78,31 @@ enum DefaultColltionSectionItem {
                 collectionView.register(nibWithCellClass: UserVerticalCell.self)
             }
         }
+    }
+}
+extension DefaultColltionSectionItem: IdentifiableType {
+    typealias Identity = String
+    var identity: Identity {
+        switch self {
+        case .none:
+            fatalError()
+        case .post(let viewModel):
+            return "postId:\(viewModel.item.postId)"
+        case .product(let viewModel):
+            return "productId:\(viewModel.item.productId ?? "")"
+        case .recommendPost(let viewModel):
+            return "recommendId:\(viewModel.item.recommendId)-post"
+        case .recommendProduct(let viewModel):
+            return "recommendId:\(viewModel.item.recommendId)-product"
+        case .theme(let viewModel):
+            return "themeId:\(viewModel.item.themeId)"
+        case .user(let viewModel):
+            return "userId:\(viewModel.item.user?.userId ?? "")"
+        }
+    }
+}
+extension DefaultColltionSectionItem: Equatable {
+    static func == (lhs: DefaultColltionSectionItem, rhs: DefaultColltionSectionItem) -> Bool {
+        return lhs.identity == rhs.identity
     }
 }

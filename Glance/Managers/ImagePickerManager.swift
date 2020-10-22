@@ -80,21 +80,23 @@ extension ImagePickerManager {
         ac.configuration.showSelectedIndex = true
         
         
+        let theme : UIColor = .black
+        let text : UIColor = .white
+        
         // preview
-        ac.configuration.previewTextColor = UIColor(hex: 0x333333)
+        ac.configuration.previewTextColor = text
         ac.configuration.maxPreviewCount = 20
         
         // 导航样式
-        ac.configuration.navBarColor = .white
+        ac.configuration.navBarColor = theme
         ac.configuration.navTitleColor = ac.configuration.previewTextColor
         ac.configuration.statusBarStyle = .default
         ac.configuration.allowDragSelect = true
         
-        
         // 工具栏样式
         ac.configuration.bottomBtnsDisableBgColor = UIColor.lightGray
-        ac.configuration.bottomBtnsNormalTitleColor = UIColor(hex: 0xFF8159)
-        ac.configuration.bottomViewBgColor = UIColor.white
+        ac.configuration.bottomBtnsNormalTitleColor = text
+        ac.configuration.bottomViewBgColor = theme
         ac.configuration.bottomBtnsNormalBgColor = .clear
         ac.configuration.bottomBtnsDisableBgColor = .clear
         

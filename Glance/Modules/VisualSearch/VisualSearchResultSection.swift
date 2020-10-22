@@ -10,43 +10,42 @@ import UIKit
 import RxDataSources
 import Differentiator
 
-struct VisualSearchResultSection {
-    var section : String
-    var elements : [VisualSearchResultSectionItem]
+enum VisualSearchResultSection {
+    case picker(items: [DefaultColltionSectionItem])
+    case preview(items: [DefaultColltionSectionItem])
 }
 
-struct VisualSearchResultSectionItem {
-    var item : String
-    var viewModel : VisualSearchResultCellViewModel
-}
 
-extension VisualSearchResultSectionItem: IdentifiableType {
-    typealias Identity = String
-    var identity: Identity {
-        return item
+extension VisualSearchResultSection: SectionModelType ,AnimatableSectionModelType, IdentifiableType{
+    
+    var identity: String {
+        switch self {
+        case .picker:
+            return "picker"
+        case .preview:
+            return "preview"
+        }
     }
-}
-extension VisualSearchResultSectionItem: Equatable {
-    static func == (lhs: VisualSearchResultSectionItem, rhs: VisualSearchResultSectionItem) -> Bool {
-        return lhs.identity == rhs.identity
-    }
-}
-
-extension VisualSearchResultSection: AnimatableSectionModelType, IdentifiableType {
     
     typealias Identity = String
     
-    typealias Item = VisualSearchResultSectionItem
     
-    var identity: Identity { return section }
-    
-    var items: [Item] {
-        return elements
+    typealias Item = DefaultColltionSectionItem
+    var items: [DefaultColltionSectionItem] {
+        switch  self {
+        case .picker(let items),.preview(let items):
+            return items.map { $0 }
+        }
     }
     
     init(original: VisualSearchResultSection, items: [Item]) {
-        self = original
-        self.elements = items
+        switch original {
+        case .picker(let items):
+            self = .picker(items: items)
+        case .preview(let items):
+            self = .preview(items: items)
+
+        }
     }
 }
 

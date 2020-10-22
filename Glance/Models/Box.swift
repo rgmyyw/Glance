@@ -35,18 +35,19 @@ class VisualSearchDot {
     init(box : Box, image : UIImage) {
         
         // 检查是否超出限定边界,过滤掉，超出边界的区域
-        let inset = 20
+        let inset = (10 * (image.size.width / UIScreen.width)).int
+        let topInset = (UIApplication.shared.statusBarFrame.height * (image.size.width / UIScreen.width)).int
         var element = box
         if element.x1 < inset {
             element.x1 = inset
         }
-        if element.y1 < UIApplication.shared.statusBarFrame.height.int {
-            element.y1 = UIApplication.shared.statusBarFrame.height.int
+        if element.y1 < topInset {
+            element.y1 = topInset
         }
         if element.x1 + element.x2 > image.size.width.int {
             element.x2 = image.size.width.int - inset
         }
-        
+
         if element.y1 + element.y2 > image.size.height.int {
             element.y2 = image.size.height.int - inset
         }
@@ -68,6 +69,20 @@ class VisualSearchDot {
 }
 
 
+
+extension CGRect {
+    
+    func transformPixel(from size : CGSize) -> Box {
+        
+        let x1 = origin.x * (size.width / UIScreen.width)
+        let y1 = origin.y * (size.width / UIScreen.width)
+        let x2 = (origin.x + self.size.width) * (size.width / UIScreen.width)
+        let y2 = (origin.y + self.size.height) * (size.width / UIScreen.width)
+        return Box(json: [x1.int,y1.int,x2.int,y2.int])
+    }
+}
+
+
 struct Box : Equatable, CustomStringConvertible {
     
     var description: String {
@@ -83,85 +98,69 @@ struct Box : Equatable, CustomStringConvertible {
     var y2 : Int = 0
     
     var string : String {
-        return "x1:\(x1),y1:\(x2),x2:\(y1),y2:\(y2)"
-    }
-    
-    /// cgrect初始化:
-    /// - Parameter rect: PT rect
-    init(rect : CGRect) {
-        x1 = rect.origin.x.int
-        y1 = rect.origin.y.int
-        x2 = rect.size.width.int + x1
-        y2 = rect.size.height.int + y1
-        self.default = false
+        return "x1:\(x1),y1:\(y1),x2:\(x2),y2:\(y2)"
     }
     
     
     /// JSON 初始化:
     /// - Parameter json: json list
-    init(json : [Int]) {
+    init(json : [Int], isDefault : Bool = false) {
         if json.count != 4 { fatalError()}
         
         x1 = json[0]
         y1 = json[1]
         x2 = json[2]
         y2 = json[3]
-        self.default = true
+        self.default = isDefault
     }
     
     static var zero : Box {
-        return Box(rect: .zero)
+        return Box(json: [0,0,0,0])
     }
     
     var intArray: [Int] {
         return [x1,y1,x2,y2]
     }
     
-    var cgRect : CGRect {
-        return CGRect(x: x1.cgFloat, y: y1.cgFloat,
-                      width: CGFloat(x2 - x1), height: CGFloat(y2 - y1))
-    }
-    
-    
-    /// 转换成Px
-    /// - Parameters:
-    ///   - originSize: 原始大小
-    ///   - referenceSize: 参照物
-    func transformPx(originSize : CGSize, referenceSize : CGSize) -> Box {
-        let rect = cgRect
-        let x = originSize.width.int / referenceSize.width.int * rect.origin.x.int
-        let y = originSize.height.int / referenceSize.height.int * rect.origin.y.int
-        let w = originSize.width.int / referenceSize.width.int * rect.width.int
-        let h = originSize.height.int / referenceSize.height.int * rect.height.int
-        return Box(rect: CGRect(x: x.cgFloat, y: y.cgFloat, width: w.cgFloat, height: h.cgFloat))
-    }
-    
     /// 转换成Pt
     /// - Parameters:
     ///   - originSize: 原始大小
     ///   - referenceSize: 参照物
-    func transformPt(originSize : CGSize, referenceSize : CGSize) -> CGRect {
-        let rect = cgRect
-        let x =  rect.origin.x.int * referenceSize.width.int / originSize.width.int
-        let y = rect.origin.y.int * referenceSize.height.int / originSize.height.int
-        let w = rect.width.int * referenceSize.width.int / originSize.width.int
-        let h = rect.height.int * referenceSize.height.int / originSize.height.int
-        return CGRect(x: x.cgFloat, y: y.cgFloat, width: w.cgFloat, height: h.cgFloat)
+    func transformCGRect(from size : CGSize) -> CGRect {
+        let x = x1.cgFloat / (size.width / UIScreen.width)
+        let y = y1.cgFloat / (size.width / UIScreen.width)
+        let w = (x2.cgFloat - x1.cgFloat) / (size.width / UIScreen.width)
+        let h = (y2.cgFloat - y1.cgFloat) / (size.width / UIScreen.width)
+        return CGRect(x: x, y: y, width: w, height: h)
     }
+    
+    
     
     static func == (lhs: Self, rhs: Self) -> Bool {
         
-        let offset : Int = 10
-        let lhsRect = lhs.cgRect
-        let rhsRect = rhs.cgRect
-        switch lhsRect.center.x.int - rhsRect.center.x.int {
+        let offset : Int = 5
+        switch lhs.x1 - rhs.x1 {
         case (-offset)...offset:
             break
         default:
             return false
         }
         
-        switch lhsRect.center.y.int - rhsRect.center.y.int {
+        switch lhs.x2 - rhs.x2 {
+        case (-offset)...offset:
+            break
+        default:
+            return false
+        }
+
+        switch lhs.y1 - rhs.y1 {
+        case (-offset)...offset:
+            break
+        default:
+            return false
+        }
+
+        switch lhs.y2 - rhs.y2 {
         case (-offset)...offset:
             break
         default:

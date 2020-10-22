@@ -60,6 +60,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let back : Driver<Void>
         let selectStore : Driver<String>
         let openURL : Driver<URL>
+        let viSearch : Driver<UIImage>
     }
     
     
@@ -100,6 +101,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         let bottomBarButtonTitle = bottomBarButtonState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
         let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }.asDriver(onErrorJustReturn: false)
         let bottomBarBackgroundColor = bottomBarButtonState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
+        let viSearch = PublishSubject<UIImage?>()
+        
         
         element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
         
@@ -245,7 +248,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             viewModel.like.map { viewModel}.bind(to: like).disposed(by: self.rx.disposeBag)
             viewModel.recommend.map { viewModel}.bind(to: recommend).disposed(by: self.rx.disposeBag)
             viewModel.selectStore.map { viewModel}.bind(to: selectStore).disposed(by: self.rx.disposeBag)
-            
+            viewModel.viSearch.bind(to: viSearch).disposed(by: self.rx.disposeBag)
             var sections : [PostsDetailSection]
             let banner = PostsDetailSection.banner(viewModel: viewModel)
             let price = PostsDetailSection.price(viewModel: viewModel)
@@ -358,7 +361,6 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
-        
         Observable.combineLatest(deletePost,element.compactMap { $0?.postId})
             .flatMapLatest({ [weak self] (_,id) -> Observable<(RxSwift.Event<(Bool,Int)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -452,7 +454,8 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                       delete: delete.asDriver(onErrorJustReturn: ()),
                       back: back.asDriver(onErrorJustReturn: ()),
                       selectStore: selectStore.map { $0.item.productId}.filterNil().asDriver(onErrorJustReturn: ""),
-                      openURL: openURL.asDriverOnErrorJustComplete())
+                      openURL: openURL.asDriverOnErrorJustComplete(),
+                      viSearch: viSearch.filterNil().asDriverOnErrorJustComplete())
     }
 }
 

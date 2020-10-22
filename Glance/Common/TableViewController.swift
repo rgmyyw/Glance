@@ -28,8 +28,6 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
-    
-    let noMoreData = PublishSubject<Void>()
     let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
     
     var viewDidLoadBeginRefresh : Bool = true
@@ -77,12 +75,6 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         
         stackView.spacing = 0
         stackView.insertArrangedSubview(tableView, at: 0)
-        
-        noMoreData.subscribeOn(MainScheduler.instance)
-            .subscribe(onNext: {[weak self] () in
-                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
-            }).disposed(by: rx.disposeBag)
-        
         refreshComponent.subscribe(onNext: { [weak self] (component) in
             switch component {
             case .default:
@@ -164,7 +156,6 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     override func bindViewModel() {
         super.bindViewModel()
         
-        viewModel?.noMoreData.bind(to: noMoreData).disposed(by: rx.disposeBag)
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel?.refreshState

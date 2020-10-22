@@ -9,6 +9,7 @@
 import UIKit
 import RxSwift
 import RxCocoa
+import ChameleonFramework
 
 class VisualSearchCropView: UIView {
     
@@ -22,37 +23,35 @@ class VisualSearchCropView: UIView {
     
     private var clippingRect : CGRect = .zero
     private var isInitialize : Bool = false
-    private let imageViewInset : CGFloat = 20
-    private let topInset = UIApplication.shared.statusBarFrame.height
+    private let imageViewInset : CGFloat = 10
+    private let topInset : CGFloat = UIApplication.shared.statusBarFrame.height
     
     public let current = BehaviorRelay<Box>(value: .zero)
     public let elements = BehaviorRelay<[VisualSearchDotButton]>(value: [])
-    
-    private(set) public var originSize : CGSize = .zero
-    public var image : UIImage? {
-        set {
-            guard let image = newValue else { return }
-            originSize = image.size
-            imageView.image = image
-            isInitialize = true
-            setNeedsLayout()
-            sendSubviewToBack(imageView)
+
+    private lazy var contentView : UIScrollView = {
+        let view = UIScrollView(frame: bounds)
+        view.showsVerticalScrollIndicator = false
+        view.showsHorizontalScrollIndicator = false
+        view.addSubview(imageView)
+        if #available(iOS 11, *) {
+            view.contentInsetAdjustmentBehavior = .never
+        } else {
+            
         }
-        get {
-            imageView.image
-        }
-    }
+        return view
+    }()
     
     private(set) public lazy var imageView : UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
-        view.isUserInteractionEnabled = true
-        addSubview(view)
+        view.isUserInteractionEnabled = false
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGridView(_:)))
         pan.maximumNumberOfTouches = 1
         view.addGestureRecognizer(pan)
         return view
     }()
+    
     
     private lazy var gridLayer : VisualSearchGridLayar = {
         let gridLayer = VisualSearchGridLayar()
@@ -60,7 +59,28 @@ class VisualSearchCropView: UIView {
         gridLayer.gridColor = UIColor.clear
         return gridLayer
     }()
+        
     
+    public var imageSize : CGSize  {
+        return image?.size ?? .zero
+    }
+    
+    public var image : UIImage? {
+        set {
+            guard let image = newValue else { return }
+            imageView.image = image
+            isInitialize = true
+            setNeedsLayout()
+            if contentView.superview == nil {
+                addSubview(contentView)
+            }
+            sendSubviewToBack(contentView)
+            backgroundColor = UIColor(averageColorFrom: image)
+        }
+        get {
+            imageView.image
+        }
+    }
     
     init(image : UIImage, frame : CGRect) {
         super.init(frame: frame)
@@ -71,14 +91,20 @@ class VisualSearchCropView: UIView {
         super.init(frame: .zero)
     }
     
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
+
     override func layoutSubviews() {
         super.layoutSubviews()
         
         updateImageViewFrame()
         
-        let rect = CGRect(x: imageViewInset, y: topInset, width: imageView.bounds.width - imageViewInset * 2, height: imageView.bounds.height - topInset - imageViewInset)
-        gridLayer.frame = imageView.bounds
+        let height = imageView.bounds.height - topInset - imageViewInset
+        let width = imageView.bounds.width - imageViewInset * 2
+        let rect = CGRect(x: imageViewInset, y: topInset, width: width, height: height)
+        
         updateGridView(rect: rect, animated: true)
         
         if isInitialize , imageView.superview != nil {
@@ -86,10 +112,6 @@ class VisualSearchCropView: UIView {
         }
     }
     
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     
     func initializeUI() {
@@ -106,13 +128,20 @@ class VisualSearchCropView: UIView {
         
         isInitialize = false
     
+        imageView.rx.observeWeakly(CGRect.self, "frame", options: .new)
+            .subscribe(onNext: { [weak self](frame) in
+                guard let self = self ,let frame = frame else { return }
+                self.contentView.contentSize = frame.size
+                self.gridLayer.frame = frame.height < self.frame.height ? self.frame : frame
+            }).disposed(by: rx.disposeBag)
+        
     }
     
     public func selection(dot : VisualSearchDot) {
         if let index = elements.value.firstIndex(where: { $0.dot.box == dot.box}) {
             let item = elements.value[index]
             if item.dot.box != current.value {
-                let rect = item.dot.box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
+                let rect = item.dot.box.transformCGRect(from: imageSize)
                 updateGridView(rect: rect, animated: true)
             }
         }
@@ -124,11 +153,11 @@ class VisualSearchCropView: UIView {
             var element = elements.value.filter { $0.dot.box == dot.box }.first
             if element == nil {
                 print("---------------------------------")
-                let rect = dot.box.transformPt(originSize: originSize, referenceSize: imageView.bounds.size)
+                let rect = dot.box.transformCGRect(from: imageSize)
                 print("begin create dot")
                 print("current px: \(dot.box.string)")
                 print("px -> pt: \(rect.debugDescription)")
-                print("pt -> px: \(Box.init(rect: rect).transformPx(originSize: originSize, referenceSize: imageView.size).string)")
+                print("pt -> px: \(rect.transformPixel(from: imageSize).string)")
                 
                 element = VisualSearchDotButton(center: rect.center, dot: dot)
                 element?.rx.tap.subscribe({ [weak self] _ in
@@ -137,9 +166,9 @@ class VisualSearchCropView: UIView {
                 current.subscribe(onNext: { (box) in
                     element?.dot.current = box
                 }).disposed(by: rx.disposeBag)
-                imageView.addSubview(element!)
+                contentView.addSubview(element!)
                 elements.accept(elements.value + [element!])
-                if imageView.subviews.count == 1 {
+                if elements.value.count == 1 {
                     updateGridView(rect: rect, animated: true)
                 }
                 print("end create dot")
@@ -156,22 +185,7 @@ class VisualSearchCropView: UIView {
             print("selected product: \(dot.selected?.productId ?? "")")
             print("---------------------------------")
         }
-
-//        // 剔除已经不存在的点...
-//        var value = self.dots.value
-//        value.removeAll { (box, view) -> Bool in
-//            let contains = actions.contains(where: { $0.1 == box})
-//            if !contains {
-//                view.removeFromSuperview()
-//                return true
-//            } else {
-//                return false
-//            }
-//        }
-//        boxes.accept(value)
     }
-    
-    
 }
 
 extension VisualSearchCropView {
@@ -179,26 +193,22 @@ extension VisualSearchCropView {
     func updateImageViewFrame() {
         
         guard image != nil else { return }
-        var w = UIScreen.main.bounds.width
-        let maxH : CGFloat = bounds.height 
         let maxW : CGFloat = bounds.width
+        let maxH : CGFloat = bounds.height 
+
+        let imgW = imageSize.width
+        let imgH = imageSize.height
         
-        let imageWidth = originSize.width
-        let imageHeight = originSize.height
+        /// 如果图片大于屏幕宽度，缩小宽度, 高度也对应的缩小
+        /// 如果图片小于屏幕宽度，放大宽度, 高度也对应放大
+        var h = maxW * imgH / imgW
+//        if h > maxH {
+//            h = maxH
+//            w = h * imgW / imgH
+//        }
         
-        var h = w * imageHeight / imageWidth
-        if h > maxH {
-            h = maxH
-            w = h * imageWidth / imageHeight
-        }
-        
-        if w > maxW {
-            w = maxW
-            h = w * imageHeight / imageWidth
-        }
-        
-        var frame = CGRect(x: 0, y: 0, width: w, height: h)
-        frame.origin.x = center.x - w * 0.5
+        var frame = CGRect(x: 0, y: 0, width: maxW, height: h)
+        frame.origin.x = center.x - maxW * 0.5
         frame.origin.y = 0
         
         if isInitialize {
@@ -213,7 +223,10 @@ extension VisualSearchCropView {
     
     func updateGridView (rect :  CGRect , animated : Bool)  {
         
+        let offset : CGFloat = ltView.lineWidth / 2
+        let fromView : UIView = contentView
         var rect = rect
+        
         let minX : CGFloat = imageViewInset
         if rect.origin.x < minX {
             rect.origin.x = minX
@@ -224,76 +237,64 @@ extension VisualSearchCropView {
         }
         
         let rectX : CGFloat = rect.origin.x + rect.size.width
-        let maxWidth = imageView.bounds.width - minX
+        let maxWidth = contentView.contentSize.width - minX
         if rectX > maxWidth {
-            rect.size.width = rect.width
-            rect.origin.x = imageView.bounds.width - rect.width - minX
-            if rect.origin.x < minX {
-                rect.origin.x = minX
-                //rect.size.width = imageView.bounds.width - minX * 2
-            }
-            
+            rect.size.width = maxWidth - rect.origin.x
         }
         
         let rectY : CGFloat = rect.origin.y + rect.size.height
-        let maxHeight : CGFloat = imageView.bounds.height - minX
+        let maxHeight : CGFloat = contentView.contentSize.height - minX
         if rectY > maxHeight {
-            rect.size.height = rect.height
-            rect.origin.y = imageView.bounds.height - rect.height  - minX
-            if rect.origin.y < minY {
-                rect.origin.y = minY
-                //rect.size.height = imageView.bounds.height - minY - minX
-            }
-            
+            rect.size.height = maxHeight - rect.origin.y
         }
         
-        
-        let offset : CGFloat = ltView.lineWidth / 2
-        
-        var lt = convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: imageView)
+        var lt = contentView.convert(CGPoint(x: rect.origin.x, y: rect.origin.y), from: fromView)
         lt.x -= offset
         lt.y -= offset
-        ltView.frame.origin = lt
         
-        var lb = convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: imageView)
+        var lb = contentView.convert(CGPoint(x: rect.origin.x, y: rect.origin.y + rect.size.height), from: fromView)
         lb.x -= offset
         lb.y -= (lbView.frame.height - offset)
-        lbView.frame.origin = lb
         
-        var rt = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: imageView)
+        var rt = contentView.convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y), from: fromView)
         rt.x += (offset - rtView.frame.width)
         rt.y -= offset
-        rtView.frame.origin = rt
         
-        var rb = convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height),from: imageView)
+        var rb = contentView.convert(CGPoint(x: rect.origin.x + rect.size.width, y: rect.origin.y + rect.size.height),from: fromView)
         rb.x += (offset - rbView.frame.width)
         rb.y -= (rbView.frame.height - offset)
-        rbView.frame.origin = rb
+        
         
         if animated {
+            
+            UIView.animate(withDuration: 0.25) {
+                self.ltView.frame.origin = lt
+                self.lbView.frame.origin =  lb
+                self.rtView.frame.origin =  rt
+                self.rbView.frame.origin =  rb
+            }
+
             let animation = CABasicAnimation(keyPath: "clippingRect")
-            animation.duration = 0.25;
-            animation.fromValue = NSValue(cgRect: .zero)
+            animation.duration = 0.5;
+            animation.fromValue = NSValue(cgRect: CGRect(origin: rect.center, size: .zero))
             animation.toValue = NSValue(cgRect: rect)
             gridLayer.add(animation, forKey: nil)
-        }
-        
-        UIView.animate(withDuration: animated ? 0.25 : 0, animations: {
-            self.ltView.frame.origin = lt
-            self.lbView.frame.origin = lb
-            self.rtView.frame.origin = rt
-            self.rbView.frame.origin = rb
-            self.gridLayer.clippingRect = rect
-            self.gridLayer.setNeedsDisplay()
             
-        }) { [weak self](_) in
-            self?.clippingRect = rect
-            if let originSize = self?.originSize , let imageSize = self?.imageView.bounds.size {
-                let box = Box(rect: rect).transformPx(originSize: originSize, referenceSize: imageSize)
-                self?.current.accept(box)
-            }
+        } else {
+            self.ltView.frame.origin = lt
+            self.lbView.frame.origin =  lb
+            self.rtView.frame.origin =  rt
+            self.rbView.frame.origin =  rb
         }
         
+        clippingRect = rect
+        gridLayer.clippingRect = clippingRect
+        
+        gridLayer.setNeedsDisplay()
+        gridLayer.needsDisplay()
+        
+        let box = rect.transformPixel(from: imageSize)
+        current.accept(box)
     }
     
 }
@@ -323,7 +324,7 @@ extension VisualSearchCropView {
         view.tag = tag
         let panGesture = UIPanGestureRecognizer(target: self, action: #selector(panCircleView(_:)))
         view.addGestureRecognizer(panGesture)
-        addSubview(view)
+        contentView.addSubview(view)
         return view
     }
     
@@ -355,18 +356,18 @@ extension VisualSearchCropView {
     @objc func panCircleView(_ sender: UIPanGestureRecognizer) {
         
         let tag = sender.view?.tag ?? -1
-        var point: CGPoint = sender.location(in: imageView)
-        let dp: CGPoint = sender.translation(in: imageView)
+        var point: CGPoint = sender.location(in: contentView)
+        let dp: CGPoint = sender.translation(in: contentView)
         
         var rct: CGRect = clippingRect
         
-        let W: CGFloat = imageView.frame.size.width
-        let H: CGFloat = imageView.frame.size.height
+        let W: CGFloat = contentView.contentSize.width
+        let H: CGFloat = contentView.contentSize.height
         
         var minX: CGFloat = imageViewInset
-        var minY: CGFloat = UIApplication.shared.statusBarFrame.height
-        var maxX: CGFloat = W - minX
-        var maxY: CGFloat = H - minX
+        var minY: CGFloat = topInset
+        var maxX: CGFloat = W
+        var maxY: CGFloat = H
         let ratio: CGFloat = 0
         
         switch tag {

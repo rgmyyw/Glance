@@ -17,9 +17,9 @@ class PostsDetailBannerReusableView: CollectionReusableView {
     
     @IBOutlet weak var banner: JXBanner!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var visearchButton: UIButton!
     
     let items = BehaviorRelay<[String]>(value: [])
-//    let items = BehaviorRelay<[String]>(value: (0...10).map { "\($0).jpg" })
 
     override func makeUI() {
         super.makeUI()
@@ -32,6 +32,7 @@ class PostsDetailBannerReusableView: CollectionReusableView {
     override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
         super.bind(to: viewModel)
         viewModel.postImageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
+        visearchButton.rx.tap.map { self.imageView.image}.bind(to: viewModel.viSearch).disposed(by: rx.disposeBag)
     }
     
 }
