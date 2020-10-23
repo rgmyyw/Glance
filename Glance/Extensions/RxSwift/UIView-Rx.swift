@@ -102,13 +102,13 @@ extension Reactive where Base: VisualSearchCropView {
         }
     }
 
-    var selection: Binder<VisualSearchDot> {
+    var selection: Binder<VisualSearchDotCellViewModel> {
         return Binder(self.base) { view, dot in
             view.selection(dot: dot)
         }
     }
         
-    var dots: Binder<[VisualSearchDot]> {
+    var dots: Binder<[VisualSearchDotCellViewModel]> {
         return Binder(self.base) { view, items in
             view.updateDots(dots: items)
         }

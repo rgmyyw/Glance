@@ -24,13 +24,13 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let complete : Driver<Void>
     }
     
-    let element : BehaviorRelay<[VisualSearchDot]>
+    let element : BehaviorRelay<[VisualSearchDotCellViewModel]>
     
     let image : BehaviorRelay<UIImage?>
-    let edit = PublishSubject<VisualSearchDot>()
+    let edit = PublishSubject<VisualSearchDotCellViewModel>()
     
     
-    init(provider: API, image : UIImage?, taggedItems : [VisualSearchDot] ) {
+    init(provider: API, image : UIImage?, taggedItems : [VisualSearchDotCellViewModel] ) {
         self.image = BehaviorRelay(value: image)
         self.element = BehaviorRelay(value: taggedItems)
         super.init(provider: provider)

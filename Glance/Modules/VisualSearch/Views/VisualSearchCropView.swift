@@ -137,7 +137,7 @@ class VisualSearchCropView: UIView {
         
     }
     
-    public func selection(dot : VisualSearchDot) {
+    public func selection(dot : VisualSearchDotCellViewModel) {
         if let index = elements.value.firstIndex(where: { $0.dot.box == dot.box}) {
             let item = elements.value[index]
             if item.dot.box != current.value {
@@ -147,7 +147,7 @@ class VisualSearchCropView: UIView {
         }
     }
     
-    public func updateDots(dots : [VisualSearchDot])  {
+    public func updateDots(dots : [VisualSearchDotCellViewModel])  {
 
         dots.forEach { (dot) in
             var element = elements.value.filter { $0.dot.box == dot.box }.first

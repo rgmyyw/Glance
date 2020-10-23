@@ -12,20 +12,8 @@ import RxCocoa
 
 
 
-enum DefaultColltionMemu : Int  {
-    case like = 0
-    case share = 1
-    case delete = 2
-    case report = 3
-    
-    static var own : [DefaultColltionMemu] = [.like,.share,.delete]
-    static var other : [DefaultColltionMemu] = [.like,.share,.report]
-}
-
 class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
-    
-    
-        
+            
     
     let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
@@ -106,5 +94,6 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
         followed.accept(item.user?.isFollow ?? false)
         displayName.accept(item.user?.displayName)
         memu.accept(item.own ? DefaultColltionMemu.own : DefaultColltionMemu.other)
+        recommendButtonHidden.accept(item.own)
     }
 }

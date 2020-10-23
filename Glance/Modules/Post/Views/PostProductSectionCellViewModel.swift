@@ -26,7 +26,7 @@ class PostProductSectionCellViewModel: CellViewModelProtocol  {
 }
 class PostProductCellViewModel: CellViewModelProtocol  {
 
-    let item : VisualSearchDot
+    let item : VisualSearchDotCellViewModel
     
     let title = BehaviorRelay<String?>(value: nil)
     let imageURL = BehaviorRelay<URL?>(value: nil)
@@ -34,7 +34,7 @@ class PostProductCellViewModel: CellViewModelProtocol  {
     let delete = PublishSubject<Void>()
     let edit = PublishSubject<Void>()
     
-    required init(item : VisualSearchDot) {
+    required init(item : VisualSearchDotCellViewModel) {
         self.item = item
         
         imageURL.accept(item.selected?.image?.url)

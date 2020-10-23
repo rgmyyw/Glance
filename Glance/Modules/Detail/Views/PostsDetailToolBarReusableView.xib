@@ -81,7 +81,7 @@
                 <outlet property="saveButton" destination="l9Z-PR-AIh" id="gxC-ig-azu"/>
                 <outlet property="shareButton" destination="rTw-3p-xf0" id="Fiy-cq-qCz"/>
             </connections>
-            <point key="canvasLocation" x="107.24637681159422" y="142.96875"/>
+            <point key="canvasLocation" x="-217" y="111"/>
         </collectionReusableView>
     </objects>
     <resources>

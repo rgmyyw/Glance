@@ -46,15 +46,15 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     struct Output {
         let imageURI : Driver<String>
         let current : Driver<Box>
-        let post : Observable<(image : UIImage, items : [VisualSearchDot])>
-        let dots : Driver<[VisualSearchDot]>
-        let selection : Driver<VisualSearchDot>
+        let post : Observable<(image : UIImage, items : [VisualSearchDotCellViewModel])>
+        let dots : Driver<[VisualSearchDotCellViewModel]>
+        let selection : Driver<VisualSearchDotCellViewModel>
     }
     
     let image : BehaviorRelay<UIImage>
     let mode : BehaviorRelay<VisualSearchMode>
-    let selection = PublishSubject<VisualSearchDot>()
-    let dots = BehaviorRelay<[VisualSearchDot]>(value:[])
+    let selection = PublishSubject<VisualSearchDotCellViewModel>()
+    let dots = BehaviorRelay<[VisualSearchDotCellViewModel]>(value:[])
     
     init(provider: API, image : UIImage, mode : VisualSearchMode = .preview) {
         self.image = BehaviorRelay(value: image)
@@ -68,7 +68,7 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
         let imageURI = PublishSubject<String>()
         let currentBox = PublishSubject<Box>()
-        let post = input.commit.map { () -> (image : UIImage, items : [VisualSearchDot]) in
+        let post = input.commit.map { () -> (image : UIImage, items : [VisualSearchDotCellViewModel]) in
             let image = self.image.value
             let items = self.dots.value.filter { $0.selected != nil}
             return (image : image, items : items)

@@ -22,9 +22,9 @@ enum DefaultColltionCellType : Int {
 }
 
 
-/// 判断是否为post 还是 商品
 extension DefaultColltionCellType {
-    
+
+    /// 判断是否为post 还是 商品
     var isPost : Bool { return !isProduct }
     
     var isProduct : Bool {

@@ -12,13 +12,11 @@ import RxCocoa
 
 class VisualSearchDotButton: UIButton {
     
-    public let dot : VisualSearchDot
+    public let dot : VisualSearchDotCellViewModel
     
-    init(center : CGPoint, dot : VisualSearchDot, size: CGSize = CGSize(width: 21, height: 21)) {
+    init(center : CGPoint, dot : VisualSearchDotCellViewModel, size: CGSize = CGSize(width: 21, height: 21)) {
         self.dot = dot
         super.init(frame: CGRect(origin: .zero, size: size))
-//        self.setBackgroundImage(UIImage(color: .white), for: .normal)
-//        self.setBackgroundImage(UIImage(color: UIColor.primary()), for: .selected)
         self.adjustsImageWhenDisabled = false
         self.adjustsImageWhenHighlighted = false
         self.layer.cornerRadius = frame.height / 2

@@ -57,7 +57,6 @@
 		5D1C0AA325318D830082903F /* UserDetailPostSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A9F25318D830082903F /* UserDetailPostSection.swift */; };
 		5D1D5AF424BFF007008C0C82 /* PostsDetailTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */; };
 		5D1D5AF524BFF007008C0C82 /* PostsDetailTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */; };
-		5D1D5AF824BFF0F9008C0C82 /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
 		5D1D5AFB24BFF55A008C0C82 /* PostsDetailSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */; };
 		5D1D5AFD24BFFD69008C0C82 /* PostsDetailCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */; };
 		5D1D5AFF24C000B2008C0C82 /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
@@ -194,6 +193,14 @@
 		5D3F263724D179CA00A825BB /* VisualSearchCropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263424D179CA00A825BB /* VisualSearchCropView.swift */; };
 		5D4267B424AF16C3000CB8BF /* HomeNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */; };
 		5D4267B624AF16D4000CB8BF /* HomeNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */; };
+		5D4299F325428BF5002215DF /* DefaultColltionMemu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */; };
+		5D4299F425428BF5002215DF /* DefaultColltionMemu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */; };
+		5D4299F525428BF5002215DF /* DefaultColltionMemu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */; };
+		5D4299F625428BF5002215DF /* DefaultColltionMemu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */; };
+		5D4299F82542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */; };
+		5D4299F92542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */; };
+		5D4299FA2542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */; };
+		5D4299FB2542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */; };
 		5D437DC524BD8A4B00AFBB1F /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
 		5D437DC724BD8AB300AFBB1F /* InsightsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC624BD8AB300AFBB1F /* InsightsViewModel.swift */; };
 		5D437DCF24BD9D2C00AFBB1F /* Insight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DCE24BD9D2C00AFBB1F /* Insight.swift */; };
@@ -389,7 +396,6 @@
 		5D99ECD9251843840008B45F /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
 		5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5D99ECDC251843840008B45F /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
-		5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
 		5D99ECDE251843840008B45F /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
@@ -687,7 +693,6 @@
 		5D99EE2D251843840008B45F /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5D99EE32251843840008B45F /* ProductCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D7BB540250B633800C8B902 /* ProductCell.xib */; };
 		5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */; };
 		5D99EE34251843840008B45F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
@@ -805,7 +810,6 @@
 		5DC3132224E3F5C700CC3F89 /* StyleBoardSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */; };
 		5DC3132324E3F5C700CC3F89 /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
 		5DC3132524E4D31C00CC3F89 /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
-		5DC669D324CFCA2000FF1092 /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
 		5DC669D724CFDC7300FF1092 /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
 		5DC669DA24CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -918,7 +922,6 @@
 		5DCC2CF524F34F04000AC40A /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
 		5DCC2CF624F34F04000AC40A /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5DCC2CF824F34F04000AC40A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
-		5DCC2CF924F34F04000AC40A /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
 		5DCC2CFA24F34F04000AC40A /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5DCC2CFB24F34F04000AC40A /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5DCC2CFC24F34F04000AC40A /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
@@ -1128,7 +1131,6 @@
 		5DCC2DF524F34F04000AC40A /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5DCC2DF624F34F04000AC40A /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5DCC2DF724F34F04000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5DCC2DF924F34F04000AC40A /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
 		5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
@@ -1198,7 +1200,6 @@
 		5DCC2E4D24F34F2A000AC40A /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
 		5DCC2E4E24F34F2A000AC40A /* Gradient-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4ED24AECB7A007A2FCD /* Gradient-Extension.swift */; };
 		5DCC2E5024F34F2A000AC40A /* Categories.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0324D96D7100AD4B43 /* Categories.swift */; };
-		5DCC2E5124F34F2A000AC40A /* PostsDetailCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */; };
 		5DCC2E5224F34F2A000AC40A /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
 		5DCC2E5324F34F2A000AC40A /* VisualSearchProductCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC824D7A71E0024924B /* VisualSearchProductCellViewModel.swift */; };
 		5DCC2E5424F34F2A000AC40A /* AlertController-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15924AEC2F8007A2FCD /* AlertController-Extension.swift */; };
@@ -1408,7 +1409,6 @@
 		5DCC2F4D24F34F2A000AC40A /* AddProductTagCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD624D957BB00AD4B43 /* AddProductTagCell.xib */; };
 		5DCC2F4E24F34F2A000AC40A /* Roboto-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50124AED804007A2FCD /* Roboto-Thin.ttf */; };
 		5DCC2F4F24F34F2A000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
-		5DCC2F5124F34F2A000AC40A /* PostsDetailCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */; };
 		5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
 		5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
@@ -1701,7 +1701,6 @@
 		5D1C0A9F25318D830082903F /* UserDetailPostSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPostSection.swift; sourceTree = "<group>"; };
 		5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailTitleReusableView.swift; sourceTree = "<group>"; };
 		5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailTitleReusableView.xib; sourceTree = "<group>"; };
-		5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCell.swift; sourceTree = "<group>"; };
 		5D1D5AFA24BFF55A008C0C82 /* PostsDetailSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailSection.swift; sourceTree = "<group>"; };
 		5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailCellViewModel.swift; sourceTree = "<group>"; };
 		5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetail.swift; sourceTree = "<group>"; };
@@ -1762,6 +1761,8 @@
 		5D3F263424D179CA00A825BB /* VisualSearchCropView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VisualSearchCropView.swift; sourceTree = "<group>"; };
 		5D4267B324AF16C3000CB8BF /* HomeNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeNavigationBar.swift; sourceTree = "<group>"; };
 		5D4267B524AF16D4000CB8BF /* HomeNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeNavigationBar.xib; sourceTree = "<group>"; };
+		5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColltionMemu.swift; sourceTree = "<group>"; };
+		5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualSearchDotCellViewModel.swift; sourceTree = "<group>"; };
 		5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsViewController.swift; sourceTree = "<group>"; };
 		5D437DC624BD8AB300AFBB1F /* InsightsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsViewModel.swift; sourceTree = "<group>"; };
 		5D437DCE24BD9D2C00AFBB1F /* Insight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insight.swift; sourceTree = "<group>"; };
@@ -1953,7 +1954,6 @@
 		5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchCell.swift; sourceTree = "<group>"; };
 		5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StyleBoardSearchCell.xib; sourceTree = "<group>"; };
 		5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchViewController.xib; sourceTree = "<group>"; };
-		5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsDetailCell.xib; sourceTree = "<group>"; };
 		5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBannerCell.swift; sourceTree = "<group>"; };
 		5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBannerCell.xib; sourceTree = "<group>"; };
 		5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsDetailSectionTitleReusableView.xib; sourceTree = "<group>"; };
@@ -2189,8 +2189,6 @@
 			children = (
 				5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */,
 				5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */,
-				5D1D5AF624BFF0F9008C0C82 /* PostsDetailCell.swift */,
-				5DC669D224CFCA2000FF1092 /* PostsDetailCell.xib */,
 				5D1D5AFC24BFFD69008C0C82 /* PostsDetailCellViewModel.swift */,
 				5DAB29BF24C836A5003C3E00 /* PostsDetailBannerReusableView.swift */,
 				5DAB29C024C836A5003C3E00 /* PostsDetailBannerReusableView.xib */,
@@ -2515,6 +2513,7 @@
 				5D7C38C9250B695D006D6CF7 /* DefaultColltionCellViewModel.swift */,
 				5D7BB535250B633800C8B902 /* DefaultColltionCell.swift */,
 				5DCAC9432510A4A800172C05 /* DefaultColltionCellType.swift */,
+				5D4299F225428BF5002215DF /* DefaultColltionMemu.swift */,
 				5D7BB537250B633800C8B902 /* DefaultColltionSectionItem.swift */,
 				5D7BB53A250B633800C8B902 /* ProductRecommendCell.swift */,
 				5D7BB53E250B633800C8B902 /* ProductRecommendCell.xib */,
@@ -2689,6 +2688,7 @@
 				5D3AA29624F3B83900CBCE76 /* VisualSearchProductReusableView.swift */,
 				5D3AA29724F3B83900CBCE76 /* VisualSearchProductReusableView.xib */,
 				5DA92369253D31F300CFF241 /* VisualSearchDotButton.swift */,
+				5D4299F72542B1AA002215DF /* VisualSearchDotCellViewModel.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -3355,7 +3355,6 @@
 				5DD370DF2531983A00A42A16 /* ReactionsCell.xib in Resources */,
 				5D99EE2E251843840008B45F /* Roboto-Thin.ttf in Resources */,
 				5D99EE2F251843840008B45F /* AddProductImageCell.xib in Resources */,
-				5D99EE31251843840008B45F /* PostsDetailCell.xib in Resources */,
 				5D99EE32251843840008B45F /* ProductCell.xib in Resources */,
 				5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */,
 				5D99EE34251843840008B45F /* SignInViewController.xib in Resources */,
@@ -3453,7 +3452,6 @@
 				5DD370DD2531983A00A42A16 /* ReactionsCell.xib in Resources */,
 				5DCC2DF624F34F04000AC40A /* Roboto-Thin.ttf in Resources */,
 				5DCC2DF724F34F04000AC40A /* AddProductImageCell.xib in Resources */,
-				5DCC2DF924F34F04000AC40A /* PostsDetailCell.xib in Resources */,
 				5D7BB567250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97025120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */,
@@ -3551,7 +3549,6 @@
 				5DD370DE2531983A00A42A16 /* ReactionsCell.xib in Resources */,
 				5DCC2F4E24F34F2A000AC40A /* Roboto-Thin.ttf in Resources */,
 				5DCC2F4F24F34F2A000AC40A /* AddProductImageCell.xib in Resources */,
-				5DCC2F5124F34F2A000AC40A /* PostsDetailCell.xib in Resources */,
 				5D7BB568250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97125120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */,
@@ -3649,7 +3646,6 @@
 				5DD370DC2531983A00A42A16 /* ReactionsCell.xib in Resources */,
 				5DEFF50724AED804007A2FCD /* Roboto-Thin.ttf in Resources */,
 				5DB6ABFE24D964E000AD4B43 /* AddProductImageCell.xib in Resources */,
-				5DC669D324CFCA2000FF1092 /* PostsDetailCell.xib in Resources */,
 				5D7BB566250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC96F25120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
@@ -3991,7 +3987,6 @@
 				5D99ECD9251843840008B45F /* OriginalPhotosViewModel.swift in Sources */,
 				5D99ECDA251843840008B45F /* Gradient-Extension.swift in Sources */,
 				5D99ECDC251843840008B45F /* Categories.swift in Sources */,
-				5D99ECDD251843840008B45F /* PostsDetailCell.swift in Sources */,
 				5D99ECDE251843840008B45F /* DefaultColltionItem.swift in Sources */,
 				5D99ECDF251843840008B45F /* VisualSearchProductCellViewModel.swift in Sources */,
 				5D99ECE0251843840008B45F /* AlertController-Extension.swift in Sources */,
@@ -4140,6 +4135,7 @@
 				5D99ED74251843840008B45F /* ThemeManager.swift in Sources */,
 				5D99ED75251843840008B45F /* SearchResultContentViewController.swift in Sources */,
 				5D99ED76251843840008B45F /* SearchThemeDetail.swift in Sources */,
+				5D4299FB2542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5D99ED77251843840008B45F /* VisualSearchCropView.swift in Sources */,
 				5D99ED79251843840008B45F /* ViewController.swift in Sources */,
 				5D99ED7A251843840008B45F /* StyleBoardSearchViewModel.swift in Sources */,
@@ -4189,6 +4185,7 @@
 				5D99EDA4251843840008B45F /* HomeSection.swift in Sources */,
 				5D99EDA5251843840008B45F /* AddProductButtonReusableView.swift in Sources */,
 				5D99EDA6251843840008B45F /* SearchBar.swift in Sources */,
+				5D4299F625428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
 				5D99EDA7251843840008B45F /* NotificationViewController.swift in Sources */,
 				5D99EDA8251843840008B45F /* VisualSearchProductCell.swift in Sources */,
 				5D99EDA9251843840008B45F /* SignInViewController.swift in Sources */,
@@ -4320,7 +4317,6 @@
 				5DCC2CF524F34F04000AC40A /* OriginalPhotosViewModel.swift in Sources */,
 				5DCC2CF624F34F04000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2CF824F34F04000AC40A /* Categories.swift in Sources */,
-				5DCC2CF924F34F04000AC40A /* PostsDetailCell.swift in Sources */,
 				5DCC2CFA24F34F04000AC40A /* DefaultColltionItem.swift in Sources */,
 				5DCC2CFB24F34F04000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2CFC24F34F04000AC40A /* AlertController-Extension.swift in Sources */,
@@ -4469,6 +4465,7 @@
 				5DCC2D6824F34F04000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F14250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9742512108700172C05 /* SearchThemeDetail.swift in Sources */,
+				5D4299F92542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5DCC2D6924F34F04000AC40A /* VisualSearchCropView.swift in Sources */,
 				5DCC2D6B24F34F04000AC40A /* ViewController.swift in Sources */,
 				5DCC2D6C24F34F04000AC40A /* StyleBoardSearchViewModel.swift in Sources */,
@@ -4518,6 +4515,7 @@
 				5DCC2D8924F34F04000AC40A /* HomeSection.swift in Sources */,
 				5DCC2D8A24F34F04000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2D8B24F34F04000AC40A /* SearchBar.swift in Sources */,
+				5D4299F425428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
 				5DCC2D8C24F34F04000AC40A /* NotificationViewController.swift in Sources */,
 				5DCC2D8D24F34F04000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2D8E24F34F04000AC40A /* SignInViewController.swift in Sources */,
@@ -4649,7 +4647,6 @@
 				5DCC2E4D24F34F2A000AC40A /* OriginalPhotosViewModel.swift in Sources */,
 				5DCC2E4E24F34F2A000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2E5024F34F2A000AC40A /* Categories.swift in Sources */,
-				5DCC2E5124F34F2A000AC40A /* PostsDetailCell.swift in Sources */,
 				5DCC2E5224F34F2A000AC40A /* DefaultColltionItem.swift in Sources */,
 				5DCC2E5324F34F2A000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2E5424F34F2A000AC40A /* AlertController-Extension.swift in Sources */,
@@ -4798,6 +4795,7 @@
 				5DCC2EC024F34F2A000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F15250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9752512108700172C05 /* SearchThemeDetail.swift in Sources */,
+				5D4299FA2542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5DCC2EC124F34F2A000AC40A /* VisualSearchCropView.swift in Sources */,
 				5DCC2EC324F34F2A000AC40A /* ViewController.swift in Sources */,
 				5DCC2EC424F34F2A000AC40A /* StyleBoardSearchViewModel.swift in Sources */,
@@ -4847,6 +4845,7 @@
 				5DCC2EE124F34F2A000AC40A /* HomeSection.swift in Sources */,
 				5DCC2EE224F34F2A000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2EE324F34F2A000AC40A /* SearchBar.swift in Sources */,
+				5D4299F525428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
 				5DCC2EE424F34F2A000AC40A /* NotificationViewController.swift in Sources */,
 				5DCC2EE524F34F2A000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2EE624F34F2A000AC40A /* SignInViewController.swift in Sources */,
@@ -4978,7 +4977,6 @@
 				5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */,
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
 				5DB6AC0424D96D7100AD4B43 /* Categories.swift in Sources */,
-				5D1D5AF824BFF0F9008C0C82 /* PostsDetailCell.swift in Sources */,
 				5D630AAE24B31B4000F0CC45 /* DefaultColltionItem.swift in Sources */,
 				5D6B4DC924D7A71E0024924B /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
@@ -5127,6 +5125,7 @@
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DFF3F13250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
 				5DCAC9732512108700172C05 /* SearchThemeDetail.swift in Sources */,
+				5D4299F82542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5D3F263724D179CA00A825BB /* VisualSearchCropView.swift in Sources */,
 				5DEFF35A24AEC2F9007A2FCD /* ViewController.swift in Sources */,
 				5DC3131B24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift in Sources */,
@@ -5176,6 +5175,7 @@
 				5D630AB024B3205F00F0CC45 /* HomeSection.swift in Sources */,
 				5DB6AC0124D96A0B00AD4B43 /* AddProductButtonReusableView.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
+				5D4299F325428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
 				5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */,
 				5D6B4DC624D7A61C0024924B /* VisualSearchProductCell.swift in Sources */,
 				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,

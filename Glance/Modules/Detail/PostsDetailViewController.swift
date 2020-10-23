@@ -52,9 +52,6 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.collectionViewLayout = layout
 
         
-        
-
-        collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: PostsDetailCell.reuseIdentifier)
         collectionView.register(ProductCell.nib, forCellWithReuseIdentifier: ProductCell.reuseIdentifier)
         
 

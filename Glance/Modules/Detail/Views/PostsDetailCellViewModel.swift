@@ -56,6 +56,7 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let saved = BehaviorRelay<Bool>(value: false)
     let liked = BehaviorRelay<Bool>(value: false)
     let recommended = BehaviorRelay<Bool>(value: false)
+    let recommendedButtonHidden = BehaviorRelay<Bool>(value: false)
     
     let price = BehaviorRelay<String?>(value: nil)
     let storeName = BehaviorRelay<String?>(value: nil)
@@ -65,6 +66,7 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let recommend = PublishSubject<Void>()
     let viSearch = PublishSubject<UIImage?>()
     let selectStore = PublishSubject<Void>()
+
     
     var bannerHeight : CGFloat {
         if let size = postImageURL.value?.absoluteString.urlImageSize() , size != .zero {
@@ -93,7 +95,7 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
         saved.accept(item.saved)
         liked.accept(item.liked)
         recommended.accept(item.recommended)
-        
+        recommendedButtonHidden.accept(item.own)
     }
 }
 

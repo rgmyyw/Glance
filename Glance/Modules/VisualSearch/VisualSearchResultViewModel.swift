@@ -35,7 +35,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
     let current : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
     let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
     let searchSelection = PublishSubject<(box : Box, item : DefaultColltionItem)>()
-    let dots = BehaviorRelay<[VisualSearchDot]>(value: [])
+    let dots = BehaviorRelay<[VisualSearchDotCellViewModel]>(value: [])
     let mode : BehaviorRelay<VisualSearchMode>
 
     init(provider: API, image : UIImage, mode : VisualSearchMode) {
@@ -79,7 +79,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 imageId.accept(item.imId)
-                let items = item.boxes.map { VisualSearchDot(box: $0,image: self.image.value)}
+                let items = item.boxes.map { VisualSearchDotCellViewModel(box: $0,image: self.image.value)}
                 items.first?.current = items.first?.box
                 self.dots.accept(items)
             default:
@@ -270,7 +270,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             viewModel.selected.accept(selected)
             var dot = self.dots.value.filter { $0.box == current }.first
             if dot == nil {
-                dot = VisualSearchDot(box: current, image: self.image.value)
+                dot = VisualSearchDotCellViewModel(box: current, image: self.image.value)
                 dot?.current = current
                 dots.append(dot!)
             }
