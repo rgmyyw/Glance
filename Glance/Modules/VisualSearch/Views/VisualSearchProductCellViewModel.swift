@@ -19,10 +19,6 @@ class VisualSearchProductCellViewModel : CellViewModelProtocol , CollectionCellI
     var image: String? {
         return item.image
     }
-    var col: Int {
-        return 2
-    }
-    
     
     required init(item : DefaultColltionItem) {
         self.item = item

@@ -16,25 +16,13 @@ enum PostsDetailSection  {
     case title(viewModel : PostsDetailSectionCellViewModel)
     case tags(viewModel : PostsDetailSectionCellViewModel)
     case tool(viewModel : PostsDetailSectionCellViewModel)
-    case tagged(viewModel : String, items : [PostsDetailSectionItem])
-    case similar(viewModel : String, items :  [PostsDetailSectionItem])
-}
-
-enum PostsDetailSectionItem {
-    case tagged(viewModel: PostsDetailCellViewModel)
-    case similar(viewModel: PostsDetailCellViewModel)
-    
-    var viewModel : PostsDetailCellViewModel {
-        switch self {
-        case .tagged(let viewModel),.similar(let viewModel):
-            return viewModel
-        }
-    }
+    case tagged(title : String, items : [DefaultColltionSectionItem])
+    case similar(title : String, items :  [DefaultColltionSectionItem])
 }
 
 extension PostsDetailSection: SectionModelType {
     
-    typealias Item = PostsDetailSectionItem
+    typealias Item = DefaultColltionSectionItem
     
     var column : Int {
         switch self {
@@ -61,7 +49,7 @@ extension PostsDetailSection: SectionModelType {
 
     }
     
-    var items: [PostsDetailSectionItem] {
+    var items: [DefaultColltionSectionItem] {
         switch  self {
         case .tagged(_,let items):
             return items.map { $0 }
@@ -76,10 +64,10 @@ extension PostsDetailSection: SectionModelType {
         switch original {
         case .banner(let viewModel):
             self = .banner(viewModel: viewModel)
-        case .similar(let viewModel, let items):
-            self = .similar(viewModel: viewModel, items: items)
-        case .tagged(let viewModel, let items):
-            self = .tagged(viewModel: viewModel, items: items)
+        case .similar(let title, let items):
+            self = .similar(title: title, items: items)
+        case .tagged(let title, let items):
+            self = .tagged(title: title, items: items)
         case .price(let viewModel):
             self = .price(viewModel: viewModel)
         case .title(let viewModel):

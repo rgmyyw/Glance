@@ -251,7 +251,7 @@ extension String {
 protocol CollectionCellImageHeightCalculateable {
     var image : String? { get }
     var imageHeight : CGFloat { get }
-    var col : Int  { get}
+    var column : Int  { get}
     var inset : CGFloat { get }
     var itemInset : CGFloat { get }
     var defaultHeight : CGFloat { get }
@@ -259,21 +259,27 @@ protocol CollectionCellImageHeightCalculateable {
 
 extension CollectionCellImageHeightCalculateable {
     
+    var column : Int {
+        return 2
+    }
+    
     var inset : CGFloat {
-        return 20
+        return 20.0
     }
     
     var itemInset : CGFloat {
-        return 15
+        return 15.0
     }
     var defaultHeight : CGFloat {
-        return 200
+        return 200.0
     }
     
     var imageHeight : CGFloat {
-        let cellWidth : CGFloat = UIScreen.width - (inset * 2.0) - ((col.cgFloat - 1.0) * itemInset)
+        let c = column.cgFloat
+        let cellWidth : CGFloat = (UIScreen.width - (inset * 2.0) - ((c - 1.0) * itemInset)) / c
         if let size =  image?.urlImageSize() , size != .zero {
-            return ((cellWidth / size.width) * size.height) / col.cgFloat
+            let scale = size.width / cellWidth
+            return size.height / scale
         } else {
             return defaultHeight
         }

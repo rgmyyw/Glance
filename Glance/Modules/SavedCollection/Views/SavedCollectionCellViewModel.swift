@@ -14,12 +14,7 @@ class SavedCollectionCellViewModel : CellViewModelProtocol,CollectionCellImageHe
 
     var image: String? {
         return item.image
-    }
-    var col: Int {
-        return 2
-    }
-
-    
+    }    
     let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)

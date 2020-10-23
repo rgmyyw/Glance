@@ -87,6 +87,7 @@ final class Application: NSObject {
         guard let window = window, let provider = provider else { return }
         let viewModel = DemoViewModel(provider : provider)
         self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
+        
     }
 
 }

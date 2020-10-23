@@ -12,7 +12,7 @@ import RxCocoa
 
 class StyleBoardSearchCellViewModel : CellViewModelProtocol, CollectionCellImageHeightCalculateable {
     
-    var col: Int {
+    var column: Int {
         return 2
     }
     

@@ -222,6 +222,7 @@
                 <outlet property="likeButton" destination="yuq-eW-bft" id="EfY-uJ-TaN"/>
                 <outlet property="memuView" destination="FuE-Mu-iwf" id="jE2-Md-Xg5"/>
                 <outlet property="moreButton" destination="K1F-kn-iuV" id="ysY-zu-PwH"/>
+                <outlet property="moreContentView" destination="aVS-m4-i7c" id="Lqv-y3-2DY"/>
                 <outlet property="recommendButton" destination="oFQ-vR-KhC" id="EQi-Uh-u7s"/>
                 <outlet property="reportButton" destination="z7x-i3-Gye" id="QWA-pM-g7M"/>
                 <outlet property="saveButton" destination="3GO-Fm-99L" id="YrS-0N-fKT"/>

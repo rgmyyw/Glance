@@ -16,9 +16,3 @@ extension String {
     
 }
 
-#if DEBUG
-
-#else
-
-#endif
-

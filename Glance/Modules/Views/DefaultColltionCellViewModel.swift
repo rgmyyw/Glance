@@ -23,6 +23,8 @@ enum DefaultColltionMemu : Int  {
 }
 
 class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
+    
+    
         
     
     let item : DefaultColltionItem
@@ -62,11 +64,12 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     var image: String? {
         return item.image
     }
-
-    var col: Int {
-        return 2
-    }
     
+    var col : Int = 2
+    var column: Int {
+        return col
+    }
+
     
     func makeItemType() -> DefaultColltionSectionItem {
         

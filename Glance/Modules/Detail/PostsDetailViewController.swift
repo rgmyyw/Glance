@@ -55,6 +55,9 @@ class PostsDetailViewController: CollectionViewController {
         
 
         collectionView.register(PostsDetailCell.nib, forCellWithReuseIdentifier: PostsDetailCell.reuseIdentifier)
+        collectionView.register(ProductCell.nib, forCellWithReuseIdentifier: ProductCell.reuseIdentifier)
+        
+
         collectionView.register(nib: PostsDetailBannerReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailBannerReusableView.self)
         collectionView.register(nib: PostsDetailPriceReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailPriceReusableView.self)
         collectionView.register(nib: PostsDetailTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTitleReusableView.self)
@@ -75,7 +78,7 @@ class PostsDetailViewController: CollectionViewController {
         
         let footerRefresh = Observable.just(()).merge(with: footerRefreshTrigger.asObservable())
         let input = PostsDetailViewModel.Input(footerRefresh: footerRefresh,
-                                               selection: collectionView.rx.modelSelected(PostsDetailSectionItem.self).asObservable(),
+                                               selection: collectionView.rx.modelSelected(DefaultColltionSectionItem.self).asObservable(),
                                                bottomButtonTrigger: bottomBar.backgroundView.rx.tap(),
                                                memu: customNavigationBar.moreButton.rx.tap.asObservable(),
                                                memuSelection: memu.selection())
@@ -173,21 +176,24 @@ extension PostsDetailViewController {
 
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<PostsDetailSection> {
         return RxCollectionViewSectionedReloadDataSource<PostsDetailSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-            
             switch item {
-            case .tagged(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
-                cell.titleLabel.font = UIFont.titleBoldFont(10)
+            case .product(let viewModel):
+                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: ProductCell.self)
+                cell.moreContentView.isHidden = true
                 cell.bind(to: viewModel)
-               
+                
+                switch dataSouce[indexPath.section] {
+                case .tagged:
+                    cell.titleLabel.font = UIFont.titleBoldFont(10)
+                case .similar:
+                   cell.titleLabel.font = UIFont.titleBoldFont(12)
+                default: break
+                }
                 return cell
-            case .similar(let viewModel):
-                let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostsDetailCell.self)
-                cell.titleLabel.font = UIFont.titleBoldFont(12)
-                cell.bind(to: viewModel)
-               
-                return cell
+            default:
+                fatalError()
             }
+            
         })
     }
 
@@ -252,8 +258,8 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
 
         switch dataSouce.sectionModels[section] {
-        case .banner:
-            return CGSize(width: collectionView.width, height: 350)
+        case .banner(let viewModel):
+            return CGSize(width: collectionView.width, height: viewModel.bannerHeight)
         case .similar,.tagged:
             return CGSize(width: collectionView.width, height: 50)
         case .price:
@@ -287,25 +293,26 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
-        let viewModel = dataSouce[indexPath.section].items[indexPath.item].viewModel
-        viewModel.column = dataSouce[indexPath.section].column.cgFloat
-        let fixedWidth = collectionView.itemWidth(forItemsPerRow: dataSouce[indexPath.section].column,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
         
-        switch dataSouce.sectionModels[indexPath.section] {
-        case .similar:
-            return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
-                let cell = cell  as? PostsDetailCell
-                cell?.bind(to: viewModel)
-                
+        let sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
+        let section = dataSouce[indexPath.section]
+        let fixedWidth = collectionView.itemWidth(forItemsPerRow: section.column,sectionInset: sectionInset,itemInset: 15)
+        
+        let item = dataSouce.sectionModels[indexPath.section].items[indexPath.item]
+        return collectionView.ar_sizeForCell(withIdentifier: item.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
+            let cell = cell  as? ProductCell
+            cell?.moreContentView.isHidden = true
+            cell?.bind(to: item.viewModel)
+            switch section {
+            case .tagged:
+                cell?.titleLabel.font = UIFont.titleBoldFont(10)
+            case .similar:
+                cell?.titleLabel.font = UIFont.titleBoldFont(12)
+            default:break
             }
-        case .tagged:
-            return collectionView.ar_sizeForCell(withIdentifier: PostsDetailCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) { (cell) in
-                let cell = cell  as? PostsDetailCell
-                cell?.bind(to: viewModel)
-            }
-        default:
-            fatalError()
+            
         }
+        
     }
 
 }

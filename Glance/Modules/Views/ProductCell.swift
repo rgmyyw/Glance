@@ -23,8 +23,7 @@ class ProductCell: DefaultColltionCell {
     @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var reportButton: UIButton!
-
-    
+    @IBOutlet weak var moreContentView: UIView!
     
     override func makeUI() {
         super.makeUI()

@@ -13,6 +13,8 @@ import RxCocoa
 //CollectionCellImageHeightCalculateable
 class PostsDetailCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable  {
     
+        
+    
     let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
@@ -24,11 +26,11 @@ class PostsDetailCellViewModel : CellViewModelProtocol , CollectionCellImageHeig
         return item.image
     }
   
-    var column : CGFloat = 0
-    
-    var col: Int {
-        return column.int
+    var col : Int = 2
+    var column : Int {
+        return col
     }
+    
         
     
     required init(item : DefaultColltionItem) {
@@ -55,7 +57,6 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let liked = BehaviorRelay<Bool>(value: false)
     let recommended = BehaviorRelay<Bool>(value: false)
     
-    //let currency = BehaviorRelay<String?>(value: nil)
     let price = BehaviorRelay<String?>(value: nil)
     let storeName = BehaviorRelay<String?>(value: nil)
     
@@ -65,6 +66,13 @@ class PostsDetailSectionCellViewModel : CellViewModelProtocol {
     let viSearch = PublishSubject<UIImage?>()
     let selectStore = PublishSubject<Void>()
     
+    var bannerHeight : CGFloat {
+        if let size = postImageURL.value?.absoluteString.urlImageSize() , size != .zero {
+            return size.height / (size.width / UIScreen.width)
+        } else {
+            return UIScreen.width
+        }
+    }
     
     required init(item : PostsDetail) {
         self.item = item

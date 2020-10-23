@@ -11,12 +11,7 @@ import RxSwift
 import RxCocoa
 
 class VisualSearchResultCellViewModel : CellViewModelProtocol, CollectionCellImageHeightCalculateable {
-    
-    var col: Int {
-        return 2
-    }
-    
-    
+        
     let item : DefaultColltionItem
     let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)

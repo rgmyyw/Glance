@@ -151,18 +151,18 @@ extension Reactive where Base: UIView {
 extension UITextField : UITextFieldDelegate {
     
     private enum RuntimeKey {
-        static let textFieldReturn = "textFieldReturn"
+        static var textFieldReturn = "textFieldReturn"
     }
     
     /// 监听内textFieldReturn 点击, 内部使用代理, 使用会覆盖
     func `return`() -> Observable<Void>{
         self.delegate = self
         
-        if let subject = objc_getAssociatedObject(self, RuntimeKey.textFieldReturn) as? PublishSubject<Void> {
+        if let subject = objc_getAssociatedObject(self, &RuntimeKey.textFieldReturn) as? PublishSubject<Void> {
             return subject.asObservable()
         }
         let subject = PublishSubject<()>()
-        objc_setAssociatedObject(self, RuntimeKey.textFieldReturn, subject, .OBJC_ASSOCIATION_RETAIN)
+        objc_setAssociatedObject(self, &RuntimeKey.textFieldReturn, subject, .OBJC_ASSOCIATION_RETAIN)
         return subject.asObservable()
     }
     
@@ -174,23 +174,6 @@ extension UITextField : UITextFieldDelegate {
         return true
     }
 }
-
-
-
-
-//
-//extension AlertController {
-//
-//    public func addActions(_ actions: [AlertAction]) {
-//        actions.forEach {
-//            addAction($0)
-//        }
-//    }
-//
-//    func asObservable() -> Observable<Int> {
-//        return Observable.merge(actions.map { $0.asObservable() })
-//    }
-//}
 
 
 

@@ -194,14 +194,14 @@ extension VisualSearchCropView {
         
         guard image != nil else { return }
         let maxW : CGFloat = bounds.width
-        let maxH : CGFloat = bounds.height 
+        //let maxH : CGFloat = bounds.height 
 
         let imgW = imageSize.width
         let imgH = imageSize.height
         
         /// 如果图片大于屏幕宽度，缩小宽度, 高度也对应的缩小
         /// 如果图片小于屏幕宽度，放大宽度, 高度也对应放大
-        var h = maxW * imgH / imgW
+        let h = maxW * imgH / imgW
 //        if h > maxH {
 //            h = maxH
 //            w = h * imgW / imgH

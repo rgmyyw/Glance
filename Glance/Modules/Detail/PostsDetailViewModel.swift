@@ -36,7 +36,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     
     struct Input {
         let footerRefresh: Observable<Void>
-        let selection : Observable<PostsDetailSectionItem>
+        let selection : Observable<DefaultColltionSectionItem>
         let bottomButtonTrigger : Observable<Void>
         let memu : Observable<Void>
         let memuSelection : Observable<Int>
@@ -130,7 +130,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         // 添加收藏
         let saveCurrent = PublishSubject<PostsDetailSectionCellViewModel>()
-        let saveOther = PublishSubject<PostsDetailCellViewModel>()
+        let saveOther = PublishSubject<DefaultColltionCellViewModel>()
         let save = PublishSubject<(AnyObject, [String : Any])>()
         
         // 喜欢
@@ -266,22 +266,23 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 fatalError()
             }
             
-            let taggedItems = element.taggedProducts.map { item -> PostsDetailSectionItem in
-                var item = item
-                item.type = .product
-                let cellViewModel = PostsDetailCellViewModel(item: item)
-                cellViewModel.save.map { cellViewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
-                return PostsDetailSectionItem.tagged(viewModel: cellViewModel)
+            let taggedItems = element.taggedProducts.map { item -> DefaultColltionSectionItem  in
+                let viewModel = DefaultColltionCellViewModel(item: item)
+                viewModel.col = 3
+                viewModel.save.map { _ in  viewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
+                viewModel.recommendButtonHidden.accept(true)
+                return viewModel.makeItemType()
             }
-            let similarItems = similar.list.map { item -> PostsDetailSectionItem in
-                var item = item
-                item.type = .product
-                let cellViewModel = PostsDetailCellViewModel(item: item)
-                cellViewModel.save.map { cellViewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
-                return PostsDetailSectionItem.similar(viewModel: cellViewModel)
+
+            let similarItems = similar.list.map { item -> DefaultColltionSectionItem  in
+                let viewModel = DefaultColltionCellViewModel(item: item)
+                viewModel.save.map { _ in  viewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
+                viewModel.recommendButtonHidden.accept(true)
+                return viewModel.makeItemType()
             }
-            let tagged = PostsDetailSection.tagged(viewModel: "Tagged Products", items: taggedItems)
-            let similar = PostsDetailSection.similar(viewModel: "Similar Styles", items: similarItems)
+            
+            let tagged = PostsDetailSection.tagged(title: "Tagged Products", items: taggedItems)
+            let similar = PostsDetailSection.similar(title: "Similar Styles", items: similarItems)
             switch type {
             case .post,.recommendPost:
                 sections.append(tagged)
@@ -312,7 +313,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                         item.saved = result
                         kUpdateItem.onNext((.saved,item,self))
                     }
-                } else if let item = cellViewModel as? PostsDetailCellViewModel {
+                } else if let item = cellViewModel as? DefaultColltionCellViewModel {
                     item.saved.accept(result)
                     if var item = self?.item.value {
                         item.saved = result

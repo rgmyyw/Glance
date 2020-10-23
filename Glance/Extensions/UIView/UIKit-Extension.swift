@@ -50,7 +50,6 @@ extension  UITextField {
     
     
     func limitCharacter(number : Int) {
-        
         rx.text.orEmpty.map { ($0, $0.count > number) }
             .subscribe(onNext: { [weak self](text, valid) in
                 if valid , number > 0 {

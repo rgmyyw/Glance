@@ -31,6 +31,7 @@ class PostsDetailBannerReusableView: CollectionReusableView {
     
     override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
         super.bind(to: viewModel)
+        
         viewModel.postImageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         visearchButton.rx.tap.map { self.imageView.image}.bind(to: viewModel.viSearch).disposed(by: rx.disposeBag)
     }
