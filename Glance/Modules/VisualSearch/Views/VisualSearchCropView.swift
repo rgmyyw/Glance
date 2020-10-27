@@ -11,7 +11,7 @@ import RxSwift
 import RxCocoa
 import ChameleonFramework
 
-class VisualSearchCropView: UIView {
+class VisualSearchCropView: UIView, UIScrollViewDelegate {
     
     fileprivate var dragging: Bool = false
     fileprivate var initialRect: CGRect = .zero
@@ -34,6 +34,7 @@ class VisualSearchCropView: UIView {
         view.showsVerticalScrollIndicator = false
         view.showsHorizontalScrollIndicator = false
         view.addSubview(imageView)
+        view.delegate = self
         if #available(iOS 11, *) {
             view.contentInsetAdjustmentBehavior = .never
         } else {
@@ -45,7 +46,7 @@ class VisualSearchCropView: UIView {
     private(set) public lazy var imageView : UIImageView = {
         let view = UIImageView()
         view.contentMode = .scaleToFill
-        view.isUserInteractionEnabled = false
+        view.isUserInteractionEnabled = true
         let pan = UIPanGestureRecognizer(target: self, action: #selector(panGridView(_:)))
         pan.maximumNumberOfTouches = 1
         view.addGestureRecognizer(pan)
@@ -135,7 +136,16 @@ class VisualSearchCropView: UIView {
                 self.gridLayer.frame = frame.height < self.frame.height ? self.frame : frame
             }).disposed(by: rx.disposeBag)
         
+        contentView.rx.didEndDecelerating.mapToVoid()
+            .merge(with: [contentView.rx.didEndDragging.mapToVoid(),
+                          contentView.rx.didEndZooming.mapToVoid(),
+                          contentView.rx.didEndScrollingAnimation.mapToVoid()])
+            .subscribe(onNext: { [weak self]() in
+                self?.imageView.gestureRecognizers?.first?.isEnabled = true
+        }).disposed(by: rx.disposeBag)
+        
     }
+    
     
     public func selection(dot : VisualSearchDotCellViewModel) {
         if let index = elements.value.firstIndex(where: { $0.dot.box == dot.box}) {
@@ -152,13 +162,14 @@ class VisualSearchCropView: UIView {
         dots.forEach { (dot) in
             var element = elements.value.filter { $0.dot.box == dot.box }.first
             if element == nil {
-                print("---------------------------------")
+                // print("---------------------------------")
                 let rect = dot.box.transformCGRect(from: imageSize)
+                /*
                 print("begin create dot")
                 print("current px: \(dot.box.string)")
                 print("px -> pt: \(rect.debugDescription)")
                 print("pt -> px: \(rect.transformPixel(from: imageSize).string)")
-                
+                */
                 element = VisualSearchDotButton(center: rect.center, dot: dot)
                 element?.rx.tap.subscribe({ [weak self] _ in
                     self?.updateGridView(rect: rect, animated: true)
@@ -171,12 +182,14 @@ class VisualSearchCropView: UIView {
                 if elements.value.count == 1 {
                     updateGridView(rect: rect, animated: true)
                 }
+                /*
                 print("end create dot")
                 print("---------------------------------")
+                */
             }
             
+            /**
             print("---------------------------------")
-            //element?.view.isSelected = dot.state == .selected
             print("default : \(dot.box.default)")
             print("current state : \(dot.state.value)")
             print("current box : \(dot.box.string)")
@@ -184,8 +197,10 @@ class VisualSearchCropView: UIView {
             print("is current : \(dot.box == dot.current)")
             print("selected product: \(dot.selected?.productId ?? "")")
             print("---------------------------------")
+             */
         }
     }
+    
 }
 
 extension VisualSearchCropView {
@@ -329,12 +344,23 @@ extension VisualSearchCropView {
     }
     
     @objc func panGridView(_ sender: UIPanGestureRecognizer) {
- 
+        
+        print("current pan state: \(sender.state)")
         if sender.state == .began {
             let point :  CGPoint = sender.location(in: imageView)
-            dragging = clippingRect.contains(point)
-            initialRect = clippingRect
-        } else if dragging {
+            let contains = clippingRect.contains(point)
+            if  contains {
+                sender.isEnabled = contains
+                dragging = contains
+                initialRect = clippingRect
+            } else {
+                dragging = false
+                if contentView.contentSize.height > contentView.frame.height {
+                    sender.isEnabled = false
+                }
+            }
+            
+        } else if dragging , sender.isEnabled {
             let point : CGPoint = sender.translation(in: imageView)
             let left : CGFloat = CGFloat.minimum(CGFloat.maximum(initialRect.origin.x + point.x, 0), imageView.frame.size.width - initialRect.size.width)
             let top : CGFloat = CGFloat.minimum(CGFloat.maximum(initialRect.origin.y + point.y, 0), imageView.frame.size.height - initialRect.size.height)
@@ -492,4 +518,3 @@ extension VisualSearchCropView {
     }
     
 }
-

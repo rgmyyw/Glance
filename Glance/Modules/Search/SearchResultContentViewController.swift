@@ -33,9 +33,9 @@ class SearchResultContentViewController: CollectionViewController {
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
         collectionView.register(nibWithCellClass: UserHorizontalCell.self)
         
-        emptyDataViewDataSource.image.accept(R.image.icon_empty_search())
-        emptyDataViewDataSource.title.accept("No search results yet")
-        emptyDataViewDataSource.subTitle.accept("Please research for other related words")
+        emptyDataSource.image.accept(R.image.icon_empty_search())
+        emptyDataSource.title.accept("No search results yet")
+        emptyDataSource.subTitle.accept("Please research for other related words")
         
     }
 

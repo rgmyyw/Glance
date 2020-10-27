@@ -30,6 +30,34 @@
 		5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
 		5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
 		5D13709A24B70F4B007B64BA /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13709424B70F4B007B64BA /* NotificationCell.xib */; };
+		5D15FB1C25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
+		5D15FB1D25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
+		5D15FB1E25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
+		5D15FB1F25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
+		5D15FB2525467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */; };
+		5D15FB2625467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */; };
+		5D15FB2725467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */; };
+		5D15FB2825467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */; };
+		5D15FB2A2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */; };
+		5D15FB2B2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */; };
+		5D15FB2C2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */; };
+		5D15FB2D2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */; };
+		5D15FB2F2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */; };
+		5D15FB302546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */; };
+		5D15FB312546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */; };
+		5D15FB322546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */; };
+		5D15FB342546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */; };
+		5D15FB352546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */; };
+		5D15FB362546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */; };
+		5D15FB372546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */; };
+		5D15FB392546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */; };
+		5D15FB3A2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */; };
+		5D15FB3B2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */; };
+		5D15FB3C2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */; };
+		5D15FB3E2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
+		5D15FB3F2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
+		5D15FB402546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
+		5D15FB412546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
 		5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
 		5D1C0A4D253015C30082903F /* UserDetailRecommSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */; };
 		5D1C0A4E253015C60082903F /* UserDetailRecommSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */; };
@@ -704,7 +732,6 @@
 		5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E362508701100E9FD8D /* SearchRecommendHistoryView.xib */; };
 		5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3196E52514499A00C4D6BE /* SearchThemeLabelHeadView.xib */; };
 		5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
-		5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D2D0E952509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib */; };
 		5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
@@ -809,7 +836,6 @@
 		5DC3131F24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131E24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift */; };
 		5DC3132224E3F5C700CC3F89 /* StyleBoardSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */; };
 		5DC3132324E3F5C700CC3F89 /* StyleBoardSearchCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */; };
-		5DC3132524E4D31C00CC3F89 /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
 		5DC669D724CFDC7300FF1092 /* PostsDetailBannerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */; };
 		5DC669DA24CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1138,7 +1164,6 @@
 		5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2E0024F34F04000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
 		5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
-		5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5DCC2E0824F34F04000AC40A /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5DCC2E0924F34F04000AC40A /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
 		5DCC2E0A24F34F04000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1416,7 +1441,6 @@
 		5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2F5824F34F2A000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
 		5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABE824D9580E00AD4B43 /* AddProductNameReusableView.xib */; };
-		5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */; };
 		5DCC2F6024F34F2A000AC40A /* AddProductButtonReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0024D96A0B00AD4B43 /* AddProductButtonReusableView.xib */; };
 		5DCC2F6124F34F2A000AC40A /* InterestReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB224C7EFF9006B0032 /* InterestReusableView.xib */; };
 		5DCC2F6224F34F2A000AC40A /* PostsDetailSectionTitleReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */; };
@@ -1692,6 +1716,13 @@
 		5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
 		5D13709324B70F4B007B64BA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		5D13709424B70F4B007B64BA /* NotificationCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
+		5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchContentViewController.swift; sourceTree = "<group>"; };
+		5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchContentViewModel.swift; sourceTree = "<group>"; };
+		5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchModuleItem.swift; sourceTree = "<group>"; };
+		5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchTextFieldView.swift; sourceTree = "<group>"; };
+		5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchTextFieldView.xib; sourceTree = "<group>"; };
+		5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchEmptyView.swift; sourceTree = "<group>"; };
+		5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchEmptyView.xib; sourceTree = "<group>"; };
 		5D16BB3924C15C4F003B5633 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRecommSection.swift; sourceTree = "<group>"; };
 		5D1C0A8B25304C0C0082903F /* UsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
@@ -1953,7 +1984,6 @@
 		5DC3131E24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchCellViewModel.swift; sourceTree = "<group>"; };
 		5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchCell.swift; sourceTree = "<group>"; };
 		5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = StyleBoardSearchCell.xib; sourceTree = "<group>"; };
-		5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchViewController.xib; sourceTree = "<group>"; };
 		5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailBannerCell.swift; sourceTree = "<group>"; };
 		5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailBannerCell.xib; sourceTree = "<group>"; };
 		5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsDetailSectionTitleReusableView.xib; sourceTree = "<group>"; };
@@ -2632,9 +2662,11 @@
 				5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */,
 				5DC3131024E3E6EC00CC3F89 /* StyleBoardSection.swift */,
 				5DC3131824E3F1F900CC3F89 /* StyleBoardSearchViewController.swift */,
-				5DC3132424E4D31C00CC3F89 /* StyleBoardSearchViewController.xib */,
 				5DC3131A24E3F21500CC3F89 /* StyleBoardSearchViewModel.swift */,
 				5DC3131C24E3F2F700CC3F89 /* StyleBoardSearchSection.swift */,
+				5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */,
+				5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */,
+				5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */,
 			);
 			path = StyleBoard;
 			sourceTree = "<group>";
@@ -2649,6 +2681,10 @@
 				5DC3132024E3F5C700CC3F89 /* StyleBoardSearchCell.swift */,
 				5DC3132124E3F5C700CC3F89 /* StyleBoardSearchCell.xib */,
 				5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */,
+				5D15FB2E2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift */,
+				5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */,
+				5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */,
+				5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -3296,6 +3332,7 @@
 				5D99EDEB251843840008B45F /* ThemeCell.xib in Resources */,
 				5D99EDEC251843840008B45F /* SelectStoreCell.xib in Resources */,
 				5D99EDED251843840008B45F /* SearchResultNavigationBar.xib in Resources */,
+				5D15FB412546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */,
 				5D99EDEE251843840008B45F /* StyleBoardImageCell.xib in Resources */,
 				5DD370D32531983A00A42A16 /* InsightsLikeCell.xib in Resources */,
 				5D99EDEF251843840008B45F /* PostRecommendCell.xib in Resources */,
@@ -3326,6 +3363,7 @@
 				5D99EE0C251843840008B45F /* PostsDetailNavigationBar.xib in Resources */,
 				5D99EE0E251843840008B45F /* Roboto-Light.ttf in Resources */,
 				5D99EE0F251843840008B45F /* ProductRecommendCell.xib in Resources */,
+				5D15FB372546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
 				5D99EE10251843840008B45F /* StyleBoardSearchCell.xib in Resources */,
 				5D99EE11251843840008B45F /* LaunchScreen.storyboard in Resources */,
 				5D99EE12251843840008B45F /* SearchRecommendNavigationBar.xib in Resources */,
@@ -3366,7 +3404,6 @@
 				5D99EE3B251843840008B45F /* SearchRecommendHistoryView.xib in Resources */,
 				5D99EE3E251843840008B45F /* SearchThemeLabelHeadView.xib in Resources */,
 				5D99EE3F251843840008B45F /* AddProductNameReusableView.xib in Resources */,
-				5D99EE41251843840008B45F /* StyleBoardSearchViewController.xib in Resources */,
 				5D99EE43251843840008B45F /* SearchRecommendHotCollectionCell.xib in Resources */,
 				5D99EE45251843840008B45F /* AddProductButtonReusableView.xib in Resources */,
 				5D99EE46251843840008B45F /* InterestReusableView.xib in Resources */,
@@ -3393,6 +3430,7 @@
 				5D7BB56A250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F72514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
+				5D15FB3F2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */,
 				5DCC2DC324F34F04000AC40A /* StyleBoardImageCell.xib in Resources */,
 				5DD370D12531983A00A42A16 /* InsightsLikeCell.xib in Resources */,
 				5D7BB564250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -3423,6 +3461,7 @@
 				5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */,
 				5DCC2DDE24F34F04000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB561250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
+				5D15FB352546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
 				5DCC2DDF24F34F04000AC40A /* StyleBoardSearchCell.xib in Resources */,
 				5DCC2DE024F34F04000AC40A /* LaunchScreen.storyboard in Resources */,
 				5D2D0E692508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
@@ -3463,7 +3502,6 @@
 				5D2D0E5D2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5D3196E72514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2E0324F34F04000AC40A /* AddProductNameReusableView.xib in Resources */,
-				5DCC2E0524F34F04000AC40A /* StyleBoardSearchViewController.xib in Resources */,
 				5D2D0E9A2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
 				5DCC2E0824F34F04000AC40A /* AddProductButtonReusableView.xib in Resources */,
 				5DCC2E0924F34F04000AC40A /* InterestReusableView.xib in Resources */,
@@ -3490,6 +3528,7 @@
 				5D7BB56B250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F82514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
+				5D15FB402546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */,
 				5DCC2F1B24F34F2A000AC40A /* StyleBoardImageCell.xib in Resources */,
 				5DD370D22531983A00A42A16 /* InsightsLikeCell.xib in Resources */,
 				5D7BB565250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -3520,6 +3559,7 @@
 				5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */,
 				5DCC2F3624F34F2A000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB562250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
+				5D15FB362546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
 				5DCC2F3724F34F2A000AC40A /* StyleBoardSearchCell.xib in Resources */,
 				5DCC2F3824F34F2A000AC40A /* LaunchScreen.storyboard in Resources */,
 				5D2D0E6A2508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
@@ -3560,7 +3600,6 @@
 				5D2D0E5E2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5D3196E82514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DCC2F5B24F34F2A000AC40A /* AddProductNameReusableView.xib in Resources */,
-				5DCC2F5D24F34F2A000AC40A /* StyleBoardSearchViewController.xib in Resources */,
 				5D2D0E9B2509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
 				5DCC2F6024F34F2A000AC40A /* AddProductButtonReusableView.xib in Resources */,
 				5DCC2F6124F34F2A000AC40A /* InterestReusableView.xib in Resources */,
@@ -3587,6 +3626,7 @@
 				5D7BB569250B633900C8B902 /* ThemeCell.xib in Resources */,
 				5D3196F62514569300C4D6BE /* SelectStoreCell.xib in Resources */,
 				5DFF3F27250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */,
+				5D15FB3E2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */,
 				5DC3131524E3E89500CC3F89 /* StyleBoardImageCell.xib in Resources */,
 				5DD370D02531983A00A42A16 /* InsightsLikeCell.xib in Resources */,
 				5D7BB563250B633900C8B902 /* PostRecommendCell.xib in Resources */,
@@ -3617,6 +3657,7 @@
 				5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5D7BB560250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
+				5D15FB342546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
 				5DC3132324E3F5C700CC3F89 /* StyleBoardSearchCell.xib in Resources */,
 				5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */,
 				5D2D0E682508701200E9FD8D /* SearchRecommendNavigationBar.xib in Resources */,
@@ -3657,7 +3698,6 @@
 				5D2D0E5C2508701200E9FD8D /* SearchRecommendHistoryView.xib in Resources */,
 				5D3196E62514499A00C4D6BE /* SearchThemeLabelHeadView.xib in Resources */,
 				5DB6ABEA24D9580E00AD4B43 /* AddProductNameReusableView.xib in Resources */,
-				5DC3132524E4D31C00CC3F89 /* StyleBoardSearchViewController.xib in Resources */,
 				5D2D0E992509E07800E9FD8D /* SearchRecommendHotCollectionCell.xib in Resources */,
 				5DB6AC0224D96A0B00AD4B43 /* AddProductButtonReusableView.xib in Resources */,
 				5DBC3AB424C7EFF9006B0032 /* InterestReusableView.xib in Resources */,
@@ -3964,6 +4004,7 @@
 				5D99ECC5251843840008B45F /* AddProductTagCell.swift in Sources */,
 				5D1C0AA325318D830082903F /* UserDetailPostSection.swift in Sources */,
 				5D99ECC6251843840008B45F /* InterestNavigationBar.swift in Sources */,
+				5D15FB322546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5D99ECC7251843840008B45F /* PostsDetailTagsReusableView.swift in Sources */,
 				5D99ECC8251843840008B45F /* SearchThemeLabelViewController.swift in Sources */,
 				5D99ECC9251843840008B45F /* RestApi.swift in Sources */,
@@ -4038,6 +4079,7 @@
 				5D99ED14251843840008B45F /* AddProductViewController.swift in Sources */,
 				5D99ED15251843840008B45F /* InterestViewController.swift in Sources */,
 				5D99ED16251843840008B45F /* ViewModelType.swift in Sources */,
+				5D15FB1F25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */,
 				5D47C7FB2519ABF900B883EA /* SelectStore.swift in Sources */,
 				5D99ED17251843840008B45F /* TableViewCell.swift in Sources */,
 				5D99ED18251843840008B45F /* SearchViewModel.swift in Sources */,
@@ -4057,6 +4099,7 @@
 				5D99ED26251843840008B45F /* VisualSearchProductViewModel.swift in Sources */,
 				5D99ED27251843840008B45F /* SearchFacets.swift in Sources */,
 				5D99ED28251843840008B45F /* PickerViewViewController.swift in Sources */,
+				5D15FB2825467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */,
 				5D99ED29251843840008B45F /* DateTransform.swift in Sources */,
 				5D99ED2A251843840008B45F /* CollectionView.swift in Sources */,
 				5D99ED2B251843840008B45F /* ProductRecommendCell.swift in Sources */,
@@ -4179,6 +4222,7 @@
 				5D99ED9D251843840008B45F /* ReactionAnalysis.swift in Sources */,
 				5D99ED9E251843840008B45F /* PostsDetailBannerCell.swift in Sources */,
 				5D99ED9F251843840008B45F /* Reaction.swift in Sources */,
+				5D15FB3C2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */,
 				5DD0A37D251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */,
 				5D99EDA1251843840008B45F /* SearchCellViewModel.swift in Sources */,
 				5D99EDA3251843840008B45F /* AppearanceManager.swift in Sources */,
@@ -4211,6 +4255,7 @@
 				5D99EDBC251843840008B45F /* ShoppingCartViewController.swift in Sources */,
 				5D99EDBD251843840008B45F /* SignInViewModel.swift in Sources */,
 				5D99EDBE251843840008B45F /* ReactionPopView.swift in Sources */,
+				5D15FB2D2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5D99EDBF251843840008B45F /* SearchThemeContentViewController.swift in Sources */,
 				5D99EDC0251843840008B45F /* SearchHistoryCellViewModel.swift in Sources */,
 				5D99EDC1251843840008B45F /* PostProductViewModel.swift in Sources */,
@@ -4294,6 +4339,7 @@
 				5DCC2CE424F34F04000AC40A /* AddProductTagCell.swift in Sources */,
 				5D1C0AA125318D830082903F /* UserDetailPostSection.swift in Sources */,
 				5DCC2CE524F34F04000AC40A /* InterestNavigationBar.swift in Sources */,
+				5D15FB302546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DCC2CE624F34F04000AC40A /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483C9251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
 				5DCC2CE724F34F04000AC40A /* RestApi.swift in Sources */,
@@ -4368,6 +4414,7 @@
 				5DCC2D2624F34F04000AC40A /* AddProductViewController.swift in Sources */,
 				5DCC2D2724F34F04000AC40A /* InterestViewController.swift in Sources */,
 				5DCC2D2824F34F04000AC40A /* ViewModelType.swift in Sources */,
+				5D15FB1D25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */,
 				5D47C7F92519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DCC2D2A24F34F04000AC40A /* TableViewCell.swift in Sources */,
 				5DFE1325250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
@@ -4387,6 +4434,7 @@
 				5DCC2D3324F34F04000AC40A /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC9392510676800172C05 /* SearchFacets.swift in Sources */,
 				5DCC2D3424F34F04000AC40A /* PickerViewViewController.swift in Sources */,
+				5D15FB2625467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */,
 				5DCC2D3524F34F04000AC40A /* DateTransform.swift in Sources */,
 				5DCC2D3624F34F04000AC40A /* CollectionView.swift in Sources */,
 				5D7BB555250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
@@ -4509,6 +4557,7 @@
 				5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2D8624F34F04000AC40A /* Reaction.swift in Sources */,
+				5D15FB3A2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */,
 				5DD0A37B251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */,
 				5DFE1321250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DCC2D8824F34F04000AC40A /* AppearanceManager.swift in Sources */,
@@ -4541,6 +4590,7 @@
 				5DCC2D9B24F34F04000AC40A /* ShoppingCartViewController.swift in Sources */,
 				5D3AA2A024F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5D7BB55E250B633900C8B902 /* ReactionPopView.swift in Sources */,
+				5D15FB2B2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC959251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
 				5D2D0E662508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5DCC2D9C24F34F04000AC40A /* PostProductViewModel.swift in Sources */,
@@ -4624,6 +4674,7 @@
 				5DCC2E3C24F34F2A000AC40A /* AddProductTagCell.swift in Sources */,
 				5D1C0AA225318D830082903F /* UserDetailPostSection.swift in Sources */,
 				5DCC2E3D24F34F2A000AC40A /* InterestNavigationBar.swift in Sources */,
+				5D15FB312546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DCC2E3E24F34F2A000AC40A /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483CA251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
 				5DCC2E3F24F34F2A000AC40A /* RestApi.swift in Sources */,
@@ -4698,6 +4749,7 @@
 				5DCC2E7E24F34F2A000AC40A /* AddProductViewController.swift in Sources */,
 				5DCC2E7F24F34F2A000AC40A /* InterestViewController.swift in Sources */,
 				5DCC2E8024F34F2A000AC40A /* ViewModelType.swift in Sources */,
+				5D15FB1E25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */,
 				5D47C7FA2519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DCC2E8224F34F2A000AC40A /* TableViewCell.swift in Sources */,
 				5DFE1326250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
@@ -4717,6 +4769,7 @@
 				5DCC2E8B24F34F2A000AC40A /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC93A2510676800172C05 /* SearchFacets.swift in Sources */,
 				5DCC2E8C24F34F2A000AC40A /* PickerViewViewController.swift in Sources */,
+				5D15FB2725467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */,
 				5DCC2E8D24F34F2A000AC40A /* DateTransform.swift in Sources */,
 				5DCC2E8E24F34F2A000AC40A /* CollectionView.swift in Sources */,
 				5D7BB556250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
@@ -4839,6 +4892,7 @@
 				5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */,
 				5DCC2EDE24F34F2A000AC40A /* Reaction.swift in Sources */,
+				5D15FB3B2546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */,
 				5DD0A37C251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */,
 				5DFE1322250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DCC2EE024F34F2A000AC40A /* AppearanceManager.swift in Sources */,
@@ -4871,6 +4925,7 @@
 				5DCC2EF324F34F2A000AC40A /* ShoppingCartViewController.swift in Sources */,
 				5D3AA2A124F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5D7BB55F250B633900C8B902 /* ReactionPopView.swift in Sources */,
+				5D15FB2C2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC95A251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
 				5D2D0E672508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5DCC2EF424F34F2A000AC40A /* PostProductViewModel.swift in Sources */,
@@ -4954,6 +5009,7 @@
 				5DB6ABE024D957BB00AD4B43 /* AddProductTagCell.swift in Sources */,
 				5D1C0AA025318D830082903F /* UserDetailPostSection.swift in Sources */,
 				5DBC3AB624C7F3B2006B0032 /* InterestNavigationBar.swift in Sources */,
+				5D15FB2F2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DAB29C924C83705003C3E00 /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483C8251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
 				5DEFF30624AEC2F9007A2FCD /* RestApi.swift in Sources */,
@@ -5028,6 +5084,7 @@
 				5DB6ABE624D957BC00AD4B43 /* AddProductViewController.swift in Sources */,
 				5DBC3AA524C7D91E006B0032 /* InterestViewController.swift in Sources */,
 				5DEFF36F24AEC2F9007A2FCD /* ViewModelType.swift in Sources */,
+				5D15FB1C25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */,
 				5D47C7F82519ABF900B883EA /* SelectStore.swift in Sources */,
 				5DEFF37024AEC2F9007A2FCD /* TableViewCell.swift in Sources */,
 				5DFE1324250CB4B400ABCE5E /* SearchViewModel.swift in Sources */,
@@ -5047,6 +5104,7 @@
 				5D6B4DBF24D7A2520024924B /* VisualSearchProductViewModel.swift in Sources */,
 				5DCAC9382510676800172C05 /* SearchFacets.swift in Sources */,
 				5DEFF34524AEC2F9007A2FCD /* PickerViewViewController.swift in Sources */,
+				5D15FB2525467190004A98E5 /* StyleBoardSearchContentViewModel.swift in Sources */,
 				5D437DD524BEA04700AFBB1F /* DateTransform.swift in Sources */,
 				5DEFF35D24AEC2F9007A2FCD /* CollectionView.swift in Sources */,
 				5D7BB554250B633900C8B902 /* ProductRecommendCell.swift in Sources */,
@@ -5169,6 +5227,7 @@
 				5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */,
 				5DC669D624CFDC7300FF1092 /* PostsDetailBannerCell.swift in Sources */,
 				5D06524324BEE879007CE461 /* Reaction.swift in Sources */,
+				5D15FB392546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift in Sources */,
 				5DD0A37A251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */,
 				5DFE1320250CB47800ABCE5E /* SearchCellViewModel.swift in Sources */,
 				5DEFF31724AEC2F9007A2FCD /* AppearanceManager.swift in Sources */,
@@ -5201,6 +5260,7 @@
 				5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */,
 				5D3AA29F24F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
 				5D7BB55D250B633900C8B902 /* ReactionPopView.swift in Sources */,
+				5D15FB2A2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC958251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
 				5D2D0E652508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5D6FEA6024DC019C0062F90B /* PostProductViewModel.swift in Sources */,
@@ -5268,7 +5328,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5293,7 +5353,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5318,7 +5378,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = DH49J443V3;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5343,7 +5403,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5532,7 +5592,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -5557,7 +5617,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (

@@ -57,7 +57,7 @@ class PostProductViewController: CollectionViewController {
         collectionView.register(nib: PostProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostProductTitleReusableView.self)
 
         navigationBar.rightBarButtonItem = postButton
-        emptyDataViewDataSource.enable.accept(false)
+        emptyDataSource.enable.accept(false)
         
     }
 

@@ -20,7 +20,7 @@ class AddProductViewController: CollectionViewController {
         super.makeUI()
         
         refreshComponent.accept(.none)
-        emptyDataViewDataSource.enable.accept(false)
+        emptyDataSource.enable.accept(false)
         navigationTitle = "Add Product"
         
         
@@ -74,9 +74,12 @@ class AddProductViewController: CollectionViewController {
             }).disposed(by: rx.disposeBag)
         
         output.post.subscribe(onNext: { [weak self](box,home) in
-            
             NotificationCenter.default.post(name: .kAddProduct, object: (box,home))
-            self?.navigator.pop(sender: self, toRoot: true)
+            if box == .zero {
+                self?.navigator.dismiss(sender: self)
+            } else {
+                self?.navigator.pop(sender: self, toRoot: true)
+            }
             /// let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [(box,home)])
             /// self.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)

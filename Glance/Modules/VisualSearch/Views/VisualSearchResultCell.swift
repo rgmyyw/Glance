@@ -23,6 +23,7 @@ class VisualSearchResultCell: CollectionViewCell {
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.selected.bind(to: selectionButton.rx.isSelected).disposed(by: cellDisposeBag)
+        saveButton.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
     }
     
     

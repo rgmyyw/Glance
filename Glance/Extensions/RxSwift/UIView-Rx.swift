@@ -147,6 +147,16 @@ extension Reactive where Base: UIView {
     }    
 }
 
+extension Reactive where Base: UIView {
+    
+    var cornerRadius: Binder<CGFloat> {
+        return Binder(self.base) { view, cornerRadius in
+            view.layer.cornerRadius = cornerRadius
+            view.layer.masksToBounds = true
+        }
+    }
+}
+
 
 extension UITextField : UITextFieldDelegate {
     

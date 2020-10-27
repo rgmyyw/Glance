@@ -80,11 +80,12 @@ class VisualSearchProductViewController: CollectionViewController {
         super.bindViewModel()
         
         guard let viewModel = viewModel as? VisualSearchProductViewModel else { return }
-        
-        
-        let input = VisualSearchProductViewModel.Input(search: headVaiew.searchButton.rx.tap.asObservable(),
-                                                       footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                       selection: collectionView.rx.modelSelected(VisualSearchProductSectionItem.self).asObservable(),
+        let selection = collectionView.rx.modelSelected(VisualSearchProductSectionItem.self).asObservable()
+        let search = headVaiew.searchButton.rx.tap.asObservable()
+        let footerRefresh = footerRefreshTrigger.mapToVoid()
+        let input = VisualSearchProductViewModel.Input(search: search,
+                                                       footerRefresh: footerRefresh,
+                                                       selection: selection,
                                                        add: add.asObservable())
         
         (headVaiew.textFiled.rx.textInput <-> viewModel.textInput ).disposed(by: rx.disposeBag)
@@ -98,12 +99,11 @@ class VisualSearchProductViewController: CollectionViewController {
         
     
         output.add.subscribe(onNext: { [weak self](box,image) in
-            let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, box: box)
+            let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, mode: .visualSearch(box: box))
             self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
         viewModel.selected.mapToVoid()
-//            .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self)
             }).disposed(by: rx.disposeBag)
@@ -119,7 +119,7 @@ class VisualSearchProductViewController: CollectionViewController {
     }
 
     override func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return emptyDataViewDataSource.verticalOffsetY.value
+        return emptyDataSource.verticalOffsetY.value
     }
     
 }

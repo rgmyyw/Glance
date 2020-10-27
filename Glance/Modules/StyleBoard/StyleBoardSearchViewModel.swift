@@ -14,17 +14,15 @@ import RxDataSources
 class StyleBoardSearchViewModel: ViewModel, ViewModelType {
     
     struct Input {
-        let footerRefresh: Observable<Void>
-        let selection : Observable<StyleBoardSearchSectionItem>
         let add : Observable<Void>
-        let currentType : BehaviorRelay<ProductSearchType>
-        
     }
     
     struct Output {
-        let items : Driver<[StyleBoardSearchSection]>
+        let config : Driver<[StyleBoardSearchModuleItem]>
         let placeholder : Driver<String>
         let addButtonEnable : Driver<Bool>
+        let upload : Driver<Void>
+        let complete : Driver<Void>
     }
     
     
@@ -32,111 +30,47 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
     let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let selection = PublishSubject<[DefaultColltionItem]>()
     
-    
     func transform(input: Input) -> Output {
+    
+        let placeholder = Observable.just("Search")
+        let selected = BehaviorRelay<[[DefaultColltionItem]]>(value: [[],[],[]])
+        let addButtonEnable = selected.map { $0.flatMap { $0}}.map { $0.isNotEmpty }
+        let upload = PublishSubject<Void>()
+        let complete = selection.mapToVoid().merge(with: NotificationCenter.default.rx.notification(.kAddProduct).mapToVoid())
         
-        let elements = BehaviorRelay<[StyleBoardSearchSection]>(value: [])
-        let placeholder = input.currentType.map { $0.placeholder }.asDriver(onErrorJustReturn: "")
-        let addButtonEnable = BehaviorRelay<Bool>(value: false)
-                
-        input.currentType.mapToVoid()
-            .subscribe(onNext: {[weak self]() in
-                self?.element.accept(nil)
-                elements.accept([])
-        }).disposed(by: rx.disposeBag)
         
         input.add.flatMapLatest { () -> Observable<[DefaultColltionItem]> in
-            let elements = elements.value.flatMap { $0.items.filter { $0.viewModel.selected.value } }
-            let items = elements.map { $0.viewModel.item }
-            return Observable.just(items)
+            let elements = selected.value.flatMap { $0}
+            return Observable.just(elements)
         }.bind(to: selection).disposed(by: rx.disposeBag)
         
-        input.selection.subscribe(onNext: { item in
-            item.viewModel.selected.accept(!item.viewModel.selected.value)
-            let items =  elements.value.flatMap { $0.items.map { $0.viewModel } }.filter { $0.selected.value }
-            addButtonEnable.accept(!items.isEmpty)
-        }).disposed(by: rx.disposeBag)
         
         
-        textInput.filterEmpty()
-            .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
-            .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
-                guard let self = self else {
-                    return Observable.just(.error(ExceptionError.unknown))
-                }
-                elements.accept([])
-                self.page = 1
-                return self.provider.productSearch(type: input.currentType.value,keywords: text, page: self.page)
-                    .trackError(self.error)
-                    .trackActivity(self.headerLoading)
-                    .materialize()
-            }).subscribe(onNext: { [weak self] event in
-                guard let self = self else { return }
-                switch event {
-                case .next(let item):
-                    self.element.accept(item)
-                case .error(let error):
-                    guard let error = error.asExceptionError else { return }
-                    switch error  {
-                    default:
-                        self.refreshState.onNext(.end)
-                        logError(error.debugDescription)
-                    }
-                default:
-                    break
-                }
-            }).disposed(by: rx.disposeBag)
-        
-        
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
-            guard let self = self else {
-                return Observable.just(.error(ExceptionError.unknown))
+        let config = Observable<[StyleBoardSearchModuleItem]>.create { (observer) -> Disposable in
+            let element = (0..<3).map { type -> StyleBoardSearchContentViewModel in
+                let i = StyleBoardSearchContentViewModel(provider: self.provider, type: type)
+                i.upload.bind(to: upload).disposed(by: self.rx.disposeBag)
+                self.textInput.bind(to: i.textInput).disposed(by: self.rx.disposeBag)
+                i.selection.subscribe(onNext: { (elements) in
+                    var e = selected.value
+                    e[type] = elements
+                    selected.accept(e)
+                }).disposed(by: self.rx.disposeBag)
+                return i
             }
-            self.page += 1
-            let text = self.textInput.value
-            return self.provider.productSearch(type: input.currentType.value,keywords: text, page: self.page)
-                .trackActivity(self.footerLoading)
-                .trackError(self.error)
-                .materialize()
-        }).subscribe(onNext: { [weak self](event) in
-            guard let self = self else { return }
-            switch event {
-            case .next(let item):
-                var temp = item
-                temp.list = (self.element.value?.list ?? [] ) + item.list
-                self.element.accept(temp)
-                self.refreshState.onNext(item.refreshState)
-            case .error(let error):
-                guard let error = error.asExceptionError else { return }
-                switch error  {
-                default:
-                    self.page -= 1
-                    self.refreshState.onNext(.end)
-                    logError(error.debugDescription)
-                }
+            observer.onNext([.save(viewModel: element[0]),
+                             .post(viewModel: element[1]),
+                             .app(viewModel: element[2])])
+            observer.onCompleted()
+            return Disposables.create { }
+        }
 
-            default:
-                break
-            }
-        }).disposed(by: rx.disposeBag)
+    
         
-        
-        element.filterNil().map { element -> [StyleBoardSearchSection] in
-            if element.list.isEmpty { return [] }
-            let sectionItems = element.list.enumerated().map { (indexPath, item) -> StyleBoardSearchSectionItem in
-                let cellViewModel = StyleBoardSearchCellViewModel(item: item)
-                let sectionItem = StyleBoardSearchSectionItem(item: indexPath, viewModel: cellViewModel)
-                return sectionItem
-            }
-            let section = StyleBoardSearchSection(section: 0, elements: sectionItems)
-            return [section]
-            
-        }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-        
-        
-        return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      placeholder: placeholder,
-                      addButtonEnable: addButtonEnable.asDriver(onErrorJustReturn: false))
+        return Output(config: config.asDriver(onErrorJustReturn: []),
+                      placeholder: placeholder.asDriver(onErrorJustReturn: ""),
+                      addButtonEnable: addButtonEnable.asDriver(onErrorJustReturn: false),
+                      upload: upload.asDriverOnErrorJustComplete(),
+                      complete: complete.asDriverOnErrorJustComplete())
     }
 }

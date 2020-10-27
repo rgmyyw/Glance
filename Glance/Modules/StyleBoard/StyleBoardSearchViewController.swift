@@ -12,20 +12,47 @@ import RxSwift
 import RxDataSources
 import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
+import WMZPageController
 
 
-class StyleBoardSearchViewController: CollectionViewController  {
+class StyleBoardSearchViewController: ViewController  {
     
-    @IBOutlet weak var titleView: UIView!
-    @IBOutlet weak var textField: UITextField!
-    @IBOutlet var titleItems: [UIButton]!
-    @IBOutlet var emptyView: UIView!
-    @IBOutlet weak var uploadYourselfButton: UIButton!
+    private lazy var headView : StyleBoardSearchTextFieldView = StyleBoardSearchTextFieldView.loadFromNib(height: 54)
+
+    private lazy var pageController : WMZPageController = {
+            
+        let config = PageParam()
+        config.wTopSuspension = true
+        config.wBounces = false
+        config.wFromNavi =  true
+        config.wMenuAnimal = PageTitleMenu.init(3)
+        config.wMenuAnimalTitleGradient = true
+        config.wMenuTitleColor = UIColor.textGray()
+        config.wMenuTitleSelectColor = UIColor.text()
+        config.wMenuTitleUIFont = UIFont.titleBoldFont(16)
+        config.wMenuTitleSelectUIFont = UIFont.titleBoldFont(16)
+        config.wMenuIndicatorColor = UIColor.primary()
+        config.wMenuIndicatorWidth = 20
+        config.wMenuIndicatorHeight = 4
+        config.wMenuHeadView = { self.headView }
+        config.wMenuAnimalTitleBig = true
+        config.wMenuIndicatorRadio = 2
+        config.wScrollCanTransfer = true
+        config.wMenuCellMargin = 15
+        config.wMenuWidth = UIScreen.width - 12
+        config.wMenuPosition = .init(rawValue: 1)
+        config.wMenuBgColor = .white
+        config.wMenuDefaultIndex = 2
         
-    private let current = BehaviorRelay<ProductSearchType>(value: .saved)
-    
-    private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<StyleBoardSearchSection> = configureDataSouce()
-    
+        let controller = WMZPageController()
+        controller.param = config
+        
+        addChild(controller)
+        stackView.addArrangedSubview(controller.view)
+        
+        return controller
+    }()
+
     private lazy var addButton : UIButton = {
         let button = UIButton()
         button.setTitle("ADD TO BOARD", for: .normal)
@@ -39,27 +66,11 @@ class StyleBoardSearchViewController: CollectionViewController  {
     override func makeUI() {
         super.makeUI()
                 
-        refreshComponent.accept(.footer)
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationTitle = "Add Products"
         navigationBar.rightBarButtonItem = addButton
-        textField.addPaddingLeft(12)
-        stackView.insertArrangedSubview(titleView, at: 0)
-        emptyView.removeFromSuperview()
-        
-        let layout = ZLCollectionViewVerticalLayout()
-        layout.columnCount = 2
-        layout.delegate = self
-        layout.minimumLineSpacing = 20
-        
-        collectionView.collectionViewLayout = layout
-        collectionView.register(nibWithCellClass: StyleBoardSearchCell.self)
-        
     }
-    
-    override func navigationBack() {
-        self.navigator.dismiss(sender: self, animated: true)
-    }
+
     
     override func bindViewModel() {
         super.bindViewModel()
@@ -67,122 +78,48 @@ class StyleBoardSearchViewController: CollectionViewController  {
         guard let viewModel = viewModel as? StyleBoardSearchViewModel else { return }
             
         
-        let input = StyleBoardSearchViewModel.Input(footerRefresh: footerRefreshTrigger.mapToVoid(),
-                                                    selection: collectionView.rx.modelSelected(StyleBoardSearchSectionItem.self).asObservable(),
-                                                    add: addButton.rx.tap.asObservable(),
-                                                    currentType: current)
+        let add = addButton.rx.tap.asObservable()
+        let input = StyleBoardSearchViewModel.Input(add: add)
         let output = viewModel.transform(input: input)
-        output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
-        output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
-            self?.collectionView.reloadData()
-        }).disposed(by: rx.disposeBag)
-        output.placeholder.drive(textField.rx.placeholder).disposed(by: rx.disposeBag)
+        output.placeholder.drive(headView.textField.rx.placeholder).disposed(by: rx.disposeBag)
         output.addButtonEnable.drive(addButton.rx.isEnabled).disposed(by: rx.disposeBag)
-        
-        (textField.rx.textInput <-> viewModel.textInput).disposed(by: rx.disposeBag)
-        
-        titleItems.tapGesture()
-            .merge(with: Observable.just(2))
-            .subscribe(onNext: { [weak self]index in
-                let current = self?.titleItems[index]
-                self?.titleItems.forEach {
-                    $0.backgroundColor = .clear
-                    $0.setTitleColor(UIColor.textGray(), for: .normal)
-                    $0.titleLabel?.font = UIFont.titleFont(14)
-                }
-                current?.backgroundColor = UIColor(hex: 0xCCCCCC)
-                current?.setTitleColor(UIColor.text(), for: .normal)
-                current?.titleLabel?.font = UIFont.titleBoldFont(14)
-                self?.textField.text = nil
-                if let type = ProductSearchType(rawValue: index) {
-                    self?.current.accept(type)
-                } else {
-                    fatalError()
-                }
+        (headView.textField.rx.textInput <-> viewModel.textInput).disposed(by: rx.disposeBag)
+
+        output.config.drive(onNext: { [weak self] (items) in
+            let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
+            controllers.forEach { self?.addChild($0)}
+            let titles = items.map { $0.title }
+            self?.pageController.param.wControllers = controllers
+            self?.pageController.param.wTitleArr = titles
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                self?.pageController.update()
+                self?.pageController.upSc.backgroundColor = .white
+            }
+
         }).disposed(by: rx.disposeBag)
-        
+
+        output.complete
+            .drive(onNext: { [weak self]() in
+                self?.navigator.pop(sender: self, toRoot: true)
+        }).disposed(by: rx.disposeBag)
+      
         rx.viewDidAppear.mapToVoid()
             .subscribe(onNext: { [weak self]() in
-                self?.textField.becomeFirstResponder()
+                self?.headView.textField.becomeFirstResponder()
         }).disposed(by: rx.disposeBag)
         
-
-        uploadYourselfButton.rx.tap
-            .subscribe(onNext: { [unowned self ]() in
-                Alert.showAlert(with: "Leave to list an item?",
-                                 message: "Your current edits will be saved in your Profile so that you can complete your post later.",
-                                 optionTitles: "Leave",
-                                 cancel: "Cancel")
-                    .subscribe(onNext: { index in
-                        if index == 0 {
-                            self.navigationController?.dismiss(animated: false) {
-                                let tabbar = UIApplication.shared.keyWindow?.rootViewController as? HomeTabBarController
-                                tabbar?.selection(item: 0)
-                            }
-                        }
-                    }).disposed(by: self.rx.disposeBag)
-        }).disposed(by: rx.disposeBag)
-        
-        viewModel.selection.mapToVoid()
-            .subscribe(onNext: { [weak self] in
-            self?.navigator.pop(sender: self)
-            }).disposed(by: rx.disposeBag)
-    }
-    
-    
-    override func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
-        return emptyView
-    }
-    
-    override func backgroundColor(forEmptyDataSet scrollView: UIScrollView!) -> UIColor! {
-        return .clear
-    }
-    
-    override func verticalOffset(forEmptyDataSet scrollView: UIScrollView!) -> CGFloat {
-        return emptyDataViewDataSource.verticalOffsetY.value
-    }
-
-}
-// MARK: - DataSouce
-extension StyleBoardSearchViewController {
-    
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<StyleBoardSearchSection> {
-        return RxCollectionViewSectionedAnimatedDataSource<StyleBoardSearchSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
-            let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: StyleBoardSearchCell.self)
-            cell.bind(to: item.viewModel)
-            return cell
-        })
-    }
-    
-}
-
-extension StyleBoardSearchViewController : ZLCollectionViewBaseFlowLayoutDelegate {
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
-        return ColumnLayout
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
-        return 2
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return .zero
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-        return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
-        let fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
-        return collectionView.ar_sizeForCell(withIdentifier: StyleBoardSearchCell.reuseIdentifier, indexPath: indexPath, fixedWidth: fixedWidth) {[weak self] (cell) in
-            if let item = self?.dataSouce.sectionModels[indexPath.section].items[indexPath.item] {
-                let cell = cell  as? StyleBoardSearchCell
-                cell?.bind(to: item.viewModel)
+        output.upload.drive(onNext: { () in
+            ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
+                config.maxSelectCount = 1
+                config.editAfterSelectThumbnailImage = true
+                config.saveNewImageAfterEdit = false
+                config.allowEditImage = false
+            }) { [weak self] (images, assets, isOriginal) in
+                guard let image = images?.first else { return }
+                let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, mode: .styleBoard)
+                self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self,transition: .modal)
             }
-        }
-        
+        }).disposed(by: rx.disposeBag)
     }
+    
 }

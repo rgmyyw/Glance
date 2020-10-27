@@ -10,6 +10,12 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+
+enum AddProductMode {
+    case visualSearch(box : Box)
+    case styleBoard
+}
+
 class AddProductViewModel: ViewModel, ViewModelType {
     
     struct Input {
@@ -25,11 +31,11 @@ class AddProductViewModel: ViewModel, ViewModelType {
     let selectedCategory = PublishSubject<Categories>()
     
     private let image : BehaviorRelay<UIImage>
-    private let box : BehaviorRelay<Box>
+    private let mode : BehaviorRelay<AddProductMode>
     
-    init(provider: API, image : UIImage , box : Box) {
+    init(provider: API, image : UIImage , mode : AddProductMode) {
         self.image = BehaviorRelay(value: image)
-        self.box = BehaviorRelay(value: box)
+        self.mode = BehaviorRelay(value: mode)
         super.init(provider: provider)
     }
     
@@ -73,8 +79,13 @@ class AddProductViewModel: ViewModel, ViewModelType {
         }).subscribe(onNext: {[weak self] event in
             guard let self = self else { return }
             switch event {
-            case .next(let home):
-                post.onNext((self.box.value,home))
+            case .next(let item):
+                switch self.mode.value {
+                case .visualSearch(let box):
+                    post.onNext((box,item))
+                case .styleBoard:
+                    post.onNext((.zero,item))
+                }
             default:
                 break
             }

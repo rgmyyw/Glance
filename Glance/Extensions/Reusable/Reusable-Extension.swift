@@ -10,7 +10,7 @@ import Reusable
 
 extension UIView : Reusable , NibLoadable  {
     
-    public static func loadFromNib(height : CGFloat = 0, width : CGFloat = 0) -> Self {
+    public static func loadFromNib(height : CGFloat = 0, width : CGFloat = UIScreen.main.bounds.width) -> Self {
         guard let loadView = nib.instantiate(withOwner: nil, options: nil).first as? UIView else {
           fatalError("The nib \(nib) expected its root view to be of type \(self)")
         }

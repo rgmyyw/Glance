@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="313" height="496"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rWF-os-pAW">
-                    <rect key="frame" x="0.0" y="50" width="313" height="292"/>
+                    <rect key="frame" x="0.0" y="50" width="313" height="232"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_empty_default" translatesAutoresizingMaskIntoConstraints="NO" id="deB-yq-AIJ">
                             <rect key="frame" x="0.0" y="0.0" width="313" height="106.5"/>
@@ -44,16 +44,18 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TaN-Wm-67l">
-                            <rect key="frame" x="0.0" y="212" width="313" height="80"/>
+                            <rect key="frame" x="0.0" y="212" width="313" height="20"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTn-6i-Mit" customClass="Button" customModule="Glance" customModuleProvider="target">
-                                    <rect key="frame" x="123.5" y="20" width="66" height="40"/>
-                                    <color key="backgroundColor" red="0.31764705879999999" green="0.3294117647" blue="0.3411764706" alpha="1" colorSpace="calibratedRGB"/>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lTn-6i-Mit">
+                                    <rect key="frame" x="123.5" y="0.0" width="66" height="20"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="40" id="90A-9G-qC8"/>
+                                        <constraint firstAttribute="height" constant="20" id="90A-9G-qC8"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="PingFang-SC-Bold" family="PingFang SC" pointSize="14"/>
-                                    <state key="normal" title="   Button   "/>
+                                    <state key="normal" title="   Button   ">
+                                        <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
                                             <integer key="value" value="20"/>
@@ -63,9 +65,9 @@
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstItem="lTn-6i-Mit" firstAttribute="top" secondItem="TaN-Wm-67l" secondAttribute="top" id="D97-uf-emN"/>
                                 <constraint firstItem="lTn-6i-Mit" firstAttribute="centerX" secondItem="TaN-Wm-67l" secondAttribute="centerX" id="cnC-AH-5wv"/>
-                                <constraint firstItem="lTn-6i-Mit" firstAttribute="centerY" secondItem="TaN-Wm-67l" secondAttribute="centerY" id="fcw-2W-SKJ"/>
-                                <constraint firstAttribute="height" constant="80" id="tr9-M8-hYV"/>
+                                <constraint firstAttribute="bottom" secondItem="lTn-6i-Mit" secondAttribute="bottom" id="yuo-oi-TOG"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -83,11 +85,12 @@
             <connections>
                 <outlet property="button" destination="lTn-6i-Mit" id="zsW-Ou-vsX"/>
                 <outlet property="buttonBgView" destination="TaN-Wm-67l" id="dwz-iN-DWo"/>
+                <outlet property="buttonHeight" destination="90A-9G-qC8" id="kou-JH-L6t"/>
                 <outlet property="imageView" destination="deB-yq-AIJ" id="cHS-5G-Ma3"/>
                 <outlet property="subTitleLabel" destination="tHL-Ad-ZDk" id="9iz-5T-oM2"/>
                 <outlet property="titleLabel" destination="csc-Uu-8G1" id="HqG-2M-jno"/>
             </connections>
-            <point key="canvasLocation" x="-1478" y="-381"/>
+            <point key="canvasLocation" x="-1945" y="-418"/>
         </view>
     </objects>
     <resources>

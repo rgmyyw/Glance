@@ -104,11 +104,11 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         }).disposed(by: rx.disposeBag)
         
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
-                                               emptyDataViewDataSource.enable.mapToVoid(),
-                                               emptyDataViewDataSource.title.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.subTitle.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.image.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.buttonTitle.filterNil().mapToVoid(),
+                                               emptyDataSource.enable.mapToVoid(),
+                                               emptyDataSource.title.filterNil().mapToVoid(),
+                                               emptyDataSource.subTitle.filterNil().mapToVoid(),
+                                               emptyDataSource.image.filterNil().mapToVoid(),
+                                               emptyDataSource.buttonTitle.filterNil().mapToVoid(),
                                                languageChanged.asObservable()).merge()
         updateEmptyDataSet.subscribe(onNext: { [weak self] _ in
             self?.tableView.reloadEmptyDataSet()
@@ -193,7 +193,7 @@ class TableViewController: ViewController, UIScrollViewDelegate {
     override func updateUI() {
         super.updateUI()
         
-        emptyDataViewDataSource.contentInsetTop.accept(tableView.contentInset.top)
+        emptyDataSource.contentInsetTop.accept(tableView.contentInset.top)
     }
 }
 

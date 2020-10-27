@@ -12,7 +12,6 @@ enum ProductSearchType : Int {
     case saved = 0
     case posted
     case inApp
-    
     var placeholder : String {
         switch self {
         case .saved:

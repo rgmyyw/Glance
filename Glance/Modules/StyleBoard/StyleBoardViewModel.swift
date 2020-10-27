@@ -70,6 +70,12 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
             
         }).disposed(by: rx.disposeBag)
         
+        /// 用户手动添加商品
+        NotificationCenter.default.rx
+            .notification(.kAddProduct)
+            .map { $0.object as? (Box, DefaultColltionItem)}
+            .filterNil()
+            .map { [$0.1] }.bind(to: selection).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       add: add.asDriver(onErrorJustReturn: ()),

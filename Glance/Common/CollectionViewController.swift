@@ -87,10 +87,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         }).disposed(by: rx.disposeBag)
 
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
-                                               emptyDataViewDataSource.title.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.subTitle.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.image.filterNil().mapToVoid(),
-                                               emptyDataViewDataSource.buttonTitle.filterNil().mapToVoid(),
+                                               emptyDataSource.title.filterNil().mapToVoid(),
+                                               emptyDataSource.subTitle.filterNil().mapToVoid(),
+                                               emptyDataSource.image.filterNil().mapToVoid(),
+                                               emptyDataSource.buttonTitle.filterNil().mapToVoid(),
                                                languageChanged.asObservable()).merge()
         
         updateEmptyDataSet.subscribe({ [weak self] (_) in
@@ -171,6 +171,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
     override func updateUI() {
         super.updateUI()
         
-        emptyDataViewDataSource.contentInsetTop.accept(collectionView.contentInset.top)
+        emptyDataSource.contentInsetTop.accept(collectionView.contentInset.top)
     }
 }

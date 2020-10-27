@@ -43,7 +43,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     
     public let endEditing = PublishSubject<Void>()
     private(set) public lazy var emptyDataView = EmptyDataView.loadFromNib()
-    public let emptyDataViewDataSource : EmptyDataViewModel = EmptyDataViewModel()
+    public let emptyDataSource : EmptyDataViewModel = EmptyDataViewModel()
     
     
     public var messageToastPosition: ToastPosition = .bottom
@@ -206,7 +206,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
             .disposed(by: rx.disposeBag)
         
         
-        emptyDataView.bind(to: emptyDataViewDataSource)
+        emptyDataView.bind(to: emptyDataSource)
         
         
         updateUI()
@@ -344,7 +344,7 @@ extension ViewController: DZNEmptyDataSetSource {
     
     func customView(forEmptyDataSet scrollView: UIScrollView!) -> UIView! {
         
-        if !emptyDataViewDataSource.enable.value {
+        if !emptyDataSource.enable.value {
             emptyDataView.removeFromSuperview()
             return nil
         }

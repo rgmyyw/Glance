@@ -167,6 +167,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
+        /// 用户手动添加商品
         NotificationCenter.default.rx
             .notification(.kAddProduct)
             .subscribe(onNext: { [weak self] noti in
@@ -232,7 +233,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-        
+        /// 搜索选中页面, 选中了某一件商品, 插入到当前点
         searchSelection.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] (box, model) in
                 guard let self = self else { return }
@@ -248,7 +249,8 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 
             }).disposed(by: rx.disposeBag)
     
-        
+        /// 分两种模式, 如果是预览, 则是点击详情页
+        /// 发布, 则是跳转到发布页面
         input.selection.subscribe(onNext: { [weak self] selection in
             guard let mode = self?.mode.value else { return }
             switch mode {
@@ -259,6 +261,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
         
+        /// 更新选中状态, 如果已选中的点集合没有当前点,创建一个点并将新创建的点添加进选中的数组
+        /// 假设,通过box 找到了在选中集合中，则改变selected 属性, 并保存当前选中商品
+        /// 最终去更新dot, 刷新多有已存在的点
         updateSelection.subscribe(onNext: { (viewModel) in
             let current = self.current.value
             let viewModels = elements.value.map { $0.items }.flatMap { $0 }.map { $0.viewModel }

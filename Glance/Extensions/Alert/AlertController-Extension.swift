@@ -19,12 +19,13 @@ extension AlertController {
         self.init(attributedTitle: attributedTitle, attributedMessage: attributedMessage, preferredStyle: preferredStyle)
         let style = AlertVisualStyle(alertStyle: preferredStyle)
         style.backgroundColor = .white
-        style.actionViewSeparatorColor = UIColor(hex:0xE7E8E9)!
-        style.normalTextColor = UIColor.primary()
+        style.actionViewSeparatorColor = UIColor(hex:0xEEEEEE)!
+        style.normalTextColor = UIColor.text()
         style.destructiveTextColor = UIColor.textGray()
+        style.preferredTextColor = UIColor.primary()
         ///
-        style.alertNormalFont = UIFont.titleBoldFont(16)
-        style.alertPreferredFont = UIFont.titleFont(16)
+        style.alertNormalFont = UIFont.titleFont(15)
+        style.alertPreferredFont = UIFont.titleFont(15)
         style.contentPadding = UIEdgeInsets(top: 32, left: 36, bottom: 32, right: 36)
         style.cornerRadius = Configs.BaseDimensions.cornerRadius
         visualStyle = style
