@@ -46,14 +46,14 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
     struct Output {
         let imageURI : Driver<String>
         let current : Driver<Box>
-        let post : Observable<(image : UIImage, items : [VisualSearchDotCellViewModel])>
+        let post : Observable<(image : UIImage, items : [DefaultColltionItem])>
         let dots : Driver<[VisualSearchDotCellViewModel]>
         let selection : Driver<VisualSearchDotCellViewModel>
     }
     
     let image : BehaviorRelay<UIImage>
     let mode : BehaviorRelay<VisualSearchMode>
-    let selection = PublishSubject<VisualSearchDotCellViewModel>()
+    let reselection = PublishSubject<DefaultColltionItem>()
     let dots = BehaviorRelay<[VisualSearchDotCellViewModel]>(value:[])
     
     init(provider: API, image : UIImage, mode : VisualSearchMode = .preview) {
@@ -68,11 +68,18 @@ class VisualSearchViewModel: ViewModel, ViewModelType {
         
         let imageURI = PublishSubject<String>()
         let currentBox = PublishSubject<Box>()
-        let post = input.commit.map { () -> (image : UIImage, items : [VisualSearchDotCellViewModel]) in
+        let selection = PublishSubject<VisualSearchDotCellViewModel>()
+        let post = input.commit.map { () -> (image : UIImage, items : [DefaultColltionItem]) in
             let image = self.image.value
-            let items = self.dots.value.filter { $0.selected != nil}
+            let items = self.dots.value.compactMap { $0.selected }
             return (image : image, items : items)
         }        
+        
+        reselection.map { i -> VisualSearchDotCellViewModel? in
+            let values = self.dots.value
+            return values.filter { $0.selected == i}.first
+        }.filterNil().bind(to: selection).disposed(by: rx.disposeBag)
+        
         
         image.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (image) -> Observable<(RxSwift.Event<(String)>)> in

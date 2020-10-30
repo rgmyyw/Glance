@@ -71,8 +71,8 @@ class VisualSearchViewController: ViewController {
         let output = viewModel.transform(input: input)
         
         // 提前绑定, 重复绑定会出发多次
-        (self.postProduct.viewModel as? PostProductViewModel)?.edit
-            .bind(to: viewModel.selection).disposed(by: rx.disposeBag)
+        (self.postProduct.viewModel as? PostProductViewModel)?.reselection
+            .bind(to: viewModel.reselection).disposed(by: rx.disposeBag)
         
         output.post.subscribe(onNext: { [weak self](image, items) in
             guard let self = self else { return }
