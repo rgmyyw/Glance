@@ -24,13 +24,13 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let complete : Driver<Void>
     }
     
-    let element : BehaviorRelay<[VisualSearchDotCellViewModel]>
+    let element : BehaviorRelay<[DefaultColltionItem]>
     
     let image : BehaviorRelay<UIImage?>
-    let edit = PublishSubject<VisualSearchDotCellViewModel>()
+    let reselection = PublishSubject<DefaultColltionItem>()
     
     
-    init(provider: API, image : UIImage?, taggedItems : [VisualSearchDotCellViewModel] ) {
+    init(provider: API, image : UIImage?, taggedItems : [DefaultColltionItem] ) {
         self.image = BehaviorRelay(value: image)
         self.element = BehaviorRelay(value: taggedItems)
         super.init(provider: provider)
@@ -73,7 +73,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             
             let taggedItem = items.enumerated().map { (offset, item) ->  PostProductSectionItem in
                 let viewModel = PostProductCellViewModel(item: item)
-                viewModel.edit.map { viewModel.item }.bind(to: self.edit).disposed(by: self.rx.disposeBag)
+                viewModel.edit.map { viewModel.item }.bind(to: self.reselection).disposed(by: self.rx.disposeBag)
                 let item = PostProductSectionItem.product(identity: "section3-item\(offset)", viewModel: viewModel)
                 return item
             }
@@ -195,7 +195,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
                     return
                 }
                 
-                let productIds = tagged.compactMap { $0.item.selected?.productId }.joined(separator: ",")
+                let productIds = tagged.compactMap { $0.item.productId }.joined(separator: ",")
                 //let tags = (custom + system).compactMap { $0.item }.joined(separator: ",")
                 var param = [String : Any]()
                 param["title"] = caption
@@ -211,7 +211,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             .map { items -> [PostProductSectionItem] in
                 return items.enumerated().map { (offset, model) ->  PostProductSectionItem in
                     let viewModel = PostProductCellViewModel(item: model)
-                    viewModel.edit.map { viewModel.item }.bind(to: self.edit).disposed(by: self.rx.disposeBag)
+                    viewModel.edit.map { viewModel.item }.bind(to: self.reselection).disposed(by: self.rx.disposeBag)
                     let item = PostProductSectionItem.product(identity: "section3-item\(offset)", viewModel: viewModel)
                     return item
                 }

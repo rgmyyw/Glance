@@ -95,7 +95,7 @@ class PostProductViewController: CollectionViewController {
         }).disposed(by: rx.disposeBag)
         
         
-        viewModel.edit
+        viewModel.reselection
         .mapToVoid().subscribe(onNext: { [weak self]() in
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
