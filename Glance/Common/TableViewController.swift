@@ -174,9 +174,8 @@ class TableViewController: ViewController, UIScrollViewDelegate {
                 self?.tableView.mj_footer?.endRefreshing()
             case .noMoreData:
                 self?.tableView.mj_footer?.isHidden = false
-                self?.tableView.mj_footer?.endRefreshing {
-                    self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
-                }
+                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
+                
             case .begin:
                 self?.tableView.mj_footer?.resetNoMoreData()
                 if self?.tableView.mj_header?.isRefreshing == true {
