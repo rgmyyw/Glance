@@ -15,6 +15,7 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
 
     let item : DefaultColltionItem
     
+    let selected = BehaviorRelay<Bool>(value : false)
     let image = BehaviorRelay<URL?>(value: nil)
     let empty = BehaviorRelay<Bool>(value : true)
     
@@ -35,10 +36,10 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
     }
     
     var size : CGSize {
-        if let size = item.image?.urlImageSize() , size != .zero {
-            return resize(size: size)
-        } else if let url = item.image , let image = ImageCache.default.retrieveImageInMemoryCache(forKey: url){
+        if let url = item.image ,let image = ImageCache.default.retrieveImageInMemoryCache(forKey: url) {
             return  resize(size: image.size)
+        } else if let size = item.image?.urlImageSize() , size != .zero {
+            return  resize(size: size)
         } else {
             return CGSize(width: 200, height: 200)
         }
@@ -48,7 +49,7 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
     required init(item : DefaultColltionItem) {
         self.item = item
         self.image.accept(item.image?.url)
-        self.empty.accept(item.productId != nil && item.productId == "-1")
+        self.empty.accept(item.productId != nil && item.productId == "")
     }
 
 }

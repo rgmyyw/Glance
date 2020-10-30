@@ -91,7 +91,7 @@
                 <outlet property="emptyView" destination="Ukd-jz-6wO" id="QYJ-Do-iAJ"/>
                 <outlet property="imageView" destination="MwE-aq-gWy" id="xkl-Ro-ZUM"/>
             </connections>
-            <point key="canvasLocation" x="-153" y="-49"/>
+            <point key="canvasLocation" x="-154.34782608695653" y="-49.21875"/>
         </collectionViewCell>
     </objects>
     <resources>

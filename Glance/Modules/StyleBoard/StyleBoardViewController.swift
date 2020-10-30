@@ -54,6 +54,8 @@ class StyleBoardViewController: ViewController {
     }()
 
     
+    let selection = PublishSubject<StyleBoardImageCellViewModel>()
+    
     private var _selectedEditView:StyleBoardEditView?
     var selectedEditView:StyleBoardEditView? {
         get {
@@ -65,6 +67,9 @@ class StyleBoardViewController: ViewController {
                     selectedStickerView.showEditingHandlers = false
                 }
                 _selectedEditView = newValue
+                if let value = newValue?.viewModel {
+                    selection.onNext(value)
+                }
             }
             
             if let selectedEditView = _selectedEditView {
@@ -125,15 +130,23 @@ class StyleBoardViewController: ViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
+        
+        
         guard let viewModel = viewModel as? StyleBoardViewModel else { return }
-        let input = StyleBoardViewModel.Input(next: nextButton.rx.tap.asObservable())
+        
+        let selected = selection.merge(with: collectionView.rx.modelSelected(StyleBoardImageCellViewModel.self).asObservable())
+        let input = StyleBoardViewModel.Input(next: nextButton.rx.tap.asObservable(), selection: selected)
         let output = viewModel.transform(input: input)
+        
+        // 提前绑定, 重复绑定会出发多次
+        (self.postProduct.viewModel as? PostProductViewModel)?.reselection
+            .bind(to: viewModel.reselection).disposed(by: rx.disposeBag)
+
         output.nextButtonEnable.drive(nextButton.rx.isEnabled).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
-        output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "-1" }}
-            .filterNil()
+        
+        output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "" }}.filterNil()
             .drive(onNext: {[weak self] items in
-                
                 let productIds = items.compactMap { $0.item.productId }
                 let elements = self?.imageViews.map { $0 }
                 if let elements = elements , elements.isNotEmpty {
@@ -156,20 +169,14 @@ class StyleBoardViewController: ViewController {
                 //print("imageView productId:\(imageViews.map { $0.viewModel.item.productId })")
 //                print("filter complete:\(elements.compactMap { $0.viewModel.item.productId })")
                 items.forEach { self?.addImageView(viewModel: $0) }
-                
             }).disposed(by: rx.disposeBag)
         
-        
-//        // 提前绑定, 重复绑定会出发多次
-//        (self.postProduct.viewModel as? PostProductViewModel)?.edit
-//            .bind(to: viewModel.selection).disposed(by: rx.disposeBag)
-        
-        output.post.drive(onNext: { [weak self](image) in
-//            guard let self = self else { return }
-//            let postProductViewModel = self.postProduct.viewModel as? PostProductViewModel
-//            postProductViewModel?.image.accept(image)
-//            postProductViewModel?.element.accept(items)
-//            self.navigationController?.pushViewController(self.postProduct)
+        output.post.drive(onNext: { [weak self](image, items) in
+            guard let self = self else { return }
+            let postProductViewModel = self.postProduct.viewModel as? PostProductViewModel
+            postProductViewModel?.image.accept(image)
+            postProductViewModel?.element.accept(items)
+            self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
 
         
@@ -186,7 +193,7 @@ class StyleBoardViewController: ViewController {
             styleBoardSearch.selection.bind(to: viewModel.selection).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .styleBoardSearch(viewModel: styleBoardSearch), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
     }
     
     func addImageView(viewModel : StyleBoardImageCellViewModel) {
@@ -211,6 +218,7 @@ class StyleBoardViewController: ViewController {
          
         let point = CGPoint(x: x, y: y)
         let imageView = UIImageView(frame: CGRect(origin: point, size: viewModel.size))
+        
         
         let contentView = StyleBoardEditView(contentView: imageView)
         contentView.setImage(R.image.icon_button_circular_close()!, forHandler: .close)

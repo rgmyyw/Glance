@@ -169,13 +169,20 @@ class StyleBoardEditView: UIView {
     }
     
     private var _viewModel:StyleBoardImageCellViewModel?
-    var viewModel:StyleBoardImageCellViewModel? {
+    weak var viewModel:StyleBoardImageCellViewModel? {
         set {
             _viewModel = newValue
             if let imageView = contentView as? UIImageView {
                 _viewModel?.image.bind(to: imageView.rx.imageURL).disposed(by: rx.disposeBag)
-            }            
+                _viewModel?.selected.subscribe(onNext: { [weak self] (selected) in
+//                    guard let self = self else { return }
+//                    if let delegate = self.delegate {
+//                        delegate.styleBoardEditViewDidTap(self)
+//                    }
+                }).disposed(by: rx.disposeBag)
+            }
         }
+        
         get {
             return _viewModel
         }
