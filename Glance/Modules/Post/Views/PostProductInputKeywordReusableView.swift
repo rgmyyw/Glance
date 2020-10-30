@@ -8,6 +8,9 @@
 
 import UIKit
 
+
+
+
 class PostProductInputKeywordReusableView: CollectionReusableView {
 
     @IBOutlet weak var textField: UITextField!
@@ -18,6 +21,7 @@ class PostProductInputKeywordReusableView: CollectionReusableView {
         super.makeUI()
         textField.addPaddingLeft(12)
         textField.limitCharacter(number: 50)
+        
         
     }
 

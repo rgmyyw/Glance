@@ -105,7 +105,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter {
                 footer.isHidden = true
-                footer.resetNoMoreData()
             }
             self?.headerRefreshTrigger.onNext(())
         })
@@ -152,8 +151,11 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                 self?.collectionView.mj_footer?.isHidden = false
                 self?.collectionView.mj_footer?.endRefreshingWithNoMoreData()
             case .begin:
+                self?.collectionView.mj_footer?.resetNoMoreData()
                 if self?.collectionView.mj_header?.isRefreshing == true {
-                    //self?.collectionView.mj_header?.endRefreshing()
+                    self?.collectionView.mj_header?.endRefreshing {
+                        self?.collectionView.mj_header?.beginRefreshing()
+                    }
                 } else {
                     self?.collectionView.mj_header?.beginRefreshing()
                 }

@@ -21,19 +21,22 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         let items : Driver<[StyleBoardSection]>
         let add : Driver<Void>
         let nextButtonEnable : Driver<Bool>
+        let generateImage : Driver<Void>
+        let post : Driver<UIImage>
+//        let post : Driver<(image : UIImage, items : [VisualSearchDotCellViewModel])>
+
     }
     
     let selection = PublishSubject<[DefaultColltionItem]>()
     let selected : BehaviorRelay<[DefaultColltionItem]> = BehaviorRelay(value: [])
-    
+    let image = PublishSubject<UIImage>()
     
     func transform(input: Input) -> Output {
-        
 
         let elements = BehaviorRelay<[StyleBoardSection]>(value: [])
         let add = PublishSubject<Void>()
         let delete = PublishSubject<StyleBoardImageCellViewModel>()
-        let nextButtonEnable = selected.map { $0.isNotEmpty }.asDriver(onErrorJustReturn: false)
+        let nextButtonEnable = selected.map { $0.isNotEmpty }
                 
         selection.map { ($0 + self.selected.value).filterDuplicates { $0.productId }  }
             .filterEmpty()
@@ -79,7 +82,9 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       add: add.asDriver(onErrorJustReturn: ()),
-                      nextButtonEnable: nextButtonEnable)
+                      nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false),
+                      generateImage: input.next.asDriverOnErrorJustComplete(),
+                      post: image.asDriverOnErrorJustComplete())
     }
 }
 

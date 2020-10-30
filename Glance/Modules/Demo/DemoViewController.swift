@@ -10,6 +10,24 @@ import UIKit
 import PopupDialog
 import FloatingPanel
 
+
+struct PersonStruct {
+    // 指向类对象的指针
+    let metaData: UnsafePointer<Int>
+    let refCounts: __uint64_t
+    var name: String
+    let age: Int
+}
+
+class Person {
+    var name : String
+    var age : Int
+    init(name : String, age: Int) {
+        self.name = name
+        self.age = age
+    }
+}
+
 class DemoViewController: ViewController , FloatingPanelControllerDelegate {
 
     
@@ -19,9 +37,23 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         guard let provider = self.viewModel?.provider else {
             return
         }
+        
+        
+        
+//        let person = Person(name: "xioazhang", age: 10)
+        
+        
+//        // 将指向person对象内存地址的指针转成指向PersonStruct结构体的指针，实则还是指向同一个内存地址
+//        var pStructPointer = Unmanaged.passUnretained(person).toOpaque()
+//            .bindMemory(to: PersonStruct.self, capacity: MemoryLayout.size(ofValue: person))
+//
+//        pStructPointer.pointee.name
+        
+//        print(pStructPointer)
+        
                 
-        let viewModel = VisualSearchViewModel(provider: provider, image: UIImage(named: "timg.jpeg")!)
-        self.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
+//        let viewModel = VisualSearchViewModel(provider: provider, image: UIImage(named: "timg.jpeg")!)
+//        self.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
 
         
         //

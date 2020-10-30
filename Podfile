@@ -71,7 +71,6 @@ abstract_target 'Glance' do
   pod 'NewPopMenu', '~> 2.0'
   pod 'MJRefresh'
 
-
    
   
   
@@ -83,6 +82,7 @@ abstract_target 'Glance' do
   
   # Code Quality
   pod 'FLEX', '~> 4.0', :configurations => ['Debug']
+  pod 'Reveal-SDK', '~> 24', :configurations => ['Debug']
   pod 'SwifterSwift', '~> 5.0'
   pod 'BonMot', '~> 5.0'
   pod 'Reusable' , '~> 4.1.0'

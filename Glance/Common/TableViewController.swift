@@ -123,18 +123,17 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.tableView.mj_footer as? MJRefreshAutoNormalFooter {
                 footer.isHidden = true
-                footer.resetNoMoreData()
             }
             self?.headerRefreshTrigger.onNext(())
         })
         normalHeader.lastUpdatedTimeLabel?.isHidden = true
-        
         tableView.mj_header = normalHeader
     }
     func setupFooterRefresh() {
         tableView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
             self?.footerRefreshTrigger.onNext(())
         })
+    //tableView.mj_footer?.ignoredScrollViewContentInsetBottom = -tableView.contentInset.bottom
         tableView.mj_footer?.isHidden = true
     }
 
@@ -158,25 +157,35 @@ class TableViewController: ViewController, UIScrollViewDelegate {
         
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
-        viewModel?.refreshState
-            .subscribe(onNext: { [weak self](state) in
+        viewModel?.refreshState.asDriver(onErrorJustReturn: .end)
+            .drive(onNext: { [weak self](state) in
             switch state {
             case .enable:
                 self?.tableView.mj_footer?.isHidden = false
+                if self?.tableView.mj_footer?.isRefreshing == true {
+                   self?.tableView.mj_footer?.endRefreshing()
+                }
             case .disable:
-                self?.tableView.mj_footer?.isHidden = true
+                self?.tableView.mj_footer?.endRefreshing {
+                    self?.tableView.mj_footer?.isHidden = true
+                }
             case .end:
                 self?.tableView.mj_header?.endRefreshing()
                 self?.tableView.mj_footer?.endRefreshing()
             case .noMoreData:
                 self?.tableView.mj_footer?.isHidden = false
-                self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
-            case .begin:
-                if self?.tableView.mj_header?.isRefreshing == true {
-                    self?.tableView.mj_header?.endRefreshing()
+                self?.tableView.mj_footer?.endRefreshing {
+                    self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
                 }
-                self?.tableView.mj_header?.beginRefreshing()
-
+            case .begin:
+                self?.tableView.mj_footer?.resetNoMoreData()
+                if self?.tableView.mj_header?.isRefreshing == true {
+                    self?.tableView.mj_header?.endRefreshing {
+                        self?.tableView.mj_header?.beginRefreshing()
+                    }
+                } else {
+                    self?.tableView.mj_header?.beginRefreshing()
+                }
             }
         }).disposed(by: rx.disposeBag)
 
@@ -208,16 +217,3 @@ extension TableViewController {
     }
 }
 
-
-extension TableViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        if let view = view as? UITableViewHeaderFooterView {
-            view.textLabel?.font = UIFont(name: ".SFUIText-Bold", size: 15.0)!
-            themeService.rx
-                .bind({ $0.text }, to: view.textLabel!.rx.textColor)
-                .bind({ $0.background }, to: view.contentView.rx.backgroundColor)
-                .disposed(by: rx.disposeBag)
-        }
-    }
-}

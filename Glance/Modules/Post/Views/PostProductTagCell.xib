@@ -67,7 +67,7 @@
                 <outlet property="bgView" destination="jsU-UO-lZG" id="X8k-mM-oOM"/>
                 <outlet property="label" destination="F2x-Fw-Dmz" id="xOX-8q-VJh"/>
             </connections>
-            <point key="canvasLocation" x="-356" y="85"/>
+            <point key="canvasLocation" x="144" y="52"/>
         </collectionViewCell>
     </objects>
 </document>

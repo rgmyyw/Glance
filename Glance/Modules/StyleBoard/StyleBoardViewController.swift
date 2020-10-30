@@ -47,7 +47,12 @@ class StyleBoardViewController: ViewController {
         return button
     }()
     
-    
+    fileprivate lazy var postProduct : PostProductViewController = {
+        let viewModel = PostProductViewModel(provider: self.viewModel!.provider, image: nil,taggedItems: [])
+        let controller  = PostProductViewController(viewModel: viewModel, navigator: navigator)
+        return controller
+    }()
+
     
     private var _selectedEditView:StyleBoardEditView?
     var selectedEditView:StyleBoardEditView? {
@@ -153,6 +158,27 @@ class StyleBoardViewController: ViewController {
                 items.forEach { self?.addImageView(viewModel: $0) }
                 
             }).disposed(by: rx.disposeBag)
+        
+        
+//        // 提前绑定, 重复绑定会出发多次
+//        (self.postProduct.viewModel as? PostProductViewModel)?.edit
+//            .bind(to: viewModel.selection).disposed(by: rx.disposeBag)
+        
+        output.post.drive(onNext: { [weak self](image) in
+//            guard let self = self else { return }
+//            let postProductViewModel = self.postProduct.viewModel as? PostProductViewModel
+//            postProductViewModel?.image.accept(image)
+//            postProductViewModel?.element.accept(items)
+//            self.navigationController?.pushViewController(self.postProduct)
+        }).disposed(by: rx.disposeBag)
+
+        
+        
+        output.generateImage
+            .drive(onNext: { [weak self] () in
+                guard let image = self?.containerView.renderAsImage() else { return }
+                viewModel.image.onNext(image)
+        }).disposed(by: rx.disposeBag)
         
         output.add.drive(onNext: { [weak self]() in
             guard let self = self else { return }

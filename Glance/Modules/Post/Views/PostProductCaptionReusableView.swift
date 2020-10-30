@@ -14,6 +14,8 @@ class PostProductCaptionReusableView: CollectionReusableView {
     
     override func makeUI() {
         super.makeUI()
+        
+
         //textView.addLeftTextPadding(12)
     }
     
