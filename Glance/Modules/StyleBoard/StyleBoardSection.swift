@@ -19,11 +19,11 @@ enum StyleBoardSection  {
 
 enum StyleBoardSectionItem {
     
-    case image(identity : String, viewModel: StyleBoardImageCellViewModel)
+    case image(viewModel: StyleBoardImageCellViewModel)
     
     var viewModel : StyleBoardImageCellViewModel {
         switch self {
-        case .image(_, let viewModel):
+        case .image(let viewModel):
             return viewModel
         }
     }
@@ -61,8 +61,8 @@ extension StyleBoardSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
         switch self {
-        case .image(let identity, _):
-            return identity
+        case .image(let viewModel):
+            return viewModel.item.productId ?? ""
         }
     }
 }

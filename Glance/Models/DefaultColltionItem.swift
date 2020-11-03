@@ -26,6 +26,8 @@ struct DefaultColltionItem: Mappable, Equatable {
     var images : [String] = []
     var own : Bool = false
     
+    
+    
     var id : [String : Any] {
         guard let type = type  else { return [:] }
         var param = [String :Any]()

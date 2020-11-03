@@ -24,63 +24,53 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         let nextButtonEnable : Driver<Bool>
         let generateImage : Driver<Void>
         let post : Driver<(image : UIImage, items : [DefaultColltionItem])>
+        let selection : Driver<StyleBoardImageCellViewModel>
         
-
     }
     
     let selection = PublishSubject<[DefaultColltionItem]>()
     let element : BehaviorRelay<[DefaultColltionItem]> = BehaviorRelay(value: [])
     let image = PublishSubject<UIImage>()
     let reselection = PublishSubject<DefaultColltionItem>()
+    let selected = BehaviorRelay<DefaultColltionItem?>(value : nil)
     
     func transform(input: Input) -> Output {
-
+        
         let elements = BehaviorRelay<[StyleBoardSection]>(value: [])
         let add = PublishSubject<Void>()
         let delete = PublishSubject<StyleBoardImageCellViewModel>()
         let nextButtonEnable = element.map { $0.isNotEmpty }
         
-
         
         let post = image.map { image -> (image : UIImage, items : [DefaultColltionItem]) in
             let values = self.element.value
             return (image, values)
         }
-                
-        selection.map { ($0 + self.element.value).filterDuplicates { $0.productId }  }
-            .filterEmpty()
-            .filter { $0.count != self.element.value.count }
-            .bind(to: element).disposed(by: rx.disposeBag)
-
+        
         element.map { i -> [StyleBoardSection] in
-            
-            var elements = i.enumerated().map { (offset, item) -> StyleBoardSectionItem in
+            var values = i.enumerated().map { (offset, item) -> StyleBoardSectionItem in
                 let viewModel = StyleBoardImageCellViewModel(item: item)
                 viewModel.delete.map { viewModel }.bind(to: delete).disposed(by: self.rx.disposeBag)
-                let item = StyleBoardSectionItem.image(identity: viewModel.item.productId!, viewModel: viewModel)
+                if item == self.selected.value { viewModel.selected.accept(true) }
+                let item = StyleBoardSectionItem.image(viewModel: viewModel)
                 return item
             }
             let emptyViewModel = StyleBoardImageCellViewModel(item: DefaultColltionItem(productId: ""))
-            let empty = StyleBoardSectionItem.image(identity: "", viewModel: emptyViewModel)
+            let empty = StyleBoardSectionItem.image(viewModel: emptyViewModel)
             emptyViewModel.add.bind(to: add).disposed(by: self.rx.disposeBag)
-            elements.append(empty)
-
-            return [StyleBoardSection.images(items: elements)]
+            values.append(empty)
+            return [StyleBoardSection.images(items: values)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         delete.subscribe(onNext: { [weak self](viewModel) in
-            print("will delete productId: \(viewModel.item.productId ?? "")")
             var items = self?.element.value ?? []
-            print("current:\(items.compactMap { $0.productId }) ")
             let index = items.firstIndex { $0.productId == viewModel.item.productId }
             if let index = index{
                 items.remove(at: index)
+                self?.element.accept(items)
             } else {
                 print("not found")
             }
-            print("delete complete:\(items.compactMap { $0.productId})")
-            self?.element.accept(items)
-            
         }).disposed(by: rx.disposeBag)
         
         /// 用户手动添加商品
@@ -90,17 +80,32 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
             .filterNil()
             .map { [$0.1] }.bind(to: selection).disposed(by: rx.disposeBag)
         
-        input.selection
-            .subscribe(onNext: { (cellViewModel) in
-                elements.value.first?.items.forEach { $0.viewModel.selected.accept(false)}
-                cellViewModel.selected.accept(true)
+        
+        
+        selection.map {
+            ($0 + self.element.value).filterDuplicates { $0.productId }
+        }.filterEmpty()
+            .bind(to: element)
+            .disposed(by: rx.disposeBag)
+        
+        let selection = reselection.map { item -> StyleBoardImageCellViewModel? in
+            elements.value.first?.items.filter { $0.viewModel.item == item }.first?.viewModel
+        }.filterNil().merge(with: input.selection)
+        
+        selection.subscribe(onNext: { [weak self](cellViewModel) in
+            elements.value.first?.items.forEach { v in
+                v.viewModel.selected.accept(false)
+            }
+            self?.selected.accept(cellViewModel.item)
+            cellViewModel.selected.accept(true)
         }).disposed(by: rx.disposeBag)
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       add: add.asDriver(onErrorJustReturn: ()),
                       nextButtonEnable: nextButtonEnable.asDriver(onErrorJustReturn: false),
                       generateImage: input.next.asDriverOnErrorJustComplete(),
-                      post: post.asDriverOnErrorJustComplete())
+                      post: post.asDriverOnErrorJustComplete(),
+                      selection: selection.asDriverOnErrorJustComplete())
     }
 }
 

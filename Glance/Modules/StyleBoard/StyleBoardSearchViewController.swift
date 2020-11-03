@@ -77,7 +77,7 @@ class StyleBoardSearchViewController: ViewController  {
         
         guard let viewModel = viewModel as? StyleBoardSearchViewModel else { return }
             
-        
+//
         let add = addButton.rx.tap.asObservable()
         let input = StyleBoardSearchViewModel.Input(add: add)
         let output = viewModel.transform(input: input)
@@ -87,7 +87,6 @@ class StyleBoardSearchViewController: ViewController  {
 
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
-            controllers.forEach { self?.addChild($0)}
             let titles = items.map { $0.title }
             self?.pageController.param.wControllers = controllers
             self?.pageController.param.wTitleArr = titles
@@ -102,19 +101,19 @@ class StyleBoardSearchViewController: ViewController  {
             .drive(onNext: { [weak self]() in
                 self?.navigator.pop(sender: self, toRoot: true)
         }).disposed(by: rx.disposeBag)
-      
+
         rx.viewDidAppear.mapToVoid()
             .subscribe(onNext: { [weak self]() in
                 self?.headView.textField.becomeFirstResponder()
         }).disposed(by: rx.disposeBag)
-        
-        output.upload.drive(onNext: { () in
+
+        output.upload.drive(onNext: {[weak self] () in
             ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
                 config.maxSelectCount = 1
                 config.editAfterSelectThumbnailImage = true
                 config.saveNewImageAfterEdit = false
                 config.allowEditImage = false
-            }) { [weak self] (images, assets, isOriginal) in
+            }) { (images, assets, isOriginal) in
                 guard let image = images?.first else { return }
                 let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, mode: .styleBoard)
                 self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self,transition: .modal)

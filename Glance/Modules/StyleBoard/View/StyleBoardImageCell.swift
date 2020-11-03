@@ -40,6 +40,13 @@ class StyleBoardImageCell: CollectionViewCell {
         viewModel.image.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.selected.map { $0 ? 1.5 : 0 }.bind(to: imageView.rx.borderWidth).disposed(by: cellDisposeBag)
         
+        viewModel.selected.map { $0 ? 1.5 : 0 }.subscribe(onNext :{ a in
+//            print("productId: \(viewModel.item.productId ?? "")")
+//            print("borderWidth: \(a)")
+//            print("------------------------")
+        }).disposed(by: cellDisposeBag)
+        
+        
         emptyView.rx.tap().bind(to: viewModel.add).disposed(by: cellDisposeBag)
         deleteButton.rx.tap.bind(to: viewModel.delete).disposed(by: cellDisposeBag)
         

@@ -40,7 +40,7 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
         let elements = BehaviorRelay<[StyleBoardSearchSection]>(value: [])
         
         input.upload.bind(to: upload).disposed(by: rx.disposeBag)
-        
+
         textInput.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
             .map { $0.trimmingCharacters(in: .whitespaces)}
             .filterEmpty()
@@ -71,7 +71,7 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
+
         
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self, let type = ProductSearchType(rawValue: self.type.value) else {
@@ -104,8 +104,8 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
+
         element.filterNil().map { element -> [StyleBoardSearchSection] in
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> StyleBoardSearchSectionItem in
                 let cellViewModel = StyleBoardSearchCellViewModel(item: item)
@@ -114,9 +114,9 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
             }
             let section = StyleBoardSearchSection(section: 0, elements: sectionItems)
             return [section]
-            
+
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
+
         input.selection.subscribe(onNext: { [weak self] item in
             item.viewModel.selected.accept(!item.viewModel.selected.value)
             let items = elements.value.flatMap { $0.items.map { $0.viewModel } }.filter { $0.selected.value }.map { $0.item }

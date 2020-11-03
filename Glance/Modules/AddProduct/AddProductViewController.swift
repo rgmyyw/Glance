@@ -80,8 +80,6 @@ class AddProductViewController: CollectionViewController {
             } else {
                 self?.navigator.pop(sender: self, toRoot: true)
             }
-            /// let viewModel = PostProductViewModel(provider: viewModel.provider, image: image,taggedItems: [(box,home)])
-            /// self.navigator.show(segue: .postProduct(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
         
     }

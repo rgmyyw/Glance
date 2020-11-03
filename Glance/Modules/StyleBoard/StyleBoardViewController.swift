@@ -19,7 +19,7 @@ class StyleBoardViewController: ViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     fileprivate lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection> = configureDataSouce()
     
-    fileprivate var imageViews : [(view : StyleBoardEditView , viewModel : StyleBoardImageCellViewModel)] = []
+    fileprivate var imageViews : [StyleBoardEditView] = []
     
     fileprivate lazy var nextButton : UIButton = {
         let button = UIButton()
@@ -54,7 +54,7 @@ class StyleBoardViewController: ViewController {
     }()
 
     
-    let selection = PublishSubject<StyleBoardImageCellViewModel>()
+    let selection = PublishSubject<StyleBoardEditView>()
     
     private var _selectedEditView:StyleBoardEditView?
     var selectedEditView:StyleBoardEditView? {
@@ -67,14 +67,13 @@ class StyleBoardViewController: ViewController {
                     selectedStickerView.showEditingHandlers = false
                 }
                 _selectedEditView = newValue
-                if let value = newValue?.viewModel {
-                    selection.onNext(value)
-                }
             }
             
             if let selectedEditView = _selectedEditView {
                 selectedEditView.showEditingHandlers = true
                 selectedEditView.superview?.bringSubviewToFront(selectedEditView)
+            } else {
+                imageViews.forEach { $0.showEditingHandlers = false}
             }
         }
     }
@@ -134,7 +133,8 @@ class StyleBoardViewController: ViewController {
         
         guard let viewModel = viewModel as? StyleBoardViewModel else { return }
         
-        let selected = selection.merge(with: collectionView.rx.modelSelected(StyleBoardImageCellViewModel.self).asObservable())
+        let selected = selection.map { $0.viewModel }.filterNil().merge(with: collectionView.rx.modelSelected(StyleBoardSectionItem.self)
+            .map { $0.viewModel }.asObservable())
         let input = StyleBoardViewModel.Input(next: nextButton.rx.tap.asObservable(), selection: selected)
         let output = viewModel.transform(input: input)
         
@@ -145,30 +145,34 @@ class StyleBoardViewController: ViewController {
         output.nextButtonEnable.drive(nextButton.rx.isEnabled).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         
-        output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "" }}.filterNil()
+        output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "" }}
+            .filterNil().delay(RxTimeInterval.milliseconds(100))
             .drive(onNext: {[weak self] items in
                 let productIds = items.compactMap { $0.item.productId }
                 let elements = self?.imageViews.map { $0 }
                 if let elements = elements , elements.isNotEmpty {
-                    elements.enumerated().map { ($0, $1.0, $1.1)}.forEach { (offset,view, vm) in
-                        if let productId = vm.item.productId,!productIds.contains(productId) {
+                    elements.enumerated().map { ($0, $1)}.forEach { (offset,view) in
+                        if let productId = view.viewModel?.item.productId,!productIds.contains(productId) {
                             print("will remove : \(productId)")
-                            let index = self?.imageViews.firstIndex { $1.item.productId == vm.item.productId }
+                            let index = self?.imageViews.firstIndex {
+                                $0.viewModel?.item.productId == view.viewModel?.item.productId
+                            }
                             if let index = index {
-                                print("removed : \(productId)")
                                 view.viewModel = nil
-                                view.removeFromSuperview()
-                                self?.imageViews.remove(at: index)
-                            } else {
-                                fatalError()
+                                UIView.animate(withDuration: 0.5, animations: {
+                                    view.alpha = 0
+                                }) { (_) in
+                                    view.removeFromSuperview()
+                                    self?.imageViews.remove(at: index)
+                                    print("removed : \(productId)")
+                                }
                             }
                         }
                     }
                 }
-                //print("current productIds:\(productIds)")
-                //print("imageView productId:\(imageViews.map { $0.viewModel.item.productId })")
-//                print("filter complete:\(elements.compactMap { $0.viewModel.item.productId })")
+
                 items.forEach { self?.addImageView(viewModel: $0) }
+                self?.collectionView.reloadSections(IndexSet(integer: 0))
             }).disposed(by: rx.disposeBag)
         
         output.post.drive(onNext: { [weak self](image, items) in
@@ -179,10 +183,14 @@ class StyleBoardViewController: ViewController {
             self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
 
-        
+        output.selection.drive(onNext: {[weak self] (viewModel) in
+            let view = self?.imageViews.filter { $0.viewModel?.item == viewModel.item }.first
+            self?.selectedEditView = view
+        }).disposed(by: rx.disposeBag)
         
         output.generateImage
             .drive(onNext: { [weak self] () in
+                self?.selectedEditView = nil
                 guard let image = self?.containerView.renderAsImage() else { return }
                 viewModel.image.onNext(image)
         }).disposed(by: rx.disposeBag)
@@ -198,12 +206,11 @@ class StyleBoardViewController: ViewController {
     
     func addImageView(viewModel : StyleBoardImageCellViewModel) {
         
-        let contains = imageViews.map { $0.viewModel.item.productId }.contains(viewModel.item.productId)
-        let element = imageViews.filter { $0.viewModel.item == viewModel.item }.first
-        
+        let element = imageViews.filter { $0.viewModel?.item == viewModel.item }.first
+        let contains = imageViews.map { $0.viewModel?.item.productId }.contains(viewModel.item.productId)
         if contains , let element = element {
-            element.view.viewModel = viewModel
-            let index = imageViews.firstIndex { $1.item.productId == viewModel.item.productId }
+            element.viewModel = viewModel
+            let index = imageViews.firstIndex { $0.viewModel?.item.productId == viewModel.item.productId }
             if let index = index {
                 imageViews.remove(at: index)
                 imageViews.append(element)
@@ -213,13 +220,12 @@ class StyleBoardViewController: ViewController {
             return
         }
         
+        // 随机放在某个位置
         let x = CGFloat.random(in: 20..<(containerView.width * 0.5))
         let y = CGFloat.random(in: 20..<(containerView.width * 0.5))
          
         let point = CGPoint(x: x, y: y)
         let imageView = UIImageView(frame: CGRect(origin: point, size: viewModel.size))
-        
-        
         let contentView = StyleBoardEditView(contentView: imageView)
         contentView.setImage(R.image.icon_button_circular_close()!, forHandler: .close)
         contentView.setImage(R.image.icon_button_circular_rotate()!, forHandler: .rotate)
@@ -231,7 +237,7 @@ class StyleBoardViewController: ViewController {
         contentView.delegate = self
         contentView.setHandlerSize(18)
         contentView.viewModel = viewModel
-        imageViews.append((contentView, viewModel))
+        imageViews.append(contentView)
         containerView.addSubview(contentView)
     }
     
@@ -242,7 +248,7 @@ extension StyleBoardViewController {
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection> {
         return RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             switch item {
-            case .image(_, let viewModel):
+            case .image(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: StyleBoardImageCell.self)
                 cell.bind(to: viewModel)
                 return cell
@@ -254,10 +260,10 @@ extension StyleBoardViewController {
 extension StyleBoardViewController : StyleBoardEditViewDelegate {
     
     func styleBoardEditViewDidBeginMoving(_ editView: StyleBoardEditView) {
-        self.selectedEditView = editView
+        selection.onNext(editView)
     }
     func styleBoardEditViewDidTap(_ editView: StyleBoardEditView) {
-        self.selectedEditView = editView
+        selection.onNext(editView)
     }
 }
 

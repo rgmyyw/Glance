@@ -43,9 +43,7 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             let elements = selected.value.flatMap { $0}
             return Observable.just(elements)
         }.bind(to: selection).disposed(by: rx.disposeBag)
-        
-        
-        
+                
         let config = Observable<[StyleBoardSearchModuleItem]>.create { (observer) -> Disposable in
             let element = (0..<3).map { type -> StyleBoardSearchContentViewModel in
                 let i = StyleBoardSearchContentViewModel(provider: self.provider, type: type)

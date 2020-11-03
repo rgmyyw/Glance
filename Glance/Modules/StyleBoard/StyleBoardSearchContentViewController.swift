@@ -57,7 +57,7 @@ class StyleBoardSearchContentViewController: CollectionViewController  {
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
+
     }
     
 }

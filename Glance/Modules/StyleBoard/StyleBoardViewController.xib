@@ -103,7 +103,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EeF-La-inR">
                             <rect key="frame" x="0.0" y="791" width="414" height="105"/>
                             <subviews>
-                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hN1-2w-UzZ">
+                                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="hN1-2w-UzZ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="105"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BKj-0g-yAp">
