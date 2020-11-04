@@ -264,6 +264,14 @@
 		5D5B018624C587AD00832F05 /* SavedCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018424C587AD00832F05 /* SavedCollectionCell.swift */; };
 		5D5B018724C587AD00832F05 /* SavedCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */; };
 		5D5B018924C5888500832F05 /* SavedCollectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */; };
+		5D5C486625510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */; };
+		5D5C486725510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */; };
+		5D5C486825510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */; };
+		5D5C486925510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */; };
+		5D5C486A25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */; };
+		5D5C486B25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */; };
+		5D5C486C25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */; };
+		5D5C486D25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */; };
 		5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
 		5D630AAC24B3127200F0CC45 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
 		5D630AAE24B31B4000F0CC45 /* DefaultColltionItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */; };
@@ -1817,6 +1825,8 @@
 		5D5B018424C587AD00832F05 /* SavedCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCollectionCell.swift; sourceTree = "<group>"; };
 		5D5B018524C587AD00832F05 /* SavedCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SavedCollectionCell.xib; sourceTree = "<group>"; };
 		5D5B018824C5888500832F05 /* SavedCollectionCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedCollectionCellViewModel.swift; sourceTree = "<group>"; };
+		5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailMoreReusableView.swift; sourceTree = "<group>"; };
+		5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailMoreReusableView.xib; sourceTree = "<group>"; };
 		5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5D630AAD24B31B4000F0CC45 /* DefaultColltionItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultColltionItem.swift; sourceTree = "<group>"; };
@@ -2228,6 +2238,8 @@
 				5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */,
 				5D1D5AF224BFF007008C0C82 /* PostsDetailTitleReusableView.swift */,
 				5D1D5AF324BFF007008C0C82 /* PostsDetailTitleReusableView.xib */,
+				5D5C486425510D1C009CDB2E /* PostsDetailMoreReusableView.swift */,
+				5D5C486525510D1C009CDB2E /* PostsDetailMoreReusableView.xib */,
 				5DC669D924CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.swift */,
 				5DC669D824CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.xib */,
 				5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */,
@@ -3394,6 +3406,7 @@
 				5D99EE34251843840008B45F /* SignInViewController.xib in Resources */,
 				5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */,
 				5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */,
+				5D5C486D25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */,
 				5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */,
 				5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */,
@@ -3492,6 +3505,7 @@
 				5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */,
 				5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */,
 				5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */,
+				5D5C486B25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */,
 				5DCC2E0024F34F04000AC40A /* NotificationProfileViewController.xib in Resources */,
@@ -3590,6 +3604,7 @@
 				5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */,
 				5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */,
 				5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */,
+				5D5C486C25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */,
 				5DCC2F5824F34F2A000AC40A /* NotificationProfileViewController.xib in Resources */,
@@ -3688,6 +3703,7 @@
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
 				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
+				5D5C486A25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DBC3AB824C7F3BA006B0032 /* InterestNavigationBar.xib in Resources */,
 				5D06523924BEE308007CE461 /* ReactionsViewController.xib in Resources */,
 				5D3E480524B5C32E0064E3BF /* NotificationProfileViewController.xib in Resources */,
@@ -4244,6 +4260,7 @@
 				5D99EDB6251843840008B45F /* SearchRecommendNewSection.swift in Sources */,
 				5D99EDB7251843840008B45F /* CollectionReusableView.swift in Sources */,
 				5D99EDB8251843840008B45F /* UIImage-Extension.swift in Sources */,
+				5D5C486925510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C32531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5D99EDB9251843840008B45F /* PostProductTagCellViewModel.swift in Sources */,
 				5D99EDBA251843840008B45F /* PostProductSectionCellViewModel.swift in Sources */,
@@ -4579,6 +4596,7 @@
 				5D7C38CF250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
 				5DCC2D9624F34F04000AC40A /* CollectionReusableView.swift in Sources */,
 				5DCC2D9724F34F04000AC40A /* UIImage-Extension.swift in Sources */,
+				5D5C486725510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C12531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5DCC2D9824F34F04000AC40A /* PostProductTagCellViewModel.swift in Sources */,
 				5DCC2D9924F34F04000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
@@ -4914,6 +4932,7 @@
 				5D7C38D0250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
 				5DCC2EEE24F34F2A000AC40A /* CollectionReusableView.swift in Sources */,
 				5DCC2EEF24F34F2A000AC40A /* UIImage-Extension.swift in Sources */,
+				5D5C486825510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C22531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5DCC2EF024F34F2A000AC40A /* PostProductTagCellViewModel.swift in Sources */,
 				5DCC2EF124F34F2A000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
@@ -5249,6 +5268,7 @@
 				5D7C38CE250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
 				5DEFF37824AEC2F9007A2FCD /* CollectionReusableView.swift in Sources */,
 				5DEFF34324AEC2F9007A2FCD /* UIImage-Extension.swift in Sources */,
+				5D5C486625510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C02531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5D6FEAA624DC03090062F90B /* PostProductTagCellViewModel.swift in Sources */,
 				5D6FEA9724DC03090062F90B /* PostProductSectionCellViewModel.swift in Sources */,

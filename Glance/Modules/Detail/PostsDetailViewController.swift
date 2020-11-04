@@ -55,6 +55,9 @@ class PostsDetailViewController: CollectionViewController {
         collectionView.register(ProductCell.nib, forCellWithReuseIdentifier: ProductCell.reuseIdentifier)
         
 
+        
+        collectionView.register(nib: PostsDetailMoreReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailMoreReusableView.self)
+
         collectionView.register(nib: PostsDetailBannerReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailBannerReusableView.self)
         collectionView.register(nib: PostsDetailPriceReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailPriceReusableView.self)
         collectionView.register(nib: PostsDetailTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostsDetailTitleReusableView.self)
@@ -117,14 +120,14 @@ class PostsDetailViewController: CollectionViewController {
         
         output.delete
             .drive(onNext: { () in
-                Alert.showAlert(with: "Delete your post?",
-                                 message: "Your post will be deleted.",
-                                 optionTitles: "DELETE",
-                                 cancel: "CANCEL")
+                let title = "Delete your post?"
+                let message = "Your post will be deleted."
+                Alert.showAlert(with: title,
+                                message: message,
+                                optionTitles: "DELETE",
+                                cancel: "CANCEL")
                     .subscribe(onNext: { index in
-                        if index == 0 {
-                            viewModel.deletePost.onNext(())
-                        }
+                        if index == 0 { viewModel.deletePost.onNext(()) }
                     }).disposed(by: self.rx.disposeBag)
         }).disposed(by: rx.disposeBag)
         
@@ -164,6 +167,18 @@ class PostsDetailViewController: CollectionViewController {
             let selectStore = SelectStoreViewModel(provider: viewModel.provider, productId: productId)
             selectStore.action.bind(to: viewModel.selectStoreActions).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .selectStore(viewModel: selectStore), sender: self,transition: .panel(style: .default))
+        }).disposed(by: rx.disposeBag)
+        
+        output.reloadSection.delay(RxTimeInterval.milliseconds(200))
+            .drive(onNext: { [weak self](section) in
+                //CATransaction.begin()
+                //CATransaction.setDisableActions(true)
+                //self?.collectionView.reloadSections(IndexSet(integer: section))
+                //CATransaction.commit()
+                self?.collectionView.reloadSections(IndexSet(integer: section))
+                //UIView.performWithoutAnimation {
+                    //self?.collectionView.reloadSections(IndexSet(integer: section))
+                //}
         }).disposed(by: rx.disposeBag)
         
     }
@@ -218,6 +233,11 @@ extension PostsDetailViewController {
             case .title(let viewModel):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailTitleReusableView.self, for: indexPath)
                 view.bind(to: viewModel)
+                return view
+                
+            case .more(let viewModel):
+                let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostsDetailMoreReusableView.self, for: indexPath)
+                view.bind(to: viewModel)
 
                 return view
             case .tags(let viewModel):
@@ -261,19 +281,23 @@ extension PostsDetailViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return CGSize(width: collectionView.width, height: 50)
         case .price:
             return CGSize(width: collectionView.width, height: 30)
-        case .title:
-            return collectionView.ar_size(forReusableViewHeightIdentifier: PostsDetailTitleReusableView.reuseIdentifier, indexPath: IndexPath(row: 0, section: section), fixedWidth: collectionView.width - 40) { (cell) in
-                let cell = cell  as? PostsDetailTitleReusableView
-                if let viewModel = self.dataSouce.sectionModels[section].viewModel {
-                    cell?.bind(to: viewModel)
-                    cell?.setNeedsLayout()
-                    cell?.layoutIfNeeded()
-                }
-            }
+        case .title(let viewModel):
+            return CGSize(width: collectionView.width, height: viewModel.folded.value ? viewModel.titleFoldedHeight : viewModel.titleExpendHeight)
+//            return collectionView.ar_size(forReusableViewHeightIdentifier: PostsDetailTitleReusableView.reuseIdentifier, indexPath: IndexPath(row: 0, section: section), fixedWidth: collectionView.width - 40) { (cell) in
+//                let cell = cell  as? PostsDetailTitleReusableView
+//                if let viewModel = self.dataSouce.sectionModels[section].viewModel {
+//                    cell?.bind(to: viewModel)
+//                    cell?.setNeedsLayout()
+//                    cell?.layoutIfNeeded()
+//                }
+//            }
+            
         case .tags:
             return CGSize(width: collectionView.width, height: 100)
         case .tool:
             return CGSize(width: collectionView.width, height: 50)
+        case .more:
+            return CGSize(width: collectionView.width, height: 28)
         }
 
     }

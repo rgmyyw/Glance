@@ -104,7 +104,7 @@ extension UIView {
 }
 
 
-public extension UIView {
+extension UIView {
 
     
     struct UIViewPrivateKeys {
@@ -124,7 +124,7 @@ public extension UIView {
     }
 }
 
-public extension UIView {
+extension UIView {
     
     /// 开启调试模式,为view 以及子viewz 自动设置随机颜色!
     var enableDebug : Bool {
@@ -141,3 +141,5 @@ public extension UIView {
         }
     }
 }
+
+

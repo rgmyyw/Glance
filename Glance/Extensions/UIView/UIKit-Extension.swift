@@ -56,7 +56,7 @@ extension  UITextField {
                     self?.text = text[0..<number]
                 }
                 
-        }).disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
     }
     
 }
@@ -74,5 +74,49 @@ extension Reactive where Base: UITextField {
             }).disposed(by: self.disposeBag)
         }
     }
+    
+}
 
+
+
+extension UILabel {
+    
+    func line(maxWidth : CGFloat = UIScreen.main.bounds.width,
+              maxHeight : CGFloat = CGFloat(MAXFLOAT)) -> Int {
+        guard let text = self.text  else { return 1 }
+        return text.line(attributes: [.font : font!], maxWidth: maxWidth, maxHeight: maxHeight)
+    }
+
+}
+
+extension String {
+    
+    /// 计算当前文字需要占多少行
+    /// - Parameters:
+    ///   - font: 字体
+    ///   - maxWidth: 最大宽度
+    ///   - maxHeight: 最大高度
+    func line(by font : UIFont,
+              maxWidth : CGFloat = UIScreen.main.bounds.width,
+              maxHeight : CGFloat = CGFloat(MAXFLOAT)) -> Int {
+        
+        return line(attributes: [.font: font], maxWidth: maxWidth, maxHeight: maxHeight)
+    }
+
+
+    /// 计算当前文字需要占多少行
+    /// - Parameters:
+    ///   - attributes: 必传属性, 一般情况传字体大小,但是有些label需要计算行间距
+    ///   - maxWidth: 最大宽度
+    ///   - maxHeight: 最大高度
+    func line(attributes: [NSAttributedString.Key : Any],
+              maxWidth : CGFloat = UIScreen.main.bounds.width,
+              maxHeight : CGFloat = CGFloat(MAXFLOAT)) -> Int {
+        let text = self as NSString
+        let maxSize = CGSize(width: maxWidth, height: CGFloat(MAXFLOAT))
+        let textHeight = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: attributes, context: nil).height
+        let font = attributes[.font] as? UIFont
+        let lineHeight = font?.lineHeight ?? 1
+        return Int(ceil(textHeight / lineHeight))
+    }
 }

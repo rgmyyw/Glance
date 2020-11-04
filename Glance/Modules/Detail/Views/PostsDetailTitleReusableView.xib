@@ -17,7 +17,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zNX-hH-PqU">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="72"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb8-gL-RLn">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kb8-gL-RLn">
                             <rect key="frame" x="20" y="15" width="280" height="16.5"/>
                             <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
                             <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,6 +31,11 @@
                         <constraint firstItem="Kb8-gL-RLn" firstAttribute="top" secondItem="zNX-hH-PqU" secondAttribute="top" constant="15" id="oht-qd-Zop"/>
                         <constraint firstAttribute="trailing" secondItem="Kb8-gL-RLn" secondAttribute="trailing" constant="20" id="uUE-bw-OeU"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="1Ug-wW-IW2"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <constraints>
@@ -45,7 +50,7 @@
                 <outlet property="labelTop" destination="oht-qd-Zop" id="2gl-Ir-Mv7"/>
                 <outlet property="titleLabel" destination="Kb8-gL-RLn" id="1rK-RF-HdW"/>
             </connections>
-            <point key="canvasLocation" x="-609" y="-5"/>
+            <point key="canvasLocation" x="-571" y="-17"/>
         </collectionReusableView>
     </objects>
 </document>

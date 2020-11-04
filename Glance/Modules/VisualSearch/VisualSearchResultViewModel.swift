@@ -197,6 +197,12 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             let other = dots.filter { $0.box != current }.compactMap { $0.selected }
             items.removeAll(where: { other.map { $0.productId }.contains($0.productId)})
             
+            /// 查找选中的商品, 将选中的商品插入到最前面
+            if let selected = selected {
+                items.insert(selected, at: 0)
+                items.removeDuplicates()
+            }
+            
             /// 生成cell
             let sectionItems = items.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)

@@ -52,7 +52,7 @@ class StyleBoardViewController: ViewController {
         let controller  = PostProductViewController(viewModel: viewModel, navigator: navigator)
         return controller
     }()
-
+    
     
     let selection = PublishSubject<StyleBoardEditView>()
     
@@ -129,8 +129,6 @@ class StyleBoardViewController: ViewController {
     override func bindViewModel() {
         super.bindViewModel()
         
-        
-        
         guard let viewModel = viewModel as? StyleBoardViewModel else { return }
         
         let selected = selection.map { $0.viewModel }.filterNil().merge(with: collectionView.rx.modelSelected(StyleBoardSectionItem.self)
@@ -141,36 +139,37 @@ class StyleBoardViewController: ViewController {
         // 提前绑定, 重复绑定会出发多次
         (self.postProduct.viewModel as? PostProductViewModel)?.reselection
             .bind(to: viewModel.reselection).disposed(by: rx.disposeBag)
-
+        
         output.nextButtonEnable.drive(nextButton.rx.isEnabled).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
         
         output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "" }}
-            .filterNil().delay(RxTimeInterval.milliseconds(100))
+            .filterNil().delay(RxTimeInterval.milliseconds(500))
             .drive(onNext: {[weak self] items in
-                let productIds = items.compactMap { $0.item.productId }
-                let elements = self?.imageViews.map { $0 }
-                if let elements = elements , elements.isNotEmpty {
-                    elements.enumerated().map { ($0, $1)}.forEach { (offset,view) in
-                        if let productId = view.viewModel?.item.productId,!productIds.contains(productId) {
-                            print("will remove : \(productId)")
-                            let index = self?.imageViews.firstIndex {
-                                $0.viewModel?.item.productId == view.viewModel?.item.productId
-                            }
-                            if let index = index {
-                                view.viewModel = nil
-                                UIView.animate(withDuration: 0.5, animations: {
-                                    view.alpha = 0
-                                }) { (_) in
-                                    view.removeFromSuperview()
-                                    self?.imageViews.remove(at: index)
-                                    print("removed : \(productId)")
-                                }
-                            }
-                        }
+                
+                let productItems = items.compactMap { $0.item }
+                let elements = self?.imageViews.map { $0 } ?? []
+                
+                func remove(at index : Int) {
+                    UIView.animate(withDuration: 0.5, animations: {
+                        self?.imageViews[index].alpha = 0
+                    }) { (_) in
+                        self?.imageViews[index].removeFromSuperview()
+                        self?.imageViews.remove(at: index)
                     }
                 }
 
+                elements.enumerated().map { ($0, $1)}.forEach { (offset,view) in
+                    if view.viewModel?.item == nil {
+                        remove(at: offset)
+                    }
+                    if let product = view.viewModel?.item, !productItems.contains(product) {
+                        let index = self?.imageViews.firstIndex { $0.viewModel?.item == view.viewModel?.item }
+                        if let index = index {
+                            remove(at: index)
+                        }
+                    }
+                }
                 items.forEach { self?.addImageView(viewModel: $0) }
                 self?.collectionView.reloadSections(IndexSet(integer: 0))
             }).disposed(by: rx.disposeBag)
@@ -182,7 +181,7 @@ class StyleBoardViewController: ViewController {
             postProductViewModel?.element.accept(items)
             self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
-
+        
         output.selection.drive(onNext: {[weak self] (viewModel) in
             let view = self?.imageViews.filter { $0.viewModel?.item == viewModel.item }.first
             self?.selectedEditView = view
@@ -193,7 +192,7 @@ class StyleBoardViewController: ViewController {
                 self?.selectedEditView = nil
                 guard let image = self?.containerView.renderAsImage() else { return }
                 viewModel.image.onNext(image)
-        }).disposed(by: rx.disposeBag)
+            }).disposed(by: rx.disposeBag)
         
         output.add.drive(onNext: { [weak self]() in
             guard let self = self else { return }
@@ -201,29 +200,21 @@ class StyleBoardViewController: ViewController {
             styleBoardSearch.selection.bind(to: viewModel.selection).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .styleBoardSearch(viewModel: styleBoardSearch), sender: self)
         }).disposed(by: rx.disposeBag)
-
+        
     }
     
     func addImageView(viewModel : StyleBoardImageCellViewModel) {
         
-        let element = imageViews.filter { $0.viewModel?.item == viewModel.item }.first
-        let contains = imageViews.map { $0.viewModel?.item.productId }.contains(viewModel.item.productId)
-        if contains , let element = element {
-            element.viewModel = viewModel
-            let index = imageViews.firstIndex { $0.viewModel?.item.productId == viewModel.item.productId }
-            if let index = index {
-                imageViews.remove(at: index)
-                imageViews.append(element)
-            } else {
-                fatalError()
-            }
+        let contains = imageViews.map { $0.viewModel?.item }.contains(viewModel.item)
+        if  contains {
+            imageViews.filter { $0.viewModel?.item == viewModel.item }.first?.viewModel = viewModel
             return
         }
         
         // 随机放在某个位置
         let x = CGFloat.random(in: 20..<(containerView.width * 0.5))
         let y = CGFloat.random(in: 20..<(containerView.width * 0.5))
-         
+        
         let point = CGPoint(x: x, y: y)
         let imageView = UIImageView(frame: CGRect(origin: point, size: viewModel.size))
         let contentView = StyleBoardEditView(contentView: imageView)

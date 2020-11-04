@@ -10,10 +10,35 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
-enum PostsDetailSection  {
+enum PostsDetailSection : Equatable {
+    
+    static func == (lhs: PostsDetailSection, rhs: PostsDetailSection) -> Bool {
+        switch (lhs,rhs) {
+        case (.banner,banner):
+        return true
+        case (.price,price):
+        return true
+        case (.title,title):
+        return true
+        case (.more,more):
+        return true
+        case (.tags,tags):
+        return true
+        case (.tool,tool):
+        return true
+        case (.tagged,tagged):
+        return true
+        case (.similar,similar):
+        return true
+        default:
+            return false
+        }
+    }
+    
     case banner(viewModel : PostsDetailSectionCellViewModel)
     case price(viewModel : PostsDetailSectionCellViewModel)
     case title(viewModel : PostsDetailSectionCellViewModel)
+    case more(viewModel : PostsDetailSectionCellViewModel)
     case tags(viewModel : PostsDetailSectionCellViewModel)
     case tool(viewModel : PostsDetailSectionCellViewModel)
     case tagged(title : String, items : [DefaultColltionSectionItem])
@@ -41,7 +66,8 @@ extension PostsDetailSection: SectionModelType {
              .price(let viewModel),
              .tags(let viewModel),
              .title(let viewModel),
-             .tool(let viewModel):
+             .tool(let viewModel),
+             .more(let viewModel):
             return viewModel
         default:
             return nil
@@ -76,7 +102,9 @@ extension PostsDetailSection: SectionModelType {
             self = .tags(viewModel: viewModel)
         case .tool(let viewModel):
             self = .tool(viewModel: viewModel)
-            
+        case .more(let viewModel):
+            self = .more(viewModel: viewModel)
+
         }
     }
 }

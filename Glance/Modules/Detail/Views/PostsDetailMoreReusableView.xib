@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionReusableView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="2Id-Zj-WZZ" customClass="PostsDetailMoreReusableView" customModule="Glance" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="344" height="32"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z1S-1p-xdG">
+                    <rect key="frame" x="0.0" y="0.0" width="344" height="32"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCf-Pr-hXr">
+                            <rect key="frame" x="314" y="6" width="10" height="17"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <state key="normal" image="icon_arrow_down_blue">
+                                <color key="titleColor" red="0.3294117647" green="0.50196078430000002" blue="0.69411764710000001" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" image="icon_arrow_up_blue"/>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SkJ-NH-HSp">
+                            <rect key="frame" x="238" y="0.0" width="71" height="29"/>
+                            <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="14"/>
+                            <state key="normal" title="Show More">
+                                <color key="titleColor" red="0.32941176470588235" green="0.50196078431372548" blue="0.69411764705882351" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <state key="selected" title="Hidden"/>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="RCf-Pr-hXr" firstAttribute="leading" secondItem="SkJ-NH-HSp" secondAttribute="trailing" constant="5" id="5I3-jj-a6c"/>
+                        <constraint firstAttribute="trailing" secondItem="RCf-Pr-hXr" secondAttribute="trailing" constant="20" id="9Rx-vL-8va"/>
+                        <constraint firstItem="RCf-Pr-hXr" firstAttribute="centerY" secondItem="SkJ-NH-HSp" secondAttribute="centerY" id="EX8-K5-ZKa"/>
+                        <constraint firstItem="SkJ-NH-HSp" firstAttribute="top" secondItem="Z1S-1p-xdG" secondAttribute="top" id="Zq4-Ag-3Hr"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Z1S-1p-xdG" secondAttribute="trailing" id="508-Cq-QZB"/>
+                <constraint firstItem="Z1S-1p-xdG" firstAttribute="leading" secondItem="2Id-Zj-WZZ" secondAttribute="leading" id="Beq-FX-3Br"/>
+                <constraint firstAttribute="bottom" secondItem="Z1S-1p-xdG" secondAttribute="bottom" id="M1v-96-Iso"/>
+                <constraint firstItem="Z1S-1p-xdG" firstAttribute="top" secondItem="2Id-Zj-WZZ" secondAttribute="top" id="jXo-9u-Sau"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="p4q-Xr-b38"/>
+            <connections>
+                <outlet property="arrowButton" destination="RCf-Pr-hXr" id="BD6-Vr-jqx"/>
+                <outlet property="moreButton" destination="SkJ-NH-HSp" id="hRm-If-u1Y"/>
+            </connections>
+            <point key="canvasLocation" x="-394.20289855072468" y="3.3482142857142856"/>
+        </collectionReusableView>
+    </objects>
+    <resources>
+        <image name="icon_arrow_down_blue" width="10" height="6"/>
+        <image name="icon_arrow_up_blue" width="10" height="6"/>
+    </resources>
+</document>
