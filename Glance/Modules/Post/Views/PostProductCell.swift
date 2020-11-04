@@ -16,7 +16,7 @@ class PostProductCell: CollectionViewCell {
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
-    
+    @IBOutlet weak var deleteButton: UIButton!
     
     override func makeUI() {
         super.makeUI()
@@ -38,6 +38,8 @@ class PostProductCell: CollectionViewCell {
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         editView.rx.tap().bind(to: viewModel.edit).disposed(by: cellDisposeBag)
+        deleteButton.rx.tap.mapToVoid().bind(to: viewModel.delete).disposed(by: cellDisposeBag)
+
     }
     
 

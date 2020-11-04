@@ -34,14 +34,14 @@ enum PostProductSection  {
 
 enum PostProductSectionItem {
     
-    case tag(identity : String, viewModel: PostProductTagCellViewModel)
-    case product(identity : String, viewModel: PostProductCellViewModel)
+    case tag(viewModel: PostProductTagCellViewModel)
+    case product(viewModel: PostProductCellViewModel)
 
     func viewModel<T : CellViewModelProtocol >(_ type: T.Type) -> T {
         switch self {
-        case .tag(_, let viewModel):
+        case .tag(let viewModel):
             return viewModel as! T
-        case .product(_, let viewModel):
+        case .product(let viewModel):
             return viewModel as! T
         }
     }
@@ -95,8 +95,10 @@ extension PostProductSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
         switch self {
-        case .tag(let identity, _),.product(let identity, _):
-            return identity
+        case .tag(let viewModel):
+            return viewModel.item
+        case .product(let viewModel):
+            return viewModel.item.productId ?? ""
         }
     }
 }

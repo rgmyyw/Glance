@@ -20,8 +20,8 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Yhu-T1-WhX">
                         <rect key="frame" x="20" y="0.0" width="322" height="101"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="522-My-az5">
-                                <rect key="frame" x="15" y="12" width="9" height="9"/>
+                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="522-My-az5">
+                                <rect key="frame" x="0.0" y="12" width="9" height="9"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="9" id="fGT-aJ-dak"/>
                                     <constraint firstAttribute="height" constant="9" id="luu-qt-jNW"/>
@@ -29,7 +29,7 @@
                                 <state key="normal" image="icon_button_delete"/>
                             </button>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uZd-ha-eHx">
-                                <rect key="frame" x="40" y="21" width="60" height="60"/>
+                                <rect key="frame" x="25" y="21" width="60" height="60"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="fUQ-8Y-k02"/>
@@ -42,7 +42,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VJO-oe-xnG">
-                                <rect key="frame" x="115" y="21" width="192" height="28"/>
+                                <rect key="frame" x="100" y="21" width="207" height="28"/>
                                 <string key="text">Seller Rahul MalviyaSeller RahulSeller Rahul MalviyaSeller RahulSeller Rahul MalviyaSeller RahulSeller Rahul MalviyaSeller Rahul</string>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -92,7 +92,7 @@
                             <constraint firstAttribute="bottom" secondItem="uZd-ha-eHx" secondAttribute="bottom" constant="20" id="UA6-2s-Kas"/>
                             <constraint firstItem="w7p-ar-c1g" firstAttribute="trailing" secondItem="VJO-oe-xnG" secondAttribute="trailing" id="V0t-yU-yNk"/>
                             <constraint firstItem="uZd-ha-eHx" firstAttribute="top" secondItem="522-My-az5" secondAttribute="bottom" id="YKT-H4-9eF"/>
-                            <constraint firstItem="522-My-az5" firstAttribute="leading" secondItem="Yhu-T1-WhX" secondAttribute="leading" constant="15" id="pWH-Fi-ON6"/>
+                            <constraint firstItem="522-My-az5" firstAttribute="leading" secondItem="Yhu-T1-WhX" secondAttribute="leading" id="pWH-Fi-ON6"/>
                             <constraint firstItem="uZd-ha-eHx" firstAttribute="leading" secondItem="522-My-az5" secondAttribute="trailing" constant="16" id="tLW-5g-d4A"/>
                             <constraint firstItem="VJO-oe-xnG" firstAttribute="top" secondItem="uZd-ha-eHx" secondAttribute="top" id="vxu-Vr-edN"/>
                         </constraints>
@@ -113,11 +113,12 @@
             </userDefinedRuntimeAttributes>
             <connections>
                 <outlet property="bgView" destination="Yhu-T1-WhX" id="2pg-YW-7Wr"/>
+                <outlet property="deleteButton" destination="522-My-az5" id="6bp-H2-fWv"/>
                 <outlet property="editView" destination="w7p-ar-c1g" id="AEX-5C-Shp"/>
                 <outlet property="imageView" destination="uZd-ha-eHx" id="LSP-6B-gom"/>
                 <outlet property="titleLabel" destination="VJO-oe-xnG" id="E3M-fv-Db7"/>
             </connections>
-            <point key="canvasLocation" x="-297" y="-8"/>
+            <point key="canvasLocation" x="-219" y="-28"/>
         </collectionViewCell>
     </objects>
     <resources>

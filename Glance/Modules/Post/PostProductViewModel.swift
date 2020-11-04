@@ -29,7 +29,6 @@ class PostProductViewModel: ViewModel, ViewModelType {
     let image : BehaviorRelay<UIImage?>
     let reselection = PublishSubject<DefaultColltionItem>()
     
-    
     init(provider: API, image : UIImage?, taggedItems : [DefaultColltionItem] ) {
         self.image = BehaviorRelay(value: image)
         self.element = BehaviorRelay(value: taggedItems)
@@ -47,45 +46,47 @@ class PostProductViewModel: ViewModel, ViewModelType {
         let tagAction = PublishSubject<(PostProductSectionItem , PostProductTagStyle.PostProductTagStyleAction)>()
         let navigationImage = image.asDriver(onErrorJustReturn: nil)
         let complete = PublishSubject<Void>()
-                
+        let delete = PublishSubject<DefaultColltionItem>()
+
         element.map { (items) ->  [PostProductSection] in
             
             let viewModel = PostProductSectionCellViewModel(item: ())
             viewModel.addTag.bind(to: addTag).disposed(by: self.rx.disposeBag)
             
-//            let customTagsItems = (1..<5).map { number ->  PostProductSectionItem in
-//                let viewModel = PostProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
-//                viewModel.style.accept(.custom)
-//                viewModel.selected.accept(true)
-//                let item = PostProductSectionItem.tag(identity: "section1-item\(number)",viewModel: viewModel)
-//                viewModel.action.map { (item,$0)}.bind(to: tagAction).disposed(by: self.rx.disposeBag)
-//                return item
-//            }
+            //            let customTagsItems = (1..<5).map { number ->  PostProductSectionItem in
+            //                let viewModel = PostProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
+            //                viewModel.style.accept(.custom)
+            //                viewModel.selected.accept(true)
+            //                let item = PostProductSectionItem.tag(identity: "section1-item\(number)",viewModel: viewModel)
+            //                viewModel.action.map { (item,$0)}.bind(to: tagAction).disposed(by: self.rx.disposeBag)
+            //                return item
+            //            }
             
-//            let systemTagsItems = (1..<5).map { number ->  PostProductSectionItem in
-//                let viewModel = PostProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
-//                viewModel.style.accept(.system)
-//                viewModel.selected.accept(false)
-//                let item = PostProductSectionItem.tag(identity: "section2-item\(number)",viewModel: viewModel)
-//                viewModel.action.map { (item,$0)}.bind(to: tagAction).disposed(by: self.rx.disposeBag)
-//                return item
-//            }
+            //            let systemTagsItems = (1..<5).map { number ->  PostProductSectionItem in
+            //                let viewModel = PostProductTagCellViewModel(item: "\(number) : \(String.random(ofLength: Int.random(in: 0...10)))")
+            //                viewModel.style.accept(.system)
+            //                viewModel.selected.accept(false)
+            //                let item = PostProductSectionItem.tag(identity: "section2-item\(number)",viewModel: viewModel)
+            //                viewModel.action.map { (item,$0)}.bind(to: tagAction).disposed(by: self.rx.disposeBag)
+            //                return item
+            //            }
             
             let taggedItem = items.enumerated().map { (offset, item) ->  PostProductSectionItem in
                 let viewModel = PostProductCellViewModel(item: item)
+                viewModel.delete.map { viewModel.item }.bind(to: delete).disposed(by: self.rx.disposeBag)
                 viewModel.edit.map { viewModel.item }.bind(to: self.reselection).disposed(by: self.rx.disposeBag)
-                let item = PostProductSectionItem.product(identity: "section3-item\(offset)", viewModel: viewModel)
+                let item = PostProductSectionItem.product(viewModel: viewModel)
                 return item
             }
             
             let caption = PostProductSection.caption(viewModel: viewModel)
-//            let inputKeyword = PostProductSection.tagRelatedKeywords(viewModel: viewModel)
-//            let customTags = PostProductSection.customTags(items: customTagsItems)
-//            let systemTags = PostProductSection.systemTags(title: "Keyword suggestion", items: systemTagsItems)
+            //            let inputKeyword = PostProductSection.tagRelatedKeywords(viewModel: viewModel)
+            //            let customTags = PostProductSection.customTags(items: customTagsItems)
+            //            let systemTags = PostProductSection.systemTags(title: "Keyword suggestion", items: systemTagsItems)
             let tagged = PostProductSection.tagged(title: "Tagged items", items: taggedItem)
             //return [caption,inputKeyword,customTags,systemTags,tagged]
             return [caption,tagged]
-
+            
             
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
@@ -116,7 +117,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             let viewModel = PostProductTagCellViewModel(item: text)
             viewModel.style.accept(.custom)
             viewModel.selected.accept(true)
-            let item = PostProductSectionItem.tag(identity: "section2-item\(items.count + 1000)",viewModel: viewModel)
+            let item = PostProductSectionItem.tag(viewModel: viewModel)
             viewModel.action.map { (item,$0)}.bind(to: tagAction).disposed(by: self.rx.disposeBag)
             
             items.insert(item, at: 0)
@@ -124,7 +125,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             sections[2] = new
             elements.accept(sections)
         }).disposed(by: rx.disposeBag)
-
+        
         tagAction.subscribe(onNext: { (item, action)in
             switch action {
             case .delete:
@@ -140,7 +141,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
             }
             
         }).disposed(by: rx.disposeBag)
-
+        
         
         uploadImage.flatMapLatest({ [weak self] (imageData,param) -> Observable<(RxSwift.Event<(String, [String : Any])>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -160,51 +161,51 @@ class PostProductViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-                
+        
         
         
         input.commit.subscribe(onNext: { [weak self] () in
-                self?.endEditing.onNext(())
-                let viewModel = elements.value.first?.viewModel
-                
-//                let customTags = elements.value[2].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
-//                let systemTags = elements.value[3].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
-                let taggedItems = elements.value.last?.items.map { $0.viewModel(PostProductCellViewModel.self)}
-                guard let image = self?.image.value else {
-                    self?.exceptionError.onNext(.general("image is empty"))
-                    return
-                }
+            self?.endEditing.onNext(())
+            let viewModel = elements.value.first?.viewModel
             
-                guard let caption = viewModel?.caption.value, caption.isNotEmpty else {
-                    self?.exceptionError.onNext(.general("caption is empty"))
-                    return
-                }
-                
-//                guard let custom = customTags  else {
-//                    self?.exceptionError.onNext(.general("customTags is empty"))
-//                    return
-//                }
-//
-//                guard let system = systemTags else {
-//                    self?.exceptionError.onNext(.general("systemTags is empty"))
-//                    return
-//                }
-                
-                guard let tagged = taggedItems else {
-                    self?.exceptionError.onNext(.general("You must select a tagged item"))
-                    return
-                }
-                
-                let productIds = tagged.compactMap { $0.item.productId }.joined(separator: ",")
-                //let tags = (custom + system).compactMap { $0.item }.joined(separator: ",")
-                var param = [String : Any]()
-                param["title"] = caption
-                //param["tags"] = tags
-                param["productIds"] = productIds
-                
-                uploadImage.onNext((image, param))
-                
-            }).disposed(by: rx.disposeBag)
+            //                let customTags = elements.value[2].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
+            //                let systemTags = elements.value[3].items.map { $0.viewModel(PostProductTagCellViewModel.self)}
+            let taggedItems = elements.value.last?.items.map { $0.viewModel(PostProductCellViewModel.self)}
+            guard let image = self?.image.value else {
+                self?.exceptionError.onNext(.general("image is empty"))
+                return
+            }
+            
+            guard let caption = viewModel?.caption.value, caption.isNotEmpty else {
+                self?.exceptionError.onNext(.general("caption is empty"))
+                return
+            }
+            
+            //                guard let custom = customTags  else {
+            //                    self?.exceptionError.onNext(.general("customTags is empty"))
+            //                    return
+            //                }
+            //
+            //                guard let system = systemTags else {
+            //                    self?.exceptionError.onNext(.general("systemTags is empty"))
+            //                    return
+            //                }
+            
+            guard let tagged = taggedItems else {
+                self?.exceptionError.onNext(.general("You must select a tagged item"))
+                return
+            }
+            
+            let productIds = tagged.compactMap { $0.item.productId }.joined(separator: ",")
+            //let tags = (custom + system).compactMap { $0.item }.joined(separator: ",")
+            var param = [String : Any]()
+            param["title"] = caption
+            //param["tags"] = tags
+            param["productIds"] = productIds
+            
+            uploadImage.onNext((image, param))
+            
+        }).disposed(by: rx.disposeBag)
         
         
         element.filter { _ in elements.value.isNotEmpty }
@@ -212,7 +213,7 @@ class PostProductViewModel: ViewModel, ViewModelType {
                 return items.enumerated().map { (offset, model) ->  PostProductSectionItem in
                     let viewModel = PostProductCellViewModel(item: model)
                     viewModel.edit.map { viewModel.item }.bind(to: self.reselection).disposed(by: self.rx.disposeBag)
-                    let item = PostProductSectionItem.product(identity: "section3-item\(offset)", viewModel: viewModel)
+                    let item = PostProductSectionItem.product(viewModel: viewModel)
                     return item
                 }
         }.subscribe(onNext: { items in
@@ -225,6 +226,21 @@ class PostProductViewModel: ViewModel, ViewModelType {
             
         }).disposed(by: rx.disposeBag)
         
+        delete.subscribe(onNext: { (item) in
+            var items = elements.value
+            var values = items.last?.items
+            
+            let index = values?.firstIndex {
+                $0.viewModel(PostProductCellViewModel.self).item == item
+            }
+            if let index = index {
+                values?.remove(at: index)
+                let section = PostProductSection.tagged(title: "Tagged items", items: values ?? [])
+                items[items.count - 1] = section
+                elements.accept(items)
+            }
+        }).disposed(by: rx.disposeBag)
+
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       detail: detail.asDriver(onErrorJustReturn: ""),

@@ -33,12 +33,13 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
     let image = PublishSubject<UIImage>()
     let reselection = PublishSubject<DefaultColltionItem>()
     let selected = BehaviorRelay<DefaultColltionItem?>(value : nil)
-    
+    let delete = PublishSubject<DefaultColltionItem>()
+        
     func transform(input: Input) -> Output {
         
         let elements = BehaviorRelay<[StyleBoardSection]>(value: [])
         let add = PublishSubject<Void>()
-        let delete = PublishSubject<StyleBoardImageCellViewModel>()
+        //let delete = PublishSubject<StyleBoardImageCellViewModel>()
         let nextButtonEnable = element.map { $0.isNotEmpty }
         
         
@@ -50,7 +51,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
         element.map { i -> [StyleBoardSection] in
             var values = i.enumerated().map { (offset, item) -> StyleBoardSectionItem in
                 let viewModel = StyleBoardImageCellViewModel(item: item)
-                viewModel.delete.map { viewModel }.bind(to: delete).disposed(by: self.rx.disposeBag)
+                viewModel.delete.map { viewModel.item }.bind(to: self.delete).disposed(by: self.rx.disposeBag)
                 if item == self.selected.value { viewModel.selected.accept(true) }
                 let item = StyleBoardSectionItem.image(viewModel: viewModel)
                 return item
@@ -62,9 +63,9 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
             return [StyleBoardSection.images(items: values)]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        delete.subscribe(onNext: { [weak self](viewModel) in
+        delete.subscribe(onNext: { [weak self](item) in
             var items = self?.element.value ?? []
-            let index = items.firstIndex { $0.productId == viewModel.item.productId }
+            let index = items.firstIndex { $0 == item }
             if let index = index{
                 items.remove(at: index)
                 self?.element.accept(items)
@@ -79,9 +80,7 @@ class StyleBoardViewModel: ViewModel, ViewModelType {
             .map { $0.object as? (Box, DefaultColltionItem)}
             .filterNil()
             .map { [$0.1] }.bind(to: selection).disposed(by: rx.disposeBag)
-        
-        
-        
+                
         selection.map {
             ($0 + self.element.value).filterDuplicates { $0.productId }
         }.filterEmpty()

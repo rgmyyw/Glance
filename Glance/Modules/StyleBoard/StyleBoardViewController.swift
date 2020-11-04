@@ -56,6 +56,7 @@ class StyleBoardViewController: ViewController {
     
     let selection = PublishSubject<StyleBoardEditView>()
     
+    
     private var _selectedEditView:StyleBoardEditView?
     var selectedEditView:StyleBoardEditView? {
         get {

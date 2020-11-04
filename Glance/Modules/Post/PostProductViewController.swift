@@ -124,11 +124,11 @@ extension PostProductViewController {
         return RxCollectionViewSectionedAnimatedDataSource<PostProductSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
 
             switch item {
-            case .product(_, let viewModel):
+            case .product(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostProductCell.self)
                 cell.bind(to: viewModel)
                 return cell
-            case .tag(_,let viewModel):
+            case .tag(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: PostProductTagCell.self)
                 cell.bind(to: viewModel)
                 return cell
@@ -215,7 +215,7 @@ extension PostProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
         let item =  dataSouce[indexPath.section].items[indexPath.item]
         switch item {
-        case .tag(_,let viewModel):
+        case .tag(let viewModel):
             return collectionView.ar_sizeForCell(withIdentifier: PostProductTagCell.reuseIdentifier, indexPath: indexPath, fixedHeight: 25) { (cell) in
                 let cell = cell  as? PostProductTagCell
                 cell?.bind(to: viewModel)

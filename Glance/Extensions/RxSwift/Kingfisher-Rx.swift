@@ -14,10 +14,11 @@ import Kingfisher
 extension Reactive where Base: UIImageView {
 
     public var imageURL: Binder<URL?> {
-        return self.imageURL(withPlaceholder: nil)
+        return self.imageURL(withPlaceholder: R.image.icon_placeholder_gray())
     }
 
-    public func imageURL(withPlaceholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
+    public func imageURL(withPlaceholder placeholderImage: UIImage? , options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
+        
         return Binder(self.base, binding: { (imageView, url) in
             imageView.kf.setImage(with: url,
                                   placeholder: placeholderImage,
@@ -31,7 +32,7 @@ extension Reactive where Base: UIImageView {
 extension Reactive where Base: UIButton {
 
     public var imageURL: Binder<URL?> {
-        return imageURL(for: .normal, placeholder: nil, options: [])
+        return imageURL(for: .normal, placeholder: R.image.icon_placeholder_gray(), options: [])
     }
 
     public func imageURL(for controlState: UIControl.State = [],placeholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
