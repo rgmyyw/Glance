@@ -33,12 +33,12 @@ class NotificationCell: TableViewCell {
     override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
         super.bind(to: viewModel)
         
-        viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
-        viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.isRead.bind(to: readButton.rx.isSelected).disposed(by: cellDisposeBag)
-        viewModel.typeImage.bind(to: typeImageView.rx.image).disposed(by: cellDisposeBag)
-        viewModel.online.bind(to: onlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
+//        viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
+//        viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
+//        viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
+//        viewModel.isRead.bind(to: readButton.rx.isSelected).disposed(by: cellDisposeBag)
+//        viewModel.typeImage.bind(to: typeImageView.rx.image).disposed(by: cellDisposeBag)
+//        viewModel.online.bind(to: onlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
 
     }
     
