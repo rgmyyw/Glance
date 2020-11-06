@@ -10,8 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
-
 class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageHeightCalculateable {
             
     
@@ -34,6 +32,10 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let selected : BehaviorRelay<Bool> = BehaviorRelay(value: false)
     
     
+    /// extension
+    let recommendButtonHidden : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+    
+    /// actions
     let more : PublishSubject<Void> = PublishSubject()
     let save : PublishSubject<Void> = PublishSubject()
     let recommend : PublishSubject<Void> = PublishSubject()
@@ -41,15 +43,12 @@ class DefaultColltionCellViewModel : CellViewModelProtocol ,CollectionCellImageH
     let reaction : PublishSubject<UIView> = PublishSubject()
     let follow : PublishSubject<Void> = PublishSubject()
     
+    /// memu actions
     let like : PublishSubject<Void> = PublishSubject()
     let share : PublishSubject<Void> = PublishSubject()
     let delete : PublishSubject<Void> = PublishSubject()
     let report : PublishSubject<Void> = PublishSubject()
-    
-    
-    
-    
-    let recommendButtonHidden : BehaviorRelay<Bool> = BehaviorRelay(value: false)
+        
         
     var image: String? {
         return item.image
