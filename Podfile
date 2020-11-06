@@ -86,6 +86,7 @@ abstract_target 'Glance' do
   pod 'SwifterSwift', '~> 5.0'
   pod 'BonMot', '~> 5.0'
   pod 'Reusable' , '~> 4.1.0'
+  pod
   
   # Logging
   pod 'CocoaLumberjack/Swift', '~> 3.0'
