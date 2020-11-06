@@ -84,72 +84,52 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         let element : BehaviorRelay<PostsDetail?> = BehaviorRelay(value: nil)
         let elements = BehaviorRelay<[PostsDetailSection]>(value: [])
-        
-        ///
-        let userImageURL = element.filterNil().map { $0.userImage?.url }.asDriver(onErrorJustReturn: nil)
-        let userName = element.filterNil().map { $0.displayName ?? "" }.asDriver(onErrorJustReturn: "")
-        let productName = element.filterNil().map { $0.brand ?? "" }.asDriver(onErrorJustReturn: "")
-        let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }.asDriver(onErrorJustReturn: "")
+        let openURL = PublishSubject<URL>()
+        let detail = PublishSubject<DefaultColltionItem>()
         let addShoppingCart = PublishSubject<Void>()
         let shoppingCartList = PublishSubject<Void>()
-        let detail = PublishSubject<DefaultColltionItem>()
-        let popMemu = input.memu.map { [PostsDetailMemuItem(type: .edit),PostsDetailMemuItem(type: .delete)] }.asDriver(onErrorJustReturn: [])
-        let delete = input.memuSelection.filter { $0 == 1}.mapToVoid().asDriver(onErrorJustReturn: ())
-        let openURL = PublishSubject<URL>()
-        let isProduct = item.map { !($0.type?.isProduct ?? false) }
-        let bottomBarHidden = Observable.combineLatest(elements.filterEmpty(), isProduct).map { $1}.asDriver(onErrorJustReturn: true)
-        let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
-        let bottomBarButtonTitle = bottomBarButtonState.map { $0 ? "View Shopping List" :  "Add to Shopping List"  }.asDriver(onErrorJustReturn: "")
-        let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }.asDriver(onErrorJustReturn: false)
-        let bottomBarBackgroundColor = bottomBarButtonState.map { $0 ? UIColor(hex: 0x8B8B81) : UIColor(hex: 0xFF8159) }.asDriver(onErrorJustReturn: nil)
         let viSearch = PublishSubject<UIImage?>()
         let reloadTitleSection = PublishSubject<PostsDetailSectionCellViewModel>()
         let reloadSection = PublishSubject<Int>()
-    
-        
-        element.filterNil().map { $0.inShoppingList }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
-        input.selection.map { DefaultColltionItem(productId: $0.viewModel.item.productId ?? "") }.bind(to: detail).disposed(by: rx.disposeBag)
-        
-        selectStoreActions.filter { $0.action == .buy }
-            .map { $0.item.productUrl?.url }.filterNil()
-            .bind(to: openURL).disposed(by: rx.disposeBag)
-        
-        selectStoreActions.subscribe(onNext: { item in
-            print(item)
-        }).disposed(by: rx.disposeBag)
-        
-        selectStoreActions.filter { $0.action == .jump }
-            .map { DefaultColltionItem(productId: $0.item.productId ?? "")}
-            .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
-            .bind(to: detail).disposed(by: rx.disposeBag)
-        
-        selectStoreActions.filter { $0.action == .add }
-            .filter { $0.item.productId == self.item.value.productId }.map { _ in true }
-            .bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
-        
-        reloadTitleSection.map { (cellViewModel) -> Int? in
-            elements.value.firstIndex { $0 == PostsDetailSection.title(viewModel: cellViewModel)}
-        }.filterNil().bind(to: reloadSection).disposed(by: rx.disposeBag)
-
-        // 选择平台比价
+        let bottomBarButtonState = BehaviorRelay<Bool>(value: false)
         let selectStore = PublishSubject<PostsDetailSectionCellViewModel>()
-        
-        // 添加收藏
         let saveCurrent = PublishSubject<PostsDetailSectionCellViewModel>()
         let saveOther = PublishSubject<DefaultColltionCellViewModel>()
+        let back = PublishSubject<Void>()
         let save = PublishSubject<(AnyObject, [String : Any])>()
-        
-        // 喜欢
         let like = PublishSubject<PostsDetailSectionCellViewModel>()
-        // 推荐
         let recommend = PublishSubject<PostsDetailSectionCellViewModel>()
         
-        // 返回
-        let back = PublishSubject<Void>()
         
+        let userImageURL = element.filterNil().map { $0.userImage?.url }
+        let userName = element.filterNil().map { $0.displayName ?? "" }
+        let productName = element.filterNil().map { $0.brand ?? "" }
+        let time = element.filterNil().map { $0.postsTime?.customizedString() ?? "" }
         
-        let navigationBarType = Observable.combineLatest(element.filterNil()
-            .map { $0.own },item
+        let delete = input.memuSelection.filter { $0 == 1 }.mapToVoid()
+        let isProduct = item.map { !($0.type?.isProduct ?? false) }
+        let bottomBarHidden = Observable.combineLatest(elements.filterEmpty(), isProduct).map { $1 }
+        let bottomBarAddButtonHidden = bottomBarButtonState.map { $0 }
+        
+        let bottomBarButtonTitle = bottomBarButtonState
+            .map { (state) -> String in
+                return state ? "View Shopping List" :
+                "Add to Shopping List"
+        }
+        
+        let bottomBarBackgroundColor = bottomBarButtonState
+            .map { (state) -> UIColor? in
+                return state ? UIColor(hex: 0x8B8B81) :
+                    UIColor(hex: 0xFF8159)
+        }
+        
+        let popMemu = input.memu.map { () -> [PostsDetailMemuItem]  in
+            return [PostsDetailMemuItem(type: .edit),
+                    PostsDetailMemuItem(type: .delete)]
+        }
+        
+        let navigationBarType = Observable.combineLatest(
+            element.filterNil().map { $0.own },item
                 .map { $0.type}.filterNil())
             .map { (own, type) -> Int in
                 switch type {
@@ -160,17 +140,57 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 default:
                     fatalError()
                 }
-        }.asDriver(onErrorJustReturn: -1)
+        }
+        
+        input.selection.map { (element) -> DefaultColltionItem in
+            DefaultColltionItem(productId: element.viewModel.item.productId ?? "")
+        }.bind(to: detail)
+            .disposed(by: rx.disposeBag)
+        
+        element.filterNil().map { (element) -> Bool in
+            element.inShoppingList
+        }.bind(to: bottomBarButtonState)
+            .disposed(by: rx.disposeBag)
+        
+        selectStoreActions.filter { $0.action == .buy }
+            .map { (viewModel) -> URL? in
+                viewModel.item.productUrl?.url
+        }.filterNil()
+            .bind(to: openURL).disposed(by: rx.disposeBag)
         
         
-        input.bottomButtonTrigger.subscribe(onNext: { () in
-            let subject = bottomBarButtonState.value ? shoppingCartList : addShoppingCart
-            subject.onNext(())
+        selectStoreActions.filter { $0.action == .jump }
+            .map { (viewModel) -> DefaultColltionItem  in
+                DefaultColltionItem(productId: viewModel.item.productId ?? "")
+        }.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind(to: detail).disposed(by: rx.disposeBag)
+        
+        
+        selectStoreActions.filter { $0.action == .add }
+            .filter { $0.item.productId == self.item.value.productId }
+            .map  { _ in true
+        }.bind(to: bottomBarButtonState).disposed(by: rx.disposeBag)
+        
+        
+        reloadTitleSection.map { (cellViewModel) -> Int? in
+            elements.value.firstIndex { $0 == PostsDetailSection.title(viewModel: cellViewModel)}
+        }.filterNil()
+            .bind(to: reloadSection).disposed(by: rx.disposeBag)
+        
+        
+        input.bottomButtonTrigger.map { () -> PublishSubject<Void> in
+            bottomBarButtonState.value ? shoppingCartList : addShoppingCart
+        }.subscribe(onNext: { (ob) in
+            ob.onNext(())
         }).disposed(by: rx.disposeBag)
         
-        input.memuSelection.filter { $0 == 0}.map { _ in Message("Features under development...")}
-            .bind(to: message).disposed(by: rx.disposeBag)
-
+        
+        input.memuSelection.filter { $0 == 0 }
+            .map { index -> Message  in
+                Message("Features under development...")
+        }.bind(to: message)
+            .disposed(by: rx.disposeBag)
+        
         
         item.flatMapLatest({ [weak self] (item) -> Observable<(RxSwift.Event<PostsDetail>)> in
             guard let self = self else {
@@ -198,7 +218,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(.end)
                     logError(error.debugDescription)
                 }
-
+                
             default:
                 break
             }
@@ -206,39 +226,39 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
-            guard let self = self else {
-                return Observable.just(.error(ExceptionError.unknown))
-            }
-            self.page += 1
-            let id = self.item.value.id
-            let request = self.provider.similarProduct(params: id, page: self.page)
-            return self.page == 1 ? request
-                .trackActivity(self.loading)
-                .trackError(self.error)
-                .materialize() : request
-                    .trackActivity(self.footerLoading)
-                    .trackError(self.error)
-                    .materialize()
-        }).subscribe(onNext: { [weak self](event) in
-            guard let self = self else { return }
-            switch event {
-            case .next(let result):
-                var newResult = result
-                newResult.list = (self.similar.value?.list ?? []) + result.list
-                self.similar.accept(newResult)
-                self.refreshState.onNext(result.refreshState)
-            case .error(let error):
-                guard let error = error.asExceptionError else { return }
-                switch error  {
-                default:
-                    self.page -= 1
-                    self.refreshState.onNext(.end)
-                    logError(error.debugDescription)
+                guard let self = self else {
+                    return Observable.just(.error(ExceptionError.unknown))
                 }
-            default:
-                break
-            }
-        }).disposed(by: rx.disposeBag)
+                self.page += 1
+                let id = self.item.value.id
+                let request = self.provider.similarProduct(params: id, page: self.page)
+                return self.page == 1 ? request
+                    .trackActivity(self.loading)
+                    .trackError(self.error)
+                    .materialize() : request
+                        .trackActivity(self.footerLoading)
+                        .trackError(self.error)
+                        .materialize()
+            }).subscribe(onNext: { [weak self](event) in
+                guard let self = self else { return }
+                switch event {
+                case .next(let result):
+                    var newResult = result
+                    newResult.list = (self.similar.value?.list ?? []) + result.list
+                    self.similar.accept(newResult)
+                    self.refreshState.onNext(result.refreshState)
+                case .error(let error):
+                    guard let error = error.asExceptionError else { return }
+                    switch error  {
+                    default:
+                        self.page -= 1
+                        self.refreshState.onNext(.end)
+                        logError(error.debugDescription)
+                    }
+                default:
+                    break
+                }
+            }).disposed(by: rx.disposeBag)
         
         saveCurrent.map { cellViewModel -> (AnyObject,[String : Any]) in
             let item = self.item.value
@@ -256,10 +276,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             params["productId"] = cellViewModel.item.productId
             return (cellViewModel,params)
         }.bind(to: save).disposed(by: rx.disposeBag)
-     
         
-        
-
         
         Observable.combineLatest(element.filterNil(), item, similar.filterNil()).map { (element , item ,similar) -> [PostsDetailSection] in
             guard let type = item.type else { return [] }
@@ -273,14 +290,13 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
             viewModel.reloadTitleSection.map { viewModel }.bind(to: reloadTitleSection).disposed(by: self.rx.disposeBag)
             viewModel.folded.mapToVoid().bind(to: viewModel.reloadTitleSection).disposed(by: self.rx.disposeBag)
             
-            
             var sections : [PostsDetailSection]
             let banner = PostsDetailSection.banner(viewModel: viewModel)
             let price = PostsDetailSection.price(viewModel: viewModel)
             let title = PostsDetailSection.title(viewModel: viewModel)
             let more = PostsDetailSection.more(viewModel: viewModel)
             
-
+            
             //let tags = PostsDetailSection.tags(viewModel: viewModel)
             let tool = PostsDetailSection.tool(viewModel: viewModel)
             let line = viewModel.titleLine
@@ -301,7 +317,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
                 viewModel.recommendButtonHidden.accept(true)
                 return viewModel.makeItemType()
             }
-
+            
             let similarItems = similar.list.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: saveOther).disposed(by: self.rx.disposeBag)
@@ -461,18 +477,18 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         
         
         return Output(items: elements.asDriver(onErrorJustReturn: []),
-                      userImageURL: userImageURL,
-                      userName: userName,
-                      time : time,
-                      navigationBarType: navigationBarType,
-                      productName: productName,
-                      bottomBarHidden: bottomBarHidden,
-                      bottomBarTitle:bottomBarButtonTitle ,
-                      bottomBarAddButtonHidden:bottomBarAddButtonHidden,
-                      bottomBarBackgroundColor: bottomBarBackgroundColor,
+                      userImageURL: userImageURL.asDriverOnErrorJustComplete(),
+                      userName: userName.asDriverOnErrorJustComplete(),
+                      time : time.asDriverOnErrorJustComplete(),
+                      navigationBarType: navigationBarType.asDriverOnErrorJustComplete(),
+                      productName: productName.asDriverOnErrorJustComplete(),
+                      bottomBarHidden: bottomBarHidden.asDriverOnErrorJustComplete(),
+                      bottomBarTitle:bottomBarButtonTitle.asDriverOnErrorJustComplete() ,
+                      bottomBarAddButtonHidden:bottomBarAddButtonHidden.asDriverOnErrorJustComplete(),
+                      bottomBarBackgroundColor: bottomBarBackgroundColor.asDriverOnErrorJustComplete(),
                       shoppingCart: shoppingCartList.asDriver(onErrorJustReturn: ()),
                       detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),
-                      popMemu: popMemu,
+                      popMemu: popMemu.asDriver(onErrorJustReturn: []),
                       delete: delete.asDriver(onErrorJustReturn: ()),
                       back: back.asDriver(onErrorJustReturn: ()),
                       selectStore: selectStore.map { $0.item.productId}.filterNil().asDriver(onErrorJustReturn: ""),
