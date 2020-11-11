@@ -23,7 +23,6 @@ class ReactionsViewController: TableViewController {
         super.makeUI()
         
         tableView.register(nib: ReactionsCell.nib, withCellClass: ReactionsCell.self)
-        tableView.headRefreshControl = nil
         tableView.rowHeight = 70
         headView.removeFromSuperview()
         stackView.insertArrangedSubview(headView, at: 0)
