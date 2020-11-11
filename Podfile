@@ -8,7 +8,7 @@ abstract_target 'Glance' do
   # Comment the next line if you don't want to use dynamic frameworks
   use_frameworks!
   # Pods for Glance
-  
+  pod 'Moya', '~> 14.0.0'
   pod 'Moya/RxSwift'
   pod 'Moya-ObjectMapper/RxSwift', '~> 2.0'
   
@@ -25,36 +25,35 @@ abstract_target 'Glance' do
   
   
   # Image
-  pod 'Kingfisher', '~> 5.0'
+  pod 'Kingfisher', '~> 5.14.1'
   
   # Date
-  pod 'DateToolsSwift', '~> 5.0'
-  pod 'SwiftDate', '~> 6.0'
+  pod 'DateToolsSwift', '~> 5.0.0'
+  pod 'SwiftDate', '~> 6.2.0'
   
   # Tools
-  pod 'R.swift', '~> 5.0'
+  pod 'R.swift', '~> 5.3.0'
   pod 'SwiftLint', '0.39.2'
   
   # Keychain
-  pod 'KeychainAccess', '~> 4.0'
+  pod 'KeychainAccess', '~> 4.2.1'
   
   # UI
   pod 'NVActivityIndicatorView', '~> 4.0'
   pod 'ImageSlideshow/Kingfisher', '~> 1.8'
-  pod 'DZNEmptyDataSet', '~> 1.0'
+  pod 'DZNEmptyDataSet', '~> 1.8.1'
   pod 'Hero', :git => 'https://github.com/HeroTransitions/Hero.git', :branch => 'develop'
-  pod 'Localize-Swift', '~> 3.0'
+  pod 'Localize-Swift', '~> 3.1.0'
   pod 'RAMAnimatedTabBarController', '~> 5.0'
-  pod 'AcknowList', '~> 1.8'
-  pod 'KafkaRefresh', '~> 1.4.8'
+  pod 'AcknowList', '~> 1.9.5'
   pod 'Highlightr', '~> 2.0'
-  pod 'DropDown', :git => 'https://github.com/rgmyyw/DropDown.git', :tag => '2.3.18'
+  pod 'DropDown', :git => 'git@c.koall.io:repos/DropDown.git', :tag => '2.3.18'
   pod 'Toast-Swift', '~> 5.0'
-  pod 'HMSegmentedControl', '~> 1.0'
-  pod 'FloatingPanel', '~> 1.0'
+  pod 'HMSegmentedControl', '~> 1.5.6'
+  pod 'FloatingPanel', '~> 1.7.6'
   pod 'DNSPageView' , '~> 1.5.0'
-  pod 'ZLCollectionViewFlowLayout' , '~> 1.4.1'
-  pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'https://github.com/nilhy/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.8'
+  pod 'ZLCollectionViewFlowLayout' , '~> 1.4.3'
+  pod 'UICollectionView-ARDynamicHeightLayoutCell', :git => 'git@c.koall.io:repos/UICollectionView-ARDynamicHeightLayoutCell.git', :branch => 'master', :tag => '1.0.8'
   pod 'ChameleonFramework/Swift', :git => 'https://github.com/wowansm/Chameleon', :branch => 'swift5'
   pod 'FDFullscreenPopGesture' , '~> 1.1'
   pod 'FSPagerView' , '~> 0.8.3'
@@ -62,36 +61,34 @@ abstract_target 'Glance' do
   pod 'WZLBadge' , '~> 1.2.6'
   pod 'PopupDialog', '~> 1.1'
   pod "Popover" , '~> 1.3.0'
-  pod 'WMZPageController', '~> 1.2.5'
+  pod 'WMZPageController', '~> 1.2.7'
   pod 'CWLateralSlide' , '~> 1.6.5'
-  pod 'CountryPickerView' , '~> 3.1.2'
+  pod 'CountryPickerView' , '~> 3.1.3'
   pod 'ZLPhotoBrowser' , '~> 3.2.0'
-  pod 'SwipeCellKit' , '~> 2.7.1'
-  pod 'JXBanner'
+  pod 'SwipeCellKit', :git => 'git@c.koall.io:repos/SwipeCellKit.git', :tag => '2.7.4' 
+  pod 'JXBanner', '~> 0.3.2'
+  pod 'JXPageControl', '~> 0.1.3'
   pod 'NewPopMenu', '~> 2.0'
-  pod 'MJRefresh'
-
-   
-  
+  pod 'MJRefresh' , '~> 3.5.0'
   
   # Keyboard
-  pod 'IQKeyboardManagerSwift', '~> 6.0'
+  pod 'IQKeyboardManagerSwift', '~> 6.5.6'
   
   # Auto Layout
   pod 'SnapKit', '~> 5.0'
   
   # Code Quality
-  pod 'FLEX', '~> 4.0', :configurations => ['Debug']
+  pod 'FLEX', '~> 4.1.1', :configurations => ['Debug']
   pod 'Reveal-SDK', '~> 24', :configurations => ['Debug']
   pod 'SwifterSwift', '~> 5.0'
-  pod 'BonMot', '~> 5.0'
+  pod 'BonMot', '~> 5.5.1'
   pod 'Reusable' , '~> 4.1.0'
-  pod
   
   # Logging
-  pod 'CocoaLumberjack/Swift', '~> 3.0'
+  pod 'CocoaLumberjack/Swift', '~> 3.6.2'
+  pod 'CryptoSwift' , '~> 1.3.2'
   
-  pod 'CryptoSwift' , '~> 1.3.1'
+  
   
   target 'Glance-D'
   target 'Glance-P'
