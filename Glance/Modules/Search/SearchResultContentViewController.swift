@@ -29,6 +29,8 @@ class SearchResultContentViewController: CollectionViewController {
         layout.delegate = self
 
         
+        viewDidLoadBeginRefresh = false
+        
         collectionView.collectionViewLayout = layout
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
         collectionView.register(nibWithCellClass: UserHorizontalCell.self)
