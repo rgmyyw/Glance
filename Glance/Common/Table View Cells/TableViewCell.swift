@@ -17,11 +17,12 @@ class TableViewCell: UITableViewCell {
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        makeUI()
+        
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+        
     }
     
     override func awakeFromNib() {
@@ -34,7 +35,6 @@ class TableViewCell: UITableViewCell {
         layer.masksToBounds = true
         selectionStyle = .none
         backgroundColor = .clear
-
         updateUI()
     }
     

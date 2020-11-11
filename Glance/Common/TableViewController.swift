@@ -9,7 +9,6 @@
 import UIKit
 import RxSwift
 import RxCocoa
-import KafkaRefresh
 import Toast_Swift
 import MJRefresh
 
@@ -21,7 +20,7 @@ enum RefreshComponent {
     case none
 }
 
-class TableViewController: ViewController, UIScrollViewDelegate {
+class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDelegate {
     
     let headerRefreshTrigger = PublishSubject<Void>()
     let footerRefreshTrigger = PublishSubject<Void>()

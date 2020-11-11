@@ -13,7 +13,7 @@ class Button: UIButton {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        titleLabel?.font = UIFont.titleFont(16)
+        titleLabel?.font = UIFont.titleFont(14)
         titleLabel?.textColor = UIColor.text()
         makeUI()
     }
@@ -28,28 +28,10 @@ class Button: UIButton {
     func makeUI() {
         
         contentEdgeInsets = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
-        themeService.rx
-            .bind({ UIImage(gradientColors: [UIColor(hex: 0xF56447)!,$0.primary])}, to: rx.backgroundImage(for: .normal))
-            .bind({ UIImage(color: $0.separator)}, to: rx.backgroundImage(for: .disabled))
-            .disposed(by: rx.disposeBag)
         layer.masksToBounds = true
         titleLabel?.lineBreakMode = .byWordWrapping
-
         updateUI()
     }
-
-//
-//    override func textRect(forBounds bounds: CGRect, limitedToNumberOfLines numberOfLines: Int) -> CGRect {
-//        let insetRect = bounds.inset(by: textInsets)
-//        let textRect = super.textRect(forBounds: insetRect, limitedToNumberOfLines: numberOfLines)
-//        let invertedInsets = UIEdgeInsets(top: -textInsets.top,
-//                                          left: -textInsets.left,
-//                                          bottom: -textInsets.bottom,
-//                                          right: -textInsets.right)
-//        return textRect.inset(by: invertedInsets)
-//    }
-
-
 
     func updateUI() {
         setNeedsDisplay()

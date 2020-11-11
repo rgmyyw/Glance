@@ -13,7 +13,7 @@ import RxCocoa
 
 class CollectionViewCell: UICollectionViewCell {
     
-    var cellDisposeBag = DisposeBag()
+    var cellDisposeBag : DisposeBag!
     
     override func awakeFromNib() {
         super.awakeFromNib()
