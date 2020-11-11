@@ -23,7 +23,6 @@ import RxOptional
 import RxGesture
 import SwifterSwift
 import SwiftDate
-import KafkaRefresh
 import DropDown
 import Toast_Swift
 
@@ -46,7 +45,6 @@ class LibsManager: NSObject {
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
         libsManager.setupTheme()
-        libsManager.setupKafkaRefresh()
         libsManager.setupFLEX()
         libsManager.setupKeyboardManager()
         libsManager.setupActivityView()
@@ -113,15 +111,6 @@ class LibsManager: NSObject {
         ToastManager.shared.style = style
     }
 
-    func setupKafkaRefresh() {
-        if let defaults = KafkaRefreshDefaults.standard() {
-            defaults.headDefaultStyle = .native
-            defaults.footDefaultStyle = .native
-            defaults.themeColor = UIColor.primary()
-            defaults.backgroundColor = .clear
-            defaults.themeColor = .textGray()
-        }
-    }
 
     func setupActivityView() {
         NVActivityIndicatorView.DEFAULT_TYPE = .lineScalePulseOutRapid
