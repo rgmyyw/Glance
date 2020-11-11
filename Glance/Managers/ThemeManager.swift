@@ -3,7 +3,7 @@ import RxSwift
 import RxCocoa
 import RxTheme
 import RAMAnimatedTabBarController
-import KafkaRefresh
+
 
 let globalStatusBarStyle = BehaviorRelay<UIStatusBarStyle>(value: .lightContent)
 
@@ -231,15 +231,7 @@ extension Reactive where Base: UIApplication {
     }
 }
 
-// MARK: - KafkaRefreshDefaults
-extension Reactive where Base: KafkaRefreshDefaults {
 
-    var themeColor: Binder<UIColor?> {
-        return Binder(self.base) { view, attr in
-            view.themeColor = attr
-        }
-    }
-}
 
 
 // MARK: - UISwitch

@@ -20,61 +20,73 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Nt-WH-EmI">
                         <rect key="frame" x="15" y="10" width="322" height="83"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-ho-QJX">
-                                <rect key="frame" x="20" y="22" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tzL-ho-QJX">
+                                <rect key="frame" x="8" y="18" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="QtR-dT-Lgh"/>
-                                    <constraint firstAttribute="height" constant="40" id="gGY-YP-RuI"/>
+                                    <constraint firstAttribute="width" constant="44" id="QtR-dT-Lgh"/>
+                                    <constraint firstAttribute="height" constant="44" id="gGY-YP-RuI"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
+                                        <real key="value" value="22"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_unread_red" translatesAutoresizingMaskIntoConstraints="NO" id="Nfc-od-w6R">
-                                <rect key="frame" x="8" y="10" width="12" height="12"/>
+                                <rect key="frame" x="0.0" y="10" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="Whc-vh-ETP"/>
+                                    <constraint firstAttribute="width" constant="12" id="YYS-g7-ib2"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescott" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wxD-pf-Qce">
-                                <rect key="frame" x="76" y="13" width="60.5" height="18"/>
+                                <rect key="frame" x="68" y="9" width="60.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="liked your post" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="li9-A8-fLM">
-                                <rect key="frame" x="76" y="39" width="78" height="14"/>
+                                <rect key="frame" x="68" y="31" width="78" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 min ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nep-B6-z8F">
-                                <rect key="frame" x="76" y="61" width="53" height="14"/>
+                                <rect key="frame" x="68" y="49" width="53" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="TWh-xD-7ez"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ugv-un-ARV">
-                                <rect key="frame" x="258" y="20" width="44" height="44"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ugv-un-ARV">
+                                <rect key="frame" x="278" y="18" width="44" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="VVg-16-S3o"/>
                                     <constraint firstAttribute="width" constant="44" id="mDT-Ad-OYo"/>
                                 </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="4"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="li9-A8-fLM" firstAttribute="top" secondItem="wxD-pf-Qce" secondAttribute="bottom" constant="8" id="9Cn-QN-iA5"/>
+                            <constraint firstItem="li9-A8-fLM" firstAttribute="top" secondItem="wxD-pf-Qce" secondAttribute="bottom" constant="4" id="9Cn-QN-iA5"/>
                             <constraint firstItem="Nfc-od-w6R" firstAttribute="top" secondItem="8Nt-WH-EmI" secondAttribute="top" constant="10" id="DPw-UD-4Ia"/>
                             <constraint firstItem="Nep-B6-z8F" firstAttribute="leading" secondItem="li9-A8-fLM" secondAttribute="leading" id="L2j-bA-AEQ"/>
                             <constraint firstItem="li9-A8-fLM" firstAttribute="leading" secondItem="wxD-pf-Qce" secondAttribute="leading" id="N8x-yT-ttq"/>
                             <constraint firstItem="wxD-pf-Qce" firstAttribute="leading" secondItem="tzL-ho-QJX" secondAttribute="trailing" constant="16" id="R13-qM-PEi"/>
                             <constraint firstItem="Ugv-un-ARV" firstAttribute="centerY" secondItem="tzL-ho-QJX" secondAttribute="centerY" id="VVW-AR-USB"/>
-                            <constraint firstItem="Nfc-od-w6R" firstAttribute="leading" secondItem="8Nt-WH-EmI" secondAttribute="leading" constant="8" id="m4e-PT-deM"/>
+                            <constraint firstItem="Nfc-od-w6R" firstAttribute="leading" secondItem="8Nt-WH-EmI" secondAttribute="leading" id="m4e-PT-deM"/>
                             <constraint firstItem="wxD-pf-Qce" firstAttribute="centerY" secondItem="tzL-ho-QJX" secondAttribute="top" id="mWF-UO-CAa"/>
-                            <constraint firstItem="tzL-ho-QJX" firstAttribute="top" secondItem="Nfc-od-w6R" secondAttribute="bottom" id="ql5-Za-aLh"/>
-                            <constraint firstItem="tzL-ho-QJX" firstAttribute="leading" secondItem="Nfc-od-w6R" secondAttribute="trailing" id="sMk-DO-Go4"/>
-                            <constraint firstItem="Nep-B6-z8F" firstAttribute="top" secondItem="li9-A8-fLM" secondAttribute="bottom" constant="8" id="uUu-wL-eST"/>
-                            <constraint firstAttribute="trailing" secondItem="Ugv-un-ARV" secondAttribute="trailing" constant="20" id="vIb-Ar-aAW"/>
+                            <constraint firstItem="tzL-ho-QJX" firstAttribute="top" secondItem="Nfc-od-w6R" secondAttribute="bottom" constant="-4" id="ql5-Za-aLh"/>
+                            <constraint firstItem="tzL-ho-QJX" firstAttribute="leading" secondItem="Nfc-od-w6R" secondAttribute="trailing" constant="-4" id="sMk-DO-Go4"/>
+                            <constraint firstItem="Nep-B6-z8F" firstAttribute="top" secondItem="li9-A8-fLM" secondAttribute="bottom" constant="4" id="uUu-wL-eST"/>
+                            <constraint firstAttribute="trailing" secondItem="Ugv-un-ARV" secondAttribute="trailing" id="vIb-Ar-aAW"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -87,7 +99,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="dRX-Um-xaR"/>
             <connections>
-                <outlet property="bgView" destination="8Nt-WH-EmI" id="eAR-TH-aa5"/>
+                <outlet property="containerView" destination="8Nt-WH-EmI" id="waM-pH-YrO"/>
                 <outlet property="descriptionLabel" destination="li9-A8-fLM" id="1uR-dG-Ku6"/>
                 <outlet property="postImageView" destination="Ugv-un-ARV" id="c1E-sz-BwV"/>
                 <outlet property="timeLabel" destination="Nep-B6-z8F" id="Jul-kD-ueu"/>
@@ -95,7 +107,7 @@
                 <outlet property="userImageView" destination="tzL-ho-QJX" id="F5g-ZA-hiX"/>
                 <outlet property="userNameLabel" destination="wxD-pf-Qce" id="rEi-Zp-mOg"/>
             </connections>
-            <point key="canvasLocation" x="-1536" y="-254"/>
+            <point key="canvasLocation" x="-2223" y="-270"/>
         </tableViewCell>
     </objects>
     <resources>

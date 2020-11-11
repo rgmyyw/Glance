@@ -8,8 +8,9 @@
 
 import UIKit
 
-class NotificationRecommendedCell: TableViewCell {
-
+class NotificationRecommendedCell: NotificationCell {
+    
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var unreadImageView: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
@@ -20,7 +21,20 @@ class NotificationRecommendedCell: TableViewCell {
     
     override func makeUI() {
         super.makeUI()
+
+        stackView.addArrangedSubview(containerView)
+       
+    }
+    
+    override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+        super.bind(to: viewModel)
         
+        viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
+        viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
+        viewModel.image.bind(to: postImageView.rx.imageURL).disposed(by: cellDisposeBag)
+        viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
+        viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
+
     }
 
 }

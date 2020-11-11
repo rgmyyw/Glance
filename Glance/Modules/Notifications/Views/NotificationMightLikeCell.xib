@@ -20,11 +20,11 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T0f-dx-hHQ">
                         <rect key="frame" x="15" y="10" width="322" height="83"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vay-x1-Q48">
-                                <rect key="frame" x="20" y="22" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vay-x1-Q48">
+                                <rect key="frame" x="8" y="18" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="40" id="hIh-Gp-Bba"/>
-                                    <constraint firstAttribute="width" constant="40" id="oN3-M4-4H3"/>
+                                    <constraint firstAttribute="height" constant="44" id="hIh-Gp-Bba"/>
+                                    <constraint firstAttribute="width" constant="44" id="oN3-M4-4H3"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
@@ -33,28 +33,35 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_unread_red" translatesAutoresizingMaskIntoConstraints="NO" id="CdQ-0z-Uoa">
-                                <rect key="frame" x="8" y="10" width="12" height="12"/>
+                                <rect key="frame" x="0.0" y="10" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="12" id="4hT-WE-7Lt"/>
+                                    <constraint firstAttribute="height" constant="12" id="hhL-hg-mN5"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We think you might like" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8j2-sR-8rb">
-                                <rect key="frame" x="76" y="15" width="124" height="14"/>
+                                <rect key="frame" x="68" y="11" width="124" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 min ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZZ4-5k-uEg">
-                                <rect key="frame" x="76" y="63" width="53" height="14"/>
+                                <rect key="frame" x="68" y="51" width="53" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="rrE-jq-3Tc"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescott" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yno-JG-sjz">
-                                <rect key="frame" x="76" y="37" width="60.5" height="18"/>
+                                <rect key="frame" x="68" y="29" width="60.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRb-fA-iQB">
-                                <rect key="frame" x="247" y="30" width="55" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRb-fA-iQB" customClass="FollowButton" customModule="Glance" customModuleProvider="target">
+                                <rect key="frame" x="256" y="28" width="66" height="24"/>
                                 <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="kDH-V8-1Ec"/>
@@ -73,16 +80,16 @@
                         <constraints>
                             <constraint firstItem="VRb-fA-iQB" firstAttribute="centerY" secondItem="Vay-x1-Q48" secondAttribute="centerY" id="0n4-xu-Buo"/>
                             <constraint firstItem="CdQ-0z-Uoa" firstAttribute="top" secondItem="T0f-dx-hHQ" secondAttribute="top" constant="10" id="GQr-MB-DBV"/>
-                            <constraint firstItem="Vay-x1-Q48" firstAttribute="leading" secondItem="CdQ-0z-Uoa" secondAttribute="trailing" id="IPN-Zi-dIN"/>
-                            <constraint firstItem="CdQ-0z-Uoa" firstAttribute="leading" secondItem="T0f-dx-hHQ" secondAttribute="leading" constant="8" id="LbU-eU-umS"/>
+                            <constraint firstItem="Vay-x1-Q48" firstAttribute="leading" secondItem="CdQ-0z-Uoa" secondAttribute="trailing" constant="-4" id="IPN-Zi-dIN"/>
+                            <constraint firstItem="CdQ-0z-Uoa" firstAttribute="leading" secondItem="T0f-dx-hHQ" secondAttribute="leading" id="LbU-eU-umS"/>
                             <constraint firstItem="8j2-sR-8rb" firstAttribute="centerY" secondItem="Vay-x1-Q48" secondAttribute="top" id="M99-Vz-ljq"/>
-                            <constraint firstItem="Yno-JG-sjz" firstAttribute="top" secondItem="8j2-sR-8rb" secondAttribute="bottom" constant="8" id="Pgc-Y1-V0l"/>
+                            <constraint firstItem="Yno-JG-sjz" firstAttribute="top" secondItem="8j2-sR-8rb" secondAttribute="bottom" constant="4" id="Pgc-Y1-V0l"/>
                             <constraint firstItem="ZZ4-5k-uEg" firstAttribute="leading" secondItem="Yno-JG-sjz" secondAttribute="leading" id="ZUt-jO-U95"/>
-                            <constraint firstItem="ZZ4-5k-uEg" firstAttribute="top" secondItem="Yno-JG-sjz" secondAttribute="bottom" constant="8" id="eio-IJ-wFT"/>
-                            <constraint firstItem="Vay-x1-Q48" firstAttribute="top" secondItem="CdQ-0z-Uoa" secondAttribute="bottom" id="etn-Ig-fjK"/>
+                            <constraint firstItem="ZZ4-5k-uEg" firstAttribute="top" secondItem="Yno-JG-sjz" secondAttribute="bottom" constant="4" id="eio-IJ-wFT"/>
+                            <constraint firstItem="Vay-x1-Q48" firstAttribute="top" secondItem="CdQ-0z-Uoa" secondAttribute="bottom" constant="-4" id="etn-Ig-fjK"/>
                             <constraint firstItem="Yno-JG-sjz" firstAttribute="leading" secondItem="8j2-sR-8rb" secondAttribute="leading" id="lQB-lX-0Q5"/>
                             <constraint firstItem="8j2-sR-8rb" firstAttribute="leading" secondItem="Vay-x1-Q48" secondAttribute="trailing" constant="16" id="s1C-Us-ZGH"/>
-                            <constraint firstAttribute="trailing" secondItem="VRb-fA-iQB" secondAttribute="trailing" constant="20" id="tzW-w0-elL"/>
+                            <constraint firstAttribute="trailing" secondItem="VRb-fA-iQB" secondAttribute="trailing" id="tzW-w0-elL"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -95,7 +102,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="kyR-Z2-Qct"/>
             <connections>
-                <outlet property="bgView" destination="T0f-dx-hHQ" id="YKx-Ks-eWL"/>
+                <outlet property="containerView" destination="T0f-dx-hHQ" id="EWo-96-5f5"/>
                 <outlet property="descriptionLabel" destination="8j2-sR-8rb" id="wPI-mE-GZO"/>
                 <outlet property="followButton" destination="VRb-fA-iQB" id="zBs-X4-smQ"/>
                 <outlet property="timeLabel" destination="ZZ4-5k-uEg" id="SK1-2y-6ra"/>

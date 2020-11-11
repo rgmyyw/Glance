@@ -56,8 +56,9 @@ struct PageMapable<Item : Mappable> : Mappable {
     }
 
     init?(map: Map) {}
-    init(hasNext : Bool = true) {
+    init(hasNext : Bool = true, items : [Item] = []) {
         self.hasNext = hasNext
+        self.list = items
     }
 
     mutating func mapping(map: Map) {

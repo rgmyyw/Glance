@@ -1,22 +1,21 @@
 //
-//  NotificationMightLikeCell.swift
+//  NotificationThemeCell.swift
 //  Glance
 //
-//  Created by yanghai on 2020/11/5.
+//  Created by yanghai on 2020/11/6.
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
 import UIKit
 
-class NotificationMightLikeCell: NotificationCell {
+class NotificationThemeCell: NotificationCell {
     
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var unreadImageView: UIImageView!
-    @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var descriptionLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var followButton: UIButton!
+    @IBOutlet weak var themeLabel: UILabel!
+    @IBOutlet var imageViews: [UIImageView]!
     
     override func makeUI() {
         super.makeUI()
@@ -27,12 +26,15 @@ class NotificationMightLikeCell: NotificationCell {
     override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
         super.bind(to: viewModel)
         
-        viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
-        viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.following.bind(to: followButton.rx.isSelected).disposed(by: cellDisposeBag)
+        viewModel.theme.bind(to: themeLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
-        followButton.rx.tap.bind(to: viewModel.follow).disposed(by: cellDisposeBag)
+        viewModel.themeImages.value.enumerated().forEach { (offset, imageURL) in
+            if offset < imageViews.count {
+                imageURL.bind(to: imageViews[offset].rx.imageURL)
+                    .disposed(by: cellDisposeBag)
+            }
+        }
     }
 
 }

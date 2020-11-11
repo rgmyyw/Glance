@@ -7,39 +7,65 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
+import SwipeCellKit
 
-class NotificationCell: TableViewCell {
+
+class NotificationCell: SwipeTableViewCell {
+
+    public var cellDisposeBag : DisposeBag!
+    public let bgView : UIView = UIView()
+    public let lineView : UIView = UIView()
+    public let stackView : StackView = StackView()
     
-    @IBOutlet weak var bgView: UIView!
-    
-    @IBOutlet weak var userImageView: UIImageView!
-    @IBOutlet weak var iconView: UIImageView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
-    @IBOutlet weak var typeImageView: UIImageView!
-    @IBOutlet weak var readButton: UIButton!
-    @IBOutlet weak var onlineImageView: UIImageView!
-    
-    override func makeUI() {
-        super.makeUI()
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        makeUI()
         
-        let shadowOffset = CGSize(width: 0, height: 1)
-        let color = UIColor(hex:0x828282)!.withAlphaComponent(0.2)
-        let opacity : CGFloat = 1
-        bgView.shadow(cornerRadius: 8, shadowOpacity: opacity, shadowColor: color, shadowOffset: shadowOffset, shadowRadius: 5)
-        //userImageView.backgroundColor = .random
     }
     
-    override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
-        super.bind(to: viewModel)
-        
-//        viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
-//        viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
-//        viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
-//        viewModel.isRead.bind(to: readButton.rx.isSelected).disposed(by: cellDisposeBag)
-//        viewModel.typeImage.bind(to: typeImageView.rx.image).disposed(by: cellDisposeBag)
-//        viewModel.online.bind(to: onlineImageView.rx.isHidden).disposed(by: cellDisposeBag)
+    
+    
+    func updateUI() {
+        setNeedsDisplay()
+    }
 
+
+    func makeUI() {
+        lineView.backgroundColor = UIColor(hex: 0xF5F5F5)
+        contentView.addSubview(bgView)
+        bgView.addSubview(stackView)
+        bgView.addSubview(lineView)
+        
+        bgView.snp.makeConstraints { (make) in
+            make.top.bottom.equalTo(contentView)
+            make.left.equalTo(20)
+            make.right.equalTo(contentView.snp.right).offset(-20)
+        }
+        stackView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(bgView)
+            make.bottom.equalTo(lineView.snp.top)
+        }
+
+        lineView.snp.makeConstraints { (make) in
+            make.height.equalTo(0.5)
+            make.left.right.bottom.equalTo(bgView)
+        }
+        
+        layer.masksToBounds = true
+        selectionStyle = .none
+        backgroundColor = .clear
+        updateUI()
+
+    }
+    
+
+    
+    
+    func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+        cellDisposeBag = DisposeBag()
     }
     
     

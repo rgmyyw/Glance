@@ -9,28 +9,39 @@
 import UIKit
 import ObjectMapper
 
-struct Notification: Mappable {
-//    var read: Bool = false
-//    var time: Date?
-//    var image: String?
-//    var title: String?
-//    var notificationId: Int = 0
-//    var user: User?
-//    var type: Int = 0
 
-    
-    
-    var read: Bool = Bool.random()
+struct Notification: Mappable {
+
+    var read: Bool = false
     var time: Date? = Date()
-    var image: String? = "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg"
-    var title: String? = String.random(ofLength: 30)
+    var image: String?
+    var title: String?
     var notificationId: Int = 0
     var user: User?
-    var type: Int = 0
+    var type: NotificationType?
+    var reaction : ReactionType?
+    var theme : String?
+    var description : String?
+    var themeImages : [String] = []
 
     init?(map: Map) {}
     init() {
         
+        var user = User()
+        user.userId = "180"
+        user.isFollow = true
+        user.username = String.random(ofLength: Int.random(in: 5...10))
+        user.userImage = "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg"
+        self.user = user
+        
+        read = Bool.random()
+        time = Date.random(in: Date(milliseconds: 1602229073)...Date())
+        type = NotificationType(rawValue: Int.random(in: 0...6))
+        image = "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg"
+        reaction = ReactionType.haha
+        theme = "#\(String.random(ofLength: Int.random(in: 5...10)))"
+        description = String.random(ofLength: Int.random(in: 20...50))
+        themeImages = ["https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg","https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg","https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg"]
     }
 
     mutating func mapping(map: Map) {

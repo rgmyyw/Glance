@@ -15,19 +15,19 @@ public func logDebug(_ message: @autoclosure () -> String) {
 }
 
 public func logError(_ message: @autoclosure () -> String) {
-    DDLogError(message())
+    //DDLogError(message())
 }
 
 public func logInfo(_ message: @autoclosure () -> String) {
-    DDLogInfo(message())
+    //DDLogInfo(message())
 }
 
 public func logVerbose(_ message: @autoclosure () -> String) {
-    DDLogVerbose(message())
+    //DDLogVerbose(message())
 }
 
 public func logWarn(_ message: @autoclosure () -> String) {
-    DDLogWarn(message())
+    //DDLogWarn(message())
 }
 
 public func logResourcesCount() {

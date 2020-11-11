@@ -10,18 +10,60 @@ import UIKit
 import RxDataSources
 import Differentiator
 
+
+enum NotificationType : Int {
+    case following = 0
+    case liked = 1
+    case recommended = 2
+    case reacted = 3
+    case mightLike = 4
+    case system = 5
+    case theme = 6
+}
+
+
+enum NotificationSection : AnimatableSectionModelType,IdentifiableType {
+    
+    
+    typealias Identity = String
+    typealias Item = NotificationSectionItem
+    
+    var identity: String {
+        return "noti"
+    }
+    
+    var items: [NotificationSectionItem] {
+        switch  self {
+        case .noti(let items):
+            return items.map { $0 }
+        }
+    }
+    
+    init(original: NotificationSection, items: [Item]) {
+        switch original {
+        case .noti(let items):
+            self = .noti(items: items)
+        }
+    }
+
+    
+    case noti(items : [NotificationSectionItem])
+}
+
+
+
 enum NotificationSectionItem {
 
-    case following(viewModel: DefaultColltionCellViewModel)
-    case liked(viewModel: DefaultColltionCellViewModel)
-    case recommended(viewModel: DefaultColltionCellViewModel)
-    case reacted(viewModel: DefaultColltionCellViewModel)
-    case mightLike(viewModel: DefaultColltionCellViewModel)
-    case system(viewModel: DefaultColltionCellViewModel)
-    case theme(viewModel: DefaultColltionCellViewModel)
+    case following(viewModel: NotificationCellViewModel)
+    case liked(viewModel: NotificationCellViewModel)
+    case recommended(viewModel: NotificationCellViewModel)
+    case reacted(viewModel: NotificationCellViewModel)
+    case mightLike(viewModel: NotificationCellViewModel)
+    case system(viewModel: NotificationCellViewModel)
+    case theme(viewModel: NotificationCellViewModel)
     
 
-    var viewModel : DefaultColltionCellViewModel {
+    var viewModel : NotificationCellViewModel {
         switch self {
         case .following(let viewModel):
             return viewModel
@@ -40,24 +82,25 @@ enum NotificationSectionItem {
         }
     }
     
-    static func register(collectionView : UICollectionView, kinds : [DefaultColltionCellType]) {
-        kinds.forEach { (type) in
-            switch type {
-            case .post:
-                collectionView.register(nibWithCellClass: PostCell.self)
-            case .product:
-                collectionView.register(nibWithCellClass: ProductCell.self)
-            case .recommendPost:
-                collectionView.register(nibWithCellClass: PostRecommendCell.self)
-            case .recommendProduct:
-                collectionView.register(nibWithCellClass: ProductRecommendCell.self)
-            case .theme:
-                collectionView.register(nibWithCellClass: ThemeCell.self)
-            case .user:
-                collectionView.register(nibWithCellClass: UserVerticalCell.self)
-            }
+    var reuseIdentifier: String {
+        switch self {
+        case .following:
+            return NotificationFollowingCell.reuseIdentifier
+        case .liked:
+            return NotificationLikedCell.reuseIdentifier
+        case .recommended:
+            return NotificationRecommendedCell.reuseIdentifier
+        case .reacted:
+            return NotificationReactionCell.reuseIdentifier
+        case .mightLike:
+            return NotificationMightLikeCell.reuseIdentifier
+        case .system:
+            return NotificationSystemCell.reuseIdentifier
+        case .theme:
+            return NotificationThemeCell.reuseIdentifier
         }
     }
+    
 }
 
 extension NotificationSectionItem: IdentifiableType {
@@ -65,7 +108,7 @@ extension NotificationSectionItem: IdentifiableType {
     var identity: Identity {
         switch self {
         case .following(let viewModel):
-            return viewModel.item.productId ?? ""
+            return viewModel.item.notificationId.string
         default:
             return ""
         }

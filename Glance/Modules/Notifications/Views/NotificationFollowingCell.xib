@@ -20,41 +20,48 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rUj-cE-M2I">
                         <rect key="frame" x="15" y="10" width="322" height="83"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsZ-tv-TmI">
-                                <rect key="frame" x="20" y="22" width="40" height="40"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fsZ-tv-TmI">
+                                <rect key="frame" x="8" y="18" width="44" height="44"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="40" id="GHF-iQ-lv7"/>
-                                    <constraint firstAttribute="height" constant="40" id="MNx-Ec-GeY"/>
+                                    <constraint firstAttribute="width" constant="44" id="GHF-iQ-lv7"/>
+                                    <constraint firstAttribute="height" constant="44" id="MNx-Ec-GeY"/>
                                 </constraints>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <real key="value" value="20"/>
+                                        <real key="value" value="22"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_unread_red" translatesAutoresizingMaskIntoConstraints="NO" id="Us3-nt-gTI">
-                                <rect key="frame" x="8" y="10" width="12" height="12"/>
+                                <rect key="frame" x="0.0" y="10" width="12" height="12"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="12" id="1VV-No-BMe"/>
+                                    <constraint firstAttribute="width" constant="12" id="MO6-ju-LwN"/>
+                                </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Prescott" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NLD-Ft-PcK">
-                                <rect key="frame" x="76" y="13" width="60.5" height="18"/>
+                                <rect key="frame" x="68" y="9" width="60.5" height="18"/>
                                 <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="15"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="started following you" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WrN-Od-hYE">
-                                <rect key="frame" x="76" y="39" width="110" height="14"/>
+                                <rect key="frame" x="68" y="31" width="110" height="14"/>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 min ago" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ij2-X2-Tom">
-                                <rect key="frame" x="76" y="61" width="53" height="14"/>
+                                <rect key="frame" x="68" y="49" width="53" height="14"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="14" id="ZJf-c8-EM1"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="12"/>
                                 <color key="textColor" red="0.80000000000000004" green="0.80000000000000004" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-Uc-24t">
-                                <rect key="frame" x="247" y="30" width="55" height="24"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="V2g-Uc-24t" customClass="FollowButton" customModule="Glance" customModuleProvider="target">
+                                <rect key="frame" x="256" y="28" width="66" height="24"/>
                                 <color key="backgroundColor" red="1" green="0.50588235290000005" blue="0.34901960780000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="5Dq-fm-Gv6"/>
@@ -71,16 +78,16 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="Ij2-X2-Tom" firstAttribute="top" secondItem="WrN-Od-hYE" secondAttribute="bottom" constant="8" id="D5Q-hh-lug"/>
+                            <constraint firstItem="Ij2-X2-Tom" firstAttribute="top" secondItem="WrN-Od-hYE" secondAttribute="bottom" constant="4" id="D5Q-hh-lug"/>
                             <constraint firstItem="WrN-Od-hYE" firstAttribute="leading" secondItem="NLD-Ft-PcK" secondAttribute="leading" id="DbQ-1P-cF4"/>
-                            <constraint firstItem="fsZ-tv-TmI" firstAttribute="leading" secondItem="Us3-nt-gTI" secondAttribute="trailing" id="Eai-OY-gjN"/>
+                            <constraint firstItem="fsZ-tv-TmI" firstAttribute="leading" secondItem="Us3-nt-gTI" secondAttribute="trailing" constant="-4" id="Eai-OY-gjN"/>
                             <constraint firstItem="V2g-Uc-24t" firstAttribute="centerY" secondItem="fsZ-tv-TmI" secondAttribute="centerY" id="K6T-Ar-6TS"/>
-                            <constraint firstItem="Us3-nt-gTI" firstAttribute="leading" secondItem="rUj-cE-M2I" secondAttribute="leading" constant="8" id="Ndl-3Y-fWL"/>
+                            <constraint firstItem="Us3-nt-gTI" firstAttribute="leading" secondItem="rUj-cE-M2I" secondAttribute="leading" id="Ndl-3Y-fWL"/>
                             <constraint firstItem="NLD-Ft-PcK" firstAttribute="centerY" secondItem="fsZ-tv-TmI" secondAttribute="top" id="QaG-4y-klg"/>
                             <constraint firstItem="Ij2-X2-Tom" firstAttribute="leading" secondItem="WrN-Od-hYE" secondAttribute="leading" id="SA0-fS-0bg"/>
-                            <constraint firstItem="fsZ-tv-TmI" firstAttribute="top" secondItem="Us3-nt-gTI" secondAttribute="bottom" id="fj5-Ca-DN4"/>
-                            <constraint firstItem="WrN-Od-hYE" firstAttribute="top" secondItem="NLD-Ft-PcK" secondAttribute="bottom" constant="8" id="l3C-Cg-c52"/>
-                            <constraint firstAttribute="trailing" secondItem="V2g-Uc-24t" secondAttribute="trailing" constant="20" id="srH-ag-fPA"/>
+                            <constraint firstItem="fsZ-tv-TmI" firstAttribute="top" secondItem="Us3-nt-gTI" secondAttribute="bottom" constant="-4" id="fj5-Ca-DN4"/>
+                            <constraint firstItem="WrN-Od-hYE" firstAttribute="top" secondItem="NLD-Ft-PcK" secondAttribute="bottom" constant="4" id="l3C-Cg-c52"/>
+                            <constraint firstAttribute="trailing" secondItem="V2g-Uc-24t" secondAttribute="trailing" id="srH-ag-fPA"/>
                             <constraint firstItem="NLD-Ft-PcK" firstAttribute="leading" secondItem="fsZ-tv-TmI" secondAttribute="trailing" constant="16" id="uNV-jc-wVl"/>
                             <constraint firstItem="Us3-nt-gTI" firstAttribute="top" secondItem="rUj-cE-M2I" secondAttribute="top" constant="10" id="yDT-oE-Fnk"/>
                         </constraints>
@@ -95,7 +102,7 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="lWR-Ny-c25"/>
             <connections>
-                <outlet property="bgView" destination="rUj-cE-M2I" id="AdD-3T-aDj"/>
+                <outlet property="containerView" destination="rUj-cE-M2I" id="BeD-Tu-Ecw"/>
                 <outlet property="descriptionLabel" destination="WrN-Od-hYE" id="caw-as-2P7"/>
                 <outlet property="followButton" destination="V2g-Uc-24t" id="47n-6d-vrd"/>
                 <outlet property="timeLabel" destination="Ij2-X2-Tom" id="2S6-We-aA3"/>
@@ -103,7 +110,7 @@
                 <outlet property="userImageView" destination="fsZ-tv-TmI" id="NAU-nZ-2Ll"/>
                 <outlet property="userNameLabel" destination="NLD-Ft-PcK" id="kEr-9g-iRn"/>
             </connections>
-            <point key="canvasLocation" x="-36" y="-62"/>
+            <point key="canvasLocation" x="-897.10144927536237" y="-71.316964285714278"/>
         </tableViewCell>
     </objects>
     <resources>
