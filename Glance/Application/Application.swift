@@ -9,11 +9,6 @@
 import UIKit
 import RxSwift
 
-
-/// 配置变更通知
-let configurationDidChange = PublishSubject<Void>()
-
-
 final class Application: NSObject {
     static let shared = Application()
 
@@ -52,7 +47,6 @@ final class Application: NSObject {
             }
         }
         #endif
-        
     }
     
     func showSignIn(provider : API, window : UIWindow) {
@@ -90,4 +84,18 @@ final class Application: NSObject {
         
     }
 
+}
+
+
+extension Application {
+    
+    static func isFirstLaunch() -> Bool {
+        let hasBeenLaunched = "hasBeenLaunched"
+        let isFirstLaunch = !UserDefaults.standard.bool(forKey: hasBeenLaunched)
+        if isFirstLaunch {
+            UserDefaults.standard.set(true, forKey: hasBeenLaunched)
+            UserDefaults.standard.synchronize()
+        }
+        return isFirstLaunch
+    }
 }
