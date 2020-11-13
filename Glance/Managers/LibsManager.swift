@@ -40,7 +40,7 @@ class LibsManager: NSObject {
 
     func setupLibs(with window: UIWindow? = nil,launchOptions : [UIApplication.LaunchOptionsKey: Any]?) {
         
-        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        UserDefaults.standard.setValue(false, forKey: Configs.UserDefaultsKeys.disableConstraintLog)
         
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
@@ -125,11 +125,15 @@ class LibsManager: NSObject {
         ImageCache.default.diskStorage.config.sizeLimit = UInt(500 * 1024 * 1024) // 500 MB
         ImageCache.default.diskStorage.config.expiration = .days(7) // 1 week
         ImageDownloader.default.downloadTimeout = 15.0 // 15 sec
+        
     }
 
     func setupCocoaLumberjack() {
-        DDLog.add(DDTTYLogger.sharedInstance!) // TTY = Xcode console
-//        DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
+        if #available(iOS 10, *) {
+            DDLog.add(DDOSLogger.sharedInstance) // TTY = Xcode console
+        } else {
+            DDLog.add(DDASLLogger.sharedInstance) // ASL = Apple System Logs
+        }
         let fileLogger: DDFileLogger = DDFileLogger() // File Logger
         fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
         fileLogger.logFileManager.maximumNumberOfLogFiles = 7
@@ -168,7 +172,7 @@ class LibsManager: NSObject {
         }
         
         OneSignal.initWithLaunchOptions(launchOptions,
-          appId: "3266c49d-8639-4aa8-b7fd-acf1f6dd714e",
+          appId: Keys.Onesignal.appId,
           handleNotificationAction: handleNotificationAction,
           settings: onesignalInitSettings)
         
