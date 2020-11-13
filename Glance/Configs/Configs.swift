@@ -16,8 +16,9 @@ enum Keys {
         static let kRedirectURI = "com.glance.auth:/oauth2redirect"
     }
     
-
-    
+    struct Onesignal {
+        static let appId = "3266c49d-8639-4aa8-b7fd-acf1f6dd714e"
+    }
 }
 
 struct Configs {
@@ -62,6 +63,7 @@ struct Configs {
     }
     
     struct UserDefaultsKeys {
-        static let firstLaunch = "app_first_launch"
+        static let firstLaunch = "hasBeenLaunched"
+        static let disableConstraintLog =  "_UIConstraintBasedLayoutLogUnsatisfiable"
     }
 }
