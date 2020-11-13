@@ -96,6 +96,17 @@ command + R
 - 账号 :  `yanghai@beesplay.cn`
 - 密码:   `Aa1234567890`
 
+### onesignal
+
+- 账号 :  `yanghai@beesplay.cn`
+- 密码:   `Aa123456qwertAa`
+
+### p12
+
+`beliveforlife432`
+`glance0315@!`
+
+
 ### Email 
 - 账号:  ``
 - 密码:  ``
