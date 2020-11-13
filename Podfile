@@ -7,12 +7,13 @@ abstract_target 'Base' do
 
     # push
     pod 'OneSignal' , '~> 2.15.4'
-    
+        
     # Tools
     pod 'R.swift', '~> 5.3.0'
     pod 'SwiftLint', '0.39.2'
     
     
+    target 'NotificationServiceExtension'
     abstract_target 'Glance' do
       # Pods for Glance
       pod 'Moya', '~> 14.0.0'
