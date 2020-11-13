@@ -158,13 +158,12 @@ class LibsManager: NSObject {
     
     func setupOneSignal(launchOptions : [UIApplication.LaunchOptionsKey: Any])  {
         #if DEBUG
-        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+        OneSignal.setLogLevel(.LL_DEBUG, visualLevel: .LL_NONE)
         #endif
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false,
                                      kOSSettingsKeyInAppLaunchURL: false]
         
         let handleNotificationAction : OSHandleNotificationActionBlock = { element  in
-            
             print(element.debugDescription)
         }
         
