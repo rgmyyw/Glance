@@ -12,28 +12,22 @@ import RxSwift
 import AppAuth
 
 public let needSignUp = PublishSubject<Void>()
-let kPBLogin = "kPBLogin"
 
 
 class HomeTabBarViewModel: ViewModel, ViewModelType {
     
-    
-    
-    private var authState: OIDAuthState?
-    
+        
     struct Input {
     }
     
     struct Output {
         let tabBarItems: Driver<[HomeTabBarItem]>
-        let signUp : Driver<Void>
     }
     
     override init(provider: API) {
         super.init(provider: provider)
     }
     
-    let signUp = PublishSubject<SignInType>()
     
     
     func transform(input: Input) -> Output {
@@ -47,8 +41,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
             
         }.asDriver(onErrorJustReturn: [])
         
-        
-        return Output(tabBarItems: tabBarItems, signUp: needSignUp.asDriver(onErrorJustReturn: ()))
+        return Output(tabBarItems: tabBarItems)
     }
     
     func viewModel(for tabBarItem: HomeTabBarItem) -> ViewModel {
@@ -72,43 +65,4 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
     }
 }
 
-extension HomeTabBarViewModel {
-    
-    //    func loadState(_ isForce: Bool = false) {
-    //        guard let data = UserDefaults.standard.object(forKey: "kAppAuthStateKey") as? Data else {
-    //            return
-    //        }
-    //
-    //        if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
-    //            self.setAuthState(authState)
-    //
-    //            if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
-    //                if isForce {
-    //                    refreshToken(authState)
-    //                } else {
-    //                    let dateNow = Date()
-    //                    if dateNow >= dateEnd {
-    //                        refreshToken(authState)
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
-    //
-    //    func refreshToken(_ authState: OIDAuthState) {
-    //        authState.performAction { (accessToken, idToken, error) in
-    //            if let err = error {
-    //                print(err.localizedDescription)
-    //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
-    //                return;
-    //            }
-    //
-    //            if let accessToken = accessToken {
-    //                print(accessToken)
-    //                //UserAccountManager.shared.handleAccount(accessToken: accessToken, isLogin: false)
-    //            } else {
-    //                NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
-    //            }
-    //        }
-    //    }
-}
+

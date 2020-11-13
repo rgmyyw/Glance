@@ -11,86 +11,6 @@ import RAMAnimatedTabBarController
 import Localize_Swift
 import RxSwift
 
-
-enum HomeTabBarItem: Int {
-    
-    case home, notifications, chat, mine, center
-    private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
-        switch self {
-        case .home:
-            let vc = HomeController(viewModel: viewModel, navigator: navigator)
-            return NavigationController(rootViewController: vc)
-        case .notifications:
-            let vc = NotificationViewController(viewModel: viewModel, navigator: navigator)
-            return NavigationController(rootViewController: vc)
-        case .chat:
-            let vc = NotificationViewController(viewModel: viewModel, navigator: navigator)
-            return NavigationController(rootViewController: vc)
-        case .mine:
-            let vc = UserDetailViewController(viewModel: viewModel, navigator: navigator)
-            return NavigationController(rootViewController: vc)
-        case .center:
-            return DemoViewController.init(viewModel: viewModel, navigator: navigator)
-        }
-    }
-    
-    var image_normal: UIImage? {
-        switch self {
-        case .home:
-            return R.image.icon_tabbar_home_normal()?.withRenderingMode(.alwaysOriginal)
-        case .notifications: return R.image.icon_tabbar_notice_normal()?.withRenderingMode(.alwaysOriginal)
-        case .chat: return R.image.icon_tabbar_message_normal()?.withRenderingMode(.alwaysOriginal)
-        case .mine: return R.image.icon_tabbar_mine_normal()?.withRenderingMode(.alwaysOriginal)
-        case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
-        }
-    }
-    
-    var image_selected: UIImage? {
-        switch self {
-        case .home: return R.image.icon_tabbar_home_selected()?.withRenderingMode(.alwaysOriginal)
-        case .notifications: return R.image.icon_tabbar_notice_selected()?.withRenderingMode(.alwaysOriginal)
-        case .chat: return R.image.icon_tabbar_message_selected()?.withRenderingMode(.alwaysOriginal)
-        case .mine: return R.image.icon_tabbar_mine_selected()?.withRenderingMode(.alwaysOriginal)
-        case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
-        }
-    }
-    
-    
-    var title: String {
-        switch self {
-        default:
-            return ""
-        }
-    }
-    
-    var animation: RAMItemAnimation {
-        var animation: RAMItemAnimation
-        switch self {
-        default:
-            let item = CustomBounceAnimation()
-            item.normalImage = image_normal
-            item.selectedImage = image_selected
-            item.textSelectedColor = UIColor.primary()
-            animation = item
-        }
-        
-        return animation
-    }
-    
-    func getController(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
-        let vc = controller(with: viewModel, navigator: navigator)
-        let item = CustomAnimatedTabBarItem(title: title, image: image_normal, tag: rawValue)
-        item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: UIApplication.shared.statusBarFrame.height == 20 ? 6 :  12)
-        item.selectedImage = image_selected
-        item.animation = animation
-        item.textColor = UIColor.text()
-        vc.tabBarItem = item
-        return vc
-    }
-    
-    
-}
-
 class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarControllerDelegate {
     
     var viewModel: HomeTabBarViewModel?
@@ -179,7 +99,6 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
     
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        
         if viewController.isKind(of: DemoViewController.self) {
             popView.addAnimate()
             return false
@@ -203,11 +122,6 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
                 strongSelf.setViewControllers(controllers, animated: false)
             }
         }).disposed(by: rx.disposeBag)
-        
-        output.signUp.drive(onNext: {[weak self] () in
-            OAuthManager.shared.instagramOAuth(presenting: self)
-        }).disposed(by: rx.disposeBag)
-        
         
         popView.selection.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] item in
