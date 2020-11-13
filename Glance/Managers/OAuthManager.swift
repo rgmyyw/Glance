@@ -55,18 +55,15 @@ class OAuthManager : NSObject {
         
         refreshToken.subscribe(onNext: { (state) in
             state.performAction { (accessToken, idToken, error) in
-                if let err = error {
+                guard let accessToken = accessToken else {
                     let view = UIApplication.shared.keyWindow
-                    view?.makeToast(err.localizedDescription,position: .center, title: nil,style: .init())
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
+                    view?.makeToast(error?.localizedDescription ?? "",position: .center, title: nil,style: .init())
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        Application.shared.logout()
+                    }
                     return
                 }
-                
-                if let accessToken = accessToken {
-                    AuthManager.setToken(token: Token(basicToken: accessToken))
-                } else {
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: kPBLogin), object: nil)
-                }
+                AuthManager.setToken(token: Token(basicToken: accessToken))
             }
         }).disposed(by: rx.disposeBag)
         
@@ -74,24 +71,6 @@ class OAuthManager : NSObject {
             print("error: \(error.localizedDescription)")
         }).disposed(by: rx.disposeBag)
     }
-    
-    func readLocal(isForce : Bool) {
-        //        guard let data = UserDefaults.standard.object(forKey: kAppAuthStateKey) as? Data else { return }
-        //        if let authState = NSKeyedUnarchiver.unarchiveObject(with: data) as? OIDAuthState {
-        //            update.onNext(authState)
-        //            if let dateEnd = authState.lastTokenResponse?.accessTokenExpirationDate {
-        //                if isForce {
-        //                    refreshToken.onNext(authState)
-        //                } else {
-        //                    let dateNow = Date()
-        //                    if dateNow >= dateEnd {
-        //                        refreshToken.onNext(authState)
-        //                    }
-        //                }
-        //            }
-        //        }
-    }
-    
     
 }
 
