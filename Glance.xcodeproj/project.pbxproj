@@ -464,7 +464,6 @@
 		5D99ED01251843840008B45F /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5D99ED02251843840008B45F /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524524BEFD3F007CE461 /* PostsDetailViewController.swift */; };
 		5D99ED03251843840008B45F /* VisualSearchClippingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263324D179CA00A825BB /* VisualSearchClippingCircle.swift */; };
-		5D99ED04251843840008B45F /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */; };
 		5D99ED05251843840008B45F /* SearchResultModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFF3F1E250F08810052ED40 /* SearchResultModuleItem.swift */; };
 		5D99ED06251843840008B45F /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF12524AEC2F8007A2FCD /* Gender.swift */; };
 		5D99ED07251843840008B45F /* SearchRecommendModuleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D2D0E2B2508701100E9FD8D /* SearchRecommendModuleItem.swift */; };
@@ -731,7 +730,6 @@
 		5D99EE33251843840008B45F /* SearchThemeLabelCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DCAC96B25120DDE00172C05 /* SearchThemeLabelCell.xib */; };
 		5D99EE34251843840008B45F /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5D99EE3A251843840008B45F /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
@@ -1000,7 +998,6 @@
 		5DCC2D1724F34F04000AC40A /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DCC2D1824F34F04000AC40A /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524524BEFD3F007CE461 /* PostsDetailViewController.swift */; };
 		5DCC2D1924F34F04000AC40A /* VisualSearchClippingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263324D179CA00A825BB /* VisualSearchClippingCircle.swift */; };
-		5DCC2D1A24F34F04000AC40A /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */; };
 		5DCC2D1B24F34F04000AC40A /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF12524AEC2F8007A2FCD /* Gender.swift */; };
 		5DCC2D1C24F34F04000AC40A /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14B24AEC2F8007A2FCD /* UIColor-Extension.swift */; };
 		5DCC2D1D24F34F04000AC40A /* VisualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669DE24CFFD5000FF1092 /* VisualSearchViewController.swift */; };
@@ -1031,7 +1028,6 @@
 		5DCC2D3B24F34F04000AC40A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */; };
 		5DCC2D3D24F34F04000AC40A /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAF24C7E08D006B0032 /* Interest.swift */; };
 		5DCC2D3E24F34F04000AC40A /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721F24B5670000EA3028 /* UserDetailViewModel.swift */; };
-		5DCC2D3F24F34F04000AC40A /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
 		5DCC2D4024F34F04000AC40A /* InterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAD24C7DF07006B0032 /* InterestCellViewModel.swift */; };
 		5DCC2D4124F34F04000AC40A /* PostsDetailSectionTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D924CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.swift */; };
 		5DCC2D4224F34F04000AC40A /* VisualSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */; };
@@ -1092,7 +1088,6 @@
 		5DCC2D7E24F34F04000AC40A /* SavedCollectionClassifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017C24C573E500832F05 /* SavedCollectionClassifyViewModel.swift */; };
 		5DCC2D7F24F34F04000AC40A /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15D24AEC2F8007A2FCD /* SelfAware.swift */; };
 		5DCC2D8024F34F04000AC40A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16724AEC2F8007A2FCD /* View.swift */; };
-		5DCC2D8124F34F04000AC40A /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
 		5DCC2D8324F34F04000AC40A /* StyleBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */; };
 		5DCC2D8424F34F04000AC40A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E224D0068600FF1092 /* ImagePickerManager.swift */; };
 		5DCC2D8524F34F04000AC40A /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
@@ -1171,7 +1166,6 @@
 		5DCC2DE524F34F04000AC40A /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
 		5DCC2DE624F34F04000AC40A /* VisualSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3B316424D2A3D40039D1B9 /* VisualSearchResultCell.xib */; };
 		5DCC2DE724F34F04000AC40A /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
-		5DCC2DE824F34F04000AC40A /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
 		5DCC2DEA24F34F04000AC40A /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
 		5DCC2DEC24F34F04000AC40A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5DCC2DED24F34F04000AC40A /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
@@ -1184,7 +1178,6 @@
 		5DCC2DF724F34F04000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
 		5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2E0024F34F04000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
@@ -1276,7 +1269,6 @@
 		5DCC2E6F24F34F2A000AC40A /* GlanceAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF0FC24AEC2F8007A2FCD /* GlanceAPI.swift */; };
 		5DCC2E7024F34F2A000AC40A /* PostsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524524BEFD3F007CE461 /* PostsDetailViewController.swift */; };
 		5DCC2E7124F34F2A000AC40A /* VisualSearchClippingCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3F263324D179CA00A825BB /* VisualSearchClippingCircle.swift */; };
-		5DCC2E7224F34F2A000AC40A /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */; };
 		5DCC2E7324F34F2A000AC40A /* Gender.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF12524AEC2F8007A2FCD /* Gender.swift */; };
 		5DCC2E7424F34F2A000AC40A /* UIColor-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF14B24AEC2F8007A2FCD /* UIColor-Extension.swift */; };
 		5DCC2E7524F34F2A000AC40A /* VisualSearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669DE24CFFD5000FF1092 /* VisualSearchViewController.swift */; };
@@ -1307,7 +1299,6 @@
 		5DCC2E9324F34F2A000AC40A /* ScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17224AEC2F8007A2FCD /* ScrollView.swift */; };
 		5DCC2E9524F34F2A000AC40A /* Interest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAF24C7E08D006B0032 /* Interest.swift */; };
 		5DCC2E9624F34F2A000AC40A /* UserDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6C721F24B5670000EA3028 /* UserDetailViewModel.swift */; };
-		5DCC2E9724F34F2A000AC40A /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
 		5DCC2E9824F34F2A000AC40A /* InterestCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DBC3AAD24C7DF07006B0032 /* InterestCellViewModel.swift */; };
 		5DCC2E9924F34F2A000AC40A /* PostsDetailSectionTitleReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D924CFDF5300FF1092 /* PostsDetailSectionTitleReusableView.swift */; };
 		5DCC2E9A24F34F2A000AC40A /* VisualSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B316924D3ACBB0039D1B9 /* VisualSearch.swift */; };
@@ -1368,7 +1359,6 @@
 		5DCC2ED624F34F2A000AC40A /* SavedCollectionClassifyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017C24C573E500832F05 /* SavedCollectionClassifyViewModel.swift */; };
 		5DCC2ED724F34F2A000AC40A /* SelfAware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15D24AEC2F8007A2FCD /* SelfAware.swift */; };
 		5DCC2ED824F34F2A000AC40A /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16724AEC2F8007A2FCD /* View.swift */; };
-		5DCC2ED924F34F2A000AC40A /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
 		5DCC2EDB24F34F2A000AC40A /* StyleBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3130E24E3E52300CC3F89 /* StyleBoardViewModel.swift */; };
 		5DCC2EDC24F34F2A000AC40A /* ImagePickerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669E224D0068600FF1092 /* ImagePickerManager.swift */; };
 		5DCC2EDD24F34F2A000AC40A /* PostsDetailBannerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC669D424CFDC7300FF1092 /* PostsDetailBannerCell.swift */; };
@@ -1447,7 +1437,6 @@
 		5DCC2F3D24F34F2A000AC40A /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
 		5DCC2F3E24F34F2A000AC40A /* VisualSearchResultCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3B316424D2A3D40039D1B9 /* VisualSearchResultCell.xib */; };
 		5DCC2F3F24F34F2A000AC40A /* ModifyProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E47FD24B572870064E3BF /* ModifyProfileViewController.xib */; };
-		5DCC2F4024F34F2A000AC40A /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
 		5DCC2F4224F34F2A000AC40A /* Icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10524AEC2F8007A2FCD /* Icons.xcassets */; };
 		5DCC2F4424F34F2A000AC40A /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF10124AEC2F8007A2FCD /* Localizable.strings */; };
 		5DCC2F4524F34F2A000AC40A /* InsightsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D437DD724BEA67600AFBB1F /* InsightsDetailViewController.xib */; };
@@ -1460,7 +1449,6 @@
 		5DCC2F4F24F34F2A000AC40A /* AddProductImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFC24D964E000AD4B43 /* AddProductImageCell.xib */; };
 		5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D65754A24B2CB0900EC0B74 /* SignInViewController.xib */; };
 		5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
-		5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
 		5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DBC3AB724C7F3BA006B0032 /* InterestNavigationBar.xib */; };
 		5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06523824BEE308007CE461 /* ReactionsViewController.xib */; };
 		5DCC2F5824F34F2A000AC40A /* NotificationProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */; };
@@ -1568,6 +1556,15 @@
 		5DE54CEA255CCA260010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
 		5DE54CEB255CCA260010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
 		5DE54CF0255D32B20010E303 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D13687D255B91D70007F5CD /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		5DE54CF4255E6A150010E303 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
+		5DE54CF5255E6A150010E303 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
+		5DE54CF6255E6A150010E303 /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
+		5DE54CFA255E6A160010E303 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
+		5DE54CFB255E6A160010E303 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
+		5DE54CFC255E6A160010E303 /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
+		5DE54CFD255E6A170010E303 /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
+		5DE54CFE255E6A170010E303 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
+		5DE54CFF255E6A170010E303 /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
 		5DECB83D250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83E250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83F250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
@@ -1644,11 +1641,6 @@
 		5DEFF37C24AEC2F9007A2FCD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18C24AEC2F8007A2FCD /* AppDelegate.swift */; };
 		5DEFF37D24AEC2F9007A2FCD /* Application.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18D24AEC2F8007A2FCD /* Application.swift */; };
 		5DEFF37E24AEC2F9007A2FCD /* Navigator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18E24AEC2F8007A2FCD /* Navigator.swift */; };
-		5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */; };
-		5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */; };
-		5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */; };
-		5DEFF38224AEC2F9007A2FCD /* Demo2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */; };
-		5DEFF38324AEC2F9007A2FCD /* DemoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */; };
 		5DEFF4A124AEC2FA007A2FCD /* HomeTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C724AEC2F9007A2FCD /* HomeTabBarViewModel.swift */; };
 		5DEFF4A224AEC2FA007A2FCD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C824AEC2F9007A2FCD /* LaunchScreen.storyboard */; };
 		5DEFF4A324AEC2FA007A2FCD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */; };
@@ -2239,8 +2231,6 @@
 		5DEFF18E24AEC2F8007A2FCD /* Navigator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Navigator.swift; sourceTree = "<group>"; };
 		5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DemoViewController.xib; sourceTree = "<group>"; };
 		5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
-		5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Demo2ViewController.xib; sourceTree = "<group>"; };
-		5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo2ViewController.swift; sourceTree = "<group>"; };
 		5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoViewModel.swift; sourceTree = "<group>"; };
 		5DEFF2C724AEC2F9007A2FCD /* HomeTabBarViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeTabBarViewModel.swift; sourceTree = "<group>"; };
 		5DEFF2C924AEC2F9007A2FCD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -3261,8 +3251,6 @@
 			children = (
 				5DEFF19124AEC2F8007A2FCD /* DemoViewController.xib */,
 				5DEFF19224AEC2F8007A2FCD /* DemoViewController.swift */,
-				5DEFF19324AEC2F8007A2FCD /* Demo2ViewController.xib */,
-				5DEFF19424AEC2F8007A2FCD /* Demo2ViewController.swift */,
 				5DEFF19524AEC2F8007A2FCD /* DemoViewModel.swift */,
 			);
 			path = Demo;
@@ -3635,7 +3623,6 @@
 				5D99EE34251843840008B45F /* SignInViewController.xib in Resources */,
 				5DF8D1382553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
 				5D99EE35251843840008B45F /* PrivacyViewController.xib in Resources */,
-				5D99EE37251843840008B45F /* Demo2ViewController.xib in Resources */,
 				5D5C486D25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5D99EE38251843840008B45F /* InterestNavigationBar.xib in Resources */,
 				5D99EE39251843840008B45F /* ReactionsViewController.xib in Resources */,
@@ -3693,6 +3680,7 @@
 				5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
 				5DF8D1542553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DE54CFD255E6A170010E303 /* DemoViewController.xib in Resources */,
 				5DD370CD2531983A00A42A16 /* UsersCell.xib in Resources */,
 				5DF8D12C2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
 				5D2D0E8E2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
@@ -3716,7 +3704,6 @@
 				5DCC2DE524F34F04000AC40A /* OriginalPhotosViewController.xib in Resources */,
 				5DCC2DE624F34F04000AC40A /* VisualSearchResultCell.xib in Resources */,
 				5DCC2DE724F34F04000AC40A /* ModifyProfileViewController.xib in Resources */,
-				5DCC2DE824F34F04000AC40A /* DemoViewController.xib in Resources */,
 				5DCC2DEA24F34F04000AC40A /* Icons.xcassets in Resources */,
 				5DD370C92531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131D250CB14300ABCE5E /* SearchCell.xib in Resources */,
@@ -3740,7 +3727,6 @@
 				5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */,
 				5DF8D1362553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
 				5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */,
-				5DCC2DFD24F34F04000AC40A /* Demo2ViewController.xib in Resources */,
 				5D5C486B25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2DFF24F34F04000AC40A /* ReactionsViewController.xib in Resources */,
@@ -3798,6 +3784,7 @@
 				5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
 				5DF8D1552553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DE54CFA255E6A160010E303 /* DemoViewController.xib in Resources */,
 				5DD370CE2531983A00A42A16 /* UsersCell.xib in Resources */,
 				5DF8D12D2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
 				5D2D0E8F2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
@@ -3821,7 +3808,6 @@
 				5DCC2F3D24F34F2A000AC40A /* OriginalPhotosViewController.xib in Resources */,
 				5DCC2F3E24F34F2A000AC40A /* VisualSearchResultCell.xib in Resources */,
 				5DCC2F3F24F34F2A000AC40A /* ModifyProfileViewController.xib in Resources */,
-				5DCC2F4024F34F2A000AC40A /* DemoViewController.xib in Resources */,
 				5DCC2F4224F34F2A000AC40A /* Icons.xcassets in Resources */,
 				5DD370CA2531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131E250CB14300ABCE5E /* SearchCell.xib in Resources */,
@@ -3845,7 +3831,6 @@
 				5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */,
 				5DF8D1372553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
 				5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */,
-				5DCC2F5524F34F2A000AC40A /* Demo2ViewController.xib in Resources */,
 				5D5C486C25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */,
 				5DCC2F5724F34F2A000AC40A /* ReactionsViewController.xib in Resources */,
@@ -3903,6 +3888,7 @@
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DB6ABFA24D95A8900AD4B43 /* AddProductWebsiteReusableView.xib in Resources */,
 				5DF8D1532553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DE54CF4255E6A150010E303 /* DemoViewController.xib in Resources */,
 				5DD370CC2531983A00A42A16 /* UsersCell.xib in Resources */,
 				5DF8D12B2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
 				5D2D0E8D2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
@@ -3926,7 +3912,6 @@
 				5D13707F24B70428007B64BA /* OriginalPhotosViewController.xib in Resources */,
 				5D3B316624D2A3D40039D1B9 /* VisualSearchResultCell.xib in Resources */,
 				5D3E47FF24B572870064E3BF /* ModifyProfileViewController.xib in Resources */,
-				5DEFF37F24AEC2F9007A2FCD /* DemoViewController.xib in Resources */,
 				5DEFF30A24AEC2F9007A2FCD /* Icons.xcassets in Resources */,
 				5DD370C82531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131C250CB14300ABCE5E /* SearchCell.xib in Resources */,
@@ -3950,7 +3935,6 @@
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
 				5DF8D1352553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
-				5DEFF38124AEC2F9007A2FCD /* Demo2ViewController.xib in Resources */,
 				5D5C486A25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DBC3AB824C7F3BA006B0032 /* InterestNavigationBar.xib in Resources */,
 				5D06523924BEE308007CE461 /* ReactionsViewController.xib in Resources */,
@@ -4357,7 +4341,6 @@
 				5DF8D12A2553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
 				5DF8D1522553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
 				5D99ED03251843840008B45F /* VisualSearchClippingCircle.swift in Sources */,
-				5D99ED04251843840008B45F /* Demo2ViewController.swift in Sources */,
 				5D99ED05251843840008B45F /* SearchResultModuleItem.swift in Sources */,
 				5D99ED06251843840008B45F /* Gender.swift in Sources */,
 				5D99ED07251843840008B45F /* SearchRecommendModuleItem.swift in Sources */,
@@ -4704,7 +4687,6 @@
 				5DF8D1282553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
 				5DF8D1502553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
 				5DCC2D1924F34F04000AC40A /* VisualSearchClippingCircle.swift in Sources */,
-				5DCC2D1A24F34F04000AC40A /* Demo2ViewController.swift in Sources */,
 				5DFF3F20250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DCC2D1B24F34F04000AC40A /* Gender.swift in Sources */,
 				5D2D0E3F2508701200E9FD8D /* SearchRecommendModuleItem.swift in Sources */,
@@ -4755,7 +4737,6 @@
 				5DCAC96D25120DDE00172C05 /* SearchThemeLabelCell.swift in Sources */,
 				5DCC2D3D24F34F04000AC40A /* Interest.swift in Sources */,
 				5DCC2D3E24F34F04000AC40A /* UserDetailViewModel.swift in Sources */,
-				5DCC2D3F24F34F04000AC40A /* DemoViewModel.swift in Sources */,
 				5D7BB552250B633900C8B902 /* PostRecommendCell.swift in Sources */,
 				5DA483D2251316C200A80194 /* SearchThemeLabelContentViewModel.swift in Sources */,
 				5DCC2D4024F34F04000AC40A /* InterestCellViewModel.swift in Sources */,
@@ -4793,6 +4774,7 @@
 				5DCC2D5524F34F04000AC40A /* VisualSearchResultViewModel.swift in Sources */,
 				5DCC2D5624F34F04000AC40A /* AddProductSection.swift in Sources */,
 				5D7BB54C250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
+				5DE54CFF255E6A170010E303 /* DemoViewModel.swift in Sources */,
 				5DCC2D5724F34F04000AC40A /* InsightsChildViewModel.swift in Sources */,
 				5DCC2D5824F34F04000AC40A /* VisualSearchBottomView.swift in Sources */,
 				5DCC2D5924F34F04000AC40A /* ModifyProfileViewModel.swift in Sources */,
@@ -4862,7 +4844,6 @@
 				5DFE131A250CB14300ABCE5E /* SearchCell.swift in Sources */,
 				5DCC2D8024F34F04000AC40A /* View.swift in Sources */,
 				5DA9236B253D31F300CFF241 /* VisualSearchDotButton.swift in Sources */,
-				5DCC2D8124F34F04000AC40A /* DemoViewController.swift in Sources */,
 				5DCC2D8324F34F04000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2D8424F34F04000AC40A /* ImagePickerManager.swift in Sources */,
 				5D3BD51224F65C4600563010 /* ReactionAnalysis.swift in Sources */,
@@ -4900,6 +4881,7 @@
 				5DCC2D9824F34F04000AC40A /* PostProductTagCellViewModel.swift in Sources */,
 				5DE54CEA255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5DCC2D9924F34F04000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
+				5DE54CFE255E6A170010E303 /* DemoViewController.swift in Sources */,
 				5DCC2D9A24F34F04000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2D9B24F34F04000AC40A /* ShoppingCartViewController.swift in Sources */,
 				5D3AA2A024F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
@@ -5051,7 +5033,6 @@
 				5DF8D1292553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
 				5DF8D1512553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
 				5DCC2E7124F34F2A000AC40A /* VisualSearchClippingCircle.swift in Sources */,
-				5DCC2E7224F34F2A000AC40A /* Demo2ViewController.swift in Sources */,
 				5DFF3F21250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DCC2E7324F34F2A000AC40A /* Gender.swift in Sources */,
 				5D2D0E402508701200E9FD8D /* SearchRecommendModuleItem.swift in Sources */,
@@ -5102,7 +5083,6 @@
 				5DCAC96E25120DDE00172C05 /* SearchThemeLabelCell.swift in Sources */,
 				5DCC2E9524F34F2A000AC40A /* Interest.swift in Sources */,
 				5DCC2E9624F34F2A000AC40A /* UserDetailViewModel.swift in Sources */,
-				5DCC2E9724F34F2A000AC40A /* DemoViewModel.swift in Sources */,
 				5D7BB553250B633900C8B902 /* PostRecommendCell.swift in Sources */,
 				5DA483D3251316C200A80194 /* SearchThemeLabelContentViewModel.swift in Sources */,
 				5DCC2E9824F34F2A000AC40A /* InterestCellViewModel.swift in Sources */,
@@ -5140,6 +5120,7 @@
 				5DCC2EAD24F34F2A000AC40A /* VisualSearchResultViewModel.swift in Sources */,
 				5DCC2EAE24F34F2A000AC40A /* AddProductSection.swift in Sources */,
 				5D7BB54D250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
+				5DE54CFC255E6A160010E303 /* DemoViewModel.swift in Sources */,
 				5DCC2EAF24F34F2A000AC40A /* InsightsChildViewModel.swift in Sources */,
 				5DCC2EB024F34F2A000AC40A /* VisualSearchBottomView.swift in Sources */,
 				5DCC2EB124F34F2A000AC40A /* ModifyProfileViewModel.swift in Sources */,
@@ -5209,7 +5190,6 @@
 				5DFE131B250CB14300ABCE5E /* SearchCell.swift in Sources */,
 				5DCC2ED824F34F2A000AC40A /* View.swift in Sources */,
 				5DA9236C253D31F300CFF241 /* VisualSearchDotButton.swift in Sources */,
-				5DCC2ED924F34F2A000AC40A /* DemoViewController.swift in Sources */,
 				5DCC2EDB24F34F2A000AC40A /* StyleBoardViewModel.swift in Sources */,
 				5DCC2EDC24F34F2A000AC40A /* ImagePickerManager.swift in Sources */,
 				5D3BD51324F65C4600563010 /* ReactionAnalysis.swift in Sources */,
@@ -5247,6 +5227,7 @@
 				5DCC2EF024F34F2A000AC40A /* PostProductTagCellViewModel.swift in Sources */,
 				5DE54CEB255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5DCC2EF124F34F2A000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
+				5DE54CFB255E6A160010E303 /* DemoViewController.swift in Sources */,
 				5DCC2EF224F34F2A000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2EF324F34F2A000AC40A /* ShoppingCartViewController.swift in Sources */,
 				5D3AA2A124F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,
@@ -5398,7 +5379,6 @@
 				5DF8D1272553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
 				5DF8D14F2553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
 				5D3F263624D179CA00A825BB /* VisualSearchClippingCircle.swift in Sources */,
-				5DEFF38224AEC2F9007A2FCD /* Demo2ViewController.swift in Sources */,
 				5DFF3F1F250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DEFF32424AEC2F9007A2FCD /* Gender.swift in Sources */,
 				5D2D0E3E2508701200E9FD8D /* SearchRecommendModuleItem.swift in Sources */,
@@ -5449,7 +5429,6 @@
 				5DCAC96C25120DDE00172C05 /* SearchThemeLabelCell.swift in Sources */,
 				5DBC3AB024C7E08D006B0032 /* Interest.swift in Sources */,
 				5D6C722024B5670000EA3028 /* UserDetailViewModel.swift in Sources */,
-				5DEFF38324AEC2F9007A2FCD /* DemoViewModel.swift in Sources */,
 				5D7BB551250B633900C8B902 /* PostRecommendCell.swift in Sources */,
 				5DA483D1251316C200A80194 /* SearchThemeLabelContentViewModel.swift in Sources */,
 				5DBC3AAE24C7DF07006B0032 /* InterestCellViewModel.swift in Sources */,
@@ -5487,6 +5466,7 @@
 				5D3B316224D2A1810039D1B9 /* VisualSearchResultViewModel.swift in Sources */,
 				5DB6ABDD24D957BB00AD4B43 /* AddProductSection.swift in Sources */,
 				5D7BB54B250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
+				5DE54CF6255E6A150010E303 /* DemoViewModel.swift in Sources */,
 				5D437DD124BDA17300AFBB1F /* InsightsChildViewModel.swift in Sources */,
 				5D6B4DBB24D40C990024924B /* VisualSearchBottomView.swift in Sources */,
 				5D3E480124B579820064E3BF /* ModifyProfileViewModel.swift in Sources */,
@@ -5556,7 +5536,6 @@
 				5DFE1319250CB14300ABCE5E /* SearchCell.swift in Sources */,
 				5DEFF35B24AEC2F9007A2FCD /* View.swift in Sources */,
 				5DA9236A253D31F300CFF241 /* VisualSearchDotButton.swift in Sources */,
-				5DEFF38024AEC2F9007A2FCD /* DemoViewController.swift in Sources */,
 				5DC3130F24E3E52300CC3F89 /* StyleBoardViewModel.swift in Sources */,
 				5DC669E324D0068600FF1092 /* ImagePickerManager.swift in Sources */,
 				5D3BD51124F65C4600563010 /* ReactionAnalysis.swift in Sources */,
@@ -5594,6 +5573,7 @@
 				5D6FEAA624DC03090062F90B /* PostProductTagCellViewModel.swift in Sources */,
 				5DE54CE9255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5D6FEA9724DC03090062F90B /* PostProductSectionCellViewModel.swift in Sources */,
+				5DE54CF5255E6A150010E303 /* DemoViewController.swift in Sources */,
 				5D6FEA9F24DC03090062F90B /* PostProductCaptionReusableView.swift in Sources */,
 				5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */,
 				5D3AA29F24F4AECB00CBCE76 /* SignInViewModel.swift in Sources */,

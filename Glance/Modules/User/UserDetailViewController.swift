@@ -87,7 +87,7 @@ class UserDetailViewController: ViewController {
         config.wMenuHeadView = { self.userHeadView }
         
         config.wCustomMenuTitle = { titleButtons in
-            guard let buttons = titleButtons as? [WMZPageNaviBtn] , buttons.isNotEmpty else { return }
+            guard let buttons = titleButtons , buttons.isNotEmpty else { return }
             buttons.forEach { self.needUpdatePageTitltStyle(by: $0, config: config)}
         }
         
@@ -222,8 +222,7 @@ class UserDetailViewController: ViewController {
         }).disposed(by: rx.disposeBag)
         
         output.signIn.subscribe(onNext: { () in
-            guard let window = Application.shared.window else { return }
-            Application.shared.showSignIn(provider: viewModel.provider, window: window)
+            Application.shared.logout()
         }).disposed(by: rx.disposeBag)
         
         output.insight.drive(onNext: { [weak self]() in

@@ -181,8 +181,6 @@ class UserDetailViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let result):
                 if result {
-                    AuthManager.removeToken()
-                    User.removeCurrentUser()
                     signIn.onNext(())
                 } else {
                     self?.exceptionError.onNext(.general("logout request return false"))
