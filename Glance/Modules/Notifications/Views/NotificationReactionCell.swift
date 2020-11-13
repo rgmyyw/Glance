@@ -34,6 +34,8 @@ class NotificationReactionCell: NotificationCell {
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.reaction.bind(to: reactionImageView.rx.image).disposed(by: cellDisposeBag)
+        postImageView.rx.tap().bind(to: viewModel.postDetail).disposed(by: cellDisposeBag)
+        userImageView.rx.tap().bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
     }
 
 }

@@ -22,7 +22,8 @@ class NotificationViewModel: ViewModel, ViewModelType {
 
     struct Output {
         let items : Driver<[NotificationSection]>
-        
+        let userDetail : Driver<User>
+        let themeDetail : Driver<Int>
     }
     
     let element : BehaviorRelay<PageMapable<Notification>?> = BehaviorRelay(value: nil)
@@ -31,8 +32,10 @@ class NotificationViewModel: ViewModel, ViewModelType {
         
         let elements = BehaviorRelay<[NotificationSection]>(value: [])
         let follow = PublishSubject<NotificationCellViewModel>()
+        let delete = PublishSubject<NotificationCellViewModel>()
+        let postDetail = PublishSubject<DefaultColltionItem>()
         let userDetail = PublishSubject<User>()
-        let themeDetail = PublishSubject<SearchTheme>()
+        let themeDetail = PublishSubject<Int>()
                 
         
         input.clear.subscribe(onNext: { () in
@@ -125,10 +128,46 @@ class NotificationViewModel: ViewModel, ViewModelType {
             return [NotificationSection.noti(items:items.list.map { item -> NotificationSectionItem  in
                 let viewModel = NotificationCellViewModel(item: item)
                 viewModel.follow.map { viewModel }.bind(to: follow).disposed(by: self.rx.disposeBag)
+                viewModel.delete.map { viewModel }.bind(to: delete).disposed(by: self.rx.disposeBag)
+                viewModel.themeDetail.bind(to: themeDetail).disposed(by: self.rx.disposeBag)
+                viewModel.userDetail.map { item.user }.filterNil().bind(to: userDetail).disposed(by: self.rx.disposeBag)
+//                viewModel.postDetail.map { viewModel.item }.bind(to: delete).disposed(by: self.rx.disposeBag)
+                
+                
                 return viewModel.makeItemType()
             })]
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
-        return Output(items: elements.asDriver(onErrorJustReturn: []))
+        
+        delete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, NotificationCellViewModel)>> in
+            guard let self = self else { return Observable.just(.completed) }
+            let isFollow = cellViewModel.following.value
+            let userId = cellViewModel.item.user?.userId ?? ""
+            let request = isFollow ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId)
+            return request
+                .trackActivity(self.loading)
+                .trackError(self.error)
+                .map { ($0, cellViewModel)}
+                .materialize()
+        }).subscribe(onNext: { (event) in
+            switch event {
+            case .next(let (result, cellViewModel)):
+                if result {
+                    let element = elements.value[0]
+                    var items = element.items
+                    let index = items.firstIndex { $0.viewModel.item.notificationId == cellViewModel.item.notificationId }
+                    if let index = index {
+                        items.remove(at: index)
+                    }
+                    elements.accept([NotificationSection.init(original: element, items: items)])
+                }
+            default:
+                break
+            }
+        }).disposed(by: rx.disposeBag)
+        
+        return Output(items: elements.asDriver(onErrorJustReturn: []),
+                      userDetail: userDetail.asDriverOnErrorJustComplete(),
+                      themeDetail: themeDetail.asDriverOnErrorJustComplete())
     }
 }

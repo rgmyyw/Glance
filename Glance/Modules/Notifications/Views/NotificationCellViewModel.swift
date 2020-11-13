@@ -30,7 +30,11 @@ class NotificationCellViewModel: CellViewModelProtocol {
     
     
     let follow : PublishSubject<Void> = PublishSubject()
-    
+    let delete : PublishSubject<Void> = PublishSubject()
+    let userDetail : PublishSubject<Void> = PublishSubject()
+    let themeDetail : PublishSubject<Int> = PublishSubject()
+    let postDetail : PublishSubject<Void> = PublishSubject()
+
     
     required init(item : Notification) {
         self.item = item

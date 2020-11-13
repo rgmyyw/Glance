@@ -33,6 +33,8 @@ class NotificationMightLikeCell: NotificationCell {
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
         followButton.rx.tap.bind(to: viewModel.follow).disposed(by: cellDisposeBag)
+        
+        userImageView.rx.tap().bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
     }
 
 }

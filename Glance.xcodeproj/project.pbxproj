@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		47055B0A98AD1FED50893922 /* Pods_Glance_Glance_P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */; };
-		4E14FCDD980E02BA5A51FA51 /* Pods_Glance_Glance_Q.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */; };
 		5D06523324BEAF9A007CE461 /* InsightsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */; };
 		5D06523524BEB37C007CE461 /* InsightsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523424BEB37C007CE461 /* InsightsDetail.swift */; };
 		5D06523724BEE2AB007CE461 /* ReactionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523624BEE2AB007CE461 /* ReactionsViewController.swift */; };
@@ -19,6 +17,7 @@
 		5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */; };
 		5D06524D24BEFF51007CE461 /* PostsDetailNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */; };
 		5D06524F24BF0514007CE461 /* PostsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */; };
+		5D136880255B91D70007F5CD /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13687F255B91D70007F5CD /* NotificationService.swift */; };
 		5D13707E24B70428007B64BA /* OriginalPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */; };
 		5D13707F24B70428007B64BA /* OriginalPhotosViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */; };
 		5D13708124B705CC007B64BA /* OriginalPhotosViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */; };
@@ -1559,6 +1558,15 @@
 		5DDC05CC25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
 		5DDC05CD25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
 		5DDC05CE25105AED005D5299 /* UserHorizontalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */; };
+		5DE54CE3255BC5C10010E303 /* HomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */; };
+		5DE54CE4255BC5C10010E303 /* HomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */; };
+		5DE54CE5255BC5C10010E303 /* HomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */; };
+		5DE54CE6255BC5C10010E303 /* HomeTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */; };
+		5DE54CE8255CCA250010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
+		5DE54CE9255CCA260010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
+		5DE54CEA255CCA260010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
+		5DE54CEB255CCA260010E303 /* PermissionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DE54CE7255CCA250010E303 /* PermissionManager.swift */; };
+		5DE54CF0255D32B20010E303 /* NotificationServiceExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 5D13687D255B91D70007F5CD /* NotificationServiceExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5DECB83D250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83E250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
 		5DECB83F250A0C4300294ECA /* SearchRecommendHotFilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */; };
@@ -1753,14 +1761,49 @@
 		5DFF3F27250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		5DFF3F28250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
 		5DFF3F29250F27D30052ED40 /* SearchResultNavigationBar.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */; };
-		AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */; };
-		D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */; };
+		94307331F56C25BC9392AF2C /* Pods_Base_Glance_Glance_R.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 08914663F7A22D0996C14492 /* Pods_Base_Glance_Glance_R.framework */; };
+		974870ED1AE842F0197CD456 /* Pods_Base_Glance_Glance_P.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6EB1B2D2FBF008E121FB607D /* Pods_Base_Glance_Glance_P.framework */; };
+		BA60EA44F6CE2F644DD4F03F /* Pods_Base_Glance_Glance_D.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9917FBBC0A086A83D02A8654 /* Pods_Base_Glance_Glance_D.framework */; };
+		F68D081B9EAEB06DEF28AEB9 /* Pods_Base_Glance_Glance_Q.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B460240CCD0FA32730B4E393 /* Pods_Base_Glance_Glance_Q.framework */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		5DE54CF1255D32B20010E303 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 5DE6388224AD769D002F6F6B /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 5D13687C255B91D70007F5CD;
+			remoteInfo = NotificationServiceExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		5DE54CF3255D32B20010E303 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				5DE54CF0255D32B20010E303 /* NotificationServiceExtension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
-		1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		08914663F7A22D0996C14492 /* Pods_Base_Glance_Glance_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Glance_Glance_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		098CFE0C1361403B65A43C03 /* Pods-NotificationServiceExtension-Glance-Glance-Q.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-Q.debug.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-Q/Pods-NotificationServiceExtension-Glance-Glance-Q.debug.xcconfig"; sourceTree = "<group>"; };
+		1CB842F7B89993A22EB58EBE /* Pods-Base-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-D/Pods-Base-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
+		1D65A44A55CCAA0A1CC953AF /* Pods-NotificationServiceExtension-Glance-Glance-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-R.debug.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-R/Pods-NotificationServiceExtension-Glance-Glance-R.debug.xcconfig"; sourceTree = "<group>"; };
+		1F9B481EBD264AED296F8B27 /* Pods-Base-Glance-Glance-P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-P.release.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-P/Pods-Base-Glance-Glance-P.release.xcconfig"; sourceTree = "<group>"; };
+		207A019726A96F94C29F5520 /* Pods-Base-Glance-Glance-Q.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-Q.debug.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-Q/Pods-Base-Glance-Glance-Q.debug.xcconfig"; sourceTree = "<group>"; };
 		2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.release.xcconfig"; sourceTree = "<group>"; };
 		2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.debug.xcconfig"; sourceTree = "<group>"; };
+		330630CDBB9DB90DF7FE2F55 /* Pods-Base-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-D/Pods-Base-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
+		368550A9692C0BD08767AD49 /* Pods-Base-Glance-Glance-Q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-Q.release.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-Q/Pods-Base-Glance-Glance-Q.release.xcconfig"; sourceTree = "<group>"; };
+		3E36F2613393BAC512D384AE /* Pods-Base-Glance-Glance-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-R.debug.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-R/Pods-Base-Glance-Glance-R.debug.xcconfig"; sourceTree = "<group>"; };
+		4F6D56D0E2063CD69B2C4E7E /* Pods-NotificationServiceExtension-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-D/Pods-NotificationServiceExtension-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
 		4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.release.xcconfig"; sourceTree = "<group>"; };
 		5D06523224BEAF9A007CE461 /* InsightsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetailViewModel.swift; sourceTree = "<group>"; };
 		5D06523424BEB37C007CE461 /* InsightsDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsDetail.swift; sourceTree = "<group>"; };
@@ -1772,6 +1815,11 @@
 		5D06524A24BEFF51007CE461 /* PostsDetailNavigationBar.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PostsDetailNavigationBar.xib; sourceTree = "<group>"; };
 		5D06524B24BEFF51007CE461 /* PostsDetailNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsDetailNavigationBar.swift; sourceTree = "<group>"; };
 		5D06524E24BF0514007CE461 /* PostsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailViewModel.swift; sourceTree = "<group>"; };
+		5D136875255B8FD00007F5CD /* Glance.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Glance.entitlements; sourceTree = "<group>"; };
+		5D136876255B904B0007F5CD /* Glance-P.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Glance-P.entitlements"; sourceTree = "<group>"; };
+		5D13687D255B91D70007F5CD /* NotificationServiceExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = NotificationServiceExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		5D13687F255B91D70007F5CD /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
+		5D136881255B91D70007F5CD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5D13707C24B70428007B64BA /* OriginalPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewController.swift; sourceTree = "<group>"; };
 		5D13707D24B70428007B64BA /* OriginalPhotosViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OriginalPhotosViewController.xib; sourceTree = "<group>"; };
 		5D13708024B705CC007B64BA /* OriginalPhotosViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OriginalPhotosViewModel.swift; sourceTree = "<group>"; };
@@ -2110,6 +2158,8 @@
 		5DDBC09F24B6BE700077DBE5 /* UserDetailPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailPostViewController.swift; sourceTree = "<group>"; };
 		5DDC05C725105AEC005D5299 /* UserHorizontalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHorizontalCell.xib; sourceTree = "<group>"; };
 		5DDC05C825105AEC005D5299 /* UserHorizontalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserHorizontalCell.swift; sourceTree = "<group>"; };
+		5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabBarItem.swift; sourceTree = "<group>"; };
+		5DE54CE7255CCA250010E303 /* PermissionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionManager.swift; sourceTree = "<group>"; };
 		5DE6388A24AD769D002F6F6B /* Glance-D.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Glance-D.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		5DECB83B250A0C4300294ECA /* SearchRecommendHotFilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchRecommendHotFilterCell.swift; sourceTree = "<group>"; };
 		5DECB83C250A0C4300294ECA /* SearchRecommendHotFilterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchRecommendHotFilterCell.xib; sourceTree = "<group>"; };
@@ -2240,22 +2290,36 @@
 		5DFF3F1E250F08810052ED40 /* SearchResultModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultModuleItem.swift; sourceTree = "<group>"; };
 		5DFF3F22250F27C40052ED40 /* SearchResultNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultNavigationBar.swift; sourceTree = "<group>"; };
 		5DFF3F26250F27D30052ED40 /* SearchResultNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchResultNavigationBar.xib; sourceTree = "<group>"; };
+		6EB1B2D2FBF008E121FB607D /* Pods_Base_Glance_Glance_P.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Glance_Glance_P.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		709925849C163C46D2D43F4C /* Pods-Base-Glance-Glance-P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-P.debug.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-P/Pods-Base-Glance-Glance-P.debug.xcconfig"; sourceTree = "<group>"; };
 		7B237AE3A03897BD10DC25B7 /* Pods-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
+		84C4AABE44BFCC74C50B9950 /* Pods-NotificationServiceExtension-Glance-Glance-Q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-Q.release.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-Q/Pods-NotificationServiceExtension-Glance-Glance-Q.release.xcconfig"; sourceTree = "<group>"; };
+		8D87B645BDD9FCAA3F3168A6 /* Pods-NotificationServiceExtension-Glance-Glance-D.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-D.debug.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-D/Pods-NotificationServiceExtension-Glance-Glance-D.debug.xcconfig"; sourceTree = "<group>"; };
+		8F1A8DAF9DCAA1FA27FF70E6 /* Pods-NotificationServiceExtension-Glance-Glance-P.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-P.debug.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-P/Pods-NotificationServiceExtension-Glance-Glance-P.debug.xcconfig"; sourceTree = "<group>"; };
+		9917FBBC0A086A83D02A8654 /* Pods_Base_Glance_Glance_D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Glance_Glance_D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-P.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P.release.xcconfig"; sourceTree = "<group>"; };
+		B460240CCD0FA32730B4E393 /* Pods_Base_Glance_Glance_Q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Base_Glance_Glance_Q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-Q.release.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q.release.xcconfig"; sourceTree = "<group>"; };
-		BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_D.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BA1245108544E2521576CD05 /* Pods-NotificationServiceExtension-Glance-Glance-P.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-P.release.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-P/Pods-NotificationServiceExtension-Glance-Glance-P.release.xcconfig"; sourceTree = "<group>"; };
+		BDB05C389B160FD914FCB8B1 /* Pods-NotificationServiceExtension-Glance-Glance-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NotificationServiceExtension-Glance-Glance-R.release.xcconfig"; path = "Target Support Files/Pods-NotificationServiceExtension-Glance-Glance-R/Pods-NotificationServiceExtension-Glance-Glance-R.release.xcconfig"; sourceTree = "<group>"; };
 		BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-R.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R.debug.xcconfig"; sourceTree = "<group>"; };
-		C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_R.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Glance-Glance-Q.debug.xcconfig"; path = "Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q.debug.xcconfig"; sourceTree = "<group>"; };
-		DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Glance_Glance_Q.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3227AEB1FBFDD4475C5100F /* Pods-Base-Glance-Glance-R.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Base-Glance-Glance-R.release.xcconfig"; path = "Target Support Files/Pods-Base-Glance-Glance-R/Pods-Base-Glance-Glance-R.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		5D13687A255B91D70007F5CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D99EDDB251843840008B45F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4E14FCDD980E02BA5A51FA51 /* Pods_Glance_Glance_Q.framework in Frameworks */,
+				F68D081B9EAEB06DEF28AEB9 /* Pods_Base_Glance_Glance_Q.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2263,7 +2327,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				47055B0A98AD1FED50893922 /* Pods_Glance_Glance_P.framework in Frameworks */,
+				974870ED1AE842F0197CD456 /* Pods_Base_Glance_Glance_P.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2271,7 +2335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AD7F0633D12B3C0DE33770DC /* Pods_Glance_Glance_R.framework in Frameworks */,
+				94307331F56C25BC9392AF2C /* Pods_Base_Glance_Glance_R.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2279,7 +2343,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D4A5C8F3334F95F83011C7D3 /* Pods_Glance_Glance_D.framework in Frameworks */,
+				BA60EA44F6CE2F644DD4F03F /* Pods_Base_Glance_Glance_D.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2323,6 +2387,15 @@
 				5DC669D524CFDC7300FF1092 /* PostsDetailBannerCell.xib */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5D13687E255B91D70007F5CD /* NotificationServiceExtension */ = {
+			isa = PBXGroup;
+			children = (
+				5D13687F255B91D70007F5CD /* NotificationService.swift */,
+				5D136881255B91D70007F5CD /* Info.plist */,
+			);
+			path = NotificationServiceExtension;
 			sourceTree = "<group>";
 		};
 		5D13708E24B70F4B007B64BA /* Notifications */ = {
@@ -2853,8 +2926,11 @@
 		5DE6388124AD769D002F6F6B = {
 			isa = PBXGroup;
 			children = (
+				5D136876255B904B0007F5CD /* Glance-P.entitlements */,
+				5D136875255B8FD00007F5CD /* Glance.entitlements */,
 				5D6B289C25342F0A004F16DE /* fastlane */,
 				5DEFF0F824AEC2F8007A2FCD /* Glance */,
+				5D13687E255B91D70007F5CD /* NotificationServiceExtension */,
 				5DE6388B24AD769D002F6F6B /* Products */,
 				C0722F36693E71B7F21A33CA /* Pods */,
 				E8F61AC65C9BC9366987BE91 /* Frameworks */,
@@ -2868,6 +2944,7 @@
 				5DCC2E1424F34F04000AC40A /* Glance-P.app */,
 				5DCC2F6C24F34F2A000AC40A /* Glance.app */,
 				5D99EE51251843840008B45F /* Glance-Q.app */,
+				5D13687D255B91D70007F5CD /* NotificationServiceExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -2953,6 +3030,7 @@
 				5DBC3AA124C6A32C006B0032 /* OAuthManager.swift */,
 				5DC669E224D0068600FF1092 /* ImagePickerManager.swift */,
 				5D99EE53251859CA0008B45F /* PanelDefaultModalStyle.swift */,
+				5DE54CE7255CCA250010E303 /* PermissionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -3192,6 +3270,7 @@
 				5DEFF2C824AEC2F9007A2FCD /* LaunchScreen.storyboard */,
 				5DEFF2CA24AEC2F9007A2FCD /* Main.storyboard */,
 				5DEFF2CC24AEC2F9007A2FCD /* HomeTabBarController.swift */,
+				5DE54CE2255BC5C10010E303 /* HomeTabBarItem.swift */,
 				5DEFF2CD24AEC2F9007A2FCD /* CustomRAMBounceAnimation.swift */,
 				5DB1C79324C290690071A0E1 /* PublishPopView.swift */,
 				5DB1C79524C298F30071A0E1 /* PublishPopView.xib */,
@@ -3279,6 +3358,22 @@
 				4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */,
 				CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */,
 				BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */,
+				8D87B645BDD9FCAA3F3168A6 /* Pods-NotificationServiceExtension-Glance-Glance-D.debug.xcconfig */,
+				4F6D56D0E2063CD69B2C4E7E /* Pods-NotificationServiceExtension-Glance-Glance-D.release.xcconfig */,
+				8F1A8DAF9DCAA1FA27FF70E6 /* Pods-NotificationServiceExtension-Glance-Glance-P.debug.xcconfig */,
+				BA1245108544E2521576CD05 /* Pods-NotificationServiceExtension-Glance-Glance-P.release.xcconfig */,
+				098CFE0C1361403B65A43C03 /* Pods-NotificationServiceExtension-Glance-Glance-Q.debug.xcconfig */,
+				84C4AABE44BFCC74C50B9950 /* Pods-NotificationServiceExtension-Glance-Glance-Q.release.xcconfig */,
+				1D65A44A55CCAA0A1CC953AF /* Pods-NotificationServiceExtension-Glance-Glance-R.debug.xcconfig */,
+				BDB05C389B160FD914FCB8B1 /* Pods-NotificationServiceExtension-Glance-Glance-R.release.xcconfig */,
+				1CB842F7B89993A22EB58EBE /* Pods-Base-Glance-Glance-D.debug.xcconfig */,
+				330630CDBB9DB90DF7FE2F55 /* Pods-Base-Glance-Glance-D.release.xcconfig */,
+				709925849C163C46D2D43F4C /* Pods-Base-Glance-Glance-P.debug.xcconfig */,
+				1F9B481EBD264AED296F8B27 /* Pods-Base-Glance-Glance-P.release.xcconfig */,
+				207A019726A96F94C29F5520 /* Pods-Base-Glance-Glance-Q.debug.xcconfig */,
+				368550A9692C0BD08767AD49 /* Pods-Base-Glance-Glance-Q.release.xcconfig */,
+				3E36F2613393BAC512D384AE /* Pods-Base-Glance-Glance-R.debug.xcconfig */,
+				E3227AEB1FBFDD4475C5100F /* Pods-Base-Glance-Glance-R.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -3286,10 +3381,10 @@
 		E8F61AC65C9BC9366987BE91 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BEC61A1DA9CC62E4AB45AAC5 /* Pods_Glance_Glance_D.framework */,
-				1B401D1D1837872CD4D1017F /* Pods_Glance_Glance_P.framework */,
-				C3580B19C8154BCF0DFEB7A7 /* Pods_Glance_Glance_R.framework */,
-				DCDA5E5C1BCB262388E99BC4 /* Pods_Glance_Glance_Q.framework */,
+				9917FBBC0A086A83D02A8654 /* Pods_Base_Glance_Glance_D.framework */,
+				6EB1B2D2FBF008E121FB607D /* Pods_Base_Glance_Glance_P.framework */,
+				B460240CCD0FA32730B4E393 /* Pods_Base_Glance_Glance_Q.framework */,
+				08914663F7A22D0996C14492 /* Pods_Base_Glance_Glance_R.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -3297,6 +3392,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		5D13687C255B91D70007F5CD /* NotificationServiceExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5D136885255B91D70007F5CD /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */;
+			buildPhases = (
+				5D136879255B91D70007F5CD /* Sources */,
+				5D13687A255B91D70007F5CD /* Frameworks */,
+				5D13687B255B91D70007F5CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NotificationServiceExtension;
+			productName = NotificationServiceExtension;
+			productReference = 5D13687D255B91D70007F5CD /* NotificationServiceExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		5D99EC97251843840008B45F /* Glance-Q */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 5D99EE4E251843840008B45F /* Build configuration list for PBXNativeTarget "Glance-Q" */;
@@ -3327,10 +3439,12 @@
 				5DCC2DB424F34F04000AC40A /* Frameworks */,
 				5DCC2DB624F34F04000AC40A /* Resources */,
 				5DCC2E1024F34F04000AC40A /* [CP] Embed Pods Frameworks */,
+				5DE54CF3255D32B20010E303 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				5DE54CF2255D32B20010E303 /* PBXTargetDependency */,
 			);
 			name = "Glance-P";
 			productName = Glance;
@@ -3383,10 +3497,13 @@
 		5DE6388224AD769D002F6F6B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1140;
 				ORGANIZATIONNAME = yanghai;
 				TargetAttributes = {
+					5D13687C255B91D70007F5CD = {
+						CreatedOnToolsVersion = 11.3.1;
+					};
 					5DE6388924AD769D002F6F6B = {
 						CreatedOnToolsVersion = 11.4;
 					};
@@ -3406,15 +3523,23 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
+				5D99EC97251843840008B45F /* Glance-Q */,
 				5DE6388924AD769D002F6F6B /* Glance-D */,
 				5DCC2CBE24F34F04000AC40A /* Glance-P */,
 				5DCC2E1624F34F2A000AC40A /* Glance-R */,
-				5D99EC97251843840008B45F /* Glance-Q */,
+				5D13687C255B91D70007F5CD /* NotificationServiceExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		5D13687B255B91D70007F5CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D99EDDD251843840008B45F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3853,7 +3978,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-Q-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Base-Glance-Glance-Q-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3874,7 +3999,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3895,7 +4020,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-P-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Base-Glance-Glance-P-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3916,7 +4041,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3928,15 +4053,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-P/Pods-Base-Glance-Glance-P-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-P/Pods-Base-Glance-Glance-P-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-P/Pods-Glance-Glance-P-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-P/Pods-Base-Glance-Glance-P-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DCC2E1724F34F2A000AC40A /* [CP] Check Pods Manifest.lock */ = {
@@ -3954,7 +4079,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-R-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Base-Glance-Glance-R-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3975,7 +4100,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3987,15 +4112,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-R/Pods-Base-Glance-Glance-R-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-R/Pods-Base-Glance-Glance-R-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-R/Pods-Glance-Glance-R-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-R/Pods-Base-Glance-Glance-R-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5DEFF4E924AEC4AE007A2FCD /* R.Swift */ = {
@@ -4012,7 +4137,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				$SRCROOT/R.generated.swift,
+				"$SRCROOT/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4024,15 +4149,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-Q/Pods-Base-Glance-Glance-Q-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-Q/Pods-Base-Glance-Glance-Q-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-Q/Pods-Glance-Glance-Q-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-Q/Pods-Base-Glance-Glance-Q-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F27B27AC92E46EA4FE3BA0A0 /* [CP] Check Pods Manifest.lock */ = {
@@ -4050,7 +4175,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Glance-Glance-D-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Base-Glance-Glance-D-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -4063,20 +4188,28 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-D/Pods-Base-Glance-Glance-D-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-D/Pods-Base-Glance-Glance-D-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Glance-Glance-D/Pods-Glance-Glance-D-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Base-Glance-Glance-D/Pods-Base-Glance-Glance-D-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		5D136879255B91D70007F5CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5D136880255B91D70007F5CD /* NotificationService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		5D99EC9A251843840008B45F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -4274,6 +4407,7 @@
 				5D99ED51251843840008B45F /* NumberButton.swift in Sources */,
 				5D99ED52251843840008B45F /* Random-Extension.swift in Sources */,
 				5D99ED53251843840008B45F /* PostProductViewController.swift in Sources */,
+				5DE54CE3255BC5C10010E303 /* HomeTabBarItem.swift in Sources */,
 				5D99ED54251843840008B45F /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D72531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5D99ED55251843840008B45F /* StyleBoardSearchCellViewModel.swift in Sources */,
@@ -4386,6 +4520,7 @@
 				5D5C486925510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C32531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5D99EDB9251843840008B45F /* PostProductTagCellViewModel.swift in Sources */,
+				5DE54CE8255CCA250010E303 /* PermissionManager.swift in Sources */,
 				5D99EDBA251843840008B45F /* PostProductSectionCellViewModel.swift in Sources */,
 				5D99EDBB251843840008B45F /* PostProductCaptionReusableView.swift in Sources */,
 				5D99EDBC251843840008B45F /* ShoppingCartViewController.swift in Sources */,
@@ -4619,6 +4754,7 @@
 				5DCC2D5124F34F04000AC40A /* NumberButton.swift in Sources */,
 				5D2D0EA22509FEF800E9FD8D /* Random-Extension.swift in Sources */,
 				5DCC2D5224F34F04000AC40A /* PostProductViewController.swift in Sources */,
+				5DE54CE5255BC5C10010E303 /* HomeTabBarItem.swift in Sources */,
 				5DCC2D5324F34F04000AC40A /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D52531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DCC2D5424F34F04000AC40A /* StyleBoardSearchCellViewModel.swift in Sources */,
@@ -4731,6 +4867,7 @@
 				5D5C486725510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C12531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5DCC2D9824F34F04000AC40A /* PostProductTagCellViewModel.swift in Sources */,
+				5DE54CEA255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5DCC2D9924F34F04000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
 				5DCC2D9A24F34F04000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2D9B24F34F04000AC40A /* ShoppingCartViewController.swift in Sources */,
@@ -4964,6 +5101,7 @@
 				5DCC2EA924F34F2A000AC40A /* NumberButton.swift in Sources */,
 				5D2D0EA32509FEF800E9FD8D /* Random-Extension.swift in Sources */,
 				5DCC2EAA24F34F2A000AC40A /* PostProductViewController.swift in Sources */,
+				5DE54CE6255BC5C10010E303 /* HomeTabBarItem.swift in Sources */,
 				5DCC2EAB24F34F2A000AC40A /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D62531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DCC2EAC24F34F2A000AC40A /* StyleBoardSearchCellViewModel.swift in Sources */,
@@ -5076,6 +5214,7 @@
 				5D5C486825510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C22531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5DCC2EF024F34F2A000AC40A /* PostProductTagCellViewModel.swift in Sources */,
+				5DE54CEB255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5DCC2EF124F34F2A000AC40A /* PostProductSectionCellViewModel.swift in Sources */,
 				5DCC2EF224F34F2A000AC40A /* PostProductCaptionReusableView.swift in Sources */,
 				5DCC2EF324F34F2A000AC40A /* ShoppingCartViewController.swift in Sources */,
@@ -5309,6 +5448,7 @@
 				5DEFF35E24AEC2F9007A2FCD /* NumberButton.swift in Sources */,
 				5D2D0EA12509FEF800E9FD8D /* Random-Extension.swift in Sources */,
 				5D6FEA7924DC019C0062F90B /* PostProductViewController.swift in Sources */,
+				5DE54CE4255BC5C10010E303 /* HomeTabBarItem.swift in Sources */,
 				5DC3131924E3F1F900CC3F89 /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D42531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DC3131F24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift in Sources */,
@@ -5421,6 +5561,7 @@
 				5D5C486625510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
 				5DD370C02531983A00A42A16 /* InsightsLikeCellViewModel.swift in Sources */,
 				5D6FEAA624DC03090062F90B /* PostProductTagCellViewModel.swift in Sources */,
+				5DE54CE9255CCA260010E303 /* PermissionManager.swift in Sources */,
 				5D6FEA9724DC03090062F90B /* PostProductSectionCellViewModel.swift in Sources */,
 				5D6FEA9F24DC03090062F90B /* PostProductCaptionReusableView.swift in Sources */,
 				5DB1C79A24C2DCED0071A0E1 /* ShoppingCartViewController.swift in Sources */,
@@ -5459,6 +5600,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		5DE54CF2255D32B20010E303 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 5D13687C255B91D70007F5CD /* NotificationServiceExtension */;
+			targetProxy = 5DE54CF1255D32B20010E303 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		5DEFF10124AEC2F8007A2FCD /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -5487,16 +5636,62 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		5D136886255B91D70007F5CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F345KXCVNH;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p.NotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5D136887255B91D70007F5CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = F345KXCVNH;
+				INFOPLIST_FILE = NotificationServiceExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p.NotificationServiceExtension";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
 		5D99EE4F251843840008B45F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CB640771D9E873ABC1271A58 /* Pods-Glance-Glance-Q.debug.xcconfig */;
+			baseConfigurationReference = 207A019726A96F94C29F5520 /* Pods-Base-Glance-Glance-Q.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5505,7 +5700,7 @@
 				OTHER_SWIFT_FLAGS = "-D FAST_TEST $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Glance_test_developement;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5514,14 +5709,16 @@
 		};
 		5D99EE50251843840008B45F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BA002FDA352B6B941228F580 /* Pods-Glance-Glance-Q.release.xcconfig */;
+			baseConfigurationReference = 368550A9692C0BD08767AD49 /* Pods-Base-Glance-Glance-Q.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-Q-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5539,21 +5736,23 @@
 		};
 		5DCC2E1224F34F04000AC40A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2CB3308894F93351E64F8137 /* Pods-Glance-Glance-P.debug.xcconfig */;
+			baseConfigurationReference = 709925849C163C46D2D43F4C /* Pods-Base-Glance-Glance-P.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Glance-P.entitlements";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 33;
-				DEVELOPMENT_TEAM = DH49J443V3;
+				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
 				OTHER_SWIFT_FLAGS = "-D PREVIEW $(inherited) -D COCOAPODS";
-				PRODUCT_BUNDLE_IDENTIFIER = com.beliasdasd.asdasdkh123;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-p";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
@@ -5564,14 +5763,16 @@
 		};
 		5DCC2E1324F34F04000AC40A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A71B50C162FAC6F93F3804B7 /* Pods-Glance-Glance-P.release.xcconfig */;
+			baseConfigurationReference = 1F9B481EBD264AED296F8B27 /* Pods-Base-Glance-Glance-P.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Glance-P.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5589,13 +5790,15 @@
 		};
 		5DCC2F6A24F34F2A000AC40A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF4BF52697A998DF2686A953 /* Pods-Glance-Glance-R.debug.xcconfig */;
+			baseConfigurationReference = 3E36F2613393BAC512D384AE /* Pods-Base-Glance-Glance-R.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_ENTITLEMENTS = Glance.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-R-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5604,7 +5807,7 @@
 				OTHER_SWIFT_FLAGS = "-D RELEASE $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = com.belive.glance;
 				PRODUCT_NAME = Glance;
-				PROVISIONING_PROFILE_SPECIFIER = Glance_stg_new_developement;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5613,13 +5816,15 @@
 		};
 		5DCC2F6B24F34F2A000AC40A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2263E6F61EECD16845E74C9E /* Pods-Glance-Glance-R.release.xcconfig */;
+			baseConfigurationReference = E3227AEB1FBFDD4475C5100F /* Pods-Base-Glance-Glance-R.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Glance.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-R-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5753,14 +5958,16 @@
 		};
 		5DE6389F24AD769F002F6F6B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7B237AE3A03897BD10DC25B7 /* Pods-Glance-Glance-D.debug.xcconfig */;
+			baseConfigurationReference = 1CB842F7B89993A22EB58EBE /* Pods-Base-Glance-Glance-D.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development: Kim Hui Lim (T49J9EHVE4)";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5769,7 +5976,7 @@
 				OTHER_SWIFT_FLAGS = "-D DEVELOP $(inherited) -D COCOAPODS";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.belive.glance-d";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = Glance_test_developement;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Glance/Resources/Glance-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -5778,14 +5985,16 @@
 		};
 		5DE638A024AD769F002F6F6B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4F8C4228EAF6881E49818082 /* Pods-Glance-Glance-D.release.xcconfig */;
+			baseConfigurationReference = 330630CDBB9DB90DF7FE2F55 /* Pods-Base-Glance-Glance-D.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 33;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -5804,6 +6013,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		5D136885255B91D70007F5CD /* Build configuration list for PBXNativeTarget "NotificationServiceExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5D136886255B91D70007F5CD /* Debug */,
+				5D136887255B91D70007F5CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		5D99EE4E251843840008B45F /* Build configuration list for PBXNativeTarget "Glance-Q" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

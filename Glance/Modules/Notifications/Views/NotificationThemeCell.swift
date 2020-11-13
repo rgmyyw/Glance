@@ -26,6 +26,7 @@ class NotificationThemeCell: NotificationCell {
     override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
         super.bind(to: viewModel)
         
+        imageViews.tapGesture().map { viewModel.item.themeImages[$0].int}.filterNil().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
         viewModel.theme.bind(to: themeLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)

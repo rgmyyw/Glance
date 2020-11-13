@@ -62,6 +62,17 @@ class NotificationViewController: TableViewController {
         let output = viewModel.transform(input: input)
         
         output.items.drive(tableView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
+        
+        output.userDetail.drive(onNext: { [weak self](user) in
+            let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: user)
+            self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+        
+        output.themeDetail.drive(onNext: { [weak self](themeId) in
+            let viewModel = SearchThemeViewModel(provider: viewModel.provider, themeId: themeId)
+            self?.navigator.show(segue: .searchTheme(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
     }
     
 }
@@ -69,22 +80,23 @@ class NotificationViewController: TableViewController {
 extension NotificationViewController : SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
-        
-        let delete = SwipeAction(style: .destructive, title: "Delete", handler: nil)
+                
+        let delete = SwipeAction(style: .default, title: "Delete", handler: { [weak self] _, indexPath in
+            self?.dataSouce[indexPath.section].items[indexPath.row]
+                .viewModel.delete.onNext(())
+        })
         delete.hidesWhenSelected = true
         delete.font = UIFont.titleBoldFont(14)
         delete.backgroundColor = UIColor.primary()
         delete.textColor = UIColor.white
         
-        
         return [delete]
     }
     func tableView(_ tableView: UITableView, editActionsOptionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> SwipeOptions {
         var options = SwipeOptions()
-        options.expansionStyle = orientation == .left ? .selection : .destructive
+        options.expansionStyle = orientation == .left ? .selection : nil
         options.transitionStyle = .border
-        options.minimumButtonWidth = 65
-        
+        options.minimumButtonWidth = 75
         options.buttonSpacing = 4
         options.backgroundColor = .clear
         return options

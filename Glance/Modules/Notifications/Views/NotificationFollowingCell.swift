@@ -35,7 +35,9 @@ class NotificationFollowingCell: NotificationCell {
         viewModel.following.bind(to: followButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
+        userImageView.rx.tap().bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
         followButton.rx.tap.bind(to: viewModel.follow).disposed(by: cellDisposeBag)
+        
     }
     
 }

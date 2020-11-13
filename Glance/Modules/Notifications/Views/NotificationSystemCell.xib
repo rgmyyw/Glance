@@ -77,9 +77,9 @@
             <connections>
                 <outlet property="containerView" destination="Xtz-vM-Sib" id="oBH-TX-tp6"/>
                 <outlet property="descriptionLabel" destination="ZJz-h0-mlL" id="e6H-wB-Vfh"/>
+                <outlet property="postImageView" destination="CDK-DO-sL1" id="9JU-Ao-3EC"/>
                 <outlet property="timeLabel" destination="Ree-Ds-5P6" id="q35-s1-0iy"/>
                 <outlet property="unreadImageView" destination="GU1-tN-wwt" id="eZn-Nz-2sY"/>
-                <outlet property="userImageView" destination="CDK-DO-sL1" id="8Tl-Vf-lDr"/>
             </connections>
             <point key="canvasLocation" x="-1427" y="-362"/>
         </tableViewCell>
