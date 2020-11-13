@@ -31,7 +31,7 @@ class SearchResultViewController: ViewController {
         config.wMenuIndicatorColor = UIColor.primary()
         config.wMenuIndicatorWidth = 20
         config.wMenuIndicatorHeight = 4
-        config.wMenuAnimalTitleBig = true
+        //config.wMenuAnimalTitleBig = true
         config.wMenuIndicatorRadio = 2
         config.wScrollCanTransfer = true
         config.wMenuCellMargin = 15

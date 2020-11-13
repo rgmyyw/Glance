@@ -31,7 +31,7 @@ class SearchThemeLabelViewController: ViewController {
         config.wMenuIndicatorWidth = 20
         config.wMenuIndicatorHeight = 4
         config.wMenuHeadView = { self.headView }
-        config.wMenuAnimalTitleBig = true
+        //config.wMenuAnimalTitleBig = true
         config.wMenuIndicatorRadio = 2
         config.wScrollCanTransfer = true
         config.wMenuCellMargin = 15

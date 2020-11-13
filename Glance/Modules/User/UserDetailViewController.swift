@@ -195,7 +195,7 @@ class UserDetailViewController: ViewController {
         output.titles.drive(onNext: {[weak self] (titles) in
             self?.pageController.param.wTitleArr = titles
             let items = self?.pageController.upSc.btnArr as? [Any] ?? []
-            self?.pageController.param.wCustomMenuTitle(items)
+            self?.pageController.param.wCustomMenuTitle(items as? [WMZPageNaviBtn])
                 
         }).disposed(by: rx.disposeBag)
         
