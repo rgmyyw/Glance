@@ -37,7 +37,7 @@ final class Application: NSObject {
         guard let window = window, let provider = provider else { return }
         self.window = window
         #if FAST_TEST
-        presentDemoScreen(in: window)
+        presentTestScreen(in: window)
         #else
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if loggedIn.value {
@@ -74,23 +74,18 @@ final class Application: NSObject {
     
     
     func presentTestScreen(in window: UIWindow?) {
-        //guard let window = window, let provider = provider else { return }
-    }
-    
-    func presentDemoScreen(in window: UIWindow?) {
         guard let window = window, let provider = provider else { return }
         let viewModel = DemoViewModel(provider : provider)
         self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
-        
-    }
 
+    }
 }
 
 
 extension Application {
     
     static func isFirstLaunch() -> Bool {
-        let hasBeenLaunched = "hasBeenLaunched"
+        let hasBeenLaunched = Configs.UserDefaultsKeys.firstLaunch
         let isFirstLaunch = !UserDefaults.standard.bool(forKey: hasBeenLaunched)
         if isFirstLaunch {
             UserDefaults.standard.set(true, forKey: hasBeenLaunched)
