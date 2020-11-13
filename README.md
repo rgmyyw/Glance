@@ -106,6 +106,17 @@ command + R
 `beliveforlife432`
 `glance0315@!`
 
+##  Other
+
+- 去除控制台coretelephony 打印
+
+```
+[Client] Synchronous remote object proxy returned error: Error Domain=NSCocoaErrorDomain Code=4099 "The connection to service on pid 0 named com.apple.commcenter.coretelephony.xpc was invalidated." UserInfo={NSDebugDescription=The connection to service on pid 0 named com.apple.commcenter.coretelephony.xpc was invalidated.}
+```
+
+```bash
+xcrun simctl spawn booted log config --mode "level:off"  --subsystem com.apple.CoreTelephony
+```
 
 ### Email 
 - 账号:  ``
