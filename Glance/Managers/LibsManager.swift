@@ -25,10 +25,7 @@ import SwifterSwift
 import SwiftDate
 import DropDown
 import Toast_Swift
-
-
-
-
+import OneSignal
 
 typealias DropDownView = DropDown
 
@@ -41,7 +38,10 @@ class LibsManager: NSObject {
 
     }
 
-    func setupLibs(with window: UIWindow? = nil) {
+    func setupLibs(with window: UIWindow? = nil,launchOptions : [UIApplication.LaunchOptionsKey: Any]?) {
+        
+        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
+        
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
         libsManager.setupTheme()
@@ -51,8 +51,8 @@ class LibsManager: NSObject {
         libsManager.setupDropDown()
         libsManager.setupToast()
         libsManager.setupPgyer()
-
-        OAuthManager.shared.readLocal(isForce: true)
+        libsManager.setupOneSignal(launchOptions: launchOptions ?? [:])
+        _ = OAuthManager.shared
     }
 
     func setupTheme() {
@@ -74,16 +74,6 @@ class LibsManager: NSObject {
         if #available(iOS 11.0, *) {
             DropDown.appearance().setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         }
-        
-        
-        
-//        tableViewContainer.layer.masksToBounds = false
-//        tableViewContainer.layer.cornerRadius = cornerRadius
-//        tableViewContainer.layer.shadowColor = shadowColor.cgColor
-//        tableViewContainer.layer.shadowOffset = shadowOffset
-//        tableViewContainer.layer.shadowOpacity = shadowOpacity
-//        tableViewContainer.layer.shadowRadius = shadowRadius
-
         themeService.attrsStream.subscribe(onNext: { (theme) in
             DropDown.appearance().backgroundColor = .white
             DropDown.appearance().selectionBackgroundColor = UIColor.white
@@ -153,7 +143,6 @@ class LibsManager: NSObject {
     }
     
     func setupPgyer() {
-
 //        PgyManager.shared()?.start(withAppId: "322e4c9240c6f00d596aa436014eb63a")
 //
 //        #if DEBUG
@@ -167,6 +156,26 @@ class LibsManager: NSObject {
 
     }
     
+    func setupOneSignal(launchOptions : [UIApplication.LaunchOptionsKey: Any])  {
+        #if DEBUG
+        OneSignal.setLogLevel(.LL_VERBOSE, visualLevel: .LL_NONE)
+        #endif
+        let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false,
+                                     kOSSettingsKeyInAppLaunchURL: false]
+        
+        let handleNotificationAction : OSHandleNotificationActionBlock = { element  in
+            
+            print(element.debugDescription)
+        }
+        
+        OneSignal.initWithLaunchOptions(launchOptions,
+          appId: "3266c49d-8639-4aa8-b7fd-acf1f6dd714e",
+          handleNotificationAction: handleNotificationAction,
+          settings: onesignalInitSettings)
+        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+
+    }
 
 }
 
