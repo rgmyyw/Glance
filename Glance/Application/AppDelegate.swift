@@ -21,12 +21,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        UserDefaults.standard.setValue(false, forKey: "_UIConstraintBasedLayoutLogUnsatisfiable")
-        
-        
+            
         let libsManager = LibsManager.shared
-        libsManager.setupLibs(with: window)
+        libsManager.setupLibs(with: window, launchOptions: launchOptions)
         AppearanceManager.shared.setup()
         Application.shared.presentInitialScreen(in: window)
         
