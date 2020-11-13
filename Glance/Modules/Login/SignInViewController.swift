@@ -48,6 +48,11 @@ class SignInViewController: ViewController {
             Application.shared.showInterest(provider: viewModel.provider, window: window)
         }).disposed(by: rx.disposeBag)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if Application.isFirstLaunch() {
+                PermissionManager.shared.requestPermissions()
+            }
+        }
     }
     
     

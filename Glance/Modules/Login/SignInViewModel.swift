@@ -67,6 +67,9 @@ class SignInViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
+        
+        
+        
 
         return Output(instagramOAuth: instagramOAuth,
                       tabbar: tabbar.asDriver(onErrorJustReturn: ()),
