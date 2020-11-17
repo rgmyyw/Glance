@@ -67,9 +67,11 @@ final class Application: NSObject {
     }
     
     func logout() {
-        User.removeCurrentUser()
-        AuthManager.removeToken()
-        Application.shared.presentInitialScreen(in: Application.shared.window)
+        if let root = window?.rootViewController, !(root.isKind(of: SignInViewController.self)),loggedIn.value {
+            User.removeCurrentUser()
+            AuthManager.removeToken()
+            Application.shared.presentInitialScreen(in: Application.shared.window)
+        }
     }
     
     
