@@ -34,13 +34,14 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
     @IBOutlet weak var containerView: UIView!
     @IBAction func click() {
         
-        guard let provider = self.viewModel?.provider else {
-            return
-        }
+//        guard let provider = self.viewModel?.provider else {
+//            return
+//        }
         
         
         
 //        let person = Person(name: "xioazhang", age: 10)
+        
         
 //        // 将指向person对象内存地址的指针转成指向PersonStruct结构体的指针，实则还是指向同一个内存地址
 //        var pStructPointer = Unmanaged.passUnretained(person).toOpaque()
@@ -72,7 +73,9 @@ class DemoViewController: ViewController , FloatingPanelControllerDelegate {
         
 //        let viewModel = StyleBoardViewModel(provider: provider)
 //        self.navigator.show(segue: .styleBoard(viewModel: viewModel), sender: self)
-                        
+                
+                
+        
 //        let viewModel = StyleBoardSearchViewModel(provider: provider)
 //        self.navigator.show(segue: .styleBoardSearch(viewModel: viewModel), sender: self)
 

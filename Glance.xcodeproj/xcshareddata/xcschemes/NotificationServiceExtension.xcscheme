@@ -45,9 +45,9 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5DCC2CBE24F34F04000AC40A"
-            BuildableName = "Glance-P.app"
-            BlueprintName = "Glance-P"
+            BlueprintIdentifier = "5DCC2E1624F34F2A000AC40A"
+            BuildableName = "Glance.app"
+            BlueprintName = "Glance-R"
             ReferencedContainer = "container:Glance.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

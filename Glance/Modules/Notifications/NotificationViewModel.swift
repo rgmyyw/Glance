@@ -122,7 +122,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
 
     
-        element.accept(PageMapable<Notification>.init(hasNext: false, items: (0..<20).map { _ in Notification()}))
+        element.accept(PageMapable<Notification>.init(hasNext: false, items: (0..<1).map { _ in Notification()}))
 
         element.filterNil().map { items -> [NotificationSection] in
             return [NotificationSection.noti(items:items.list.map { item -> NotificationSectionItem  in
