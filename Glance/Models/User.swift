@@ -68,7 +68,8 @@ extension User {
     func save() {
         user.accept(self)
         if let json = self.toJSONString() {
-            keychain[userKey] = json
+            UserDefaults.standard.setValue(json, forKey: userKey)
+            //keychain[userKey] = json
             
         } else {
             logError("User can't be saved")
@@ -76,7 +77,10 @@ extension User {
     }
 
     static func currentUser() -> User? {
-        if let json = keychain[userKey], let user = User(JSONString: json) {
+        
+        let json = UserDefaults.standard.string(forKey: userKey)
+        //let json = keychain[userKey]
+        if let json = json, let user = User(JSONString: json) {
             return user
         }
         return nil
