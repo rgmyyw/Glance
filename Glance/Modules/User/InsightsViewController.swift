@@ -73,7 +73,7 @@ extension InsightsViewController {
         config.wMenuIndicatorHeight = 2
         config.titleHeight = 44
         config.wCustomMenuTitle = { titleButtons in
-            guard let buttons = titleButtons as? [WMZPageNaviBtn] else { return }
+            guard let buttons = titleButtons else { return }
             buttons.forEach {
                 let title = $0.titleLabel?.text ?? ""
                 let normaltitle = NSMutableAttributedString(string: title,attributes: [.foregroundColor: UIColor(hex:0xCCCCCC)!,.font : UIFont.titleBoldFont(15)])

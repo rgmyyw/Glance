@@ -171,7 +171,8 @@ class UserDetailViewModel: ViewModel, ViewModelType {
             return Disposables.create { }
         }
         
-        logout.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
+        logout.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.logout()
                 .trackError(self.error)

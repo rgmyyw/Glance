@@ -225,6 +225,7 @@ class UserDetailViewController: ViewController {
             Application.shared.logout()
         }).disposed(by: rx.disposeBag)
         
+        
         output.insight.drive(onNext: { [weak self]() in
             let viewModel = InsightsViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
