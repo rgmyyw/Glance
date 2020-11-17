@@ -58,9 +58,9 @@ class OAuthManager : NSObject {
                 guard let accessToken = accessToken else {
                     let view = UIApplication.shared.keyWindow
                     view?.makeToast(error?.localizedDescription ?? "",position: .center, title: nil,style: .init())
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
-                        Application.shared.logout()
-                    }
+                    //DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                        //Application.shared.logout()
+                    //}
                     return
                 }
                 AuthManager.setToken(token: Token(basicToken: accessToken))
