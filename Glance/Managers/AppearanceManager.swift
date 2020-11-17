@@ -15,29 +15,25 @@ class AppearanceManager {
         
     func setup() {
         
-        UITextField.appearance().clearButtonMode = .whileEditing
-        themeService.rx.bind( {$0.primary }, to: UITextField.appearance().rx.tintColor)
+        let textField = UITextField.appearance()
+        textField.clearButtonMode = .whileEditing
+        themeService.rx.bind( {$0.primary }, to: textField.rx.tintColor)
         
-        UITabBar.appearance().backgroundImage = UIImage()
-        UITabBar.appearance().shadowImage = UIImage()
-        
-        UITableView.appearance().separatorStyle = .none
-        
-        
-        UINavigationBar.appearance().tintColor = UIColor.white
-        UINavigationBar.appearance().barTintColor = UIColor.white
-        
-        
-        
-        
-        UINavigationBar.appearance()
-        
-        //            themeService.rx
-        //                .bind({ $0.global }, to: navigationBar.rx.tintColor)
-        //                .bind({ $0.global }, to: navigationBar.rx.barTintColor)
-        //                .bind({ [NSAttributedString.Key.foregroundColor: $0.text, NSAttributedString.Key.font : UIFont.titleFont(18)] }, to: navigationBar.rx.titleTextAttributes)
-        //                .disposed(by: rx.disposeBag)
+        let textView = UITextView.appearance()
+        themeService.rx.bind( {$0.primary }, to: textView.rx.tintColor)
 
+        
+        let tabbar = UITabBar.appearance()
+        tabbar.backgroundImage = UIImage()
+        tabbar.shadowImage = UIImage()
+        
+        let tableView = UITableView.appearance()
+        tableView.separatorStyle = .none
+            
+        let navigationBar = UINavigationBar.appearance()
+        navigationBar.tintColor = UIColor.white
+        navigationBar.barTintColor = navigationBar.tintColor
+                
     }
     
     
