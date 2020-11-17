@@ -42,7 +42,7 @@ class ViewController: UIViewController, Navigatable, NVActivityIndicatorViewable
     public var canOpenFlex = true
     
     public let endEditing = PublishSubject<Void>()
-    private(set) public lazy var emptyDataView = EmptyDataView.loadFromNib()
+    private(set) public lazy var emptyDataView = EmptyDataView.loadFromNib(height: stackView.bounds.height, width: stackView.bounds.width)
     public let emptyDataSource : EmptyDataViewModel = EmptyDataViewModel()
     
     
@@ -369,7 +369,6 @@ extension ViewController: DZNEmptyDataSetDelegate {
     }
     
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
-        
         return !isLoading.value
     }
     
