@@ -70,11 +70,6 @@ Login for free.</string>
                 <constraint firstItem="DXS-d2-7kt" firstAttribute="leading" secondItem="d43-eI-gSo" secondAttribute="leading" id="fi8-Gk-2eF"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <userDefinedRuntimeAttributes>
-                <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                    <real key="value" value="10"/>
-                </userDefinedRuntimeAttribute>
-            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="-314.49275362318843" y="178.125"/>
         </view>
     </objects>
