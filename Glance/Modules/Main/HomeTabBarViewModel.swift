@@ -11,9 +11,6 @@ import RxCocoa
 import RxSwift
 import AppAuth
 
-public let needSignUp = PublishSubject<Void>()
-
-
 class HomeTabBarViewModel: ViewModel, ViewModelType {
     
         
