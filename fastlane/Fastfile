@@ -12,9 +12,6 @@
 
 # Uncomment the line if you want fastlane to automatically update itself
 
-# 自动更新 fastlane
-# update_fastlane
-fastlane_version "2.159.0"
 
 default_platform(:ios)
 
@@ -36,30 +33,28 @@ platform :ios do
     deliver
     review_time(platform: "iOS")
   end
-
-  desc "导出发布版iPA"
-  lane :export_IPA do
-    gym(scheme: ENV['SCHEME_NAME'],
-      silent: true,  
-      export_method:"app-store",
-      buildlog_path:"fastlanelog",
-      output_directory:"build",
-      clean: true 
-    )
-
-
-  end
-
-  desc "导出开发环境iPA"
+  
+  
+  
+  desc "Export an ad_hoc file to local"
   lane :export_Ad_Hoc_IPA do
+    increment_build_number(xcodeproj: 'Glance.xcodeproj')
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
       export_method:"ad-hoc",
-      buildlog_path:"fastlanelog",
-      output_directory:"build",
-      clean: true  
-    )
-    
+      buildlog_path:"./fastlanelog",
+      output_directory:"./build",
+      clean: true ,
+      skip_profile_detection: true,
+      export_options: {
+        provisioningProfiles: {
+          ENV['APP_IDENTIFIER']=>ENV['APP_PROVISIONING_ADHOC_NAME'],
+          ENV['PUSH_SERVICE_IDENTIFIER']=>ENV['PUSH_SERVICE_PROVISIONING_ADHOC_NAME']
+      }
+    })
+    sh 'open ../build'
+    sh 'ios-ipa-server ../build'
+    notification(subtitle: "导出完成", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
   end
 
   desc "获取开发证书和配置文件"
@@ -70,7 +65,6 @@ platform :ios do
       git_branch: "glance",
       type: 'appstore',
       #readonly: 'true',
-      profile_name: 'Glance_test_appstore',
       verbose: true
     )
   end
@@ -85,18 +79,22 @@ platform :ios do
       scheme: ENV['SCHEME_NAME'],
       export_method:'app-store',
       include_bitcode: false,
-      buildlog_path:"fastlanelog",
-      output_directory:"build",
+      buildlog_path:"./fastlanelog",
+      output_directory:"./build",
+      skip_profile_detection: true,
       export_options: {
-      provisioningProfiles: {
-        "com.belive.glance-p"=>"Glance_prerelease_appstore"
+        provisioningProfiles: {
+            ENV['APP_IDENTIFIER']=>ENV['APP_PROVISIONING_PRODUCTION_NAME'],
+            ENV['PUSH_SERVICE_IDENTIFIER']=>ENV['PUSH_SERVICE_PROVISIONING_PRODUCTION_NAME']
       }
     })
-    upload_to_testflight(
-      skip_waiting_for_build_processing: false)
-
+    upload_to_testflight(skip_waiting_for_build_processing: false)
+    notification(subtitle: "上传完成", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
   end
 
 
 
 end
+
+
+
