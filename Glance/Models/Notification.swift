@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 
-struct Notification: Mappable {
+struct Notice: Mappable {
 
     var read: Bool = false
     var time: Date? = Date()
@@ -18,7 +18,7 @@ struct Notification: Mappable {
     var title: String?
     var notificationId: Int = 0
     var user: User?
-    var type: NotificationType?
+    var type: NoticeType?
     var reaction : ReactionType?
     var theme : String?
     var description : String?
@@ -36,7 +36,7 @@ struct Notification: Mappable {
         
         read = Bool.random()
         time = Date.random(in: Date(milliseconds: 1602229073)...Date())
-        type = NotificationType(rawValue: Int.random(in: 0...6))
+        type = NoticeType(rawValue: Int.random(in: 0...6))
         image = "https://dss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=1141259048,554497535&fm=26&gp=0.jpg"
         reaction = ReactionType.haha
         theme = "#\(String.random(ofLength: Int.random(in: 5...10)))"

@@ -10,19 +10,6 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-enum InsightsRelationType  {
-    case liked, recommend
-    
-    var navigationTitle : String {
-        switch self {
-        case .liked:
-            return "Likes By"
-        case .recommend:
-            return "Recommends By"
-        }
-    }
-}
-
 
 class InsightsRelationViewModel: ViewModel, ViewModelType {
     

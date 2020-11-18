@@ -11,28 +11,28 @@ import RxSwift
 import RxCocoa
 
 
-class NotificationViewModel: ViewModel, ViewModelType {
+class NoticeViewModel: ViewModel, ViewModelType {
         
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<NotificationSectionItem>
+        let selection : Observable<NoticeSectionItem>
         let clear : Observable<Void>
     }
 
     struct Output {
-        let items : Driver<[NotificationSection]>
+        let items : Driver<[NoticeSection]>
         let userDetail : Driver<User>
         let themeDetail : Driver<Int>
     }
     
-    let element : BehaviorRelay<PageMapable<Notification>?> = BehaviorRelay(value: nil)
+    let element : BehaviorRelay<PageMapable<Notice>?> = BehaviorRelay(value: nil)
 
     func transform(input: Input) -> Output {
         
-        let elements = BehaviorRelay<[NotificationSection]>(value: [])
-        let follow = PublishSubject<NotificationCellViewModel>()
-        let delete = PublishSubject<NotificationCellViewModel>()
+        let elements = BehaviorRelay<[NoticeSection]>(value: [])
+        let follow = PublishSubject<NoticeCellViewModel>()
+        let delete = PublishSubject<NoticeCellViewModel>()
         let postDetail = PublishSubject<DefaultColltionItem>()
         let userDetail = PublishSubject<User>()
         let themeDetail = PublishSubject<Int>()
@@ -43,7 +43,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         input.headerRefresh
-            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Notification>>)> in
+            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<Notice>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
@@ -71,7 +71,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
             }).disposed(by: rx.disposeBag)
         
         
-        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Notification>>> in
+        input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Notice>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
@@ -102,7 +102,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
         
         
-        follow.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, NotificationCellViewModel)>> in
+        follow.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, NoticeCellViewModel)>> in
             guard let self = self else { return Observable.just(.completed) }
             let isFollow = cellViewModel.following.value
             let userId = cellViewModel.item.user?.userId ?? ""
@@ -122,11 +122,11 @@ class NotificationViewModel: ViewModel, ViewModelType {
         }).disposed(by: rx.disposeBag)
 
     
-        element.accept(PageMapable<Notification>.init(hasNext: false, items: (0..<1).map { _ in Notification()}))
+        element.accept(PageMapable<Notice>.init(hasNext: false, items: (0..<1).map { _ in Notice()}))
 
-        element.filterNil().map { items -> [NotificationSection] in
-            return [NotificationSection.noti(items:items.list.map { item -> NotificationSectionItem  in
-                let viewModel = NotificationCellViewModel(item: item)
+        element.filterNil().map { items -> [NoticeSection] in
+            return [NoticeSection.noti(items:items.list.map { item -> NoticeSectionItem  in
+                let viewModel = NoticeCellViewModel(item: item)
                 viewModel.follow.map { viewModel }.bind(to: follow).disposed(by: self.rx.disposeBag)
                 viewModel.delete.map { viewModel }.bind(to: delete).disposed(by: self.rx.disposeBag)
                 viewModel.themeDetail.bind(to: themeDetail).disposed(by: self.rx.disposeBag)
@@ -139,7 +139,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
         }.bind(to: elements).disposed(by: rx.disposeBag)
         
         
-        delete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, NotificationCellViewModel)>> in
+        delete.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, NoticeCellViewModel)>> in
             guard let self = self else { return Observable.just(.completed) }
             let isFollow = cellViewModel.following.value
             let userId = cellViewModel.item.user?.userId ?? ""
@@ -159,7 +159,7 @@ class NotificationViewModel: ViewModel, ViewModelType {
                     if let index = index {
                         items.remove(at: index)
                     }
-                    elements.accept([NotificationSection.init(original: element, items: items)])
+                    elements.accept([NoticeSection.init(original: element, items: items)])
                 }
             default:
                 break

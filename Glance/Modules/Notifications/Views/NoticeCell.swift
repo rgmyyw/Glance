@@ -12,7 +12,7 @@ import RxCocoa
 import SwipeCellKit
 
 
-class NotificationCell: SwipeTableViewCell {
+class NoticeCell: SwipeTableViewCell {
 
     public var cellDisposeBag : DisposeBag!
     public let bgView : UIView = UIView()
@@ -64,7 +64,7 @@ class NotificationCell: SwipeTableViewCell {
 
     
     
-    func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+    func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
         cellDisposeBag = DisposeBag()
     }
     

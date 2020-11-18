@@ -1,5 +1,5 @@
 //
-//  NotificationSection.swift
+//  NoticeSection.swift
 //  Glance-D
 //
 //  Created by yanghai on 2020/11/5.
@@ -11,7 +11,7 @@ import RxDataSources
 import Differentiator
 
 
-enum NotificationType : Int {
+enum NoticeType : Int {
     case following = 0
     case liked = 1
     case recommended = 2
@@ -22,24 +22,24 @@ enum NotificationType : Int {
 }
 
 
-enum NotificationSection : AnimatableSectionModelType,IdentifiableType {
+enum NoticeSection : AnimatableSectionModelType,IdentifiableType {
     
     
     typealias Identity = String
-    typealias Item = NotificationSectionItem
+    typealias Item = NoticeSectionItem
     
     var identity: String {
         return "noti"
     }
     
-    var items: [NotificationSectionItem] {
+    var items: [NoticeSectionItem] {
         switch  self {
         case .noti(let items):
             return items.map { $0 }
         }
     }
     
-    init(original: NotificationSection, items: [Item]) {
+    init(original: NoticeSection, items: [Item]) {
         switch original {
         case .noti(let items):
             self = .noti(items: items)
@@ -47,23 +47,23 @@ enum NotificationSection : AnimatableSectionModelType,IdentifiableType {
     }
 
     
-    case noti(items : [NotificationSectionItem])
+    case noti(items : [NoticeSectionItem])
 }
 
 
 
-enum NotificationSectionItem {
+enum NoticeSectionItem {
 
-    case following(viewModel: NotificationCellViewModel)
-    case liked(viewModel: NotificationCellViewModel)
-    case recommended(viewModel: NotificationCellViewModel)
-    case reacted(viewModel: NotificationCellViewModel)
-    case mightLike(viewModel: NotificationCellViewModel)
-    case system(viewModel: NotificationCellViewModel)
-    case theme(viewModel: NotificationCellViewModel)
+    case following(viewModel: NoticeCellViewModel)
+    case liked(viewModel: NoticeCellViewModel)
+    case recommended(viewModel: NoticeCellViewModel)
+    case reacted(viewModel: NoticeCellViewModel)
+    case mightLike(viewModel: NoticeCellViewModel)
+    case system(viewModel: NoticeCellViewModel)
+    case theme(viewModel: NoticeCellViewModel)
     
 
-    var viewModel : NotificationCellViewModel {
+    var viewModel : NoticeCellViewModel {
         switch self {
         case .following(let viewModel):
             return viewModel
@@ -85,25 +85,25 @@ enum NotificationSectionItem {
     var reuseIdentifier: String {
         switch self {
         case .following:
-            return NotificationFollowingCell.reuseIdentifier
+            return NoticeFollowingCell.reuseIdentifier
         case .liked:
-            return NotificationLikedCell.reuseIdentifier
+            return NoticeLikedCell.reuseIdentifier
         case .recommended:
-            return NotificationRecommendedCell.reuseIdentifier
+            return NoticeRecommendedCell.reuseIdentifier
         case .reacted:
-            return NotificationReactionCell.reuseIdentifier
+            return NoticeReactionCell.reuseIdentifier
         case .mightLike:
-            return NotificationMightLikeCell.reuseIdentifier
+            return NoticeMightLikeCell.reuseIdentifier
         case .system:
-            return NotificationSystemCell.reuseIdentifier
+            return NoticeSystemCell.reuseIdentifier
         case .theme:
-            return NotificationThemeCell.reuseIdentifier
+            return NoticeThemeCell.reuseIdentifier
         }
     }
     
 }
 
-extension NotificationSectionItem: IdentifiableType {
+extension NoticeSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
         switch self {
@@ -114,8 +114,8 @@ extension NotificationSectionItem: IdentifiableType {
         }
     }
 }
-extension NotificationSectionItem: Equatable {
-    static func == (lhs: NotificationSectionItem, rhs: NotificationSectionItem) -> Bool {
+extension NoticeSectionItem: Equatable {
+    static func == (lhs: NoticeSectionItem, rhs: NoticeSectionItem) -> Bool {
         return lhs.identity == rhs.identity
     }
 }

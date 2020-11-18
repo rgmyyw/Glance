@@ -11,9 +11,9 @@ import RxSwift
 import RxCocoa
 
 
-class NotificationCellViewModel: CellViewModelProtocol {
+class NoticeCellViewModel: CellViewModelProtocol {
 
-    let item : Notification
+    let item : Notice
     let userImageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
     let userName : BehaviorRelay<String?> = BehaviorRelay(value: nil)
     let userState : BehaviorRelay<Bool> = BehaviorRelay(value: false)
@@ -36,7 +36,7 @@ class NotificationCellViewModel: CellViewModelProtocol {
     let postDetail : PublishSubject<Void> = PublishSubject()
 
     
-    required init(item : Notification) {
+    required init(item : Notice) {
         self.item = item
         
         self.userImageURL.accept(item.user?.userImage?.url)
@@ -54,7 +54,7 @@ class NotificationCellViewModel: CellViewModelProtocol {
     
     
 
-    func makeItemType() -> NotificationSectionItem {
+    func makeItemType() -> NoticeSectionItem {
         
         guard let type = item.type else { fatalError() }
         

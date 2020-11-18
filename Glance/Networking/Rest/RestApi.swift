@@ -101,8 +101,8 @@ class RestApi: API {
         return requestObject(.like(param: param), type: MappableItem<Bool>.self,keyPath: nil).map { $0.data ?? false}
     }
     
-    func notifications(pageNum: Int) -> Single<PageMapable<Notification>> {
-        return requestObject(.notifications(page: pageNum), type: PageMapable<Notification>.self)
+    func notifications(pageNum: Int) -> Single<PageMapable<Notice>> {
+        return requestObject(.notifications(page: pageNum), type: PageMapable<Notice>.self)
     }
     
     func shoppingCart(pageNum: Int) -> Single<PageMapable<ShoppingCart>> {

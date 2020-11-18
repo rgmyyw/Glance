@@ -10,7 +10,6 @@ import UIKit
 
 class OriginalPhotosViewController: ViewController {
 
-    
     @IBOutlet weak var scrollView: UIScrollView!
     
     override func makeUI() {

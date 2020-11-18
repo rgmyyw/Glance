@@ -1,5 +1,5 @@
 //
-//  NotificationLikedCell.swift
+//  NotificationRecommendedCell.swift
 //  Glance
 //
 //  Created by yanghai on 2020/11/5.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationLikedCell: NotificationCell {
+class NoticeRecommendedCell: NoticeCell {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
@@ -21,11 +21,12 @@ class NotificationLikedCell: NotificationCell {
     
     override func makeUI() {
         super.makeUI()
-        
+
         stackView.addArrangedSubview(containerView)
+       
     }
     
-    override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+    override func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
         super.bind(to: viewModel)
         
         viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)

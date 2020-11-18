@@ -25,10 +25,10 @@
 		5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D13708324B70765007B64BA /* PrivacyViewController.xib */; };
 		5D13708724B708BB007B64BA /* PrivacyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708624B708BB007B64BA /* PrivacyViewModel.swift */; };
-		5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NotificationViewController.swift */; };
-		5D13709724B70F4B007B64BA /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
-		5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
-		5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
+		5D13709624B70F4B007B64BA /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NoticeViewController.swift */; };
+		5D13709724B70F4B007B64BA /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NoticeViewModel.swift */; };
+		5D13709824B70F4B007B64BA /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */; };
+		5D13709924B70F4B007B64BA /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NoticeCell.swift */; };
 		5D15FB1C25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
 		5D15FB1D25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
 		5D15FB1E25467040004A98E5 /* StyleBoardSearchContentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */; };
@@ -381,18 +381,18 @@
 		5DAB29CA24C83705003C3E00 /* PostsDetailTagsReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */; };
 		5DAB29CD24C83717003C3E00 /* PostsDetailToolBarReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29CB24C83717003C3E00 /* PostsDetailToolBarReusableView.swift */; };
 		5DAB29CE24C83717003C3E00 /* PostsDetailToolBarReusableView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */; };
-		5DAC20A32554F755008D47EF /* NotificationSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NotificationSystemCell.swift */; };
-		5DAC20A42554F755008D47EF /* NotificationSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NotificationSystemCell.swift */; };
-		5DAC20A52554F755008D47EF /* NotificationSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NotificationSystemCell.swift */; };
-		5DAC20A72554F755008D47EF /* NotificationSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NotificationSystemCell.xib */; };
-		5DAC20A82554F755008D47EF /* NotificationSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NotificationSystemCell.xib */; };
-		5DAC20A92554F755008D47EF /* NotificationSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NotificationSystemCell.xib */; };
-		5DAC20AD255524ED008D47EF /* NotificationThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NotificationThemeCell.swift */; };
-		5DAC20AE255524ED008D47EF /* NotificationThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NotificationThemeCell.swift */; };
-		5DAC20AF255524ED008D47EF /* NotificationThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NotificationThemeCell.swift */; };
-		5DAC20B1255524ED008D47EF /* NotificationThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NotificationThemeCell.xib */; };
-		5DAC20B2255524ED008D47EF /* NotificationThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NotificationThemeCell.xib */; };
-		5DAC20B3255524ED008D47EF /* NotificationThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NotificationThemeCell.xib */; };
+		5DAC20A32554F755008D47EF /* NoticeSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NoticeSystemCell.swift */; };
+		5DAC20A42554F755008D47EF /* NoticeSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NoticeSystemCell.swift */; };
+		5DAC20A52554F755008D47EF /* NoticeSystemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20A12554F755008D47EF /* NoticeSystemCell.swift */; };
+		5DAC20A72554F755008D47EF /* NoticeSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NoticeSystemCell.xib */; };
+		5DAC20A82554F755008D47EF /* NoticeSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NoticeSystemCell.xib */; };
+		5DAC20A92554F755008D47EF /* NoticeSystemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20A22554F755008D47EF /* NoticeSystemCell.xib */; };
+		5DAC20AD255524ED008D47EF /* NoticeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NoticeThemeCell.swift */; };
+		5DAC20AE255524ED008D47EF /* NoticeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NoticeThemeCell.swift */; };
+		5DAC20AF255524ED008D47EF /* NoticeThemeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20AB255524ED008D47EF /* NoticeThemeCell.swift */; };
+		5DAC20B1255524ED008D47EF /* NoticeThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NoticeThemeCell.xib */; };
+		5DAC20B2255524ED008D47EF /* NoticeThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NoticeThemeCell.xib */; };
+		5DAC20B3255524ED008D47EF /* NoticeThemeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DAC20AC255524ED008D47EF /* NoticeThemeCell.xib */; };
 		5DAC20B625591D0B008D47EF /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20B525591D0B008D47EF /* FollowButton.swift */; };
 		5DAC20B725591D0B008D47EF /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20B525591D0B008D47EF /* FollowButton.swift */; };
 		5DAC20B825591D0B008D47EF /* FollowButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAC20B525591D0B008D47EF /* FollowButton.swift */; };
@@ -517,7 +517,7 @@
 		5DCC2CC424F34F04000AC40A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
 		5DCC2CC524F34F04000AC40A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18724AEC2F8007A2FCD /* CollectionViewController.swift */; };
 		5DCC2CC624F34F04000AC40A /* StyleBoardSearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131C24E3F2F700CC3F89 /* StyleBoardSearchSection.swift */; };
-		5DCC2CC724F34F04000AC40A /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
+		5DCC2CC724F34F04000AC40A /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NoticeViewModel.swift */; };
 		5DCC2CC824F34F04000AC40A /* SavedCollectionClassifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017824C570BE00832F05 /* SavedCollectionClassifyViewController.swift */; };
 		5DCC2CC924F34F04000AC40A /* ReactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523A24BEE549007CE461 /* ReactionsViewModel.swift */; };
 		5DCC2CCA24F34F04000AC40A /* AddProductCategaryReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABEB24D9593600AD4B43 /* AddProductCategaryReusableView.swift */; };
@@ -690,7 +690,7 @@
 		5DCC2D8924F34F04000AC40A /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
 		5DCC2D8A24F34F04000AC40A /* AddProductButtonReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFF24D96A0B00AD4B43 /* AddProductButtonReusableView.swift */; };
 		5DCC2D8B24F34F04000AC40A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */; };
-		5DCC2D8C24F34F04000AC40A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NotificationViewController.swift */; };
+		5DCC2D8C24F34F04000AC40A /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NoticeViewController.swift */; };
 		5DCC2D8D24F34F04000AC40A /* VisualSearchProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC424D7A61C0024924B /* VisualSearchProductCell.swift */; };
 		5DCC2D8E24F34F04000AC40A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
 		5DCC2D8F24F34F04000AC40A /* AddProductSectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0924DA491000AD4B43 /* AddProductSectionCellViewModel.swift */; };
@@ -713,14 +713,14 @@
 		5DCC2DA224F34F04000AC40A /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
 		5DCC2DA424F34F04000AC40A /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
-		5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
+		5DCC2DA624F34F04000AC40A /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */; };
 		5DCC2DA724F34F04000AC40A /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2FF24AEC2F9007A2FCD /* ErrorTracker.swift */; };
 		5DCC2DA924F34F04000AC40A /* StyleBoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */; };
 		5DCC2DAA24F34F04000AC40A /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
 		5DCC2DAB24F34F04000AC40A /* UIFont-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15724AEC2F8007A2FCD /* UIFont-Extension.swift */; };
 		5DCC2DAC24F34F04000AC40A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16B24AEC2F8007A2FCD /* StackView.swift */; };
 		5DCC2DAD24F34F04000AC40A /* AddProductWebsiteReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF724D95A8900AD4B43 /* AddProductWebsiteReusableView.swift */; };
-		5DCC2DAE24F34F04000AC40A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
+		5DCC2DAE24F34F04000AC40A /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NoticeCell.swift */; };
 		5DCC2DAF24F34F04000AC40A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */; };
 		5DCC2DB124F34F04000AC40A /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DCC2DB224F34F04000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
@@ -788,7 +788,7 @@
 		5DCC2E1C24F34F2A000AC40A /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAB24B3127200F0CC45 /* HomeViewModel.swift */; };
 		5DCC2E1D24F34F2A000AC40A /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF18724AEC2F8007A2FCD /* CollectionViewController.swift */; };
 		5DCC2E1E24F34F2A000AC40A /* StyleBoardSearchSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DC3131C24E3F2F700CC3F89 /* StyleBoardSearchSection.swift */; };
-		5DCC2E1F24F34F2A000AC40A /* NotificationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NotificationViewModel.swift */; };
+		5DCC2E1F24F34F2A000AC40A /* NoticeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709024B70F4B007B64BA /* NoticeViewModel.swift */; };
 		5DCC2E2024F34F2A000AC40A /* SavedCollectionClassifyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B017824C570BE00832F05 /* SavedCollectionClassifyViewController.swift */; };
 		5DCC2E2124F34F2A000AC40A /* ReactionsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D06523A24BEE549007CE461 /* ReactionsViewModel.swift */; };
 		5DCC2E2224F34F2A000AC40A /* AddProductCategaryReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABEB24D9593600AD4B43 /* AddProductCategaryReusableView.swift */; };
@@ -961,7 +961,7 @@
 		5DCC2EE124F34F2A000AC40A /* HomeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AAF24B3205F00F0CC45 /* HomeSection.swift */; };
 		5DCC2EE224F34F2A000AC40A /* AddProductButtonReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABFF24D96A0B00AD4B43 /* AddProductButtonReusableView.swift */; };
 		5DCC2EE324F34F2A000AC40A /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF4FD24AED1D7007A2FCD /* SearchBar.swift */; };
-		5DCC2EE424F34F2A000AC40A /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NotificationViewController.swift */; };
+		5DCC2EE424F34F2A000AC40A /* NoticeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708F24B70F4B007B64BA /* NoticeViewController.swift */; };
 		5DCC2EE524F34F2A000AC40A /* VisualSearchProductCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D6B4DC424D7A61C0024924B /* VisualSearchProductCell.swift */; };
 		5DCC2EE624F34F2A000AC40A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D630AA424B2C3DB00F0CC45 /* SignInViewController.swift */; };
 		5DCC2EE724F34F2A000AC40A /* AddProductSectionCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6AC0924DA491000AD4B43 /* AddProductSectionCellViewModel.swift */; };
@@ -984,14 +984,14 @@
 		5DCC2EFA24F34F2A000AC40A /* VisualSearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3B315F24D2A0280039D1B9 /* VisualSearchResultViewController.swift */; };
 		5DCC2EFC24F34F2A000AC40A /* PrivacyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13708224B70765007B64BA /* PrivacyViewController.swift */; };
 		5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D5B018024C5851C00832F05 /* SavedCollectionViewController.swift */; };
-		5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */; };
+		5DCC2EFE24F34F2A000AC40A /* NoticeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */; };
 		5DCC2EFF24F34F2A000AC40A /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2FF24AEC2F9007A2FCD /* ErrorTracker.swift */; };
 		5DCC2F0124F34F2A000AC40A /* StyleBoardEditView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D7B189F24E5314200D021EA /* StyleBoardEditView.swift */; };
 		5DCC2F0224F34F2A000AC40A /* PostsDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */; };
 		5DCC2F0324F34F2A000AC40A /* UIFont-Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF15724AEC2F8007A2FCD /* UIFont-Extension.swift */; };
 		5DCC2F0424F34F2A000AC40A /* StackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF16B24AEC2F8007A2FCD /* StackView.swift */; };
 		5DCC2F0524F34F2A000AC40A /* AddProductWebsiteReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABF724D95A8900AD4B43 /* AddProductWebsiteReusableView.swift */; };
-		5DCC2F0624F34F2A000AC40A /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NotificationCell.swift */; };
+		5DCC2F0624F34F2A000AC40A /* NoticeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D13709324B70F4B007B64BA /* NoticeCell.swift */; };
 		5DCC2F0724F34F2A000AC40A /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17B24AEC2F8007A2FCD /* WebViewController.swift */; };
 		5DCC2F0924F34F2A000AC40A /* PostsDetailBottomBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD8513624CED72A00278361 /* PostsDetailBottomBar.swift */; };
 		5DCC2F0A24F34F2A000AC40A /* InsightsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DC424BD8A4B00AFBB1F /* InsightsViewController.swift */; };
@@ -1063,6 +1063,12 @@
 		5DCC2F7924F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
 		5DCC2F7A24F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
 		5DCC2F7B24F362E0000AC40A /* InsightsRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */; };
+		5DCEDA0C2564D49000264166 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0A2564D48C00264166 /* SettingItem.swift */; };
+		5DCEDA0D2564D49000264166 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0A2564D48C00264166 /* SettingItem.swift */; };
+		5DCEDA0E2564D49200264166 /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0A2564D48C00264166 /* SettingItem.swift */; };
+		5DCEDA102564D51D00264166 /* InsightsRelationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0F2564D51D00264166 /* InsightsRelationType.swift */; };
+		5DCEDA112564D51D00264166 /* InsightsRelationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0F2564D51D00264166 /* InsightsRelationType.swift */; };
+		5DCEDA122564D51D00264166 /* InsightsRelationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DCEDA0F2564D51D00264166 /* InsightsRelationType.swift */; };
 		5DD0A370251D88AF005DFA02 /* UserDetailUpdateTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserDetailUpdateTitle.swift */; };
 		5DD0A371251D88AF005DFA02 /* UserDetailUpdateTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserDetailUpdateTitle.swift */; };
 		5DD0A372251D88AF005DFA02 /* UserDetailUpdateTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A36F251D88AF005DFA02 /* UserDetailUpdateTitle.swift */; };
@@ -1240,39 +1246,39 @@
 		5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */; };
 		5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */; };
 		5DEFF51024AEE76D007A2FCD /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF50F24AEE76D007A2FCD /* HomeController.swift */; };
-		5DF8D1212553DF20007E3372 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NotificationSection.swift */; };
-		5DF8D1222553DF25007E3372 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NotificationSection.swift */; };
-		5DF8D1242553DF26007E3372 /* NotificationSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NotificationSection.swift */; };
-		5DF8D1272553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NotificationFollowingCell.swift */; };
-		5DF8D1282553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NotificationFollowingCell.swift */; };
-		5DF8D1292553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NotificationFollowingCell.swift */; };
-		5DF8D12B2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NotificationFollowingCell.xib */; };
-		5DF8D12C2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NotificationFollowingCell.xib */; };
-		5DF8D12D2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NotificationFollowingCell.xib */; };
-		5DF8D1312553E7FE007E3372 /* NotificationLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NotificationLikedCell.swift */; };
-		5DF8D1322553E7FE007E3372 /* NotificationLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NotificationLikedCell.swift */; };
-		5DF8D1332553E7FE007E3372 /* NotificationLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NotificationLikedCell.swift */; };
-		5DF8D1352553E7FE007E3372 /* NotificationLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NotificationLikedCell.xib */; };
-		5DF8D1362553E7FE007E3372 /* NotificationLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NotificationLikedCell.xib */; };
-		5DF8D1372553E7FE007E3372 /* NotificationLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NotificationLikedCell.xib */; };
-		5DF8D13B2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NotificationRecommendedCell.swift */; };
-		5DF8D13C2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NotificationRecommendedCell.swift */; };
-		5DF8D13D2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NotificationRecommendedCell.swift */; };
-		5DF8D13F2553E989007E3372 /* NotificationRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NotificationRecommendedCell.xib */; };
-		5DF8D1402553E989007E3372 /* NotificationRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NotificationRecommendedCell.xib */; };
-		5DF8D1412553E989007E3372 /* NotificationRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NotificationRecommendedCell.xib */; };
-		5DF8D1452553E9D9007E3372 /* NotificationReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NotificationReactionCell.swift */; };
-		5DF8D1462553E9D9007E3372 /* NotificationReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NotificationReactionCell.swift */; };
-		5DF8D1472553E9D9007E3372 /* NotificationReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NotificationReactionCell.swift */; };
-		5DF8D1492553E9D9007E3372 /* NotificationReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NotificationReactionCell.xib */; };
-		5DF8D14A2553E9D9007E3372 /* NotificationReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NotificationReactionCell.xib */; };
-		5DF8D14B2553E9D9007E3372 /* NotificationReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NotificationReactionCell.xib */; };
-		5DF8D14F2553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NotificationMightLikeCell.swift */; };
-		5DF8D1502553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NotificationMightLikeCell.swift */; };
-		5DF8D1512553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NotificationMightLikeCell.swift */; };
-		5DF8D1532553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NotificationMightLikeCell.xib */; };
-		5DF8D1542553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NotificationMightLikeCell.xib */; };
-		5DF8D1552553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NotificationMightLikeCell.xib */; };
+		5DF8D1212553DF20007E3372 /* NoticeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NoticeSection.swift */; };
+		5DF8D1222553DF25007E3372 /* NoticeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NoticeSection.swift */; };
+		5DF8D1242553DF26007E3372 /* NoticeSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1202553DF20007E3372 /* NoticeSection.swift */; };
+		5DF8D1272553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NoticeFollowingCell.swift */; };
+		5DF8D1282553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NoticeFollowingCell.swift */; };
+		5DF8D1292553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1252553E4C2007E3372 /* NoticeFollowingCell.swift */; };
+		5DF8D12B2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NoticeFollowingCell.xib */; };
+		5DF8D12C2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NoticeFollowingCell.xib */; };
+		5DF8D12D2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1262553E4C2007E3372 /* NoticeFollowingCell.xib */; };
+		5DF8D1312553E7FE007E3372 /* NoticeLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NoticeLikedCell.swift */; };
+		5DF8D1322553E7FE007E3372 /* NoticeLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NoticeLikedCell.swift */; };
+		5DF8D1332553E7FE007E3372 /* NoticeLikedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D12F2553E7FE007E3372 /* NoticeLikedCell.swift */; };
+		5DF8D1352553E7FE007E3372 /* NoticeLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NoticeLikedCell.xib */; };
+		5DF8D1362553E7FE007E3372 /* NoticeLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NoticeLikedCell.xib */; };
+		5DF8D1372553E7FE007E3372 /* NoticeLikedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1302553E7FE007E3372 /* NoticeLikedCell.xib */; };
+		5DF8D13B2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NoticeRecommendedCell.swift */; };
+		5DF8D13C2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NoticeRecommendedCell.swift */; };
+		5DF8D13D2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1392553E989007E3372 /* NoticeRecommendedCell.swift */; };
+		5DF8D13F2553E989007E3372 /* NoticeRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NoticeRecommendedCell.xib */; };
+		5DF8D1402553E989007E3372 /* NoticeRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NoticeRecommendedCell.xib */; };
+		5DF8D1412553E989007E3372 /* NoticeRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D13A2553E989007E3372 /* NoticeRecommendedCell.xib */; };
+		5DF8D1452553E9D9007E3372 /* NoticeReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NoticeReactionCell.swift */; };
+		5DF8D1462553E9D9007E3372 /* NoticeReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NoticeReactionCell.swift */; };
+		5DF8D1472553E9D9007E3372 /* NoticeReactionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D1432553E9D9007E3372 /* NoticeReactionCell.swift */; };
+		5DF8D1492553E9D9007E3372 /* NoticeReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NoticeReactionCell.xib */; };
+		5DF8D14A2553E9D9007E3372 /* NoticeReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NoticeReactionCell.xib */; };
+		5DF8D14B2553E9D9007E3372 /* NoticeReactionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D1442553E9D9007E3372 /* NoticeReactionCell.xib */; };
+		5DF8D14F2553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NoticeMightLikeCell.swift */; };
+		5DF8D1502553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NoticeMightLikeCell.swift */; };
+		5DF8D1512553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DF8D14D2553EB64007E3372 /* NoticeMightLikeCell.swift */; };
+		5DF8D1532553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NoticeMightLikeCell.xib */; };
+		5DF8D1542553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NoticeMightLikeCell.xib */; };
+		5DF8D1552553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5DF8D14E2553EB64007E3372 /* NoticeMightLikeCell.xib */; };
 		5DFE130C250CADBB00ABCE5E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE130B250CADBB00ABCE5E /* SearchViewController.swift */; };
 		5DFE130D250CADBB00ABCE5E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE130B250CADBB00ABCE5E /* SearchViewController.swift */; };
 		5DFE130E250CADBB00ABCE5E /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DFE130B250CADBB00ABCE5E /* SearchViewController.swift */; };
@@ -1381,10 +1387,10 @@
 		5D13708224B70765007B64BA /* PrivacyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewController.swift; sourceTree = "<group>"; };
 		5D13708324B70765007B64BA /* PrivacyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrivacyViewController.xib; sourceTree = "<group>"; };
 		5D13708624B708BB007B64BA /* PrivacyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyViewModel.swift; sourceTree = "<group>"; };
-		5D13708F24B70F4B007B64BA /* NotificationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
-		5D13709024B70F4B007B64BA /* NotificationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationViewModel.swift; sourceTree = "<group>"; };
-		5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCellViewModel.swift; sourceTree = "<group>"; };
-		5D13709324B70F4B007B64BA /* NotificationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		5D13708F24B70F4B007B64BA /* NoticeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewController.swift; sourceTree = "<group>"; };
+		5D13709024B70F4B007B64BA /* NoticeViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeViewModel.swift; sourceTree = "<group>"; };
+		5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCellViewModel.swift; sourceTree = "<group>"; };
+		5D13709324B70F4B007B64BA /* NoticeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoticeCell.swift; sourceTree = "<group>"; };
 		5D15FB1A25467040004A98E5 /* StyleBoardSearchContentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchContentViewController.swift; sourceTree = "<group>"; };
 		5D15FB2425467190004A98E5 /* StyleBoardSearchContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchContentViewModel.swift; sourceTree = "<group>"; };
 		5D15FB292546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchModuleItem.swift; sourceTree = "<group>"; };
@@ -1595,10 +1601,10 @@
 		5DAB29C824C83705003C3E00 /* PostsDetailTagsReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailTagsReusableView.xib; sourceTree = "<group>"; };
 		5DAB29CB24C83717003C3E00 /* PostsDetailToolBarReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsDetailToolBarReusableView.swift; sourceTree = "<group>"; };
 		5DAB29CC24C83717003C3E00 /* PostsDetailToolBarReusableView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostsDetailToolBarReusableView.xib; sourceTree = "<group>"; };
-		5DAC20A12554F755008D47EF /* NotificationSystemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSystemCell.swift; sourceTree = "<group>"; };
-		5DAC20A22554F755008D47EF /* NotificationSystemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationSystemCell.xib; sourceTree = "<group>"; };
-		5DAC20AB255524ED008D47EF /* NotificationThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationThemeCell.swift; sourceTree = "<group>"; };
-		5DAC20AC255524ED008D47EF /* NotificationThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationThemeCell.xib; sourceTree = "<group>"; };
+		5DAC20A12554F755008D47EF /* NoticeSystemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSystemCell.swift; sourceTree = "<group>"; };
+		5DAC20A22554F755008D47EF /* NoticeSystemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeSystemCell.xib; sourceTree = "<group>"; };
+		5DAC20AB255524ED008D47EF /* NoticeThemeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeThemeCell.swift; sourceTree = "<group>"; };
+		5DAC20AC255524ED008D47EF /* NoticeThemeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeThemeCell.xib; sourceTree = "<group>"; };
 		5DAC20B525591D0B008D47EF /* FollowButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowButton.swift; sourceTree = "<group>"; };
 		5DB1C79324C290690071A0E1 /* PublishPopView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PublishPopView.swift; sourceTree = "<group>"; };
 		5DB1C79524C298F30071A0E1 /* PublishPopView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PublishPopView.xib; sourceTree = "<group>"; };
@@ -1688,6 +1694,8 @@
 		5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsRelationViewController.swift; sourceTree = "<group>"; };
 		5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InsightsRelationViewModel.swift; sourceTree = "<group>"; };
 		5DCC2F7824F362E0000AC40A /* InsightsRelation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsRelation.swift; sourceTree = "<group>"; };
+		5DCEDA0A2564D48C00264166 /* SettingItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		5DCEDA0F2564D51D00264166 /* InsightsRelationType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsightsRelationType.swift; sourceTree = "<group>"; };
 		5DD0A36F251D88AF005DFA02 /* UserDetailUpdateTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailUpdateTitle.swift; sourceTree = "<group>"; };
 		5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailMemuItem.swift; sourceTree = "<group>"; };
 		5DD0A379251D88F1005DFA02 /* UserDetailNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailNavigationAction.swift; sourceTree = "<group>"; };
@@ -1815,17 +1823,17 @@
 		5DEFF50524AED804007A2FCD /* Roboto-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Bold.ttf"; sourceTree = "<group>"; };
 		5DEFF50624AED804007A2FCD /* Roboto-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Roboto-Regular.ttf"; sourceTree = "<group>"; };
 		5DEFF50F24AEE76D007A2FCD /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		5DF8D1202553DF20007E3372 /* NotificationSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationSection.swift; sourceTree = "<group>"; };
-		5DF8D1252553E4C2007E3372 /* NotificationFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationFollowingCell.swift; sourceTree = "<group>"; };
-		5DF8D1262553E4C2007E3372 /* NotificationFollowingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationFollowingCell.xib; sourceTree = "<group>"; };
-		5DF8D12F2553E7FE007E3372 /* NotificationLikedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLikedCell.swift; sourceTree = "<group>"; };
-		5DF8D1302553E7FE007E3372 /* NotificationLikedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationLikedCell.xib; sourceTree = "<group>"; };
-		5DF8D1392553E989007E3372 /* NotificationRecommendedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationRecommendedCell.swift; sourceTree = "<group>"; };
-		5DF8D13A2553E989007E3372 /* NotificationRecommendedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationRecommendedCell.xib; sourceTree = "<group>"; };
-		5DF8D1432553E9D9007E3372 /* NotificationReactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationReactionCell.swift; sourceTree = "<group>"; };
-		5DF8D1442553E9D9007E3372 /* NotificationReactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationReactionCell.xib; sourceTree = "<group>"; };
-		5DF8D14D2553EB64007E3372 /* NotificationMightLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationMightLikeCell.swift; sourceTree = "<group>"; };
-		5DF8D14E2553EB64007E3372 /* NotificationMightLikeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationMightLikeCell.xib; sourceTree = "<group>"; };
+		5DF8D1202553DF20007E3372 /* NoticeSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeSection.swift; sourceTree = "<group>"; };
+		5DF8D1252553E4C2007E3372 /* NoticeFollowingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeFollowingCell.swift; sourceTree = "<group>"; };
+		5DF8D1262553E4C2007E3372 /* NoticeFollowingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeFollowingCell.xib; sourceTree = "<group>"; };
+		5DF8D12F2553E7FE007E3372 /* NoticeLikedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeLikedCell.swift; sourceTree = "<group>"; };
+		5DF8D1302553E7FE007E3372 /* NoticeLikedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeLikedCell.xib; sourceTree = "<group>"; };
+		5DF8D1392553E989007E3372 /* NoticeRecommendedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeRecommendedCell.swift; sourceTree = "<group>"; };
+		5DF8D13A2553E989007E3372 /* NoticeRecommendedCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeRecommendedCell.xib; sourceTree = "<group>"; };
+		5DF8D1432553E9D9007E3372 /* NoticeReactionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeReactionCell.swift; sourceTree = "<group>"; };
+		5DF8D1442553E9D9007E3372 /* NoticeReactionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeReactionCell.xib; sourceTree = "<group>"; };
+		5DF8D14D2553EB64007E3372 /* NoticeMightLikeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoticeMightLikeCell.swift; sourceTree = "<group>"; };
+		5DF8D14E2553EB64007E3372 /* NoticeMightLikeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NoticeMightLikeCell.xib; sourceTree = "<group>"; };
 		5DFE130B250CADBB00ABCE5E /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		5DFE130F250CAECB00ABCE5E /* SearchNavigationBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNavigationBar.swift; sourceTree = "<group>"; };
 		5DFE1313250CAEDC00ABCE5E /* SearchNavigationBar.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchNavigationBar.xib; sourceTree = "<group>"; };
@@ -1948,9 +1956,9 @@
 			isa = PBXGroup;
 			children = (
 				5D13709124B70F4B007B64BA /* Views */,
-				5D13708F24B70F4B007B64BA /* NotificationViewController.swift */,
-				5D13709024B70F4B007B64BA /* NotificationViewModel.swift */,
-				5DF8D1202553DF20007E3372 /* NotificationSection.swift */,
+				5D13708F24B70F4B007B64BA /* NoticeViewController.swift */,
+				5D13709024B70F4B007B64BA /* NoticeViewModel.swift */,
+				5DF8D1202553DF20007E3372 /* NoticeSection.swift */,
 			);
 			path = Notifications;
 			sourceTree = "<group>";
@@ -1958,22 +1966,22 @@
 		5D13709124B70F4B007B64BA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				5D13709224B70F4B007B64BA /* NotificationCellViewModel.swift */,
-				5D13709324B70F4B007B64BA /* NotificationCell.swift */,
-				5DF8D1252553E4C2007E3372 /* NotificationFollowingCell.swift */,
-				5DF8D1262553E4C2007E3372 /* NotificationFollowingCell.xib */,
-				5DF8D12F2553E7FE007E3372 /* NotificationLikedCell.swift */,
-				5DF8D1302553E7FE007E3372 /* NotificationLikedCell.xib */,
-				5DF8D1392553E989007E3372 /* NotificationRecommendedCell.swift */,
-				5DF8D13A2553E989007E3372 /* NotificationRecommendedCell.xib */,
-				5DF8D1432553E9D9007E3372 /* NotificationReactionCell.swift */,
-				5DF8D1442553E9D9007E3372 /* NotificationReactionCell.xib */,
-				5DF8D14D2553EB64007E3372 /* NotificationMightLikeCell.swift */,
-				5DF8D14E2553EB64007E3372 /* NotificationMightLikeCell.xib */,
-				5DAC20A12554F755008D47EF /* NotificationSystemCell.swift */,
-				5DAC20A22554F755008D47EF /* NotificationSystemCell.xib */,
-				5DAC20AB255524ED008D47EF /* NotificationThemeCell.swift */,
-				5DAC20AC255524ED008D47EF /* NotificationThemeCell.xib */,
+				5D13709224B70F4B007B64BA /* NoticeCellViewModel.swift */,
+				5D13709324B70F4B007B64BA /* NoticeCell.swift */,
+				5DF8D1252553E4C2007E3372 /* NoticeFollowingCell.swift */,
+				5DF8D1262553E4C2007E3372 /* NoticeFollowingCell.xib */,
+				5DF8D12F2553E7FE007E3372 /* NoticeLikedCell.swift */,
+				5DF8D1302553E7FE007E3372 /* NoticeLikedCell.xib */,
+				5DF8D1392553E989007E3372 /* NoticeRecommendedCell.swift */,
+				5DF8D13A2553E989007E3372 /* NoticeRecommendedCell.xib */,
+				5DF8D1432553E9D9007E3372 /* NoticeReactionCell.swift */,
+				5DF8D1442553E9D9007E3372 /* NoticeReactionCell.xib */,
+				5DF8D14D2553EB64007E3372 /* NoticeMightLikeCell.swift */,
+				5DF8D14E2553EB64007E3372 /* NoticeMightLikeCell.xib */,
+				5DAC20A12554F755008D47EF /* NoticeSystemCell.swift */,
+				5DAC20A22554F755008D47EF /* NoticeSystemCell.xib */,
+				5DAC20AB255524ED008D47EF /* NoticeThemeCell.swift */,
+				5DAC20AC255524ED008D47EF /* NoticeThemeCell.xib */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -2100,6 +2108,7 @@
 				5D06523A24BEE549007CE461 /* ReactionsViewModel.swift */,
 				5DCC2F7024F35FE5000AC40A /* InsightsRelationViewController.swift */,
 				5DCC2F7424F360EF000AC40A /* InsightsRelationViewModel.swift */,
+				5DCEDA0F2564D51D00264166 /* InsightsRelationType.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -2111,6 +2120,7 @@
 				5D579B4424B4A46B00CFC188 /* SettingViewController.swift */,
 				5D579B4524B4A46B00CFC188 /* SettingViewController.xib */,
 				5D6C721D24B565C200EA3028 /* SettingViewModel.swift */,
+				5DCEDA0A2564D48C00264166 /* SettingItem.swift */,
 				5D3E480224B5C32E0064E3BF /* NotificationProfileViewController.swift */,
 				5D3E480324B5C32E0064E3BF /* NotificationProfileViewController.xib */,
 				5DDBC09924B5C5670077DBE5 /* NotificationProfileViewModel.swift */,
@@ -3101,15 +3111,15 @@
 				5DCC2DD524F34F04000AC40A /* PostProductTitleReusableView.xib in Resources */,
 				5DCC2DD624F34F04000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2DD724F34F04000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
-				5DF8D1542553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DF8D1542553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */,
 				5DE54CFD255E6A170010E303 /* DemoViewController.xib in Resources */,
 				5DD370CD2531983A00A42A16 /* UsersCell.xib in Resources */,
-				5DF8D12C2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
+				5DF8D12C2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */,
 				5D2D0E8E2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DCC2DDA24F34F04000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2DDB24F34F04000AC40A /* InterestCell.xib in Resources */,
 				5DCC2DDC24F34F04000AC40A /* PostsDetailNavigationBar.xib in Resources */,
-				5DF8D14A2553E9D9007E3372 /* NotificationReactionCell.xib in Resources */,
+				5DF8D14A2553E9D9007E3372 /* NoticeReactionCell.xib in Resources */,
 				5DCC2DDE24F34F04000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB561250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5D15FB352546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
@@ -3119,8 +3129,8 @@
 				5DCC2DE124F34F04000AC40A /* VisualSearchBottomView.xib in Resources */,
 				5DCAC9642512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DCC2DE224F34F04000AC40A /* PostsDetailBannerReusableView.xib in Resources */,
-				5DAC20B2255524ED008D47EF /* NotificationThemeCell.xib in Resources */,
-				5DF8D1402553E989007E3372 /* NotificationRecommendedCell.xib in Resources */,
+				5DAC20B2255524ED008D47EF /* NoticeThemeCell.xib in Resources */,
+				5DF8D1402553E989007E3372 /* NoticeRecommendedCell.xib in Resources */,
 				5DCC2DE324F34F04000AC40A /* AddProductCategaryReusableView.xib in Resources */,
 				5DCC2DE424F34F04000AC40A /* SettingViewController.xib in Resources */,
 				5DCC2DE524F34F04000AC40A /* OriginalPhotosViewController.xib in Resources */,
@@ -3130,7 +3140,7 @@
 				5DD370C92531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131D250CB14300ABCE5E /* SearchCell.xib in Resources */,
 				5DCC2DEC24F34F04000AC40A /* Localizable.strings in Resources */,
-				5DAC20A82554F755008D47EF /* NotificationSystemCell.xib in Resources */,
+				5DAC20A82554F755008D47EF /* NoticeSystemCell.xib in Resources */,
 				5D7BB56D250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E632508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
 				5DCC2DED24F34F04000AC40A /* InsightsDetailViewController.xib in Resources */,
@@ -3147,7 +3157,7 @@
 				5D7BB567250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97025120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2DFA24F34F04000AC40A /* SignInViewController.xib in Resources */,
-				5DF8D1362553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
+				5DF8D1362553E7FE007E3372 /* NoticeLikedCell.xib in Resources */,
 				5DCC2DFB24F34F04000AC40A /* PrivacyViewController.xib in Resources */,
 				5D5C486B25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2DFE24F34F04000AC40A /* InterestNavigationBar.xib in Resources */,
@@ -3205,15 +3215,15 @@
 				5DCC2F2D24F34F2A000AC40A /* PostProductTitleReusableView.xib in Resources */,
 				5DCC2F2E24F34F2A000AC40A /* Roboto-Regular.ttf in Resources */,
 				5DCC2F2F24F34F2A000AC40A /* AddProductWebsiteReusableView.xib in Resources */,
-				5DF8D1552553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DF8D1552553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */,
 				5DE54CFA255E6A160010E303 /* DemoViewController.xib in Resources */,
 				5DD370CE2531983A00A42A16 /* UsersCell.xib in Resources */,
-				5DF8D12D2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
+				5DF8D12D2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */,
 				5D2D0E8F2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DCC2F3224F34F2A000AC40A /* Roboto-Bold.ttf in Resources */,
 				5DCC2F3324F34F2A000AC40A /* InterestCell.xib in Resources */,
 				5DCC2F3424F34F2A000AC40A /* PostsDetailNavigationBar.xib in Resources */,
-				5DF8D14B2553E9D9007E3372 /* NotificationReactionCell.xib in Resources */,
+				5DF8D14B2553E9D9007E3372 /* NoticeReactionCell.xib in Resources */,
 				5DCC2F3624F34F2A000AC40A /* Roboto-Light.ttf in Resources */,
 				5D7BB562250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5D15FB362546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
@@ -3223,8 +3233,8 @@
 				5DCC2F3924F34F2A000AC40A /* VisualSearchBottomView.xib in Resources */,
 				5DCAC9652512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DCC2F3A24F34F2A000AC40A /* PostsDetailBannerReusableView.xib in Resources */,
-				5DAC20B3255524ED008D47EF /* NotificationThemeCell.xib in Resources */,
-				5DF8D1412553E989007E3372 /* NotificationRecommendedCell.xib in Resources */,
+				5DAC20B3255524ED008D47EF /* NoticeThemeCell.xib in Resources */,
+				5DF8D1412553E989007E3372 /* NoticeRecommendedCell.xib in Resources */,
 				5DCC2F3B24F34F2A000AC40A /* AddProductCategaryReusableView.xib in Resources */,
 				5DCC2F3C24F34F2A000AC40A /* SettingViewController.xib in Resources */,
 				5DCC2F3D24F34F2A000AC40A /* OriginalPhotosViewController.xib in Resources */,
@@ -3234,7 +3244,7 @@
 				5DD370CA2531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131E250CB14300ABCE5E /* SearchCell.xib in Resources */,
 				5DCC2F4424F34F2A000AC40A /* Localizable.strings in Resources */,
-				5DAC20A92554F755008D47EF /* NotificationSystemCell.xib in Resources */,
+				5DAC20A92554F755008D47EF /* NoticeSystemCell.xib in Resources */,
 				5D7BB56E250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E642508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
 				5DCC2F4524F34F2A000AC40A /* InsightsDetailViewController.xib in Resources */,
@@ -3251,7 +3261,7 @@
 				5D7BB568250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC97125120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5DCC2F5224F34F2A000AC40A /* SignInViewController.xib in Resources */,
-				5DF8D1372553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
+				5DF8D1372553E7FE007E3372 /* NoticeLikedCell.xib in Resources */,
 				5DCC2F5324F34F2A000AC40A /* PrivacyViewController.xib in Resources */,
 				5D5C486C25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DCC2F5624F34F2A000AC40A /* InterestNavigationBar.xib in Resources */,
@@ -3309,15 +3319,15 @@
 				5D6FEA9624DC03090062F90B /* PostProductTitleReusableView.xib in Resources */,
 				5DEFF50C24AED804007A2FCD /* Roboto-Regular.ttf in Resources */,
 				5DB6ABFA24D95A8900AD4B43 /* AddProductWebsiteReusableView.xib in Resources */,
-				5DF8D1532553EB64007E3372 /* NotificationMightLikeCell.xib in Resources */,
+				5DF8D1532553EB64007E3372 /* NoticeMightLikeCell.xib in Resources */,
 				5DE54CF4255E6A150010E303 /* DemoViewController.xib in Resources */,
 				5DD370CC2531983A00A42A16 /* UsersCell.xib in Resources */,
-				5DF8D12B2553E4C2007E3372 /* NotificationFollowingCell.xib in Resources */,
+				5DF8D12B2553E4C2007E3372 /* NoticeFollowingCell.xib in Resources */,
 				5D2D0E8D2509CF9100E9FD8D /* SearchRecommendHotCell.xib in Resources */,
 				5DEFF50B24AED804007A2FCD /* Roboto-Bold.ttf in Resources */,
 				5DBC3AAA24C7DA43006B0032 /* InterestCell.xib in Resources */,
 				5D06524C24BEFF51007CE461 /* PostsDetailNavigationBar.xib in Resources */,
-				5DF8D1492553E9D9007E3372 /* NotificationReactionCell.xib in Resources */,
+				5DF8D1492553E9D9007E3372 /* NoticeReactionCell.xib in Resources */,
 				5DEFF50824AED804007A2FCD /* Roboto-Light.ttf in Resources */,
 				5D7BB560250B633900C8B902 /* ProductRecommendCell.xib in Resources */,
 				5D15FB342546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib in Resources */,
@@ -3327,8 +3337,8 @@
 				5D6B4DB924D40C8B0024924B /* VisualSearchBottomView.xib in Resources */,
 				5DCAC9632512088D00172C05 /* SearchThemeHeadView.xib in Resources */,
 				5DAB29C224C836A5003C3E00 /* PostsDetailBannerReusableView.xib in Resources */,
-				5DAC20B1255524ED008D47EF /* NotificationThemeCell.xib in Resources */,
-				5DF8D13F2553E989007E3372 /* NotificationRecommendedCell.xib in Resources */,
+				5DAC20B1255524ED008D47EF /* NoticeThemeCell.xib in Resources */,
+				5DF8D13F2553E989007E3372 /* NoticeRecommendedCell.xib in Resources */,
 				5DB6ABEE24D9593600AD4B43 /* AddProductCategaryReusableView.xib in Resources */,
 				5D579B4724B4A46B00CFC188 /* SettingViewController.xib in Resources */,
 				5D13707F24B70428007B64BA /* OriginalPhotosViewController.xib in Resources */,
@@ -3338,7 +3348,7 @@
 				5DD370C82531983A00A42A16 /* InsightsCell.xib in Resources */,
 				5DFE131C250CB14300ABCE5E /* SearchCell.xib in Resources */,
 				5DEFF30824AEC2F9007A2FCD /* Localizable.strings in Resources */,
-				5DAC20A72554F755008D47EF /* NotificationSystemCell.xib in Resources */,
+				5DAC20A72554F755008D47EF /* NoticeSystemCell.xib in Resources */,
 				5D7BB56C250B633900C8B902 /* ReactionPopView.xib in Resources */,
 				5D2D0E622508701200E9FD8D /* SearchRecommendHistoryCell.xib in Resources */,
 				5D437DD924BEA67600AFBB1F /* InsightsDetailViewController.xib in Resources */,
@@ -3355,7 +3365,7 @@
 				5D7BB566250B633900C8B902 /* ProductCell.xib in Resources */,
 				5DCAC96F25120DDE00172C05 /* SearchThemeLabelCell.xib in Resources */,
 				5D65754B24B2CB0900EC0B74 /* SignInViewController.xib in Resources */,
-				5DF8D1352553E7FE007E3372 /* NotificationLikedCell.xib in Resources */,
+				5DF8D1352553E7FE007E3372 /* NoticeLikedCell.xib in Resources */,
 				5D13708524B70765007B64BA /* PrivacyViewController.xib in Resources */,
 				5D5C486A25510D1C009CDB2E /* PostsDetailMoreReusableView.xib in Resources */,
 				5DBC3AB824C7F3BA006B0032 /* InterestNavigationBar.xib in Resources */,
@@ -3598,7 +3608,7 @@
 				5DCC2CC524F34F04000AC40A /* CollectionViewController.swift in Sources */,
 				5DCAC9502512056600172C05 /* SearchThemeViewModel.swift in Sources */,
 				5DCC2CC624F34F04000AC40A /* StyleBoardSearchSection.swift in Sources */,
-				5DCC2CC724F34F04000AC40A /* NotificationViewModel.swift in Sources */,
+				5DCC2CC724F34F04000AC40A /* NoticeViewModel.swift in Sources */,
 				5D7C38CB250B695E006D6CF7 /* DefaultColltionCellViewModel.swift in Sources */,
 				5DCC2CC824F34F04000AC40A /* SavedCollectionClassifyViewController.swift in Sources */,
 				5DCC2CC924F34F04000AC40A /* ReactionsViewModel.swift in Sources */,
@@ -3634,7 +3644,7 @@
 				5DCC2CDE24F34F04000AC40A /* SavedCollection.swift in Sources */,
 				5DCC2CDF24F34F04000AC40A /* VisualSearchProductHeadView.swift in Sources */,
 				5DD370C52531983A00A42A16 /* ReactionsCellViewModel.swift in Sources */,
-				5DF8D1462553E9D9007E3372 /* NotificationReactionCell.swift in Sources */,
+				5DF8D1462553E9D9007E3372 /* NoticeReactionCell.swift in Sources */,
 				5DCAC956251205D300172C05 /* SearchThemeContentViewModel.swift in Sources */,
 				5DCC2CE024F34F04000AC40A /* DefaultTableViewCell.swift in Sources */,
 				5DCC2CE124F34F04000AC40A /* PostsDetailTitleReusableView.swift in Sources */,
@@ -3646,7 +3656,7 @@
 				5D15FB302546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DCC2CE624F34F04000AC40A /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483C9251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
-				5DF8D13C2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */,
+				5DF8D13C2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */,
 				5DCC2CE724F34F04000AC40A /* RestApi.swift in Sources */,
 				5DCC2CE824F34F04000AC40A /* UserDetailRecommViewModel.swift in Sources */,
 				5DCC2CE924F34F04000AC40A /* PostProductTagCell.swift in Sources */,
@@ -3669,7 +3679,7 @@
 				5DCC2CF624F34F04000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2CF824F34F04000AC40A /* Categories.swift in Sources */,
 				5DCC2CFA24F34F04000AC40A /* DefaultColltionItem.swift in Sources */,
-				5DF8D1222553DF25007E3372 /* NotificationSection.swift in Sources */,
+				5DF8D1222553DF25007E3372 /* NoticeSection.swift in Sources */,
 				5DCC2CFB24F34F04000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2CFC24F34F04000AC40A /* AlertController-Extension.swift in Sources */,
 				5DCC2CFD24F34F04000AC40A /* Insight.swift in Sources */,
@@ -3701,8 +3711,8 @@
 				5DCC2D1624F34F04000AC40A /* AddProductTagCellViewModel.swift in Sources */,
 				5DCC2D1724F34F04000AC40A /* GlanceAPI.swift in Sources */,
 				5DCC2D1824F34F04000AC40A /* PostsDetailViewController.swift in Sources */,
-				5DF8D1282553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
-				5DF8D1502553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
+				5DF8D1282553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */,
+				5DF8D1502553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */,
 				5DCC2D1924F34F04000AC40A /* VisualSearchClippingCircle.swift in Sources */,
 				5DFF3F20250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DCC2D1B24F34F04000AC40A /* Gender.swift in Sources */,
@@ -3787,7 +3797,7 @@
 				5DCC2D5324F34F04000AC40A /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D52531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DCC2D5424F34F04000AC40A /* StyleBoardSearchCellViewModel.swift in Sources */,
-				5DAC20A42554F755008D47EF /* NotificationSystemCell.swift in Sources */,
+				5DAC20A42554F755008D47EF /* NoticeSystemCell.swift in Sources */,
 				5DCC2D5524F34F04000AC40A /* VisualSearchResultViewModel.swift in Sources */,
 				5DCC2D5624F34F04000AC40A /* AddProductSection.swift in Sources */,
 				5D7BB54C250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
@@ -3805,7 +3815,7 @@
 				5DCC2D6024F34F04000AC40A /* SavedCollectionViewModel.swift in Sources */,
 				5DCC2D6124F34F04000AC40A /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7A24F362E0000AC40A /* InsightsRelation.swift in Sources */,
-				5DAC20AE255524ED008D47EF /* NotificationThemeCell.swift in Sources */,
+				5DAC20AE255524ED008D47EF /* NoticeThemeCell.swift in Sources */,
 				5DA483CF251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DCC2D6224F34F04000AC40A /* NavigationController.swift in Sources */,
 				5DCC2D6324F34F04000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
@@ -3874,12 +3884,12 @@
 				5DCC2D8A24F34F04000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2D8B24F34F04000AC40A /* SearchBar.swift in Sources */,
 				5D4299F425428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
-				5DCC2D8C24F34F04000AC40A /* NotificationViewController.swift in Sources */,
+				5DCC2D8C24F34F04000AC40A /* NoticeViewController.swift in Sources */,
 				5DCC2D8D24F34F04000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2D8E24F34F04000AC40A /* SignInViewController.swift in Sources */,
 				5D2D0E822509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
 				5D7BB549250B633900C8B902 /* ThemeCell.swift in Sources */,
-				5DF8D1322553E7FE007E3372 /* NotificationLikedCell.swift in Sources */,
+				5DF8D1322553E7FE007E3372 /* NoticeLikedCell.swift in Sources */,
 				5D2D0E722508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DCC2D8F24F34F04000AC40A /* AddProductSectionCellViewModel.swift in Sources */,
 				5DCC2D9024F34F04000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
@@ -3891,6 +3901,7 @@
 				5DCC2D9424F34F04000AC40A /* Version.swift in Sources */,
 				5DCC2D9524F34F04000AC40A /* Foundation-Extension.swift in Sources */,
 				5D7C38CF250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
+				5DCEDA112564D51D00264166 /* InsightsRelationType.swift in Sources */,
 				5DCC2D9624F34F04000AC40A /* CollectionReusableView.swift in Sources */,
 				5DCC2D9724F34F04000AC40A /* UIImage-Extension.swift in Sources */,
 				5D5C486725510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
@@ -3905,6 +3916,7 @@
 				5D7BB55E250B633900C8B902 /* ReactionPopView.swift in Sources */,
 				5D15FB2B2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC959251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
+				5DCEDA0D2564D49000264166 /* SettingItem.swift in Sources */,
 				5D2D0E662508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5DCC2D9C24F34F04000AC40A /* PostProductViewModel.swift in Sources */,
 				5DCC2D9D24F34F04000AC40A /* PostsDetailViewModel.swift in Sources */,
@@ -3916,7 +3928,7 @@
 				5DCC2DA224F34F04000AC40A /* VisualSearchResultViewController.swift in Sources */,
 				5DCC2DA424F34F04000AC40A /* PrivacyViewController.swift in Sources */,
 				5DCC2DA524F34F04000AC40A /* SavedCollectionViewController.swift in Sources */,
-				5DCC2DA624F34F04000AC40A /* NotificationCellViewModel.swift in Sources */,
+				5DCC2DA624F34F04000AC40A /* NoticeCellViewModel.swift in Sources */,
 				5DCC2DA724F34F04000AC40A /* ErrorTracker.swift in Sources */,
 				5DCC2DA924F34F04000AC40A /* StyleBoardEditView.swift in Sources */,
 				5D2D0E482508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
@@ -3925,7 +3937,7 @@
 				5DCC2DAB24F34F04000AC40A /* UIFont-Extension.swift in Sources */,
 				5DCC2DAC24F34F04000AC40A /* StackView.swift in Sources */,
 				5DCC2DAD24F34F04000AC40A /* AddProductWebsiteReusableView.swift in Sources */,
-				5DCC2DAE24F34F04000AC40A /* NotificationCell.swift in Sources */,
+				5DCC2DAE24F34F04000AC40A /* NoticeCell.swift in Sources */,
 				5DD0A376251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DCC2DAF24F34F04000AC40A /* WebViewController.swift in Sources */,
 				5DCC2DB124F34F04000AC40A /* PostsDetailBottomBar.swift in Sources */,
@@ -3944,7 +3956,7 @@
 				5DCC2E1D24F34F2A000AC40A /* CollectionViewController.swift in Sources */,
 				5DCAC9512512056600172C05 /* SearchThemeViewModel.swift in Sources */,
 				5DCC2E1E24F34F2A000AC40A /* StyleBoardSearchSection.swift in Sources */,
-				5DCC2E1F24F34F2A000AC40A /* NotificationViewModel.swift in Sources */,
+				5DCC2E1F24F34F2A000AC40A /* NoticeViewModel.swift in Sources */,
 				5D7C38CC250B695E006D6CF7 /* DefaultColltionCellViewModel.swift in Sources */,
 				5DCC2E2024F34F2A000AC40A /* SavedCollectionClassifyViewController.swift in Sources */,
 				5DCC2E2124F34F2A000AC40A /* ReactionsViewModel.swift in Sources */,
@@ -3980,7 +3992,7 @@
 				5DCC2E3624F34F2A000AC40A /* SavedCollection.swift in Sources */,
 				5DCC2E3724F34F2A000AC40A /* VisualSearchProductHeadView.swift in Sources */,
 				5DD370C62531983A00A42A16 /* ReactionsCellViewModel.swift in Sources */,
-				5DF8D1472553E9D9007E3372 /* NotificationReactionCell.swift in Sources */,
+				5DF8D1472553E9D9007E3372 /* NoticeReactionCell.swift in Sources */,
 				5DCAC957251205D300172C05 /* SearchThemeContentViewModel.swift in Sources */,
 				5DCC2E3824F34F2A000AC40A /* DefaultTableViewCell.swift in Sources */,
 				5DCC2E3924F34F2A000AC40A /* PostsDetailTitleReusableView.swift in Sources */,
@@ -3992,7 +4004,7 @@
 				5D15FB312546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DCC2E3E24F34F2A000AC40A /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483CA251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
-				5DF8D13D2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */,
+				5DF8D13D2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */,
 				5DCC2E3F24F34F2A000AC40A /* RestApi.swift in Sources */,
 				5DCC2E4024F34F2A000AC40A /* UserDetailRecommViewModel.swift in Sources */,
 				5DCC2E4124F34F2A000AC40A /* PostProductTagCell.swift in Sources */,
@@ -4015,7 +4027,7 @@
 				5DCC2E4E24F34F2A000AC40A /* Gradient-Extension.swift in Sources */,
 				5DCC2E5024F34F2A000AC40A /* Categories.swift in Sources */,
 				5DCC2E5224F34F2A000AC40A /* DefaultColltionItem.swift in Sources */,
-				5DF8D1242553DF26007E3372 /* NotificationSection.swift in Sources */,
+				5DF8D1242553DF26007E3372 /* NoticeSection.swift in Sources */,
 				5DCC2E5324F34F2A000AC40A /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DCC2E5424F34F2A000AC40A /* AlertController-Extension.swift in Sources */,
 				5DCC2E5524F34F2A000AC40A /* Insight.swift in Sources */,
@@ -4047,8 +4059,8 @@
 				5DCC2E6E24F34F2A000AC40A /* AddProductTagCellViewModel.swift in Sources */,
 				5DCC2E6F24F34F2A000AC40A /* GlanceAPI.swift in Sources */,
 				5DCC2E7024F34F2A000AC40A /* PostsDetailViewController.swift in Sources */,
-				5DF8D1292553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
-				5DF8D1512553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
+				5DF8D1292553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */,
+				5DF8D1512553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */,
 				5DCC2E7124F34F2A000AC40A /* VisualSearchClippingCircle.swift in Sources */,
 				5DFF3F21250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DCC2E7324F34F2A000AC40A /* Gender.swift in Sources */,
@@ -4133,7 +4145,7 @@
 				5DCC2EAB24F34F2A000AC40A /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D62531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DCC2EAC24F34F2A000AC40A /* StyleBoardSearchCellViewModel.swift in Sources */,
-				5DAC20A52554F755008D47EF /* NotificationSystemCell.swift in Sources */,
+				5DAC20A52554F755008D47EF /* NoticeSystemCell.swift in Sources */,
 				5DCC2EAD24F34F2A000AC40A /* VisualSearchResultViewModel.swift in Sources */,
 				5DCC2EAE24F34F2A000AC40A /* AddProductSection.swift in Sources */,
 				5D7BB54D250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
@@ -4151,7 +4163,7 @@
 				5DCC2EB824F34F2A000AC40A /* SavedCollectionViewModel.swift in Sources */,
 				5DCC2EB924F34F2A000AC40A /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7B24F362E0000AC40A /* InsightsRelation.swift in Sources */,
-				5DAC20AF255524ED008D47EF /* NotificationThemeCell.swift in Sources */,
+				5DAC20AF255524ED008D47EF /* NoticeThemeCell.swift in Sources */,
 				5DA483D0251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DCC2EBA24F34F2A000AC40A /* NavigationController.swift in Sources */,
 				5DCC2EBB24F34F2A000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
@@ -4220,12 +4232,12 @@
 				5DCC2EE224F34F2A000AC40A /* AddProductButtonReusableView.swift in Sources */,
 				5DCC2EE324F34F2A000AC40A /* SearchBar.swift in Sources */,
 				5D4299F525428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
-				5DCC2EE424F34F2A000AC40A /* NotificationViewController.swift in Sources */,
+				5DCC2EE424F34F2A000AC40A /* NoticeViewController.swift in Sources */,
 				5DCC2EE524F34F2A000AC40A /* VisualSearchProductCell.swift in Sources */,
 				5DCC2EE624F34F2A000AC40A /* SignInViewController.swift in Sources */,
 				5D2D0E832509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
 				5D7BB54A250B633900C8B902 /* ThemeCell.swift in Sources */,
-				5DF8D1332553E7FE007E3372 /* NotificationLikedCell.swift in Sources */,
+				5DF8D1332553E7FE007E3372 /* NoticeLikedCell.swift in Sources */,
 				5D2D0E732508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DCC2EE724F34F2A000AC40A /* AddProductSectionCellViewModel.swift in Sources */,
 				5DCC2EE824F34F2A000AC40A /* ShoppingCartCellViewModel.swift in Sources */,
@@ -4237,6 +4249,7 @@
 				5DCC2EEC24F34F2A000AC40A /* Version.swift in Sources */,
 				5DCC2EED24F34F2A000AC40A /* Foundation-Extension.swift in Sources */,
 				5D7C38D0250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
+				5DCEDA122564D51D00264166 /* InsightsRelationType.swift in Sources */,
 				5DCC2EEE24F34F2A000AC40A /* CollectionReusableView.swift in Sources */,
 				5DCC2EEF24F34F2A000AC40A /* UIImage-Extension.swift in Sources */,
 				5D5C486825510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
@@ -4251,6 +4264,7 @@
 				5D7BB55F250B633900C8B902 /* ReactionPopView.swift in Sources */,
 				5D15FB2C2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC95A251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
+				5DCEDA0E2564D49200264166 /* SettingItem.swift in Sources */,
 				5D2D0E672508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5DCC2EF424F34F2A000AC40A /* PostProductViewModel.swift in Sources */,
 				5DCC2EF524F34F2A000AC40A /* PostsDetailViewModel.swift in Sources */,
@@ -4262,7 +4276,7 @@
 				5DCC2EFA24F34F2A000AC40A /* VisualSearchResultViewController.swift in Sources */,
 				5DCC2EFC24F34F2A000AC40A /* PrivacyViewController.swift in Sources */,
 				5DCC2EFD24F34F2A000AC40A /* SavedCollectionViewController.swift in Sources */,
-				5DCC2EFE24F34F2A000AC40A /* NotificationCellViewModel.swift in Sources */,
+				5DCC2EFE24F34F2A000AC40A /* NoticeCellViewModel.swift in Sources */,
 				5DCC2EFF24F34F2A000AC40A /* ErrorTracker.swift in Sources */,
 				5DCC2F0124F34F2A000AC40A /* StyleBoardEditView.swift in Sources */,
 				5D2D0E492508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
@@ -4271,7 +4285,7 @@
 				5DCC2F0324F34F2A000AC40A /* UIFont-Extension.swift in Sources */,
 				5DCC2F0424F34F2A000AC40A /* StackView.swift in Sources */,
 				5DCC2F0524F34F2A000AC40A /* AddProductWebsiteReusableView.swift in Sources */,
-				5DCC2F0624F34F2A000AC40A /* NotificationCell.swift in Sources */,
+				5DCC2F0624F34F2A000AC40A /* NoticeCell.swift in Sources */,
 				5DD0A377251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DCC2F0724F34F2A000AC40A /* WebViewController.swift in Sources */,
 				5DCC2F0924F34F2A000AC40A /* PostsDetailBottomBar.swift in Sources */,
@@ -4290,7 +4304,7 @@
 				5DEFF37924AEC2F9007A2FCD /* CollectionViewController.swift in Sources */,
 				5DCAC94F2512056600172C05 /* SearchThemeViewModel.swift in Sources */,
 				5DC3131D24E3F2F700CC3F89 /* StyleBoardSearchSection.swift in Sources */,
-				5D13709724B70F4B007B64BA /* NotificationViewModel.swift in Sources */,
+				5D13709724B70F4B007B64BA /* NoticeViewModel.swift in Sources */,
 				5D7C38CA250B695E006D6CF7 /* DefaultColltionCellViewModel.swift in Sources */,
 				5D5B017A24C570BE00832F05 /* SavedCollectionClassifyViewController.swift in Sources */,
 				5D06523B24BEE549007CE461 /* ReactionsViewModel.swift in Sources */,
@@ -4326,7 +4340,7 @@
 				5D5B017F24C57C6F00832F05 /* SavedCollection.swift in Sources */,
 				5D6B4DC124D7A4280024924B /* VisualSearchProductHeadView.swift in Sources */,
 				5DD370C42531983A00A42A16 /* ReactionsCellViewModel.swift in Sources */,
-				5DF8D1452553E9D9007E3372 /* NotificationReactionCell.swift in Sources */,
+				5DF8D1452553E9D9007E3372 /* NoticeReactionCell.swift in Sources */,
 				5DCAC955251205D300172C05 /* SearchThemeContentViewModel.swift in Sources */,
 				5DEFF37224AEC2F9007A2FCD /* DefaultTableViewCell.swift in Sources */,
 				5D1D5AF424BFF007008C0C82 /* PostsDetailTitleReusableView.swift in Sources */,
@@ -4338,7 +4352,7 @@
 				5D15FB2F2546B91E004A98E5 /* StyleBoardSearchTextFieldView.swift in Sources */,
 				5DAB29C924C83705003C3E00 /* PostsDetailTagsReusableView.swift in Sources */,
 				5DA483C8251316C200A80194 /* SearchThemeLabelViewController.swift in Sources */,
-				5DF8D13B2553E989007E3372 /* NotificationRecommendedCell.swift in Sources */,
+				5DF8D13B2553E989007E3372 /* NoticeRecommendedCell.swift in Sources */,
 				5DEFF30624AEC2F9007A2FCD /* RestApi.swift in Sources */,
 				5D7D49AC24B861FA00F919EB /* UserDetailRecommViewModel.swift in Sources */,
 				5D6FEA9D24DC03090062F90B /* PostProductTagCell.swift in Sources */,
@@ -4361,7 +4375,7 @@
 				5DEFF4F424AECB7A007A2FCD /* Gradient-Extension.swift in Sources */,
 				5DB6AC0424D96D7100AD4B43 /* Categories.swift in Sources */,
 				5D630AAE24B31B4000F0CC45 /* DefaultColltionItem.swift in Sources */,
-				5DF8D1212553DF20007E3372 /* NotificationSection.swift in Sources */,
+				5DF8D1212553DF20007E3372 /* NoticeSection.swift in Sources */,
 				5D6B4DC924D7A71E0024924B /* VisualSearchProductCellViewModel.swift in Sources */,
 				5DEFF35024AEC2F9007A2FCD /* AlertController-Extension.swift in Sources */,
 				5D437DCF24BD9D2C00AFBB1F /* Insight.swift in Sources */,
@@ -4393,8 +4407,8 @@
 				5DB6ABDF24D957BB00AD4B43 /* AddProductTagCellViewModel.swift in Sources */,
 				5DEFF30424AEC2F9007A2FCD /* GlanceAPI.swift in Sources */,
 				5D06524724BEFD3F007CE461 /* PostsDetailViewController.swift in Sources */,
-				5DF8D1272553E4C2007E3372 /* NotificationFollowingCell.swift in Sources */,
-				5DF8D14F2553EB64007E3372 /* NotificationMightLikeCell.swift in Sources */,
+				5DF8D1272553E4C2007E3372 /* NoticeFollowingCell.swift in Sources */,
+				5DF8D14F2553EB64007E3372 /* NoticeMightLikeCell.swift in Sources */,
 				5D3F263624D179CA00A825BB /* VisualSearchClippingCircle.swift in Sources */,
 				5DFF3F1F250F08810052ED40 /* SearchResultModuleItem.swift in Sources */,
 				5DEFF32424AEC2F9007A2FCD /* Gender.swift in Sources */,
@@ -4479,7 +4493,7 @@
 				5DC3131924E3F1F900CC3F89 /* StyleBoardSearchViewController.swift in Sources */,
 				5DD370D42531983A00A42A16 /* ReactionsCell.swift in Sources */,
 				5DC3131F24E3F55100CC3F89 /* StyleBoardSearchCellViewModel.swift in Sources */,
-				5DAC20A32554F755008D47EF /* NotificationSystemCell.swift in Sources */,
+				5DAC20A32554F755008D47EF /* NoticeSystemCell.swift in Sources */,
 				5D3B316224D2A1810039D1B9 /* VisualSearchResultViewModel.swift in Sources */,
 				5DB6ABDD24D957BB00AD4B43 /* AddProductSection.swift in Sources */,
 				5D7BB54B250B633900C8B902 /* DefaultColltionSectionItem.swift in Sources */,
@@ -4497,7 +4511,7 @@
 				5D5B018324C5857300832F05 /* SavedCollectionViewModel.swift in Sources */,
 				5D437DD324BDA19C00AFBB1F /* InsightsChildViewController.swift in Sources */,
 				5DCC2F7924F362E0000AC40A /* InsightsRelation.swift in Sources */,
-				5DAC20AD255524ED008D47EF /* NotificationThemeCell.swift in Sources */,
+				5DAC20AD255524ED008D47EF /* NoticeThemeCell.swift in Sources */,
 				5DA483CE251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5DAB29C524C836DA003C3E00 /* PostsDetailPriceReusableView.swift in Sources */,
@@ -4566,12 +4580,12 @@
 				5DB6AC0124D96A0B00AD4B43 /* AddProductButtonReusableView.swift in Sources */,
 				5DEFF4FE24AED1D7007A2FCD /* SearchBar.swift in Sources */,
 				5D4299F325428BF5002215DF /* DefaultColltionMemu.swift in Sources */,
-				5D13709624B70F4B007B64BA /* NotificationViewController.swift in Sources */,
+				5D13709624B70F4B007B64BA /* NoticeViewController.swift in Sources */,
 				5D6B4DC624D7A61C0024924B /* VisualSearchProductCell.swift in Sources */,
 				5D630AA524B2C3DB00F0CC45 /* SignInViewController.swift in Sources */,
 				5D2D0E812509CDDF00E9FD8D /* SearchRecommendHotCategory.swift in Sources */,
 				5D7BB548250B633900C8B902 /* ThemeCell.swift in Sources */,
-				5DF8D1312553E7FE007E3372 /* NotificationLikedCell.swift in Sources */,
+				5DF8D1312553E7FE007E3372 /* NoticeLikedCell.swift in Sources */,
 				5D2D0E712508701200E9FD8D /* SearchRecommendNavigationBar.swift in Sources */,
 				5DB6AC0A24DA491000AD4B43 /* AddProductSectionCellViewModel.swift in Sources */,
 				5DB1C7A224C2E3580071A0E1 /* ShoppingCartCellViewModel.swift in Sources */,
@@ -4583,6 +4597,7 @@
 				5DEFF32B24AEC2F9007A2FCD /* Version.swift in Sources */,
 				5DEFF35524AEC2F9007A2FCD /* Foundation-Extension.swift in Sources */,
 				5D7C38CE250B6BC3006D6CF7 /* SearchRecommendNewSection.swift in Sources */,
+				5DCEDA102564D51D00264166 /* InsightsRelationType.swift in Sources */,
 				5DEFF37824AEC2F9007A2FCD /* CollectionReusableView.swift in Sources */,
 				5DEFF34324AEC2F9007A2FCD /* UIImage-Extension.swift in Sources */,
 				5D5C486625510D1C009CDB2E /* PostsDetailMoreReusableView.swift in Sources */,
@@ -4597,6 +4612,7 @@
 				5D7BB55D250B633900C8B902 /* ReactionPopView.swift in Sources */,
 				5D15FB2A2546A1FA004A98E5 /* StyleBoardSearchModuleItem.swift in Sources */,
 				5DCAC958251205D300172C05 /* SearchThemeContentViewController.swift in Sources */,
+				5DCEDA0C2564D49000264166 /* SettingItem.swift in Sources */,
 				5D2D0E652508701200E9FD8D /* SearchHistoryCellViewModel.swift in Sources */,
 				5D6FEA6024DC019C0062F90B /* PostProductViewModel.swift in Sources */,
 				5D06524F24BF0514007CE461 /* PostsDetailViewModel.swift in Sources */,
@@ -4608,7 +4624,7 @@
 				5D3B316024D2A0280039D1B9 /* VisualSearchResultViewController.swift in Sources */,
 				5D13708424B70765007B64BA /* PrivacyViewController.swift in Sources */,
 				5D5B018124C5851C00832F05 /* SavedCollectionViewController.swift in Sources */,
-				5D13709824B70F4B007B64BA /* NotificationCellViewModel.swift in Sources */,
+				5D13709824B70F4B007B64BA /* NoticeCellViewModel.swift in Sources */,
 				5DEFF4D224AEC2FA007A2FCD /* ErrorTracker.swift in Sources */,
 				5D7B18A024E5314200D021EA /* StyleBoardEditView.swift in Sources */,
 				5D2D0E472508701200E9FD8D /* SearchRecommendViewModel.swift in Sources */,
@@ -4617,7 +4633,7 @@
 				5DEFF34F24AEC2F9007A2FCD /* UIFont-Extension.swift in Sources */,
 				5DEFF35F24AEC2F9007A2FCD /* StackView.swift in Sources */,
 				5DB6ABF924D95A8900AD4B43 /* AddProductWebsiteReusableView.swift in Sources */,
-				5D13709924B70F4B007B64BA /* NotificationCell.swift in Sources */,
+				5D13709924B70F4B007B64BA /* NoticeCell.swift in Sources */,
 				5DD0A375251D88D0005DFA02 /* UserDetailMemuItem.swift in Sources */,
 				5DEFF36E24AEC2F9007A2FCD /* WebViewController.swift in Sources */,
 				5DD8513724CED72A00278361 /* PostsDetailBottomBar.swift in Sources */,

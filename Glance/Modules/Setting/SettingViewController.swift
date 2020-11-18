@@ -8,19 +8,6 @@
 
 import UIKit
 
-enum SettingItem : Int {
-    case modifyProfile = 0
-    case notifications
-    case privacy
-    case originalPhotos
-    case postsYourLiked
-    case followAndInviteFriends
-    case syncInstagram
-    case help
-    case about
-    case logout
-}
-
 class SettingViewController: ViewController {
     
     @IBOutlet var items: [UIView]!

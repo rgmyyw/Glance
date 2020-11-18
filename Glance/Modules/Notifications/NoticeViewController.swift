@@ -1,5 +1,5 @@
 //
-//  NotificationViewController.swift
+//  NoticeViewController.swift
 //  Glance
 //
 //  Created by yanghai on 2020/7/3.
@@ -13,9 +13,9 @@ import RxDataSources
 import SwipeCellKit
 
 
-class NotificationViewController: TableViewController {
+class NoticeViewController: TableViewController {
     
-    private lazy var dataSouce : RxTableViewSectionedAnimatedDataSource<NotificationSection> = configureDataSouce()
+    private lazy var dataSouce : RxTableViewSectionedAnimatedDataSource<NoticeSection> = configureDataSouce()
     
     lazy var clearButton : UIButton = {
         let button = UIButton()
@@ -35,14 +35,14 @@ class NotificationViewController: TableViewController {
         
         navigationBar.rightBarButtonItem = clearButton
         
-        tableView.register(nib: NotificationCell.nib, withCellClass: NotificationCell.self)
-        tableView.register(nib: NotificationFollowingCell.nib, withCellClass: NotificationFollowingCell.self)
-        tableView.register(nib: NotificationLikedCell.nib, withCellClass: NotificationLikedCell.self)
-        tableView.register(nib: NotificationRecommendedCell.nib, withCellClass: NotificationRecommendedCell.self)
-        tableView.register(nib: NotificationReactionCell.nib, withCellClass: NotificationReactionCell.self)
-        tableView.register(nib: NotificationMightLikeCell.nib, withCellClass: NotificationMightLikeCell.self)
-        tableView.register(nib: NotificationSystemCell.nib, withCellClass: NotificationSystemCell.self)
-        tableView.register(nib: NotificationThemeCell.nib, withCellClass: NotificationThemeCell.self)
+        tableView.register(nib: NoticeCell.nib, withCellClass: NoticeCell.self)
+        tableView.register(nib: NoticeFollowingCell.nib, withCellClass: NoticeFollowingCell.self)
+        tableView.register(nib: NoticeLikedCell.nib, withCellClass: NoticeLikedCell.self)
+        tableView.register(nib: NoticeRecommendedCell.nib, withCellClass: NoticeRecommendedCell.self)
+        tableView.register(nib: NoticeReactionCell.nib, withCellClass: NoticeReactionCell.self)
+        tableView.register(nib: NoticeMightLikeCell.nib, withCellClass: NoticeMightLikeCell.self)
+        tableView.register(nib: NoticeSystemCell.nib, withCellClass: NoticeSystemCell.self)
+        tableView.register(nib: NoticeThemeCell.nib, withCellClass: NoticeThemeCell.self)
         
         emptyDataSource.image.accept(R.image.icon_empty_notifications())
         emptyDataSource.title.accept("No Notifications")
@@ -51,11 +51,11 @@ class NotificationViewController: TableViewController {
     }
     override func bindViewModel() {
         super.bindViewModel()
-        guard let viewModel = viewModel as? NotificationViewModel else { return }
+        guard let viewModel = viewModel as? NoticeViewModel else { return }
         let clear = clearButton.rx.tap.asObservable()
-        let selection = tableView.rx.modelSelected(NotificationSectionItem.self).asObservable()
+        let selection = tableView.rx.modelSelected(NoticeSectionItem.self).asObservable()
         
-        let input = NotificationViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
+        let input = NoticeViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                                 footerRefresh: footerRefreshTrigger.asObservable(),
                                                 selection: selection,
                                                 clear: clear)
@@ -77,7 +77,7 @@ class NotificationViewController: TableViewController {
     
 }
 
-extension NotificationViewController : SwipeTableViewCellDelegate {
+extension NoticeViewController : SwipeTableViewCellDelegate {
     
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath, for orientation: SwipeActionsOrientation) -> [SwipeAction]? {
                 
@@ -103,9 +103,9 @@ extension NotificationViewController : SwipeTableViewCellDelegate {
     }
     
     
-    fileprivate func configureDataSouce() -> RxTableViewSectionedAnimatedDataSource<NotificationSection> {
-        return RxTableViewSectionedAnimatedDataSource<NotificationSection>(configureCell : {[weak self] (dataSouce, tableView, indexPath, item) -> UITableViewCell in
-            let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) as! NotificationCell
+    fileprivate func configureDataSouce() -> RxTableViewSectionedAnimatedDataSource<NoticeSection> {
+        return RxTableViewSectionedAnimatedDataSource<NoticeSection>(configureCell : {[weak self] (dataSouce, tableView, indexPath, item) -> UITableViewCell in
+            let cell = tableView.dequeueReusableCell(withIdentifier: item.reuseIdentifier) as! NoticeCell
             cell.bind(to: item.viewModel)
             cell.delegate = self
             return cell

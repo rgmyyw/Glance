@@ -1,5 +1,5 @@
 //
-//  NotificationFollowingCell.swift
+//  NotificationMightLikeCell.swift
 //  Glance
 //
 //  Created by yanghai on 2020/11/5.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationFollowingCell: NotificationCell {
+class NoticeMightLikeCell: NoticeCell {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
@@ -18,16 +18,13 @@ class NotificationFollowingCell: NotificationCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var followButton: UIButton!
     
-    
-    
     override func makeUI() {
         super.makeUI()
         
         stackView.addArrangedSubview(containerView)
     }
     
-    
-    override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+    override func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
         super.bind(to: viewModel)
         
         viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
@@ -35,9 +32,9 @@ class NotificationFollowingCell: NotificationCell {
         viewModel.following.bind(to: followButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
-        userImageView.rx.tap().bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
         followButton.rx.tap.bind(to: viewModel.follow).disposed(by: cellDisposeBag)
         
+        userImageView.rx.tap().bind(to: viewModel.userDetail).disposed(by: cellDisposeBag)
     }
-    
+
 }

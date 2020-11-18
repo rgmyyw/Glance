@@ -26,7 +26,7 @@ protocol API {
     func reactions(recommendId : Int,pageNum : Int) ->  Single<PageMapable<User>>
     func postDetail(postId : Int) -> Single<PostsDetail>
     func productDetail(productId : String) -> Single<PostsDetail>
-    func notifications(pageNum : Int) -> Single<PageMapable<Notification>>
+    func notifications(pageNum : Int) -> Single<PageMapable<Notice>>
     func shoppingCart(pageNum : Int) -> Single<PageMapable<ShoppingCart>>
     func shoppingCartDelete(productId : String) -> Single<Bool>
     func like(param : [String : Any]) -> Single<Bool>

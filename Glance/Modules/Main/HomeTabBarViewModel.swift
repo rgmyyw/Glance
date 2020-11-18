@@ -47,10 +47,10 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
             let viewModel = HomeViewModel(provider: provider)
             return viewModel
         case .notifications:
-            let viewModel = NotificationViewModel(provider: provider)
+            let viewModel = NoticeViewModel(provider: provider)
             return viewModel
         case .chat:
-            let viewModel = NotificationViewModel(provider: provider)
+            let viewModel = NoticeViewModel(provider: provider)
             return viewModel
         case .mine:
             let viewModel = UserDetailViewModel(provider: provider)

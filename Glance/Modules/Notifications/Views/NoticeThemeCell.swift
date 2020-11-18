@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NotificationThemeCell: NotificationCell {
+class NoticeThemeCell: NoticeCell {
     
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var unreadImageView: UIImageView!
@@ -23,7 +23,7 @@ class NotificationThemeCell: NotificationCell {
         stackView.addArrangedSubview(containerView)
     }
     
-    override func bind<T>(to viewModel: T) where T : NotificationCellViewModel {
+    override func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
         super.bind(to: viewModel)
         
         imageViews.tapGesture().map { viewModel.item.themeImages[$0].int}.filterNil().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
