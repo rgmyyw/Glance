@@ -36,7 +36,7 @@ final class Application: NSObject {
         updateProvider()
         guard let window = window, let provider = provider else { return }
         self.window = window
-        #if FAST_TEST
+        #if DEVELOP
         presentTestScreen(in: window)
         #else
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
@@ -77,9 +77,12 @@ final class Application: NSObject {
     
     func presentTestScreen(in window: UIWindow?) {
         guard let window = window, let provider = provider else { return }
+        
         let viewModel = DemoViewModel(provider : provider)
         self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
-
+        
+        
+        
     }
 }
 
