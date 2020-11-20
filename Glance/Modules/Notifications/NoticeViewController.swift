@@ -72,6 +72,16 @@ class NoticeViewController: TableViewController {
             let viewModel = SearchThemeViewModel(provider: viewModel.provider, themeId: themeId)
             self?.navigator.show(segue: .searchTheme(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
+        
+        output.postDetail.drive(onNext: { [weak self](item) in
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
+
+        output.insightDetail.drive(onNext: { [weak self](item) in
+            let viewModel = InsightsDetailViewModel(provider: viewModel.provider, type: .recommend, item: item)
+            self?.navigator.show(segue: .insightsDetail(viewModel: viewModel), sender: self)
+        }).disposed(by: rx.disposeBag)
 
     }
     

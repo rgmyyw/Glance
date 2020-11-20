@@ -12,13 +12,13 @@ import Differentiator
 
 
 enum NoticeType : Int {
-    case following = 0
-    case liked = 1
-    case recommended = 2
-    case reacted = 3
-    case mightLike = 4
-    case system = 5
-    case theme = 6
+    case following = 1
+    case liked = 2
+    case recommended = 3
+    case reacted = 4
+    case mightLike = 20
+    case system = 0
+    case theme = 21
 }
 
 
@@ -27,6 +27,8 @@ enum NoticeSection : AnimatableSectionModelType,IdentifiableType {
     
     typealias Identity = String
     typealias Item = NoticeSectionItem
+    
+    case noti(items : [NoticeSectionItem])
     
     var identity: String {
         return "noti"
@@ -41,13 +43,11 @@ enum NoticeSection : AnimatableSectionModelType,IdentifiableType {
     
     init(original: NoticeSection, items: [Item]) {
         switch original {
-        case .noti(let items):
+        case .noti:
             self = .noti(items: items)
         }
     }
 
-    
-    case noti(items : [NoticeSectionItem])
 }
 
 
@@ -107,10 +107,8 @@ extension NoticeSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
         switch self {
-        case .following(let viewModel):
-            return viewModel.item.notificationId.string
         default:
-            return ""
+            return "noticeId:\(viewModel.item.noticeId.string)"
         }
     }
 }

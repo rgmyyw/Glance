@@ -26,9 +26,10 @@ class NoticeThemeCell: NoticeCell {
     override func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
         super.bind(to: viewModel)
         
-        imageViews.tapGesture().map { viewModel.item.themeImages[$0].int}.filterNil().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
+        //imageViews.tapGesture().map { viewModel.item.themeImages[$0].int}.filterNil().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
+        containerView.rx.tap().bind(to: viewModel.themeDetail).disposed(by: cellDisposeBag)
         viewModel.theme.bind(to: themeLabel.rx.text).disposed(by: cellDisposeBag)
-        viewModel.unread.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
+        viewModel.read.bind(to: unreadImageView.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.time.bind(to: timeLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.themeImages.value.enumerated().forEach { (offset, imageURL) in
             if offset < imageViews.count {
