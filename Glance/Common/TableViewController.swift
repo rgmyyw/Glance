@@ -38,6 +38,7 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
         let view = TableView(frame: .zero, style: style)
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
+        view.contentInsetAdjustmentBehavior = .automatic
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
       
         return view
@@ -45,7 +46,6 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
     
     init(viewModel: ViewModel?, navigator: Navigator, tableView style : UITableView.Style = .plain) {
         self.style = style
-        
         super.init(viewModel: viewModel, navigator: navigator)
     }
     
@@ -102,7 +102,9 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
                 }
         }).disposed(by: rx.disposeBag)
         
+        
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
+                                               isHeaderLoading.mapToVoid(),
                                                emptyDataSource.enable.mapToVoid(),
                                                emptyDataSource.title.filterNil().mapToVoid(),
                                                emptyDataSource.subTitle.filterNil().mapToVoid(),

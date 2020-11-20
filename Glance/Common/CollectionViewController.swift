@@ -29,6 +29,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         view.emptyDataSetDelegate = self
         view.alwaysBounceVertical = true
         view.contentInset = .zero
+        view.contentInsetAdjustmentBehavior = .automatic
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
         return view
     }()
@@ -87,6 +88,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         }).disposed(by: rx.disposeBag)
 
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
+                                               isHeaderLoading.mapToVoid(),
                                                emptyDataSource.title.filterNil().mapToVoid(),
                                                emptyDataSource.subTitle.filterNil().mapToVoid(),
                                                emptyDataSource.image.filterNil().mapToVoid(),
