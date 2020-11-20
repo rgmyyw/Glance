@@ -36,15 +36,14 @@ final class Application: NSObject {
         updateProvider()
         guard let window = window, let provider = provider else { return }
         self.window = window
-        #if DEVELOP
+        //#if DEVELOP
+        #if FLASE
         presentTestScreen(in: window)
         #else
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            if loggedIn.value {
-                self.showTabbar(provider: provider, window: window)
-            } else {
-                self.showSignIn(provider: provider, window: window)
-            }
+        if loggedIn.value {
+            self.showTabbar(provider: provider, window: window)
+        } else {
+            self.showSignIn(provider: provider, window: window)
         }
         #endif
     }
