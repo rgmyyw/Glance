@@ -35,10 +35,10 @@ platform :ios do
   end
   
   
-  
   desc "Export an ad_hoc file to local"
   lane :export_Ad_Hoc_IPA do
     increment_build_number(xcodeproj: 'Glance.xcodeproj')
+    badge(custom: "./Glance/Resources/AppIcon/icon.jpg",dark: true)
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
       export_method:"ad-hoc",
@@ -55,6 +55,7 @@ platform :ios do
     sh 'open ../build'
     sh 'ios-ipa-server ../build'
     notification(subtitle: "导出完成", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
+    #badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
   end
 
   desc "获取开发证书和配置文件"
