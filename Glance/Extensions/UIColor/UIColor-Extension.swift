@@ -38,7 +38,7 @@ extension UIColor {
     }
     
     static func badgeBackground() -> UIColor {
-        return UIColor(hex: 0xE8160A)!
+        return UIColor(hex: 0xF2513F)!
     }
     
 }

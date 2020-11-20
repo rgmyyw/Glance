@@ -116,7 +116,11 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 case .next(let item):
                     elements.accept([])
                     self.element.accept(item)
-                    self.refreshState.onNext(item.boxProducts[0].refreshState)
+                    if item.boxProducts.isNotEmpty {
+                        self.refreshState.onNext(item.boxProducts[0].refreshState)
+                    } else {
+                        self.refreshState.onNext(.end)
+                    }
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
                     switch error  {

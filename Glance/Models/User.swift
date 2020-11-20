@@ -69,6 +69,7 @@ extension User {
         user.accept(self)
         if let json = self.toJSONString() {
             keychain[userKey] = json
+            
         } else {
             logError("User can't be saved")
         }

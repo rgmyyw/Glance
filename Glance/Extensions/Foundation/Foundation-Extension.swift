@@ -227,6 +227,9 @@ extension NSNotification.Name {
     public static let kUpdateHomeData : NSNotification.Name = NSNotification.Name("kUpdateHomeData")
     public static let kRemovePostItem : NSNotification.Name = NSNotification.Name("kRemovePostItem")
     public static let kAddProduct : NSNotification.Name = NSNotification.Name("kAddProduct")
+    public static let kUpdateBageValue : NSNotification.Name = NSNotification.Name("kUpdateBageValue")
+    public static let kNotificationReceived : NSNotification.Name = NSNotification.Name("kNotificationReceived")
+    public static let kMineSelectionMemuIndex : NSNotification.Name = NSNotification.Name("kMineSelectionMemuIndex")
 
 }
 

@@ -34,6 +34,10 @@ class OAuthManager : NSObject {
     override init() {
         super.init()
         
+    }
+        
+    func setup() {
+        
         didChange.subscribe(onNext: { [weak self] () in
             var data: Data?
             if let state = self?.state.value {
@@ -70,8 +74,9 @@ class OAuthManager : NSObject {
         error.subscribe(onNext: {(error) in
             print("error: \(error.localizedDescription)")
         }).disposed(by: rx.disposeBag)
+
+        
     }
-    
 }
 
 

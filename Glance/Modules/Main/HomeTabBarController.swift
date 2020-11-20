@@ -10,6 +10,7 @@ import UIKit
 import RAMAnimatedTabBarController
 import Localize_Swift
 import RxSwift
+import WZLBadge
 
 class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarControllerDelegate {
     
@@ -94,8 +95,22 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
             self?.view.makeToast(message.subTitle,position: .center, title: message.title,style: message.style )
         }).disposed(by: rx.disposeBag)
         
+        NotificationCenter.default.rx.notification(.kUpdateBageValue).map { (noti) -> Badge? in
+            return Badge(JSON: noti.userInfo as? [String : Any] ?? [:])
+        }.filterNil().subscribe(onNext: { [weak self](item) in
+            self?.animatedItems[1].iconView?.icon.showBadge(value: item.notice)
+        }).disposed(by: rx.disposeBag)
+            
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            PermissionManager.shared.requestPermissions()
+        }
+
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+    }
     
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
@@ -122,6 +137,39 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
                 strongSelf.setViewControllers(controllers, animated: false)
             }
         }).disposed(by: rx.disposeBag)
+        
+        output.userDetail.drive(onNext: { [weak self](user) in
+            let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: user)
+            self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self?.topViewController())
+        }).disposed(by: rx.disposeBag)
+        
+        output.themeDetail.drive(onNext: { [weak self](themeId) in
+            let viewModel = SearchThemeViewModel(provider: viewModel.provider, themeId: themeId)
+            self?.navigator.show(segue: .searchTheme(viewModel: viewModel), sender: self?.topViewController())
+        }).disposed(by: rx.disposeBag)
+        
+        output.postDetail.drive(onNext: { [weak self](item) in
+            let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
+            self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self?.topViewController())
+        }).disposed(by: rx.disposeBag)
+
+        output.insightDetail.drive(onNext: { [weak self](item) in
+            let viewModel = InsightsDetailViewModel(provider: viewModel.provider, type: .recommend, item: item)
+            self?.navigator.show(segue: .insightsDetail(viewModel: viewModel), sender: self?.topViewController())
+        }).disposed(by: rx.disposeBag)
+
+        output.notice.drive(onNext: { [weak self]() in
+            self?.topViewController()?.navigationController?.popToRootViewController(animated: false)
+            self?.setSelectIndex(from: self?.selectedIndex ?? 0, to: 1)
+        }).disposed(by: rx.disposeBag)
+        
+        output.following.drive(onNext: { [weak self]() in
+            self?.topViewController()?.navigationController?.popToRootViewController(animated: false)
+            self?.setSelectIndex(from: self?.selectedIndex ?? 0, to: 4)
+            NotificationCenter.default.post(name: .kMineSelectionMemuIndex, object: nil, userInfo: ["index" : 2])
+        }).disposed(by: rx.disposeBag)
+
+        
         
         popView.selection.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] item in

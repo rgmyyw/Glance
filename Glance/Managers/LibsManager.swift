@@ -29,7 +29,7 @@ import OneSignal
 
 typealias DropDownView = DropDown
 
-class LibsManager: NSObject {
+class LibsManager: NSObject  {
 
     static let shared = LibsManager()
 
@@ -52,7 +52,10 @@ class LibsManager: NSObject {
         libsManager.setupToast()
         libsManager.setupPgyer()
         libsManager.setupOneSignal(launchOptions: launchOptions ?? [:])
-        _ = OAuthManager.shared
+        
+        OAuthManager.shared.setup()
+        BadgeValueManager.shared.setup()
+        
     }
 
     func setupTheme() {
@@ -168,15 +171,38 @@ class LibsManager: NSObject {
                                      kOSSettingsKeyInAppLaunchURL: false]
         
         let handleNotificationAction : OSHandleNotificationActionBlock = { element  in
-            print(element.debugDescription)
+            guard let element : OSNotificationOpenedResult = element else { return }
+            NotificationCenter.default.post(name: .kNotificationReceived, object: nil,
+                                            userInfo: element.notification.payload.additionalData)
+            
+        }
+        
+        let handleNotificationReceived : OSHandleNotificationReceivedBlock = { element  in
+            guard let element : OSNotification = element else { return }
+            print(String(repeating: "-", count: 50))
+            print("rawPayload: \(element.payload.rawPayload?.description ?? "")")
+            print("additionalData: \(element.payload.additionalData?.description ?? "")")
+        }
+
+        let messageClickHandler : OSHandleInAppMessageActionClickBlock = { action  in
+            guard let action = action else { return }
+            print(String(repeating: "-", count: 50))
+            print("clickName: \(action.clickName ?? "")")
+            print("clickUrl: \(action.clickUrl?.absoluteString ?? "")")
+            print("closesMessage: \(action.closesMessage)")
         }
         
         OneSignal.initWithLaunchOptions(launchOptions,
-          appId: Keys.Onesignal.appId,
-          handleNotificationAction: handleNotificationAction,
-          settings: onesignalInitSettings)
-        
+                                        appId: Keys.Onesignal.appId,
+                                        handleNotificationReceived: handleNotificationReceived,
+                                        handleNotificationAction: handleNotificationAction,
+                                        settings: onesignalInitSettings)
+
+        OneSignal.setInAppMessageClickHandler(messageClickHandler)
         OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
+        
+        OneSignal.add(self as OSSubscriptionObserver)
+        OneSignal.add(self as OSPermissionObserver)
 
     }
 
@@ -212,3 +238,35 @@ extension LibsManager {
 //        print("唤醒参数 data = \(String(describing: appData?.data)),channelCode = \(String(describing: appData?.channelCode))")
 //    }
 //}
+
+extension LibsManager : OSSubscriptionObserver ,OSPermissionObserver{
+    
+    func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
+        
+        // The user is subscribed
+        // Either the user subscribed for the first time
+        // Or the user was subscribed -> unsubscribed -> subscribed
+        print(stateChanges.to.userId)
+        print(stateChanges.toDictionary())
+        if !stateChanges.from.subscribed && stateChanges.to.subscribed {
+            
+           print(stateChanges.to.userId)
+        }
+
+    }
+    
+    func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
+       // Example of detecting answering the permission prompt
+       if stateChanges.from.status == OSNotificationPermission.notDetermined {
+          if stateChanges.to.status == OSNotificationPermission.authorized {
+             logDebug("Thanks for accepting notifications!")
+          } else if stateChanges.to.status == OSNotificationPermission.denied {
+             logDebug("Notifications not accepted. You can turn them on later under your iOS settings.")
+          }
+       }
+       // prints out all properties
+        logDebug("PermissionStateChanges: \n\(stateChanges)")
+    }
+
+    
+}

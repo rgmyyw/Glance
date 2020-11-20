@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import WZLBadge
 
 extension UIView {
     
@@ -181,5 +182,17 @@ extension UIControl {
             return super.point(inside: point, with: event)
         }
         return largeRect.contains(point)
+    }
+}
+
+
+extension UIView {
+    
+    func showBadge(value: Int, style : WBadgeStyle = .number, animationType: WBadgeAnimType = .none) {
+        badgeCenterOffset = CGPoint(x: -3, y: 3)
+        badgeBgColor = UIColor.badgeBackground()
+        badgeTextColor = .white
+        badgeFont = UIFont.titleFont(12)
+        showBadge(with: style, value: value, animationType: animationType)
     }
 }

@@ -50,7 +50,7 @@
 		5D15FB3E2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
 		5D15FB3F2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
 		5D15FB402546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */; };
-		5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
+		5D16BB3A24C15C4F003B5633 /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notice.swift */; };
 		5D1C0A4D253015C30082903F /* UserDetailRecommSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */; };
 		5D1C0A4E253015C60082903F /* UserDetailRecommSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */; };
 		5D1C0A4F253015C70082903F /* UserDetailRecommSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */; };
@@ -530,7 +530,7 @@
 		5DCC2CD124F34F04000AC40A /* InsightsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */; };
 		5DCC2CD224F34F04000AC40A /* HomeTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C724AEC2F9007A2FCD /* HomeTabBarViewModel.swift */; };
 		5DCC2CD324F34F04000AC40A /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17F24AEC2F8007A2FCD /* DefaultTableViewCellViewModel.swift */; };
-		5DCC2CD424F34F04000AC40A /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
+		5DCC2CD424F34F04000AC40A /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notice.swift */; };
 		5DCC2CD524F34F04000AC40A /* PostsDetailBannerReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29BF24C836A5003C3E00 /* PostsDetailBannerReusableView.swift */; };
 		5DCC2CD624F34F04000AC40A /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD024D957BB00AD4B43 /* AddProductViewModel.swift */; };
 		5DCC2CD724F34F04000AC40A /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
@@ -801,7 +801,7 @@
 		5DCC2E2924F34F2A000AC40A /* InsightsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D437DD624BEA67600AFBB1F /* InsightsDetailViewController.swift */; };
 		5DCC2E2A24F34F2A000AC40A /* HomeTabBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF2C724AEC2F9007A2FCD /* HomeTabBarViewModel.swift */; };
 		5DCC2E2B24F34F2A000AC40A /* DefaultTableViewCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DEFF17F24AEC2F8007A2FCD /* DefaultTableViewCellViewModel.swift */; };
-		5DCC2E2C24F34F2A000AC40A /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notification.swift */; };
+		5DCC2E2C24F34F2A000AC40A /* Notice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D16BB3924C15C4F003B5633 /* Notice.swift */; };
 		5DCC2E2D24F34F2A000AC40A /* PostsDetailBannerReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DAB29BF24C836A5003C3E00 /* PostsDetailBannerReusableView.swift */; };
 		5DCC2E2E24F34F2A000AC40A /* AddProductViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DB6ABD024D957BB00AD4B43 /* AddProductViewModel.swift */; };
 		5DCC2E2F24F34F2A000AC40A /* ModifyProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D3E47FC24B572870064E3BF /* ModifyProfileViewController.swift */; };
@@ -1078,6 +1078,12 @@
 		5DD0A37A251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserDetailNavigationAction.swift */; };
 		5DD0A37B251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserDetailNavigationAction.swift */; };
 		5DD0A37C251D88F1005DFA02 /* UserDetailNavigationAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0A379251D88F1005DFA02 /* UserDetailNavigationAction.swift */; };
+		5DD0D65E256644940083ACB6 /* BadgeValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D65D256644940083ACB6 /* BadgeValueManager.swift */; };
+		5DD0D65F256644940083ACB6 /* BadgeValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D65D256644940083ACB6 /* BadgeValueManager.swift */; };
+		5DD0D660256644940083ACB6 /* BadgeValueManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D65D256644940083ACB6 /* BadgeValueManager.swift */; };
+		5DD0D6622566535F0083ACB6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D6612566535F0083ACB6 /* Badge.swift */; };
+		5DD0D6632566535F0083ACB6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D6612566535F0083ACB6 /* Badge.swift */; };
+		5DD0D6642566535F0083ACB6 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD0D6612566535F0083ACB6 /* Badge.swift */; };
 		5DD370B42531983A00A42A16 /* UsersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370A62531983900A42A16 /* UsersCellViewModel.swift */; };
 		5DD370B52531983A00A42A16 /* UsersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370A62531983900A42A16 /* UsersCellViewModel.swift */; };
 		5DD370B62531983A00A42A16 /* UsersCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5DD370A62531983900A42A16 /* UsersCellViewModel.swift */; };
@@ -1398,7 +1404,7 @@
 		5D15FB332546B92A004A98E5 /* StyleBoardSearchTextFieldView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchTextFieldView.xib; sourceTree = "<group>"; };
 		5D15FB382546BA0A004A98E5 /* StyleBoardSearchEmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleBoardSearchEmptyView.swift; sourceTree = "<group>"; };
 		5D15FB3D2546BA1A004A98E5 /* StyleBoardSearchEmptyView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StyleBoardSearchEmptyView.xib; sourceTree = "<group>"; };
-		5D16BB3924C15C4F003B5633 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		5D16BB3924C15C4F003B5633 /* Notice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notice.swift; sourceTree = "<group>"; };
 		5D1C0A4C253015C30082903F /* UserDetailRecommSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailRecommSection.swift; sourceTree = "<group>"; };
 		5D1C0A8B25304C0C0082903F /* UsersViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		5D1C0A8C25304C0C0082903F /* UsersViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersViewController.swift; sourceTree = "<group>"; };
@@ -1699,6 +1705,8 @@
 		5DD0A36F251D88AF005DFA02 /* UserDetailUpdateTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailUpdateTitle.swift; sourceTree = "<group>"; };
 		5DD0A374251D88D0005DFA02 /* UserDetailMemuItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailMemuItem.swift; sourceTree = "<group>"; };
 		5DD0A379251D88F1005DFA02 /* UserDetailNavigationAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailNavigationAction.swift; sourceTree = "<group>"; };
+		5DD0D65D256644940083ACB6 /* BadgeValueManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeValueManager.swift; sourceTree = "<group>"; };
+		5DD0D6612566535F0083ACB6 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		5DD370A62531983900A42A16 /* UsersCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersCellViewModel.swift; sourceTree = "<group>"; };
 		5DD370A72531983900A42A16 /* UserDetailHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDetailHeadView.swift; sourceTree = "<group>"; };
 		5DD370A82531983900A42A16 /* UsersCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersCell.swift; sourceTree = "<group>"; };
@@ -2506,9 +2514,9 @@
 			isa = PBXGroup;
 			children = (
 				5DEFF4FF24AED2C4007A2FCD /* R.generated.swift */,
-				5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */,
 				5DCC2F6F24F3521E000AC40A /* Glance-D-Info.plist */,
 				5DCC2F6E24F3521E000AC40A /* Glance-P-Info.plist */,
+				5D31E7AD24B808EC00C8899E /* Glance-R-Info.plist */,
 				5DEFF12324AEC2F8007A2FCD /* Glance.entitlements */,
 				5DEFF18B24AEC2F8007A2FCD /* Application */,
 				5DEFF18F24AEC2F8007A2FCD /* Modules */,
@@ -2583,6 +2591,7 @@
 				5DC669E224D0068600FF1092 /* ImagePickerManager.swift */,
 				5D99EE53251859CA0008B45F /* PanelDefaultModalStyle.swift */,
 				5DE54CE7255CCA250010E303 /* PermissionManager.swift */,
+				5DD0D65D256644940083ACB6 /* BadgeValueManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -2602,7 +2611,7 @@
 				5D06523424BEB37C007CE461 /* InsightsDetail.swift */,
 				5D06524224BEE879007CE461 /* Reaction.swift */,
 				5D1D5AFE24C000B2008C0C82 /* PostsDetail.swift */,
-				5D16BB3924C15C4F003B5633 /* Notification.swift */,
+				5D16BB3924C15C4F003B5633 /* Notice.swift */,
 				5DB1C7A324C2EA8C0071A0E1 /* ShoppingCart.swift */,
 				5D5B017E24C57C6F00832F05 /* SavedCollection.swift */,
 				5DBC3AAF24C7E08D006B0032 /* Interest.swift */,
@@ -2620,6 +2629,7 @@
 				5DCAC93F25107A2300172C05 /* SearchTheme.swift */,
 				5DCAC9722512108700172C05 /* SearchThemeDetail.swift */,
 				5D47C7F72519ABF900B883EA /* SelectStore.swift */,
+				5DD0D6612566535F0083ACB6 /* Badge.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3628,7 +3638,7 @@
 				5DD370B52531983A00A42A16 /* UsersCellViewModel.swift in Sources */,
 				5DAC20B725591D0B008D47EF /* FollowButton.swift in Sources */,
 				5DCC2CD324F34F04000AC40A /* DefaultTableViewCellViewModel.swift in Sources */,
-				5DCC2CD424F34F04000AC40A /* Notification.swift in Sources */,
+				5DCC2CD424F34F04000AC40A /* Notice.swift in Sources */,
 				5DCC2CD524F34F04000AC40A /* PostsDetailBannerReusableView.swift in Sources */,
 				5DCAC94C2512050700172C05 /* SearchThemeViewController.swift in Sources */,
 				5DCC2CD624F34F04000AC40A /* AddProductViewModel.swift in Sources */,
@@ -3819,6 +3829,7 @@
 				5DA483CF251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DCC2D6224F34F04000AC40A /* NavigationController.swift in Sources */,
 				5DCC2D6324F34F04000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
+				5DD0D65F256644940083ACB6 /* BadgeValueManager.swift in Sources */,
 				5DCC2D6424F34F04000AC40A /* UserDetailRecommViewController.swift in Sources */,
 				5D1C0A9225304C0D0082903F /* UsersViewController.swift in Sources */,
 				5D20EC8024F8BD8E002738C8 /* PopMenu.swift in Sources */,
@@ -3832,6 +3843,7 @@
 				5D3AA29924F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2D6824F34F04000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F14250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
+				5DD0D6632566535F0083ACB6 /* Badge.swift in Sources */,
 				5DCAC9742512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5D4299F92542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5DCC2D6924F34F04000AC40A /* VisualSearchCropView.swift in Sources */,
@@ -3976,7 +3988,7 @@
 				5DD370B62531983A00A42A16 /* UsersCellViewModel.swift in Sources */,
 				5DAC20B825591D0B008D47EF /* FollowButton.swift in Sources */,
 				5DCC2E2B24F34F2A000AC40A /* DefaultTableViewCellViewModel.swift in Sources */,
-				5DCC2E2C24F34F2A000AC40A /* Notification.swift in Sources */,
+				5DCC2E2C24F34F2A000AC40A /* Notice.swift in Sources */,
 				5DCC2E2D24F34F2A000AC40A /* PostsDetailBannerReusableView.swift in Sources */,
 				5DCAC94D2512050700172C05 /* SearchThemeViewController.swift in Sources */,
 				5DCC2E2E24F34F2A000AC40A /* AddProductViewModel.swift in Sources */,
@@ -4167,6 +4179,7 @@
 				5DA483D0251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DCC2EBA24F34F2A000AC40A /* NavigationController.swift in Sources */,
 				5DCC2EBB24F34F2A000AC40A /* PostsDetailPriceReusableView.swift in Sources */,
+				5DD0D660256644940083ACB6 /* BadgeValueManager.swift in Sources */,
 				5DCC2EBC24F34F2A000AC40A /* UserDetailRecommViewController.swift in Sources */,
 				5D1C0A9325304C0D0082903F /* UsersViewController.swift in Sources */,
 				5D20EC8124F8BD8E002738C8 /* PopMenu.swift in Sources */,
@@ -4180,6 +4193,7 @@
 				5D3AA29A24F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DCC2EC024F34F2A000AC40A /* ThemeManager.swift in Sources */,
 				5DFF3F15250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
+				5DD0D6642566535F0083ACB6 /* Badge.swift in Sources */,
 				5DCAC9752512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5D4299FA2542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5DCC2EC124F34F2A000AC40A /* VisualSearchCropView.swift in Sources */,
@@ -4324,7 +4338,7 @@
 				5DD370B42531983A00A42A16 /* UsersCellViewModel.swift in Sources */,
 				5DAC20B625591D0B008D47EF /* FollowButton.swift in Sources */,
 				5DEFF37124AEC2F9007A2FCD /* DefaultTableViewCellViewModel.swift in Sources */,
-				5D16BB3A24C15C4F003B5633 /* Notification.swift in Sources */,
+				5D16BB3A24C15C4F003B5633 /* Notice.swift in Sources */,
 				5DAB29C124C836A5003C3E00 /* PostsDetailBannerReusableView.swift in Sources */,
 				5DCAC94B2512050700172C05 /* SearchThemeViewController.swift in Sources */,
 				5DB6ABDC24D957BB00AD4B43 /* AddProductViewModel.swift in Sources */,
@@ -4515,6 +4529,7 @@
 				5DA483CE251316C200A80194 /* SearchThemeLabelContentSection.swift in Sources */,
 				5DEFF37724AEC2F9007A2FCD /* NavigationController.swift in Sources */,
 				5DAB29C524C836DA003C3E00 /* PostsDetailPriceReusableView.swift in Sources */,
+				5DD0D65E256644940083ACB6 /* BadgeValueManager.swift in Sources */,
 				5D7D49AD24B861FA00F919EB /* UserDetailRecommViewController.swift in Sources */,
 				5D1C0A9125304C0D0082903F /* UsersViewController.swift in Sources */,
 				5D20EC7F24F8BD8E002738C8 /* PopMenu.swift in Sources */,
@@ -4528,6 +4543,7 @@
 				5D3AA29824F3B83900CBCE76 /* VisualSearchProductReusableView.swift in Sources */,
 				5DEFF31424AEC2F9007A2FCD /* ThemeManager.swift in Sources */,
 				5DFF3F13250F05CA0052ED40 /* SearchResultContentViewController.swift in Sources */,
+				5DD0D6622566535F0083ACB6 /* Badge.swift in Sources */,
 				5DCAC9732512108700172C05 /* SearchThemeDetail.swift in Sources */,
 				5D4299F82542B1AA002215DF /* VisualSearchDotCellViewModel.swift in Sources */,
 				5D3F263724D179CA00A825BB /* VisualSearchCropView.swift in Sources */,
@@ -4733,7 +4749,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -4759,7 +4775,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-P-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -4954,7 +4970,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -4981,7 +4997,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 40;
+				CURRENT_PROJECT_VERSION = 53;
 				DEVELOPMENT_TEAM = F345KXCVNH;
 				INFOPLIST_FILE = "Glance/Glance-D-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;

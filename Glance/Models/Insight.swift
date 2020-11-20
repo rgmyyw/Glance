@@ -32,7 +32,13 @@ struct Insight: Mappable {
         }
     }
     
+    init(recommendId : Int) {
+        self.recommendId = recommendId
+        self.type = .recommendPost
+    }
 
+    
+    
     init?(map: Map) {}
 
     mutating func mapping(map: Map) {

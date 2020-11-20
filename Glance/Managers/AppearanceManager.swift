@@ -34,7 +34,5 @@ class AppearanceManager {
         navigationBar.tintColor = UIColor.white
         navigationBar.barTintColor = navigationBar.tintColor
                 
-    }
-    
-    
+    }    
 }

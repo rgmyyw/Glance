@@ -238,7 +238,10 @@ class UserDetailViewController: ViewController {
             self.memu.show()
         }).disposed(by: rx.disposeBag)
         
-        
+        output.selectionTitleViewIndex
+            .drive(onNext: { [weak self]index in
+                self?.pageController.selectMenu(with: index)
+        }).disposed(by: rx.disposeBag)
         
     }
     

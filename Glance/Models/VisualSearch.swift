@@ -30,7 +30,7 @@ struct VisualSearchPageMapable: Mappable {
     }
 
     mutating func mapping(map: Map) {
-        boxProducts   <- map["boxProducts"]
+        boxProducts   <- map["boxResult"]
         pageNum   <- map["pageNum"]
         imId   <- map["imId"]
         pageSize   <- map["pageSize"]
@@ -74,7 +74,7 @@ struct BoxProducts: Mappable {
 
     mutating func mapping(map: Map) {
         score   <- map["score"]
-        productList   <- map["productList"]
+        productList   <- map["records"]
         box   <- (map["box"] , BoxTransform())
         type   <- map["type"]
         total   <- map["total"]

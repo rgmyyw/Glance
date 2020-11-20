@@ -63,7 +63,7 @@ abstract_target 'Base' do
       pod 'FDFullscreenPopGesture' , '~> 1.1'
       pod 'FSPagerView' , '~> 0.8.3'
       pod 'SDCAlertView' , '~> 11.1.2'
-      pod 'WZLBadge' , '~> 1.2.6'
+      pod 'WZLBadge' , :git => 'https://github.com/BeeModule/WZLBadge.git' ,:tag => '1.2.6'
       pod 'PopupDialog', '~> 1.1'
       pod "Popover" , '~> 1.3.0'
       pod 'WMZPageController', '~> 1.3.2'
@@ -75,7 +75,8 @@ abstract_target 'Base' do
       pod 'JXPageControl', '~> 0.1.3'
       pod 'NewPopMenu', '~> 2.0'
       pod 'MJRefresh' , '~> 3.5.0'
-      
+
+
       # Keyboard
       pod 'IQKeyboardManagerSwift', '~> 6.5.6'
       
@@ -99,7 +100,6 @@ abstract_target 'Base' do
       target 'Glance-D'
       target 'Glance-P'
       target 'Glance-R'
-      target 'Glance-Q'
      
     end
 

@@ -50,6 +50,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
         let followButtonTitle : Driver<String>
         let memu : Driver<[UserDetailMemuItem]>
         let config : Driver<[UserModuleItem]>
+        let selectionTitleViewIndex : Driver<Int>
     }
     
     
@@ -105,6 +106,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
         let privacy = settingSelectedItem.filter { $0 == .privacy }.mapToVoid()
         let titles = PublishSubject<[String]>()
         let updateTitle = PublishSubject<[UserDetailUpdateTitle]>()
+        let selectionTitleViewIndex = PublishSubject<Int>()
         
         updateTitle.subscribe(onNext: { [weak self] (items) in
             var t = self?.element.value
@@ -240,6 +242,13 @@ class UserDetailViewModel: ViewModel, ViewModelType {
             .bind(to: message).disposed(by: rx.disposeBag)
         
         
+        NotificationCenter.default.rx.notification(.kMineSelectionMemuIndex)
+            .subscribe(onNext: { (noti) in
+                guard let userInfo = noti.userInfo as? [String : Int] ,
+                    let index = userInfo["index"] else { return }
+                selectionTitleViewIndex.onNext(index)
+            }).disposed(by: rx.disposeBag)
+        
 //        kUpdateItem.subscribe(onNext: { (state, item,trigger) in
 //            switch state {
 //            case .delete:
@@ -277,7 +286,8 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                       followButtonTitleColor: followButtonTitleColor.asDriver(onErrorJustReturn: .white),
                       followButtonTitle: followButtonTitle.asDriver(onErrorJustReturn: ""),
                       memu: popMemu.asDriver(onErrorJustReturn: []),
-                      config: config.asDriver(onErrorJustReturn: []) )
+                      config: config.asDriver(onErrorJustReturn: []),
+                      selectionTitleViewIndex: selectionTitleViewIndex.asDriverOnErrorJustComplete())
     }
     
     

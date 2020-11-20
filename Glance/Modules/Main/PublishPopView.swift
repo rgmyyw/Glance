@@ -7,9 +7,6 @@ protocol PopSomeColorViewDelegate {
     func selectBtnTag(btnTag: NSInteger)
 }
 
-private let screenWidth = UIApplication.shared.keyWindow!.bounds.width
-private let screenHeight = UIApplication.shared.keyWindow!.bounds.height
-
 
 class PublishPopView: View {
     
@@ -20,9 +17,9 @@ class PublishPopView: View {
     var animateTime:TimeInterval = 0.5 //动画总时长
     var delyTime:CGFloat = 0.1 //每两个动画间隔时长
     var cancelBtn :UIButton = UIButton()
-    var Y : CGFloat = screenHeight * 0.4
+    var Y : CGFloat = UIScreen.main.bounds.height * 0.4
     
-    let btnWH: CGFloat = (screenWidth - 120)/3
+    let btnWH: CGFloat = (UIScreen.main.bounds.width - 120)/3
     lazy var btnMarr: NSMutableArray = NSMutableArray()
     
     @IBOutlet var imageViews: [UIImageView]!

@@ -15,7 +15,25 @@ class PermissionManager {
     
     private init() { }
     
-    func requestPermissions(items : [SPPermission] = [.camera,.photoLibrary,.notification]) {
+    
+    
+    func requestPermissions() {
+        var items : [SPPermission] = []
+        if !SPPermission.camera.isAuthorized,!SPPermission.camera.isDenied  {
+            items.append(.camera)
+        }
+        if !SPPermission.photoLibrary.isAuthorized ,!SPPermission.photoLibrary.isDenied {
+            items.append(.photoLibrary)
+        }
+        if !SPPermission.notification.isAuthorized ,!SPPermission.notification.isDenied{
+            items.append(.notification)
+        }
+        if items.isEmpty { return }
+        PermissionManager.shared.requestPermissions(items: items)
+    }
+    
+    func requestPermissions(items : [SPPermission]) {
+                
         let controller = SPPermissions.list(items)
         controller.dataSource = self
         controller.delegate = self
