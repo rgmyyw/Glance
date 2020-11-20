@@ -76,6 +76,8 @@ enum GlanceAPI {
     case searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int)
     case searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int)
     case compareOffers(productId : String)
+    case deleteNotice(noticeId : Int)
+    case makeRead(values : [String : Any])
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
@@ -140,7 +142,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .productDetail:
             return "/api/products/detail"
         case .notifications(let pageNum):
-            return "/api/notifications/\(pageNum)/\(10)"
+            return "/api/notice/\(pageNum)/\(10)"
         case .like:
             return "/api/liked"
         case .shoppingCart(let pageNum):
@@ -213,6 +215,10 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/label/\(page)/\(10)"
         case .compareOffers:
             return "/api/products/offers"
+        case .deleteNotice(let noticeId):
+            return "/api/notice/\(noticeId)"
+        case .makeRead:
+            return "/api/read"
         }
     }
     
@@ -230,7 +236,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .postProduct,
              .logout,
              .recommend,
-             .reaction:
+             .reaction,
+             .makeRead:
             return .post
         case .userDetail,.userPost,
              .userRecommend,
@@ -266,7 +273,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return .get
         case .modifyProfile:
             return .put
-        case .undoFollow,.undoBlocked,.shoppingCartDelete,.deletePost:
+        case .undoFollow,.undoBlocked,.shoppingCartDelete,.deletePost,.deleteNotice:
             return .delete
         default:
             return .get
@@ -385,6 +392,8 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["labelId"] = labelId
         case .compareOffers(let productId):
             params["productId"] = productId
+        case .makeRead(let values):
+            params.merge(dict: values)
         default:
             break
         }

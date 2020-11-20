@@ -60,6 +60,8 @@ protocol API {
     func searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int) -> Single<PageMapable<DefaultColltionItem>>
     func searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int) -> Single<PageMapable<DefaultColltionItem>>
     func compareOffers(productId : String) -> Single<[SelectStore]>
+    func deleteNotice(noticeId : Int) -> Single<Bool>
+    func makeRead(values : [String : Any]) -> Single<Badge>
 }
 
 

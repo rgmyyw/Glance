@@ -245,6 +245,14 @@ class RestApi: API {
         return requestArray(.compareOffers(productId: productId), type: SelectStore.self)
     }
     
+    func deleteNotice(noticeId: Int) -> Single<Bool> {
+        return requestObject(.deleteNotice(noticeId: noticeId), type: MappableItem<Bool>.self,keyPath: nil)
+            .map { $0.code == 200 }
+    }
+    func makeRead(values: [String : Any]) -> Single<Badge> {
+        return requestObject(.makeRead(values: values), type: Badge.self)
+    }
+    
     let ibexProvider: IbexNetworking
     
     init(ibexProvider: IbexNetworking) {

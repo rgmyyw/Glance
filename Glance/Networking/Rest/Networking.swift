@@ -50,7 +50,9 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                             switch error {
                             case .statusCode(let response):
                                 if response.statusCode == 401 {
-                                    Application.shared.logout()
+                                    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                                        Application.shared.logout()
+                                    }
                                 }
                             default:
                                 let view = UIApplication.shared.keyWindow?.topMostController()?.view
