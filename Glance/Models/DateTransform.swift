@@ -31,6 +31,53 @@ open class DateTransform: TransformType {
     }
 }
 
+
+open class StringToIntTransform: TransformType {
+
+    public typealias Object = Int
+    public typealias JSON = String
+
+    public init() {}
+
+    open func transformFromJSON(_ value: Any?) -> Int? {
+        if let i = value as? String, let value = i.int {
+            return value
+        }
+        return nil
+    }
+
+    open func transformToJSON(_ value: Int?) -> String? {
+        if let i = value {
+            return i.string
+        }
+        return nil
+    }
+}
+
+open class StringToDoubleTransform: TransformType {
+
+    public typealias Object = Double
+    public typealias JSON = String
+
+    public init() {}
+
+    open func transformFromJSON(_ value: Any?) -> Double? {
+        if let i = value as? String, let value = i.double() {
+            return value
+        }
+        return nil
+    }
+
+    open func transformToJSON(_ value: Double?) -> String? {
+        if let i = value {
+            return i.string
+        }
+        return nil
+    }
+}
+
+
+
 extension Date {
     
     func customizedString() -> String {
