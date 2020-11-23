@@ -168,8 +168,6 @@ class HomeTabBarController: RAMAnimatedTabBarController, Navigatable , UITabBarC
             self?.setSelectIndex(from: self?.selectedIndex ?? 0, to: 4)
             NotificationCenter.default.post(name: .kMineSelectionMemuIndex, object: nil, userInfo: ["index" : 2])
         }).disposed(by: rx.disposeBag)
-
-        
         
         popView.selection.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
             .subscribe(onNext: {[weak self] item in

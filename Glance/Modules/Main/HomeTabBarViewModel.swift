@@ -50,7 +50,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
                 return [.home, .notifications,.center ,.chat, .mine]
             }
             
-        }.asDriver(onErrorJustReturn: [])
+        }
         
         NotificationCenter.default.rx.notification(.kNotificationReceived)
             .map { (noti) -> NotificationPayloadItem? in
@@ -76,7 +76,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
 
         
         
-        return Output(tabBarItems: tabBarItems,
+        return Output(tabBarItems: tabBarItems.asDriver(onErrorJustReturn: []),
                       userDetail: userDetail.asDriverOnErrorJustComplete(),
                       themeDetail: themeDetail.asDriverOnErrorJustComplete(),
                       postDetail: postDetail.asDriverOnErrorJustComplete(),
