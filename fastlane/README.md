@@ -21,6 +21,11 @@ or alternatively using `brew install fastlane`
 fastlane ios release_apple
 ```
 发布到应用商店苹果商店
+### ios commit_app_icon
+```
+fastlane ios commit_app_icon
+```
+
 ### ios export_Ad_Hoc_IPA
 ```
 fastlane ios export_Ad_Hoc_IPA

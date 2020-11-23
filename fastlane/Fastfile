@@ -37,11 +37,22 @@ platform :ios do
   end
   
   
+  lane :commit_app_icon do
+    sh "git add ../Glance/Resources/Assets.xcassets/AppIcon.appiconset/*"
+    sh "git commit -m \"fastlane action: automatic commit app icon\""
+    sh "git push origin master"
+  end
+  
   desc "Export an ad_hoc file to local"
   lane :export_Ad_Hoc_IPA do
-    increment_build_number(xcodeproj: 'Glance.xcodeproj')
-    commit_version_bump
+    
+    add_badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
     add_badge(dark: true)
+    commit_app_icon
+    
+    increment_build_number(xcodeproj: 'Glance.xcodeproj')
+    commit_version_bump()
+    
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
       export_method:"ad-hoc",
