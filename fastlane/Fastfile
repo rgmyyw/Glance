@@ -23,6 +23,8 @@ platform :ios do
 
   desc "发布到应用商店苹果商店"
   lane :release_apple do
+    increment_build_number(xcodeproj: 'Glance.xcodeproj')
+    commit_version_bump
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
       export_method:"app-store",
@@ -38,7 +40,8 @@ platform :ios do
   desc "Export an ad_hoc file to local"
   lane :export_Ad_Hoc_IPA do
     increment_build_number(xcodeproj: 'Glance.xcodeproj')
-    badge(custom: "./Glance/Resources/AppIcon/icon.jpg",dark: true)
+    commit_version_bump
+    add_badge(dark: true)
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
       export_method:"ad-hoc",
@@ -55,7 +58,7 @@ platform :ios do
     sh 'open ../build'
     sh 'ios-ipa-server ../build'
     notification(subtitle: "导出完成", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
-    #badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
+    add_badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
   end
 
   desc "获取开发证书和配置文件"
@@ -71,10 +74,10 @@ platform :ios do
   end
 
 
-
   desc "Push a new beta build to TestFlight"
   lane :beta do
     increment_build_number(xcodeproj: 'Glance.xcodeproj')
+    commit_version_bump
     build_app(workspace: "Glance.xcworkspace",
       clean: true ,
       scheme: ENV['SCHEME_NAME'],
