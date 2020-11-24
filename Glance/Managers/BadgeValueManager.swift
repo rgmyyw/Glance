@@ -14,7 +14,7 @@ import RxSwift
 enum BadgeValueType  {
     case notice(id : Int)
     case message(id : Int)
-    case initialization
+    case update
 
     var type : Int {
         switch self {
@@ -22,7 +22,7 @@ enum BadgeValueType  {
             return 0
         case .message:
             return 1
-        case .initialization:
+        case .update:
             return -1
         }
     }
@@ -36,16 +36,21 @@ class BadgeValueManager : NSObject {
     private override init() {
         provider = RestApi(ibexProvider: IbexNetworking.ibexNetworking())
         super.init()
-        
     }
     
     func setup() {
-        makeRead(type: .initialization)
+        NotificationCenter.default.rx
+            .notification(UIApplication.didBecomeActiveNotification)
+            .mapToVoid().merge(with: user.filterNil().mapToVoid()
+                .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance))
+            .subscribe(onNext: { () in
+                BadgeValueManager.shared.makeRead(type: .update)
+            }).disposed(by: rx.disposeBag)
     }
     
     @discardableResult
     func makeRead(type : BadgeValueType) -> Observable<Bool> {
-        
+        if !loggedIn.value { return Observable.just(false)}
         let complete = PublishSubject<Bool>()
         var values = ["type" : type.type]
         switch type {
@@ -53,7 +58,7 @@ class BadgeValueManager : NSObject {
             values["messageId"] = id
         case .notice(let id):
             values["noticeId"] = id
-        case .initialization:
+        case .update:
             values = [:]
         }
         provider.makeRead(values: values).asObservable()

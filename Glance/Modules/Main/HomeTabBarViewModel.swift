@@ -76,6 +76,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
 
         
         
+        
         return Output(tabBarItems: tabBarItems.asDriver(onErrorJustReturn: []),
                       userDetail: userDetail.asDriverOnErrorJustComplete(),
                       themeDetail: themeDetail.asDriverOnErrorJustComplete(),

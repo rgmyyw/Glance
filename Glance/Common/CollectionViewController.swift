@@ -31,6 +31,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         view.contentInset = .zero
         view.contentInsetAdjustmentBehavior = .automatic
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
+        
         return view
     }()
     

@@ -38,20 +38,24 @@ platform :ios do
   
   
   lane :commit_app_icon do |options|
-    #sh "git add ../Glance/Resources/Assets.xcassets/AppIcon.appiconset/*"
-    #sh "git commit -m \"fastlane action \"commit_app_icon\":  #{options[:message]}\""
-    #sh "git push origin master"
+    sh "git add ../Glance/Resources/Assets.xcassets/AppIcon.appiconset/*"
+    sh "git commit -m \"fastlane action \"commit_app_icon\":  #{options[:message]}\""
+    if options[:push]
+        sh "git push origin master"
+    end
   end
   
+  
+
   desc "Export an ad_hoc file to local"
   lane :export_Ad_Hoc_IPA do
     
     add_badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
-    commit_app_icon(message: "Badge has been added")
     add_badge(dark: true)
-    commit_app_icon(message: "Badge has been reset")
+    commit_app_icon(message: "Badge has been added",push: false)
+    
     increment_build_number(xcodeproj: 'Glance.xcodeproj')
-    commit_version_bump()
+    commit_version_bump(force: true)
     
     gym(scheme: ENV['SCHEME_NAME'],
       silent: true,  
@@ -66,10 +70,13 @@ platform :ios do
           ENV['PUSH_SERVICE_IDENTIFIER']=>ENV['PUSH_SERVICE_PROVISIONING_ADHOC_NAME']
       }
     })
+    
+    notification(subtitle: "export complete", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
+    add_badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
+    commit_app_icon(message: "Badge has been reset",push: true)
+    
     sh 'open ../build'
     sh 'ios-ipa-server ../build'
-    notification(subtitle: "导出完成", message: "scheme: #{ENV['SCHEME_NAME']}\nidentify: #{ENV['APP_IDENTIFIER']}")
-    add_badge(custom: "./Glance/Resources/AppIcon/icon.jpg")
   end
 
   desc "获取开发证书和配置文件"

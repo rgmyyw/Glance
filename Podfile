@@ -86,6 +86,7 @@ abstract_target 'Base' do
       # Code Quality
       pod 'FLEX', '~> 4.1.1', :configurations => ['Debug']
       pod 'Reveal-SDK', '~> 24', :configurations => ['Debug']
+      pod 'CocoaDebug', :configurations => ['Debug']
       pod 'SwifterSwift', '~> 5.0'
       pod 'BonMot', '~> 5.5.1'
       pod 'Reusable' , '~> 4.1.0'
@@ -93,7 +94,7 @@ abstract_target 'Base' do
       # Logging
       pod 'CocoaLumberjack/Swift', '~> 3.6.2'
       pod 'CryptoSwift' , '~> 1.3.2'
-      
+
       # Permissions
       pod 'SPPermissions', '~> 5.4',:subspecs => ['Camera','PhotoLibrary','Notification']
       
