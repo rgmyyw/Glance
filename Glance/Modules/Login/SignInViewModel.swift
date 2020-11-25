@@ -11,26 +11,24 @@ import RxSwift
 import RxCocoa
 
 class SignInViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
-        let instagram : Observable<Void>
+        let instagram: Observable<Void>
     }
-    
+
     struct Output {
-        let instagramOAuth : Driver<Void>
-        let tabbar : Driver<Void>
-        let interest : Driver<Void>
+        let instagramOAuth: Driver<Void>
+        let tabbar: Driver<Void>
+        let interest: Driver<Void>
     }
-    
 
     func transform(input: Input) -> Output {
-        
+
         let instagramOAuth = input.instagram.asDriver(onErrorJustReturn: ())
         let tabbar = PublishSubject<Void>()
         let interest = PublishSubject<Void>()
         let loadUserDetail = PublishSubject<Void>()
-        
-    
+
         AuthManager.shared.tokenChanged.filterNil()
             .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] (token) -> Observable<(RxSwift.Event<Bool>)> in
@@ -51,7 +49,7 @@ class SignInViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
+
         loadUserDetail.flatMapLatest({ [weak self] (isNewUser) -> Observable<(RxSwift.Event<User>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             return self.provider.userDetail(userId: "")
@@ -67,13 +65,9 @@ class SignInViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
-        
 
         return Output(instagramOAuth: instagramOAuth,
                       tabbar: tabbar.asDriver(onErrorJustReturn: ()),
                       interest: interest.asDriver(onErrorJustReturn: ()))
     }
 }
-

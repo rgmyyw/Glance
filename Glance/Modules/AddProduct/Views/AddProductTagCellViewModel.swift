@@ -10,16 +10,15 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class AddProductTagCellViewModel: CellViewModelProtocol  {
+class AddProductTagCellViewModel: CellViewModelProtocol {
 
-    let item : String
-  
+    let item: String
+
     let title = BehaviorRelay<String?>(value: nil)
     let delete = PublishSubject<Void>()
     let selected = BehaviorRelay<Bool>(value: false)
 
-    
-    required init(item : String) {
+    required init(item: String) {
         self.item = item
         self.title.accept(item)
     }

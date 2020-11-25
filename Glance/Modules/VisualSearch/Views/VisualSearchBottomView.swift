@@ -9,12 +9,12 @@
 import UIKit
 
 class VisualSearchBottomView: View {
-    
+
     @IBOutlet weak var button: UIButton!
-    
+
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let point = convert(point, to: button)
-        if button.point(inside: point, with: event) , button.isUserInteractionEnabled, button.isEnabled, button.alpha > 0 {
+        if button.point(inside: point, with: event), button.isUserInteractionEnabled, button.isEnabled, button.alpha > 0 {
             return button
         } else {
             return nil

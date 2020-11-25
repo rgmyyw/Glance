@@ -10,46 +10,43 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class UsersViewModel : ViewModel, ViewModelType {
-    
+class UsersViewModel: ViewModel, ViewModelType {
+
     struct Input {
         let selection: Observable<UsersCellViewModel>
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
     }
-    
+
     struct Output {
-        let items : Driver<[UsersCellViewModel]>
-        let navigationTitle : Driver<String>
-        let userDetail : Driver<User>
-        
+        let items: Driver<[UsersCellViewModel]>
+        let navigationTitle: Driver<String>
+        let userDetail: Driver<User>
+
     }
-    
-    private let type : BehaviorRelay<UsersType>
-    
-    
-    let current : BehaviorRelay<User?>
+
+    private let type: BehaviorRelay<UsersType>
+
+    let current: BehaviorRelay<User?>
     let needUpdateTitle = PublishSubject<Bool>()
 
-    
-    init(provider: API, type : UsersType,otherUser : User? = nil) {
+    init(provider: API, type: UsersType, otherUser: User? = nil) {
         self.type = BehaviorRelay(value: type)
         self.current = BehaviorRelay(value: otherUser)
         super.init(provider: provider)
-        
+
     }
-        
+
     let tableViewHeadHidden = BehaviorRelay(value: true)
-    let element : BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
-    
+    let element: BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
+
     func transform(input: Input) -> Output {
-        
+
         let navigationTitle = type.map { $0.navigationTitle ?? "" }
-        let elements : BehaviorRelay<[UsersCellViewModel]> = BehaviorRelay(value: [])
+        let elements: BehaviorRelay<[UsersCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<UsersCellViewModel>()
         let userDetail = input.selection.map { $0.item.model }.filter { $0 != user.value}
-        
-        
+
         type.map { $0 != .blocked }.bind(to: tableViewHeadHidden).disposed(by: rx.disposeBag)
 
         input.headerRefresh
@@ -70,7 +67,7 @@ class UsersViewModel : ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -79,8 +76,7 @@ class UsersViewModel : ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<User>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
@@ -102,7 +98,7 @@ class UsersViewModel : ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -112,15 +108,14 @@ class UsersViewModel : ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         buttonTap.map { (cellViewModel) -> (UsersCellViewModel, Single<Bool>) in
             let userId = cellViewModel.item.model.userId ?? ""
             switch self.type.value {
-            case .following,.followers,.reactions:
-                return (cellViewModel,cellViewModel.buttonSelected.value ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId))
+            case .following, .followers, .reactions:
+                return (cellViewModel, cellViewModel.buttonSelected.value ? self.provider.undoFollow(userId: userId) : self.provider.follow(userId: userId))
             case .blocked:
-                return (cellViewModel,cellViewModel.buttonSelected.value ? self.provider.undoBlocked(userId: userId) : self.provider.block(userId: userId))
+                return (cellViewModel, cellViewModel.buttonSelected.value ? self.provider.undoBlocked(userId: userId) : self.provider.block(userId: userId))
             }
         }.flatMapLatest({ [weak self] (cellViewModel, request ) -> Observable<RxSwift.Event<(UsersCellViewModel, Bool)>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -137,17 +132,15 @@ class UsersViewModel : ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         element.filterNil().map { $0.list.map { item -> UsersCellViewModel in
-            let cellViewModel =  UsersCellViewModel(item: (self.type.value,item))
+            let cellViewModel =  UsersCellViewModel(item: (self.type.value, item))
             cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
             return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       navigationTitle: navigationTitle.asDriverOnErrorJustComplete(),
                       userDetail: userDetail.asDriverOnErrorJustComplete())
     }
 }
-

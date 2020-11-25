@@ -10,38 +10,35 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class PostProductSectionCellViewModel: CellViewModelProtocol  {
+class PostProductSectionCellViewModel: CellViewModelProtocol {
 
-    let item : Void
-    
+    let item: Void
+
     let caption = BehaviorRelay<String>(value: "")
-    
+
     let addTag = PublishSubject<String>()
     let disposeBag = DisposeBag()
-    
-    required init(item : Void) {
+
+    required init(item: Void) {
         self.item = item
     }
 
 }
-class PostProductCellViewModel: CellViewModelProtocol  {
+class PostProductCellViewModel: CellViewModelProtocol {
 
-    let item : DefaultColltionItem
-    
+    let item: DefaultColltionItem
+
     let title = BehaviorRelay<String?>(value: nil)
     let imageURL = BehaviorRelay<URL?>(value: nil)
-    
+
     let delete = PublishSubject<Void>()
     let edit = PublishSubject<Void>()
-    
-    required init(item : DefaultColltionItem) {
+
+    required init(item: DefaultColltionItem) {
         self.item = item
-        
+
         imageURL.accept(item.image?.url)
         title.accept(item.title)
     }
 
 }
-
-
-

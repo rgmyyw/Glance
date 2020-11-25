@@ -11,13 +11,12 @@ import RxCocoa
 import RxSwift
 import MJRefresh
 
-
 extension Reactive where Base: MJRefreshComponent {
 
     public var isAnimating: Binder<Bool> {
         return Binder(self.base) { refreshControl, active in
             if active {
-                
+
             } else {
                 refreshControl.endRefreshing()
             }

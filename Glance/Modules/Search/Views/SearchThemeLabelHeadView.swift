@@ -14,10 +14,10 @@ class SearchThemeLabelHeadView: View {
 
     @IBOutlet weak var contentView: UIStackView!
     @IBOutlet weak var titleLabel: UILabel!
-      
+
     override func makeUI() {
         super.makeUI()
-         
+
     }
-  
+
 }

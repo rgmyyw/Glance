@@ -6,19 +6,18 @@
 //  Copyright © 2020 yanghai. All rights reserved.
 //
 
-
 import UIKit
 import RxDataSources
 import Differentiator
 
 struct StyleBoardSearchSection {
-    var section : Int
-    var elements : [StyleBoardSearchSectionItem]
+    var section: Int
+    var elements: [StyleBoardSearchSectionItem]
 }
 
 struct StyleBoardSearchSectionItem {
-    var item : Int
-    var viewModel : StyleBoardSearchCellViewModel
+    var item: Int
+    var viewModel: StyleBoardSearchCellViewModel
 }
 
 extension StyleBoardSearchSectionItem: IdentifiableType {
@@ -34,19 +33,18 @@ extension StyleBoardSearchSectionItem: Equatable {
 }
 
 extension StyleBoardSearchSection: AnimatableSectionModelType, IdentifiableType {
-    
+
     typealias Item = StyleBoardSearchSectionItem
-    
+
     typealias Identity = String
     var identity: Identity { return section.string }
-    
+
     var items: [Item] {
         return elements
     }
-    
+
     init(original: StyleBoardSearchSection, items: [Item]) {
         self = original
         self.elements = items
     }
 }
-

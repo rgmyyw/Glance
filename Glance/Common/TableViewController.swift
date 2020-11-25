@@ -12,7 +12,6 @@ import RxCocoa
 import Toast_Swift
 import MJRefresh
 
-
 enum RefreshComponent {
     case `default`
     case header
@@ -20,58 +19,56 @@ enum RefreshComponent {
     case none
 }
 
-class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDelegate {
-    
+class TableViewController: ViewController, UIScrollViewDelegate, UITableViewDelegate {
+
     let headerRefreshTrigger = PublishSubject<Void>()
     let footerRefreshTrigger = PublishSubject<Void>()
-    
+
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
-    
-    var viewDidLoadBeginRefresh : Bool = true
-    
-    
-    private let style : UITableView.Style
-    
+
+    var viewDidLoadBeginRefresh: Bool = true
+
+    private let style: UITableView.Style
+
     lazy var tableView: TableView = {
         let view = TableView(frame: .zero, style: style)
         view.emptyDataSetSource = self
         view.emptyDataSetDelegate = self
         view.contentInsetAdjustmentBehavior = .automatic
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
-      
+
         return view
     }()
-    
-    init(viewModel: ViewModel?, navigator: Navigator, tableView style : UITableView.Style = .plain) {
+
+    init(viewModel: ViewModel?, navigator: Navigator, tableView style: UITableView.Style = .plain) {
         self.style = style
         super.init(viewModel: viewModel, navigator: navigator)
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         self.style = .plain
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+
     }
-    
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
     }
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         stackView.spacing = 0
         stackView.insertArrangedSubview(tableView, at: 0)
         refreshComponent.subscribe(onNext: { [weak self] (component) in
@@ -91,18 +88,17 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
                 self?.tableView.mj_header = nil
                 self?.tableView.mj_footer = nil
             }
-            
+
         }).disposed(by: rx.disposeBag)
-        
-        Observable.zip(rx.viewDidAppear,Observable.just(()))
+
+        Observable.zip(rx.viewDidAppear, Observable.just(()))
             .mapToVoid().delay(RxTimeInterval.microseconds(100), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self]() in
                 if self?.viewDidLoadBeginRefresh == true {
                     self?.tableView.mj_header?.beginRefreshing()
                 }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         let updateEmptyDataSet = Observable.of(isLoading.mapToVoid().asObservable(),
                                                isHeaderLoading.mapToVoid(),
                                                emptyDataSource.enable.mapToVoid(),
@@ -114,13 +110,11 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
         updateEmptyDataSet.subscribe(onNext: { [weak self] _ in
             self?.tableView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
-        
-
 
     }
-    
+
     func setupHeaderRefresh() {
-        
+
         let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.tableView.mj_footer as? MJRefreshAutoNormalFooter {
                 footer.isHidden = true
@@ -138,7 +132,6 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
         tableView.mj_footer?.isHidden = true
     }
 
-    
     override func viewDidLayoutSubviews() {
         tableView.contentInset = .zero
         tableView.setNeedsLayout()
@@ -152,10 +145,9 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
         super.viewDidLayoutSubviews()
     }
 
-    
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel?.refreshState.asDriver(onErrorJustReturn: .end)
@@ -176,7 +168,7 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
             case .noMoreData:
                 self?.tableView.mj_footer?.isHidden = false
                 self?.tableView.mj_footer?.endRefreshingWithNoMoreData()
-                
+
             case .begin:
                 self?.tableView.mj_footer?.resetNoMoreData()
                 if self?.tableView.mj_header?.isRefreshing == true {
@@ -189,25 +181,24 @@ class TableViewController: ViewController, UIScrollViewDelegate , UITableViewDel
             }
         }).disposed(by: rx.disposeBag)
 
-        
         if let header = tableView.mj_header {
             isHeaderLoading.bind(to: header.rx.isAnimating).disposed(by: rx.disposeBag)
         }
-        if let footer = tableView.mj_footer  {
+        if let footer = tableView.mj_footer {
             isFooterLoading.bind(to: footer.rx.isAnimating).disposed(by: rx.disposeBag)
         }
 
     }
-    
+
     override func updateUI() {
         super.updateUI()
-        
+
         emptyDataSource.contentInsetTop.accept(tableView.contentInset.top)
     }
 }
 
 extension TableViewController {
-    
+
     func deselectSelectedRow() {
         if let selectedIndexPaths = tableView.indexPathsForSelectedRows {
             selectedIndexPaths.forEach({ (indexPath) in
@@ -216,4 +207,3 @@ extension TableViewController {
         }
     }
 }
-

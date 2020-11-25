@@ -8,13 +8,12 @@
 
 import UIKit
 
-
-enum DefaultColltionMemu : Int  {
+enum DefaultColltionMemu: Int {
     case like = 0
     case share = 1
     case delete = 2
     case report = 3
-    
-    static var own : [DefaultColltionMemu] = [.like,.share,.delete]
-    static var other : [DefaultColltionMemu] = [.like,.share,.report]
+
+    static var own: [DefaultColltionMemu] = [.like, .share, .delete]
+    static var other: [DefaultColltionMemu] = [.like, .share, .report]
 }

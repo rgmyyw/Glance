@@ -12,38 +12,36 @@ import RxCocoa
 import RxDataSources
 
 class StyleBoardSearchViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
-        let add : Observable<Void>
+        let add: Observable<Void>
     }
-    
+
     struct Output {
-        let config : Driver<[StyleBoardSearchModuleItem]>
-        let placeholder : Driver<String>
-        let addButtonEnable : Driver<Bool>
-        let upload : Driver<Void>
-        let complete : Driver<Void>
+        let config: Driver<[StyleBoardSearchModuleItem]>
+        let placeholder: Driver<String>
+        let addButtonEnable: Driver<Bool>
+        let upload: Driver<Void>
+        let complete: Driver<Void>
     }
-    
-    
+
     let textInput = BehaviorRelay<String>(value: "")
-    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
+    let element: BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let selection = PublishSubject<[DefaultColltionItem]>()
-    
+
     func transform(input: Input) -> Output {
-    
+
         let placeholder = Observable.just("Search")
-        let selected = BehaviorRelay<[[DefaultColltionItem]]>(value: [[],[],[]])
+        let selected = BehaviorRelay<[[DefaultColltionItem]]>(value: [[], [], []])
         let addButtonEnable = selected.map { $0.flatMap { $0}}.map { $0.isNotEmpty }
         let upload = PublishSubject<Void>()
         let complete = selection.mapToVoid().merge(with: NotificationCenter.default.rx.notification(.kAddProduct).mapToVoid())
-        
-        
+
         input.add.flatMapLatest { () -> Observable<[DefaultColltionItem]> in
             let elements = selected.value.flatMap { $0}
             return Observable.just(elements)
         }.bind(to: selection).disposed(by: rx.disposeBag)
-                
+
         let config = Observable<[StyleBoardSearchModuleItem]>.create { (observer) -> Disposable in
             let element = (0..<3).map { type -> StyleBoardSearchContentViewModel in
                 let i = StyleBoardSearchContentViewModel(provider: self.provider, type: type)
@@ -63,8 +61,6 @@ class StyleBoardSearchViewModel: ViewModel, ViewModelType {
             return Disposables.create { }
         }
 
-    
-        
         return Output(config: config.asDriver(onErrorJustReturn: []),
                       placeholder: placeholder.asDriver(onErrorJustReturn: ""),
                       addButtonEnable: addButtonEnable.asDriver(onErrorJustReturn: false),

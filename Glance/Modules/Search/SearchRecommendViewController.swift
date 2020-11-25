@@ -12,12 +12,12 @@ import RxCocoa
 import WMZPageController
 
 class SearchRecommendViewController: ViewController {
-    
-    private lazy var customNavigationBar : SearchRecommendNavigationBar = SearchRecommendNavigationBar.loadFromNib(height: 44,width: self.view.width)
-    private lazy var headView : SearchRecommendHistoryView = SearchRecommendHistoryView.loadFromNib()
 
-    private lazy var pageController : WMZPageController = {
-            
+    private lazy var customNavigationBar: SearchRecommendNavigationBar = SearchRecommendNavigationBar.loadFromNib(height: 44, width: self.view.width)
+    private lazy var headView: SearchRecommendHistoryView = SearchRecommendHistoryView.loadFromNib()
+
+    private lazy var pageController: WMZPageController = {
+
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
@@ -39,28 +39,25 @@ class SearchRecommendViewController: ViewController {
         config.wMenuWidth = UIScreen.width - 12
         config.wMenuPosition = .init(rawValue: 1)
         config.wMenuBgColor = .white
-        
+
         let controller = WMZPageController()
         controller.param = config
-        
+
         addChild(controller)
         stackView.addArrangedSubview(controller.view)
-        
+
         return controller
     }()
 
-    
     override func makeUI() {
         super.makeUI()
         customNavigationBar.backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
         navigationBar.addSubview(customNavigationBar)
     }
-    
-    
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         let refresh = rx.viewWillAppear.mapToVoid()
         guard let viewModel = viewModel as? SearchRecommendViewModel else { return }
 
@@ -68,7 +65,7 @@ class SearchRecommendViewController: ViewController {
         let search = customNavigationBar.searchView.rx.tap().asObservable()
         let historySelection = headView.collectionView.rx.modelSelected(SearchRecommendHistorySectionItem.self).asObservable()
         let camera = customNavigationBar.cameraButton.rx.tap.asObservable()
-        
+
         let input = SearchRecommendViewModel.Input(refresh: refresh,
                                                    clearAll: clearAll,
                                                    search: search,
@@ -83,7 +80,7 @@ class SearchRecommendViewController: ViewController {
             let titles = items.map { $0.defaultTitle }
             self?.pageController.param.wControllers = controllers
             self?.pageController.param.wTitleArr = titles
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 let line = UIView()
                 line.backgroundColor = UIColor(hex: 0xF0F0F0)
@@ -100,21 +97,20 @@ class SearchRecommendViewController: ViewController {
                 }
             }
         }).disposed(by: rx.disposeBag)
-        
+
         output.viSearch.drive(onNext: { [weak self]() in
             ImagePickerManager.shared.showPhotoLibrary(sender: self, animate: true, configuration: { (config) in
                 config.maxSelectCount = 1
                 config.editAfterSelectThumbnailImage = true
                 config.saveNewImageAfterEdit = false
                 config.allowEditImage = false
-            }) { [weak self] (images, assets, isOriginal) in
+            }, selectImageBlock: { [weak self] (images, assets, isOriginal) in
                 guard let image = images?.first else { return }
                 let viewModel = VisualSearchViewModel(provider: viewModel.provider, image: image)
-                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self,transition: .modal)
-            }
+                self?.navigator.show(segue: .visualSearch(viewModel: viewModel), sender: self, transition: .modal)
+            })
         }).disposed(by: rx.disposeBag)
 
-        
         output.headHidden.drive(onNext: { [weak self](hidden) in
             self?.pageController.param.wMenuHeadView = {
                 self?.headView.frame = CGRect(origin: .zero, size: CGSize(width: UIScreen.width, height: hidden ? 0.1 : 90))
@@ -124,34 +120,31 @@ class SearchRecommendViewController: ViewController {
             }
             self?.pageController.updateHeadView()
         }).disposed(by: rx.disposeBag)
-                
+
         output.searchResult.drive(onNext: { [weak self](text) in
             let viewModel = SearchResultViewModel(provider: viewModel.provider, text: text)
             self?.navigator.show(segue: .searchResult(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
 
-        
         output.search.drive(onNext: { [weak self]() in
             let viewModel = SearchViewModel(provider: viewModel.provider, text: "")
-            self?.navigator.show(segue: .search(viewModel: viewModel), sender: self,transition: .modal)
+            self?.navigator.show(segue: .search(viewModel: viewModel), sender: self, transition: .modal)
         }).disposed(by: rx.disposeBag)
     }
-    
+
 }
 
 extension SearchRecommendViewController {
-  
-    
-    func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
-        
+
+    func needUpdatePageTitltStyle(by button: UIButton, config: WMZPageParam) {
+
         let title = button.titleLabel?.text ?? ""
-        let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleBoldFont(15)]
-        let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleSelectColor,.font : UIFont.titleBoldFont(18)]
-        let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
-        let selectedTitle = NSMutableAttributedString(string: title,attributes: selectedAttr)
+        let normalAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleBoldFont(15)]
+        let selectedAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleSelectColor, .font: UIFont.titleBoldFont(18)]
+        let normaltitle = NSMutableAttributedString(string: title, attributes: normalAttr)
+        let selectedTitle = NSMutableAttributedString(string: title, attributes: selectedAttr)
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
 
 }
-

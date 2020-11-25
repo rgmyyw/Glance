@@ -10,46 +10,46 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
-enum PostsDetailSection : Equatable {
-    
+enum PostsDetailSection: Equatable {
+
     static func == (lhs: PostsDetailSection, rhs: PostsDetailSection) -> Bool {
-        switch (lhs,rhs) {
-        case (.banner,banner):
+        switch (lhs, rhs) {
+        case (.banner, banner):
         return true
-        case (.price,price):
+        case (.price, price):
         return true
-        case (.title,title):
+        case (.title, title):
         return true
-        case (.more,more):
+        case (.more, more):
         return true
-        case (.tags,tags):
+        case (.tags, tags):
         return true
-        case (.tool,tool):
+        case (.tool, tool):
         return true
-        case (.tagged,tagged):
+        case (.tagged, tagged):
         return true
-        case (.similar,similar):
+        case (.similar, similar):
         return true
         default:
             return false
         }
     }
-    
-    case banner(viewModel : PostsDetailSectionCellViewModel)
-    case price(viewModel : PostsDetailSectionCellViewModel)
-    case title(viewModel : PostsDetailSectionCellViewModel)
-    case more(viewModel : PostsDetailSectionCellViewModel)
-    case tags(viewModel : PostsDetailSectionCellViewModel)
-    case tool(viewModel : PostsDetailSectionCellViewModel)
-    case tagged(title : String, items : [DefaultColltionSectionItem])
-    case similar(title : String, items :  [DefaultColltionSectionItem])
+
+    case banner(viewModel: PostsDetailSectionCellViewModel)
+    case price(viewModel: PostsDetailSectionCellViewModel)
+    case title(viewModel: PostsDetailSectionCellViewModel)
+    case more(viewModel: PostsDetailSectionCellViewModel)
+    case tags(viewModel: PostsDetailSectionCellViewModel)
+    case tool(viewModel: PostsDetailSectionCellViewModel)
+    case tagged(title: String, items : [DefaultColltionSectionItem])
+    case similar(title: String, items :  [DefaultColltionSectionItem])
 }
 
 extension PostsDetailSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
-    
-    var column : Int {
+
+    var column: Int {
         switch self {
         case .similar:
             return 2
@@ -59,8 +59,8 @@ extension PostsDetailSection: SectionModelType {
             return 0
         }
     }
-    
-    var viewModel : PostsDetailSectionCellViewModel? {
+
+    var viewModel: PostsDetailSectionCellViewModel? {
         switch self {
         case .banner(let viewModel),
              .price(let viewModel),
@@ -74,18 +74,18 @@ extension PostsDetailSection: SectionModelType {
         }
 
     }
-    
+
     var items: [DefaultColltionSectionItem] {
         switch  self {
-        case .tagged(_,let items):
+        case .tagged(_, let items):
             return items.map { $0 }
-        case .similar(_,let items):
+        case .similar(_, let items):
             return items.map { $0 }
         default:
             return []
         }
     }
-    
+
     init(original: PostsDetailSection, items: [Item]) {
         switch original {
         case .banner(let viewModel):
@@ -108,6 +108,3 @@ extension PostsDetailSection: SectionModelType {
         }
     }
 }
-
-
-

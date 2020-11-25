@@ -12,16 +12,15 @@ import RxSwift
 import RxCocoa
 import Differentiator
 
-enum PostProductSection  {
-    
-    case caption(viewModel : PostProductSectionCellViewModel)
-    case tagRelatedKeywords(viewModel : PostProductSectionCellViewModel)
-    case customTags(items : [PostProductSectionItem])
-    case systemTags(title : String,items :  [PostProductSectionItem])
-    case tagged(title : String,items :  [PostProductSectionItem])
+enum PostProductSection {
 
-    
-    var viewModel : PostProductSectionCellViewModel? {
+    case caption(viewModel: PostProductSectionCellViewModel)
+    case tagRelatedKeywords(viewModel: PostProductSectionCellViewModel)
+    case customTags(items : [PostProductSectionItem])
+    case systemTags(title: String, items :  [PostProductSectionItem])
+    case tagged(title: String, items :  [PostProductSectionItem])
+
+    var viewModel: PostProductSectionCellViewModel? {
         switch self {
         case .caption(let viewModel),
              .tagRelatedKeywords(let viewModel):
@@ -33,24 +32,32 @@ enum PostProductSection  {
 }
 
 enum PostProductSectionItem {
-    
+
     case tag(viewModel: PostProductTagCellViewModel)
     case product(viewModel: PostProductCellViewModel)
 
-    func viewModel<T : CellViewModelProtocol >(_ type: T.Type) -> T {
+    func viewModel<T: CellViewModelProtocol >(_ type: T.Type) -> T {
         switch self {
         case .tag(let viewModel):
-            return viewModel as! T
+            if let value = viewModel as? T {
+                return value
+            } else {
+                fatalError()
+            }
         case .product(let viewModel):
-            return viewModel as! T
+            if let value = viewModel as? T {
+                return value
+            } else {
+                fatalError()
+            }
+
         }
     }
 
 }
 
-
 extension PostProductSection: AnimatableSectionModelType {
-    
+
     typealias Identity = String
     var identity: String {
         switch self {
@@ -61,19 +68,18 @@ extension PostProductSection: AnimatableSectionModelType {
         case .tagged: return "tagged"
         }
     }
-    
+
     typealias Item = PostProductSectionItem
-    
+
     var items: [PostProductSectionItem] {
         switch  self {
-        case .customTags(let items),.systemTags(_,let items),.tagged(_,let items):
+        case .customTags(let items), .systemTags(_, let items), .tagged(_, let items):
             return items.map { $0 }
         default:
             return []
         }
     }
 
-    
     init(original: PostProductSection, items: [Item]) {
         switch original {
         case .caption(let viewModel):
@@ -83,13 +89,12 @@ extension PostProductSection: AnimatableSectionModelType {
         case .customTags:
             self = .customTags(items: items)
         case .systemTags(let title, _):
-            self = .systemTags(title: title,items: items)
+            self = .systemTags(title: title, items: items)
         case .tagged(let title, _):
-            self = .tagged(title: title,items: items)
+            self = .tagged(title: title, items: items)
         }
     }
 }
-
 
 extension PostProductSectionItem: IdentifiableType {
     typealias Identity = String
@@ -107,5 +112,3 @@ extension PostProductSectionItem: Equatable {
         return lhs.identity == rhs.identity
     }
 }
-
-

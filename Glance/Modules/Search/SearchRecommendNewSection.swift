@@ -11,14 +11,12 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
-
 enum SearchRecommendNewSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
-
 extension SearchRecommendNewSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
@@ -26,7 +24,7 @@ extension SearchRecommendNewSection: SectionModelType {
             return items.map { $0}
         }
     }
-    
+
     init(original: SearchRecommendNewSection, items: [Item]) {
         switch original {
         case .single(let items):
@@ -34,5 +32,3 @@ extension SearchRecommendNewSection: SectionModelType {
         }
     }
 }
-
-

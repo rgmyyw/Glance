@@ -11,34 +11,33 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let footerRefresh: Observable<Void>
-        let selection : Observable<StyleBoardSearchSectionItem>
-        let upload : Observable<Void>
+        let selection: Observable<StyleBoardSearchSectionItem>
+        let upload: Observable<Void>
     }
-    
+
     struct Output {
-        let items : Driver<[StyleBoardSearchSection]>
+        let items: Driver<[StyleBoardSearchSection]>
     }
-    
-    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
+
+    let element: BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
     let selection = PublishSubject<[DefaultColltionItem]>()
     let textInput = BehaviorRelay<String>(value: "")
-    let type : BehaviorRelay<Int>
+    let type: BehaviorRelay<Int>
     let upload = PublishSubject<Void>()
-    
-    init(provider: API, type : Int) {
-        self.type = BehaviorRelay(value : type)
+
+    init(provider: API, type: Int) {
+        self.type = BehaviorRelay(value: type)
         super.init(provider: provider)
     }
 
     func transform(input: Input) -> Output {
-        
+
         let elements = BehaviorRelay<[StyleBoardSearchSection]>(value: [])
-        
+
         input.upload.bind(to: upload).disposed(by: rx.disposeBag)
 
         textInput.debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
@@ -50,7 +49,7 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
-                return self.provider.productSearch(type: type,keywords: text, page: self.page)
+                return self.provider.productSearch(type: type, keywords: text, page: self.page)
                     .trackError(self.error)
                     .trackActivity(self.headerLoading)
                     .materialize()
@@ -62,7 +61,7 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -72,14 +71,13 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
 
-        
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self, let type = ProductSearchType(rawValue: self.type.value) else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let text = self.textInput.value
-            return self.provider.productSearch(type: type,keywords: text, page: self.page)
+            return self.provider.productSearch(type: type, keywords: text, page: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -93,7 +91,7 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -104,7 +102,6 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-
 
         element.filterNil().map { element -> [StyleBoardSearchSection] in
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> StyleBoardSearchSectionItem in
@@ -123,7 +120,6 @@ class StyleBoardSearchContentViewModel: ViewModel, ViewModelType {
             self?.selection.onNext(items)
         }).disposed(by: rx.disposeBag)
 
-        
         return Output(items: elements.asDriver(onErrorJustReturn: []))
     }
 }

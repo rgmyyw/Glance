@@ -11,10 +11,10 @@ import DNSPageView
 import RxCocoa
 import RxSwift
 
-extension PageStyle : ReactiveCompatible { }
+extension PageStyle: ReactiveCompatible { }
 
-extension Reactive where Base : PageTitleView {
-    
+extension Reactive where Base: PageTitleView {
+
     var titles: Binder<[String]> {
         return Binder(self.base) { titleView, titles in
             titleView.titles = titles
@@ -23,8 +23,8 @@ extension Reactive where Base : PageTitleView {
     }
 }
 
-extension Reactive where Base : PageContentView {
-    
+extension Reactive where Base: PageContentView {
+
     var childViewControllers: Binder<[UIViewController]> {
         return Binder(self.base) { contentView, controllers in
             contentView.childViewControllers = controllers
@@ -33,20 +33,20 @@ extension Reactive where Base : PageContentView {
     }
 }
 
-extension Reactive where Base : PageStyle {
+extension Reactive where Base: PageStyle {
 
     var bottomLineColor: Binder<UIColor> {
         return Binder(self.base) { style, color in
             style.bottomLineColor = color
         }
     }
-    
+
     var titleColor: Binder<UIColor> {
         return Binder(self.base) { style, color in
             style.titleColor = color
         }
     }
-    
+
     var titleSelectedColor: Binder<UIColor> {
         return Binder(self.base) { style, color in
             style.titleSelectedColor = color
@@ -58,10 +58,10 @@ extension Reactive where Base : PageStyle {
 let pageViewManager = PageViewManager.shared
 
 class PageViewManager {
-    
+
     static let shared = PageViewManager()
     private init() {}
-    
+
     func globalStyle() -> PageStyle {
         let style = PageStyle()
         style.titleViewHeight = 44
@@ -74,14 +74,14 @@ class PageViewManager {
         style.titleFont = UIFont.titleBoldFont(12)
         //style.titleSelectedFont =
         style.titleMaximumScaleFactor = 1.30
-        
+
         themeService.rx
             .bind({ $0.primary }, to: style.rx.titleSelectedColor)
             .bind({ $0.textGray }, to: style.rx.titleColor)
             .bind({ $0.primary }, to: style.rx.bottomLineColor)
             .disposed(by: style.rx.disposeBag)
         return style
-        
+
     }
 
 }

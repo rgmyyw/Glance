@@ -12,16 +12,15 @@ import RxCocoa
 
 @IBDesignable
 class SearchBar: View, UITextFieldDelegate {
-    
-    lazy var bgView : View = {
+
+    lazy var bgView: View = {
         let view = View()
         view.backgroundColor = UIColor(hex: 0xF1F1F1)
         view.addSubview(textField)
         view.addSubview(searchImageView)
         return view
     }()
-    
-    
+
     private lazy var searchImageView: ImageView = {
         let view = ImageView(frame: .zero)
         view.image = R.image.icon_search()
@@ -33,7 +32,7 @@ class SearchBar: View, UITextFieldDelegate {
         return view
     }()
 
-    lazy var textField : UITextField = {
+    lazy var textField: UITextField = {
         let view = UITextField()
         view.text = ""
         view.textColor = UIColor.text()
@@ -47,50 +46,46 @@ class SearchBar: View, UITextFieldDelegate {
         view.delegate = self
         return view
     }()
-    
+
     let textFieldReturn = PublishSubject<Void>()
-    
-    
-    
+
     override func makeUI() {
         super.makeUI()
         addSubview(bgView)
         backgroundColor = .clear
-        
-        
+
         bgView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.top.equalTo(snp.top)//.offset(4)
             make.bottom.equalTo(snp.bottom)//.offset(-4)
         }
-        
+
         searchImageView.snp.makeConstraints { (make) in
             make.left.equalTo(inset)
             make.centerY.equalTo(bgView.snp.centerY)
         }
-        
+
         textField.snp.makeConstraints { (make) in
             make.left.equalTo(searchImageView.snp.right).offset(4)
             make.right.equalTo(bgView.snp.right).offset(-inset)
             make.centerY.equalTo(searchImageView).offset(2)
         }
-        
+
     }
-    
+
     override var intrinsicContentSize: CGSize {
-        
+
         return UIView.layoutFittingExpandedSize
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        
+
         bgView.cornerRadius = bgView.height * 0.5
-        
+
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textFieldReturn.onNext(())
         return true
     }
 }
-

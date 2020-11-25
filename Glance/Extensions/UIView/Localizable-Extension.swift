@@ -12,38 +12,41 @@ import UIKit
 extension UILabel {
 
     @IBInspectable
-    var localizableKey : String? {
-        set{
-            guard let newValue = newValue , !newValue.isEmpty else { return }
+    var localizableKey: String? {
+        get { return text }
+        set {
+            guard let newValue = newValue, !newValue.isEmpty else { return }
             text = NSLocalizedString(newValue, comment: "")
-            
+
         }
-        get{ return text }
+
     }
 }
 
 @IBDesignable
 extension UIButton {
-    
+
     @IBInspectable
-    var localizableKey : String? {
-        set{
-            guard let newValue = newValue , !newValue.isEmpty   else { return }
+    var localizableKey: String? {
+        get { return currentTitle }
+        set {
+            guard let newValue = newValue, !newValue.isEmpty   else { return }
             setTitleForAllStates(NSLocalizedString(newValue, comment: ""))
         }
-        get{ return currentTitle }
+
     }
 }
 
 @IBDesignable
 extension UITextField {
-    
+
     @IBInspectable
-    var localizableKey : String? {
-        set{
-            guard let newValue = newValue , !newValue.isEmpty   else { return }
+    var localizableKey: String? {
+        get { return placeholder }
+        set {
+            guard let newValue = newValue, !newValue.isEmpty   else { return }
             placeholder = NSLocalizedString(newValue, comment: "")
         }
-        get{ return placeholder }
+
     }
 }

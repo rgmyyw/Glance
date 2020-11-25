@@ -11,7 +11,7 @@ import UIKit
 class NotificationProfileViewController: ViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     override func makeUI() {
         super.makeUI()
         navigationTitle = "Notifications"

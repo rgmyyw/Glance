@@ -10,13 +10,12 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-
-enum BadgeValueType  {
-    case notice(id : Int)
-    case message(id : Int)
+enum BadgeValueType {
+    case notice(id: Int)
+    case message(id: Int)
     case update
 
-    var type : Int {
+    var type: Int {
         switch self {
         case .notice:
             return 0
@@ -28,16 +27,16 @@ enum BadgeValueType  {
     }
 }
 
-class BadgeValueManager : NSObject {
+class BadgeValueManager: NSObject {
 
-    private let provider : API
-    
+    private let provider: API
+
     static let shared = BadgeValueManager()
     private override init() {
         provider = RestApi(ibexProvider: IbexNetworking.ibexNetworking())
         super.init()
     }
-    
+
     func setup() {
         NotificationCenter.default.rx
             .notification(UIApplication.didBecomeActiveNotification)
@@ -47,12 +46,12 @@ class BadgeValueManager : NSObject {
                 BadgeValueManager.shared.makeRead(type: .update)
             }).disposed(by: rx.disposeBag)
     }
-    
+
     @discardableResult
-    func makeRead(type : BadgeValueType) -> Observable<Bool> {
+    func makeRead(type: BadgeValueType) -> Observable<Bool> {
         if !loggedIn.value { return Observable.just(false)}
         let complete = PublishSubject<Bool>()
-        var values = ["type" : type.type]
+        var values = ["type": type.type]
         switch type {
         case .message(let id):
             values["messageId"] = id
@@ -67,8 +66,8 @@ class BadgeValueManager : NSObject {
                 UIApplication.shared.applicationIconBadgeNumber = item.app
                 NotificationCenter.default.post(name: .kUpdateBageValue, object: nil, userInfo: item.toJSON())
         }).disposed(by: self.rx.disposeBag)
-        
+
         return complete
     }
-    
+
 }

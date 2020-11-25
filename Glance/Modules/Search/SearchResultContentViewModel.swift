@@ -11,51 +11,49 @@ import RxSwift
 import RxCocoa
 
 class SearchResultContentViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<DefaultColltionSectionItem>
+        let selection: Observable<DefaultColltionSectionItem>
     }
-    
+
     struct Output {
-        let items : Driver<[SearchResultContentViewSection]>
-        let reaction : Observable<(UIView, DefaultColltionCellViewModel)>
-        let detail : Driver<DefaultColltionItem>
-        let userDetail : Driver<User>
+        let items: Driver<[SearchResultContentViewSection]>
+        let reaction: Observable<(UIView, DefaultColltionCellViewModel)>
+        let detail: Driver<DefaultColltionItem>
+        let userDetail: Driver<User>
     }
-    
-    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
-    let selectionReaction = PublishSubject<(cellViewModel : DefaultColltionCellViewModel , type : ReactionType)>()
-    let type : BehaviorRelay<SearchResultContentType>
+
+    let element: BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
+    let selectionReaction = PublishSubject<(cellViewModel: DefaultColltionCellViewModel, type: ReactionType)>()
+    let type: BehaviorRelay<SearchResultContentType>
     let textInput = BehaviorRelay<String?>(value: nil)
-    
-    
-    init(provider: API, type : SearchResultContentType, text : Observable<String>) {
+
+    init(provider: API, type: SearchResultContentType, text: Observable<String>) {
         self.type = BehaviorRelay(value: type)
         super.init(provider: provider)
         text.bind(to: textInput).disposed(by: rx.disposeBag)
     }
-    
+
     func transform(input: Input) -> Output {
-        
-        
+
         let elements = BehaviorRelay<[SearchResultContentViewSection]>(value: [])
         let save = PublishSubject<DefaultColltionCellViewModel>()
-        let reaction = PublishSubject<(UIView,DefaultColltionCellViewModel)>()
+        let reaction = PublishSubject<(UIView, DefaultColltionCellViewModel)>()
         let detail = input.selection.filter { $0.viewModel.item.type != .user }.map { $0.viewModel.item }
         let recommend = PublishSubject<DefaultColltionCellViewModel>()
         let userDetail = PublishSubject<User?>()
         let follow = PublishSubject<DefaultColltionCellViewModel>()
         input.selection.filter { $0.viewModel.item.type == .user }
             .map { $0.viewModel.item.user }.bind(to: userDetail).disposed(by: rx.disposeBag)
-        
+
         textInput.filterNil().mapToVoid().map { RefreshState.begin }
             .bind(to: refreshState).disposed(by: rx.disposeBag)
-        
+
         input.headerRefresh
             .flatMapLatest({ [weak self] (text) -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
-                guard let self = self , let text = self.textInput.value else {
+                guard let self = self, let text = self.textInput.value else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
@@ -71,7 +69,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -80,11 +78,10 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh
             .flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
-                guard let self = self ,let text = self.textInput.value else {
+                guard let self = self, let text = self.textInput.value else {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page += 1
@@ -102,7 +99,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.page -= 1
                         self.refreshState.onNext(.end)
@@ -113,10 +110,9 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         element.filterNil().map { items -> [SearchResultContentViewSection] in
-            let section : SearchResultContentViewSection
+            let section: SearchResultContentViewSection
             let sectionItems = items.list.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
                 viewModel.save.map { _ in  viewModel }.bind(to: save).disposed(by: self.rx.disposeBag)
@@ -133,10 +129,10 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             }
             return [section]
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
+
+        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel, Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            var params = [String : Any]()
+            var params = [String: Any]()
             params["type"] = cellViewModel.item.type?.rawValue ?? -1
             params["updateSaved"] = !cellViewModel.saved.value
             params.merge(dict: cellViewModel.item.id)
@@ -147,19 +143,19 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
             switch event {
-            case .next(let (cellViewModel,result)):
+            case .next(let (cellViewModel, result)):
                 cellViewModel.saved.accept(result)
                 var item = cellViewModel.item
                 item.recommended = result
-                kUpdateItem.onNext((.saved,item,self))
+                kUpdateItem.onNext((.saved, item, self))
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
+
+        recommend.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel, Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            var params = [String : Any]()
+            var params = [String: Any]()
             params["recommend"] = !cellViewModel.recommended.value
             params.merge(dict: cellViewModel.item.id)
             return self.provider.recommend(param: params)
@@ -169,16 +165,16 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 .materialize()
         }).subscribe(onNext: {  [weak self]event in
             switch event {
-            case .next(let (cellViewModel,result)):
+            case .next(let (cellViewModel, result)):
                 cellViewModel.recommended.accept(result)
                 var item = cellViewModel.item
                 item.recommended = result
-                kUpdateItem.onNext((.recommend,item,self))
+                kUpdateItem.onNext((.recommend, item, self))
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
+
         follow.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(Bool, DefaultColltionCellViewModel)>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let isFollow = cellViewModel.followed.value
@@ -188,7 +184,7 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             return request
                 .trackActivity(self.loading)
                 .trackError(self.error)
-                .map { ($0,cellViewModel)}
+                .map { ($0, cellViewModel)}
                 .materialize()
         }).subscribe(onNext: { (event) in
             switch event {
@@ -198,14 +194,14 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        selectionReaction.flatMapLatest({ [weak self] (cellViewModel,type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,ReactionType,Bool)>)> in
+
+        selectionReaction.flatMapLatest({ [weak self] (cellViewModel, type) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel, ReactionType, Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let recommendId = cellViewModel.item.recommendId
             return self.provider.reaction(recommendId: recommendId, type: type.rawValue)
                 .trackError(self.error)
                 .trackActivity(self.loading)
-                .map { (cellViewModel,type,$0)}
+                .map { (cellViewModel, type, $0)}
                 .materialize()
         }).subscribe(onNext: {  event in
             switch event {
@@ -213,17 +209,13 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
                 if result {
                     cellViewModel.reactionImage.accept(type.image)
                 }
-                
+
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
-        
-        
-        
-        kUpdateItem.subscribe(onNext: { [weak self](state, item ,trigger) in
+
+        kUpdateItem.subscribe(onNext: { [weak self](state, item, trigger) in
             guard trigger != self else { return }
             guard var t = self?.element.value else { return }
             let items = elements.value.flatMap { $0.items.compactMap { $0.viewModel }}.filter { $0.item == item}
@@ -242,11 +234,9 @@ class SearchResultContentViewModel: ViewModel, ViewModelType {
             case .recommend:
                 items.forEach { $0.recommended.accept(item.recommended)}
             }
-            
+
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       reaction: reaction.asObservable(),
                       detail: detail.asDriver(onErrorJustReturn: DefaultColltionItem()),

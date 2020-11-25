@@ -9,7 +9,7 @@
 import UIKit
 
 class SelectStoreCell: TableViewCell {
-    
+
     @IBOutlet weak var productImageView: UIImageView!
     @IBOutlet weak var stateView: UIView!
     @IBOutlet weak var stateLabel: UILabel!
@@ -20,16 +20,15 @@ class SelectStoreCell: TableViewCell {
     @IBOutlet weak var buyArrowButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var addShoppingCartButton: UIButton!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
     }
-    
-    
-    override func bind<T>(to viewModel: T) where T : SelectStoreCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: SelectStoreCellViewModel {
         super.bind(to: viewModel)
-        
+
         viewModel.imageURL.bind(to: productImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.title.bind(to: titleLabel.rx.attributedText).disposed(by: cellDisposeBag)
         viewModel.price.bind(to: priceLabel.rx.text).disposed(by: cellDisposeBag)
@@ -40,11 +39,9 @@ class SelectStoreCell: TableViewCell {
         viewModel.inShoppingList.map { !$0}.bind(to: buyArrowButton.rx.isEnabled).disposed(by: cellDisposeBag)
         viewModel.inShoppingList.map { !$0}.bind(to: attributeLabel.rx.isEnabled).disposed(by: cellDisposeBag)
 
-        
         viewModel.displaying.map {!$0}.bind(to: stateView.rx.isHidden).disposed(by: cellDisposeBag)
         buyButton.rx.tap.asObservable().merge(with: buyArrowButton.rx.tap.asObservable()).bind(to: viewModel.buy).disposed(by: cellDisposeBag)
-        
-        
+
         addShoppingCartButton.rx.tap.bind(to: viewModel.addShoppingCart).disposed(by: cellDisposeBag)
     }
 }

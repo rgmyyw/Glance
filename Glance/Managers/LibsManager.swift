@@ -39,10 +39,10 @@ class LibsManager: NSObject  {
 
     }
 
-    func setupLibs(with window: UIWindow? = nil,launchOptions : [UIApplication.LaunchOptionsKey: Any]?) {
-        
+    func setupLibs(with window: UIWindow? = nil, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
+
         UserDefaults.standard.setValue(false, forKey: Configs.UserDefaultsKeys.disableConstraintLog)
-        
+
         let libsManager = LibsManager.shared
         libsManager.setupCocoaLumberjack()
         libsManager.setupTheme()
@@ -54,19 +54,19 @@ class LibsManager: NSObject  {
         libsManager.setupPgyer()
         libsManager.setupOneSignal(launchOptions: launchOptions ?? [:])
         libsManager.setupCocoaDebug()
-        
+
         OAuthManager.shared.setup()
         BadgeValueManager.shared.setup()
-        
+
     }
 
     func setupTheme() {
         themeService.rx
             .bind({ $0.statusBarStyle }, to: UIApplication.shared.rx.statusBarStyle)
             .disposed(by: rx.disposeBag)
-        
+
           var theme = ThemeType.currentTheme()
-            
+
           if theme.isDark != true {
               theme = theme.toggled()
           }
@@ -75,7 +75,7 @@ class LibsManager: NSObject  {
     }
 
     func setupDropDown() {
-        
+
         if #available(iOS 11.0, *) {
             DropDown.appearance().setupMaskedCorners([.layerMaxXMaxYCorner, .layerMinXMaxYCorner])
         }
@@ -85,7 +85,7 @@ class LibsManager: NSObject  {
             DropDown.appearance().textColor = theme.text
             DropDown.appearance().selectedTextColor = theme.text
             DropDown.appearance().separatorColor = theme.separator
-            
+
         }).disposed(by: rx.disposeBag)
     }
 
@@ -94,8 +94,7 @@ class LibsManager: NSObject  {
         ToastManager.shared.position = .bottom
         ToastManager.shared.duration = 1.5
         ToastManager.shared.isQueueEnabled = true
-        
-        
+
         var style = ToastStyle()
         style.backgroundColor = UIColor.black.withAlphaComponent(0.8)
         style.messageColor = .white
@@ -106,7 +105,6 @@ class LibsManager: NSObject  {
         ToastManager.shared.style = style
     }
 
-
     func setupActivityView() {
         NVActivityIndicatorView.DEFAULT_TYPE = .lineScalePulseOutRapid
         NVActivityIndicatorView.DEFAULT_COLOR = UIColor.secondary().withAlphaComponent(1)
@@ -116,21 +114,21 @@ class LibsManager: NSObject  {
     }
 
     func setupKeyboardManager() {
-        
+
         let manager = IQKeyboardManager.shared
         manager.enable = true
         manager.shouldResignOnTouchOutside = true
         manager.shouldToolbarUsesTextFieldTintColor = true
-        manager.keyboardDistanceFromTextField = 60;
-        manager.enableAutoToolbar = true;
+        manager.keyboardDistanceFromTextField = 60
+        manager.enableAutoToolbar = true
     }
 
     func setupKingfisher() {
-        
+
         ImageCache.default.diskStorage.config.sizeLimit = UInt(500 * 1024 * 1024) // 500 MB
         ImageCache.default.diskStorage.config.expiration = .days(7) // 1 week
         ImageDownloader.default.downloadTimeout = 15.0 // 15 sec
-        
+
     }
 
     func setupCocoaLumberjack() {
@@ -150,7 +148,7 @@ class LibsManager: NSObject  {
         FLEXManager.shared.isNetworkDebuggingEnabled = true
         #endif
     }
-    
+
     func setupPgyer() {
 //        PgyManager.shared()?.start(withAppId: "322e4c9240c6f00d596aa436014eb63a")
 //
@@ -164,36 +162,36 @@ class LibsManager: NSObject  {
 //        PgyManager.shared()?.shakingThreshold = 2.5
 
     }
-    
-    func setupOneSignal(launchOptions : [UIApplication.LaunchOptionsKey: Any])  {
+
+    func setupOneSignal(launchOptions: [UIApplication.LaunchOptionsKey: Any])  {
         #if DEBUG
         OneSignal.setLogLevel(.LL_DEBUG, visualLevel: .LL_NONE)
         #endif
         let onesignalInitSettings = [kOSSettingsKeyAutoPrompt: false,
                                      kOSSettingsKeyInAppLaunchURL: false]
-        
-        let handleNotificationAction : OSHandleNotificationActionBlock = { element  in
-            guard let element : OSNotificationOpenedResult = element else { return }
+
+        let handleNotificationAction: OSHandleNotificationActionBlock = { element  in
+            guard let element: OSNotificationOpenedResult = element else { return }
             NotificationCenter.default.post(name: .kNotificationReceived, object: nil,
                                             userInfo: element.notification.payload.additionalData)
-            
+
         }
-        
-        let handleNotificationReceived : OSHandleNotificationReceivedBlock = { element  in
-            guard let element : OSNotification = element else { return }
+
+        let handleNotificationReceived: OSHandleNotificationReceivedBlock = { element  in
+            guard let element: OSNotification = element else { return }
             print(String(repeating: "-", count: 50))
             print("rawPayload: \(element.payload.rawPayload?.description ?? "")")
             print("additionalData: \(element.payload.additionalData?.description ?? "")")
         }
 
-        let messageClickHandler : OSHandleInAppMessageActionClickBlock = { action  in
+        let messageClickHandler: OSHandleInAppMessageActionClickBlock = { action  in
             guard let action = action else { return }
             print(String(repeating: "-", count: 50))
             print("clickName: \(action.clickName ?? "")")
             print("clickUrl: \(action.clickUrl?.absoluteString ?? "")")
             print("closesMessage: \(action.closesMessage)")
         }
-        
+
         OneSignal.initWithLaunchOptions(launchOptions,
                                         appId: Keys.Onesignal.appId,
                                         handleNotificationReceived: handleNotificationReceived,
@@ -201,13 +199,13 @@ class LibsManager: NSObject  {
                                         settings: onesignalInitSettings)
 
         OneSignal.setInAppMessageClickHandler(messageClickHandler)
-        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification;
-        
+        OneSignal.inFocusDisplayType = OSNotificationDisplayType.notification
+
         OneSignal.add(self as OSSubscriptionObserver)
         OneSignal.add(self as OSPermissionObserver)
 
     }
-    
+
     func setupCocoaDebug() {
         #if DEBUG
         CocoaDebug.serverURL = Configs.Network.url
@@ -236,8 +234,7 @@ extension LibsManager {
     func kingfisherCacheSize() -> Observable<Int> {
         return ImageCache.default.rx.retrieveCacheSize()
     }
-    
-    
+
 }
 
 //extension LibsManager : OpenInstallDelegate {
@@ -254,22 +251,22 @@ extension LibsManager {
 //    }
 //}
 
-extension LibsManager : OSSubscriptionObserver ,OSPermissionObserver{
-    
+extension LibsManager: OSSubscriptionObserver, OSPermissionObserver {
+
     func onOSSubscriptionChanged(_ stateChanges: OSSubscriptionStateChanges!) {
-        
+
         // The user is subscribed
         // Either the user subscribed for the first time
         // Or the user was subscribed -> unsubscribed -> subscribed
         print(stateChanges.to.userId)
         print(stateChanges.toDictionary())
         if !stateChanges.from.subscribed && stateChanges.to.subscribed {
-            
+
            print(stateChanges.to.userId)
         }
 
     }
-    
+
     func onOSPermissionChanged(_ stateChanges: OSPermissionStateChanges!) {
        // Example of detecting answering the permission prompt
        if stateChanges.from.status == OSNotificationPermission.notDetermined {
@@ -280,8 +277,7 @@ extension LibsManager : OSSubscriptionObserver ,OSPermissionObserver{
           }
        }
        // prints out all properties
-        logDebug("PermissionStateChanges: \n\(stateChanges)")
+        logDebug("PermissionStateChanges: \n\(String(describing: stateChanges))")
     }
 
-    
 }

@@ -9,23 +9,21 @@
 import UIKit
 
 class SavedCollectionClassifyViewController: ViewController {
-    
+
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet var items: [UIImageView]!
     @IBOutlet weak var totalLabel: UILabel!
-    
-    
+
     override func makeUI() {
         super.makeUI()
         stackView.addArrangedSubview(scrollView)
         navigationTitle = "Saved Collection"
     }
-    
-    
+
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? SavedCollectionClassifyViewModel else { return }
-        
+
         let input = SavedCollectionClassifyViewModel.Input(refresh: rx.viewWillAppear.mapToVoid())
         let output = viewModel.transform(input: input)
         output.total.drive(totalLabel.rx.text).disposed(by: rx.disposeBag)
@@ -35,8 +33,7 @@ class SavedCollectionClassifyViewController: ViewController {
                 item.bind(to: self.items[index].rx.imageURL).disposed(by: self.rx.disposeBag)
             }
         }).disposed(by: rx.disposeBag)
-        
-                
+
         items.tapGesture()
             .subscribe(onNext: { [weak self](_) in
                 let viewModel = SavedCollectionViewModel(provider: viewModel.provider)
@@ -44,7 +41,5 @@ class SavedCollectionClassifyViewController: ViewController {
         }).disposed(by: rx.disposeBag)
 
     }
-    
-    
-}
 
+}

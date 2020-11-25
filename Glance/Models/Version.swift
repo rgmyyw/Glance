@@ -9,17 +9,17 @@
 import UIKit
 import ObjectMapper
 
-struct Version : Mappable {
-    
-    var minVersion : String?
-    var maxVersion : String?
-    var downloadUrl : String?
-    
+struct Version: Mappable {
+
+    var minVersion: String?
+    var maxVersion: String?
+    var downloadUrl: String?
+
     init?(map: Map) {}
 
     init () {}
     mutating func mapping(map: Map) {
-        
+
         minVersion   <- map["minVersion"]
         maxVersion <- map["maxVersion"]
         downloadUrl <- map["downloadUrl"]

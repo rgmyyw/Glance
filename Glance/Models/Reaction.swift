@@ -8,17 +8,16 @@
 
 import ObjectMapper
 
-enum ReactionType : Int {
+enum ReactionType: Int {
     case none = 0
     case haha = 1
     case heart = 2
     case wow = 3
     case sad = 4
-    
-    
-    static var items : [ReactionType] = [.haha,.heart,.wow,.sad]
-    
-    var image : UIImage? {
+
+    static var items: [ReactionType] = [.haha, .heart, .wow, .sad]
+
+    var image: UIImage? {
         switch self {
         case .none:
             return R.image.icon_reaction_none()
@@ -32,7 +31,7 @@ enum ReactionType : Int {
             return R.image.icon_reaction_wow()
         }
     }
-    
+
 }
 
 struct Reaction: Mappable {

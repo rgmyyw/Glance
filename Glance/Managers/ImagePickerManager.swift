@@ -12,34 +12,34 @@ import RxCocoa
 import ZLPhotoBrowser
 
 class ImagePickerManager {
-    
+
     public static let shared = ImagePickerManager()
     private init() {}
-    
-    func showPhotoLibrary(sender : UIViewController? = nil,
-                          animate : Bool = true ,
-                          configuration : ((ZLPhotoConfiguration) -> ())? = nil,
-                          selectImageBlock : (([UIImage]?, [PHAsset] ,Bool)-> Void)? = nil ) {
+
+    func showPhotoLibrary(sender: UIViewController? = nil,
+                          animate: Bool = true ,
+                          configuration: ((ZLPhotoConfiguration) -> Void)? = nil,
+                          selectImageBlock: (([UIImage]?, [PHAsset], Bool) -> Void)? = nil ) {
         photoActionSheet(sender: sender, configuration: configuration, selectImageBlock: selectImageBlock).showPhotoLibrary()
     }
-    
-    func showPreview(sender : UIViewController? = nil,
-                     animate : Bool = true ,
-                     configuration : ((ZLPhotoConfiguration) -> ())? = nil,
-                     selectImageBlock : (([UIImage]?, [PHAsset] ,Bool)-> Void)? = nil ) {
+
+    func showPreview(sender: UIViewController? = nil,
+                     animate: Bool = true ,
+                     configuration: ((ZLPhotoConfiguration) -> Void)? = nil,
+                     selectImageBlock: (([UIImage]?, [PHAsset], Bool) -> Void)? = nil ) {
         photoActionSheet(sender: sender, configuration: configuration, selectImageBlock: selectImageBlock).showPreview(animate: animate)
     }
 }
 
 extension ImagePickerManager {
-    
-    func photoActionSheet(sender : UIViewController?,
-                          configuration : ((ZLPhotoConfiguration) -> ())? = nil,
-                          selectImageBlock : (([UIImage]?, [PHAsset] ,Bool)-> Void)? = nil ) -> ZLPhotoActionSheet {
-        
+
+    func photoActionSheet(sender: UIViewController?,
+                          configuration: ((ZLPhotoConfiguration) -> Void)? = nil,
+                          selectImageBlock: (([UIImage]?, [PHAsset], Bool) -> Void)? = nil ) -> ZLPhotoActionSheet {
+
         let ac = ZLPhotoActionSheet()
         // MARK: 参数配置 optional
-        
+
         // 以下参数为自定义参数，均可不设置，有默认值
         ac.configuration.sortAscending = true
         ac.configuration.allowSelectImage = true
@@ -74,38 +74,37 @@ extension ImagePickerManager {
         //ac.configuration.saveNewImageAfterEdit = false
         // 设置编辑比例
         ac.configuration.clipRatios = [GetClipRatio(1, 1)]
-        
+
         // 是否在已选择照片上显示遮罩层
         ac.configuration.showSelectedMask = false
         ac.configuration.showSelectedIndex = true
-        
-        
-        let theme : UIColor = .black
-        let text : UIColor = .white
-        
+
+        let theme: UIColor = .black
+        let text: UIColor = .white
+
         // preview
         ac.configuration.previewTextColor = text
         ac.configuration.maxPreviewCount = 20
-        
+
         // 导航样式
         ac.configuration.navBarColor = theme
         ac.configuration.navTitleColor = ac.configuration.previewTextColor
         ac.configuration.statusBarStyle = .default
         ac.configuration.allowDragSelect = true
-        
+
         // 工具栏样式
         ac.configuration.bottomBtnsDisableBgColor = UIColor.lightGray
         ac.configuration.bottomBtnsNormalTitleColor = text
         ac.configuration.bottomViewBgColor = theme
         ac.configuration.bottomBtnsNormalBgColor = .clear
         ac.configuration.bottomBtnsDisableBgColor = .clear
-        
+
         ac.configuration.shouldAnialysisAsset = true
         ac.configuration.languageType = .system
-        
+
         // 回调给外界配置，外界配置会覆盖当前配置
         configuration?(ac.configuration)
-        
+
         // MARK: required
         let count = 1
         if  count > 1 {
@@ -113,19 +112,19 @@ extension ImagePickerManager {
         } else {
             ac.arrSelectedAssets = nil
         }
-        
+
         ac.selectImageBlock = selectImageBlock
-        
+
         ac.selectImageRequestErrorBlock = { (errorAssets, errorIndexes) in
             debugPrint("图片解析出错索引为: \(errorIndexes), 对应assets为: \(errorAssets)")
         }
-        
+
         ac.cancleBlock = {
             debugPrint("取消选择图片")
         }
-        
+
         ac.sender = sender
         return ac
     }
-    
+
 }

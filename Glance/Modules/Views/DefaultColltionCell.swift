@@ -10,7 +10,7 @@ import UIKit
 
 class DefaultColltionCell: CollectionViewCell {
 
-    override func bind<T>(to viewModel: T) where T : DefaultColltionCellViewModel {
+    override func bind<T>(to viewModel: T) where T: DefaultColltionCellViewModel {
         super.bind(to: viewModel)
     }
 }

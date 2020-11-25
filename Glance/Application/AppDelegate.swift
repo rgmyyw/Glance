@@ -10,23 +10,22 @@ import UIKit
 import Toast_Swift
 import AppAuth
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     static var shared: AppDelegate? {
         return UIApplication.shared.delegate as? AppDelegate
     }
-    
+
     var window: UIWindow?
-        
+
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-            
+
         let libsManager = LibsManager.shared
         libsManager.setupLibs(with: window, launchOptions: launchOptions)
         AppearanceManager.shared.setup()
         Application.shared.presentInitialScreen(in: window)
-        
+
         connectedToInternet().skip(1).subscribe(onNext: { [weak self] (connected) in
             var style = ToastManager.shared.style
             style.backgroundColor = connected ? UIColor.Material.green: UIColor.Material.red
@@ -35,26 +34,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 view.makeToast(message, position: .bottom, image: nil, style: style)
             }
         }).disposed(by: rx.disposeBag)
-        
+
         return true
     }
-    
-    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey: Any] = [:]) -> Bool {
         if let authorizationFlow = OAuthManager.shared.currentAuthorizationFlow.value, authorizationFlow.resumeExternalUserAgentFlow(with: url) {
             OAuthManager.shared.currentAuthorizationFlow.accept(nil)
             return true
         }
         return true
     }
-    
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool{
-        
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+
         return true
     }
-    
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool{
+
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         return true
     }
-    
-    
+
 }

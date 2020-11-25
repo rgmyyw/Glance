@@ -8,10 +8,10 @@
 
 import Foundation
 
-enum InsightsRelationType  {
+enum InsightsRelationType {
     case liked, recommend
-    
-    var navigationTitle : String {
+
+    var navigationTitle: String {
         switch self {
         case .liked:
             return "Likes By"
@@ -20,4 +20,3 @@ enum InsightsRelationType  {
         }
     }
 }
-

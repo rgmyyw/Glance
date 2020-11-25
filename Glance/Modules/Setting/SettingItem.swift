@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum SettingItem : Int {
+enum SettingItem: Int {
     case modifyProfile = 0
     case notifications
     case privacy

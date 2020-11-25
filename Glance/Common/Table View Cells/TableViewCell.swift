@@ -10,26 +10,24 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class TableViewCell: UITableViewCell {
 
-    var cellDisposeBag : DisposeBag!
+    var cellDisposeBag: DisposeBag!
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
+
     }
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         makeUI()
     }
-    
 
     func makeUI() {
         layer.masksToBounds = true
@@ -37,15 +35,12 @@ class TableViewCell: UITableViewCell {
         backgroundColor = .clear
         updateUI()
     }
-    
-    func bind<T : CellViewModelProtocol>(to viewModel : T) {
+
+    func bind<T: CellViewModelProtocol>(to viewModel: T) {
         cellDisposeBag = DisposeBag()
     }
-    
-    
+
     func updateUI() {
         setNeedsDisplay()
     }
 }
-
-

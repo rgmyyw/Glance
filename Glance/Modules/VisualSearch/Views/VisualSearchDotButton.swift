@@ -11,10 +11,10 @@ import RxSwift
 import RxCocoa
 
 class VisualSearchDotButton: UIButton {
-    
-    public let dot : VisualSearchDotCellViewModel
-    
-    init(center : CGPoint, dot : VisualSearchDotCellViewModel, size: CGSize = CGSize(width: 21, height: 21)) {
+
+    public let dot: VisualSearchDotCellViewModel
+
+    init(center: CGPoint, dot: VisualSearchDotCellViewModel, size: CGSize = CGSize(width: 21, height: 21)) {
         self.dot = dot
         super.init(frame: CGRect(origin: .zero, size: size))
         self.adjustsImageWhenDisabled = false
@@ -23,7 +23,7 @@ class VisualSearchDotButton: UIButton {
         self.layer.masksToBounds = true
         self.alpha = 0
         self.center = center
-        
+
         dot.state.subscribe(onNext: { [weak self](state) in
             //self?.isSelected = (state == .selected).boolValue
             let image = (state == .selected).boolValue ? UIImage(color: UIColor.primary()) : UIImage(color: .white)
@@ -31,8 +31,7 @@ class VisualSearchDotButton: UIButton {
             self?.alpha = (state != .hidden).int.cgFloat
         }).disposed(by: rx.disposeBag)
     }
-    
-   
+
     required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

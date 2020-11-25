@@ -12,16 +12,16 @@ import RxSwift
 import RxCocoa
 import Differentiator
 
-enum StyleBoardSection  {
-    
+enum StyleBoardSection {
+
     case images(items : [StyleBoardSectionItem])
 }
 
 enum StyleBoardSectionItem {
-    
+
     case image(viewModel: StyleBoardImageCellViewModel)
-    
-    var viewModel : StyleBoardImageCellViewModel {
+
+    var viewModel: StyleBoardImageCellViewModel {
         switch self {
         case .image(let viewModel):
             return viewModel
@@ -29,25 +29,24 @@ enum StyleBoardSectionItem {
     }
 }
 
-
 extension StyleBoardSection: AnimatableSectionModelType {
-    
+
     typealias Identity = String
     var identity: String {
         switch self {
         case .images: return "images"
         }
     }
-    
+
     typealias Item = StyleBoardSectionItem
-    
+
     var items: [StyleBoardSectionItem] {
         switch  self {
         case .images(let items):
             return items
         }
     }
-    
+
     init(original: StyleBoardSection, items: [Item]) {
         switch original {
         case .images:
@@ -55,7 +54,6 @@ extension StyleBoardSection: AnimatableSectionModelType {
         }
     }
 }
-
 
 extension StyleBoardSectionItem: IdentifiableType {
     typealias Identity = String
@@ -71,5 +69,3 @@ extension StyleBoardSectionItem: Equatable {
         return lhs.identity == rhs.identity
     }
 }
-
-

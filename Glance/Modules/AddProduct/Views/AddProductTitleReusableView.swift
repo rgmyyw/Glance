@@ -10,7 +10,6 @@ import UIKit
 
 class AddProductTitleReusableView: CollectionReusableView {
 
-    
     override func makeUI() {
         super.makeUI()
     }

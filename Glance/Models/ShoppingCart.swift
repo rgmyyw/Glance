@@ -9,17 +9,16 @@
 import UIKit
 import ObjectMapper
 
-struct ShoppingCart: Mappable,Equatable {
+struct ShoppingCart: Mappable, Equatable {
     var productId: String?
     var image: String?
     var shoppingLink: String?
     var brand: String?
     var price: String?
     var productTitle: String?
-    var currency : String?
-    var providerName : String?
-    var productUrl : String?
-    
+    var currency: String?
+    var providerName: String?
+    var productUrl: String?
 
     init?(map: Map) {}
     init() {}
@@ -38,5 +37,5 @@ struct ShoppingCart: Mappable,Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.productId == rhs.productId
     }
-    
+
 }

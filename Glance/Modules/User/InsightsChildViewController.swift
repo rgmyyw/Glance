@@ -13,21 +13,20 @@ import RxDataSources
 import WMZPageController
 
 class InsightsChildViewController: TableViewController {
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         navigationBar.isHidden = true
         tableView.register(nibWithCellClass: InsightsCell.self)
         tableView.rowHeight = 95
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? InsightsChildViewModel else { return }
-        
-        
+
         let input = InsightsChildViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                         footerRefresh: footerRefreshTrigger.asObservable(),
                                         selection: tableView.rx.modelSelected(InsightsCellViewModel.self).asObservable())

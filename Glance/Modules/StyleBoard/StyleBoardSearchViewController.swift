@@ -14,13 +14,12 @@ import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
 import WMZPageController
 
+class StyleBoardSearchViewController: ViewController {
 
-class StyleBoardSearchViewController: ViewController  {
-    
-    private lazy var headView : StyleBoardSearchTextFieldView = StyleBoardSearchTextFieldView.loadFromNib(height: 54)
+    private lazy var headView: StyleBoardSearchTextFieldView = StyleBoardSearchTextFieldView.loadFromNib(height: 54)
 
-    private lazy var pageController : WMZPageController = {
-            
+    private lazy var pageController: WMZPageController = {
+
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
@@ -43,17 +42,17 @@ class StyleBoardSearchViewController: ViewController  {
         config.wMenuPosition = .init(rawValue: 1)
         config.wMenuBgColor = .white
         config.wMenuDefaultIndex = 2
-        
+
         let controller = WMZPageController()
         controller.param = config
-        
+
         addChild(controller)
         stackView.addArrangedSubview(controller.view)
-        
+
         return controller
     }()
 
-    private lazy var addButton : UIButton = {
+    private lazy var addButton: UIButton = {
         let button = UIButton()
         button.setTitle("ADD TO BOARD", for: .normal)
         button.setTitleColor(UIColor.textGray(), for: .disabled)
@@ -62,21 +61,20 @@ class StyleBoardSearchViewController: ViewController  {
         button.isEnabled = false
         return button
     }()
-    
+
     override func makeUI() {
         super.makeUI()
-                
+
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationTitle = "Add Products"
         navigationBar.rightBarButtonItem = addButton
     }
 
-    
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? StyleBoardSearchViewModel else { return }
-            
+
 //
         let add = addButton.rx.tap.asObservable()
         let input = StyleBoardSearchViewModel.Input(add: add)
@@ -113,12 +111,12 @@ class StyleBoardSearchViewController: ViewController  {
                 config.editAfterSelectThumbnailImage = true
                 config.saveNewImageAfterEdit = false
                 config.allowEditImage = false
-            }) { (images, assets, isOriginal) in
+            }, selectImageBlock: { (images, assets, isOriginal) in
                 guard let image = images?.first else { return }
                 let viewModel = AddProductViewModel(provider: viewModel.provider, image: image, mode: .styleBoard)
-                self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self,transition: .modal)
-            }
+                self?.navigator.show(segue: .addProduct(viewModel: viewModel), sender: self, transition: .modal)
+            })
         }).disposed(by: rx.disposeBag)
     }
-    
+
 }

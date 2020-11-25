@@ -11,18 +11,16 @@ import RxSwift
 import RxCocoa
 import CountryPickerView
 
-
 class ModifyProfileViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
-        let save : Observable<Void>
+        let save: Observable<Void>
     }
-    
+
     struct Output {
-        let userHeadImageURL : Driver<URL?>
-        let countryName : Driver<String>
+        let userHeadImageURL: Driver<URL?>
+        let countryName: Driver<String>
     }
-    
 
     let displayName = BehaviorRelay<String>(value: user.value?.displayName ?? "")
     let userName = BehaviorRelay<String>(value: user.value?.username ?? "")
@@ -31,17 +29,16 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
     let bio = BehaviorRelay<String>(value: user.value?.bio ?? "")
     let country = BehaviorRelay<Country?>(value: nil)
     let selectedImage = BehaviorRelay<UIImage?>(value: nil)
-    
 
     func transform(input: Input) -> Output {
-            
+
         let userHeadImageURL = Observable.just(user.value?.userImage?.url).asDriver(onErrorJustReturn: nil)
         let countryName = Observable.just(user.value?.countryName ?? "").asDriver(onErrorJustReturn: "")
-        let commit = PublishSubject<[String : Any]>()
-        let uploadImage = PublishSubject<(UIImage, [String : Any])>()
-        
+        let commit = PublishSubject<[String: Any]>()
+        let uploadImage = PublishSubject<(UIImage, [String: Any])>()
+
         input.save.subscribe(onNext: { [weak self]() in
-            
+
             self?.endEditing.onNext(())
             guard let userId = user.value?.userId else {
                 self?.exceptionError.onNext(.general("userId not empty"))
@@ -52,17 +49,17 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                 self?.exceptionError.onNext(.general("username not empty"))
                 return
             }
-            
+
             guard let displayName = self?.displayName.value, displayName.isNotEmpty else {
                 self?.exceptionError.onNext(.general("displayName not empty"))
                 return
             }
-            
-            var data : [String : Any] = [String : Any]()
+
+            var data: [String: Any] = [String: Any]()
             data["userId"] = userId
             data["username"] = userName
             data["displayName"] = displayName
-            
+
             if let country = self?.country.value {
                 data["countryName"] = country.name
                 data["countryCode"] = country.code
@@ -75,28 +72,28 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                     return
                 }
             }
-            if let bio = self?.bio.value{
+            if let bio = self?.bio.value {
                 data["bio"] = bio
-                
+
             }
-            if let instagram = self?.instagram.value  {
+            if let instagram = self?.instagram.value {
                 data["instagram"] = instagram
             }
-            
+
             if let selectedImage = self?.selectedImage.value {
                 uploadImage.onNext((selectedImage, data))
             } else {
                 commit.onNext(data)
             }
         }).disposed(by: rx.disposeBag)
-        
-        uploadImage.flatMapLatest({ [weak self] (imageData,param) -> Observable<(RxSwift.Event<(String, [String : Any])>)> in
+
+        uploadImage.flatMapLatest({ [weak self] (imageData, param) -> Observable<(RxSwift.Event<(String, [String: Any])>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 guard let data = imageData.jpegData(compressionQuality: 0.1) else { return  Observable.just(RxSwift.Event.completed) }
             return self.provider.uploadImage(type: UploadImageType.user.rawValue, size: imageData.size, data: data)
                     .trackActivity(self.loading)
                     .trackError(self.error)
-                    .map { ($0,param)}
+                    .map { ($0, param)}
                     .materialize()
             }).subscribe(onNext: { event in
                 switch event {
@@ -108,7 +105,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
+
         commit.flatMapLatest({ [weak self] (data) -> Observable<(RxSwift.Event<User>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 return self.provider.modifyProfile(data: data)
@@ -125,10 +122,7 @@ class ModifyProfileViewModel: ViewModel, ViewModelType {
                 }
             }).disposed(by: rx.disposeBag)
 
-        
-        
-        return Output(userHeadImageURL: userHeadImageURL,countryName : countryName)
-        
+        return Output(userHeadImageURL: userHeadImageURL, countryName: countryName)
+
     }
 }
-

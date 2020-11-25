@@ -10,20 +10,17 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
 class SettingViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
     }
-    
+
     struct Output {
     }
-    
+
     let selectedItem = PublishSubject<SettingItem>()
-    
 
     func transform(input: Input) -> Output {
-        
 
         return Output()
     }

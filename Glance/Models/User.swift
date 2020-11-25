@@ -17,7 +17,6 @@ private let keychain = Keychain(service: Configs.App.bundleIdentifier)
 
 let user = BehaviorRelay<User?>(value: nil)
 
-
 struct User: Mappable {
     var website: String?
     var followerCount: Int = 0
@@ -34,10 +33,10 @@ struct User: Mappable {
     var bio: String?
     var userImage: String?
     var reaction: ReactionType?
-    
+
     var isBlocked: Bool = false
     var igHandler: String?
-    
+
     init?(map: Map) {}
     init() {}
 
@@ -62,14 +61,13 @@ struct User: Mappable {
     }
 }
 
-
 extension User {
 
     func save() {
         user.accept(self)
         if let json = self.toJSONString() {
             keychain[userKey] = json
-            
+
         } else {
             logError("User can't be saved")
         }
@@ -89,11 +87,10 @@ extension User {
     }
 }
 
+extension User: Equatable {
 
-extension User : Equatable {
-    
-    static func == (lhs: Self, rhs: Self) -> Bool {        
-        guard let lUserId = lhs.userId,let rUserId = rhs.userId else { return false }
+    static func == (lhs: Self, rhs: Self) -> Bool {
+        guard let lUserId = lhs.userId, let rUserId = rhs.userId else { return false }
         return lUserId == rUserId
     }
 

@@ -15,9 +15,8 @@ enum VisualSearchResultSection {
     case preview(items: [DefaultColltionSectionItem])
 }
 
+extension VisualSearchResultSection: SectionModelType, AnimatableSectionModelType, IdentifiableType {
 
-extension VisualSearchResultSection: SectionModelType ,AnimatableSectionModelType, IdentifiableType{
-    
     var identity: String {
         switch self {
         case .picker:
@@ -26,18 +25,17 @@ extension VisualSearchResultSection: SectionModelType ,AnimatableSectionModelTyp
             return "preview"
         }
     }
-    
+
     typealias Identity = String
-    
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
-        case .picker(let items),.preview(let items):
+        case .picker(let items), .preview(let items):
             return items.map { $0 }
         }
     }
-    
+
     init(original: VisualSearchResultSection, items: [Item]) {
         switch original {
         case .picker(let items):
@@ -48,4 +46,3 @@ extension VisualSearchResultSection: SectionModelType ,AnimatableSectionModelTyp
         }
     }
 }
-

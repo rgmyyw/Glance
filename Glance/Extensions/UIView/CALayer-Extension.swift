@@ -9,8 +9,8 @@
 import UIKit
 
 extension CAGradientLayer {
-    
-    convenience init(frame: CGRect, colors: [UIColor?], start : CGPoint = CGPoint(x: 0, y: 0.5), end : CGPoint = CGPoint(x: 1, y: 0.5)) {
+
+    convenience init(frame: CGRect, colors: [UIColor?], start: CGPoint = CGPoint(x: 0, y: 0.5), end: CGPoint = CGPoint(x: 1, y: 0.5)) {
         self.init()
         self.frame = frame
         self.colors = colors.compactMap { $0?.cgColor }
@@ -19,7 +19,7 @@ extension CAGradientLayer {
     }
 
     func toImage() -> UIImage? {
-        var image: UIImage? = nil
+        var image: UIImage?
         UIGraphicsBeginImageContext(bounds.size)
         if let context = UIGraphicsGetCurrentContext() {
             render(in: context)
@@ -29,4 +29,3 @@ extension CAGradientLayer {
         return image
     }
 }
-

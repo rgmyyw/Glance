@@ -9,21 +9,20 @@
 import UIKit
 
 enum UserDetailUpdateTitle {
-    case post(count : Int)
-    case recommend(count : Int)
-    case followers(count : Int)
-    case following(count : Int)
+    case post(count: Int)
+    case recommend(count: Int)
+    case followers(count: Int)
+    case following(count: Int)
 }
 
-
 enum UserModuleItem {
-    
-    case post(viewModel : UserDetailPostViewModel)
-    case recommend(viewModel : UserDetailRecommViewModel)
-    case followers(viewModel : UsersViewModel)
-    case following(viewModel : UsersViewModel)
-    
-    var defaultTitle : String {
+
+    case post(viewModel: UserDetailPostViewModel)
+    case recommend(viewModel: UserDetailRecommViewModel)
+    case followers(viewModel: UsersViewModel)
+    case following(viewModel: UsersViewModel)
+
+    var defaultTitle: String {
         switch self {
         case .post:
             return "0\nPosts"
@@ -35,8 +34,8 @@ enum UserModuleItem {
             return "0\nFollowing"
         }
     }
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+
+    func toScene(navigator: Navigator?) -> Navigator.Scene? {
         guard navigator != nil else {
             return nil
         }
@@ -52,4 +51,3 @@ enum UserModuleItem {
         }
     }
 }
-

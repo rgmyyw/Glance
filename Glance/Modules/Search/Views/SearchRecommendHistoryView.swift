@@ -12,16 +12,15 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class SearchRecommendHistoryView: View {
 
-    lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<SearchRecommendHistorySection> = configureDataSouce()
+    lazy var dataSouce: RxCollectionViewSectionedAnimatedDataSource<SearchRecommendHistorySection> = configureDataSouce()
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     @IBOutlet weak var clearButton: UIButton!
-    let items = BehaviorRelay<[SearchRecommendHistorySection]>(value:[])
-        
+    let items = BehaviorRelay<[SearchRecommendHistorySection]>(value: [])
+
     override func makeUI() {
         super.makeUI()
         let layout = ZLCollectionViewHorzontalLayout()
@@ -34,42 +33,42 @@ class SearchRecommendHistoryView: View {
         items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
+
     }
-  
+
 }
 
 // MARK: - DataSouce
 extension SearchRecommendHistoryView {
-    
+
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<SearchRecommendHistorySection> {
-        return RxCollectionViewSectionedAnimatedDataSource<SearchRecommendHistorySection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+        return RxCollectionViewSectionedAnimatedDataSource<SearchRecommendHistorySection>(configureCell: { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SearchRecommendHistoryCell.self)
             cell.bind(to: item.viewModel)
             return cell
         })
     }
-    
+
 }
 
-extension SearchRecommendHistoryView : ZLCollectionViewBaseFlowLayoutDelegate {
-    
+extension SearchRecommendHistoryView: ZLCollectionViewBaseFlowLayoutDelegate {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .zero
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return .zero
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let viewModel =  dataSouce[indexPath.section].items[indexPath.item].viewModel

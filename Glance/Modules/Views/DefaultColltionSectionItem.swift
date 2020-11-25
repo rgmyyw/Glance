@@ -10,9 +10,8 @@ import UIKit
 import RxDataSources
 import Differentiator
 
-
 enum DefaultColltionSectionItem {
-    
+
     case none
     case theme(viewModel: DefaultColltionCellViewModel)
     case user(viewModel: DefaultColltionCellViewModel)
@@ -20,9 +19,8 @@ enum DefaultColltionSectionItem {
     case product(viewModel: DefaultColltionCellViewModel)
     case recommendPost(viewModel: DefaultColltionCellViewModel)
     case recommendProduct(viewModel: DefaultColltionCellViewModel)
-    
-    
-    var reuseIdentifier : String {
+
+    var reuseIdentifier: String {
         switch self {
         case .none:
             fatalError()
@@ -40,9 +38,8 @@ enum DefaultColltionSectionItem {
             return UserVerticalCell.reuseIdentifier
         }
     }
-    
 
-    var viewModel : DefaultColltionCellViewModel {
+    var viewModel: DefaultColltionCellViewModel {
         switch self {
         case .theme(let viewModel):
             return viewModel
@@ -60,8 +57,8 @@ enum DefaultColltionSectionItem {
             fatalError()
         }
     }
-    
-    static func register(collectionView : UICollectionView, kinds : [DefaultColltionCellType]) {
+
+    static func register(collectionView: UICollectionView, kinds: [DefaultColltionCellType]) {
         kinds.forEach { (type) in
             switch type {
             case .post:

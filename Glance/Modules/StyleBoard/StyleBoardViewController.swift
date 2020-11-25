@@ -13,15 +13,15 @@ import RxDataSources
 import ZLCollectionViewFlowLayout
 
 class StyleBoardViewController: ViewController {
-    
+
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var contentStackView: UIStackView!
     @IBOutlet weak var collectionView: UICollectionView!
-    fileprivate lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection> = configureDataSouce()
-    
-    fileprivate var imageViews : [StyleBoardEditView] = []
-    
-    fileprivate lazy var nextButton : UIButton = {
+    fileprivate lazy var dataSouce: RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection> = configureDataSouce()
+
+    fileprivate var imageViews: [StyleBoardEditView] = []
+
+    fileprivate lazy var nextButton: UIButton = {
         let button = UIButton()
         button.setTitle("NEXT", for: .normal)
         button.setTitleColor(UIColor.primary(), for: .normal)
@@ -30,35 +30,33 @@ class StyleBoardViewController: ViewController {
         button.titleLabel?.font = UIFont.titleFont(15)
         return button
     }()
-    
-    fileprivate lazy var redoButton : UIButton = {
+
+    fileprivate lazy var redoButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.icon_button_redo_disable(), for: .disabled)
         button.setImage(R.image.icon_button_redo_normal(), for: .normal)
         button.isEnabled = false
         return button
     }()
-    
-    fileprivate lazy var undoButton : UIButton = {
+
+    fileprivate lazy var undoButton: UIButton = {
         let button = UIButton()
         button.setImage(R.image.icon_button_undo_disable(), for: .disabled)
         button.setImage(R.image.icon_button_undo_normal(), for: .normal)
         button.isEnabled = true
         return button
     }()
-    
-    fileprivate lazy var postProduct : PostProductViewController = {
-        let viewModel = PostProductViewModel(provider: self.viewModel!.provider, image: nil,taggedItems: [])
+
+    fileprivate lazy var postProduct: PostProductViewController = {
+        let viewModel = PostProductViewModel(provider: self.viewModel!.provider, image: nil, taggedItems: [])
         let controller  = PostProductViewController(viewModel: viewModel, navigator: navigator)
         return controller
     }()
-    
-    
+
     let selection = PublishSubject<StyleBoardEditView>()
-    
-    
-    private var _selectedEditView:StyleBoardEditView?
-    var selectedEditView:StyleBoardEditView? {
+
+    private var _selectedEditView: StyleBoardEditView?
+    var selectedEditView: StyleBoardEditView? {
         get {
             return _selectedEditView
         }
@@ -69,7 +67,7 @@ class StyleBoardViewController: ViewController {
                 }
                 _selectedEditView = newValue
             }
-            
+
             if let selectedEditView = _selectedEditView {
                 selectedEditView.showEditingHandlers = true
                 selectedEditView.superview?.bringSubviewToFront(selectedEditView)
@@ -78,15 +76,13 @@ class StyleBoardViewController: ViewController {
             }
         }
     }
-    
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         stackView.addArrangedSubview(contentStackView)
         collectionView.register(StyleBoardImageCell.nib, forCellWithReuseIdentifier: StyleBoardImageCell.reuseIdentifier)
-        
-        
+
         navigationBar.addSubview(undoButton)
         navigationBar.addSubview(redoButton)
         undoButton.snp.makeConstraints { (make) in
@@ -94,14 +90,13 @@ class StyleBoardViewController: ViewController {
             make.bottom.equalTo(navigationBar.snp.bottom).offset(-10)
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
-        
+
         redoButton.snp.makeConstraints { (make) in
             make.left.equalTo(navigationBar.snp.centerX).offset(20)
             make.centerY.equalTo(undoButton.snp.centerY)
             make.size.equalTo(CGSize(width: 20, height: 20))
         }
-        
-        
+
         let layout = UICollectionViewFlowLayout()
         layout.minimumLineSpacing = 10
         layout.minimumInteritemSpacing = 10
@@ -109,58 +104,55 @@ class StyleBoardViewController: ViewController {
         layout.sectionInset = .zero
         layout.itemSize = CGSize(width: collectionView.height, height: collectionView.height)
         layout.sectionInset = UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
-        
+
         collectionView.showsVerticalScrollIndicator = false
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.collectionViewLayout = layout
-        
+
         backButton.setImage(R.image.icon_navigation_close(), for: .normal)
         navigationBar.rightBarButtonItem = nextButton
-        
+
         containerView.rx.tap().subscribe(onNext: { [weak self]() in
             self?.selectedEditView?.showEditingHandlers = true
         }).disposed(by: rx.disposeBag)
-        
+
         containerView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.25)
     }
-    
-    
-    
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? StyleBoardViewModel else { return }
-        
+
         let selected = selection.map { $0.viewModel }.filterNil().merge(with: collectionView.rx.modelSelected(StyleBoardSectionItem.self)
             .map { $0.viewModel }.asObservable())
         let input = StyleBoardViewModel.Input(next: nextButton.rx.tap.asObservable(), selection: selected)
         let output = viewModel.transform(input: input)
-        
+
         // 提前绑定, 重复绑定会出发多次
         (self.postProduct.viewModel as? PostProductViewModel)?.reselection
             .bind(to: viewModel.reselection).disposed(by: rx.disposeBag)
-        
+
         output.nextButtonEnable.drive(nextButton.rx.isEnabled).disposed(by: rx.disposeBag)
         output.items.drive(collectionView.rx.items(dataSource: dataSouce)).disposed(by: rx.disposeBag)
-        
+
         output.items.map { $0.first?.items.compactMap { $0.viewModel }.filter { $0.item.productId != "" }}
             .filterNil().delay(RxTimeInterval.milliseconds(500))
             .drive(onNext: {[weak self] items in
-                
+
                 let productItems = items.compactMap { $0.item }
                 let elements = self?.imageViews.map { $0 } ?? []
-                
-                func remove(at index : Int) {
+
+                func remove(at index: Int) {
                     UIView.animate(withDuration: 0.5, animations: {
                         self?.imageViews[index].alpha = 0
-                    }) { (_) in
+                    }, completion: { (_) in
                         self?.imageViews[index].removeFromSuperview()
                         self?.imageViews.remove(at: index)
-                    }
+                    })
                 }
 
-                elements.enumerated().map { ($0, $1)}.forEach { (offset,view) in
+                elements.enumerated().map { ($0, $1)}.forEach { (offset, view) in
                     if view.viewModel?.item == nil {
                         remove(at: offset)
                     }
@@ -174,7 +166,7 @@ class StyleBoardViewController: ViewController {
                 items.forEach { self?.addImageView(viewModel: $0) }
                 self?.collectionView.reloadSections(IndexSet(integer: 0))
             }).disposed(by: rx.disposeBag)
-        
+
         output.post.drive(onNext: { [weak self](image, items) in
             guard let self = self else { return }
             let postProductViewModel = self.postProduct.viewModel as? PostProductViewModel
@@ -182,40 +174,40 @@ class StyleBoardViewController: ViewController {
             postProductViewModel?.element.accept(items)
             self.navigationController?.pushViewController(self.postProduct)
         }).disposed(by: rx.disposeBag)
-        
+
         output.selection.drive(onNext: {[weak self] (viewModel) in
             let view = self?.imageViews.filter { $0.viewModel?.item == viewModel.item }.first
             self?.selectedEditView = view
         }).disposed(by: rx.disposeBag)
-        
+
         output.generateImage
             .drive(onNext: { [weak self] () in
                 self?.selectedEditView = nil
                 guard let image = self?.containerView.renderAsImage() else { return }
                 viewModel.image.onNext(image)
             }).disposed(by: rx.disposeBag)
-        
+
         output.add.drive(onNext: { [weak self]() in
             guard let self = self else { return }
             let styleBoardSearch = StyleBoardSearchViewModel(provider: viewModel.provider)
             styleBoardSearch.selection.bind(to: viewModel.selection).disposed(by: self.rx.disposeBag)
             self.navigator.show(segue: .styleBoardSearch(viewModel: styleBoardSearch), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
     }
-    
-    func addImageView(viewModel : StyleBoardImageCellViewModel) {
-        
+
+    func addImageView(viewModel: StyleBoardImageCellViewModel) {
+
         let contains = imageViews.map { $0.viewModel?.item }.contains(viewModel.item)
         if  contains {
             imageViews.filter { $0.viewModel?.item == viewModel.item }.first?.viewModel = viewModel
             return
         }
-        
+
         // 随机放在某个位置
         let x = CGFloat.random(in: 20..<(containerView.width * 0.5))
         let y = CGFloat.random(in: 20..<(containerView.width * 0.5))
-        
+
         let point = CGPoint(x: x, y: y)
         let imageView = UIImageView(frame: CGRect(origin: point, size: viewModel.size))
         let contentView = StyleBoardEditView(contentView: imageView)
@@ -224,7 +216,7 @@ class StyleBoardViewController: ViewController {
         contentView.setImage(R.image.icon_button_circular_flip()!, forHandler: .flip)
         contentView.setImage(R.image.icon_button_circular_edit()!, forHandler: .edit)
         contentView.showEditingHandlers = false
-        contentView.outlineBorderColor = UIColor(hex:0xEEEEEE)!
+        contentView.outlineBorderColor = UIColor(hex: 0xEEEEEE)!
         contentView.outlineBorderWidth = 1
         contentView.delegate = self
         contentView.setHandlerSize(18)
@@ -232,13 +224,12 @@ class StyleBoardViewController: ViewController {
         imageViews.append(contentView)
         containerView.addSubview(contentView)
     }
-    
-    
+
 }
 extension StyleBoardViewController {
-    
+
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection> {
-        return RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+        return RxCollectionViewSectionedAnimatedDataSource<StyleBoardSection>(configureCell: { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             switch item {
             case .image(let viewModel):
                 let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: StyleBoardImageCell.self)
@@ -249,8 +240,8 @@ extension StyleBoardViewController {
     }
 }
 
-extension StyleBoardViewController : StyleBoardEditViewDelegate {
-    
+extension StyleBoardViewController: StyleBoardEditViewDelegate {
+
     func styleBoardEditViewDidBeginMoving(_ editView: StyleBoardEditView) {
         selection.onNext(editView)
     }
@@ -258,4 +249,3 @@ extension StyleBoardViewController : StyleBoardEditViewDelegate {
         selection.onNext(editView)
     }
 }
-

@@ -13,7 +13,6 @@ import Alamofire
 import Toast_Swift
 import Moya_ObjectMapper
 
-
 class OnlineProvider<Target> where Target: Moya.TargetType {
     fileprivate let online: Observable<Bool>
     fileprivate let provider: MoyaProvider<Target>
@@ -44,7 +43,7 @@ class OnlineProvider<Target> where Target: Moya.TargetType {
                                 throw MoyaError.jsonMapping(response)
                             }
                         }
-                        
+
                     }, onError: { (error) in
                         if let error = error as? MoyaError {
                             switch error {
@@ -88,8 +87,6 @@ extension NetworkingType {
         return IbexNetworking(provider: newProvider(plugins))
     }
 }
-
-
 
 extension NetworkingType {
     static func endpointsClosure<T>(_ xAccessToken: String? = nil) -> (T) -> Endpoint where T: TargetType, T: ProductAPIType {
@@ -135,9 +132,9 @@ private func JSONResponseDataFormatter(_ data: Data) -> String {
     }
 }
 
-private let newworkActivityPlugin = NetworkActivityPlugin { (changeType , targetType) -> () in
-    
-    switch(changeType){
+private let newworkActivityPlugin = NetworkActivityPlugin { (changeType, targetType) -> Void in
+
+    switch changeType {
     case .ended:
         DispatchQueue.main.async {
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
@@ -147,9 +144,8 @@ private let newworkActivityPlugin = NetworkActivityPlugin { (changeType , target
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
         }
     }
-    
-}
 
+}
 
 //struct JSONHandlePlugin: PluginType {
 //
@@ -174,7 +170,7 @@ private let newworkActivityPlugin = NetworkActivityPlugin { (changeType , target
 //}
 
 struct AuthPlugin: PluginType {
-    
+
     let token: String
     func prepare(_ request: URLRequest, target: TargetType) -> URLRequest {
         var request = request

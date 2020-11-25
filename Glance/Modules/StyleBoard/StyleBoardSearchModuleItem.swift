@@ -25,14 +25,12 @@ import UIKit
 //}
 
 enum StyleBoardSearchModuleItem {
-    
-    case save(viewModel : StyleBoardSearchContentViewModel)
-    case post(viewModel : StyleBoardSearchContentViewModel)
-    case app(viewModel : StyleBoardSearchContentViewModel)
 
-    
-    
-    var title : String {
+    case save(viewModel: StyleBoardSearchContentViewModel)
+    case post(viewModel: StyleBoardSearchContentViewModel)
+    case app(viewModel: StyleBoardSearchContentViewModel)
+
+    var title: String {
         switch self {
         case .save:
             return "Saved"
@@ -42,7 +40,7 @@ enum StyleBoardSearchModuleItem {
             return "Search in App"
         }
     }
-    var value : Int {
+    var value: Int {
         switch self {
         case .save:
             return 0
@@ -52,16 +50,14 @@ enum StyleBoardSearchModuleItem {
             return 2
         }
     }
-    
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+
+    func toScene(navigator: Navigator?) -> Navigator.Scene? {
         guard navigator != nil else {
             return nil
         }
         switch self {
-        case .save(let viewModel),.post(let viewModel),.app(let viewModel):
+        case .save(let viewModel), .post(let viewModel), .app(let viewModel):
             return .styleBoardSearchContent(viewModel: viewModel)
         }
     }
 }
-

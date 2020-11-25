@@ -13,5 +13,5 @@ class SearchRecommendNavigationBar: View {
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchView: UIView!
     @IBOutlet weak var cameraButton: UIButton!
-    
+
 }

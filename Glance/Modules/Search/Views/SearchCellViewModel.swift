@@ -10,18 +10,17 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+class SearchCellViewModel: CellViewModelProtocol {
 
-class SearchCellViewModel: CellViewModelProtocol  {
+    let item : (source: String, target: SearchFacet)
 
-    let item : (source :String, target: SearchFacet)
-    
     let attr = BehaviorRelay<NSAttributedString?>(value: nil)
-        
-    required init(item : (source :String, target: SearchFacet)) {
+
+    required init(item : (source: String, target: SearchFacet)) {
         self.item = item
         let text = item.target.facets ?? ""
-        
-        let attribute = NSMutableAttributedString(string: text,attributes: [.font :UIFont.titleFont(14), .foregroundColor: UIColor.text()])
+
+        let attribute = NSMutableAttributedString(string: text, attributes: [.font: UIFont.titleFont(14), .foregroundColor: UIColor.text()])
         attribute.addAttribute(.foregroundColor, value: UIColor.primary(), range: text.nsString.range(of: item.source))
         attr.accept(attribute)
     }

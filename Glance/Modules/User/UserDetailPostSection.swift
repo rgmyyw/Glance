@@ -15,9 +15,8 @@ enum UserDetailPostSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
-
 extension UserDetailPostSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
@@ -25,7 +24,7 @@ extension UserDetailPostSection: SectionModelType {
             return items.map { $0 }
         }
     }
-    
+
     init(original: UserDetailPostSection, items: [Item]) {
         switch original {
         case .single(let items):

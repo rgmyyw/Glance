@@ -8,24 +8,22 @@
 
 import UIKit
 
-
-enum SearchThemeContentType : Int {
+enum SearchThemeContentType: Int {
     case all = -1
     case product = 1
     case post = 0
     case user = 4
-    
+
 }
 
-
 enum SearchThemeModuleItem {
-    
-    case all(viewModel : SearchThemeContentViewModel)
-    case product(viewModel : SearchThemeContentViewModel)
-    case post(viewModel : SearchThemeContentViewModel)
-    case user(viewModel : SearchThemeContentViewModel)
-    
-    var defaultTitle : String {
+
+    case all(viewModel: SearchThemeContentViewModel)
+    case product(viewModel: SearchThemeContentViewModel)
+    case post(viewModel: SearchThemeContentViewModel)
+    case user(viewModel: SearchThemeContentViewModel)
+
+    var defaultTitle: String {
         switch self {
         case .all:
             return "ALL"
@@ -37,8 +35,8 @@ enum SearchThemeModuleItem {
             return "Users"
         }
     }
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+
+    func toScene(navigator: Navigator?) -> Navigator.Scene? {
         guard navigator != nil else {
             return nil
         }

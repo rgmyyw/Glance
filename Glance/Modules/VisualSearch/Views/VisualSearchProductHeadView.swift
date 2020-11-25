@@ -9,13 +9,13 @@
 import UIKit
 
 class VisualSearchProductHeadView: View {
-    
+
     @IBOutlet weak var textFiled: UITextField!
     @IBOutlet weak var searchButton: UIButton!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         textFiled.addPaddingLeft(12)
     }
 }

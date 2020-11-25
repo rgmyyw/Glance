@@ -12,49 +12,45 @@ import RxSwift
 import AppAuth
 
 class HomeTabBarViewModel: ViewModel, ViewModelType {
-    
-    
+
     struct Input {
     }
-    
+
     struct Output {
         let tabBarItems: Driver<[HomeTabBarItem]>
-        let userDetail : Driver<User>
-        let themeDetail : Driver<Int>
-        let postDetail : Driver<DefaultColltionItem>
-        let insightDetail : Driver<Insight>
-        let notice : Driver<Void>
-        let following : Driver<Void>
+        let userDetail: Driver<User>
+        let themeDetail: Driver<Int>
+        let postDetail: Driver<DefaultColltionItem>
+        let insightDetail: Driver<Insight>
+        let notice: Driver<Void>
+        let following: Driver<Void>
     }
-    
+
     override init(provider: API) {
         super.init(provider: provider)
     }
-    
-    
-    
+
     func transform(input: Input) -> Output {
-        
+
         let postDetail = PublishSubject<DefaultColltionItem>()
         let userDetail = PublishSubject<User>()
         let themeDetail = PublishSubject<Int>()
         let insightDetail = PublishSubject<Insight>()
         let notice = PublishSubject<Void>()
         let following = PublishSubject<Void>()
-        
 
-        let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in            
+        let tabBarItems = loggedIn.map { (loggedIn) -> [HomeTabBarItem] in
             if loggedIn {
-                return [.home, .notifications,.center, .chat, .mine]
+                return [.home, .notifications, .center, .chat, .mine]
             } else {
-                return [.home, .notifications,.center ,.chat, .mine]
+                return [.home, .notifications, .center, .chat, .mine]
             }
-            
+
         }
-        
+
         NotificationCenter.default.rx.notification(.kNotificationReceived)
             .map { (noti) -> NotificationPayloadItem? in
-            guard let userInfo = noti.userInfo as? [String : Any] ,userInfo.isNotEmpty else { return nil }
+            guard let userInfo = noti.userInfo as? [String: Any], userInfo.isNotEmpty else { return nil }
             return NotificationPayloadItem(JSON: userInfo)
         }.filterNil().subscribe(onNext: { (item) in
             guard let type = item.type else { return }
@@ -65,7 +61,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
                 insightDetail.onNext(Insight(recommendId: item.recommendedId))
             case .liked:
                 postDetail.onNext(.init(postId: item.postId))
-            case .mightLike,.recommended:
+            case .mightLike, .recommended:
                 notice.onNext(())
             case .following:
                 following.onNext(())
@@ -74,9 +70,6 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-        
-        
-        
         return Output(tabBarItems: tabBarItems.asDriver(onErrorJustReturn: []),
                       userDetail: userDetail.asDriverOnErrorJustComplete(),
                       themeDetail: themeDetail.asDriverOnErrorJustComplete(),
@@ -85,7 +78,7 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
                       notice: notice.asDriverOnErrorJustComplete(),
                       following: following.asDriverOnErrorJustComplete())
     }
-    
+
     func viewModel(for tabBarItem: HomeTabBarItem) -> ViewModel {
         switch tabBarItem {
         case .home:
@@ -106,5 +99,3 @@ class HomeTabBarViewModel: ViewModel, ViewModelType {
         }
     }
 }
-
-

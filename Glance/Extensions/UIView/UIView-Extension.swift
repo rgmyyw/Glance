@@ -7,8 +7,6 @@
 //
 import UIKit
 
-
-
 extension UIView {
 
     func makeRoundedCorners(_ radius: CGFloat) {
@@ -54,13 +52,11 @@ extension UIView {
             view.removeFromSuperview()
         }
     }
-    
-    
-    
+
 }
 
 extension UIView {
-    
+
     func searchVisualEffectsSubview() -> UIVisualEffectView? {
         if let visualEffectView = self as? UIVisualEffectView {
             return visualEffectView
@@ -73,49 +69,46 @@ extension UIView {
         }
         return nil
     }
-    
+
     /// This is the function to get subViews of a view of a particular type
     /// https://stackoverflow.com/a/45297466/5321670
-    func subViews<T : UIView>(type : T.Type) -> [T]{
+    func subViews<T: UIView>(type: T.Type) -> [T] {
         var all = [T]()
         for view in self.subviews {
-            if let aView = view as? T{
+            if let aView = view as? T {
                 all.append(aView)
             }
         }
         return all
     }
-    
-    
+
     /// This is a function to get subViews of a particular type from view recursively. It would look recursively in all subviews and return back the subviews of the type T
     /// https://stackoverflow.com/a/45297466/5321670
-    func allSubViewsOf<T : UIView>(type : T.Type) -> [T]{
+    func allSubViewsOf<T: UIView>(type: T.Type) -> [T] {
         var all = [T]()
         func getSubview(view: UIView) {
-            if let aView = view as? T{
+            if let aView = view as? T {
                 all.append(aView)
             }
-            guard view.subviews.count>0 else { return }
-            view.subviews.forEach{ getSubview(view: $0) }
+            guard !view.subviews.isEmpty else { return }
+            view.subviews.forEach { getSubview(view: $0) }
         }
         getSubview(view: self)
         return all
     }
 }
 
-
 extension UIView {
 
-    
     struct UIViewPrivateKeys {
-        static var enableDebugKey : String = "enableDebugKey"
+        static var enableDebugKey: String = "enableDebugKey"
     }
-    
+
     /// 递归当前view并做一些事情
     /// - Parameters:
     ///   - current: 是否包含
     ///   - handle: 对这些做什么
-    func recursive( _ current : Bool = false, _ handle : (UIView) -> (Void)) {
+    func recursive( _ current: Bool = false, _ handle: (UIView) -> Void) {
         if current { handle(self) }
         for i in self.subviews {
             handle(i)
@@ -125,10 +118,13 @@ extension UIView {
 }
 
 extension UIView {
-    
+
     /// 开启调试模式,为view 以及子viewz 自动设置随机颜色!
-    var enableDebug : Bool {
-        set{
+    var enableDebug: Bool {
+        get {
+            return objc_getAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey) as? Bool ?? false
+        }
+        set {
             objc_setAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey, newValue, .OBJC_ASSOCIATION_ASSIGN)
             if newValue == true {
                 self.recursive(true) { $0.backgroundColor = UIColor.random }
@@ -136,10 +132,5 @@ extension UIView {
                 self.recursive(true) { $0.backgroundColor = .white }
             }
         }
-        get{
-            return objc_getAssociatedObject(self, &UIViewPrivateKeys.enableDebugKey) as? Bool ?? false
-        }
     }
 }
-
-

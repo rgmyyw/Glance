@@ -10,7 +10,7 @@ abstract_target 'Base' do
         
     # Tools
     pod 'R.swift', '~> 5.3.0'
-    pod 'SwiftLint', '0.39.2'
+    pod 'SwiftLint', '0.39.2' , :configurations => ['Debug']
     
     
     target 'NotificationServiceExtension'

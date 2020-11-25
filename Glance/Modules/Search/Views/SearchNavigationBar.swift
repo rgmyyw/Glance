@@ -11,11 +11,11 @@ import UIKit
 class SearchNavigationBar: View {
 
     @IBOutlet weak var cancelButton: UIButton!
-    @IBOutlet weak var cameraButton: UIImageView!    
+    @IBOutlet weak var cameraButton: UIImageView!
     @IBOutlet weak var textField: UITextField!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
     }
 }

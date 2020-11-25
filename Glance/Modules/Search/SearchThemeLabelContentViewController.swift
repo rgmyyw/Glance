@@ -14,15 +14,13 @@ import ZLCollectionViewFlowLayout
 import UICollectionView_ARDynamicHeightLayoutCell
 import WMZPageController
 
-
 class SearchThemeLabelContentViewController: CollectionViewController {
-    
-    private lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> = configureDataSouce()
 
+    private lazy var dataSouce: RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> = configureDataSouce()
 
     override func makeUI() {
         super.makeUI()
-        
+
         navigationBar.isHidden = true
 
         let layout = ZLCollectionViewVerticalLayout()
@@ -33,15 +31,13 @@ class SearchThemeLabelContentViewController: CollectionViewController {
         collectionView.collectionViewLayout = layout
         DefaultColltionSectionItem.register(collectionView: collectionView, kinds: DefaultColltionCellType.all)
         collectionView.register(nibWithCellClass: UserHorizontalCell.self)
-                
-    }
 
+    }
 
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? SearchThemeLabelContentViewModel else { return }
-        
 
         let input = SearchThemeLabelContentViewModel.Input(headerRefresh: headerRefreshTrigger.asObservable(),
                                         footerRefresh: footerRefreshTrigger.asObservable(),
@@ -52,17 +48,17 @@ class SearchThemeLabelContentViewController: CollectionViewController {
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
 
-        output.reaction.subscribe(onNext: { [weak self] (fromView,cellViewModel) in
+        output.reaction.subscribe(onNext: { [weak self] (fromView, cellViewModel) in
             ReactionPopManager.share.show(in: self?.collectionView, anchorView: fromView) { (selection ) in
-                viewModel.selectionReaction.onNext((cellViewModel,selection))
+                viewModel.selectionReaction.onNext((cellViewModel, selection))
             }
         }).disposed(by: rx.disposeBag)
-        
+
         output.detail.drive(onNext: { [weak self](item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
             self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
         output.userDetail.drive(onNext: { [weak self](current) in
             if current == user.value {
                 let tabbar = UIApplication.shared.keyWindow?.rootViewController as? HomeTabBarController
@@ -72,14 +68,14 @@ class SearchThemeLabelContentViewController: CollectionViewController {
                 self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
             }
         }).disposed(by: rx.disposeBag)
-        
+
     }
 }
 
 extension SearchThemeLabelContentViewController {
 
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection> {
-        return RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+        return RxCollectionViewSectionedReloadDataSource<SearchThemeLabelContentSection>(configureCell: { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
 
             switch item {
             case .post(let viewModel):
@@ -93,7 +89,7 @@ extension SearchThemeLabelContentViewController {
 
             case .user(let viewModel) :
 
-                switch dataSouce[indexPath.section]  {
+                switch dataSouce[indexPath.section] {
                 case .single:
                     let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: UserVerticalCell.self)
                     cell.bind(to: viewModel)
@@ -126,7 +122,7 @@ extension SearchThemeLabelContentViewController {
 
 }
 
-extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension SearchThemeLabelContentViewController: ZLCollectionViewBaseFlowLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
@@ -167,13 +163,13 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if dataSouce.sectionModels.isEmpty { return .zero }
 
-        let fixedWidth : CGFloat
-        let reuseIdentifier : String
+        let fixedWidth: CGFloat
+        let reuseIdentifier: String
 
         let item = dataSouce.sectionModels[indexPath.section].items[indexPath.item]
         switch dataSouce.sectionModels[indexPath.section] {
         case .single:
-            fixedWidth = collectionView.itemWidth(forItemsPerRow: 2,sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset),itemInset: 15)
+            fixedWidth = collectionView.itemWidth(forItemsPerRow: 2, sectionInset: UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset), itemInset: 15)
             reuseIdentifier = dataSouce.sectionModels[indexPath.section].items[indexPath.item].reuseIdentifier
         default:
             fixedWidth = collectionView.width
@@ -187,10 +183,7 @@ extension SearchThemeLabelContentViewController : ZLCollectionViewBaseFlowLayout
     }
 }
 
-
-
-
-extension SearchThemeLabelContentViewController : WMZPageProtocol {
+extension SearchThemeLabelContentViewController: WMZPageProtocol {
 
     func getMyScrollView() -> UIScrollView {
         return collectionView

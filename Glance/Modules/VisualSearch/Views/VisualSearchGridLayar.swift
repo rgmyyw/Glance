@@ -8,33 +8,32 @@
 
 import UIKit
 
-class VisualSearchGridLayar : CALayer {
+class VisualSearchGridLayar: CALayer {
 
     var clippingRect: CGRect = .zero
     var bgColor: UIColor = UIColor.clear
     var gridColor: UIColor = UIColor.red
-    
+
     override class func needsDisplay(forKey key: String) -> Bool {
         if key == "clippingRect" { return true }
         return super.needsDisplay(forKey: key)
     }
-    
-    
+
     override func draw(in ctx: CGContext) {
-        
+
         var rect = bounds
         ctx.setFillColor(bgColor.cgColor)
         ctx.fill(rect)
         ctx.clear(clippingRect)
-        
+
         ctx.setStrokeColor(gridColor.cgColor)
         ctx.setLineWidth(1)
-        
+
         rect = clippingRect
-        
+
         ctx.beginPath()
-        var dw : CGFloat = 0
-        
+        var dw: CGFloat = 0
+
         (0..<4).forEach { (_) in
             ctx.move(to: CGPoint(x: rect.origin.x + dw, y: rect.origin.y))
             ctx.addLine(to: CGPoint(x: rect.origin.x + dw, y: rect.origin.y + rect.size.height))

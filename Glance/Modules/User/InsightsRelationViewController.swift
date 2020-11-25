@@ -12,19 +12,19 @@ import RxCocoa
 import WMZPageController
 
 class InsightsRelationViewController: TableViewController {
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         tableView.register(nib: InsightsLikeCell.nib, withCellClass: InsightsLikeCell.self)
         tableView.rowHeight = 70
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? InsightsRelationViewModel else { return }
-        
-        let input = InsightsRelationViewModel.Input(selection: tableView.rx.modelSelected(InsightsLikeCellViewModel.self).asObservable(), headerRefresh: headerRefreshTrigger.asObservable(),footerRefresh: footerRefreshTrigger.asObservable())
+
+        let input = InsightsRelationViewModel.Input(selection: tableView.rx.modelSelected(InsightsLikeCellViewModel.self).asObservable(), headerRefresh: headerRefreshTrigger.asObservable(), footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
 
         output.items
@@ -34,7 +34,6 @@ class InsightsRelationViewController: TableViewController {
 
         output.navigationTitle.drive(navigationBar.rx.title).disposed(by: rx.disposeBag)
         output.navigationTitle.map { $0.isEmpty}.drive(navigationBar.rx.isHidden).disposed(by: rx.disposeBag)
-        
 
     }
 }

@@ -11,39 +11,33 @@ import RxSwift
 import RxCocoa
 
 class CollectionReusableView: UICollectionReusableView {
-    
+
     var cellDisposeBag = DisposeBag()
-        
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeUI()
     }
 
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         makeUI()
     }
-    
+
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)!
     }
 
     func makeUI() {
-        
+
     }
 
     func updateUI() {
         setNeedsDisplay()
     }
-    
-    
-    public func bind<T : CellViewModelProtocol>(to viewModel : T) {
+
+    public func bind<T: CellViewModelProtocol>(to viewModel: T) {
         cellDisposeBag = DisposeBag()
     }
 
-    
-    
-    
-    
 }

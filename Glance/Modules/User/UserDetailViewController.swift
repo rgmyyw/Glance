@@ -13,71 +13,68 @@ import RxSwift
 import RxCocoa
 
 class UserDetailViewController: ViewController {
-    
+
     private let headerRefreshTrigger = PublishSubject<Void>()
     private let isHeaderLoading = PublishSubject<Bool>()
-    private lazy var userHeadView : UserDetailHeadView = UserDetailHeadView.loadFromNib(height: 200, width: self.view.width)
-    
-    
-    private lazy var insight : UIButton = {
+    private lazy var userHeadView: UserDetailHeadView = UserDetailHeadView.loadFromNib(height: 200, width: self.view.width)
+
+    private lazy var insight: UIButton = {
         let insight = UIButton()
         insight.setImage(R.image.icon_navigation_insight(), for: .normal)
         insight.sizeToFit()
         return insight
     }()
-    
-    private lazy var share : UIButton = {
+
+    private lazy var share: UIButton = {
         let share  = UIButton()
         share.setImage(R.image.icon_button_share(), for: .normal)
         share.sizeToFit()
         return share
     }()
-    
-    private lazy var setting : UIButton = {
+
+    private lazy var setting: UIButton = {
         let setting  = UIButton()
         setting.setImage(R.image.icon_navigation_setting(), for: .normal)
         setting.sizeToFit()
         return setting
     }()
-    
-    private lazy var more : UIButton = {
+
+    private lazy var more: UIButton = {
         let more  = UIButton()
         more.setImage(R.image.icon_navigation_more(), for: .normal)
         more.sizeToFit()
         return more
     }()
-    
-    
+
     lazy var memu: DropDownView = {
         let view = DropDownView(anchorView: more)
-        view.dd_shadowColor = UIColor(hex:0x696969)!
+        view.dd_shadowColor = UIColor(hex: 0x696969)!
         view.dd_shadowOpacity = 0.5
         view.dd_cornerRadius = 5
         view.dd_shadowOffset = CGSize(width: 0, height: 2)
         view.textFont = UIFont.titleFont(12)
         view.cellHeight = 32
         view.animationduration = 0.25
-        let dd_width : CGFloat = 100
-        view.dd_width = dd_width
-        view.bottomOffset = CGPoint(x: -(dd_width - 15), y: more.height + 5)
-        
+        let width: CGFloat = 100
+        view.dd_width = width
+        view.bottomOffset = CGPoint(x: -(width - 15), y: more.height + 5)
+
         return view
     }()
-    
-    
-    lazy var navigationItems = [backButton,share,more,insight, setting]
-    
-    var lastIndex : Int = 0
-    
-    private lazy var pageController : WMZPageController = {
-        
+
+    lazy var navigationItems = [backButton, share, more, insight, setting]
+
+    var lastIndex: Int = 0
+
+    private lazy var pageController: WMZPageController = {
+
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
         config.wFromNavi =  true
         config.wMenuAnimal = .init(3)
         config.wMenuAnimalTitleGradient = false
-        
+
         config.wMenuTitleColor = UIColor(hex: 0x999999)!
         config.wMenuTitleWeight = 44
         config.titleHeight = 44
@@ -85,38 +82,35 @@ class UserDetailViewController: ViewController {
         config.wMenuIndicatorWidth = 0
         config.wMenuIndicatorHeight = 2
         config.wMenuHeadView = { self.userHeadView }
-        
+
         config.wCustomMenuTitle = { titleButtons in
-            guard let buttons = titleButtons , buttons.isNotEmpty else { return }
+            guard let buttons = titleButtons, buttons.isNotEmpty else { return }
             buttons.forEach { self.needUpdatePageTitltStyle(by: $0, config: config)}
         }
-        
+
         let controller = WMZPageController()
         controller.param = config
         addChild(controller)
         stackView.addArrangedSubview(controller.view)
-        
+
         return controller
     }()
-    
-    
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         automaticallyAdjustsLeftBarButtonItem = false
         navigationBar.leftBarButtonItem = insight
-        navigationBar.rightBarButtonItems = [setting,share]
-        
+        navigationBar.rightBarButtonItems = [setting, share]
+
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         let refresh = rx.viewWillAppear.mapToVoid().merge(with: headerRefreshTrigger.asObservable())
         guard let viewModel = viewModel as? UserDetailViewModel else { return }
-        
-        
+
         // 提前配置
         let input = UserDetailViewModel.Input(refresh: refresh,
                                         insight: insight.rx.tap.asObservable(),
@@ -125,13 +119,12 @@ class UserDetailViewController: ViewController {
                                         chat: userHeadView.chatButton.rx.tap.asObservable(),
                                         memu: more.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
-        
-        
+
         output.displayName.drive(userHeadView.displayNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.countryName.drive(userHeadView.countryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.displayName.drive(userHeadView.otherUserDisplayNameLabel.rx.text).disposed(by: rx.disposeBag)
         output.countryName.drive(userHeadView.otherUserCountryButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
-        output.userHeadImageURL.drive(userHeadView.userHeadImageView.rx.imageURL(withPlaceholder:R.image.icon_empty_default())).disposed(by: rx.disposeBag)
+        output.userHeadImageURL.drive(userHeadView.userHeadImageView.rx.imageURL(withPlaceholder: R.image.icon_empty_default())).disposed(by: rx.disposeBag)
         output.instagram.drive(userHeadView.instagramButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.website.drive(userHeadView.websiteButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
         output.bio.drive(userHeadView.bioLabel.rx.text).disposed(by: rx.disposeBag)
@@ -144,7 +137,7 @@ class UserDetailViewController: ViewController {
         output.followButtonBackground.drive(userHeadView.followButton.rx.backgroundColor).disposed(by: rx.disposeBag)
         output.followButtonTitleColor.drive(userHeadView.followButton.rx.titleColor(for: .normal)).disposed(by: rx.disposeBag)
         output.followButtonTitle.drive(userHeadView.followButton.rx.title(for: .normal)).disposed(by: rx.disposeBag)
-        
+
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
             controllers.forEach { self?.addChild($0)}
@@ -153,9 +146,7 @@ class UserDetailViewController: ViewController {
             self?.pageController.param.wControllers = controllers
             self?.pageController.param.wTitleArr = titles
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+
         output.setting.drive(onNext: { [weak self] () in
             guard let self = self else { return }
             let settingViewModel = SettingViewModel(provider: viewModel.provider)
@@ -167,18 +158,15 @@ class UserDetailViewController: ViewController {
             config?.showAnimDuration = 0.25
             self.cw_showDrawerViewController(setting, animationType: .mask, configuration: config)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+
         output.navigationBarAvailable
-            .subscribe(onNext: { [weak self](left,right) in
+            .subscribe(onNext: { [weak self](left, right) in
                 let leftItems = left.compactMap { self?.navigationItems[$0.rawValue] }
                 self?.navigationBar.leftBarButtonItems = leftItems
                 let rightItems = right.compactMap { self?.navigationItems[$0.rawValue] }
                 self?.navigationBar.rightBarButtonItems = rightItems
             }).disposed(by: rx.disposeBag)
-        
-        
+
         output.updateHeadLayout.drive(onNext: { [weak self]() in
             guard let self = self else { return }
             self.userHeadView.layoutIfNeeded()
@@ -190,84 +178,73 @@ class UserDetailViewController: ViewController {
             self.userHeadView.layoutIfNeeded()
             self.pageController.updateHeadView()
         }).disposed(by: rx.disposeBag)
-        
-        
+
         output.titles.drive(onNext: {[weak self] (titles) in
             self?.pageController.param.wTitleArr = titles
             let items = self?.pageController.upSc.btnArr as? [Any] ?? []
             self?.pageController.param.wCustomMenuTitle(items as? [WMZPageNaviBtn])
-                
+
         }).disposed(by: rx.disposeBag)
-        
-        
+
         output.modifyProfile.subscribe(onNext: { [weak self]() in
             let viewModel = ModifyProfileViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .modifyProfile(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
-        
+
         output.notifications.subscribe(onNext: { [weak self]() in
             let viewModel = NotificationProfileViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .notificationProfile(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
         output.originalPhotos.subscribe(onNext: { [weak self]() in
             let viewModel = OriginalPhotosViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .originalPhotos(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
         output.privacy.subscribe(onNext: { [weak self]() in
             let viewModel = PrivacyViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .privacy(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
         output.signIn.subscribe(onNext: { () in
             Application.shared.logout()
         }).disposed(by: rx.disposeBag)
-        
-        
+
         output.insight.drive(onNext: { [weak self]() in
             let viewModel = InsightsViewModel(provider: viewModel.provider)
             self?.navigator.show(segue: .insights(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
-        
+
         output.memu.drive(onNext: { [weak self](items) in
             guard let self = self else { return }
             self.memu.dataSource = items.map { "  \($0.title)"}
             self.memu.show()
         }).disposed(by: rx.disposeBag)
-        
+
         output.selectionTitleViewIndex
             .drive(onNext: { [weak self]index in
                 self?.pageController.selectMenu(with: index)
         }).disposed(by: rx.disposeBag)
-        
+
     }
-    
-    
-    
-    
+
 }
 
-
 extension UserDetailViewController {
-    
-    
-    func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
-        
+
+    func needUpdatePageTitltStyle(by button: UIButton, config: WMZPageParam) {
+
         guard let titles = config.wTitleArr as? [String] else { return }
         let title = titles[button.tag]
-        let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleFont(12)]
-        let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleFont(12)]
-        let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
-        let selectedTitle = NSMutableAttributedString(string: title,attributes: selectedAttr)
+        let normalAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleFont(12)]
+        let selectedAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleFont(12)]
+        let normaltitle = NSMutableAttributedString(string: title, attributes: normalAttr)
+        let selectedTitle = NSMutableAttributedString(string: title, attributes: selectedAttr)
         let titleList = title.components(separatedBy: "\n")
-        normaltitle.addAttributes([.font : UIFont.titleFont(17)], range: title.nsString.range(of: titleList[0]))
-        selectedTitle.addAttributes([.font : UIFont.titleBoldFont(17)], range: title.nsString.range(of: titleList[0]))
+        normaltitle.addAttributes([.font: UIFont.titleFont(17)], range: title.nsString.range(of: titleList[0]))
+        selectedTitle.addAttributes([.font: UIFont.titleBoldFont(17)], range: title.nsString.range(of: titleList[0]))
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
-    
-}
 
+}

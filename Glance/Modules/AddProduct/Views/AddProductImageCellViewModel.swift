@@ -10,15 +10,15 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class AddProductImageCellViewModel: CellViewModelProtocol  {
+class AddProductImageCellViewModel: CellViewModelProtocol {
 
-    let item : UIImage
-        
+    let item: UIImage
+
     let image = BehaviorRelay<UIImage?>(value: nil)
-    
+
     let edit = PublishSubject<Void>()
-    
-    required init(item : UIImage) {
+
+    required init(item: UIImage) {
         self.item = item
         image.accept(item)
     }

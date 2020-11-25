@@ -12,58 +12,57 @@ import JXPageControl
 import RxSwift
 import RxCocoa
 
-
 class PostsDetailBannerReusableView: CollectionReusableView {
-    
+
     @IBOutlet weak var banner: JXBanner!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var visearchButton: UIButton!
-    
+
     let items = BehaviorRelay<[String]>(value: [])
 
     override func makeUI() {
         super.makeUI()
-        
+
         banner.placeholderImgView.image = UIImage(named: "banner_placeholder")
         banner.delegate = self
         banner.dataSource = self
     }
-    
-    override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: PostsDetailSectionCellViewModel {
         super.bind(to: viewModel)
-        
+
         viewModel.postImageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
         visearchButton.rx.tap.map { self.imageView.image}.bind(to: viewModel.viSearch).disposed(by: rx.disposeBag)
     }
-    
+
 }
 
-//MARK:- JXBannerDataSource
+// MARK: - JXBannerDataSource
 extension PostsDetailBannerReusableView: JXBannerDataSource {
-    
+
     func jxBanner(_ banner: JXBannerType)
         -> (JXBannerCellRegister) {
             return JXBannerCellRegister(type: PostsDetailBannerCell.self,
                                         reuseIdentifier: "PostsDetailBannerCell",
                                         nib: PostsDetailBannerCell.nib)
     }
-    
+
     func jxBanner(numberOfItems banner: JXBannerType)
         -> Int { return items.value.count }
-    
+
     func jxBanner(_ banner: JXBannerType,
                   cellForItemAt index: Int,
                   cell: UICollectionViewCell)
         -> UICollectionViewCell {
-            let tempCell = cell as! PostsDetailBannerCell
+            guard let tempCell = cell as? PostsDetailBannerCell else { fatalError() }
             tempCell.contentMode = .scaleToFill
             tempCell.imageView.image = UIImage(named: items.value[index])
 
             return tempCell
     }
-    
+
     func jxBanner(_ banner: JXBannerType, layoutParams: JXBannerLayoutParams) -> JXBannerLayoutParams {
-        
+
         layoutParams.itemSize = CGSize(width: UIScreen.width, height: 350)
         layoutParams.itemSpacing = 0
         //        layoutParams.maximumAngle = 0
@@ -73,14 +72,14 @@ extension PostsDetailBannerReusableView: JXBannerDataSource {
         //        layoutParams.layoutType = nil
         return layoutParams
     }
-    
+
     func jxBanner(_ banner: JXBannerType, params: JXBannerParams) -> JXBannerParams {
         params.timeInterval = 1.5
         params.isAutoPlay = true
         params.cycleWay = .forward
         return params
     }
-    
+
     func jxBanner(pageControl banner: JXBannerType, numberOfPages: Int, coverView: UIView, builder: JXBannerPageControlBuilder) -> JXBannerPageControlBuilder {
         let pageControl = JXPageControlScale()
         pageControl.contentMode = .bottom
@@ -104,19 +103,16 @@ extension PostsDetailBannerReusableView: JXBannerDataSource {
 
 }
 
-//MARK:- JXBannerDelegate
+// MARK: - JXBannerDelegate
 extension PostsDetailBannerReusableView: JXBannerDelegate {
-    
+
     public func jxBanner(_ banner: JXBannerType,
                          didSelectItemAt index: Int) {
         //print(index)
     }
-    
+
     func jxBanner(_ banner: JXBannerType, center index: Int) {
         //print(index)
     }
-    
 
 }
-
-

@@ -13,60 +13,55 @@ import RxCocoa
 import RxDataSources
 
 class PostProductViewController: CollectionViewController {
-    
-    private lazy var dataSouce : RxCollectionViewSectionedAnimatedDataSource<PostProductSection> = configureDataSouce()
-    
-    lazy var postButton : UIButton = {
+
+    private lazy var dataSouce: RxCollectionViewSectionedAnimatedDataSource<PostProductSection> = configureDataSouce()
+
+    lazy var postButton: UIButton = {
         let postButton = UIButton()
         postButton.setTitle("POST", for: .normal)
         postButton.setTitleColor(UIColor.primary(), for: .normal)
         postButton.titleLabel?.font = UIFont.titleFont(15)
         return postButton
     }()
-    
-    
-    lazy var navigationImageView  : UIImageView = {
+
+    lazy var navigationImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFit
         imageView.cornerRadius = 10
         return imageView
     }()
-    
-    
+
     override func makeUI() {
         super.makeUI()
-        
-        
+
         refreshComponent.accept(.none)
-        
+
         let layout = ZLCollectionViewVerticalLayout()
         layout.delegate = self
         layout.minimumLineSpacing = 0
         layout.minimumInteritemSpacing = 10
-        
+
         let spec = View(height: 35)
         stackView.insertArrangedSubview(spec, at: 0)
-        
+
         collectionView.collectionViewLayout = layout
         collectionView.register(PostProductTagCell.nib, forCellWithReuseIdentifier: PostProductTagCell.reuseIdentifier)
         collectionView.register(PostProductCell.nib, forCellWithReuseIdentifier: PostProductCell.reuseIdentifier)
 
-        
         collectionView.register(nib: PostProductCaptionReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostProductCaptionReusableView.self)
         collectionView.register(nib: PostProductInputKeywordReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostProductInputKeywordReusableView.self)
         collectionView.register(nib: PostProductTitleReusableView.nib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withClass: PostProductTitleReusableView.self)
 
         navigationBar.rightBarButtonItem = postButton
         emptyDataSource.enable.accept(false)
-        
+
     }
 
-    
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? PostProductViewModel else { return }
-        
+
         let input = PostProductViewModel.Input(selection: collectionView.rx.modelSelected(PostProductSectionItem.self).asObservable(),
                                                commit: postButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
@@ -77,34 +72,32 @@ class PostProductViewController: CollectionViewController {
         output.items.delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-    
+
         output.complete
             .drive(onNext: { [weak self]() in
                 self?.navigationController?.dismiss(animated: true, completion: {
                     let tabbar = UIApplication.shared.keyWindow?.rootViewController as? HomeTabBarController
                     tabbar?.setSelectIndex(from: tabbar?.selectedIndex ?? 0, to: 0)
-                    let userInfo = ["message" : "Post completed"]
+                    let userInfo = ["message": "Post completed"]
                     NotificationCenter.default.post(.init(name: .kUpdateHomeData, object: nil,
                                                           userInfo: userInfo))
                 })
         }).disposed(by: rx.disposeBag)
-        
+
         output.detail.drive(onNext: { [weak self](productId) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: DefaultColltionItem(productId: productId))
             self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
-        
+
         viewModel.reselection
         .mapToVoid().subscribe(onNext: { [weak self]() in
             self?.navigationController?.popViewController(animated: true)
         }).disposed(by: rx.disposeBag)
     }
-    
-    
+
     override func updateUI() {
         super.updateUI()
-        
+
         if navigationImageView.superview == nil {
             navigationBar.clipsToBounds = false
             navigationBar.superview?.addSubview(navigationImageView)
@@ -115,13 +108,13 @@ class PostProductViewController: CollectionViewController {
             make.size.equalTo(CGSize(width: 50, height: 50))
         }
     }
-    
+
 }
 
 extension PostProductViewController {
 
     fileprivate func configureDataSouce() -> RxCollectionViewSectionedAnimatedDataSource<PostProductSection> {
-        return RxCollectionViewSectionedAnimatedDataSource<PostProductSection>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+        return RxCollectionViewSectionedAnimatedDataSource<PostProductSection>(configureCell: { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
 
             switch item {
             case .product(let viewModel):
@@ -135,7 +128,6 @@ extension PostProductViewController {
             }
         })
     }
-
 
     fileprivate func configureSupplementaryView() -> (CollectionViewSectionedDataSource<PostProductSection>, UICollectionView, String, IndexPath) -> UICollectionReusableView {
         return {  (dataSouce, collectionView, kind, indexPath) -> UICollectionReusableView in
@@ -152,7 +144,7 @@ extension PostProductViewController {
                 view.bind(to: viewModel)
                 return view
 
-            case .systemTags(let title, _),.tagged(let title, _):
+            case .systemTags(let title, _), .tagged(let title, _):
                 let view = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withClass: PostProductTitleReusableView.self, for: indexPath)
                 view.titleLabel.text = title
                 return view
@@ -163,15 +155,13 @@ extension PostProductViewController {
         }
     }
 
-
 }
 
-
-extension PostProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
+extension PostProductViewController: ZLCollectionViewBaseFlowLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         switch self.dataSouce[section] {
-        case .systemTags,.customTags:
+        case .systemTags, .customTags:
             return LabelLayout
         default:
             return ClosedLayout
@@ -193,7 +183,7 @@ extension PostProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
             return CGSize(width: collectionView.width, height: 135)
         case .tagRelatedKeywords:
             return CGSize(width: collectionView.width, height: 125)
-        case .systemTags,.tagged:
+        case .systemTags, .tagged:
             return CGSize(width: collectionView.width, height: 50)
         default:
             return .zero
@@ -202,7 +192,7 @@ extension PostProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         switch dataSouce.sectionModels[section] {
-        case .customTags,.systemTags:
+        case .customTags, .systemTags:
             return  UIEdgeInsets(top: 20, left: 20, bottom: 0, right: 20)
         case .tagged:
             return  UIEdgeInsets(top: 20, left: 0, bottom: 20, right: 0)
@@ -228,12 +218,10 @@ extension PostProductViewController : ZLCollectionViewBaseFlowLayoutDelegate {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         switch self.dataSouce[section] {
-        case .systemTags,.customTags:
+        case .systemTags, .customTags:
             return 10
         default:
             return 0
         }
     }
 }
-
-

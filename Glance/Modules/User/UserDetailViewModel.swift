@@ -11,72 +11,70 @@ import RxSwift
 import RxCocoa
 
 class UserDetailViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let refresh: Observable<Void>
-        let insight : Observable<Void>
-        let setting : Observable<Void>
-        let follow : Observable<Void>
-        let chat : Observable<Void>
-        let memu : Observable<Void>
+        let insight: Observable<Void>
+        let setting: Observable<Void>
+        let follow: Observable<Void>
+        let chat: Observable<Void>
+        let memu: Observable<Void>
     }
-    
+
     struct Output {
-        let userHeadImageURL : Driver<URL?>
-        let displayName : Driver<String>
-        let countryName : Driver<String>
-        let instagram : Driver<String>
-        let website : Driver<String>
-        let bio : Driver<String>
-        let titles : Driver<[String]>
-        let updateHeadLayout : Driver<Void>
-        let insight : Driver<Void>
-        let setting : Driver<Void>
-        let about : Observable<Void>
-        let followAndInviteFriends : Observable<Void>
-        let help : Observable<Void>
-        let signIn : Observable<Void>
-        let modifyProfile : Observable<Void>
-        let notifications : Observable<Void>
-        let originalPhotos : Observable<Void>
-        let postsYourLiked : Observable<Void>
-        let syncInstagram : Observable<Void>
-        let privacy : Observable<Void>
-        let navigationBarAvailable :  Observable<(left: [UserDetailNavigationAction], right: [UserDetailNavigationAction])>
-        let otherUserBgViewHidden : Driver<Bool>
-        let followButtonBackground : Driver<UIColor>
-        let followButtonImage : Driver<UIImage?>
-        let followButtonTitleColor : Driver<UIColor>
-        let followButtonTitle : Driver<String>
-        let memu : Driver<[UserDetailMemuItem]>
-        let config : Driver<[UserModuleItem]>
-        let selectionTitleViewIndex : Driver<Int>
+        let userHeadImageURL: Driver<URL?>
+        let displayName: Driver<String>
+        let countryName: Driver<String>
+        let instagram: Driver<String>
+        let website: Driver<String>
+        let bio: Driver<String>
+        let titles: Driver<[String]>
+        let updateHeadLayout: Driver<Void>
+        let insight: Driver<Void>
+        let setting: Driver<Void>
+        let about: Observable<Void>
+        let followAndInviteFriends: Observable<Void>
+        let help: Observable<Void>
+        let signIn: Observable<Void>
+        let modifyProfile: Observable<Void>
+        let notifications: Observable<Void>
+        let originalPhotos: Observable<Void>
+        let postsYourLiked: Observable<Void>
+        let syncInstagram: Observable<Void>
+        let privacy: Observable<Void>
+        let navigationBarAvailable: Observable<(left: [UserDetailNavigationAction], right: [UserDetailNavigationAction])>
+        let otherUserBgViewHidden: Driver<Bool>
+        let followButtonBackground: Driver<UIColor>
+        let followButtonImage: Driver<UIImage?>
+        let followButtonTitleColor: Driver<UIColor>
+        let followButtonTitle: Driver<String>
+        let memu: Driver<[UserDetailMemuItem]>
+        let config: Driver<[UserModuleItem]>
+        let selectionTitleViewIndex: Driver<Int>
     }
-    
-    
+
     let otherUser = BehaviorRelay<User?>(value: nil)
-    let element : BehaviorRelay<User?>
-    let userMode : BehaviorRelay<UserDetailMode>
-    
-    
-    init(provider: API, otherUser : User? = nil) {
+    let element: BehaviorRelay<User?>
+    let userMode: BehaviorRelay<UserDetailMode>
+
+    init(provider: API, otherUser: User? = nil) {
         if let otherUser = otherUser {
             element = BehaviorRelay(value: otherUser)
             userMode = BehaviorRelay(value: .other)
             self.otherUser.accept(otherUser)
-        } else{
-            
+        } else {
+
             element = BehaviorRelay(value: user.value)
             userMode = BehaviorRelay(value: .current)
             self.otherUser.accept(nil)
         }
         super.init(provider: provider)
     }
-    
-    let settingSelectedItem = PublishSubject<SettingItem>()    
-    
+
+    let settingSelectedItem = PublishSubject<SettingItem>()
+
     func transform(input: Input) -> Output {
-        
+
         let otherUserBgViewHidden = userMode.map { $0 == .current }.asDriver(onErrorJustReturn: true)
         let userHeadImageURL = element.map { $0?.userImage?.url }
         let displayName = element.map { $0?.displayName ?? ""}
@@ -93,7 +91,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
         let updateHeadLayout = element.mapToVoid().asDriver(onErrorJustReturn: ())
         let refresh = PublishSubject<Void>()
         let signIn = PublishSubject<Void>()
-        let popMemu = input.memu.map { [UserDetailMemuItem(type: .report),UserDetailMemuItem(type: .block)] }
+        let popMemu = input.memu.map { [UserDetailMemuItem(type: .report), UserDetailMemuItem(type: .block)] }
         let about = settingSelectedItem.filter { $0 == .about }.mapToVoid()
         let help = settingSelectedItem.filter { $0 == .help }.mapToVoid()
         let logout = settingSelectedItem.filter { $0 == .logout }.mapToVoid()
@@ -107,7 +105,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
         let titles = PublishSubject<[String]>()
         let updateTitle = PublishSubject<[UserDetailUpdateTitle]>()
         let selectionTitleViewIndex = PublishSubject<Int>()
-        
+
         updateTitle.subscribe(onNext: { [weak self] (items) in
             var t = self?.element.value
             items.forEach { (i) in
@@ -124,7 +122,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
             }
             self?.element.accept(t)
         }).disposed(by: rx.disposeBag)
-        
+
         element.filterNil().map {
             ["\($0.postCount)\nPosts",
                 "\($0.recommendCount)\nRecomm",
@@ -132,47 +130,45 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                 "\($0.followingCount)\nFollowing"]
         }.bind(to: titles)
             .disposed(by: rx.disposeBag)
-        
-        
+
         let navigationBarAvailable = userMode
-            .map { mode -> (left : [UserDetailNavigationAction], right : [UserDetailNavigationAction] ) in
+            .map { mode -> (left: [UserDetailNavigationAction], right: [UserDetailNavigationAction] ) in
                 if mode == .current {
-                    return ([.insight], [.setting,.share])
+                    return ([.insight], [.setting, .share])
                 } else {
-                    return ([.back], [.more,.share])
+                    return ([.back], [.more, .share])
                 }
         }
-        
-        
+
         let config = Observable<[UserModuleItem]>.create { (observer) -> Disposable in
             let user = self.otherUser.value.value
-            
+
             let post = UserDetailPostViewModel(provider: self.provider, otherUser: user)
             let recommend = UserDetailRecommViewModel(provider: self.provider, otherUser: user)
             let followers = UsersViewModel(provider: self.provider, type: .followers, otherUser: user)
             let following = UsersViewModel(provider: self.provider, type: .following, otherUser: user)
-            let items : [UserModuleItem] = [.post(viewModel: post),.recommend(viewModel: recommend),
-                                            .followers(viewModel: followers),.following(viewModel: following)]
-            
+            let items: [UserModuleItem] = [.post(viewModel: post), .recommend(viewModel: recommend),
+                                            .followers(viewModel: followers), .following(viewModel: following)]
+
             if self.userMode.value == .current {
                 recommend.needUpdateTitle.map {
                     let count = self.element.value?.recommendCount ?? 0
                     let item = UserDetailUpdateTitle.recommend(count: $0 ? count + 1 : count - 1)
                     return [item]
                 }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
-                
+
                 followers.needUpdateTitle.merge(with: following.needUpdateTitle).map {
                     let count = self.element.value?.followingCount ?? 0
                     let item = UserDetailUpdateTitle.following(count: $0 ? count + 1 : count - 1)
                     return [item]
                 }.bind(to: updateTitle).disposed(by: self.rx.disposeBag)
             }
-            
+
             observer.onNext(items)
             observer.onCompleted()
             return Disposables.create { }
         }
-        
+
         logout.delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<Bool>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -192,8 +188,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         input.refresh.merge(with: refresh).flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let current = self.userMode.value == .current
@@ -213,8 +208,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         input.follow.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<Bool>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
             let isFollow = self.element.value?.isFollow ?? false
@@ -236,19 +230,17 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         input.chat.map { () in Message("Features under development...")}
             .bind(to: message).disposed(by: rx.disposeBag)
-        
-        
+
         NotificationCenter.default.rx.notification(.kMineSelectionMemuIndex)
             .subscribe(onNext: { (noti) in
-                guard let userInfo = noti.userInfo as? [String : Int] ,
+                guard let userInfo = noti.userInfo as? [String: Int] ,
                     let index = userInfo["index"] else { return }
                 selectionTitleViewIndex.onNext(index)
             }).disposed(by: rx.disposeBag)
-        
+
 //        kUpdateItem.subscribe(onNext: { (state, item,trigger) in
 //            switch state {
 //            case .delete:
@@ -257,8 +249,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
 //                break
 //            }
 //        }).disposed(by: rx.disposeBag)
-        
-        
+
         return Output(userHeadImageURL: userHeadImageURL.asDriver(onErrorJustReturn: nil),
                       displayName: displayName.asDriver(onErrorJustReturn: ""),
                       countryName: countryName.asDriver(onErrorJustReturn: ""),
@@ -275,7 +266,7 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                       signIn: signIn,
                       modifyProfile: modifyProfile,
                       notifications: notifications,
-                      originalPhotos:originalPhotos,
+                      originalPhotos: originalPhotos,
                       postsYourLiked: postsYourLiked,
                       syncInstagram: syncInstagram ,
                       privacy: privacy,
@@ -289,8 +280,5 @@ class UserDetailViewModel: ViewModel, ViewModelType {
                       config: config.asDriver(onErrorJustReturn: []),
                       selectionTitleViewIndex: selectionTitleViewIndex.asDriverOnErrorJustComplete())
     }
-    
-    
-    
-}
 
+}

@@ -18,18 +18,15 @@ protocol ViewModelType {
     func transform(input: Input) -> Output
 }
 
-
 enum RefreshState {
     case enable
     case disable
     case noMoreData
     case end
-    case begin 
+    case begin
 }
 
-
-
-class ViewModel: NSObject  {
+class ViewModel: NSObject {
 
     let provider: API
 
@@ -39,15 +36,13 @@ class ViewModel: NSObject  {
     let headerLoading = ActivityIndicator()
     let footerLoading = ActivityIndicator()
     let refreshState = PublishSubject<RefreshState>()
-    
-    
+
     let error = ErrorTracker()
     let parsedError = PublishSubject<ApiError>()
     let exceptionError = PublishSubject<ExceptionError?>()
     let message = PublishSubject<Message>()
     let endEditing = PublishSubject<Void>()
-    
-    
+
     init(provider: API) {
         self.provider = provider
         super.init()
@@ -70,7 +65,7 @@ class ViewModel: NSObject  {
         error.asDriver().drive(onNext: { (error) in
             logError("\(error)")
         }).disposed(by: rx.disposeBag)
-        
+
         exceptionError.filterNil().subscribe(onNext: { message in
             logError(message.description)
         }).disposed(by: rx.disposeBag)

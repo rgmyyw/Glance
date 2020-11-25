@@ -8,11 +8,11 @@
 
 import UIKit
 
-enum Gender : String {
+enum Gender: String {
     case male = "male"
     case female = "female"
     case secrecy = "privary"
-    var title : String {
+    var title: String {
         switch self {
         case .male:
             return "Male"
@@ -22,14 +22,13 @@ enum Gender : String {
             return "Privary"
         }
     }
-    
-    static var rawValues : [String] {
-        return [Gender.male.rawValue,Gender.female.rawValue,Gender.secrecy.rawValue]
+
+    static var rawValues: [String] {
+        return [Gender.male.rawValue, Gender.female.rawValue, Gender.secrecy.rawValue]
     }
-    
-    static var titles : [String] {
-        return [Gender.male.title,Gender.female.title,Gender.secrecy.title]
+
+    static var titles: [String] {
+        return [Gender.male.title, Gender.female.title, Gender.secrecy.title]
     }
 
 }
-

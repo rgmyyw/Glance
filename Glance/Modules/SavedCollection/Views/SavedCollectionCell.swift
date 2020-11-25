@@ -12,18 +12,18 @@ import RxCocoa
 import Kingfisher
 
 class SavedCollectionCell: CollectionViewCell {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var deleteButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    
+
     @IBOutlet weak var bgView: UIView!
-    
+
     override func makeUI() {
         super.makeUI()
         contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
-        
+
         imageView.cornerRadius = 8
 //        
 //        let shadowOffset = CGSize(width: 1, height: 1)
@@ -33,10 +33,10 @@ class SavedCollectionCell: CollectionViewCell {
 //        contentView.clipsToBounds = false
 //        clipsToBounds = false
     }
-    
-    override func bind<T>(to viewModel: T) where T : SavedCollectionCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: SavedCollectionCellViewModel {
         super.bind(to: viewModel)
-        
+
         imageViewHeight.constant = viewModel.imageHeight
         viewModel.title.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.imageURL.bind(to: imageView.rx.imageURL).disposed(by: cellDisposeBag)
@@ -49,5 +49,4 @@ class SavedCollectionCell: CollectionViewCell {
         }).disposed(by: cellDisposeBag)
     }
 
-    
 }

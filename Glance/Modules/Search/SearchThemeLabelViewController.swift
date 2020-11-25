@@ -14,8 +14,8 @@ import WMZPageController
 
 class SearchThemeLabelViewController: ViewController {
 
-    private lazy var headView : SearchThemeLabelHeadView = SearchThemeLabelHeadView.loadFromNib()
-    private lazy var pageController : WMZPageController = {
+    private lazy var headView: SearchThemeLabelHeadView = SearchThemeLabelHeadView.loadFromNib()
+    private lazy var pageController: WMZPageController = {
 
         let config = PageParam()
         config.wTopSuspension = true
@@ -48,14 +48,12 @@ class SearchThemeLabelViewController: ViewController {
         return controller
     }()
 
-
     override func makeUI() {
         super.makeUI()
-        
+
     }
     override func bindViewModel() {
         super.bindViewModel()
-
 
         let refresh = Observable.just(())
         guard let viewModel = viewModel as? SearchThemeLabelViewModel else { return }
@@ -99,24 +97,21 @@ class SearchThemeLabelViewController: ViewController {
                 self.pageController.updateHeadView()
             }).disposed(by: rx.disposeBag)
 
-
     }
-    
+
 }
 
 extension SearchThemeLabelViewController {
-  
-    
-    func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
-        
+
+    func needUpdatePageTitltStyle(by button: UIButton, config: WMZPageParam) {
+
         let title = button.titleLabel?.text ?? ""
-        let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleBoldFont(15)]
-        let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleSelectColor,.font : UIFont.titleBoldFont(18)]
-        let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
-        let selectedTitle = NSMutableAttributedString(string: title,attributes: selectedAttr)
+        let normalAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleBoldFont(15)]
+        let selectedAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleSelectColor, .font: UIFont.titleBoldFont(18)]
+        let normaltitle = NSMutableAttributedString(string: title, attributes: normalAttr)
+        let selectedTitle = NSMutableAttributedString(string: title, attributes: selectedAttr)
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
 
 }
-

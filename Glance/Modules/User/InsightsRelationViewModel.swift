@@ -10,38 +10,36 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class InsightsRelationViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let selection: Observable<InsightsLikeCellViewModel>
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
     }
-    
+
     struct Output {
-        let items : Driver<[InsightsLikeCellViewModel]>
-        let navigationTitle : Driver<String>
+        let items: Driver<[InsightsLikeCellViewModel]>
+        let navigationTitle: Driver<String>
     }
-    
-    let item : BehaviorRelay<Insight>
-    let type : BehaviorRelay<InsightsRelationType>
-    
-    init(provider: API,item : Insight, type : InsightsRelationType) {
+
+    let item: BehaviorRelay<Insight>
+    let type: BehaviorRelay<InsightsRelationType>
+
+    init(provider: API, item: Insight, type: InsightsRelationType) {
         self.item = BehaviorRelay(value: item)
         self.type = BehaviorRelay(value: type)
         super.init(provider: provider)
     }
-    
-    let element : BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
-    
+
+    let element: BehaviorRelay<PageMapable<User>?> = BehaviorRelay(value: nil)
+
     func transform(input: Input) -> Output {
-        
+
         let navigationTitle = type.map { $0.navigationTitle }.asDriver(onErrorJustReturn: "")
-        let elements : BehaviorRelay<[InsightsLikeCellViewModel]> = BehaviorRelay(value: [])
+        let elements: BehaviorRelay<[InsightsLikeCellViewModel]> = BehaviorRelay(value: [])
         let buttonTap = PublishSubject<InsightsLikeCellViewModel>()
-        
-        
+
         input.headerRefresh.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<User>>)> in
                 guard let self = self else {
                     return Observable.just(.error(ExceptionError.unknown))
@@ -61,7 +59,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -71,8 +69,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<User>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
@@ -95,7 +92,7 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -106,7 +103,6 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
 
         buttonTap.flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<(InsightsLikeCellViewModel, Bool)>> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -126,15 +122,13 @@ class InsightsRelationViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-            
         element.filterNil().map { $0.list.map { item -> InsightsLikeCellViewModel in
             let cellViewModel =  InsightsLikeCellViewModel(item: item)
                 cellViewModel.buttonTap.map { cellViewModel}.bind(to: buttonTap).disposed(by: self.rx.disposeBag)
                 return cellViewModel
             }}.bind(to: elements).disposed(by: rx.disposeBag)
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       navigationTitle: navigationTitle)
     }
 }
-

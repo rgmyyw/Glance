@@ -11,13 +11,13 @@ import RxDataSources
 import Differentiator
 
 struct SearchRecommendHistorySection {
-    var section : String
-    var elements : [SearchRecommendHistorySectionItem]
+    var section: String
+    var elements: [SearchRecommendHistorySectionItem]
 }
 
 struct SearchRecommendHistorySectionItem {
-    var item : String
-    var viewModel : SearchHistoryCellViewModel
+    var item: String
+    var viewModel: SearchHistoryCellViewModel
 }
 
 extension SearchRecommendHistorySectionItem: IdentifiableType {
@@ -33,19 +33,18 @@ extension SearchRecommendHistorySectionItem: Equatable {
 }
 
 extension SearchRecommendHistorySection: AnimatableSectionModelType, IdentifiableType {
-    
+
     typealias Item = SearchRecommendHistorySectionItem
-    
+
     typealias Identity = String
     var identity: Identity { return section }
-    
+
     var items: [Item] {
         return elements
     }
-    
+
     init(original: SearchRecommendHistorySection, items: [Item]) {
         self = original
         self.elements = items
     }
 }
-

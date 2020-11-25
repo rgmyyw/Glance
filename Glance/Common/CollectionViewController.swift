@@ -12,17 +12,16 @@ import RxCocoa
 import MJRefresh
 
 class CollectionViewController: ViewController, UIScrollViewDelegate {
-    
+
     let headerRefreshTrigger = PublishSubject<Void>()
     let footerRefreshTrigger = PublishSubject<Void>()
-    
+
     let isHeaderLoading = BehaviorRelay(value: false)
     let isFooterLoading = BehaviorRelay(value: false)
     let refreshComponent = BehaviorRelay<RefreshComponent>(value: .default)
-    
 
-    var viewDidLoadBeginRefresh : Bool = true
-    
+    var viewDidLoadBeginRefresh: Bool = true
+
     lazy var collectionView: CollectionView = {
         let view = CollectionView()
         view.emptyDataSetSource = self
@@ -31,33 +30,33 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         view.contentInset = .zero
         view.contentInsetAdjustmentBehavior = .automatic
         view.rx.setDelegate(self).disposed(by: rx.disposeBag)
-        
+
         return view
     }()
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
     }
-    
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
     }
-    
+
     override func makeUI() {
         super.makeUI()
-        
-        stackView.spacing = 0        
+
+        stackView.spacing = 0
         stackView.insertArrangedSubview(collectionView, at: 0)
-                
+
         refreshComponent.subscribe(onNext: { [weak self] (component) in
             switch component {
             case .default:
@@ -75,10 +74,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                 self?.collectionView.mj_header = nil
                 self?.collectionView.mj_footer = nil
             }
-            
+
         }).disposed(by: rx.disposeBag)
 
-        Observable.zip(rx.viewDidAppear,Observable.just(()))
+        Observable.zip(rx.viewDidAppear, Observable.just(()))
             .mapToVoid().delay(RxTimeInterval.microseconds(100), scheduler: MainScheduler.instance)
             .subscribe(onNext: { [weak self]() in
                 if self?.viewDidLoadBeginRefresh == true {
@@ -95,15 +94,13 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                                                emptyDataSource.image.filterNil().mapToVoid(),
                                                emptyDataSource.buttonTitle.filterNil().mapToVoid(),
                                                languageChanged.asObservable()).merge()
-        
+
         updateEmptyDataSet.subscribe({ [weak self] (_) in
             self?.collectionView.reloadEmptyDataSet()
         }).disposed(by: rx.disposeBag)
-        
-        
+
     }
-    
-    
+
     func setupHeaderRefresh() {
         let normalHeader = MJRefreshNormalHeader(refreshingBlock: { [weak self] in
             if let footer = self?.collectionView.mj_footer as? MJRefreshAutoNormalFooter {
@@ -112,7 +109,7 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
             self?.headerRefreshTrigger.onNext(())
         })
         normalHeader.lastUpdatedTimeLabel?.isHidden = true
-        collectionView.mj_header = normalHeader        
+        collectionView.mj_header = normalHeader
     }
     func setupFooterRefresh() {
         collectionView.mj_footer = MJRefreshAutoNormalFooter(refreshingBlock: { [weak self] in
@@ -121,7 +118,6 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         collectionView.mj_footer?.isHidden = true
     }
 
-    
     override func viewDidLayoutSubviews() {
         collectionView.setNeedsLayout()
         collectionView.layoutIfNeeded()
@@ -133,11 +129,10 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
         collectionView.reloadEmptyDataSet()
         super.viewDidLayoutSubviews()
     }
-        
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         viewModel?.headerLoading.asObservable().bind(to: isHeaderLoading).disposed(by: rx.disposeBag)
         viewModel?.footerLoading.asObservable().bind(to: isFooterLoading).disposed(by: rx.disposeBag)
         viewModel?.refreshState.delay(RxTimeInterval.milliseconds(100), scheduler: MainScheduler.instance)
@@ -164,18 +159,18 @@ class CollectionViewController: ViewController, UIScrollViewDelegate {
                 }
             }
         }).disposed(by: rx.disposeBag)
-        
+
         if let header = collectionView.mj_header {
             isHeaderLoading.bind(to: header.rx.isAnimating).disposed(by: rx.disposeBag)
         }
-        if let footer = collectionView.mj_footer  {
+        if let footer = collectionView.mj_footer {
             isFooterLoading.bind(to: footer.rx.isAnimating).disposed(by: rx.disposeBag)
         }
     }
-    
+
     override func updateUI() {
         super.updateUI()
-        
+
         emptyDataSource.contentInsetTop.accept(collectionView.contentInset.top)
     }
 }

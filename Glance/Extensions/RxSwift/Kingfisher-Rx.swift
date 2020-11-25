@@ -17,8 +17,8 @@ extension Reactive where Base: UIImageView {
         return self.imageURL(withPlaceholder: R.image.icon_placeholder_gray())
     }
 
-    public func imageURL(withPlaceholder placeholderImage: UIImage? , options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
-        
+    public func imageURL(withPlaceholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
+
         return Binder(self.base, binding: { (imageView, url) in
             imageView.kf.setImage(with: url,
                                   placeholder: placeholderImage,
@@ -35,7 +35,7 @@ extension Reactive where Base: UIButton {
         return imageURL(for: .normal, placeholder: R.image.icon_placeholder_gray(), options: [])
     }
 
-    public func imageURL(for controlState: UIControl.State = [],placeholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
+    public func imageURL(for controlState: UIControl.State = [], placeholder placeholderImage: UIImage?, options: KingfisherOptionsInfo? = []) -> Binder<URL?> {
         return Binder(self.base, binding: { (button, url) in
             if let url = url {
                 button.kf.setImage(with: ImageResource(downloadURL: url), for: controlState, placeholder: placeholderImage, options: options, progressBlock: nil, completionHandler: { (result) in })
@@ -44,8 +44,6 @@ extension Reactive where Base: UIButton {
     }
 
 }
-
-
 
 extension ImageCache: ReactiveCompatible {}
 
@@ -74,5 +72,3 @@ extension Reactive where Base: ImageCache {
         }.asObservable()
     }
 }
-
-

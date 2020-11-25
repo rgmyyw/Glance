@@ -8,8 +8,7 @@
 
 import ObjectMapper
 
-
-enum UploadImageType : Int {
+enum UploadImageType: Int {
     case visualSearch = 0
     case post = 1
     case postDraft = 2
@@ -19,7 +18,7 @@ enum UploadImageType : Int {
 struct UploadImageResult: Mappable {
     var imageUri: String?
     init?(map: Map) {}
-    
+
     mutating func mapping(map: Map) {
         imageUri   <- map["imageUri"]
     }

@@ -12,23 +12,22 @@ import RxCocoa
 import WMZPageController
 
 class UsersViewController: TableViewController {
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         viewDidLoadBeginRefresh = false
         tableView.register(nib: UsersCell.nib, withCellClass: UsersCell.self)
         tableView.rowHeight = 70
     }
-        
-    
+
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? UsersViewModel else { return }
-        
+
         let refresh = headerRefreshTrigger.asObservable().merge(with: rx.viewDidAppear.mapToVoid())
         let input = UsersViewModel.Input(selection: tableView.rx.modelSelected(UsersCellViewModel.self).asObservable(),
-                                                headerRefresh : refresh,
+                                                headerRefresh: refresh,
                                                 footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
 
@@ -36,7 +35,7 @@ class UsersViewController: TableViewController {
             .drive(tableView.rx.items(cellIdentifier: UsersCell.reuseIdentifier, cellType: UsersCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
         }.disposed(by: rx.disposeBag)
-        
+
         output.userDetail.drive(onNext: { [weak self](user) in
             let viewModel = UserDetailViewModel(provider: viewModel.provider, otherUser: user)
             self?.navigator.show(segue: .userDetail(viewModel: viewModel), sender: self)
@@ -46,7 +45,7 @@ class UsersViewController: TableViewController {
         output.navigationTitle.map { $0.isEmpty}.drive(navigationBar.rx.isHidden).disposed(by: rx.disposeBag)
 
     }
-        
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
         guard let tableViewHeadHidden = (viewModel as? UsersViewModel)?.tableViewHeadHidden.value,
@@ -73,13 +72,11 @@ class UsersViewController: TableViewController {
         return (viewModel as? UsersViewModel)?.tableViewHeadHidden.value ?? true ? 0.1 : 80
     }
 
-
 }
 
-extension UsersViewController : WMZPageProtocol {
-    
+extension UsersViewController: WMZPageProtocol {
+
     func getMyTableView() -> UITableView {
         return tableView
     }
 }
-

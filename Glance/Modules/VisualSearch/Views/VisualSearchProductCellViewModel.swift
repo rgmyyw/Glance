@@ -10,25 +10,24 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class VisualSearchProductCellViewModel : CellViewModelProtocol , CollectionCellImageHeightCalculateable {
-    
-    let item : DefaultColltionItem
-    let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
-    
-    
+class VisualSearchProductCellViewModel: CellViewModelProtocol, CollectionCellImageHeightCalculateable {
+
+    let item: DefaultColltionItem
+    let imageURL: BehaviorRelay<URL?> = BehaviorRelay(value: nil)
+
     var image: String? {
         return item.image
     }
-    
-    required init(item : DefaultColltionItem) {
+
+    required init(item: DefaultColltionItem) {
         self.item = item
-        
+
         imageURL.accept(item.image?.url)
     }
 }
 
-class VisualSearchProductEmptyCellModel : CellViewModelProtocol {
-    
+class VisualSearchProductEmptyCellModel: CellViewModelProtocol {
+
     let item : ()
     let add = PublishSubject<Void>()
 

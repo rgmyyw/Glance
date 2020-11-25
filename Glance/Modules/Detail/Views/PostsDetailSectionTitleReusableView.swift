@@ -11,18 +11,18 @@ import RxSwift
 import RxCocoa
 
 class PostsDetailSectionTitleReusableView: CollectionReusableView {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var bgView: UIView!    
+    @IBOutlet weak var bgView: UIView!
     @IBOutlet weak var labelTop: NSLayoutConstraint!
-    
+
     override func makeUI() {
         super.makeUI()
         titleLabel.preferredMaxLayoutWidth = UIScreen.width - 20 * 2
         autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
-    override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: PostsDetailSectionCellViewModel {
         super.bind(to: viewModel)
         viewModel.postTitle.bind(to: titleLabel.rx.text).disposed(by: cellDisposeBag)
     }

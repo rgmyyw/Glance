@@ -4,54 +4,50 @@ import RxCocoa
 import RxTheme
 import RAMAnimatedTabBarController
 
-
 let globalStatusBarStyle = BehaviorRelay<UIStatusBarStyle>(value: .lightContent)
 
 let themeService = ThemeType.service(initial: ThemeType.currentTheme())
 
 protocol Theme {
-    
-    var global : UIColor  { get }
-    
+
+    var global: UIColor { get }
+
     /// 主色调: 红色
     var primary: UIColor { get }
     ///
     var secondary: UIColor { get }
-    
+
     /// 一级信息，标题，主内容文字,黑色 0x222324
     var text: UIColor { get }
-    
+
     /// 二级信息,标题: 灰色 0x999EA3
     var textGray: UIColor { get }
-    
+
     var textSecondary: UIColor { get }
-    
+
     /// 分割线，按钮边缘，置灰按钮等 页面底部背景
     var separator: UIColor { get }
     /// 页面底部背景
     var background: UIColor { get }
-    
-    
+
     var statusBarStyle: UIStatusBarStyle { get }
     var barStyle: UIBarStyle { get }
     var keyboardAppearance: UIKeyboardAppearance { get }
     var blurStyle: UIBlurEffect.Style { get }
-    
-    
 
     init(colorTheme: ColorTheme)
 }
 
 struct LightTheme: Theme {
-      
+
     var global: UIColor = .white
     let primary = UIColor(hex: 0xFF8159)!
-    var secondary = UIColor(hex:0x2D4CA9)!
-    let separator = UIColor(hex:0xe4ebf2)!
-    let text = UIColor(hex:0x333333)!
-    let textGray = UIColor(hex:0x999999)!
-    let textSecondary = UIColor(hex:0x515457)!
-    
+    var secondary = UIColor(hex: 0x2D4CA9)!
+    let separator = UIColor(hex: 0xe4ebf2)!
+    let text = UIColor(hex: 0x333333)!
+    let textGray = UIColor(hex: 0x999999)!
+    let textSecondary = UIColor(hex: 0x515457)!
+
     let background = UIColor.white
     let statusBarStyle = UIStatusBarStyle.default
     let barStyle = UIBarStyle.default
@@ -64,7 +60,7 @@ struct LightTheme: Theme {
 }
 
 enum ColorTheme: Int {
-    
+
     case primary
 
     static let allValues = [primary]
@@ -84,9 +80,9 @@ enum ColorTheme: Int {
 
 /// 主题类型
 enum ThemeType: ThemeProvider {
-    
+
     case light(color: ColorTheme)
-    
+
     /// 关联主题对象
     var associatedObject: Theme {
         switch self {
@@ -121,14 +117,14 @@ enum ThemeType: ThemeProvider {
 }
 
 extension ThemeType {
-    
+
     /// 获取当前的主题
     static func currentTheme() -> ThemeType {
         let theme =  ThemeType.light(color: ColorTheme.primary)
         theme.save()
         return theme
     }
-    
+
     func save() {
         let defaults = UserDefaults.standard
         defaults.set(self.isDark, forKey: "IsDarkKey")
@@ -231,12 +227,9 @@ extension Reactive where Base: UIApplication {
     }
 }
 
-
-
-
 // MARK: - UISwitch
 public extension Reactive where Base: UISwitch {
-    
+
     var onTintColor: Binder<UIColor?> {
         return Binder(self.base) { view, attr in
             view.onTintColor = attr

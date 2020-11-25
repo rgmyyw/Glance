@@ -9,7 +9,7 @@
 import UIKit
 
 class NoticeReactionCell: NoticeCell {
-    
+
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var userImageView: UIImageView!
     @IBOutlet weak var unreadImageView: UIImageView!
@@ -18,16 +18,16 @@ class NoticeReactionCell: NoticeCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var postImageView: UIImageView!
     @IBOutlet weak var reactionImageView: UIImageView!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         stackView.addArrangedSubview(containerView)
     }
 
-    override func bind<T>(to viewModel: T) where T : NoticeCellViewModel {
+    override func bind<T>(to viewModel: T) where T: NoticeCellViewModel {
         super.bind(to: viewModel)
-        
+
         viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.image.bind(to: postImageView.rx.imageURL).disposed(by: cellDisposeBag)

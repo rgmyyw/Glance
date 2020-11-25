@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum ProductSearchType : Int {
+enum ProductSearchType: Int {
     case saved = 0
     case posted
     case inApp
-    var placeholder : String {
+    var placeholder: String {
         switch self {
         case .saved:
             return "Search saved"
@@ -23,7 +23,7 @@ enum ProductSearchType : Int {
         }
     }
 }
-enum GlobalSearchType : Int {
+enum GlobalSearchType: Int {
     case all = -1
     case product = 1
     case post = 0

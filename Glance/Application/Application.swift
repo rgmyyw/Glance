@@ -26,7 +26,7 @@ final class Application: NSObject {
     }
 
     private func updateProvider() {
-        
+
         let ibexProvider = IbexNetworking.ibexNetworking()
         let restApi = RestApi(ibexProvider: ibexProvider)
         provider = restApi
@@ -47,47 +47,41 @@ final class Application: NSObject {
         }
         #endif
     }
-    
-    func showSignIn(provider : API, window : UIWindow) {
+
+    func showSignIn(provider: API, window: UIWindow) {
         let viewModel = SignInViewModel(provider: provider)
         self.navigator.show(segue: .signIn(viewModel: viewModel), sender: nil, transition: .root(in: window))
     }
-    
-    
-    func showTabbar(provider : API, window : UIWindow) {
+
+    func showTabbar(provider: API, window: UIWindow) {
         let viewModel = HomeTabBarViewModel(provider: provider)
         self.navigator.show(segue: .tabs(viewModel: viewModel), sender: nil, transition: .root(in: window))
     }
 
-    
-    func showInterest(provider : API, window : UIWindow) {
+    func showInterest(provider: API, window: UIWindow) {
         let viewModel = InterestViewModel(provider: provider)
         self.navigator.show(segue: .interest(viewModel: viewModel), sender: nil, transition: .root(in: window))
     }
-    
+
     func logout() {
-        if let root = window?.rootViewController, !(root.isKind(of: SignInViewController.self)),loggedIn.value {
+        if let root = window?.rootViewController, !(root.isKind(of: SignInViewController.self)), loggedIn.value {
             User.removeCurrentUser()
             AuthManager.removeToken()
             Application.shared.presentInitialScreen(in: Application.shared.window)
         }
     }
-    
-    
+
     func presentTestScreen(in window: UIWindow?) {
         guard let window = window, let provider = provider else { return }
-        
-        let viewModel = DemoViewModel(provider : provider)
+
+        let viewModel = DemoViewModel(provider: provider)
         self.navigator.show(segue: .demo(viewModel: viewModel), sender: nil, transition: .root(in: window))
-        
-        
-        
+
     }
 }
 
-
 extension Application {
-    
+
     static func isFirstLaunch() -> Bool {
         let hasBeenLaunched = Configs.UserDefaultsKeys.firstLaunch
         let isFirstLaunch = !UserDefaults.standard.bool(forKey: hasBeenLaunched)

@@ -10,15 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+class SearchThemeLabelCellViewModel: CellViewModelProtocol {
 
-class SearchThemeLabelCellViewModel: CellViewModelProtocol  {
-
-    let item : SearchThemeDetailLabel
+    let item: SearchThemeDetailLabel
     let title = BehaviorRelay<String?>(value: nil)
     let delete = PublishSubject<Void>()
-    
-    
-    required init(item : SearchThemeDetailLabel) {
+
+    required init(item: SearchThemeDetailLabel) {
         self.item = item
         title.accept(item.name)
     }

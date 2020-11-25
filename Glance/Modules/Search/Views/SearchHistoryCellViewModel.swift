@@ -10,15 +10,13 @@ import UIKit
 import RxSwift
 import RxCocoa
 
+class SearchHistoryCellViewModel: CellViewModelProtocol {
 
-class SearchHistoryCellViewModel: CellViewModelProtocol  {
-
-    let item : SearchHistoryItem
+    let item: SearchHistoryItem
     let title = BehaviorRelay<String?>(value: nil)
     let delete = PublishSubject<Void>()
-    
-    
-    required init(item : SearchHistoryItem) {
+
+    required init(item: SearchHistoryItem) {
         self.item = item
         title.accept(item.text)
     }

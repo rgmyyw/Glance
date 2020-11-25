@@ -15,9 +15,8 @@ enum SearchRecommendYouMayLikeSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
-
 extension SearchRecommendYouMayLikeSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
@@ -25,7 +24,7 @@ extension SearchRecommendYouMayLikeSection: SectionModelType {
             return items.map { $0}
         }
     }
-    
+
     init(original: SearchRecommendYouMayLikeSection, items: [Item]) {
         switch original {
         case .single(let items):
@@ -33,5 +32,3 @@ extension SearchRecommendYouMayLikeSection: SectionModelType {
         }
     }
 }
-
-

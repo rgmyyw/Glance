@@ -12,22 +12,21 @@ import KeychainAccess
 import RxSwift
 import RxCocoa
 
-
 private let searchHistoryKey = "AllSearchHistory"
 private let keychain = Keychain(service: Configs.App.bundleIdentifier)
 let searchHistory = BehaviorRelay<[SearchHistoryItem]>(value: [])
 
-struct SearchHistoryItem : Mappable {
-    var text : String
+struct SearchHistoryItem: Mappable {
+    var text: String
     init?(map: Map) {
         text = ""
     }
-    
+
     mutating func mapping(map: Map) {
         text <- map["text"]
     }
-    
-    init(text : String) {
+
+    init(text: String) {
         self.text = text
     }
 }
@@ -45,13 +44,12 @@ extension SearchHistoryItem {
             logError("History can't be saved")
         }
     }
-    
-    static func remove(item : SearchHistoryItem) {
+
+    static func remove(item: SearchHistoryItem) {
         SearchHistoryItem.remove(items: [item])
     }
 
-    
-    static func remove(items : [SearchHistoryItem]) {
+    static func remove(items: [SearchHistoryItem]) {
         var all = searchHistory.value
         items.forEach { (item) in
             if let index = all.firstIndex(of: item) {
@@ -71,7 +69,6 @@ extension SearchHistoryItem {
         searchHistory.accept([])
     }
 
-
     static func currentAllHistory() -> [SearchHistoryItem] {
         if let json = keychain[searchHistoryKey], let items = [SearchHistoryItem](JSONString: json) {
             return items
@@ -81,12 +78,8 @@ extension SearchHistoryItem {
 
 }
 
-
-
-
-extension SearchHistoryItem : Equatable {
+extension SearchHistoryItem: Equatable {
     static func == (lhs: Self, rhs: Self) -> Bool {
         return lhs.text == rhs.text
     }
 }
-

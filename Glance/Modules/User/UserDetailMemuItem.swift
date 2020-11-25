@@ -9,8 +9,8 @@
 import UIKit
 
 struct UserDetailMemuItem {
-    var type : UserDetailMemuType
-    var title : String {
+    var type: UserDetailMemuType
+    var title: String {
         return type.title
     }
 }
@@ -18,8 +18,8 @@ struct UserDetailMemuItem {
 enum UserDetailMemuType {
     case report
     case block
-    
-    var title : String {
+
+    var title: String {
         switch self {
         case .report:
             return "Report user"
@@ -27,7 +27,7 @@ enum UserDetailMemuType {
             return "Block user"
         }
     }
-    var image : UIImage? {
+    var image: UIImage? {
         switch self {
         case .report:
             return R.image.icon_button_report()

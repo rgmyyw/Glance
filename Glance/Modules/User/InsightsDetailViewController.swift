@@ -11,7 +11,7 @@ import UIKit
 class InsightsDetailViewController: ViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
@@ -25,19 +25,18 @@ class InsightsDetailViewController: ViewController {
     @IBOutlet weak var recommendTagImageView: UIImageView!
     @IBOutlet weak var previewButton: UIButton!
     @IBOutlet var cells: [UIStackView]!
-    
-    
+
     override func makeUI() {
         super.makeUI()
         stackView.addArrangedSubview(scrollView)
         cells.forEach { $0.isHidden = true }
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
-        
+
         guard let viewModel = viewModel as? InsightsDetailViewModel else { return }
-        
+
         let input = InsightsDetailViewModel.Input(selection: cells.tapGesture(), previewPost: previewButton.rx.tap.asObservable())
         let output = viewModel.transform(input: input)
         output.imageURL.drive(imageView.rx.imageURL).disposed(by: rx.disposeBag)
@@ -56,7 +55,7 @@ class InsightsDetailViewController: ViewController {
             let viewModel = ReactionsViewModel(provider: viewModel.provider, item: item)
             self?.navigator.show(segue: .reactions(viewModel: viewModel), sender: self)
         }).disposed(by: rx.disposeBag)
-        
+
         output.likes.subscribe(onNext: {[weak self] (item) in
             let viewModel = InsightsRelationViewModel(provider: viewModel.provider, item: item, type: .liked)
             self?.navigator.show(segue: .insightsRelation(viewModel: viewModel), sender: self)
@@ -70,7 +69,7 @@ class InsightsDetailViewController: ViewController {
         output.available.subscribe(onNext: {[weak self] items in
             items.forEach { self?.cells[$0].isHidden = false }
         }).disposed(by: rx.disposeBag)
-        
+
         output.previewPost.drive(onNext: {[weak self] (item) in
             let viewModel = PostsDetailViewModel(provider: viewModel.provider, item: item)
             self?.navigator.show(segue: .dynamicDetail(viewModel: viewModel), sender: self)

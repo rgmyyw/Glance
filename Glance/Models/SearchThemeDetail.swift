@@ -9,7 +9,7 @@
 import ObjectMapper
 
 struct SearchThemeDetail: Mappable {
-    
+
     var label = [SearchThemeDetailLabel]()
     var postCount: Int = 0
     var themeId: Int = 0

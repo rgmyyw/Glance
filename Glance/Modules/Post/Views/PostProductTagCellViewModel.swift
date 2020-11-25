@@ -13,15 +13,13 @@ import UIKit
 enum PostProductTagStyle {
     case custom
     case system
-    
-    
-    
+
     enum PostProductTagStyleAction {
         case delete
         case state(Bool)
     }
-    
-    var normalBackgroundColor : UIColor {
+
+    var normalBackgroundColor: UIColor {
         switch self {
         case .custom:
             return UIColor.primary()
@@ -29,12 +27,12 @@ enum PostProductTagStyle {
             return UIColor(hex: 0xDDDDDD)!
         }
     }
-    
-    var selectedBackgroundColor : UIColor {
+
+    var selectedBackgroundColor: UIColor {
         return PostProductTagStyle.custom.normalBackgroundColor
     }
 
-    var normalTitleColor : UIColor {
+    var normalTitleColor: UIColor {
         switch self {
         case .custom:
             return .white
@@ -43,12 +41,12 @@ enum PostProductTagStyle {
         }
 
     }
-    
-    var selectedTitleColor : UIColor {
+
+    var selectedTitleColor: UIColor {
         return PostProductTagStyle.custom.normalTitleColor
     }
-    
-    var actionButtonNormalTitle : String {
+
+    var actionButtonNormalTitle: String {
         switch self {
         case .custom:
             return ""
@@ -56,8 +54,8 @@ enum PostProductTagStyle {
             return "+"
         }
     }
-    
-    var actionButtonSelectedTitle : String {
+
+    var actionButtonSelectedTitle: String {
         switch self {
         case .custom:
             return "x"
@@ -65,8 +63,8 @@ enum PostProductTagStyle {
             return "-"
         }
     }
-    
-    var actionButtonTitleNormalColor : UIColor {
+
+    var actionButtonTitleNormalColor: UIColor {
         switch self {
         case .custom:
             return UIColor.white
@@ -76,29 +74,26 @@ enum PostProductTagStyle {
 
     }
 
-    var actionButtonTitleSelectedColor : UIColor {
+    var actionButtonTitleSelectedColor: UIColor {
         return .white
     }
 
 }
 
+class PostProductTagCellViewModel: CellViewModelProtocol {
 
-class PostProductTagCellViewModel: CellViewModelProtocol  {
+    let item: String
 
-    let item : String
-  
     let title = BehaviorRelay<String?>(value: nil)
     let selected = BehaviorRelay<Bool>(value: false)
-    
-    
+
     let style = BehaviorRelay<PostProductTagStyle?>(value: nil)
     let action = PublishSubject<PostProductTagStyle.PostProductTagStyleAction>()
-    
-    
-    required init(item : String) {
+
+    required init(item: String) {
         self.item = item
         self.title.accept(item)
-        
+
     }
 
 }

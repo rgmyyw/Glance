@@ -14,11 +14,11 @@ protocol SelfAware: class {
 }
 
 extension SelfAware {
-    
+
     static func swizzlingForClass(_ forClass: AnyClass, originalSelector: Selector, swizzledSelector: Selector) {
         let originalMethod = class_getInstanceMethod(forClass, originalSelector)
         let swizzledMethod = class_getInstanceMethod(forClass, swizzledSelector)
-        guard (originalMethod != nil && swizzledMethod != nil) else {
+        guard originalMethod != nil && swizzledMethod != nil else {
             return
         }
         if class_addMethod(forClass, originalSelector, method_getImplementation(swizzledMethod!), method_getTypeEncoding(swizzledMethod!)) {
@@ -46,7 +46,7 @@ extension UIApplication {
     private static let runOnce: Void = {
         NothingToSeeHere.harmlessFunction()
     }()
-    
+
     override open var next: UIResponder? {
         UIApplication.runOnce
         return super.next

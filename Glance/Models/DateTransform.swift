@@ -31,7 +31,6 @@ open class DateTransform: TransformType {
     }
 }
 
-
 open class StringToIntTransform: TransformType {
 
     public typealias Object = Int
@@ -76,16 +75,14 @@ open class StringToDoubleTransform: TransformType {
     }
 }
 
-
-
 extension Date {
-    
+
     func customizedString() -> String {
-        
+
         //获取当前的时间戳
         let currentTime = Date().timeIntervalSince1970
         //时间差
-        let reduceTime : TimeInterval = currentTime - timeIntervalSince1970
+        let reduceTime: TimeInterval = currentTime - timeIntervalSince1970
         //时间差小于60秒
         if reduceTime < 60 {
             return "now"
@@ -110,4 +107,3 @@ extension Date {
     }
 
 }
-

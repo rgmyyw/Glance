@@ -11,10 +11,10 @@ import UIKit
 class StyleBoardSearchTextFieldView: View {
 
     @IBOutlet weak var textField: UITextField!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         textField.addPaddingLeft(12)
     }
 }

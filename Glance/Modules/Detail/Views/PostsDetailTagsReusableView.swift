@@ -14,15 +14,13 @@ class PostsDetailTagsReusableView: CollectionReusableView {
 
     override func makeUI() {
         super.makeUI()
-        
+
         //bgView.backgroundColor = .random
     }
 
-    
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
 }

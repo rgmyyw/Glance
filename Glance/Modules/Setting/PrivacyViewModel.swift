@@ -11,16 +11,14 @@ import RxSwift
 import RxCocoa
 
 class PrivacyViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
     }
-    
+
     struct Output {
     }
-    
 
     func transform(input: Input) -> Output {
-        
 
         return Output()
     }

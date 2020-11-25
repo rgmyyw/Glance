@@ -11,43 +11,40 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class VisualSearchProductViewModel: ViewModel, ViewModelType {
-        
+
     struct Input {
         let search: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<VisualSearchProductSectionItem>
-        let add : Observable<Void>
+        let selection: Observable<VisualSearchProductSectionItem>
+        let add: Observable<Void>
     }
-    
+
     struct Output {
-        let items : Driver<[VisualSearchProductSection]>
-        let add : Observable<(box : Box, image: UIImage)>
+        let items: Driver<[VisualSearchProductSection]>
+        let add: Observable<(box: Box, image: UIImage)>
     }
-    
-    
+
     let textInput = BehaviorRelay<String>(value: "")
-    let element : BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
-    let selected = PublishSubject<(box : Box, item : DefaultColltionItem)>()
-    
-    let image : BehaviorRelay<UIImage>
-    let currentBox : BehaviorRelay<Box>
-    
-    init(provider: API, image : UIImage, box : Box) {
+    let element: BehaviorRelay<PageMapable<DefaultColltionItem>?> = BehaviorRelay(value: nil)
+    let selected = PublishSubject<(box: Box, item: DefaultColltionItem)>()
+
+    let image: BehaviorRelay<UIImage>
+    let currentBox: BehaviorRelay<Box>
+
+    init(provider: API, image: UIImage, box: Box) {
         self.image = BehaviorRelay(value: image)
         self.currentBox = BehaviorRelay(value: box)
         super.init(provider: provider)
     }
 
-    
     func transform(input: Input) -> Output {
-        
+
         let elements = BehaviorRelay<[VisualSearchProductSection]>(value: [])
         let add = PublishSubject<Void>()
         input.add.bind(to: add).disposed(by: rx.disposeBag)
-        let addAction = add.map { (box : self.currentBox.value,image : self.image.value)}
-        
+        let addAction = add.map { (box : self.currentBox.value, image : self.image.value)}
+
         input.search.flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<DefaultColltionItem>>)> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
@@ -56,7 +53,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 self.exceptionError.onNext(.general("Please enter the search keyword"))
                 return Observable.just(.error(ExceptionError.unknown))
             }
-            
+
             elements.accept([])
             self.endEditing.onNext(())
             self.page = 1
@@ -73,7 +70,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.refreshState.onNext(.end)
                     logError(error.debugDescription)
@@ -82,8 +79,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<DefaultColltionItem>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
@@ -104,7 +100,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -115,8 +111,7 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         element.filterNil().map { element -> [VisualSearchProductSection] in
             let sectionItems = element.list.enumerated().map { (indexPath, item) -> VisualSearchProductSectionItem in
                 let cellViewModel = VisualSearchProductCellViewModel(item: item)
@@ -127,15 +122,15 @@ class VisualSearchProductViewModel: ViewModel, ViewModelType {
             empty.add.bind(to: add).disposed(by: self.rx.disposeBag)
             let section = VisualSearchProductSection(section: 0, elements: sectionItems, viewModel: empty)
             return [section]
-            
+
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
+
         input.selection
             .subscribe(onNext: { [weak self](item) in
                 guard let self = self else { return }
                 self.selected.onNext((self.currentBox.value, item.viewModel.item))
         }).disposed(by: rx.disposeBag)
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []), add: addAction)
     }
 }

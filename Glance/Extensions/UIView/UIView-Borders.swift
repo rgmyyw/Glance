@@ -10,19 +10,19 @@ import UIKit
 import WZLBadge
 
 extension UIView {
-    
+
     enum BorderSide {
         case left, top, right, bottom
     }
-    
+
     func defaultBorderColor() -> UIColor {
         return UIColor.separator()
     }
-    
+
     func defaultBorderDepth() -> CGFloat {
         return Configs.BaseDimensions.borderWidth
     }
-    
+
     /// Add Border for side with default params
     ///
     /// - Parameter side: Border Side
@@ -31,7 +31,7 @@ extension UIView {
     func addBorder(for side: BorderSide) -> UIView {
         return addBorder(for: side, color: defaultBorderColor(), depth: defaultBorderDepth())
     }
-    
+
     /// Add Bottom Border with default params
     ///
     /// - Parameters:
@@ -51,7 +51,7 @@ extension UIView {
         }
         return border
     }
-    
+
     /// Add Top Border for side with color, depth, length and offsets
     ///
     /// - Parameters:
@@ -113,26 +113,23 @@ extension UIView {
         }
         return border
     }
-    
-    
-    
-    
+
 }
 extension UIView {
-    
+
     /// 为View添加阴影
-    func shadow(cornerRadius:CGFloat,shadowOpacity:CGFloat, shadowColor:UIColor, shadowOffset:CGSize,shadowRadius:CGFloat) {
+    func shadow(cornerRadius: CGFloat, shadowOpacity: CGFloat, shadowColor: UIColor, shadowOffset: CGSize, shadowRadius: CGFloat) {
         if cornerRadius != 0 {
             layer.cornerRadius = cornerRadius
             clipsToBounds = false
         }
-        
+
         layer.shadowOpacity = Float(shadowOpacity)
-        
+
         layer.shadowColor = shadowColor.cgColor
         layer.shadowOffset = shadowOffset
         layer.shadowRadius = shadowRadius
-        
+
         //rasterize
         layer.shouldRasterize = true
         layer.rasterizationScale = UIScreen.main.scale
@@ -140,39 +137,39 @@ extension UIView {
 }
 
 extension UIControl {
-    
+
     private enum UIControlRuntimeKey {
         static var enlargeValidTouchAreaKey = "enlargeValidTouchAreaKey"
     }
-    
+
     @IBInspectable
-    var enlargeValidTouch : CGFloat {
-        set {
-            enlargeValidTouchArea = UIEdgeInsets(top: newValue, left: newValue, bottom: newValue, right: newValue)
-        }
+    var enlargeValidTouch: CGFloat {
         get {
             return enlargeValidTouchArea.top
         }
-    }
-    
-    var enlargeValidTouchArea : UIEdgeInsets {
         set {
-            objc_setAssociatedObject(self, &UIControlRuntimeKey.enlargeValidTouchAreaKey, NSValue(uiEdgeInsets: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            enlargeValidTouchArea = UIEdgeInsets(top: newValue, left: newValue, bottom: newValue, right: newValue)
         }
+    }
+
+    var enlargeValidTouchArea: UIEdgeInsets {
         get {
             guard let value = objc_getAssociatedObject(self, &UIControlRuntimeKey.enlargeValidTouchAreaKey) as? NSValue else { return .zero}
             return  value.uiEdgeInsetsValue
         }
+        set {
+            objc_setAssociatedObject(self, &UIControlRuntimeKey.enlargeValidTouchAreaKey, NSValue(uiEdgeInsets: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+        }
     }
-    
-    private var enlargeRect : CGRect {
+
+    private var enlargeRect: CGRect {
         let inset = enlargeValidTouchArea
         return CGRect(x: bounds.minX - inset.left,
                       y: bounds.minY - inset.top,
                       width: bounds.width + inset.left + inset.right,
                       height: bounds.height + inset.top + inset.bottom)
     }
-    
+
     open override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
         if isHidden || alpha == 0 {
             return false
@@ -185,10 +182,9 @@ extension UIControl {
     }
 }
 
-
 extension UIView {
-    
-    func showBadge(value: Int, style : WBadgeStyle = .number, animationType: WBadgeAnimType = .none) {
+
+    func showBadge(value: Int, style: WBadgeStyle = .number, animationType: WBadgeAnimType = .none) {
         badgeCenterOffset = CGPoint(x: -3, y: 3)
         badgeBgColor = UIColor.badgeBackground()
         badgeTextColor = .white

@@ -9,12 +9,12 @@
 import UIKit
 
 enum SearchRecommendModuleItem {
-    
-    case hot(viewModel : SearchRecommendHotViewModel)
-    case youMayLike(viewModel : SearchRecommendYouMayLikeViewModel)
-    case new(viewModel : SearchRecommendNewViewModel)
-    
-    var defaultTitle : String {
+
+    case hot(viewModel: SearchRecommendHotViewModel)
+    case youMayLike(viewModel: SearchRecommendYouMayLikeViewModel)
+    case new(viewModel: SearchRecommendNewViewModel)
+
+    var defaultTitle: String {
         switch self {
         case .hot:
             return "Hot"
@@ -24,8 +24,8 @@ enum SearchRecommendModuleItem {
             return "New"
         }
     }
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+
+    func toScene(navigator: Navigator?) -> Navigator.Scene? {
         guard navigator != nil else {
             return nil
         }

@@ -8,17 +8,16 @@
 
 import UIKit
 
-class NavigationController: UINavigationController  {
-    
+class NavigationController: UINavigationController {
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return globalStatusBarStyle.value
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
-        /// fix: 打开下面 push 到下一个页面navigationbar 会黑屏
+
+        // fix: 打开下面 push 到下一个页面navigationbar 会黑屏
 //        navigationBar.isHidden = true
 //        navigationBar.shadowImage = UIImage()
 //        navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -28,22 +27,19 @@ class NavigationController: UINavigationController  {
 //        } else {
 //            // Fallback on earlier versions
 //        }
-        
-        
+
         // Do any additional setup after loading the view.
         interactivePopGestureRecognizer?.delegate = nil // Enable default iOS back swipe gesture
-        
+
         if #available(iOS 13.0, *) {
             hero.isEnabled = false
         } else {
             hero.isEnabled = true
         }
-        
+
         hero.modalAnimationType = .autoReverse(presenting: .fade)
         hero.navigationAnimationType = .autoReverse(presenting: .slide(direction: .left))
-        
-        
-        
+
 //        if #available(iOS 13.0, *) {
 //            let standardAppearance = self.navigationBar.standardAppearance.copy()
 //            standardAppearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)]
@@ -59,12 +55,11 @@ class NavigationController: UINavigationController  {
 //                .bind({ [NSAttributedString.Key.foregroundColor: $0.text, NSAttributedString.Key.font : UIFont.titleFont(18)] }, to: navigationBar.rx.titleTextAttributes)
 //                .disposed(by: rx.disposeBag)
 //        }
-        
-        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font : UIFont.titleFont(18)], for: .normal)
 
-        
+        UIBarButtonItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.text(), NSAttributedString.Key.font: UIFont.titleFont(18)], for: .normal)
+
     }
-    
+
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         navigationBar.isHidden = true
@@ -74,12 +69,11 @@ class NavigationController: UINavigationController  {
         navigationBar.isHidden = true
     }
 
-    
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if self.children.count >= 1 {
             viewController.hidesBottomBarWhenPushed = true
         }
         super.pushViewController(viewController, animated: animated)
     }
-    
+
 }

@@ -12,12 +12,11 @@ import RxCocoa
 import WMZPageController
 
 class SearchResultViewController: ViewController {
-    
-    private lazy var customNavigationBar : SearchResultNavigationBar = SearchResultNavigationBar.loadFromNib(height: 44,width: self.view.width)
 
+    private lazy var customNavigationBar: SearchResultNavigationBar = SearchResultNavigationBar.loadFromNib(height: 44, width: self.view.width)
 
-    private lazy var pageController : WMZPageController = {
-            
+    private lazy var pageController: WMZPageController = {
+
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
@@ -38,27 +37,25 @@ class SearchResultViewController: ViewController {
         config.wMenuWidth = UIScreen.width - 12
         config.wMenuPosition = .init(rawValue: 1)
         config.wMenuBgColor = .white
-        
+
         let controller = WMZPageController()
         controller.param = config
-        
+
         addChild(controller)
         stackView.addArrangedSubview(controller.view)
-        
+
         return controller
     }()
 
-    
     override func makeUI() {
         super.makeUI()
         customNavigationBar.backButton.addTarget(self, action: #selector(navigationBack), for: .touchUpInside)
         navigationBar.addSubview(customNavigationBar)
-        
+
     }
     override func bindViewModel() {
         super.bindViewModel()
-        
-        
+
         let refresh = Observable.just(())
         guard let viewModel = viewModel as? SearchResultViewModel else { return }
 
@@ -67,12 +64,11 @@ class SearchResultViewController: ViewController {
         let output = viewModel.transform(input: input)
 
         viewModel.text.bind(to: customNavigationBar.titleLabel.rx.text).disposed(by: rx.disposeBag)
-        
-        
+
         viewModel.text.subscribe(onNext: { (text) in
             print(text)
         }).disposed(by: rx.disposeBag)
-        
+
         output.config.drive(onNext: { [weak self] (items) in
             let controllers = items.compactMap { $0.toScene(navigator: self?.navigator) }.compactMap { self?.navigator.get(segue: $0)}
             controllers.forEach { self?.addChild($0)}
@@ -95,29 +91,27 @@ class SearchResultViewController: ViewController {
                 }
             }
         }).disposed(by: rx.disposeBag)
-            
+
         output.search.drive(onNext: { [weak self](text) in
             let search = SearchViewModel(provider: viewModel.provider, text: text)
             search.selection.bind(to: viewModel.text).disposed(by: self!.rx.disposeBag)
-            self?.navigator.show(segue: .search(viewModel: search), sender: self,transition: .modal)
+            self?.navigator.show(segue: .search(viewModel: search), sender: self, transition: .modal)
         }).disposed(by: rx.disposeBag)
     }
-    
+
 }
 
 extension SearchResultViewController {
-  
-    
-    func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
-        
+
+    func needUpdatePageTitltStyle(by button: UIButton, config: WMZPageParam) {
+
         let title = button.titleLabel?.text ?? ""
-        let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleBoldFont(15)]
-        let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleSelectColor,.font : UIFont.titleBoldFont(18)]
-        let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
-        let selectedTitle = NSMutableAttributedString(string: title,attributes: selectedAttr)
+        let normalAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleBoldFont(15)]
+        let selectedAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleSelectColor, .font: UIFont.titleBoldFont(18)]
+        let normaltitle = NSMutableAttributedString(string: title, attributes: normalAttr)
+        let selectedTitle = NSMutableAttributedString(string: title, attributes: selectedAttr)
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
 
 }
-

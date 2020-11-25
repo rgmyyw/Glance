@@ -10,16 +10,15 @@ import UIKit
 import RxDataSources
 import Differentiator
 
-
 struct VisualSearchProductSection {
-    var section : Int
-    var elements : [VisualSearchProductSectionItem]
-    var viewModel : VisualSearchProductEmptyCellModel
+    var section: Int
+    var elements: [VisualSearchProductSectionItem]
+    var viewModel: VisualSearchProductEmptyCellModel
 }
 
 struct VisualSearchProductSectionItem {
-    var item : Int
-    var viewModel : VisualSearchProductCellViewModel
+    var item: Int
+    var viewModel: VisualSearchProductCellViewModel
 }
 
 extension VisualSearchProductSectionItem: IdentifiableType {
@@ -35,19 +34,18 @@ extension VisualSearchProductSectionItem: Equatable {
 }
 
 extension VisualSearchProductSection: AnimatableSectionModelType, IdentifiableType {
-    
+
     typealias Item = VisualSearchProductSectionItem
-    
+
     typealias Identity = String
     var identity: Identity { return section.string }
-    
+
     var items: [VisualSearchProductSectionItem] {
         return elements
     }
-    
+
     init(original: VisualSearchProductSection, items: [Item]) {
         self = original
         self.elements = items
     }
 }
-

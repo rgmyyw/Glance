@@ -8,22 +8,20 @@
 
 import UIKit
 
-
-enum SearchThemeLabelContentType : Int {
+enum SearchThemeLabelContentType: Int {
     case all = -1
     case product = 1
     case post = 0
-    
+
 }
 
-
 enum SearchThemeLabelModuleItem {
-    
-    case all(viewModel : SearchThemeLabelContentViewModel)
-    case product(viewModel : SearchThemeLabelContentViewModel)
-    case post(viewModel : SearchThemeLabelContentViewModel)
-    
-    var defaultTitle : String {
+
+    case all(viewModel: SearchThemeLabelContentViewModel)
+    case product(viewModel: SearchThemeLabelContentViewModel)
+    case post(viewModel: SearchThemeLabelContentViewModel)
+
+    var defaultTitle: String {
         switch self {
         case .all:
             return "ALL"
@@ -33,8 +31,8 @@ enum SearchThemeLabelModuleItem {
             return "Posts"
         }
     }
-    
-    func toScene(navigator : Navigator?) -> Navigator.Scene? {
+
+    func toScene(navigator: Navigator?) -> Navigator.Scene? {
         guard navigator != nil else {
             return nil
         }

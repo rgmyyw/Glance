@@ -11,15 +11,15 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-// MARK:  Fonts
+// MARK: Fonts
 
 extension UIFont {
 
-    static func titleFont(_ size : CGFloat = 16) -> UIFont {
+    static func titleFont(_ size: CGFloat = 16) -> UIFont {
         return UIFont(name: "Helvetica", size: size)!
     }
-    
-    static func titleBoldFont(_ size : CGFloat = 16) -> UIFont {
+
+    static func titleBoldFont(_ size: CGFloat = 16) -> UIFont {
         return UIFont(name: "Helvetica-Bold", size: size)!
     }
 
@@ -58,11 +58,10 @@ extension UIFont {
     }
 }
 
-
 extension Reactive where Base: UILabel {
-        
+
     public var fontSize: Binder<CGFloat> {
-        return Binder<CGFloat>(self.base) { label , size in
+        return Binder<CGFloat>(self.base) { label, size in
             label.font = label.font.withSize(size)
         }
     }

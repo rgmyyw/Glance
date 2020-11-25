@@ -10,47 +10,45 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-
 class SearchRecommendViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
-        let refresh : Observable<Void>
-        let clearAll : Observable<Void>
-        let search : Observable<Void>
-        let historySelection : Observable<SearchRecommendHistorySectionItem>
-        let camera : Observable<Void>
+        let refresh: Observable<Void>
+        let clearAll: Observable<Void>
+        let search: Observable<Void>
+        let historySelection: Observable<SearchRecommendHistorySectionItem>
+        let camera: Observable<Void>
     }
-    
+
     struct Output {
-        let config : Driver<[SearchRecommendModuleItem]>
-        let history : Driver<[SearchRecommendHistorySection]>
-        let headHidden : Driver<Bool>
-        let search : Driver<Void>
-        let searchResult : Driver<String>
-        let viSearch : Driver<Void>
+        let config: Driver<[SearchRecommendModuleItem]>
+        let history: Driver<[SearchRecommendHistorySection]>
+        let headHidden: Driver<Bool>
+        let search: Driver<Void>
+        let searchResult: Driver<String>
+        let viSearch: Driver<Void>
     }
-    
-    
+
     func transform(input: Input) -> Output {
-        
+
         let eraseHistory = PublishSubject<[SearchHistoryItem]>()
-        let elements = BehaviorRelay<[SearchRecommendHistorySection]>(value:[])
+        let elements = BehaviorRelay<[SearchRecommendHistorySection]>(value: [])
         let headHidden = BehaviorRelay<Bool>(value: true)
         let searchResult = input.historySelection.map { $0.viewModel.item.text }.asDriverOnErrorJustComplete()
-        
+
         input.clearAll.map { searchHistory.value } .bind(to: eraseHistory).disposed(by: rx.disposeBag)
         searchHistory.map { $0.isEmpty }.bind(to: headHidden).disposed(by: rx.disposeBag)
-        
+
         let config = Observable<[SearchRecommendModuleItem]>.create { (observer) -> Disposable in
             let hot = SearchRecommendHotViewModel(provider: self.provider)
             let youMayLike = SearchRecommendYouMayLikeViewModel(provider: self.provider)
             let new = SearchRecommendNewViewModel(provider: self.provider)
-            let items : [SearchRecommendModuleItem] = [.hot(viewModel: hot),.youMayLike(viewModel: youMayLike),.new(viewModel: new)]
+            let items: [SearchRecommendModuleItem] = [.hot(viewModel: hot), .youMayLike(viewModel: youMayLike), .new(viewModel: new)]
             observer.onNext(items)
             observer.onCompleted()
             return Disposables.create { }
         }
-        
+
         searchHistory.filterEmpty().map { (items) -> [SearchRecommendHistorySection] in
 //            if elements.value.count != items.count {
                 elements.accept([])
@@ -63,8 +61,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
             })]
         }.bind(to: elements)
             .disposed(by: rx.disposeBag)
-        
-        
+
         eraseHistory.subscribe(onNext: { items in
             SearchHistoryItem.remove(items: items)
             guard let section = elements.value.first else { return }
@@ -78,9 +75,7 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
             headHidden.accept(all.isEmpty)
             elements.accept(all.isEmpty ? [] : sections)
         }).disposed(by: rx.disposeBag)
-        
-        
-        
+
         return Output(config: config.asDriver(onErrorJustReturn: []),
                       history: elements.asDriver(onErrorJustReturn: []),
                       headHidden: headHidden.asDriver(),
@@ -89,4 +84,3 @@ class SearchRecommendViewModel: ViewModel, ViewModelType {
                       viSearch: input.camera.asDriverOnErrorJustComplete())
     }
 }
-

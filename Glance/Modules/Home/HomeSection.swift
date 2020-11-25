@@ -15,19 +15,17 @@ enum HomeSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
-
 extension HomeSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
-    
-    
+
     var items: [DefaultColltionSectionItem] {
         switch  self {
         case .single(let items):
             return items.map { $0 }
         }
     }
-    
+
     init(original: HomeSection, items: [Item]) {
         switch original {
         case .single(let items):
@@ -35,6 +33,3 @@ extension HomeSection: SectionModelType {
         }
     }
 }
-
-
-

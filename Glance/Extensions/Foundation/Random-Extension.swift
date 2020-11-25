@@ -9,10 +9,9 @@
 import UIKit
 
 extension String {
-    
-    static func random() -> String{
+
+    static func random() -> String {
         return self.random(ofLength: Int.random(in: 10...30))
     }
-    
-}
 
+}

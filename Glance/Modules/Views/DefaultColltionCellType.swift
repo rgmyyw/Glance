@@ -8,11 +8,10 @@
 
 import UIKit
 
+enum DefaultColltionCellType: Int {
 
-enum DefaultColltionCellType : Int {
-    
-    static let all : [DefaultColltionCellType] = [.post,.product,.recommendPost,.recommendProduct,.user,.theme]
-    
+    static let all: [DefaultColltionCellType] = [.post, .product, .recommendPost, .recommendProduct, .user, .theme]
+
     case post = 0
     case product = 1
     case recommendPost = 2
@@ -21,15 +20,14 @@ enum DefaultColltionCellType : Int {
     case theme = 5
 }
 
-
 extension DefaultColltionCellType {
 
     /// 判断是否为post 还是 商品
-    var isPost : Bool { return !isProduct }
-    
-    var isProduct : Bool {
+    var isPost: Bool { return !isProduct }
+
+    var isProduct: Bool {
         switch self {
-        case .post,.recommendPost:
+        case .post, .recommendPost:
             return false
         default:
             return true

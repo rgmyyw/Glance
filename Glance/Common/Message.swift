@@ -9,18 +9,17 @@
 import UIKit
 import Toast_Swift
 
-struct Message : CustomStringConvertible {
-    
-    var title : String?
-    var subTitle : String = ""
-    var style : ToastStyle = ToastStyle()
+struct Message: CustomStringConvertible {
 
-    init(_ message : String) {
+    var title: String?
+    var subTitle: String = ""
+    var style: ToastStyle = ToastStyle()
+
+    init(_ message: String) {
         self.subTitle = message
     }
-    
+
     var description: String {
         return "Message: \(title ?? "" + subTitle)"
     }
 }
-

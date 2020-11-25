@@ -11,21 +11,20 @@ import RxCocoa
 import UIKit
 import Kingfisher
 
-class StyleBoardImageCellViewModel: CellViewModelProtocol  {
+class StyleBoardImageCellViewModel: CellViewModelProtocol {
 
-    let item : DefaultColltionItem
-    
-    let selected = BehaviorRelay<Bool>(value : false)
+    let item: DefaultColltionItem
+
+    let selected = BehaviorRelay<Bool>(value: false)
     let image = BehaviorRelay<URL?>(value: nil)
-    let empty = BehaviorRelay<Bool>(value : true)
-    
+    let empty = BehaviorRelay<Bool>(value: true)
+
     let add = PublishSubject<Void>()
     let delete = PublishSubject<Void>()
     let edit = PublishSubject<Void>()
-    
-    
-    func resize(size : CGSize) -> CGSize{
-        let maxH : CGFloat = UIScreen.main.bounds.width * 0.5
+
+    func resize(size: CGSize) -> CGSize {
+        let maxH: CGFloat = UIScreen.main.bounds.width * 0.5
         var w = UIScreen.main.bounds.width
         var h = w * size.height / size.width
         if h > maxH {
@@ -34,19 +33,18 @@ class StyleBoardImageCellViewModel: CellViewModelProtocol  {
         }
         return CGSize(width: w, height: h)
     }
-    
-    var size : CGSize {
-        if let url = item.image ,let image = ImageCache.default.retrieveImageInMemoryCache(forKey: url) {
+
+    var size: CGSize {
+        if let url = item.image, let image = ImageCache.default.retrieveImageInMemoryCache(forKey: url) {
             return  resize(size: image.size)
-        } else if let size = item.image?.urlImageSize() , size != .zero {
+        } else if let size = item.image?.urlImageSize(), size != .zero {
             return  resize(size: size)
         } else {
             return CGSize(width: 200, height: 200)
         }
     }
-    
-    
-    required init(item : DefaultColltionItem) {
+
+    required init(item: DefaultColltionItem) {
         self.item = item
         self.image.accept(item.image?.url)
         self.empty.accept(item.productId != nil && item.productId == "")

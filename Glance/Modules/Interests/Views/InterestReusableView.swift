@@ -9,11 +9,10 @@
 import UIKit
 
 class InterestReusableView: CollectionReusableView {
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-    
+
 }

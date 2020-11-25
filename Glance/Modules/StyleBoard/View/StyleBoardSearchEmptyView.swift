@@ -11,7 +11,7 @@ import UIKit
 class StyleBoardSearchEmptyView: View {
 
     @IBOutlet weak var uploadButton: UIButton!
-    
+
     override func makeUI() {
         super.makeUI()
 

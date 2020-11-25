@@ -16,9 +16,9 @@ struct MappableItem<Item>: Mappable {
     var message: String?
 
     public init?(map: Map) {}
-    
+
     init() {
-        
+
     }
 
     mutating public func mapping(map: Map) {
@@ -28,16 +28,15 @@ struct MappableItem<Item>: Mappable {
     }
 }
 
+struct PageMapable<Item: Mappable>: Mappable {
 
-struct PageMapable<Item : Mappable> : Mappable {
-    
     var total: Int = 0
     var pageNum: Int = 0
     var list = [Item]()
     var hasNext: Bool = true
     var pageSize: Int = 0
     var hasPrevious: Bool = false
-    var refreshState : RefreshState {        
+    var refreshState: RefreshState {
         if pageNum == 1 {
             if list.isEmpty {
                 return .disable
@@ -56,7 +55,7 @@ struct PageMapable<Item : Mappable> : Mappable {
     }
 
     init?(map: Map) {}
-    init(hasNext : Bool = true, items : [Item] = []) {
+    init(hasNext: Bool = true, items: [Item] = []) {
         self.hasNext = hasNext
         self.list = items
     }

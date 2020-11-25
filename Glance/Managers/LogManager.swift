@@ -41,5 +41,3 @@ public func logResourcesCount() {
     logDebug("RxSwift resources count: \(RxSwift.Resources.total)")
     #endif
 }
-
-

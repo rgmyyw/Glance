@@ -14,20 +14,19 @@ class UsersCell: TableViewCell {
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var operationButton: UIButton!
     @IBOutlet weak var ighandleLabel: UILabel!
-    
+
     override func makeUI() {
         super.makeUI()
-     
+
         operationButton.setTitleColor(UIColor.white, for: .normal)
         operationButton.setTitleColor(UIColor.primary(), for: .selected)
         operationButton.borderColor = operationButton.titleColor(for: .selected)
         operationButton.cornerRadius = 4
     }
 
-    
-    override func bind<T>(to viewModel: T) where T : UsersCellViewModel {
+    override func bind<T>(to viewModel: T) where T: UsersCellViewModel {
         super.bind(to: viewModel)
-        
+
         viewModel.userName.bind(to: userNameLabel.rx.text).disposed(by: cellDisposeBag)
         viewModel.userImageURL.bind(to: userImageView.rx.imageURL).disposed(by: cellDisposeBag)
         viewModel.ighandle.bind(to: ighandleLabel.rx.text).disposed(by: cellDisposeBag)
@@ -39,6 +38,5 @@ class UsersCell: TableViewCell {
         viewModel.buttonSelected.map { $0 ? UIColor.clear : UIColor.primary()}.bind(to: operationButton.rx.backgroundColor).disposed(by: cellDisposeBag)
         operationButton.rx.tap.bind(to: viewModel.buttonTap).disposed(by: cellDisposeBag)
     }
-    
-    
+
 }

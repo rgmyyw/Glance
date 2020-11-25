@@ -23,28 +23,28 @@ protocol Navigatable {
 
 class Navigator {
     static var `default` = Navigator()
-    
+
     // MARK: - segues list, all app scenes
     enum Scene {
-        case demo(viewModel : DemoViewModel)
+        case demo(viewModel: DemoViewModel)
         case safari(URL)
         case safariController(URL)
         case webController(URL)
         case tabs(viewModel: HomeTabBarViewModel)
         case signIn(viewModel: SignInViewModel)
-        case modifyProfile(viewModel : ModifyProfileViewModel)
-        case notificationProfile(viewModel : NotificationProfileViewModel)
-        case originalPhotos(viewModel : OriginalPhotosViewModel)
-        case privacy(viewModel : PrivacyViewModel)
-        case users(viewModel : UsersViewModel)
-        case insights(viewModel : InsightsViewModel)
-        case insightsDetail(viewModel : InsightsDetailViewModel)
-        case reactions(viewModel : ReactionsViewModel)
-        case dynamicDetail(viewModel : PostsDetailViewModel)
-        case shoppingCart(viewModel : ShoppingCartViewModel)
-        case savedCollectionClassify(viewModel : SavedCollectionClassifyViewModel)
-        case savedCollection(viewModel : SavedCollectionViewModel)
-        case interest(viewModel : InterestViewModel)
+        case modifyProfile(viewModel: ModifyProfileViewModel)
+        case notificationProfile(viewModel: NotificationProfileViewModel)
+        case originalPhotos(viewModel: OriginalPhotosViewModel)
+        case privacy(viewModel: PrivacyViewModel)
+        case users(viewModel: UsersViewModel)
+        case insights(viewModel: InsightsViewModel)
+        case insightsDetail(viewModel: InsightsDetailViewModel)
+        case reactions(viewModel: ReactionsViewModel)
+        case dynamicDetail(viewModel: PostsDetailViewModel)
+        case shoppingCart(viewModel: ShoppingCartViewModel)
+        case savedCollectionClassify(viewModel: SavedCollectionClassifyViewModel)
+        case savedCollection(viewModel: SavedCollectionViewModel)
+        case interest(viewModel: InterestViewModel)
         case visualSearch(viewModel: VisualSearchViewModel)
         case visualSearchProduct(viewModel: VisualSearchProductViewModel)
         case addProduct(viewModel: AddProductViewModel)
@@ -52,25 +52,25 @@ class Navigator {
         case styleBoard(viewModel: StyleBoardViewModel)
         case styleBoardSearch(viewModel: StyleBoardSearchViewModel)
         case styleBoardSearchContent(viewModel: StyleBoardSearchContentViewModel)
-        case insightsRelation(viewModel : InsightsRelationViewModel)
-        case userDetail(viewModel : UserDetailViewModel)
-        case userPost(viewModel : UserDetailPostViewModel)
-        case userRecommend(viewModel : UserDetailRecommViewModel)
-        case searchRecommend(viewModel : SearchRecommendViewModel)
-        case searchRecommendHot(viewModel : SearchRecommendHotViewModel)
-        case searchRecommendYouMayLike(viewModel : SearchRecommendYouMayLikeViewModel)
-        case searchRecommendNew(viewModel : SearchRecommendNewViewModel)
-        case search(viewModel : SearchViewModel)
-        case searchResult(viewModel : SearchResultViewModel)
-        case searchResultContent(viewModel : SearchResultContentViewModel)
-        case searchTheme(viewModel : SearchThemeViewModel)
-        case searchThemeContent(viewModel : SearchThemeContentViewModel)
-        case searchThemeLabel(viewModel : SearchThemeLabelViewModel)
-        case searchThemeLabelContent(viewModel : SearchThemeLabelContentViewModel)
-        case selectStore(viewModel : SelectStoreViewModel)
+        case insightsRelation(viewModel: InsightsRelationViewModel)
+        case userDetail(viewModel: UserDetailViewModel)
+        case userPost(viewModel: UserDetailPostViewModel)
+        case userRecommend(viewModel: UserDetailRecommViewModel)
+        case searchRecommend(viewModel: SearchRecommendViewModel)
+        case searchRecommendHot(viewModel: SearchRecommendHotViewModel)
+        case searchRecommendYouMayLike(viewModel: SearchRecommendYouMayLikeViewModel)
+        case searchRecommendNew(viewModel: SearchRecommendNewViewModel)
+        case search(viewModel: SearchViewModel)
+        case searchResult(viewModel: SearchResultViewModel)
+        case searchResultContent(viewModel: SearchResultContentViewModel)
+        case searchTheme(viewModel: SearchThemeViewModel)
+        case searchThemeContent(viewModel: SearchThemeContentViewModel)
+        case searchThemeLabel(viewModel: SearchThemeLabelViewModel)
+        case searchThemeLabelContent(viewModel: SearchThemeLabelContentViewModel)
+        case selectStore(viewModel: SelectStoreViewModel)
 
     }
-    
+
     enum Transition {
         case root(in: UIWindow)
         case navigation(type: HeroDefaultAnimationType)
@@ -80,9 +80,9 @@ class Navigator {
         case alert
         case custom
         case popDialog
-        case panel(style : PanelDefaultModalStyle)
+        case panel(style: PanelDefaultModalStyle)
     }
-    
+
     // MARK: - get a single VC
     func get(segue: Scene) -> UIViewController? {
         switch segue {
@@ -118,7 +118,7 @@ class Navigator {
             let vc = PrivacyViewController(viewModel: viewModel, navigator: self)
             return vc
         case .users(let viewModel):
-            let vc = UsersViewController(viewModel: viewModel, navigator: self,tableView: .grouped)
+            let vc = UsersViewController(viewModel: viewModel, navigator: self, tableView: .grouped)
             return vc
         case .insights(let viewModel):
             let vc = InsightsViewController(viewModel: viewModel, navigator: self)
@@ -156,7 +156,7 @@ class Navigator {
         case .postProduct(let viewModel):
             let vc = PostProductViewController(viewModel: viewModel, navigator: self)
             return vc
-            
+
         case .styleBoard(let viewModel):
             let vc = StyleBoardViewController(viewModel: viewModel, navigator: self)
             return vc
@@ -216,13 +216,12 @@ class Navigator {
             return vc
         }
     }
-    
-    
+
     /// - Parameter number: 返回几个页面
-    func pop(sender: UIViewController?, toRoot: Bool = false , page  : Int = 0) {
+    func pop(sender: UIViewController?, toRoot: Bool = false, page: Int = 0) {
         if toRoot {
             sender?.navigationController?.popToRootViewController(animated: true)
-        } else if page > 0 && page < (sender?.navigationController?.viewControllers.count ?? 0) - 1{
+        } else if page > 0 && page < (sender?.navigationController?.viewControllers.count ?? 0) - 1 {
             let controllers = sender?.navigationController?.viewControllers
             if let count = controllers?.count, let controller =  controllers?[(count - 1) - page] {
                 sender?.navigationController?.popToViewController(controller, animated: true)
@@ -233,29 +232,27 @@ class Navigator {
             sender?.navigationController?.popViewController()
         }
     }
-    
-    
-    
-    func dismiss(sender: UIViewController?, animated : Bool = true , completion : (()->())? = nil) {
-        
+
+    func dismiss(sender: UIViewController?, animated: Bool = true, completion : (() -> Void)? = nil) {
+
         if let sender = sender, sender.isKind(of: NavigationController.self) {
             sender.dismiss(animated: animated, completion: completion)
-        } else if let navigationController = sender?.navigationController  {
+        } else if let navigationController = sender?.navigationController {
             navigationController.dismiss(animated: animated, completion: completion)
         } else {
             sender?.dismiss(animated: animated, completion: completion)
 
         }
     }
-    
+
     // MARK: - invoke a single segue
-    func show(segue: Scene, sender: UIViewController?, animated : Bool = true, transition: Transition = .navigation(type: .cover(direction: .left))) {
+    func show(segue: Scene, sender: UIViewController?, animated: Bool = true, transition: Transition = .navigation(type: .cover(direction: .left))) {
         if let target = get(segue: segue) {
-            show(target: target, sender: sender, animated : animated, transition: transition)
+            show(target: target, sender: sender, animated: animated, transition: transition)
         }
     }
-    
-    private func show(target: UIViewController, sender: UIViewController?,animated : Bool = true, transition: Transition) {
+
+    private func show(target: UIViewController, sender: UIViewController?, animated: Bool = true, transition: Transition) {
         switch transition {
         case .root(in: let window):
             window.rootViewController = target
@@ -263,17 +260,17 @@ class Navigator {
         case .custom: return
         default: break
         }
-        
+
         guard let sender = sender else {
             fatalError("You need to pass in a sender for .navigation or .modal transitions")
         }
-        
+
         if let nav = sender as? UINavigationController {
             //push root controller on navigation stack
             nav.pushViewController(target, animated: false)
             return
         }
-        
+
         switch transition {
         case .navigation(let type):
             if let nav = sender.navigationController {
@@ -295,7 +292,7 @@ class Navigator {
                 nav.modalPresentationStyle = .custom
                 sender.present(nav, animated: animated, completion: nil)
             }
-            
+
         case .detail:
             DispatchQueue.main.async {
                 let nav = NavigationController(rootViewController: target)
@@ -311,10 +308,10 @@ class Navigator {
                 sender.present(popup, animated: animated, completion: nil)
             }
         case .panel(let style):
-            
-            var delegate : (UIViewController & FloatingPanelControllerDelegate)!
-            if target.isKind(of: UINavigationController.self) {
-                delegate = (target as! UINavigationController).viewControllers.first as? (UIViewController & FloatingPanelControllerDelegate)
+
+            var delegate: (UIViewController & FloatingPanelControllerDelegate)!
+            if target.isKind(of: UINavigationController.self), let controller = target as? UINavigationController {
+                delegate = controller.viewControllers.first as? (UIViewController & FloatingPanelControllerDelegate)
             } else if target.isKind(of: UIViewController.self) {
                 delegate = target as? (UIViewController & FloatingPanelControllerDelegate)
             } else if target.isKind(of: UITabBarController.self) {
@@ -332,19 +329,16 @@ class Navigator {
             fpc.isRemovalInteractionEnabled = style.isRemovalInteractionEnabled
             fpc.delegate = delegate
             sender.present(fpc, animated: animated, completion: nil)
-            
+
         default: break
         }
     }
-    
+
     func toInviteContact(withPhone phone: String) -> MFMessageComposeViewController {
         let vc = MFMessageComposeViewController()
         vc.body = "Hey! Come join  at \(Configs.App.url)"
         vc.recipients = [phone]
         return vc
     }
-    
-    
+
 }
-
-

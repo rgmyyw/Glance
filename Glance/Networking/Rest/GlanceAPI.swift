@@ -12,7 +12,6 @@ import Moya
 import Alamofire
 import Localize_Swift
 
-
 protocol ProductAPIType {
     var addXAuth: Bool { get }
 }
@@ -24,64 +23,64 @@ private let assetDir: URL = {
 
 enum GlanceAPI {
     case download(url: URL, fileName: String?)
-    case getHome(page : Int)
-    case userDetail(userId : String?)
+    case getHome(page: Int)
+    case userDetail(userId: String?)
     case modifyProfile(data : [String : Any])
-    case uploadImage(type: Int, size : CGSize, data : Data)
-    case userPost(userId : String, pageNum : Int)
-    case userRecommend(userId : String, pageNum : Int)
-    case users(type : UsersType, userId : String, pageNum : Int)
-    case follow(userId : String)
-    case undoFollow(userId : String)
-    case block(userId : String)
-    case undoBlocked(userId : String)
-    case insightPost(userId : String, pageNum : Int)
-    case insightRecommend(userId : String, pageNum : Int)
-    case insightsPostDetail(postId : Int)
-    case insightsRecommendDetail(recommendId : Int)
-    case reactions(recommendId : Int,pageNum : Int)
-    case notifications(page : Int)
-    case shoppingCart(pageNum : Int)
-    case postDetail(postId : Int)
-    case productDetail(productId : String)
-    case shoppingCartDelete(productId : String)
+    case uploadImage(type: Int, size: CGSize, data: Data)
+    case userPost(userId: String, pageNum: Int)
+    case userRecommend(userId: String, pageNum: Int)
+    case users(type: UsersType, userId: String, pageNum: Int)
+    case follow(userId: String)
+    case undoFollow(userId: String)
+    case block(userId: String)
+    case undoBlocked(userId: String)
+    case insightPost(userId: String, pageNum: Int)
+    case insightRecommend(userId: String, pageNum: Int)
+    case insightsPostDetail(postId: Int)
+    case insightsRecommendDetail(recommendId: Int)
+    case reactions(recommendId: Int, pageNum: Int)
+    case notifications(page: Int)
+    case shoppingCart(pageNum: Int)
+    case postDetail(postId: Int)
+    case productDetail(productId: String)
+    case shoppingCartDelete(productId: String)
     case like(param : [String : Any])
     case saveCollection(param : [String : Any])
     case savedCllectionClassify
-    case savedCollection(pageNum : Int)
-    case interest(level : Int)
-    case updateUserInterest(ids : String)
-    case similarProduct(params : [String : Any],page : Int)
-    case addShoppingCart(productId : String)
+    case savedCollection(pageNum: Int)
+    case interest(level: Int)
+    case updateUserInterest(ids: String)
+    case similarProduct(params : [String : Any], page: Int)
+    case addShoppingCart(productId: String)
     case visualSearch(params : [String : Any])
-    case search(type : ProductSearchType,keywords : String, page : Int)
+    case search(type: ProductSearchType, keywords: String, page: Int)
     case categories
     case addProduct(param : [String : Any])
     case postProduct(param : [String : Any])
-    case insightsLiked(postId: Int,pageNum : Int)
-    case insightsRecommend(postId: Int,pageNum : Int)
+    case insightsLiked(postId: Int, pageNum: Int)
+    case insightsRecommend(postId: Int, pageNum: Int)
     case logout
     case isNewUser
-    case reactionAnalysis(recommendId : Int)
-    case deletePost(postId : Int)
+    case reactionAnalysis(recommendId: Int)
+    case deletePost(postId: Int)
     case recommend(param : [String : Any])
-    case reaction(recommendId : Int,type : Int)
-    case searchFacets(query : String)
+    case reaction(recommendId: Int, type: Int)
+    case searchFacets(query: String)
     case searchThemeClassify
-    case searchThemeHot(classifyId : Int, page : Int)
-    case searchYouMaylike(page : Int)
-    case searchNew(page : Int)
-    case globalSearch(type : SearchResultContentType,keywords : String, page : Int)
-    case searchThemeDetail(themeId : Int)
-    case searchThemeDetaiResource(type : SearchThemeContentType,themeId : Int, page : Int)
-    case searchThemeLabelDetaiResource(type : SearchThemeLabelContentType,labelId : Int, page : Int)
-    case compareOffers(productId : String)
-    case deleteNotice(noticeId : Int)
+    case searchThemeHot(classifyId: Int, page: Int)
+    case searchYouMaylike(page: Int)
+    case searchNew(page: Int)
+    case globalSearch(type: SearchResultContentType, keywords: String, page: Int)
+    case searchThemeDetail(themeId: Int)
+    case searchThemeDetaiResource(type: SearchThemeContentType, themeId: Int, page: Int)
+    case searchThemeLabelDetaiResource(type: SearchThemeLabelContentType, labelId: Int, page: Int)
+    case compareOffers(productId: String)
+    case deleteNotice(noticeId: Int)
     case makeRead(values : [String : Any])
 }
 
 extension GlanceAPI: TargetType, ProductAPIType {
-    
+
     var baseURL: URL {
         switch self {
         case .download(let url, _):
@@ -90,7 +89,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return Configs.Network.url.url!
         }
     }
-    
+
     var path: String {
         switch self {
         case .download: return ""
@@ -108,7 +107,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/posts/user/\(pageNum)/\(10)"
         case .userRecommend(_, let pageNum):
             return "/api/recommends/user/\(pageNum)/\(10)"
-        case .users(let type,_, let pageNum):
+        case .users(let type, _, let pageNum):
             switch type {
             case .following:
                 return "/api/follow/following/\(pageNum)/\(10)"
@@ -163,7 +162,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/shoppingCart"
         case .visualSearch:
             return "/api/discoversearch"
-        case .search(let type,_, let pageNum):
+        case .search(let type, _, let pageNum):
             switch type {
             case .inApp:
                 return "/api/products/search/\(pageNum)/\(10)"
@@ -172,16 +171,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
             case .posted:
                 return "/api/products/search/posts/\(pageNum)/\(10)"
             }
-            
+
         case .categories:
             return "/api/categories"
         case .addProduct:
             return "/api/products"
         case .postProduct:
             return "/api/posts"
-        case .insightsLiked(_,let pageNum):
+        case .insightsLiked(_, let pageNum):
             return "/api/users/insights/liked/\(pageNum)/10"
-        case .insightsRecommend(_,let pageNum):
+        case .insightsRecommend(_, let pageNum):
             return "/api/users/insights/recommended/users/\(pageNum)/10"
         case .logout:
             return "/api/users/logout"
@@ -199,17 +198,17 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/search/facets"
         case .searchThemeClassify:
             return "/api/search/theme/classify"
-        case .searchThemeHot(_,let page):
+        case .searchThemeHot(_, let page):
             return "/api/search/theme/\(page)/\(10)"
         case .searchYouMaylike(let page):
             return "/api/search/maylike/\(page)/\(10)"
         case .searchNew(let page):
             return "/api/search/new/\(page)/\(10)"
-        case .globalSearch(_,_, let page):
+        case .globalSearch(_, _, let page):
             return "/api/search/global/\(page)/\(10)"
         case .searchThemeDetail(let themeId):
             return "/api/search/theme/detail/\(themeId)"
-        case .searchThemeDetaiResource(_,let themeId, let page):
+        case .searchThemeDetaiResource(_, let themeId, let page):
             return "/api/search/theme/resources/\(themeId)/\(page)/\(10)"
         case .searchThemeLabelDetaiResource(_, _, let page):
             return "/api/search/label/\(page)/\(10)"
@@ -221,7 +220,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return "/api/read"
         }
     }
-    
+
     var method: Moya.Method {
         switch self {
         case .saveCollection,
@@ -239,7 +238,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
              .reaction,
              .makeRead:
             return .post
-        case .userDetail,.userPost,
+        case .userDetail, .userPost,
              .userRecommend,
              .users,
              .insightPost,
@@ -273,26 +272,25 @@ extension GlanceAPI: TargetType, ProductAPIType {
             return .get
         case .modifyProfile:
             return .put
-        case .undoFollow,.undoBlocked,.shoppingCartDelete,.deletePost,.deleteNotice:
+        case .undoFollow, .undoBlocked, .shoppingCartDelete, .deletePost, .deleteNotice:
             return .delete
         default:
             return .get
         }
     }
-    
-    
+
     var headers: [String: String]? {
-        
-        var header : [String : String]
-        
+
+        var header: [String: String]
+
         switch self {
         case .uploadImage:
-            header = ["Content-Type":"application/form-data"]
+            header = ["Content-Type": "application/form-data"]
         default:
-            header = ["Content-Type":"application/json"]
+            header = ["Content-Type": "application/json"]
         }
-        
-        if loggedIn.value , let token = AuthManager.shared.token?.basicToken {
+
+        if loggedIn.value, let token = AuthManager.shared.token?.basicToken {
             header["Authorization"] = "Bearer \(token)"
         }
 
@@ -305,16 +303,16 @@ extension GlanceAPI: TargetType, ProductAPIType {
         header["os-version"] = UIDevice.current.systemVersion
         header["ios-idfv"] = UIDevice.current.identifierForVendor!.uuidString
         header["lang"] = Localize.currentLanguage()
-        
+
         return header
     }
-    
+
     var parameters: [String: Any]? {
         var params: [String: Any] = [:]
         switch self {
         case .saveCollection(let param):
             params.merge(dict: param)
-            
+
         case .like(let param):
             params.merge(dict: param)
         case .userPost(let userId, _),
@@ -324,7 +322,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
                 params["otherUserId"] = userId
             }
         case .userDetail(let userId):
-            if let userId = userId , userId.isNotEmpty {
+            if let userId = userId, userId.isNotEmpty {
                 params["otherUserId"] = userId
             }
         case .follow(let userId):
@@ -337,7 +335,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["undoBlockedUserId"] = userId
         case .modifyProfile(let data):
             params.merge(dict: data)
-        case .insightRecommend(let userId, _),.insightPost(let userId,_):
+        case .insightRecommend(let userId, _), .insightPost(let userId, _):
             if userId.isNotEmpty {
                 params["otherUserId"] = userId
             }
@@ -361,7 +359,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["productId"] = productId
         case .visualSearch(let param):
             params.merge(dict: param)
-        case .search(_,let keywords, _):
+        case .search(_, let keywords, _):
             params["keywords"] = keywords
         case .addProduct(let param):
             params.merge(dict: param)
@@ -375,7 +373,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
             params["recommendId"] = recommendId
         case .recommend(let param):
             params.merge(dict: param)
-        case .reaction(let recommendId,let type):
+        case .reaction(let recommendId, let type):
             params["recommendId"] = recommendId
             params["type"] = type
         case .searchFacets(let query):
@@ -385,7 +383,7 @@ extension GlanceAPI: TargetType, ProductAPIType {
         case .globalSearch(let type, let keywords, _):
             params["query"] = keywords
             params["type"] = type.rawValue
-        case .searchThemeDetaiResource(let type,_,_):
+        case .searchThemeDetaiResource(let type, _, _):
             params["type"] = type.rawValue
         case .searchThemeLabelDetaiResource(let type, let labelId, _):
             params["type"] = type.rawValue
@@ -399,11 +397,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
         }
         return params
     }
-    
+
     public var parameterEncoding: ParameterEncoding {
         return URLEncoding.default
     }
-    
+
     var localLocation: URL {
         switch self {
         case .download(_, let fileName):
@@ -414,20 +412,20 @@ extension GlanceAPI: TargetType, ProductAPIType {
         }
         return assetDir
     }
-    
+
     var downloadDestination: DownloadDestination {
         return { _, _ in return (self.localLocation, .removePreviousFile) }
     }
-    
+
     public var task: Task {
         switch self {
-        case .uploadImage(let type, let size ,let data):
+        case .uploadImage(let type, let size, let data):
             let fileName = dformatter.string(from: Date()) + ".jpeg"
             let formData = MultipartFormData(provider: MultipartFormData.FormDataProvider.data(data), name: "image", fileName: fileName, mimeType: "image/jpeg")
-            return .uploadCompositeMultipart([formData], urlParameters: ["type" : type, "w" : size.width , "h" : size.height])
+            return .uploadCompositeMultipart([formData], urlParameters: ["type": type, "w": size.width, "h": size.height])
         default:
             switch method {
-            case .post,.put:
+            case .post, .put:
                 return .requestData(parameters?.jsonData() ?? Data())
             default:
                 if let parameters = parameters {
@@ -437,11 +435,11 @@ extension GlanceAPI: TargetType, ProductAPIType {
             }
         }
     }
-    
+
     var sampleData: Data {
         return "".data(using: String.Encoding.utf8)!
     }
-    
+
     var addXAuth: Bool {
         switch self {
         default: return true

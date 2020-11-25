@@ -10,17 +10,16 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class InsightsCellViewModel : CellViewModelProtocol {
-    
-    let item : Insight
-    let imageURL : BehaviorRelay<URL?> = BehaviorRelay(value: nil)
-    let title : BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let reachCount : BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let interactionsCount : BehaviorRelay<String?> = BehaviorRelay(value: nil)
-    let time : BehaviorRelay<String?> = BehaviorRelay(value: nil)
+class InsightsCellViewModel: CellViewModelProtocol {
 
-    
-    required init(item : Insight) {
+    let item: Insight
+    let imageURL: BehaviorRelay<URL?> = BehaviorRelay(value: nil)
+    let title: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let reachCount: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let interactionsCount: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+    let time: BehaviorRelay<String?> = BehaviorRelay(value: nil)
+
+    required init(item: Insight) {
         self.item = item
         title.accept(item.title)
         imageURL.accept(item.image?.url)
@@ -29,4 +28,3 @@ class InsightsCellViewModel : CellViewModelProtocol {
         time.accept(item.created?.dateString(ofStyle: .medium))
     }
 }
-

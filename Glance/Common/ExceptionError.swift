@@ -9,28 +9,28 @@
 import UIKit
 import Moya
 
-enum ExceptionError: Error , CustomDebugStringConvertible,CustomStringConvertible {
-    
+enum ExceptionError: Error, CustomDebugStringConvertible, CustomStringConvertible {
+
     case general(_ message: String)
     case unknown
     case argumentOutOfRange
     case timeout
     case empty
-    case jsonMapping(response : Response)
-    
+    case jsonMapping(response: Response)
+
     var asError: Error? {
         return self as Error
     }
 }
 
 extension Error {
-    
+
     var asExceptionError: ExceptionError? {
         return self as? ExceptionError
     }
 }
 extension ExceptionError {
-    
+
     public var description: String {
         switch self {
         case .unknown:
@@ -48,7 +48,7 @@ extension ExceptionError {
         }
 
     }
-    
+
     public var debugDescription: String {
         return description
     }

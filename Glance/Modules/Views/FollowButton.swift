@@ -9,15 +9,14 @@
 import UIKit
 
 class FollowButton: Button {
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         titleLabel?.font = UIFont.titleFont(12)
         contentEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 8)
         layer.borderColor = UIColor.primary().cgColor
-        
-        
+
         rx.observeWeakly(Bool.self, "selected", options: .new).filterNil()
             .subscribe(onNext: { [weak self](isSelected) in
                 let background = isSelected ? UIColor.white : UIColor.primary()
@@ -28,7 +27,7 @@ class FollowButton: Button {
                 self?.backgroundColor = background
                 self?.layer.borderWidth = width.cgFloat
                 self?.setTitle(title, for: .normal)
-                
+
             }).disposed(by: rx.disposeBag)
 
     }

@@ -10,7 +10,7 @@ import UIKit
 import ObjectMapper
 
 struct SearchThemeClassify: Mappable {
-    
+
     var classifyName: String?
     var classifyId: Int = 0
 
@@ -21,4 +21,3 @@ struct SearchThemeClassify: Mappable {
         classifyId   <- map["classifyId"]
     }
 }
-

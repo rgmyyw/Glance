@@ -8,15 +8,14 @@
 
 import UIKit
 
-
 enum UsersType {
-    
+
     case followers
     case following
     case blocked
     case reactions
-    
-    var navigationTitle : String? {
+
+    var navigationTitle: String? {
         switch self {
         case .blocked:
             return "Blocked List"
@@ -26,23 +25,22 @@ enum UsersType {
             return nil
         }
     }
-    
-    var cellButtonNormalTitle : String {
+
+    var cellButtonNormalTitle: String {
         switch self {
-        case .followers,.following,.reactions:
+        case .followers, .following, .reactions:
             return "+ Follow"
         case .blocked:
             return "Block"
         }
-        
+
     }
-    var cellButtonSelectedTitle : String {
+    var cellButtonSelectedTitle: String {
         switch self {
-        case .followers,.following,.reactions:
+        case .followers, .following, .reactions:
             return "Following"
         case .blocked:
             return "Blocked"
         }
     }
 }
-

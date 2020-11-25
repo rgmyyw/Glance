@@ -14,15 +14,15 @@ import RxDataSources
 
 class SearchRecommendHotFilterView: View {
 
-    lazy var dataSouce : RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SearchRecommendHotFilterCellViewModel>> = configureDataSouce()
+    lazy var dataSouce: RxCollectionViewSectionedReloadDataSource<SectionModel<Void, SearchRecommendHotFilterCellViewModel>> = configureDataSouce()
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
-    let items = BehaviorRelay<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>(value:[])
-        
+
+    let items = BehaviorRelay<[SectionModel<Void, SearchRecommendHotFilterCellViewModel>]>(value: [])
+
     override func makeUI() {
         super.makeUI()
-        
+
         let layout = ZLCollectionViewHorzontalLayout()
         layout.delegate = self
         layout.minimumLineSpacing = 15
@@ -33,42 +33,42 @@ class SearchRecommendHotFilterView: View {
         items.asDriver().delay(RxTimeInterval.milliseconds(100)).drive(onNext: { [weak self]item in
             self?.collectionView.reloadData()
         }).disposed(by: rx.disposeBag)
-        
+
     }
-  
+
 }
 
 // MARK: - DataSouce
 extension SearchRecommendHotFilterView {
-    
-    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SearchRecommendHotFilterCellViewModel>> {
-        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void,SearchRecommendHotFilterCellViewModel>>(configureCell : { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
+
+    fileprivate func configureDataSouce() -> RxCollectionViewSectionedReloadDataSource<SectionModel<Void, SearchRecommendHotFilterCellViewModel>> {
+        return RxCollectionViewSectionedReloadDataSource<SectionModel<Void, SearchRecommendHotFilterCellViewModel>>(configureCell: { (dataSouce, collectionView, indexPath, item) -> UICollectionViewCell in
             let cell = collectionView.dequeueReusableCell(for: indexPath, cellType: SearchRecommendHotFilterCell.self)
             cell.bind(to: item)
             return cell
         })
     }
-    
+
 }
 
-extension SearchRecommendHotFilterView : ZLCollectionViewBaseFlowLayoutDelegate {
-    
+extension SearchRecommendHotFilterView: ZLCollectionViewBaseFlowLayoutDelegate {
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, typeOfLayout section: Int) -> ZLLayoutType {
         return ColumnLayout
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewFlowLayout, columnCountOfSection section: Int) -> Int {
         return 1
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         return .zero
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: inset, bottom: 0, right: inset)
     }
-    
+
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let viewModel =  dataSouce[indexPath.section].items[indexPath.item]

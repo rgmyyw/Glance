@@ -12,40 +12,38 @@ import RxCocoa
 import RxDataSources
 
 class SearchRecommendHotViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let filter : Observable<SearchRecommendHotFilterCellViewModel>
+        let filter: Observable<SearchRecommendHotFilterCellViewModel>
     }
-    
+
     struct Output {
-        let items : Driver<[SectionModel<Void,SearchRecommendHotCellViewModel>]>
-        let filter : Observable<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>
-        let themeDetail : Driver<Int>
-        let detail : Driver<DefaultColltionItem>
+        let items: Driver<[SectionModel<Void, SearchRecommendHotCellViewModel>]>
+        let filter: Observable<[SectionModel<Void, SearchRecommendHotFilterCellViewModel>]>
+        let themeDetail: Driver<Int>
+        let detail: Driver<DefaultColltionItem>
     }
-    
-    let element : BehaviorRelay<PageMapable<SearchTheme>?> = BehaviorRelay(value: nil)
-    let themeClassify = BehaviorRelay<[SearchThemeClassify]>(value:[])
+
+    let element: BehaviorRelay<PageMapable<SearchTheme>?> = BehaviorRelay(value: nil)
+    let themeClassify = BehaviorRelay<[SearchThemeClassify]>(value: [])
 
     func transform(input: Input) -> Output {
-        
-        let elements = BehaviorRelay<[SectionModel<Void,SearchRecommendHotCellViewModel>]>(value: [])
-        let filter = BehaviorRelay<[SectionModel<Void,SearchRecommendHotFilterCellViewModel>]>(value: [])
+
+        let elements = BehaviorRelay<[SectionModel<Void, SearchRecommendHotCellViewModel>]>(value: [])
+        let filter = BehaviorRelay<[SectionModel<Void, SearchRecommendHotFilterCellViewModel>]>(value: [])
         let themeClassifySelection = BehaviorRelay<SearchRecommendHotFilterCellViewModel?>(value: nil)
         let themeDetail = PublishSubject<SearchRecommendHotCellViewModel>()
         let itemSelected = PublishSubject<SearchRecommendHotColltionCellViewModel>()
-        
-        
+
         input.filter.bind(to: themeClassifySelection).disposed(by: rx.disposeBag)
-        
+
         themeClassifySelection.subscribe(onNext: { (cellViewModel) in
             filter.value.first.value?.items.forEach { $0.selected.accept(false)}
             cellViewModel?.selected.accept(true)
         }).disposed(by: rx.disposeBag)
-        
-        
+
         Observable.just(())
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[SearchThemeClassify]>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -61,11 +59,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
-        
-        
-        
+
         input.headerRefresh.map { themeClassifySelection.value }
             .merge(with: themeClassifySelection.asObservable())
             .filterNil()
@@ -87,7 +81,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -96,8 +90,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh
             .flatMapLatest({ [weak self] (cellViewModel) -> Observable<RxSwift.Event<PageMapable<SearchTheme>>> in
             guard let self = self else {
@@ -105,7 +98,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
             }
             self.page += 1
             let classifyId = themeClassifySelection.value?.item.classifyId ?? 0
-            return self.provider.searchThemeHot(classifyId:classifyId , page: self.page)
+            return self.provider.searchThemeHot(classifyId: classifyId, page: self.page)
                 .trackActivity(self.footerLoading)
                 .trackError(self.error)
                 .materialize()
@@ -119,7 +112,7 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -131,41 +124,39 @@ class SearchRecommendHotViewModel: ViewModel, ViewModelType {
             }
         }).disposed(by: rx.disposeBag)
 
-        
-        element.filterNil().map { element -> [SectionModel<Void,SearchRecommendHotCellViewModel>] in
+        element.filterNil().map { element -> [SectionModel<Void, SearchRecommendHotCellViewModel>] in
             let sectionItems = element.list.map { item -> SearchRecommendHotCellViewModel  in
                 let viewModel = SearchRecommendHotCellViewModel(item: item)
                 viewModel.themeDetail.map { viewModel }.bind(to: themeDetail).disposed(by: self.rx.disposeBag)
                 viewModel.selection.bind(to: itemSelected).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
-            let sections = [SectionModel<Void,SearchRecommendHotCellViewModel>(model: (), items: sectionItems)]
+            let sections = [SectionModel<Void, SearchRecommendHotCellViewModel>(model: (), items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
-            
-        themeClassify.map { items -> [SectionModel<Void,SearchRecommendHotFilterCellViewModel>] in
+
+        themeClassify.map { items -> [SectionModel<Void, SearchRecommendHotFilterCellViewModel>] in
             let sectionItems = items.map { item -> SearchRecommendHotFilterCellViewModel  in
                 let viewModel = SearchRecommendHotFilterCellViewModel(item: item)
                 return viewModel
             }
             themeClassifySelection.accept(sectionItems.first)
-            let sections = [SectionModel<Void,SearchRecommendHotFilterCellViewModel>(model: (), items: sectionItems)]
+            let sections = [SectionModel<Void, SearchRecommendHotFilterCellViewModel>(model: (), items: sectionItems)]
             return sections
         }.bind(to: filter).disposed(by: rx.disposeBag)
-    
-        
+
         let detail = itemSelected.map { cellViewModel -> DefaultColltionItem in
             if let productId = cellViewModel.item.productId {
                 return DefaultColltionItem(productId: productId)
             } else {
                 return DefaultColltionItem(postId: cellViewModel.item.postId)
             }
-        }        
-    
+        }
+
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       filter: filter.asObservable(),
                       themeDetail: themeDetail.map { $0.item.themeId }.asDriver(onErrorJustReturn: 0),
                       detail: detail.asDriverOnErrorJustComplete())
-        
+
     }
 }

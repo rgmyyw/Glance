@@ -10,7 +10,7 @@ import UIKit
 import RxSwiftExt
 
 class XHomeCell: CollectionViewCell {
-    
+
     @IBOutlet weak var userHeadImageButton: UIButton!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var typeLabel: UILabel!
@@ -25,18 +25,17 @@ class XHomeCell: CollectionViewCell {
     @IBOutlet weak var favorite: UIButton!
     @IBOutlet weak var likeButton: UIButton!
     @IBOutlet weak var imageViewHeight: NSLayoutConstraint!
-    
-    
+
     override func makeUI() {
         super.makeUI()
         self.contentView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
 //UIImageView().zl_enlargeValidTouchArea(withInset: 10)
-        
+
     }
-    
-    override func bind<T>(to viewModel: T) where T : DefaultColltionCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: DefaultColltionCellViewModel {
         super.bind(to: viewModel)
-    
+
         imageView.backgroundColor = .lightGray
         imageViewHeight.constant = viewModel.imageHeight
         viewModel.userHeadImageURL.bind(to: userHeadImageButton.rx.imageURL).disposed(by: cellDisposeBag)
@@ -51,7 +50,7 @@ class XHomeCell: CollectionViewCell {
         viewModel.recommendButtonHidden.bind(to: recommendButton.rx.isHidden).disposed(by: cellDisposeBag)
         viewModel.recommended.bind(to: recommendButton.rx.isSelected).disposed(by: cellDisposeBag)
         viewModel.reactionImage.bind(to: emojiButton.rx.image(for: .normal)).disposed(by: cellDisposeBag)
-        
+
         favorite.rx.tap.bind(to: viewModel.save).disposed(by: cellDisposeBag)
         likeButton.rx.tap.map { self.likeButton }.bind(to: viewModel.reaction).disposed(by: cellDisposeBag)
         recommendButton.rx.tap.bind(to: viewModel.recommend).disposed(by: cellDisposeBag)

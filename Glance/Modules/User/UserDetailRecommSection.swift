@@ -15,9 +15,8 @@ enum UserDetailRecommSection {
     case single(items: [DefaultColltionSectionItem])
 }
 
-
 extension UserDetailRecommSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
@@ -25,7 +24,7 @@ extension UserDetailRecommSection: SectionModelType {
             return items.map { $0 }
         }
     }
-    
+
     init(original: UserDetailRecommSection, items: [Item]) {
         switch original {
         case .single(let items):
@@ -33,4 +32,3 @@ extension UserDetailRecommSection: SectionModelType {
         }
     }
 }
-

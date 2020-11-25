@@ -10,7 +10,7 @@ import UIKit
 import RAMAnimatedTabBarController
 
 enum HomeTabBarItem: Int {
-    
+
     case home, notifications, chat, mine, center
     private func controller(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         switch self {
@@ -30,8 +30,8 @@ enum HomeTabBarItem: Int {
             return DemoViewController.init(viewModel: viewModel, navigator: navigator)
         }
     }
-    
-    var image_normal: UIImage? {
+
+    var imageNormal: UIImage? {
         switch self {
         case .home:
             return R.image.icon_tabbar_home_normal()?.withRenderingMode(.alwaysOriginal)
@@ -41,8 +41,8 @@ enum HomeTabBarItem: Int {
         case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
         }
     }
-    
-    var image_selected: UIImage? {
+
+    var imageSelected: UIImage? {
         switch self {
         case .home: return R.image.icon_tabbar_home_selected()?.withRenderingMode(.alwaysOriginal)
         case .notifications: return R.image.icon_tabbar_notice_selected()?.withRenderingMode(.alwaysOriginal)
@@ -51,39 +51,37 @@ enum HomeTabBarItem: Int {
         case .center: return R.image.icon_tabbar_add()?.withRenderingMode(.alwaysOriginal)
         }
     }
-    
-    
+
     var title: String {
         switch self {
         default:
             return ""
         }
     }
-    
+
     var animation: RAMItemAnimation {
         var animation: RAMItemAnimation
         switch self {
         default:
             let item = CustomBounceAnimation()
-            item.normalImage = image_normal
-            item.selectedImage = image_selected
+            item.normalImage = imageNormal
+            item.selectedImage = imageSelected
             item.textSelectedColor = UIColor.primary()
             animation = item
         }
-        
+
         return animation
     }
-    
+
     func getController(with viewModel: ViewModel, navigator: Navigator) -> UIViewController {
         let vc = controller(with: viewModel, navigator: navigator)
-        let item = CustomAnimatedTabBarItem(title: title, image: image_normal, tag: rawValue)
+        let item = CustomAnimatedTabBarItem(title: title, image: imageNormal, tag: rawValue)
         item.titlePositionAdjustment = UIOffset(horizontal: 0, vertical: UIApplication.shared.statusBarFrame.height == 20 ? 6 :  12)
-        item.selectedImage = image_selected
+        item.selectedImage = imageSelected
         item.animation = animation
         item.textColor = UIColor.text()
         vc.tabBarItem = item
         return vc
     }
-    
-    
+
 }

@@ -10,22 +10,18 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-
 protocol CellViewModelProtocol {
-    
+
     associatedtype Item
     var item: Item { get }
-    init(item : Item)
+    init(item: Item)
 }
 
+class CellViewModel<T>: CellViewModelProtocol {
 
-class CellViewModel<T>:  CellViewModelProtocol  {
-    
     typealias Item = T
     var item: T
-    
-    
-    
+
     required init(item: T) {
         self.item = item
     }

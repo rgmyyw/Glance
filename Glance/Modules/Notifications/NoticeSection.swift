@@ -10,8 +10,7 @@ import UIKit
 import RxDataSources
 import Differentiator
 
-
-enum NoticeType : Int {
+enum NoticeType: Int {
     case following = 1
     case liked = 2
     case recommended = 3
@@ -21,26 +20,24 @@ enum NoticeType : Int {
     case theme = 21
 }
 
+enum NoticeSection: AnimatableSectionModelType, IdentifiableType {
 
-enum NoticeSection : AnimatableSectionModelType,IdentifiableType {
-    
-    
     typealias Identity = String
     typealias Item = NoticeSectionItem
-    
+
     case noti(items : [NoticeSectionItem])
-    
+
     var identity: String {
         return "noti"
     }
-    
+
     var items: [NoticeSectionItem] {
         switch  self {
         case .noti(let items):
             return items.map { $0 }
         }
     }
-    
+
     init(original: NoticeSection, items: [Item]) {
         switch original {
         case .noti:
@@ -49,8 +46,6 @@ enum NoticeSection : AnimatableSectionModelType,IdentifiableType {
     }
 
 }
-
-
 
 enum NoticeSectionItem {
 
@@ -61,9 +56,8 @@ enum NoticeSectionItem {
     case mightLike(viewModel: NoticeCellViewModel)
     case system(viewModel: NoticeCellViewModel)
     case theme(viewModel: NoticeCellViewModel)
-    
 
-    var viewModel : NoticeCellViewModel {
+    var viewModel: NoticeCellViewModel {
         switch self {
         case .following(let viewModel):
             return viewModel
@@ -81,7 +75,7 @@ enum NoticeSectionItem {
             return viewModel
         }
     }
-    
+
     var reuseIdentifier: String {
         switch self {
         case .following:
@@ -100,7 +94,7 @@ enum NoticeSectionItem {
             return NoticeThemeCell.reuseIdentifier
         }
     }
-    
+
 }
 
 extension NoticeSectionItem: IdentifiableType {

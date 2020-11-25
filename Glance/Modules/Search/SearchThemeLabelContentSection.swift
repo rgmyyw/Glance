@@ -11,15 +11,13 @@ import RxDataSources
 import RxSwift
 import RxCocoa
 
-
 enum SearchThemeLabelContentSection {
     case single(items: [DefaultColltionSectionItem])
     case users(items : [DefaultColltionSectionItem])
 }
 
-
 extension SearchThemeLabelContentSection: SectionModelType {
-    
+
     typealias Item = DefaultColltionSectionItem
     var items: [DefaultColltionSectionItem] {
         switch  self {
@@ -29,7 +27,7 @@ extension SearchThemeLabelContentSection: SectionModelType {
             return items.map { $0 }
         }
     }
-    
+
     init(original: SearchThemeLabelContentSection, items: [Item]) {
         switch original {
         case .single(let items):
@@ -39,5 +37,3 @@ extension SearchThemeLabelContentSection: SectionModelType {
         }
     }
 }
-
-

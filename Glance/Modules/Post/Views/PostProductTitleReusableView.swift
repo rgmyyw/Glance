@@ -9,7 +9,7 @@
 import UIKit
 
 class PostProductTitleReusableView: CollectionReusableView {
-    
+
     @IBOutlet weak var titleLabel: UILabel!
     override func makeUI() {
         super.makeUI()

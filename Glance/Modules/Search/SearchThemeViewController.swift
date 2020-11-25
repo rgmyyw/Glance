@@ -7,18 +7,16 @@
 //
 
 import UIKit
-import UIKit
 import RxSwift
 import RxCocoa
 import WMZPageController
 
 class SearchThemeViewController: ViewController {
-    
-    private lazy var headView : SearchThemeHeadView = SearchThemeHeadView.loadFromNib()
-    
-    
-    private lazy var pageController : WMZPageController = {
-        
+
+    private lazy var headView: SearchThemeHeadView = SearchThemeHeadView.loadFromNib()
+
+    private lazy var pageController: WMZPageController = {
+
         let config = PageParam()
         config.wTopSuspension = true
         config.wBounces = false
@@ -40,29 +38,27 @@ class SearchThemeViewController: ViewController {
         config.wMenuWidth = UIScreen.width - 12
         config.wMenuPosition = .init(rawValue: 1)
         config.wMenuBgColor = .white
-        
+
         let controller = WMZPageController()
         controller.param = config
-        
+
         addChild(controller)
         stackView.addArrangedSubview(controller.view)
-        
+
         return controller
     }()
-    
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         navigationBar.title = "Hot"
     }
     override func bindViewModel() {
         super.bindViewModel()
-        
-        
+
         let refresh = Observable.just(())
         guard let viewModel = viewModel as? SearchThemeViewModel else { return }
-        
+
         let input = SearchThemeViewModel.Input(refresh: refresh,
                                                updateHistory: rx.viewWillAppear.mapToVoid(),
                                                selection: headView.collectionView.rx.modelSelected(SearchThemeLabelCellViewModel.self).asObservable())
@@ -76,7 +72,7 @@ class SearchThemeViewController: ViewController {
             let titles = items.map { $0.defaultTitle }
             self?.pageController.param.wControllers = controllers
             self?.pageController.param.wTitleArr = titles
-            
+
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                 let line = UIView()
                 line.backgroundColor = UIColor(hex: 0xF0F0F0)
@@ -93,13 +89,13 @@ class SearchThemeViewController: ViewController {
                 }
             }
         }).disposed(by: rx.disposeBag)
-        
+
         output.laeblDetail.drive(onNext: { [weak self](item) in
             let viewModel = SearchThemeLabelViewModel(provider: viewModel.provider, label: item)
             self?.navigator.show(segue: .searchThemeLabel(viewModel: viewModel), sender: self)
-            
+
         }).disposed(by: rx.disposeBag)
-        
+
         output.updateHeadLayout.drive(onNext: { [weak self]() in
             guard let self = self else { return }
             self.headView.layoutIfNeeded()
@@ -111,25 +107,22 @@ class SearchThemeViewController: ViewController {
             self.headView.layoutIfNeeded()
             self.pageController.updateHeadView()
         }).disposed(by: rx.disposeBag)
-        
-        
+
     }
-    
+
 }
 
 extension SearchThemeViewController {
-    
-    
-    func needUpdatePageTitltStyle(by button : UIButton, config :  WMZPageParam) {
-        
+
+    func needUpdatePageTitltStyle(by button: UIButton, config: WMZPageParam) {
+
         let title = button.titleLabel?.text ?? ""
-        let normalAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleColor,.font : UIFont.titleBoldFont(15)]
-        let selectedAttr : [NSAttributedString.Key : Any] = [.foregroundColor: config.wMenuTitleSelectColor,.font : UIFont.titleBoldFont(18)]
-        let normaltitle = NSMutableAttributedString(string: title,attributes: normalAttr)
-        let selectedTitle = NSMutableAttributedString(string: title,attributes: selectedAttr)
+        let normalAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleColor, .font: UIFont.titleBoldFont(15)]
+        let selectedAttr: [NSAttributedString.Key: Any] = [.foregroundColor: config.wMenuTitleSelectColor, .font: UIFont.titleBoldFont(18)]
+        let normaltitle = NSMutableAttributedString(string: title, attributes: normalAttr)
+        let selectedTitle = NSMutableAttributedString(string: title, attributes: selectedAttr)
         button.setAttributedTitle(normaltitle, for: .normal)
         button.setAttributedTitle(selectedTitle, for: .selected)
     }
-    
-}
 
+}

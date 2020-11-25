@@ -11,38 +11,35 @@ import RxSwift
 import RxCocoa
 
 class ShoppingCartViewModel: ViewModel, ViewModelType {
-        
+
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<ShoppingCartCellViewModel>
+        let selection: Observable<ShoppingCartCellViewModel>
 
     }
 
     struct Output {
-        let items : Driver<[ShoppingCartCellViewModel]>
-        let delete : Observable<ShoppingCartCellViewModel>
-        let comparePrice : Driver<String>
-        let openURL : Driver<URL>
-        let detail :  Driver<DefaultColltionItem>
+        let items: Driver<[ShoppingCartCellViewModel]>
+        let delete: Observable<ShoppingCartCellViewModel>
+        let comparePrice: Driver<String>
+        let openURL: Driver<URL>
+        let detail: Driver<DefaultColltionItem>
     }
-    
-    let element : BehaviorRelay<PageMapable<ShoppingCart>?> = BehaviorRelay(value: nil)
-    let confirmDelete = PublishSubject<ShoppingCartCellViewModel>()
-    let selectStoreActions = PublishSubject<(action : SelectStoreAction, item : SelectStore)>()
 
+    let element: BehaviorRelay<PageMapable<ShoppingCart>?> = BehaviorRelay(value: nil)
+    let confirmDelete = PublishSubject<ShoppingCartCellViewModel>()
+    let selectStoreActions = PublishSubject<(action: SelectStoreAction, item: SelectStore)>()
 
     func transform(input: Input) -> Output {
-        
+
         let elements = BehaviorRelay<[ShoppingCartCellViewModel]>(value: [])
         let delete = PublishSubject<ShoppingCartCellViewModel>()
         let comparePrice = PublishSubject<String>()
         let buy = PublishSubject<ShoppingCartCellViewModel>()
         let openURL = PublishSubject<URL>()
         let detail = PublishSubject<DefaultColltionItem>()
-        
-        
-        
+
         input.selection.map { DefaultColltionItem(productId: $0.item.productId ?? "")}
             .bind(to: detail).disposed(by: rx.disposeBag)
         buy.map { $0.item.productUrl?.url}.filterNil()
@@ -50,12 +47,11 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
         selectStoreActions.filter { $0.action == .buy }
             .map { $0.item.productUrl?.url }.filterNil()
             .bind(to: openURL).disposed(by: rx.disposeBag)
-        
+
         selectStoreActions.filter { $0.action == .jump }
             .map { DefaultColltionItem(productId: $0.item.productId ?? "")}
             .delay(RxTimeInterval.milliseconds(500), scheduler: MainScheduler.instance)
             .bind(to: detail).disposed(by: rx.disposeBag)
-        
 
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<PageMapable<ShoppingCart>>)> in
@@ -75,7 +71,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -84,8 +80,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<ShoppingCart>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
@@ -105,7 +100,7 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -127,15 +122,14 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                 return viewModel
             }
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-            
+
         confirmDelete
             .flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(ShoppingCartCellViewModel, Bool)>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                 return self.provider.shoppingCartDelete(productId: cellViewModel.item.productId ?? "")
                     .trackError(self.error)
                     .trackActivity(self.loading)
-                    .map { (cellViewModel,$0)}
+                    .map { (cellViewModel, $0)}
                     .materialize()
             }).subscribe(onNext: { [weak self] event in
                 switch event {
@@ -148,13 +142,12 @@ class ShoppingCartViewModel: ViewModel, ViewModelType {
                     } else {
                         self?.exceptionError.onNext(.general("product not remove"))
                     }
-                    
+
                 default:
                     break
                 }
             }).disposed(by: rx.disposeBag)
 
-                
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       delete: delete.asObservable(),
                       comparePrice: comparePrice.asDriverOnErrorJustComplete(),

@@ -12,51 +12,51 @@ import RxCocoa
 import RxDataSources
 
 class VisualSearchResultViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<DefaultColltionSectionItem>
-        let search : Observable<Void>
+        let selection: Observable<DefaultColltionSectionItem>
+        let search: Observable<Void>
     }
-    
-    struct Output {
-        let items : Driver<[VisualSearchResultSection]>
-        let search : Observable<(box : Box, image : UIImage)>
-        let searchHidden : Driver<Bool>
-        let description : Driver<String>
-        let detail : Driver<DefaultColltionItem>
-    }
-    
-    private let image : BehaviorRelay<UIImage>
-    private let element : BehaviorRelay<VisualSearchPageMapable?> = BehaviorRelay(value: nil)
-    
-    let imageURI = BehaviorRelay<String?>(value: nil)
-    let current : BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
-    let bottomViewHidden : BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
-    let searchSelection = PublishSubject<(box : Box, item : DefaultColltionItem)>()
-    let dots = BehaviorRelay<[VisualSearchDotCellViewModel]>(value: [])
-    let mode : BehaviorRelay<VisualSearchMode>
 
-    init(provider: API, image : UIImage, mode : VisualSearchMode) {
+    struct Output {
+        let items: Driver<[VisualSearchResultSection]>
+        let search: Observable<(box: Box, image: UIImage)>
+        let searchHidden: Driver<Bool>
+        let description: Driver<String>
+        let detail: Driver<DefaultColltionItem>
+    }
+
+    private let image: BehaviorRelay<UIImage>
+    private let element: BehaviorRelay<VisualSearchPageMapable?> = BehaviorRelay(value: nil)
+
+    let imageURI = BehaviorRelay<String?>(value: nil)
+    let current: BehaviorRelay<Box> = BehaviorRelay<Box>(value: .zero)
+    let bottomViewHidden: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
+    let searchSelection = PublishSubject<(box: Box, item: DefaultColltionItem)>()
+    let dots = BehaviorRelay<[VisualSearchDotCellViewModel]>(value: [])
+    let mode: BehaviorRelay<VisualSearchMode>
+
+    init(provider: API, image: UIImage, mode: VisualSearchMode) {
         self.image = BehaviorRelay(value: image)
         self.mode = BehaviorRelay(value: mode)
         super.init(provider: provider)
     }
-    
+
     func transform(input: Input) -> Output {
-        
-        let imageId : BehaviorRelay<String?> = BehaviorRelay(value: nil)
+
+        let imageId: BehaviorRelay<String?> = BehaviorRelay(value: nil)
         let elements = BehaviorRelay<[VisualSearchResultSection]>(value: [])
-        let search = input.search.map { (box : self.current.value ,image : self.image.value ) }
+        let search = input.search.map { (box : self.current.value, image : self.image.value ) }
         let searchHidden = mode.map { $0.searchHidden }
         let description = mode.map { $0.descriptionTitle }
         let save = PublishSubject<DefaultColltionCellViewModel>()
         let updateSelection = PublishSubject<DefaultColltionCellViewModel>()
         let detail = PublishSubject<DefaultColltionItem>()
-        
+
         dots.map { $0.compactMap { $0.selected }}.map { $0.isEmpty}.bind(to: bottomViewHidden).disposed(by: rx.disposeBag)
-        
+
         let refresh = current.filter { $0 != .zero }
             .debounce(RxTimeInterval.milliseconds(1000), scheduler: MainScheduler.instance)
         refresh.mapToVoid()
@@ -66,7 +66,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
 
         imageURI.filterNil().flatMapLatest({ [weak self] (uri) -> Observable<(RxSwift.Event<VisualSearchPageMapable>)> in
             guard let self = self else { return .error(ExceptionError.unknown) }
-            var param = [String : Any]()
+            var param = [String: Any]()
             param["page"] = 1
             param["limit"] = 1
             param["imUri"] = uri
@@ -79,14 +79,14 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             switch event {
             case .next(let item):
                 imageId.accept(item.imId)
-                let items = item.boxes.map { VisualSearchDotCellViewModel(box: $0,image: self.image.value)}
+                let items = item.boxes.map { VisualSearchDotCellViewModel(box: $0, image: self.image.value)}
                 items.first?.current = items.first?.box
                 self.dots.accept(items)
             default:
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
+
         Observable.combineLatest(input.headerRefresh.map { self.current.value }
             .merge(with: refresh), imageId.filterNil())
             .flatMapLatest({ [weak self] (box, imageId) -> Observable<(Event<VisualSearchPageMapable>)> in
@@ -101,7 +101,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 }
                 elements.accept([])
                 self.page = 1
-                var param = [String : Any]()
+                var param = [String: Any]()
                 param["page"] = self.page
                 param["limit"] = 10
                 param["box"] = box.intArray
@@ -123,7 +123,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                     }
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -132,14 +132,14 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<Event<VisualSearchPageMapable>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
             let box = self.current.value.intArray
-            var param = [String : Any]()
+            var param = [String: Any]()
             param["page"] = self.page
             param["limit"] = 10
             param["box"] = box
@@ -157,10 +157,10 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 temp?.boxProducts[0].productList = items
                 self.element.accept(temp)
                 self.refreshState.onNext(item.boxProducts[0].refreshState)
-                
+
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -170,14 +170,14 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
+
         /// 用户手动添加商品
         NotificationCenter.default.rx
             .notification(.kAddProduct)
             .subscribe(onNext: { [weak self] noti in
                 guard let (box, home) = noti.object as? (Box, DefaultColltionItem) else { return }
                 let boxes = self?.element.value?.boxes ?? []
-                if let boxIndex = boxes.firstIndex(where:  { $0 == box}) , var boxProduct = self?.element.value?.boxProducts[boxIndex] {
+                if let boxIndex = boxes.firstIndex(where: { $0 == box}), var boxProduct = self?.element.value?.boxProducts[boxIndex] {
                     boxProduct.productList.insert(home, at: 0)
                     var element = self?.element.value
                     element?.boxProducts[boxIndex] = boxProduct
@@ -187,12 +187,10 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                     print("not found box")
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
-        
+
         element.filterNil().map { (element) -> [VisualSearchResultSection] in
             guard var items = element.boxProducts.first?.productList else { return [] }
-            
+
             /// 过滤已经选中的商品
             /// 除了当前点，选中的商品，全部剔除
             let dots = self.dots.value
@@ -200,13 +198,13 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             let selected = dots.filter { $0.box == current }.first?.selected
             let other = dots.filter { $0.box != current }.compactMap { $0.selected }
             items.removeAll(where: { other.map { $0.productId }.contains($0.productId)})
-            
+
             /// 查找选中的商品, 将选中的商品插入到最前面
             if let selected = selected {
                 items.insert(selected, at: 0)
                 items.removeDuplicates()
             }
-            
+
             /// 生成cell
             let sectionItems = items.map { item -> DefaultColltionSectionItem  in
                 let viewModel = DefaultColltionCellViewModel(item: item)
@@ -219,10 +217,10 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 VisualSearchResultSection.picker(items: sectionItems)
             return [section]
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel,Bool)>)> in
+
+        save.flatMapLatest({ [weak self] (cellViewModel) -> Observable<(RxSwift.Event<(DefaultColltionCellViewModel, Bool)>)> in
             guard let self = self else { return Observable.just(RxSwift.Event.completed) }
-            var params = [String : Any]()
+            var params = [String: Any]()
             params["type"] = cellViewModel.item.type?.rawValue ?? -1
             params["updateSaved"] = !cellViewModel.saved.value
             params.merge(dict: cellViewModel.item.id)
@@ -233,11 +231,11 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 .materialize()
         }).subscribe(onNext: { [weak self] event in
             switch event {
-            case .next(let (cellViewModel,result)):
+            case .next(let (cellViewModel, result)):
                 cellViewModel.saved.accept(result)
                 var item = cellViewModel.item
                 item.recommended = result
-                kUpdateItem.onNext((.saved,item,self))
+                kUpdateItem.onNext((.saved, item, self))
             default:
                 break
             }
@@ -256,9 +254,9 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 element?.boxProducts[boxIndex] = item
                 elements.accept([])
                 self.element.accept(element)
-                
+
             }).disposed(by: rx.disposeBag)
-    
+
         /// 分两种模式, 如果是预览, 则是点击详情页
         /// 发布, 则是跳转到发布页面
         input.selection.subscribe(onNext: { [weak self] selection in
@@ -270,7 +268,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
                 updateSelection.onNext(selection.viewModel)
             }
         }).disposed(by: rx.disposeBag)
-        
+
         /// 更新选中状态, 如果已选中的点集合没有当前点,创建一个点并将新创建的点添加进选中的数组
         /// 假设,通过box 找到了在选中集合中，则改变selected 属性, 并保存当前选中商品
         /// 最终去更新dot, 刷新多有已存在的点
@@ -280,7 +278,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             let selected = !viewModel.selected.value
             let item = viewModel.item
             var dots = self.dots.value
-            
+
             viewModels.forEach { $0.selected.accept(false)}
             viewModel.selected.accept(selected)
             var dot = self.dots.value.filter { $0.box == current }.first
@@ -292,8 +290,7 @@ class VisualSearchResultViewModel: ViewModel, ViewModelType {
             dot?.selected = selected ? item : nil
             self.dots.accept(dots)
         }).disposed(by: rx.disposeBag)
-            
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []),
                       search: search,
                       searchHidden: searchHidden.asDriver(onErrorJustReturn: true),

@@ -25,7 +25,7 @@ class TableView: UITableView {
     }
 
     func makeUI() {
-        
+
         sectionHeaderHeight = 0
         sectionFooterHeight = 0
         backgroundColor = .clear

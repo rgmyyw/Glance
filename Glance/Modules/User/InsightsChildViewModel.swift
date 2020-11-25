@@ -11,34 +11,32 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class InsightsChildViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let headerRefresh: Observable<Void>
         let footerRefresh: Observable<Void>
-        let selection : Observable<InsightsCellViewModel>
-        
+        let selection: Observable<InsightsCellViewModel>
+
     }
-    
+
     struct Output {
-        let items : Driver<[InsightsCellViewModel]>
+        let items: Driver<[InsightsCellViewModel]>
     }
-        
-    
-    let type : BehaviorRelay<InsightsType>
-    
-    let selected = PublishSubject<(InsightsType,InsightsCellViewModel)>()
-    
+
+    let type: BehaviorRelay<InsightsType>
+
+    let selected = PublishSubject<(InsightsType, InsightsCellViewModel)>()
+
     init(provider: API, type: InsightsType) {
         self.type = BehaviorRelay(value: type)
         super.init(provider: provider)
     }
-    
-    let element : BehaviorRelay<PageMapable<Insight>?> = BehaviorRelay(value: nil)
-    
+
+    let element: BehaviorRelay<PageMapable<Insight>?> = BehaviorRelay(value: nil)
+
     func transform(input: Input) -> Output {
-        
+
         let elements = BehaviorRelay<[InsightsCellViewModel]>(value: [])
 
         input.headerRefresh
@@ -47,7 +45,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                     return Observable.just(.error(ExceptionError.unknown))
                 }
                 self.page = 1
-                let request : Single<PageMapable<Insight>> = self.type.value == .post ?
+                let request: Single<PageMapable<Insight>> = self.type.value == .post ?
                     self.provider.insightPost(userId: "", pageNum: self.page) :
                     self.provider.insightRecommend(userId: "", pageNum: self.page)
                 return request
@@ -62,7 +60,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                     self.refreshState.onNext(item.refreshState)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         self.refreshState.onNext(.end)
                         logError(error.debugDescription)
@@ -71,14 +69,13 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
+
         input.footerRefresh.flatMapLatest({ [weak self] () -> Observable<RxSwift.Event<PageMapable<Insight>>> in
             guard let self = self else {
                 return Observable.just(.error(ExceptionError.unknown))
             }
             self.page += 1
-            let request : Single<PageMapable<Insight>> = self.type.value == .post ?
+            let request: Single<PageMapable<Insight>> = self.type.value == .post ?
                 self.provider.insightPost(userId: "", pageNum: self.page) :
                 self.provider.insightRecommend(userId: "", pageNum: self.page)
             return request
@@ -95,7 +92,7 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                 self.refreshState.onNext(item.refreshState)
             case .error(let error):
                 guard let error = error.asExceptionError else { return }
-                switch error  {
+                switch error {
                 default:
                     self.page -= 1
                     self.refreshState.onNext(.end)
@@ -105,19 +102,17 @@ class InsightsChildViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
-        
+
         element.filterNil().map { items -> [InsightsCellViewModel] in
             return items.list.map { item -> InsightsCellViewModel  in
                 let viewModel = InsightsCellViewModel(item: item)
                 return viewModel
             }
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-        input.selection.map { (self.type.value,$0)}.bind(to: selected).disposed(by: rx.disposeBag)
-        
+
+        input.selection.map { (self.type.value, $0)}.bind(to: selected).disposed(by: rx.disposeBag)
+
         return Output(items: elements.asDriver(onErrorJustReturn: []))
     }
-    
-}
 
+}

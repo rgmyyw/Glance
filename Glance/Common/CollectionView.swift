@@ -35,7 +35,6 @@ class CollectionView: UICollectionView {
         setNeedsDisplay()
     }
 
-    
 //    /// 快捷获取itemWidth
 //    /// - Parameters:
 //    ///   - itemsPerRow: 列
@@ -72,21 +71,20 @@ class CollectionView: UICollectionView {
 }
 
 extension UICollectionView {
-    
-    
+
     /// 快捷获取itemWidth
     /// - Parameters:
     ///   - itemsPerRow: 列
     ///   - sectionInset: 内边距
     ///   - itemInset: 元素间距
-    func itemWidth(forItemsPerRow itemsPerRow: Int ,sectionInset : UIEdgeInsets = .zero,  itemInset : CGFloat = 0) -> CGFloat {
-        
-        let collectionWidth : CGFloat = frame.size.width
+    func itemWidth(forItemsPerRow itemsPerRow: Int, sectionInset: UIEdgeInsets = .zero, itemInset: CGFloat = 0) -> CGFloat {
+
+        let collectionWidth: CGFloat = frame.size.width
         if collectionWidth == 0 { return 0 }
 
-        let sectionInset : CGFloat = sectionInset.left + sectionInset.right
-        let itemInset : CGFloat  = CGFloat(itemsPerRow  - 1) * itemInset
-        
+        let sectionInset: CGFloat = sectionInset.left + sectionInset.right
+        let itemInset: CGFloat  = CGFloat(itemsPerRow  - 1) * itemInset
+
         return (collectionWidth - sectionInset - itemInset) / itemsPerRow.cgFloat
     }
 

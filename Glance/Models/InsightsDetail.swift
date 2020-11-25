@@ -9,7 +9,7 @@
 import ObjectMapper
 
 struct InsightsDetail: Mappable {
-    
+
     var postId: Int = 0
     var interactionsCount: Int = 0
     var image: String?
@@ -23,7 +23,6 @@ struct InsightsDetail: Mappable {
     var likesCount: Int = 0
     var saveCount: Int = 0
 
-    
     init?(map: Map) {}
 
     mutating func mapping(map: Map) {

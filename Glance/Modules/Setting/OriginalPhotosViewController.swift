@@ -11,7 +11,7 @@ import UIKit
 class OriginalPhotosViewController: ViewController {
 
     @IBOutlet weak var scrollView: UIScrollView!
-    
+
     override func makeUI() {
         super.makeUI()
         navigationTitle = "Original photos"
@@ -19,4 +19,3 @@ class OriginalPhotosViewController: ViewController {
     }
 
 }
-

@@ -9,17 +9,15 @@
 import UIKit
 
 extension UIView {
-    
-    func addGradient(colors: [UIColor?], start : CGPoint = CGPoint(x: 0, y: 0.5), end : CGPoint = CGPoint(x: 1, y: 0.5)) {
+
+    func addGradient(colors: [UIColor?], start: CGPoint = CGPoint(x: 0, y: 0.5), end: CGPoint = CGPoint(x: 1, y: 0.5)) {
         setNeedsLayout()
         layoutIfNeeded()
         let gradientLayer = CAGradientLayer(frame: bounds, colors: colors, start: start, end: end)
         layer.insertSublayer(gradientLayer, at: 0)
     }
-    
+
     func addThemeGradient() {
-        addGradient(colors: [UIColor(hex:0xF56447),UIColor.primary()])
+        addGradient(colors: [UIColor(hex: 0xF56447), UIColor.primary()])
     }
 }
-
-

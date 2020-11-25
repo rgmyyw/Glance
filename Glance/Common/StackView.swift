@@ -9,15 +9,13 @@
 import UIKit
 
 class StackView: UIStackView {
-    
+
     override var backgroundColor: UIColor? {
+        get { return layer.sublayers?.first?.backgroundColor?.uiColor }
         set {
             let background = CALayer()
             background.backgroundColor = newValue?.cgColor
             layer.insertSublayer(background, at: 0)
-        }
-        get{
-            return layer.sublayers?.first?.backgroundColor?.uiColor
         }
     }
 
@@ -37,19 +35,17 @@ class StackView: UIStackView {
 
         updateUI()
     }
-    
+
     override func addArrangedSubview(_ view: UIView) {
         view.removeFromSuperview()
         super.addArrangedSubview(view)
     }
-    
+
     override func insertArrangedSubview(_ view: UIView, at stackIndex: Int) {
         view.removeFromSuperview()
         super.insertArrangedSubview(view, at: stackIndex)
     }
-    
-    
-    
+
     func updateUI() {
         setNeedsDisplay()
     }

@@ -11,11 +11,10 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
-enum InsightsType  {
+enum InsightsType {
     case post, recommend
-    
-    var detailNavigationTitle : String {
+
+    var detailNavigationTitle: String {
         switch self {
         case .post:
             return "Post Insights"
@@ -23,7 +22,7 @@ enum InsightsType  {
             return "Recomm Insights"
         }
     }
-    var previewButtonTitle : String {
+    var previewButtonTitle: String {
         switch self {
         case .post:
             return "View post"
@@ -35,23 +34,18 @@ enum InsightsType  {
 }
 
 class InsightsViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
     }
-    
+
     struct Output {
-        
+
     }
-    
 
-    let selected = PublishSubject<(InsightsType,InsightsCellViewModel)>()
+    let selected = PublishSubject<(InsightsType, InsightsCellViewModel)>()
 
-    
-    
-    
     func transform(input: Input) -> Output {
-            
-        
+
         //        input.headerRefresh
         //            .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<User>)> in
         //                guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -67,7 +61,7 @@ class InsightsViewModel: ViewModel, ViewModelType {
         //                    break
         //                }
         //            }).disposed(by: rx.disposeBag)
-        
+
 //        let userHeadImageURL = user.map { $0?.userImage?.url}.asDriver(onErrorJustReturn: nil)
 //        let displayName = user.map { $0?.displayName ?? ""}.asDriver(onErrorJustReturn: "")
 //        let countryName = user.map { $0?.countryName ?? ""}.asDriver(onErrorJustReturn: "")
@@ -81,10 +75,7 @@ class InsightsViewModel: ViewModel, ViewModelType {
 //                "\(user.followerCount)\nFollowers",
 //                "\(user.followingCount)\nFollowing"]
 //        }.asDriver(onErrorJustReturn: ["0\nPost","0\nRecomm","0\nFollowers","0\nFollowing"])
-        
-        
+
         return Output()
     }
 }
-
-

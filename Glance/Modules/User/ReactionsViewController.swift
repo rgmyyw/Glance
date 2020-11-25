@@ -11,17 +11,17 @@ import RxSwift
 import RxCocoa
 
 class ReactionsViewController: TableViewController {
-    
+
     @IBOutlet weak var headView: UIView!
     @IBOutlet weak var lineView: UIView!
     @IBOutlet weak var hahaLabel: UILabel!
     @IBOutlet weak var heartLabel: UILabel!
     @IBOutlet weak var wowLabel: UILabel!
     @IBOutlet weak var sadLabel: UILabel!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
         tableView.register(nib: ReactionsCell.nib, withCellClass: ReactionsCell.self)
         tableView.rowHeight = 70
         headView.removeFromSuperview()
@@ -29,22 +29,22 @@ class ReactionsViewController: TableViewController {
         navigationTitle = "Reactions"
         headView.clipsToBounds = false
         refreshComponent.accept(.footer)
-        
+
         lineView.layer.shadowOffset = CGSize(width: 0, height: 1)
         lineView.layer.shadowColor = UIColor(hex: 0x828282)!.withAlphaComponent(0.2).cgColor
         lineView.layer.shadowOpacity = 1
         lineView.clipsToBounds = false
-        
+
     }
-    
+
     override func bindViewModel() {
         super.bindViewModel()
         guard let viewModel = viewModel as? ReactionsViewModel else { return }
-        
+
         let input = ReactionsViewModel.Input(selection: tableView.rx.modelSelected(UsersCellViewModel.self).asObservable(),
                                              footerRefresh: footerRefreshTrigger.asObservable())
         let output = viewModel.transform(input: input)
-        
+
         output.items
             .drive(tableView.rx.items(cellIdentifier: ReactionsCell.reuseIdentifier, cellType: ReactionsCell.self)) { tableView, viewModel, cell in
                 cell.bind(to: viewModel)
@@ -53,8 +53,7 @@ class ReactionsViewController: TableViewController {
         output.wow.drive(wowLabel.rx.text).disposed(by: rx.disposeBag)
         output.heart.drive(heartLabel.rx.text).disposed(by: rx.disposeBag)
         output.sad.drive(sadLabel.rx.text).disposed(by: rx.disposeBag)
-        
-    }
-    
-}
 
+    }
+
+}

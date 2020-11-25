@@ -22,7 +22,7 @@ extension UIColor {
     static func separator() -> UIColor {
         return themeService.type.associatedObject.separator
     }
-    
+
     static func text() -> UIColor {
         return themeService.type.associatedObject.text
     }
@@ -36,13 +36,12 @@ extension UIColor {
     static func background() -> UIColor {
         return themeService.type.associatedObject.background
     }
-    
+
     static func badgeBackground() -> UIColor {
         return UIColor(hex: 0xF2513F)!
     }
-    
-}
 
+}
 
 extension UIColor {
 

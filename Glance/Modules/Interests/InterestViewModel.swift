@@ -11,30 +11,29 @@ import RxSwift
 import RxCocoa
 import RxDataSources
 
-
 class InterestViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
         let headerRefresh: Observable<Void>
-        let selection : Observable<InterestCellViewModel>
-        let next : Observable<Void>
+        let selection: Observable<InterestCellViewModel>
+        let next: Observable<Void>
     }
-    
+
     struct Output {
-        let items : Driver<[SectionModel<Void,InterestCellViewModel>]>
-        let tabbar : Driver<Void>
+        let items: Driver<[SectionModel<Void, InterestCellViewModel>]>
+        let tabbar: Driver<Void>
     }
-    
-    let element : BehaviorRelay<[Interest]> = BehaviorRelay(value: [])
-    
+
+    let element: BehaviorRelay<[Interest]> = BehaviorRelay(value: [])
+
     func transform(input: Input) -> Output {
-        
-        let elements = BehaviorRelay<[SectionModel<Void,InterestCellViewModel>]>(value: [])
+
+        let elements = BehaviorRelay<[SectionModel<Void, InterestCellViewModel>]>(value: [])
         let selection = PublishSubject<InterestCellViewModel>()
         let commit = PublishSubject<String>()
         let tabbar = PublishSubject<Void>()
         let loadUserDetail = PublishSubject<Void>()
-        
+
         input.headerRefresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<[Interest]>)> in
                 guard let self = self else {
@@ -51,7 +50,7 @@ class InterestViewModel: ViewModel, ViewModelType {
                     self.element.accept(items)
                 case .error(let error):
                     guard let error = error.asExceptionError else { return }
-                    switch error  {
+                    switch error {
                     default:
                         logError(error.debugDescription)
                     }
@@ -59,23 +58,21 @@ class InterestViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
-        
-        element.map { items -> [SectionModel<Void,InterestCellViewModel>] in
+
+        element.map { items -> [SectionModel<Void, InterestCellViewModel>] in
             let sectionItems = items.map { item -> InterestCellViewModel  in
                 let viewModel = InterestCellViewModel(item: item)
                 viewModel.selection.map { viewModel }.bind(to: selection).disposed(by: self.rx.disposeBag)
                 return viewModel
             }
-            let sections = [SectionModel<Void,InterestCellViewModel>(model: (), items: sectionItems)]
+            let sections = [SectionModel<Void, InterestCellViewModel>(model: (), items: sectionItems)]
             return sections
         }.bind(to: elements).disposed(by: rx.disposeBag)
-        
-        
+
         input.selection.subscribe(onNext: { (cellViewModel) in
             cellViewModel.selected.accept(!cellViewModel.selected.value)
         }).disposed(by: rx.disposeBag)
-        
+
         input.next.map { elements.value[0].items }
             .map {  items -> [InterestCellViewModel] in
                 return items.filter { $0.selected.value }
@@ -87,7 +84,7 @@ class InterestViewModel: ViewModel, ViewModelType {
             let ids = items.map { $0.item.interestId.string }.joined()
             commit.onNext(ids)
         }).disposed(by: rx.disposeBag)
-        
+
         commit.flatMapLatest({ [weak self] (ids) -> Observable<(RxSwift.Event<Bool>)> in
             guard let self = self else {
                 return Observable.just(RxSwift.Event.completed)
@@ -106,7 +103,7 @@ class InterestViewModel: ViewModel, ViewModelType {
                 break
             }
         }).disposed(by: rx.disposeBag)
-        
+
         loadUserDetail.flatMapLatest({ [weak self] (isNewUser) -> Observable<(RxSwift.Event<User>)> in
                   guard let self = self else { return Observable.just(RxSwift.Event.completed) }
                   return self.provider.userDetail(userId: "")
@@ -122,7 +119,7 @@ class InterestViewModel: ViewModel, ViewModelType {
                       break
                   }
               }).disposed(by: rx.disposeBag)
-        
+
         return Output(items: elements.asDriver(onErrorJustReturn: []), tabbar: tabbar.asDriver(onErrorJustReturn: ()))
     }
 }

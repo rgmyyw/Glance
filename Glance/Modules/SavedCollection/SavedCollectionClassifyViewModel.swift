@@ -11,23 +11,22 @@ import RxSwift
 import RxCocoa
 
 class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
-    
+
     struct Input {
-        let refresh : Observable<Void>
+        let refresh: Observable<Void>
     }
-    
+
     struct Output {
-        let total : Driver<String>
-        let images : Driver<[Observable<URL?>]>
+        let total: Driver<String>
+        let images: Driver<[Observable<URL?>]>
     }
-    
 
     func transform(input: Input) -> Output {
-        
+
         let element = BehaviorRelay<SavedCollection?>(value: nil)
         let total = element.filterNil().map { "\($0.savedCount) Saved"}.asDriver(onErrorJustReturn: "")
         let imagesURL = element.filterNil().map {  $0.imageList.map { Observable.just($0.url) } }.asDriver(onErrorJustReturn: [])
-        
+
         input.refresh
             .flatMapLatest({ [weak self] () -> Observable<(RxSwift.Event<SavedCollection>)> in
                 guard let self = self else { return Observable.just(RxSwift.Event.completed) }
@@ -43,9 +42,7 @@ class SavedCollectionClassifyViewModel: ViewModel, ViewModelType {
                     break
                 }
             }).disposed(by: rx.disposeBag)
-        
 
         return Output(total: total, images: imagesURL)
     }
 }
-

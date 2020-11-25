@@ -10,7 +10,7 @@ import UIKit
 
 public class View: UIView {
 
-    convenience init(width: CGFloat,height : CGFloat) {
+    convenience init(width: CGFloat, height: CGFloat) {
         self.init(frame: CGRect(x: 0, y: 0, width: width, height: height))
         snp.makeConstraints { (make) in
             make.width.equalTo(width)
@@ -18,7 +18,6 @@ public class View: UIView {
         }
     }
 
-    
     convenience init(width: CGFloat) {
         self.init(frame: CGRect(x: 0, y: 0, width: width, height: 0))
         snp.makeConstraints { (make) in
@@ -32,8 +31,7 @@ public class View: UIView {
             make.height.equalTo(height)
         }
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         makeUI()
@@ -44,12 +42,11 @@ public class View: UIView {
 //        makeUI()
     }
 
-    
     public override func awakeFromNib() {
         super.awakeFromNib()
         makeUI()
     }
-    
+
     func makeUI() {
         self.layer.masksToBounds = true
         updateUI()

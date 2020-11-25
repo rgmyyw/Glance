@@ -12,18 +12,18 @@ import RxSwift
 import RxCocoa
 import Differentiator
 
-enum AddProductSection  {
-    
-    case productName(viewModel : AddProductSectionCellViewModel)
-    case categary(viewModel : AddProductSectionCellViewModel)
-    case tagRelatedKeywords(viewModel : AddProductSectionCellViewModel)
-    case brand(viewModel : AddProductSectionCellViewModel)
-    case website(viewModel : AddProductSectionCellViewModel)
+enum AddProductSection {
+
+    case productName(viewModel: AddProductSectionCellViewModel)
+    case categary(viewModel: AddProductSectionCellViewModel)
+    case tagRelatedKeywords(viewModel: AddProductSectionCellViewModel)
+    case brand(viewModel: AddProductSectionCellViewModel)
+    case website(viewModel: AddProductSectionCellViewModel)
     case tags(items : [AddProductSectionItem])
     case thumbnail(items :  [AddProductSectionItem])
-    case button(viewModel : AddProductSectionCellViewModel)
-    
-    var viewModel : AddProductSectionCellViewModel? {
+    case button(viewModel: AddProductSectionCellViewModel)
+
+    var viewModel: AddProductSectionCellViewModel? {
         switch self {
         case .productName(let viewModel),
              .categary(let viewModel),
@@ -39,24 +39,10 @@ enum AddProductSection  {
 }
 
 enum AddProductSectionItem {
-    case tag(identity : String, viewModel: AddProductTagCellViewModel)
-    case thumbnail(identity : String,viewModel: AddProductImageCellViewModel)
-    
-//  final func dequeueReusableCell<T: UICollectionViewCell>(for indexPath: IndexPath, cellType: T.Type = T.self) -> T
-//    where T: Reusable {
-//      let bareCell = self.dequeueReusableCell(withReuseIdentifier: cellType.reuseIdentifier, for: indexPath)
-//      guard let cell = bareCell as? T else {
-//        fatalError(
-//          "Failed to dequeue a cell with identifier \(cellType.reuseIdentifier) matching type \(cellType.self). "
-//            + "Check that the reuseIdentifier is set properly in your XIB/Storyboard "
-//            + "and that you registered the cell beforehand"
-//        )
-//      }
-//      return cell
-//  }
+    case tag(identity: String, viewModel: AddProductTagCellViewModel)
+    case thumbnail(identity: String, viewModel: AddProductImageCellViewModel)
 
-
-    func viewModel<T : CellViewModelProtocol >(_ type: T.Type) -> T {
+    func viewModel<T: CellViewModelProtocol >(_ type: T.Type) -> T {
         switch self {
         case .tag(_, let viewModel):
             return viewModel as! T
@@ -67,10 +53,8 @@ enum AddProductSectionItem {
 
 }
 
-
-
 extension AddProductSection: AnimatableSectionModelType {
-    
+
     typealias Identity = String
     var identity: String {
         switch self {
@@ -84,9 +68,9 @@ extension AddProductSection: AnimatableSectionModelType {
         case .website: return "website"
         }
     }
-    
+
     typealias Item = AddProductSectionItem
-    
+
     var items: [AddProductSectionItem] {
         switch  self {
         case .tags(let items):
@@ -97,7 +81,7 @@ extension AddProductSection: AnimatableSectionModelType {
             return []
         }
     }
-    
+
     init(original: AddProductSection, items: [Item]) {
         switch original {
         case .brand(let viewModel):
@@ -120,12 +104,11 @@ extension AddProductSection: AnimatableSectionModelType {
     }
 }
 
-
 extension AddProductSectionItem: IdentifiableType {
     typealias Identity = String
     var identity: Identity {
         switch self {
-        case .tag(let identity, _),.thumbnail(let identity, _):
+        case .tag(let identity, _), .thumbnail(let identity, _):
             return identity
         }
     }
@@ -135,5 +118,3 @@ extension AddProductSectionItem: Equatable {
         return lhs.identity == rhs.identity
     }
 }
-
-

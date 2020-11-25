@@ -8,7 +8,7 @@
 
 import UIKit
 
-enum UserDetailNavigationAction : Int {
+enum UserDetailNavigationAction: Int {
     case back = 0
     case share = 1
     case more = 2

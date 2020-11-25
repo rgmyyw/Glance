@@ -23,15 +23,12 @@ enum TokenType {
 struct Token: Mappable {
 
     var isValid = true
-    
 
     // Basic
     var basicToken: String?
-    
-    
-    var expired : Int = 0
 
-    
+    var expired: Int = 0
+
     init?(map: Map) {}
     init() {}
 

@@ -14,10 +14,10 @@ class SearchResultNavigationBar: View {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var backButton: UIButton!
     @IBOutlet weak var searchView: UIView!
-    
+
     override func makeUI() {
         super.makeUI()
-        
+
     }
 
 }

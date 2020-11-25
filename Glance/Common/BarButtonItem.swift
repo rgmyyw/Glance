@@ -10,14 +10,14 @@ import UIKit
 
 class BarButtonItem: UIBarButtonItem {
 
-    typealias Action = (target : Any ,action : Selector)
-    
-    public var view : UIButton? {
+    typealias Action = (target: Any, action: Selector)
+
+    public var view: UIButton? {
         return customView as? UIButton
     }
-    
-    convenience init(title : String? = nil, imageName : String? = nil, image : UIImage? = nil, action : Action? = nil) {
-        
+
+    convenience init(title: String? = nil, imageName: String? = nil, image: UIImage? = nil, action: Action? = nil) {
+
         let button = UIButton(type: .custom)
         button.setTitleColor(UIColor.text(), for: .normal)
         button.titleLabel?.font = UIFont.titleFont(12)
@@ -28,7 +28,7 @@ class BarButtonItem: UIBarButtonItem {
         if let imageName = imageName, let image = UIImage(named: imageName) {
             button.setImage(image, for: .normal)
         }
-        
+
         if let image = image {
             button.setImage(image, for: .normal)
         }
@@ -42,7 +42,5 @@ class BarButtonItem: UIBarButtonItem {
 //         contentView.addSubview(button)
         self.init(customView: button)
       }
-    
-    
-}
 
+}

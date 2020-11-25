@@ -10,18 +10,17 @@ import UIKit
 
 class PostsDetailMoreReusableView: CollectionReusableView {
 
-  
     @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var moreButton: UIButton!
-    
+
     override func makeUI() {
         super.makeUI()
         autoresizingMask = [.flexibleHeight, .flexibleWidth]
     }
-    
-    override func bind<T>(to viewModel: T) where T : PostsDetailSectionCellViewModel {
+
+    override func bind<T>(to viewModel: T) where T: PostsDetailSectionCellViewModel {
         super.bind(to: viewModel)
-        
+
         let showMore = moreButton.rx.tap.mapToVoid().merge(with: arrowButton.rx.tap.mapToVoid())
         showMore.map { !viewModel.folded.value}.bind(to: viewModel.folded).disposed(by: cellDisposeBag)
         showMore.bind(to: viewModel.reloadTitleSection).disposed(by: cellDisposeBag)
