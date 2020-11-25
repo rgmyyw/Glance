@@ -37,7 +37,7 @@ platform :ios do
   end
   
   
-  lane :commit_app_icon do |options|
+  private_lane :commit_app_icon do |options|
     sh "git add ../Glance/Resources/Assets.xcassets/AppIcon.appiconset/*"
     sh "git commit -m \"fastlane action \"commit_app_icon\":  #{options[:message]}\""
     if options[:push]

@@ -15,6 +15,7 @@ import CocoaLumberjack
 import Kingfisher
 #if DEBUG
 import FLEX
+import CocoaDebug
 #endif
 import NVActivityIndicatorView
 import NSObject_Rx
@@ -52,6 +53,7 @@ class LibsManager: NSObject  {
         libsManager.setupToast()
         libsManager.setupPgyer()
         libsManager.setupOneSignal(launchOptions: launchOptions ?? [:])
+        libsManager.setupCocoaDebug()
         
         OAuthManager.shared.setup()
         BadgeValueManager.shared.setup()
@@ -205,6 +207,17 @@ class LibsManager: NSObject  {
         OneSignal.add(self as OSPermissionObserver)
 
     }
+    
+    func setupCocoaDebug() {
+        #if DEBUG
+        CocoaDebug.serverURL = Configs.Network.url
+        CocoaDebug.ignoredURLs = []
+        CocoaDebug.onlyURLs = []
+        CocoaDebug.logMaxCount = 1000
+        CocoaDebug.emailToRecipients = ["coderhaiyang@gmail.com"]
+        CocoaDebug.mainColor = "#fd9727"
+        #endif
+    }
 
 }
 
@@ -223,6 +236,8 @@ extension LibsManager {
     func kingfisherCacheSize() -> Observable<Int> {
         return ImageCache.default.rx.retrieveCacheSize()
     }
+    
+    
 }
 
 //extension LibsManager : OpenInstallDelegate {
