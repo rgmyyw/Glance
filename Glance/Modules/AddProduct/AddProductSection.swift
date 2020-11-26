@@ -45,9 +45,17 @@ enum AddProductSectionItem {
     func viewModel<T: CellViewModelProtocol >(_ type: T.Type) -> T {
         switch self {
         case .tag(_, let viewModel):
-            return viewModel as! T
+            if let viewModel = viewModel as? T {
+                return viewModel
+            } else {
+                fatalError()
+            }
         case .thumbnail(_, let viewModel):
-         return viewModel as! T
+            if let viewModel = viewModel as? T {
+                return viewModel
+            } else {
+                fatalError()
+            }
         }
     }
 

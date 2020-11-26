@@ -67,6 +67,7 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
     let memuSelection = PublishSubject<PostsDetailMemuItem>()
     let deletePost = PublishSubject<Void>()
     let selectStoreActions = PublishSubject<(action: SelectStoreAction, item: SelectStore)>()
+    let similar = BehaviorRelay<PageMapable<DefaultColltionItem>?>(value: nil)
 
     init(provider: API, item: DefaultColltionItem) {
         self.item = BehaviorRelay(value: item)
@@ -74,8 +75,6 @@ class PostsDetailViewModel: ViewModel, ViewModelType {
         self.page = 0
 
     }
-
-    let similar = BehaviorRelay<PageMapable<DefaultColltionItem>?>(value: nil)
 
     func transform(input: Input) -> Output {
 

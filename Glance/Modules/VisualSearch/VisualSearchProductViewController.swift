@@ -30,7 +30,7 @@ class VisualSearchProductViewController: CollectionViewController {
         titleLabel.textAlignment = .center
         titleLabel.font = UIFont.titleFont(12)
         let button = UIButton()
-        let attr: [NSAttributedString.Key: Any] = [.underlineStyle: NSNumber(integerLiteral: NSUnderlineStyle.single.rawValue),
+        let attr: [NSAttributedString.Key: Any] = [.underlineStyle: NSNumber(value: NSUnderlineStyle.single.rawValue),
                                                      .underlineColor: UIColor.primary(),
                                                      .font: titleLabel.font!,
                                                      .foregroundColor: UIColor.primary()]

@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import UIKit
 import RxSwift
 import RxCocoa
 import WMZPageController
